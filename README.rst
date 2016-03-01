@@ -12,7 +12,13 @@ bieten fertige Setups und unterstützen bei der Versionierung derselben.  Bitte
 Bezugsquellen
 =============
 
-comming soon ...
+Die Dokumentation zu diesem Projekt wird bei *Read The Docs* gehostet:
+
+* https://handson.readthedocs.org
+
+Die Sourcen sind auf github hinterlegt::
+
+  git clone https://github.com/return42/handsOn.git
 
 
 Installation
