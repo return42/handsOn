@@ -25,12 +25,12 @@ apt-sourcen stammen von `NodeSource <https://nodesource.com/>`_:
 Installation
 ============
 
-In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, das adie folgenden
+In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, das die folgenden
 Schritte durchführt.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/install_nodejs.sh install
+   $ sudo ${SCRIPT_FOLDER}/node_source.sh install
 
 * Einrichten der Paketquellen von https://deb.nodesource.com/node_4.x
   (:man:`add-apt-repository`)

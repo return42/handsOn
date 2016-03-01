@@ -668,7 +668,7 @@ aptAddRepositoryURL(){
     fi
     if aptRepositoryExist "${DEB}" "${APT_SOURCE_NAME}"; then
         rstBlock "APT-Source: '${DEB}' allready exist"
-        if ! askNy "Shuold it be added once more?"; then
+        if ! askNy "should it be added once more?"; then
             return
         fi
     fi
