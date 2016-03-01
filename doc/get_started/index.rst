@@ -29,9 +29,3 @@ Die Dokumentation zu diesem Projekt wird bei *Read The Docs* gehostet:
 Die Sourcen sind auf github hinterlegt::
 
   git clone https://github.com/return42/handsOn.git
-
-
-Installation
-============
-
-comming soon ...

@@ -1,7 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 ================================================================================
-                                    hands-on
+                                    handsOn
 ================================================================================
 
 Eine Sammlung von Skripten und Dokumentationen zur Installation von Anwendungen
@@ -26,17 +26,10 @@ Exkursionen und Erfahrungswerte
 
    excursion/index
 
+..
+   .. toctree::
+      :maxdepth: 1
 
-Indices and tables
-==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-* :ref:`search`
-
-.. toctree::
-   :maxdepth: 1
-
-   todo
+      todo
 
 
