@@ -1,0 +1,25 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+================================================================================
+                               Lizenzbedingungen
+================================================================================
+
+::
+
+           handsOn:: eine Sammlung von Erfahrungen und Setup-Skripten
+
+                       Copyright (C) 2016  Markus Heiser
+
+
+                                     **de**
+
+          Die Lizenzbedingungen gelten für die Programme und Dokumente
+                gleichermaßen. Siehe Datei ``doc/LICENSE.rst``.
+
+                                     **en**
+
+        The license terms for the programs and documents alike. See file
+                              ``doc/LICENSE.rst``.
+
+
+

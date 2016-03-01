@@ -1,0 +1,42 @@
+.. _`Fünf Jahre später: Unity vs. Gnome Shell revisited`: http://privatstrand.dirkschmidtke.de/2015/10/29/fuenf-jahre-spaeter-unity-vs-gnome-shell-revisited
+.. _`systemd (wiki)`: https://de.wikipedia.org/wiki/Systemd
+.. _`devfs (wiki)`: https://de.wikipedia.org/wiki/Devfs
+.. _`udev (wiki)`: https://de.wikipedia.org/wiki/Udev
+.. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
+.. _`Cinnamon`: http://cinnamon.linuxmint.com/
+.. _`Cinnamon (github)`: https://github.com/linuxmint/Cinnamon/
+.. _`Cinnamon Spices`: http://cinnamon-spices.linuxmint.com/
+.. _`Xfce`: http://www.xfce.org/
+.. _`elementary OS`: http://elementary.io/
+.. _`elementary OS (wiki)`: https://de.wikipedia.org/wiki/Elementary_OS
+.. _`Pantheon (ArchLinux)`: https://wiki.archlinux.org/index.php/Pantheon
+.. _`X Display Manager (wiki)`: https://en.wikipedia.org/wiki/X_display_manager_%28program_type%29
+.. _`Display Manager (ubuntu)`: https://wiki.ubuntuusers.de/Displaymanager/
+.. _`XDMC-Protocol (wiki)`: https://en.wikipedia.org/wiki/X_display_manager_%28program_type%29#X_Display_Manager_Control_Protocol
+.. _`GDM`: https://wiki.gnome.org/Projects/GDM
+.. _`GDM (ubuntu)`: https://wiki.ubuntuusers.de/GDM/
+.. _`LightDM (ubuntu)`: https://wiki.ubuntu.com/LightDM
+.. _`LightDM (wiki)`: https://de.wikipedia.org/wiki/LightDM
+.. _`LightDM (freedesktop)`: https://www.freedesktop.org/wiki/Software/LightDM/
+.. _`SDDM (github)`: https://github.com/sddm/sddm/releases
+.. _`SDDM (wiki)`: https://de.wikipedia.org/wiki/Simple_Desktop_Display_Manager
+.. _`KDM (wiki)`: https://de.wikipedia.org/wiki/KDE_Display_Manager
+.. _`X Window System (wiki)`: https://de.wikipedia.org/wiki/X_Window_System
+.. _`Wayland (wiki)`: https://en.wikipedia.org/wiki/Wayland_%28display_server_protocol%29
+.. _`freedesktop.org`: https://www.freedesktop.org/wiki/
+.. _`Window Manager (wiki)`: https://en.wikipedia.org/wiki/Window_manager
+.. _`Unity`: http://unity.ubuntu.com/
+.. _`Unity (wiki)`: https://de.wikipedia.org/wiki/Unity_%28Benutzeroberfl%C3%A4che%29
+.. _`KDE`: https://www.kde.org/
+.. _`elementary-os team`: https://launchpad.net/~elementary-os
+.. _`Mate Desktop`: http://mate-desktop.org/
+.. _`GNOME Shell`: https://wiki.gnome.org/Projects/GnomeShell
+.. _`GNOME Tracker`: https://wiki.gnome.org/Projects/Tracker/
+.. _`GNOME TweakTool`: https://wiki.gnome.org/action/show/Apps/GnomeTweakTool
+.. _`GNOME Shell Extensions`: https://extensions.gnome.org/
+.. _`GNOME Shell System-Monitor Applet`: https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet
+.. _`GNOME NetworkManager`: https://wiki.gnome.org/Projects/NetworkManager/
+.. _`gconf-editor Manual`: https://help.gnome.org/users/gconf-editor/stable/
+.. _`ppa:gnome3-team/gnome3`: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3
+.. _`VNC (wiki)`: https://de.wikipedia.org/wiki/Virtual_Network_Computing
+.. _`Teamviewer`: https://www.teamviewer.com/de/
