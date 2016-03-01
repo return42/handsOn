@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
+    <title>Autoindex</title>
+
+    <link rel="stylesheet" type="text/css"
+	  href="/chrome/autoindex.css"/ >
+
+    <script type="text/javascript" language="javascript"
+	    src="/chrome/jquery.js"></script>
+
+    <script type="text/javascript" language="javascript"
+	    src="/chrome/jquery.alternate.js"></script>
+
+    <script type="text/javascript" language="javascript"
+	    src="/chrome/autoindex.js"></script>
+  </head>
+  <body>
+    <div id="localREADME">
+    </div>
+    <div class="directory">

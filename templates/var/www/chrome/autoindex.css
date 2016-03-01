@@ -1,0 +1,107 @@
+body {
+    color: black;
+    background-color: #fff;
+    background-image: url(background.png);
+    background-repeat: repeat-x;
+    font-family: monospace;
+    font-size:12px;
+    position: relative;
+    z-index:1;
+}
+
+@media print {
+    body {
+	background-color: transparent;
+	background-image: None;
+	margin: 0; border: 0; padding: 0;
+	min-width: 0; width: auto; height: auto;
+    }
+}
+
+pre, code, kbd, samp, tt, blockquote, cite {
+    font-family: monospace;
+    line-height: 100%;
+}
+
+/* einheitliche Rahmen */
+
+* { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6, p, pre, blockquote, label, ul, ol, dl, fieldset, address { margin:1em 0;}
+ol { margin-left: 1.5em; }
+ul, dir, menu { margin-left: 1em;}
+li, dd { margin-left: 5%; }
+
+/* Vereinheitlichung diverser Grundeinstellungen die in den Browsern variieren */
+
+img { border: none; }
+table { font-size: inherit; }
+form { width: auto; }
+
+select, input, textarea { color: #33354f; }
+textarea { overflow:auto; }
+
+/* Verweise */
+
+a { cursor: pointer; text-decoration: none; color: blue; }
+a:hover { color: red; text-decoration: underline; }
+
+table {
+    width: 90%;
+    margin: auto;
+}
+
+.odd {
+    background-color: #fafafa;
+}
+.even {
+    background-color: #ececec;
+}
+.off {
+    background-color:red;
+}
+.on {
+    background-color:blue;
+}
+.hover {
+    background-color: #ffeaea;
+}
+.selected {
+    font-style:italic;
+}
+
+
+/* ----------------------------------------------------------------------
+   printing
+
+
+@media print {
+    body, html {
+	background-color: transparent;
+	background-image: 0;
+	margin: 0; border: 0; padding: 0;
+	min-width: 0; width: auto; height: auto;
+	font-family: serif;
+	font-size: 10pt;
+    }
+    a:link:after, a:link:visited:after {
+	content: " [" attr(href) "] ";
+	font-size: 76%;
+	font-style:italic;
+	background: transparent;
+    }
+    a:link, a:visited {
+	background: transparent;
+	font-weight: bold;
+    }
+}
+   ---------------------------------------------------------------------- */
+
+
+#localREADME, #localMEMO {
+    font-family: monospace;
+    white-space: pre-wrap;
+    width: 90%;
+    margin: 10pt auto;
+}
+
+
