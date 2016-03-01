@@ -19,9 +19,9 @@ ist ein Fork der GNOME-Shell. Es bestehen 4 Arten von *Erweiterungen*:
 
 * Applets: sind kleine Anwendungen, die in die Fensterleiste(en) installiert
   werden können. Es gibt vorkonfektionierte Applets, die z.T. schon installiert
-  sind. So sind z.B. das *Menü* und anderer Bedienelemente in der Fensterleiste
-  vorinstallierte Applets. Weitere Applets können aus dem Internet bezogen
-  werden. Für das Systemmonitoring kann `Multi-Core System Monitor
+  sind. So sind z.B. das *Menü* und anderer Bedienelemente in der
+  Fensterleiste. Weitere Applets können aus dem Internet bezogen werden. Für das
+  Systemmonitoring kann `Multi-Core System Monitor
   <http://cinnamon-spices.linuxmint.com/applets/view/79>`_ empfohlen werden.
 
 * Desklets: sind kleine Anwendungen die auf den Desktop Hintergund gelegt werden
@@ -50,10 +50,9 @@ Cinnamon Desktop Umgebung installiert werden kann.
    $ sudo ${SCRIPT_FOLDER}/desktop_system.sh cinnamon
 
 Mit dem oben stehenden Skript wird das Paket :deb:`cinnamon-desktop-environment`
-installiert. Das Paket umfasst den Cinnamon Desktop und noch einiges mehr, so
-z.B. eine Suite von Standard-Anwendungen. Man sollte sich überlegen, ob man das
-alles braucht und nachdem man seine Tests beendet hat sollte man eine
-De-Installation durchführen.
+installiert. Das Paket umfasst den Cinnamon Desktop der recht *schlank* ist. Der
+Desktop ist eine gute Alternative zur GNOME-Shell, eine Installation neben der
+GNOME-Shell kann ich nur empfehlen.
 
 De-Installation
 ===============

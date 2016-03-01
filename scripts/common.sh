@@ -174,7 +174,7 @@ waitKEY(){
     if [[ ! $TERM == "dumb" ]] ; then
         tput sc
         printf "${Green}** press any [${Orange}KEY${Green}] to continue **${_color_Off}"
-        read -s -n1 $_t
+        read -n1 $_t
         [[ $REPLY == p ]] && read -s -n1
         tput rc
         printf "\e[K"
@@ -488,6 +488,13 @@ cacheDownload() {
     # usage: cacheDownload <url> <local-filename> [askYn|askNy]
 
     local exitValue=0
+
+    if [[ ! -z ${SUDO_USER} ]]; then
+        sudo -u ${SUDO_USER} mkdir -p ${CACHE}
+    else
+        mkdir -p ${CACHE}
+    fi
+
     if [[ -f "${CACHE}/$2" ]] ; then
         info_msg "${Green}already cached:${_color_Off} $1"
         info_msg "  -->${Green} ${CACHE}/$2 ${_color_Off}"
@@ -502,11 +509,6 @@ cacheDownload() {
     fi
 
     if [[ ! -f "${CACHE}/$2" ]]; then
-        if [[ ! -z ${SUDO_USER} ]]; then
-            sudo -u ${SUDO_USER} mkdir -p ${CACHE}
-        else
-            mkdir -p ${CACHE}
-        fi
         info_msg "${Green}caching:${_color_Off} $1"
         info_msg "  -->${Green} ${CACHE}/$2 ${_color_Off}"
         if [[ ! -z ${SUDO_USER} ]]; then
@@ -525,6 +527,12 @@ cloneGitRepository() {
 # ----------------------------------------------------------------------------
 
     # cloneGitRepository https://github.com/radarhere/Sane.git python-sane
+
+    if [[ ! -z ${SUDO_USER} ]]; then
+        sudo -u ${SUDO_USER} mkdir -p ${CACHE}
+    else
+        mkdir -p ${CACHE}
+    fi
 
     if [[ -d "${CACHE}/$2" ]] ; then
 	info_msg "${Green}already cloned:${_color_Off} $1"
@@ -742,7 +750,7 @@ installDebFromURL () {
     #
     #    installDebFromURL <url> [<local-filename>]
     #
-    installDebFromURL "http://www.teamviewer.com/download/teamviewer_i386.deb"
+    #    installDebFromURL "http://www.teamviewer.com/download/teamviewer_i386.deb"
 
     local URL="${1}"
     local FNAME="$(stripFilenameFromUrl ${1})"
