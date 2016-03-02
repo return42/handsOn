@@ -44,7 +44,7 @@ bootstrap() {
 
     rstHeading "Bootstraping $appl" part
 
-    rstHeading "Installing base packages" chapter
+    rstHeading "Install bootstrap requirements" chapter
     rstPkgList ${BASE_PACKAGES}
     waitKEY
     sudo apt-get install -y ${BASE_PACKAGES}

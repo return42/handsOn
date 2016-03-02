@@ -18,7 +18,7 @@ Installation
 
 Mit dem Kommando wird das handsOn Repository in dem Ordner installiert, in dem
 das Kommando ausführt wird und es werden die erforderlichen Basispakete über
-:man:`apt-get` installiert. Eine alternative Installation:
+``apt-get`` installiert. Eine alternative Installation:
 
 .. code-block:: bash
 

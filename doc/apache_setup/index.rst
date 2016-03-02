@@ -12,16 +12,15 @@ Die Aufgabe des HTTP-Server ist es, Inhalte über HTTP auszuliefern. Diese als
 Resourcen bezeichneten Inhalte können statische Dateien, ganze Ordnerstrukturen
 oder aber auch WEB-Anwendungen sein. Um nicht zwischen statischen Dateien und
 WEB-Anwendungen unterscheiden zu müssen wird fortan nur noch von
-**WEB-Anwendungen** und **Resourcen** gesprochen. *Am Ende sind ja auch
-statische Inhalte eine Anwendung und die Ordner im Dateisystem mit dem
-statischen Content sind die Resource*. Als **Site** bezeichnet man die
-Konfiguration mit der eine Resource über HTTP ausgeliefert werden soll.
+**WEB-Anwendungen** und **Resourcen** gesprochen.  Als **Site** bezeichnet man
+die Konfiguration mit der eine Resource über HTTP ausgeliefert werden soll.
 
-Der Apache HTTP Server ist ein flexiebel einsetzbarer und mittels Module
+Der Apache HTTP Server ist ein flexibel einsetzbarer und mittels Module
 erweiterbarer WEB-Server. Einige dieser Module werden -- wie der HTTP Server von
 der `Apache Software Foundation`_ -- quelloffen (`Apache httpd SVN`_)
-entwickelt. Andere Module gehören nicht zur Apach-Source, werden aber ebenfalls
-quelloffen im Internet entwickelt (z.B. `Apache mod_authnz_external`_).
+entwickelt. Andere Module gehören nicht zu den Apache-Sourcen, werden aber
+ebenfalls quelloffen im Internet entwickelt (z.B. `Apache
+mod_authnz_external`_).
 
 So flexibel wie der WEB-Server einsetzbar ist, so steil ist u.U. auch die
 Lernkurve, die man nehmen muss, um ein *einfaches und griffiges* Setup für den
