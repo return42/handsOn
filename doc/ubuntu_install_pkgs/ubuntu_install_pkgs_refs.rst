@@ -11,6 +11,7 @@ APT Paketierung
 
 .. _`Metapaket`: https://wiki.ubuntuusers.de/Metapakete/
 
+* `Metapaket`_
 
 Multimedia Anwendungen
 ======================
