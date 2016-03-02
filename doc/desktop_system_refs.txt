@@ -2,7 +2,6 @@
 .. _`systemd (wiki)`: https://de.wikipedia.org/wiki/Systemd
 .. _`devfs (wiki)`: https://de.wikipedia.org/wiki/Devfs
 .. _`udev (wiki)`: https://de.wikipedia.org/wiki/Udev
-.. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
 .. _`Cinnamon`: http://cinnamon.linuxmint.com/
 .. _`Cinnamon (github)`: https://github.com/linuxmint/Cinnamon/
 .. _`Cinnamon Spices`: http://cinnamon-spices.linuxmint.com/
@@ -40,3 +39,5 @@
 .. _`ppa:gnome3-team/gnome3`: https://launchpad.net/~gnome3-team/+archive/ubuntu/gnome3
 .. _`VNC (wiki)`: https://de.wikipedia.org/wiki/Virtual_Network_Computing
 .. _`Teamviewer`: https://www.teamviewer.com/de/
+.. _`GObject`: https://developer.gnome.org/gobject/stable
+.. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>

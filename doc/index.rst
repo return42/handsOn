@@ -13,6 +13,7 @@ und Diensten (kurz: Setup). Bitte :ref:`xref_LICENSE` beachten.
    get_started/index
    desktop_system/index
    ubuntu_remove_pkgs/index
+   ubuntu_install_pkgs/index
    install_nodejs/index
    apache_setup/index
    mozcloud/index

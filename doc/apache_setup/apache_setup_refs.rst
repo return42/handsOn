@@ -1,6 +1,6 @@
 .. -*- coding: utf-8; mode: rst -*-
 
-.. _xref_apache-setup-refs:
+.. _xref_apache_setup_refs:
 
 ================================================================================
                                     Verweise

@@ -26,9 +26,10 @@ BASE_DOC_PACKAGES="\
 "
 
 OFFICE_PACKAGES="\
- libreoffice-style-sifr \
+ libreoffice libreoffice-l10n-de libreoffice-help-de libreoffice-gtk libreoffice-style-sifr \
  firefox \
  thunderbird \
+ hunspell hunspell-de-de \
 "
 # Remote Desktop (Server)
 # RDP_PACKAGES="\
@@ -37,15 +38,14 @@ OFFICE_PACKAGES="\
 # "
 
 MULTIMEDIA_CLIENT_PACKAGES="\
- vlc qmmp openshot handbrake mixxx audacious
+ vlc qmmp openshot handbrake mixxx audacious mpv
 "
 
 CODEC_PACKAGES="\
- ubuntu-restricted-extras \
- libavcodec-extra \
- ffmpeg \
- gstreamer1.0-plugins-base gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly \
+ libav-tools libavcodec-extra \
+ gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
 "
+# gstreamer1.0-plugins-ugly
 
 IMAGE_TOOLS_PACKAGES="\
  gimp gimp-plugin-registry gimp-data-extras gimp-help-de \
@@ -58,7 +58,7 @@ IMAGE_TOOLS_PACKAGES="\
 "
 
 ARCHIVE_TOOLS_PACKAGES="\
- unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller \
+ tar gzip unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller \
 "
 
 HARDWARE_PACKAGES="\
@@ -224,7 +224,7 @@ Es werden verschiedene (Client) Multimedia Pakete installiert:
 * openshot:  Videoeditor                http://openshot.org/
 * qmmp:      Qt Mediaplayer             http://qmmp.ylsoftware.com/
 * mixxx:     Disk Jokey Mix Software    http://mixxx.org/
-* audacious  Audioplayer (winamp like)  http://audacious-media-player.org/"
+* audacious: Audioplayer (winamp like)  http://audacious-media-player.org/"
 
     rstPkgList ${MULTIMEDIA_CLIENT_PACKAGES}
     if ! askYn "sollen die Multimedia Pakete installiert werden?" 10; then

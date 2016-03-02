@@ -19,10 +19,6 @@ Verschiedenes
 * `Fünf Jahre später: Unity vs. Gnome Shell revisited`_
 * `systemd (wiki)`_, `devfs (wiki)`_ und `udev (wiki)`_
 
-.. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
-
-* `GObject Introspection`_
-
 Distros und ihre Desktops
 =========================
 
@@ -110,3 +106,12 @@ Remote Desktop & Desktop Sharing
 
 * `VNC (wiki)`_
 * `Teamviewer`_
+
+GTK & GObject
+=============
+
+.. _`GObject`: https://developer.gnome.org/gobject/stable
+.. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
+
+* `GObject`_
+* `GObject Introspection`_
