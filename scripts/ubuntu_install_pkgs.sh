@@ -22,7 +22,7 @@ BASE_PACKAGES="\
 "
 
 BASE_DOC_PACKAGES="\
- libpam-doc \
+ debian-handbook libpam-doc \
 "
 
 OFFICE_PACKAGES="\
@@ -72,12 +72,16 @@ MONITORING_PACKAGES="\
 "
 
 DEVELOP_PACKAGES="\
- devscripts build-essential linux-headers-generic \
- autotools-dev autoconf \
- gettext libtool \
- libjpeg-dev \
+ build-essential linux-headers-generic \
+ autoconf autotools-dev automake libtool-bin gettext \
+ devscripts \
+ dkms \
+ python-dev python-argcomplete python-pip python-virtualenv pylint \
+ git subversion mercurial bzr \
+ emacs diff colordiff patch grep \
  sqlitebrowser sqlite3 \
 "
+# libjpeg-dev \
 
 # ----------------------------------------------------------------------------
 main(){

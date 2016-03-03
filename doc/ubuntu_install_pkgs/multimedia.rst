@@ -12,7 +12,7 @@
 
 * :deb:`mpv` : Der `mpv`_ ist ein Medienplayer. Der `mpv`_ ist eine
   Weiterentwicklung des `MPlayer`_, der mit OpenGL und unter Nutzung der GPU
-  eine verbesserte Videoqualität bietet als der `MPlayer`_ bietet.
+  eine verbesserte Videoqualität bietet als der `MPlayer`_.
 
 * :deb:`handbrake` : `HandBrake`_ ist ein Video-Transcoder
 

@@ -21,9 +21,8 @@ aber noch nicht zu 100% der Fall (mit Ubuntu 16.04 wird es nochmal eine Revision
 geben).
 
 Nicht getestet aber zu erwarten ist, dass die Installationsskripte auch auf
-allen aktuellen und gängigen LTS Versionen der `Ubuntu-Derivate
-<https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Ubuntu-Derivate>`_
-wie z.B. `lubuntu`_ ohne Anpassungen laufen (:ref:`xref_debian_derivates_refs`).
+allen aktuellen und gängigen LTS Versionen der Ubuntu-Derivate wie
+z.B. `lubuntu`_ ohne Anpassungen laufen (:ref:`xref_debian_derivates_refs`).
 
 Die meisten Installationen der handsOn Sammlungen basieren auf den `Advanced
 Package Tool (APT)`_ und sollten damit auch auf `Debian`_ und anderen APT
