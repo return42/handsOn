@@ -11,6 +11,12 @@ sudoOrExit
 # Config
 # ----------------------------------------------------------------------------
 
+# BASE_PACKAGES und DEVELOP_PACKAGES bilden eine große Schnittmenge, da die
+# handsOn für z.B. die mozCloud oder den Apache Server diverse Pakete benötigen,
+# die auch den "Entwicklertools" zuzuordnen sind. Die Eräuterungen zu diesen
+# Paketen findet sich entsprechend in der Dokumentation zu den
+# "Entwicklertools".
+
 BASE_PACKAGES="\
  util-linux ppa-purge ssh \
  aptitude synaptic gdebi \
@@ -20,6 +26,19 @@ BASE_PACKAGES="\
  emacs curl colordiff \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
 "
+
+DEVELOP_PACKAGES="\
+ build-essential linux-headers-generic \
+ autoconf autotools-dev automake libtool-bin gettext \
+ devscripts \
+ dkms \
+ python-dev python-argcomplete python-pip python-virtualenv pylint \
+ git subversion mercurial bzr \
+ emacs diff colordiff patch grep \
+ sqlitebrowser sqlite3 \
+"
+# libjpeg-dev \
+
 
 BASE_DOC_PACKAGES="\
  debian-handbook libpam-doc \
@@ -70,18 +89,6 @@ MONITORING_PACKAGES="\
  glances lm-sensors \
  iotop \
 "
-
-DEVELOP_PACKAGES="\
- build-essential linux-headers-generic \
- autoconf autotools-dev automake libtool-bin gettext \
- devscripts \
- dkms \
- python-dev python-argcomplete python-pip python-virtualenv pylint \
- git subversion mercurial bzr \
- emacs diff colordiff patch grep \
- sqlitebrowser sqlite3 \
-"
-# libjpeg-dev \
 
 # ----------------------------------------------------------------------------
 main(){

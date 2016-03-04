@@ -197,5 +197,6 @@ update-refs:
 	cat desktop_system/desktop_system_refs.rst | grep '^\.\. *_`.*` *:' > desktop_system_refs.txt
 	cat get_started/get_started_refs.rst | grep '^\.\. *_`.*` *:' > get_started_refs.txt
 	cat ubuntu_install_pkgs/ubuntu_install_pkgs_refs.rst | grep '^\.\. *_`.*` *:' > ubuntu_install_pkgs_refs.txt
+	cat devTools/devTools_refs.rst | grep '^\.\. *_`.*` *:' > devTools_refs.txt
 
 all: clean update-refs html

@@ -23,7 +23,6 @@ Anwendungspakete soll hier nach Themen sortiert kurz vorgestellt werden.
    hwTools
    monitoring
    netTools
-   devTools
    ubuntu_install_pkgs_refs
 
 In der Regel wird man sich nur einzelne Pakete aus den jweiligen Themengebieten

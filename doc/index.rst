@@ -14,6 +14,7 @@ und Diensten (kurz: Setup). Bitte :ref:`xref_LICENSE` beachten.
    desktop_system/index
    ubuntu_remove_pkgs/index
    ubuntu_install_pkgs/index
+   devTools/index
    install_nodejs/index
    apache_setup/index
    mozcloud/index
