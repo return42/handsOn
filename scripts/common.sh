@@ -388,7 +388,7 @@ chooseOneMenu() {
     # usage:
     #   chooseOneMenu <name>  "your selection?" "Coffee" "Coffee with milk"
 
-    local default=1
+    local default=${DEFAULT_SELECT-1}
     local REPLY
     local env_name=$1 && shift
     local choice=$1;
@@ -410,9 +410,15 @@ chooseOneMenu() {
         cleanStdIn
         [[ ! $TERM == "dumb" ]] && tput sc
         printf "$1 [${Orange}$default${_color_Off}] "
-        read -n1 $_t
+
+        if (( 10 > $max )); then
+            read -n1 $_t
+        else
+            read $_t
+        fi
         # selection fits
-        [[ $REPLY =~ ^-?[0-9]+$ && $REPLY > 0 && $REPLY < $max ]] && break
+        [[ $REPLY =~ ^-?[0-9]+$ ]] && (( $REPLY > 0 )) && (( $REPLY < $max )) && break
+
         # take default
         [[ -z $REPLY ]] && REPLY=$default && break
 
