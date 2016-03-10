@@ -34,7 +34,7 @@ DEVELOP_PACKAGES="\
  dkms \
  python-dev python-argcomplete python-pip python-virtualenv pylint \
  git subversion mercurial bzr \
- emacs diff colordiff patch grep \
+ emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
 "
 # libjpeg-dev \
