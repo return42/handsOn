@@ -196,7 +196,6 @@ waitKEY(){
 
 _colors=0
 if tput setaf 1 &> /dev/null; then
-    tput sgr0
 
     BOLD=$(tput bold)
     _color_Off=$(tput sgr0)
