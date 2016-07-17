@@ -197,14 +197,24 @@ freigegebenen Server nutzen, so eignet sich die SSL Adresse des Intranet-Servers
 
 .. hint::
 
+   Wenn man in seinem FFox Client den Token-Server wechselt (also den Eintrag für
+   die uri ändert), dann muss man *sync* erst mal *trennen* und neu Anmelden.
+   Ansonsten ist der Account nicht auf dem neuen Token-Server bekannt.
+
+.. hint::
+
    Wer auf seinem Apache ein Self-Signed SSL Certificate (z.B. snake-oil)
    installiert hat, der sollte sich einmal über https://<hostname> das
    Zertifikat in den Firefox holen, resp. das dort *angemaulte* Zertifikat des
    Servers seinem Browser hinzufügen.
 
-   Wenn man sich im Firefox gegen einen anderen Tokenserver verbindet, muss man
-   *sync* erst mal *trennen* und neu Anmelden, ansonsten ist der Account nicht
-   auf dem neuen (anderen) Server bekannt.
+   Bei der Firefox App des Android geht man im Grunde analog vor
+   (``tokenserver.uri`` eintragen). Da der Sync-Client der FFox App jedoch den
+   Java SLL Stack des Android nutzt, hat man i.d.R. Probleme mit einem
+   *Self-Signed SSL Certificate*. Wie man auch ein Android dazu bekommt selbst
+   signierte Zertifikate zu aktzeptieren, beschreibe ich in dem Abschnitt:
+   :ref:`android_snakeoil`.
+
 
 Will man nur einen Test durchführen, so sollte man hier die gunicorn URL
 eintragen. Diese URL ist eine ``http://`` URL, kein SSL::

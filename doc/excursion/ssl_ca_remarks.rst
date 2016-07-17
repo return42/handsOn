@@ -1,6 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../apache_setup_refs.txt
+.. include:: ../android_refs.txt
 
 .. _xref_ssl_ca_remarks:
 
@@ -49,3 +50,123 @@ mag auch umstritten sein, sie ist aber zumindest transparent und wird offen im
 Netzt diskutiert.  Wer einen (kleinen) WEB-Server im Netz betreibt und gerne
 zertiffiziert werden möchte, der möge sich mit der `letsencrypt.org`_ Campange
 auseinander setzen.
+
+.. _android_snakeoil:
+
+Android und selbst signierte Zertifikate
+========================================
+
+Die Installation eines selbst signierten Zertifikats (wie
+z.B. ``ssl-cert-snakeoil.pem``) auf einem Android Device wollte mir über das
+Benutzerinterface nicht gelingen, am Ende musste zur *Holzhammer* Methode
+greifen, die hier kurz beschrieben werden soll.
+
+Für die *Holzhammer* Methode benötigt man die `Android Debug Bridge (adb)`_. Auf
+Debian/Ubuntu kann man diese mit dem apt Paketmanager installieren:
+
+.. code-block:: sh
+
+   $ sudo apt-get install android-tools-adb android-tools-fastboot
+
+Das fastboot ist nicht unbedingt notwendig, wer aber ein *recovery* Image auf
+seinem Smartphone installieren will wird es früher oder später auch benötigen
+(siehe z.B. `All About Recovery Images`_).
+
+Als nächstes muss man das *versteckte* "Entwickler Menü" aktivieren (`developer
+options`_), dazu geht man auf dem Android auf "Einstellungen > Über das Telefon
+> Build-Nummer" und drückt da sieben mal drauf (ja, einfach sieben mal auf den
+Eintrag hauen, das ist quasi das *easter egg* für Entwickler).
+
+Wenn man jetzt wieder auf "Einstellungen" wechselt, sieht man in dem Menu ganz
+unten als vorletzten Eintrag die "Entwickleroptionen", dort drauf klicken und
+in dem folgenden Menü folgendes aktivieren.
+
+* Root-Zugriff: ADB
+* Android-Debugging: *ON*
+
+Spätestens jetzt sollte man das Android via USB Kabel an den PC verbinden.
+Abhängig vom Desktop System des PC sollte sich dabei ein Dateibrowser öffnen und
+man kann sich dort zu einem Ordner Namens ``Download`` durchangeln. In diesen
+Ordner werden wir später das Zertifikat auf das Android kopieren. Zuvor müssen
+wir jedoch das selbst signierte Zertifikat des Servers aufbereiten (siehe auch
+`CAcert: Android Phones & Tablets`_).
+
+Im folgenden gehe ich auf den Linux-Server und bereite das Zertifikat auf:
+
+.. code-block:: sh
+
+   myPC $ ssh myusername@myserver
+   myserver $ cp /etc/ssl/certs/ssl-cert-snakeoil.pem /tmp/myserver_cert.pem
+   myserver $ cd /tmp
+   myserver $ openssl x509 -inform PEM -subject_hash_old -in  | head -1
+   myserver $ openssl x509 -inform PEM -subject_hash_old -in myserver_cert.pem | head -1
+   c091000a
+
+Der Wert ``c091000a`` ist ein Hash-Wert des Zertifikates, der bei jedem
+Zertifikat anders aussehen wird. Wir verwenden diesen Wert als Dateinamen, indem
+wir am Ende noch ein ``.0`` dran hängen. Hier im Beispiel also ``c091000a.0``
+mit dem eigeneen Zertifikat also analog ``{hash-value}.0``.
+
+.. code-block:: sh
+
+   $ cat myserver_cert.pem > c091000a.0
+   $ openssl x509 -inform PEM -text -in myserver_cert.pem -out /dev/null >> c091000a.0
+
+Nun liegt das aufbereitete Zertifikat auf dem Server unter
+``/tmp/{hash-value}.0``.  Von dort muss man es nun in den Download Ordner des
+Androids kopieren. Also z.B. erst mal auf den PC kopieren und von dort dann auf
+das -- via USB -- angeschlossene Android kopieren. Da hier bei mir alles Linux
+ist mache ich das indem ich das Zertifikat erst mal in den HOME Ordner auf dem
+PC kopiere und dann mit ``adb`` auf das Android kopiere.
+
+.. code-block:: sh
+
+   myPC $ scp myusername@myserver:/tmp/{hash-value}.0 $HOME
+
+Nachdem man das Zertifikat auf dem PC hat kann man es auch mit dem Datei
+Explorer in den Download Ordner des Android kopieren (s.o.). Ich mach das mal
+mit der adb, weil sich das einfacher aufschreiben lässt.
+
+.. code-block:: sh
+
+  myPC $ adb push $HOME/c091000a.0 /sdcard/Downloads
+  66 KB/s (3721 bytes in 0.054s)
+
+Nachdem man das Zertifikat nun endlich auf dem Android hat, muss man es noch
+installieren. Dazu macht man mit dem adb auf dem Android eine shell auf und
+wechselt in den root user (su), denn nur der hat die erforderlichen Rechte
+(deswegen wurde oben auch "Root-Zugriff: ADB" eingestellt).
+
+.. code-block:: sh
+
+  myPC $ adb shell
+  shell@maguro:/ $ su
+  root@maguro:/ # su
+
+Die System Zertifikate liegen im ``/system`` Ordner, dieser ist allerdings
+read-only gemountet. Um auch darin schreiben zu können wird der Ordner nochmal
+mit read/write gemountet. Danach kann dann das Zertifikat in den ``cacerts/``
+Ordner kopiert werden und es werden noch die Dateirechte so eingestellt, dass
+*jeder* die Datei lesen kann.
+
+.. code-block:: sh
+
+  root@maguro:/ # mount -o remount,rw /system/
+  root@maguro:/ # cp /sdcard/Download/c091000a.0  /system/etc/security/cacerts/
+  root@maguro:/ # chmod 644 /system/etc/security/cacerts/c091000a.0
+
+Nun muss das Android einmal neu gebootet werden, dazu ganz ausschalten oder
+``su`` verlassen und ``reboot`` aufrufen.
+
+.. code-block:: sh
+
+  root@maguro:/ # exit
+  shell@maguro:/ $ reboot
+
+Nach dem Reboot findet man das selbst signiertes Zertifikat unter "Einstellungen
+> Sicherheit > Vertrauenswürdige Anmeldedaten" im Reiter "System" wieder. Der
+Name des Zertifikats trägt dabei i.d.R. den Namen des Host, für das man es
+erstellt hat.  Alle Android Apps, welche den SSL (Java) Stack des Androids
+benutzen sollten nun ohne Probleme verschlüsselt mit dem selbst signierten
+Server kommunizieren können (bei mir war das z.B. Firefox-Sync eines Android
+FFox).
