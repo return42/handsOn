@@ -239,7 +239,7 @@ eingebunden:
 
 .. code-block:: html
 
-   <img src="/chrome/icons/16x16/mimetypes/gnome-mime-image.png" ... >
+   <img src="/chrome/icons/16x16/mimetypes/gnome-mime-image.png" />
 
 .. hint::
 

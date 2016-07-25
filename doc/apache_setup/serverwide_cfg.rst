@@ -376,7 +376,7 @@ Der unten stehende Auszug zeigt, wie ``curl`` erst mal via ``http://`` auf Port
 Response vom Server erhält (Einkommendes hat das Präfix ``<``). Der ``302``
 Response verweist auf die ``https://`` *Location*.
 
-.. code-block:: http
+.. code-block:: none
 
    $ curl --location --verbose --head --insecure http://localhost 2>&1
 
@@ -408,7 +408,7 @@ Weiter unten in der Ausgabe von ``curl`` ist dann auch zu sehen, wie ``curl``
 auf die ``https://`` *Location* wechselt und seine Anfrage (Request) auf Port
 443 wiederholt (``Issue another request ...``).
 
-.. code-block:: http
+.. code-block:: none
 
    ...
    * Connection #0 to host ubuntu1504 left intact
@@ -436,7 +436,7 @@ Zertifikat, z.B. das der *CommonName* lediglich aus dem Hostnamen besteht, dass
 das Zertifikat noch gültig ist und das es einen öffentlichen RSA Schlüssel
 besitzt.
 
-.. code-block:: http
+.. code-block:: none
 
    ...
    * found 187 certificates in /etc/ssl/certs/ca-certificates.crt
@@ -464,7 +464,7 @@ Nach den Angaben zur Verschlüsselung und dem Zertifikat ist dann im Weiteren zu
 sehen, wie der HTTP-Request aussieht, den ``curl`` nun abschickt (wieder an dem
 ``>`` zu erkennen).
 
-.. code-block:: http
+.. code-block:: none
 
    ...
    > HEAD / HTTP/1.1
@@ -475,7 +475,7 @@ sehen, wie der HTTP-Request aussieht, den ``curl`` nun abschickt (wieder an dem
 
 Am Ende sieht man dann auch die Antwort (den Response) vom Server.
 
-.. code-block:: http
+.. code-block:: none
 
    ...
    < HTTP/1.1 403 Forbidden

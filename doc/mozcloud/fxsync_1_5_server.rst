@@ -65,10 +65,10 @@ ersten Test sollte man dort einstellen.
 .. code-block:: ini
 
    [server:main]
-   ...
+   # ...
    host = localhost
    port = 5000
-   ...
+   # ...
    [syncserver]
    public_url = https://<hostname>/fxSyncServer
 
@@ -77,7 +77,7 @@ ersten Test sollte man dort einstellen.
    # public_url = http://localhost:5000/
 
    secret = b2ec16d7192d6162ebab5cfc723821e23ce9deab  -
-   ...
+   # ...
    sqluri = sqlite://///home/mozcloud/syncserver/syncserver.db
 
 Die ``[server:main]`` Einträge sind nur für den Test mit dem *gunicorn*
@@ -112,10 +112,10 @@ werden.
 .. code-block:: ini
 
    [server:main]
-   ...
+   # ...
    host = localhost
    port = 5000
-   ...
+   # ...
    [syncserver]
    public_url = http://localhost:5000/
 

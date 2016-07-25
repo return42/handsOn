@@ -27,7 +27,7 @@ extlinks = {
     #'man' : ('http://manpages.ubuntu.com/manpages/' + language + '/%s.html', ' ')
     'man' : ('http://manpages.ubuntu.com/cgi-bin/search.py?q=%s', ' ')
     , 'deb' : ('http://packages.ubuntu.com/xenial/%s', ' ')
-    , 'rfc' : ('https://tools.ietf.org/html/rfc%s', 'RFC ')
+    # , 'rfc' : ('https://tools.ietf.org/html/rfc%s', 'RFC ')
     , 'launchpad' : ('https://launchpad.net/%s/trunk', 'launchpad')
     }
 

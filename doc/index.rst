@@ -4,8 +4,14 @@
                                     handsOn
 ================================================================================
 
-Eine Sammlung von Skripten und Dokumentationen zur Installation von Anwendungen
-und Diensten (kurz: Setup). Bitte :ref:`xref_LICENSE` beachten.
+Willkommen bei **handsOn**, einer Sammlung von Skripten und Dokumentationen zur
+Installation von Anwendungen und Diensten (*kurz:* **Setup**). Die handsOn
+bieten fertige Setups und unterstützen bei der Versionierung derselben.  Bitte
+``LICENSE.txt`` beachten.
+
+* Dokumentation: http://return42.github.io/handsOn
+* Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
+* Autho e-mail:  *markus.heiser*\ *@*\ *darmarIT.de*
 
 .. toctree::
    :maxdepth: 1

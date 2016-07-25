@@ -9,6 +9,11 @@ Installation von Anwendungen und Diensten (*kurz:* **Setup**). Die handsOn
 bieten fertige Setups und unterstützen bei der Versionierung derselben.  Bitte
 ``LICENSE.txt`` beachten.
 
+* Dokumentation: http://return42.github.io/handsOn
+* Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
+* Autho e-mail:  *markus.heiser*\ *@*\ *darmarIT.de*
+
+
 Installation
 ============
 
@@ -24,14 +29,4 @@ das Kommando ausführt wird und es werden die erforderlichen Basispakete über
 
   git clone https://github.com/return42/handsOn.git
   sudo handsOn/scripts/ubuntu_install_pkgs.sh base
-
-
-Bezugsquellen
-=============
-
-Die Dokumentation zu diesem Projekt wird bei *Read The Docs* gehostet und die
-Sourcen sind auf github hinterlegt.
-
-* https://handson.readthedocs.org
-* https://github.com/return42/handsOn.git
 
