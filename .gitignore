@@ -5,3 +5,5 @@
 *.pyc
 *.elc
 /cache
+/build
+/gh-pages
