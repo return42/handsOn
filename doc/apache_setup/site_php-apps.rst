@@ -21,15 +21,15 @@ Installation
 
 Mit dem Kommando ``installPHP`` werden die folgenden Schritte ausgeführt.
 
-* Es werden die erforderlichen Pakete für PHP5 (:deb:`php5`,
-  :deb:`libapache2-mod-php5`) und PHP5-sqlite (:deb:`php5-sqlite`) installiert.
+* Es werden die erforderlichen Pakete für PHP (:deb:`php`,
+  :deb:`libapache2-mod-php`) und PHP-sqlite (:deb:`php-sqlite3`) installiert.
 
 * Es wird der Ordner ``/var/www/phpApps`` eingerichtet, in dem PHP Anwendungen
   abgelegt werden können (:ref:`xref_php_apps_conf`).
 
 .. code-block:: bash
 
-   $ apt-get install php5 php5-sqlite libapache2-mod-php5
+   $ apt-get install php php-sqlite libapache2-mod-php
    $ sudo mkdir /var/www/phpApps
 
    $ sudo a2ensite php-apps
@@ -56,12 +56,12 @@ Anmerkungen
 * `PHP Sicherheitshinweise`_
 * `PHP Laufzeiteinstellungen`_
 
-Mit dem Paket :deb:`libapache2-mod-php5` wird das ``php5`` Modul installiert,
+Mit dem Paket :deb:`libapache2-mod-php` wird das ``php`` Modul installiert,
 siehe dazu auch: `PHP Debian GNU/Linux-Installationshinweise
 <http://php.net/manual/de/install.unix.debian.php>`_. Zu der Installation
 gehören die INI-Dateien::
 
-   /etc/php5/
+   /etc/php/7.0
    ├── apache2
    │   ├── conf.d
    ...............
@@ -76,10 +76,10 @@ gehören die INI-Dateien::
        ...........
        └── sqlite3.ini
 
-In der Datei ``/etc/php5/apache2/php.ini`` kann die PHP Laufzeitumgebung der
+In der Datei ``/etc/php/7.0/apache2/php.ini`` kann die PHP Laufzeitumgebung der
 Apache Prozesse eingestellt werden (`PHP Laufzeiteinstellungen`_).
 
-In der Datei ``/etc/apache2/mods-available/php5.conf`` ist die default
+In der Datei ``/etc/apache2/mods-available/php7.0.conf`` ist die default
 Konfiguration des PHP-Moduls zu finden:
 
 .. code-block:: apache
@@ -116,7 +116,7 @@ PHP-Anwendungen betrieben werden können.
 
 .. code-block:: apache
 
-   <IfModule mod_php5.c>
+   <IfModule mod_php7.c>
        <Directory /var/www/phpApps/>
            ...
            php_value open_basedir /var/www/phpApps/
@@ -153,7 +153,7 @@ unter der URL https://localhost/hello.php angeboten wird.
 
 .. code-block:: apache
 
-   <IfModule mod_php5.c>
+   <IfModule mod_php7.c>
        Alias /hello.php /var/www/phpApps/helloWorld/index.php
    </IfModule>
 

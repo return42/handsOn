@@ -118,8 +118,8 @@ SYSDOC_URL="https://$HOSTNAME/sysdoc"
 # =======
 
 PHP_PACKAGES="\
-  php5 php5-sqlite \
-  libapache2-mod-php5 \
+  php php-sqlite3 \
+  libapache2-mod-php \
 "
 PHP_APPS_SITE=php-apps
 PHP_APPS="${WWW_FOLDER}/phpApps"
@@ -635,7 +635,7 @@ installPHP(){
     rstHeading "PHP Anwendungen (phpApps)"
 # ----------------------------------------------------------------------------
 
-    rstBlock "Die Konfiguration installiert die erforderlichen Pakete für PHP5
+    rstBlock "Die Konfiguration installiert die erforderlichen Pakete für PHP
 und sqlite3. Es wird der Ordner ${PHP_APPS} angelegt und eine Aapche
 Konfiguration für diesen Ordner eingerichtet. In dem Ordner können
 PHP-Anwendungen installiert werden.  Das Setup des ${PHP_APPS} Ordners ist
@@ -656,7 +656,7 @@ Setup kann deinstalliert werden:
     echo
     waitKEY
     apt-get install -y ${PHP_PACKAGES}
-    a2enmod php5
+    a2enmod php7
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
     service apache2 restart
 
@@ -672,7 +672,7 @@ deinstallPHP(){
 # ----------------------------------------------------------------------------
 
     echo
-    a2dismod php5
+    a2dismod php7
     APACHE_dissable_site ${PHP_TEST_SITE} ${PHP_APPS_SITE}
 
     rstPkgList ${PHP_PACKAGES}

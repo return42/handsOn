@@ -243,8 +243,8 @@ Netzwerk Infrastruktur
 * `RFC 3484: Source Address Selection`_
 * `IPv6 Privacy Extensions (heise)`_
 
-PHP5
-====
+PHP
+===
 
 .. _`PHP Sicherheitshinweise`: http://php.net/manual/en/security.php
 .. _`PHP Laufzeiteinstellungen`: http://php.net/manual/de/configuration.file.php
