@@ -20,7 +20,7 @@ help:
 
 PHONY += docs
 docs:  sphinx-doc
-	$(call cmd,sphinx,html,doc,doc)
+	$(call cmd,sphinx,html,docs,docs)
 
 PHONY += clean
 clean: docs-clean
