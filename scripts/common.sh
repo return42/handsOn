@@ -1133,7 +1133,7 @@ merge3Files() {
         #
         choices=("${choices[@]}" "keep file ${files2merge[0]} untouched")
         choices=("${choices[@]}" "take over file ${files2merge[1]}")
-        [[ ${#files2merge[@]} > 2 ]] && choices=("${choices[@]}" "take over ${files2merge[2]}" )
+        [[ ${#files2merge[@]} > 2 ]] && choices=("${choices[@]}" "take over file ${files2merge[2]}" )
 
     elif [[ $mode == "handsOn" ]]; then
         #
@@ -1192,7 +1192,7 @@ merge3Files() {
             fi
             ;;
 
-        "take over ${files2merge[2]}")
+        "take over file ${files2merge[2]}")
             if [[ $mode == "normal" ]]; then
                 info_msg "cp ${files2merge[2]} --> ${merged}"
                 cp -f "${files2merge[2]}" "${merged}"
