@@ -1783,8 +1783,8 @@ GNOME_SHELL_installLauncher () {
     #   GNOME_SHELL_installLauncher dmSDK-Emacs.desktop "$launcher_dmSDKEmacs"
 
     echo
-    info_msg "$1 --> $GNOME_APPL_FOLDER"
-    info_msg "$2" | sudo tee "$GNOME_APPL_FOLDER/$1" > /dev/null
+    echo "$1 --> $GNOME_APPL_FOLDER"
+    echo "$2" | sudo tee "$GNOME_APPL_FOLDER/$1" > /dev/null
 }
 
 # ----------------------------------------------------------------------------
