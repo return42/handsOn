@@ -66,7 +66,7 @@ main(){
             TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}
             ;;
 	remove_cinnamon)
-            TITLE="Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}
+            TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}
             ;;
 	mate)
             TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}
@@ -175,7 +175,6 @@ remove_unity(){
         apt-get -y autoremove
     fi
 }
-
 
 
 # ----------------------------------------------------------------------------

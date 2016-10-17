@@ -141,7 +141,9 @@ install_basePackages(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${BASE_PACKAGES}
-    waitKEY 30
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
+        return 42
+    fi
     echo
     apt-get install -y ${BASE_PACKAGES}
     waitKEY 30
@@ -156,7 +158,9 @@ install_baseDoc(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${BASE_DOC_PACKAGES}
-    waitKEY 30
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
+        return 42
+    fi
     echo
     apt-get install -y ${BASE_DOC_PACKAGES}
     waitKEY 30
@@ -184,7 +188,7 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 "
 
     rstPkgList ${DEVELOP_PACKAGES}
-    if ! askYn "sollen die Entwickler Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Entwickler Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -214,7 +218,7 @@ install_Office(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${OFFICE_PACKAGES}
-    if ! askYn "Sollen die Office-Pakete installiert werden?" 10; then
+    if ! askYn "Sollen die Office-Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -238,7 +242,7 @@ Es werden verschiedene (Client) Multimedia Pakete installiert:
 * audacious: Audioplayer (winamp like)  http://audacious-media-player.org/"
 
     rstPkgList ${MULTIMEDIA_CLIENT_PACKAGES}
-    if ! askYn "sollen die Multimedia Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Multimedia Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -252,7 +256,7 @@ install_Codecs(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${CODEC_PACKAGES}
-    if ! askYn "Sollen Pakete für erweiterte Codecs installiert werden?" 10; then
+    if ! askYn "Sollen Pakete für erweiterte Codecs installiert werden?" 60; then
         return 42
     fi
     echo
@@ -301,7 +305,7 @@ Es werden verschiedene Tools zur Bildbearbeitung installiert:
   installiern.  "
 
     rstPkgList ${IMAGE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -318,7 +322,7 @@ install_ArchiveTools(){
 installiert: "
 
     rstPkgList ${ARCHIVE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -339,7 +343,7 @@ install_HardwareTools(){
 * psensor(1) für die Temparaturüberwachung
 "
     rstPkgList ${HARDWARE_PACKAGES}
-    if ! askNy "Sollen die Hardware Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Hardware Tools installiert werden?" 60; then
         return 42
     fi
     echo
@@ -385,7 +389,7 @@ Zu den System *Monitoring-Tools* zählen:
             FIXME: die Sensoren bekomme ich noch nciht zur Ansicht"
 
     rstPkgList ${MONITORING_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Tools installiert werden?" 60; then
         return 42
     fi
     echo
@@ -417,7 +421,7 @@ Zu den *Network-Tools* zählen:
                http://iptraf.seul.org/"
 
     rstPkgList ${NETWORK_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Tools installiert werden?" 60; then
         return 42
     fi
     echo
