@@ -22,7 +22,7 @@ SQLITE3_PACKAGES="sqlitebrowser sqlite3"
 
 SERVICE_PACKAGES="\
  apache2 apache2-doc apache2-utils \
- libapache2-mod-authnz-external pwauth \
+ libapache2-mod-authnz-external libapache2-mod-authz-unixgroup pwauth \
  libapache2-modsecurity \
  openssl-blacklist \
 "
