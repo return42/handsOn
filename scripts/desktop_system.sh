@@ -11,6 +11,7 @@ sudoOrExit
 # Config
 # ----------------------------------------------------------------------------
 
+GNOME3_PPA="ppa:gnome3-team/gnome3"
 GNOME_SHELL_EXTENSIONS="/usr/share/gnome-shell/extensions"
 
 GNOME3_PACKAGES="\
@@ -84,10 +85,17 @@ main(){
             remove_unity
             ;;
         chooseDM)
-            chooseDM;;
+            chooseDM
+            ;;
+        remove_gnome3ppa)
+            deinstall_gnome3_ppa
+            ;;
+        gnome3ppa)
+            install_gnome3_ppa
+            ;;
         *)
             echo
-	    echo "usage $0 [chooseDM|gnomeShell|remove_[unity|elementary|cinnamon|mate]]"
+	    echo "usage $0 [chooseDM|gnomeShell|remove_[gnome3ppa|unity|elementary|cinnamon|mate]]"
             echo
             ;;
     esac
@@ -163,6 +171,41 @@ remove_elementary() {
     waitKEY
 }
 
+install_gnome3_ppa() {
+# ----------------------------------------------------------------------------
+    rstHeading "GNOME3 Team PPA"
+# ----------------------------------------------------------------------------
+
+    echo
+    if askYn "Soll gnome3 ppa eingerichtet werden?"; then
+        apt-get install -y ppa-purge
+	ppa-purge ${GNOME3_PPA}
+        add-apt-repository --yes "${GNOME3_PPA}"
+        waitKEY
+        apt-get update
+    else
+        rstBlock "Setup des PPA abgebrochen."
+    fi
+    waitKEY
+}
+
+deinstall_gnome3_ppa() {
+# ----------------------------------------------------------------------------
+    rstHeading "Deinstallation GNOME3 Team PPA"
+# ----------------------------------------------------------------------------
+
+    echo
+    if askYn "Soll gnome3 ppa entfernt werden?"; then
+        apt-get install -y ppa-purge
+	ppa-purge ${GNOME3_PPA}
+        add-apt-repository --yes --remove "${GNOME3_PPA}"
+        waitKEY
+        apt-get update
+    else
+        rstBlock "Emtfernen des PPA wurde abgebrochen."
+    fi
+    waitKEY
+}
 
 # ----------------------------------------------------------------------------
 remove_unity(){
