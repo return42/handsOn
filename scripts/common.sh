@@ -8,6 +8,10 @@
 # usefull defaults
 # ----------------------------------------------------------------------------
 
+if [[ -z "${ORGANIZATION}" ]]; then
+    ORGANIZATION="darmarIT"
+fi
+
 if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT="$(dirname ${BASH_SOURCE[0]})"
     while([ -h "${REPO_ROOT}" ]) do REPO_ROOT=`readlink "${REPO_ROOT}"`; done
@@ -299,6 +303,49 @@ info_msg() {
     echo "${BYellow}INFO:${_color_Off} $*"
 }
 
+# ----------------------------------------------------------------------------
+ask(){
+# ----------------------------------------------------------------------------
+
+    # usage: ask <env-name> <prompt-text> <default>
+
+    local REPLY
+    local env_name=$1
+    local prompt_text="$2"
+    local default="$3"
+
+    local choice=""
+    if [[ ! -z $3 ]] ; then choice="[${Orange}${default}${_color_Off}]"; fi
+
+    printf "\n"
+    while true; do
+        cleanStdIn
+        [[ ! $TERM == "dumb" ]] && tput sc
+        printf "${_color_Off}${prompt_text} ${choice} "
+        read $_t
+        if [[ -z $REPLY ]]; then
+            if [[ ! -z $default ]]; then
+                #printf "$default\n"
+                REPLY="$default"
+                break
+            else
+                _t="" # Wenn die erste Eingabe ungültig ist wird der Timer abgeschaltet
+                if [[ $TERM == "dumb" ]] ; then
+                    err_msg "invalid choice"
+                else
+                    printf "  ${BRed}ERROR:${_color_Off} invalid choice"
+                    sleep 1
+                    tput rc
+                    printf "\e[K"
+                fi
+            fi
+        else
+            break
+        fi
+    done
+    cleanStdIn
+    eval "$env_name='${REPLY}'"
+}
 
 # ----------------------------------------------------------------------------
 askYesNo(){
@@ -443,15 +490,22 @@ askPassphrase(){
 
     # Fragt den Anwender nach einer Passphrase und legt sie in dem globalen
     # Namen ``passphrase`` ab.
+    local prompt="$1"
+    if [[ -z ${prompt} ]]; then
+        prompt="Passphrase"
+    fi
 
+    passphrase=""
     local passphrase_check="--"
     while [[ ${passphrase} != ${passphrase_check} ]] ; do
-        read -s -p "Passphrase: " passphrase
+        read -s -p "$prompt: " passphrase
         echo
-        read -s -p "Passphrase (again): " passphrase_check
+        read -s -p "$prompt (again): " passphrase_check
         echo
         if [[  ${passphrase} != ${passphrase_check} ]] ; then
             err_msg "typo, please repeat"
+            passphrase=""
+            passphrase_check="--"
         fi
     done
 }
@@ -566,7 +620,7 @@ cloneGitRepository() {
 aptInstallPackages(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "${TITLE:-installation of deb-packages}"
+    rstHeading "${TITLE:-installation of deb-packages}" section
     rstPkgList "$@"
     if askYn "should packages be installed?" 30; then
         apt-get install -y "$@"
@@ -578,7 +632,7 @@ aptInstallPackages(){
 aptPurgePackages(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "${TITLE:-remove deb-packages}"
+    rstHeading "${TITLE:-remove deb-packages}" section
     rstPkgList "$@"
     if askYn "should packages be de-installed (purged)?" 30; then
         apt-get purge --ignore-missing -y "$@"
@@ -1124,6 +1178,14 @@ merge3Files() {
         ## Job done: EXIT !!!
         retCode=0
         return $retCode
+    elif cmp --silent "${file_a}" "${file_c}"; then
+        info_msg "These files are *equal*"
+        info_msg "    ${file_a}"
+        info_msg "    ${file_c}"
+    elif cmp --silent "${file_b}" "${file_c}"; then
+        info_msg "These files are *equal*"
+        info_msg "    ${file_b}"
+        info_msg "    ${file_c}"
     fi
 
     local choices=()
@@ -1864,6 +1926,151 @@ setValueCfgFile() {
     #set +x
     return $retCode
 }
+
+
+
+# Debian's OpenLDAP Setup
+# =====================
+
+if [[ -z ${SLAPD_DBDIR} ]]; then
+    SLAPD_DBDIR=/var/lib/ldap
+fi
+
+if [[ -z ${SLAPD_CONF} ]]; then
+    SLAPD_CONF="/etc/ldap/slapd.d"
+fi
+
+
+encode_utf8() {
+    # Make the value utf8 encoded. Takes one argument and utf8 encode it.
+    # Usage: val=`encode_utf8 <value>`
+  perl -e 'use Encode; print encode_utf8($ARGV[0]);' "$1"
+}
+
+# ----------------------------------------------------------------------------
+LDAP_create_DIT() {
+# ----------------------------------------------------------------------------
+
+    # Create a new Directory-Information-Tree.
+
+    # Usage: create_new_DIT <basedn> <dc> <organization> <passphrase>
+
+    # e.g.: create_new_DIT "dc=myhost.local" "myhost" "my-org-name"
+
+    local basedn="$1"  # e.g.: domain really.argh.org --> 'dc=really,dc=argh,dc=org'
+    local DC="$2"      # e.g. the hostname --> 'really'
+    local ORGANIZATION=$(encode_utf8 "$3")  # Encode to utf8
+    local passphrase="$4"
+    local SSHA_PASSWORD=$(slappasswd -s "$passphrase") # interactive
+    local exit_code
+
+    local ldif_dn ldif_dit _ldapadd
+
+    local SUFFIX="$basedn"
+    local BACKEND="mdb"
+    local BACKENDOBJECTCLASS="olcMdbConfig"
+    local BACKENDOPTIONS="olcDbMaxSize: 1073741824"
+
+    ldif_dn=$(cat <<EOF
+# The Organization definition.
+dn: ${SUFFIX}
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: ${ORGANIZATION}
+dc: ${DC}
+
+# Organization's admin
+dn: cn=admin,${SUFFIX}
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword: ${SSHA_PASSWORD}
+EOF
+)
+
+    ldif_dit=$(cat <<EOF
+# The database definition.
+dn: olcDatabase=${BACKEND},cn=config
+objectClass: olcDatabaseConfig
+objectClass: ${BACKENDOBJECTCLASS}
+olcDatabase: ${BACKEND}
+# Checkpoint the database periodically in case of system
+# failure and to speed slapd shutdown.
+olcDbCheckpoint: 512 30
+${BACKENDOPTIONS}
+# Save the time that the entry gets modified, for database #1
+olcLastMod: TRUE
+# The base of your directory in database #1
+olcSuffix: ${SUFFIX}
+# Where the database file are physically stored for database #1
+olcDbDirectory: ${SLAPD_DBDIR}
+# olcRootDN directive for specifying a superuser on the database. This
+# is needed for syncrepl.
+olcRootDN: cn=admin,${SUFFIX}
+olcRootPW: ${SSHA_PASSWORD}
+# Indexing options for database #1
+olcDbIndex: objectClass eq
+olcDbIndex: cn,uid eq
+olcDbIndex: uidNumber,gidNumber eq
+olcDbIndex: member,memberUid eq
+# addittional DB index
+olcDbIndex: sn pres,sub,eq
+olcDbIndex: displayName pres,sub,eq
+olcDbIndex: default sub
+olcDbIndex: mail,givenName eq,subinitial
+olcDbIndex: dc eq
+# The userPassword by default can be changed by the entry owning it if
+# they are authenticated. Others should not be able to see it, except
+# the admin entry above.
+olcAccess: to attrs=userPassword
+  by self write
+  by anonymous auth
+  by * none
+# Allow update of authenticated user's shadowLastChange attribute.
+# Updating it on password change is implemented at least by libpam-ldap,
+# libpam-ldapd, and the slapo-smbk5pwd overlay.
+olcAccess: to attrs=shadowLastChange
+  by self write
+  by * read
+# The admin dn (olcRootDN) bypasses ACLs and so has total access,
+# everyone else can read everything.
+olcAccess: to *
+  by * read
+# User should be able to set 'loginShell, gecos'
+olcAccess: to attrs=loginShell,gecos
+  by dn="cn=admin,${SUFFIX}" write
+  by self write
+  by * read
+
+EOF
+)
+
+    rstHeading "DIT DB with RootDN 'cn=admin,${SUFFIX}'" section
+    echo
+    _ldapadd="ldapadd -H ldapi:// -Y EXTERNAL -D cn=config"
+    echo -e "$ldif_dit" | prefix_stdout "<--|"
+    echo -e "${BRed}$_ldapadd${_color_Off}" >&2
+    echo -e "$ldif_dit" | $_ldapadd || exit_code=1
+    if [ "$exit_code" ]; then
+        err_msg "DIT configuration failed"
+    fi
+    waitKEY
+
+    rstHeading "Organization 'dc=${DC}' with LDAP admin" section
+    echo
+    _ldapadd="ldapadd -H ldapi:// -D cn=admin,${SUFFIX} -x"
+    echo -e "$ldif_dn" | prefix_stdout "<--|"
+    echo -e "${BRed}$_ldapadd$ -W${_color_Off}" >&2
+    echo -e "$ldif_dn" | $_ldapadd -x -w ${passphrase} || exit_code=1
+    if [ "$exit_code" ]; then
+        err_msg "DC configuration failed"
+    fi
+    waitKEY
+    return
+}
+
 
 # ----------------------------------------------------------------------------
 LDAP_setPasswd() {

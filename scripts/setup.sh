@@ -95,6 +95,8 @@ setupInfo () {
 # ----------------------------------------------------------------------------
     rstHeading "setup info"
     echo "
+ORGANIZATION  : ${ORGANIZATION}
+
 REPO_ROOT     : ${REPO_ROOT}
 SCRIPT_FOLDER : ${SCRIPT_FOLDER}
 TEMPLATES     : ${TEMPLATES}
@@ -104,9 +106,16 @@ WWW_USER      : ${WWW_USER}
 WWW_FOLDER    : ${WWW_FOLDER}
 DEB_ARCH      : ${DEB_ARCH}
 
-APACHE_SETUP           : ${APACHE_SETUP}
-FFOX_GLOBAL_EXTENSIONS : ${FFOX_GLOBAL_EXTENSIONS}
-GNOME_APPL_FOLDER      : ${GNOME_APPL_FOLDER}
+Apache:
+
+  APACHE_SETUP           : ${APACHE_SETUP}
+  FFOX_GLOBAL_EXTENSIONS : ${FFOX_GLOBAL_EXTENSIONS}
+  GNOME_APPL_FOLDER      : ${GNOME_APPL_FOLDER}
+
+Open LDAP:
+
+  SLAPD_DBDIR : ${SLAPD_DBDIR}
+  SLAPD_CONF  : ${SLAPD_CONF}
 
 LSB (Linux Standard Base) and Distribution information.
 
@@ -126,8 +135,8 @@ if [[ ! -e "${SCRIPT_FOLDER}/common.sh" ]]; then
     echo "ERROR: can't source file common.sh"
     exit
 else
-   source ${SCRIPT_FOLDER}/common.sh
-   checkEnviroment
+    source ${SCRIPT_FOLDER}/common.sh
+    checkEnviroment
 fi
 
 if [[ -e "${CONFIG}_setup.sh" ]]; then
