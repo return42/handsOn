@@ -9,7 +9,7 @@
 # ----------------------------------------------------------------------------
 
 if [[ -z "${ORGANIZATION}" ]]; then
-    ORGANIZATION="darmarIT"
+    ORGANIZATION="myorg"
 fi
 
 if [[ -z "${REPO_ROOT}" ]]; then
@@ -1928,9 +1928,16 @@ setValueCfgFile() {
 }
 
 
-
 # Debian's OpenLDAP Setup
-# =====================
+# ======================
+
+if [[ -z ${LDAP_SERVER} ]]; then
+    LDAP_SERVER="$(hostname 2>/dev/null)"
+fi
+
+if [[ -z ${OPENLDAP_USER} ]]; then
+    OPENLDAP_USER=openldap
+fi
 
 if [[ -z ${SLAPD_DBDIR} ]]; then
     SLAPD_DBDIR=/var/lib/ldap
@@ -1939,7 +1946,6 @@ fi
 if [[ -z ${SLAPD_CONF} ]]; then
     SLAPD_CONF="/etc/ldap/slapd.d"
 fi
-
 
 encode_utf8() {
     # Make the value utf8 encoded. Takes one argument and utf8 encode it.
@@ -2025,6 +2031,7 @@ olcDbIndex: dc eq
 # they are authenticated. Others should not be able to see it, except
 # the admin entry above.
 olcAccess: to attrs=userPassword
+  by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage
   by self write
   by anonymous auth
   by * none
@@ -2034,19 +2041,19 @@ olcAccess: to attrs=userPassword
 olcAccess: to attrs=shadowLastChange
   by self write
   by * read
-# The admin dn (olcRootDN) bypasses ACLs and so has total access,
-# everyone else can read everything.
-olcAccess: to *
-  by * read
 # User should be able to set 'loginShell, gecos'
 olcAccess: to attrs=loginShell,gecos
   by dn="cn=admin,${SUFFIX}" write
   by self write
   by * read
-
+# The admin dn (olcRootDN) bypasses ACLs and so has total access,
+# everyone else can read everything and a login with the SASL EXTERNAL
+# method get 'manage' access.
+olcAccess: to *
+  by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage
+  by * read
 EOF
 )
-
     rstHeading "DIT DB with RootDN 'cn=admin,${SUFFIX}'" section
     echo
     _ldapadd="ldapadd -H ldapi:// -Y EXTERNAL -D cn=config"

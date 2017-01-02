@@ -78,6 +78,15 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 # APACHE_MODS_AVAILABE="${APACHE_SETUP}/mods-available"
 # APACHE_CONF_AVAILABE="${APACHE_SETUP}/conf-available"
 
+
+# Debian's OpenLDAP Setup
+# =======================
+
+# LDAP_SERVER="myserver"
+# OPENLDAP_USER=openldap
+# SLAPD_DBDIR=/var/lib/ldap
+# SLAPD_CONF="/etc/ldap/slapd.d"
+
 # =======
 # Firefox
 # =======
