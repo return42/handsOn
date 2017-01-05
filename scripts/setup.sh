@@ -83,6 +83,7 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 # =======================
 
 # LDAP_SERVER="myserver"
+# LDAP_SSL_PORT=636
 # OPENLDAP_USER=openldap
 # SLAPD_DBDIR=/var/lib/ldap
 # SLAPD_CONF="/etc/ldap/slapd.d"
@@ -123,15 +124,23 @@ Apache:
 
 Open LDAP:
 
-  SLAPD_DBDIR : ${SLAPD_DBDIR}
-  SLAPD_CONF  : ${SLAPD_CONF}
+  SLAPD_DBDIR   : ${SLAPD_DBDIR}
+  SLAPD_CONF    : ${SLAPD_CONF}
+  LDAP_SERVER   : ${LDAP_SERVER}
+  LDAP_SSL_PORT : ${LDAP_SSL_PORT}
+  OPENLDAP_USER : ${OPENLDAP_USER}
+
+ldapscripts DIT (defaults):
+
+  LDAP_AUTH_BaseDN  : ${LDAP_AUTH_BaseDN}
+  LDAP_AUTH_DC      : ${LDAP_AUTH_DC}
 
 LSB (Linux Standard Base) and Distribution information.
 
-DISTRIB_ID          : ${DISTRIB_ID}
-DISTRIB_RELEASE     : ${DISTRIB_RELEASE}
-DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
-DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
+  DISTRIB_ID          : ${DISTRIB_ID}
+  DISTRIB_RELEASE     : ${DISTRIB_RELEASE}
+  DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
+  DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
 
 CWD : $(pwd -P)"
 }

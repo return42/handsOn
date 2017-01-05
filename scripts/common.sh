@@ -31,7 +31,7 @@ if [[ -z "$CACHE" ]]; then
 fi
 
 if [[ -z ${CONFIG} ]]; then
-    CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
+    CONFIG="${REPO_ROOT}/hostSetup/$(hostname -s)"
 fi
 
 if [[ -z "${WWW_FOLDER}" ]]; then
@@ -95,6 +95,10 @@ checkEnviroment() {
         err_msg "environment \${TEMPLATES} is not defined"
         exit
     fi
+
+    LDAP_AUTH_BaseDN="dc=`echo $LDAP_SERVER | sed 's/^\.//; s/\.$//; s/\./,dc=/g'`"
+    LDAP_AUTH_DC="`echo $LDAP_SERVER | sed 's/^\.//; s/\..*$//'`"
+
 }
 
 # ----------------------------------------------------------------------------
@@ -109,6 +113,12 @@ cleanStdIn() {
     if [[ $(uname -s) != 'Darwin' ]]; then
         while $(read -n1 -t 0.1); do : ; done
     fi
+}
+
+# ----------------------------------------------------------------------------
+getIPfromHostname(){
+# ----------------------------------------------------------------------------
+    ping -q -c 1 -t 1 "$1" | grep PING | sed -e "s/).*//" | sed -e "s/.*(//"
 }
 
 # ----------------------------------------------------------------------------
@@ -1247,8 +1257,10 @@ merge3Files() {
                 # falls ein Backup existiert, wird das jetzt auch gleich
                 # mit dem Merge geladen
                 if [[ -f "${file_c}" ]]; then
-                    info_msg "cp ${file_a} --> ${file_c}"
-                    cp -f "${file_a}" "${file_c}"
+                    if ! cmp --silent "${file_a}" "${file_c}"; then
+                        info_msg "cp ${file_a} --> ${file_c}"
+                        cp -f "${file_a}" "${file_c}"
+                    fi
                 fi
                 retCode=32
             fi
@@ -1282,9 +1294,9 @@ merge3Files() {
                     rm -f "${merged}"
                     # falls ein Backup existiert, wird das jetzt auch gleich
                     # mit dem Merge geladen
-                    if [[ -f "${file_c}" ]]; then
+                    if ! cmp --silent "${file_a}" "${file_c}"; then
                         info_msg "cp ${file_a} --> ${file_c}"
-                        cp -f "${file_a}" "$file_c"
+                        cp -f "${file_a}" "${file_c}"
                     fi
                 fi
             else
@@ -1391,7 +1403,8 @@ TEMPLATES_InstallOrMerge() {
         err_msg "  ${TEMPLATES}${dst}"
         err_msg "  ${CONFIG}${dst}"
         err_msg "... can't install $dst / exit installation with error 42"
-        exit 42
+        waitKEY
+        return 42
     fi
     echo
     info_msg "install: ${dst}"
@@ -1509,7 +1522,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge2Files "${CONFIG}${dst}" "${TEMPLATES}${dst}"
+            merge2Files "${TEMPLATES}${dst}" "${CONFIG}${dst}" "${dst}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1929,10 +1942,13 @@ setValueCfgFile() {
 
 
 # Debian's OpenLDAP Setup
-# ======================
+# =======================
 
 if [[ -z ${LDAP_SERVER} ]]; then
     LDAP_SERVER="$(hostname 2>/dev/null)"
+fi
+if [[ -z ${LDAP_SSL_PORT} ]]; then
+    LDAP_SSL_PORT=636
 fi
 
 if [[ -z ${OPENLDAP_USER} ]]; then
@@ -1946,6 +1962,15 @@ fi
 if [[ -z ${SLAPD_CONF} ]]; then
     SLAPD_CONF="/etc/ldap/slapd.d"
 fi
+
+if [[ -z ${LDAP_AUTH_BaseDN} ]]; then
+    LDAP_AUTH_BaseDN="dc=`echo $LDAP_SERVER | sed 's/^\.//; s/\.$//; s/\./,dc=/g'`"
+fi
+
+if [[ -z ${LDAP_AUTH_DC} ]]; then
+    LDAP_AUTH_DC="`echo $LDAP_SERVER | sed 's/^\.//; s/\..*$//'`"
+fi
+
 
 encode_utf8() {
     # Make the value utf8 encoded. Takes one argument and utf8 encode it.
@@ -2102,7 +2127,7 @@ LDAP_addUserToGroup() {
     #
     #   LDAP_addUserToGroup <username> <group>
 
-    info_msg "add user $1 to group $2 hinzu"
+    info_msg "Benutzer '$1' wird in Gruppe '$2' aufgenommen"
     ldapaddusertogroup $1 $2
 }
 
@@ -2111,7 +2136,7 @@ LDAP_insertUser() {
 # ----------------------------------------------------------------------------
     # usage:
     #
-    #   LDAP_insertUser <username>
+    #   LDAP_insertUser <username> <uid>
 
     if [[ -z $1 ]]; then
         err_msg "Es muss das zu erstellende Benutzerlogin angegeben werden."
@@ -2119,7 +2144,7 @@ LDAP_insertUser() {
     fi
     rstHeading "Anlegen des Benutzers $1 (Gruppe $1)" chapter
     echo
-    ldapaddgroup $1
-    ldapadduser $1 $1
+    ldapaddgroup $1 $2
+    ldapadduser $1 $1 $2
 
 }
