@@ -83,6 +83,8 @@ MOD_SEC_CRS_PROFILES="\
 # wird in dem Profil owap_crs_2.2.9_minimal.conf *included*
 OWASP_CRS_GIT_FOLDER="/usr/share/owasp-modsecurity-crs"
 OWASP_CRS_GIT_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs.git"
+OWASP_CRS_GIT_BRANCH="v2.2/master"
+OWASP_CRS_SETUP="modsecurity_crs_10_setup.conf"
 
 # WEB apps
 # ========
@@ -412,17 +414,19 @@ mod_security2(){
     echo
     SUDO_USER= CACHE=$(dirname ${OWASP_CRS_GIT_FOLDER}) \
          cloneGitRepository ${OWASP_CRS_GIT_URL}  $(basename ${OWASP_CRS_GIT_FOLDER})
+    cd ${OWASP_CRS_GIT_FOLDER}
+    git checkout ${OWASP_CRS_GIT_BRANCH}
 
     rstBlock "OWASP CRS Basis-Konfiguration:
 
-* ${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf"
+* ${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}"
 
-    if [[ -f  "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf" ]]; then
+    if [[ -f  "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}" ]]; then
         rstBlock "  --> wurde bereits angelegt"
     else
         rstBlock "  --> wird angelegt"
-        cp "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf.example" \
-           "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf"
+        cp "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}.example" \
+           "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}.conf"
     fi
     waitKEY
 
