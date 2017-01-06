@@ -28,7 +28,7 @@ Mit dem Kommando ``installWSGI`` werden die folgenden Schritte ausgeführt.
 
 .. code-block:: bash
 
-   $ apt-get install libapache2-mod-wsgi python-imaging virtualenv
+   $ apt-get install libapache2-mod-wsgi-py3 python-imaging virtualenv
    $ cd /etc/apache2/mods-available/
    $ sudo mv wsgi.conf     wsgi.conf-disabled
    $ sudo mkdir /var/www/pyApps
