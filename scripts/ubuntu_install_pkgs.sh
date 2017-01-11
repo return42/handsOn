@@ -72,7 +72,7 @@ IMAGE_TOOLS_PACKAGES="\
  darktable \
  rawtherapee \
  pinta \
- shotwell \
+ gnome-photo \
  inkscape \
 "
 
@@ -296,13 +296,13 @@ Es werden verschiedene Tools zur Bildbearbeitung installiert:
               Bildformate.
               http://rawtherapee.com/blog/screenshots
 
-* shotwell    Bildverwaltung
-              https://wiki.gnome.org/Apps/Shotwell/
+* gnome-photo Phot Verwaltung aus dem GNOME Projekt
+              https://wiki.gnome.org/Apps/Photos
 
 .. hint::
 
-  Man könnte noch digikam als etwas aufwendigere Alternative zu shotwell
-  installiern.  "
+  Man könnte noch digikam als etwas aufwendigere Alternative zu 'gnome-photo'
+  installieren."
 
     rstPkgList ${IMAGE_TOOLS_PACKAGES}
     if ! askYn "sollen die Pakete installiert werden?" 60; then
