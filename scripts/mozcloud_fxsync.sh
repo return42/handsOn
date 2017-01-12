@@ -251,11 +251,11 @@ die folgende URL:
 
 * ${GUNICORN_PUBLIC_URL_IN_FFOX}/token/1.0/sync/1.5
 
-müsste nun eine JSON Ausgabe::
+müsste man nun ein JSON Ausgabe::
 
    {'status': 'error', 'errors': [{'location': 'body', 'name': '', 'description': 'Unauthorized'}]}
 
-im WEB-Browser angezeigt werden."
+als Response erhalten werden."
 
 
     TEE_stderr 2 <<EOF | bash

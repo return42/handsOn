@@ -22,7 +22,7 @@ SQLITE3_PACKAGES="sqlitebrowser sqlite3"
 
 SERVICE_PACKAGES="\
  apache2 apache2-doc apache2-utils \
- libapache2-mod-authnz-external pwauth \
+ libapache2-mod-authnz-external libapache2-mod-authz-unixgroup pwauth \
  libapache2-modsecurity \
  openssl-blacklist \
 "
@@ -83,6 +83,8 @@ MOD_SEC_CRS_PROFILES="\
 # wird in dem Profil owap_crs_2.2.9_minimal.conf *included*
 OWASP_CRS_GIT_FOLDER="/usr/share/owasp-modsecurity-crs"
 OWASP_CRS_GIT_URL="https://github.com/SpiderLabs/owasp-modsecurity-crs.git"
+OWASP_CRS_GIT_BRANCH="v2.2/master"
+OWASP_CRS_SETUP="modsecurity_crs_10_setup.conf"
 
 # WEB apps
 # ========
@@ -142,9 +144,16 @@ WSGI_TEST_TEMPLATE="${WSGI_APPS}/helloWorld"
 WSGI_TEST_URL="https://$HOSTNAME/hello.py"
 
 WSGI_PACKAGES="\
- libapache2-mod-wsgi \
- python-imaging \
+ libapache2-mod-wsgi-py3 \
 "
+
+# PIP und VirtualEnv sollten im System installiert sein, sonts kann man
+# keine virtuelle Umgebung einrichten.
+
+PYTHON3_PACKAGES="\
+ python3 python3-pip python3-virtualenv python3-argcomplete
+"
+
 PYENV=pyenv
 PYENV_PACKAGES="\
  docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint pyratemp pyudev \
@@ -412,17 +421,19 @@ mod_security2(){
     echo
     SUDO_USER= CACHE=$(dirname ${OWASP_CRS_GIT_FOLDER}) \
          cloneGitRepository ${OWASP_CRS_GIT_URL}  $(basename ${OWASP_CRS_GIT_FOLDER})
+    cd ${OWASP_CRS_GIT_FOLDER}
+    git checkout ${OWASP_CRS_GIT_BRANCH}
 
     rstBlock "OWASP CRS Basis-Konfiguration:
 
-* ${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf"
+* ${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}"
 
-    if [[ -f  "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf" ]]; then
+    if [[ -f  "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}" ]]; then
         rstBlock "  --> wurde bereits angelegt"
     else
         rstBlock "  --> wird angelegt"
-        cp "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf.example" \
-           "${OWASP_CRS_GIT_FOLDER}/modsecurity_crs_10_setup.conf"
+        cp "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}.example" \
+           "${OWASP_CRS_GIT_FOLDER}/${OWASP_CRS_SETUP}.conf"
     fi
     waitKEY
 
@@ -758,9 +769,11 @@ weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden:
 
     mkdir -p "${WSGI_APPS}"
 
-    rstPkgList ${WSGI_PACKAGES}
-    echo
-    apt-get install -y ${WSGI_PACKAGES}
+    TITLE="Installation Python 3"\
+         aptInstallPackages ${PYTHON3_PACKAGES}
+
+    TITLE="Installation Apache-WSGI"\
+         aptInstallPackages ${WSGI_PACKAGES}
 
     APACHE_disable_mod_conf wsgi
     a2enmod wsgi
@@ -779,7 +792,7 @@ WEB-Anwendungen betrieben werden können.:
 
     pushd "${WSGI_APPS}" > /dev/null
     if [[ ! -x "${PYENV}" ]] ; then
-        virtualenv "${PYENV}" --prompt="${PYENV}"
+        virtualenv "${PYENV}" -p python3 --prompt="${PYENV}"
     else
         rstBlock "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
     fi
@@ -792,7 +805,7 @@ WEB-Anwendungen betrieben werden können.:
 
     if [[ ! -x /etc/bash_completion.d/pip ]] ; then
         rstBlock "Richte shell completion für pip ein."
-        pip completion --bash | sudo tee /etc/bash_completion.d/pip > /dev/null
+        pip3 completion --bash | sudo tee /etc/bash_completion.d/pip > /dev/null
     fi
 
     rstBlock "Es werden die gängigen pip-Pakete installiert, mit denen

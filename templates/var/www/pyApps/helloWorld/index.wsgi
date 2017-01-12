@@ -4,7 +4,10 @@
 #activate_this = '/opt/wwwPython/2.6/bin/activate_this.py'
 #execfile(activate_this, dict(__file__=activate_this))
 
-import os, sys, urlparse, traceback, pprint, urlparse, pwd
+import os, sys, traceback, pprint, pwd
+
+import six
+from six.moves.urllib import parse as urllib_parse
 
 def application(environ, start_response):
 
@@ -19,7 +22,7 @@ def application(environ, start_response):
         o += '\n\n============================================================\n'
         o += '\nWSGI environment:\n' + pprint.pformat(environ, indent=4)
         o += '\n\n============================================================\n'
-        o += '\nQuery String:\n'     + pprint.pformat(urlparse.parse_qs(environ['QUERY_STRING']), indent=4)
+        o += '\nQuery String:\n'     + pprint.pformat(urllib_parse.parse_qs(environ['QUERY_STRING']), indent=4)
         o += '\n\n============================================================\n'
         o += '\nPython version:    '   + pprint.pformat(sys.version)
         o += '\nProfiler:          '   + str(sys.getprofile())
@@ -48,6 +51,7 @@ def application(environ, start_response):
     except:
         o += "\n\n" + traceback.format_exc()
 
+    o = six.binary_type(o, 'utf-8')
     response_headers = [
         ( 'Content-type', 'text/plain')
         , ( 'Content-Length', str(len(o)))

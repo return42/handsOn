@@ -21,7 +21,7 @@ BASE_PACKAGES="\
  util-linux ppa-purge ssh \
  aptitude synaptic gdebi \
  build-essential dkms tree \
- python-dev python-argcomplete python-pip python-virtualenv pylint \
+ python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
  emacs curl colordiff \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
@@ -32,7 +32,7 @@ DEVELOP_PACKAGES="\
  autoconf autotools-dev automake libtool-bin gettext \
  devscripts \
  dkms \
- python-dev python-argcomplete python-pip python-virtualenv pylint \
+ python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
  emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
@@ -72,7 +72,7 @@ IMAGE_TOOLS_PACKAGES="\
  darktable \
  rawtherapee \
  pinta \
- shotwell \
+ gnome-photo \
  inkscape \
 "
 
@@ -141,7 +141,9 @@ install_basePackages(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${BASE_PACKAGES}
-    waitKEY 30
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
+        return 42
+    fi
     echo
     apt-get install -y ${BASE_PACKAGES}
     waitKEY 30
@@ -156,7 +158,9 @@ install_baseDoc(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${BASE_DOC_PACKAGES}
-    waitKEY 30
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
+        return 42
+    fi
     echo
     apt-get install -y ${BASE_DOC_PACKAGES}
     waitKEY 30
@@ -184,7 +188,7 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 "
 
     rstPkgList ${DEVELOP_PACKAGES}
-    if ! askYn "sollen die Entwickler Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Entwickler Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -214,7 +218,7 @@ install_Office(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${OFFICE_PACKAGES}
-    if ! askYn "Sollen die Office-Pakete installiert werden?" 10; then
+    if ! askYn "Sollen die Office-Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -238,7 +242,7 @@ Es werden verschiedene (Client) Multimedia Pakete installiert:
 * audacious: Audioplayer (winamp like)  http://audacious-media-player.org/"
 
     rstPkgList ${MULTIMEDIA_CLIENT_PACKAGES}
-    if ! askYn "sollen die Multimedia Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Multimedia Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -252,7 +256,7 @@ install_Codecs(){
 # ----------------------------------------------------------------------------
 
     rstPkgList ${CODEC_PACKAGES}
-    if ! askYn "Sollen Pakete für erweiterte Codecs installiert werden?" 10; then
+    if ! askYn "Sollen Pakete für erweiterte Codecs installiert werden?" 60; then
         return 42
     fi
     echo
@@ -292,16 +296,16 @@ Es werden verschiedene Tools zur Bildbearbeitung installiert:
               Bildformate.
               http://rawtherapee.com/blog/screenshots
 
-* shotwell    Bildverwaltung
-              https://wiki.gnome.org/Apps/Shotwell/
+* gnome-photo Phot Verwaltung aus dem GNOME Projekt
+              https://wiki.gnome.org/Apps/Photos
 
 .. hint::
 
-  Man könnte noch digikam als etwas aufwendigere Alternative zu shotwell
-  installiern.  "
+  Man könnte noch digikam als etwas aufwendigere Alternative zu 'gnome-photo'
+  installieren."
 
     rstPkgList ${IMAGE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -318,7 +322,7 @@ install_ArchiveTools(){
 installiert: "
 
     rstPkgList ${ARCHIVE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 10; then
+    if ! askYn "sollen die Pakete installiert werden?" 60; then
         return 42
     fi
     echo
@@ -339,7 +343,7 @@ install_HardwareTools(){
 * psensor(1) für die Temparaturüberwachung
 "
     rstPkgList ${HARDWARE_PACKAGES}
-    if ! askNy "Sollen die Hardware Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Hardware Tools installiert werden?" 60; then
         return 42
     fi
     echo
@@ -380,12 +384,12 @@ Zu den System *Monitoring-Tools* zählen:
 
 * htop(8) : das *schönere* ``top`` http://hisham.hm/htop/
 * glances : noch *schöneres* curses-based system monitoring tool
-            *  http://nicolargo.github.io/glances/
+            * http://nicolargo.github.io/glances/
             * http://glances.readthedocs.org/en/latest/glances-doc.html
-            FIXME: die Sensoren bekomme ich noch nciht zur Ansicht"
+            FIXME: die Sensoren bekomme ich noch nicht zur Ansicht"
 
     rstPkgList ${MONITORING_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Tools installiert werden?" 60; then
         return 42
     fi
     echo
@@ -417,7 +421,7 @@ Zu den *Network-Tools* zählen:
                http://iptraf.seul.org/"
 
     rstPkgList ${NETWORK_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 10; then
+    if ! askNy "Sollen die Tools installiert werden?" 60; then
         return 42
     fi
     echo

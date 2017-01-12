@@ -78,6 +78,16 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 # APACHE_MODS_AVAILABE="${APACHE_SETUP}/mods-available"
 # APACHE_CONF_AVAILABE="${APACHE_SETUP}/conf-available"
 
+
+# Debian's OpenLDAP Setup
+# =======================
+
+# LDAP_SERVER="myserver"
+# LDAP_SSL_PORT=636
+# OPENLDAP_USER=openldap
+# SLAPD_DBDIR=/var/lib/ldap
+# SLAPD_CONF="/etc/ldap/slapd.d"
+
 # =======
 # Firefox
 # =======
@@ -95,6 +105,8 @@ setupInfo () {
 # ----------------------------------------------------------------------------
     rstHeading "setup info"
     echo "
+ORGANIZATION  : ${ORGANIZATION}
+
 REPO_ROOT     : ${REPO_ROOT}
 SCRIPT_FOLDER : ${SCRIPT_FOLDER}
 TEMPLATES     : ${TEMPLATES}
@@ -104,16 +116,31 @@ WWW_USER      : ${WWW_USER}
 WWW_FOLDER    : ${WWW_FOLDER}
 DEB_ARCH      : ${DEB_ARCH}
 
-APACHE_SETUP           : ${APACHE_SETUP}
-FFOX_GLOBAL_EXTENSIONS : ${FFOX_GLOBAL_EXTENSIONS}
-GNOME_APPL_FOLDER      : ${GNOME_APPL_FOLDER}
+Apache:
+
+  APACHE_SETUP           : ${APACHE_SETUP}
+  FFOX_GLOBAL_EXTENSIONS : ${FFOX_GLOBAL_EXTENSIONS}
+  GNOME_APPL_FOLDER      : ${GNOME_APPL_FOLDER}
+
+Open LDAP:
+
+  SLAPD_DBDIR   : ${SLAPD_DBDIR}
+  SLAPD_CONF    : ${SLAPD_CONF}
+  LDAP_SERVER   : ${LDAP_SERVER}
+  LDAP_SSL_PORT : ${LDAP_SSL_PORT}
+  OPENLDAP_USER : ${OPENLDAP_USER}
+
+ldapscripts DIT (defaults):
+
+  LDAP_AUTH_BaseDN  : ${LDAP_AUTH_BaseDN}
+  LDAP_AUTH_DC      : ${LDAP_AUTH_DC}
 
 LSB (Linux Standard Base) and Distribution information.
 
-DISTRIB_ID          : ${DISTRIB_ID}
-DISTRIB_RELEASE     : ${DISTRIB_RELEASE}
-DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
-DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
+  DISTRIB_ID          : ${DISTRIB_ID}
+  DISTRIB_RELEASE     : ${DISTRIB_RELEASE}
+  DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
+  DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
 
 CWD : $(pwd -P)"
 }
@@ -126,8 +153,8 @@ if [[ ! -e "${SCRIPT_FOLDER}/common.sh" ]]; then
     echo "ERROR: can't source file common.sh"
     exit
 else
-   source ${SCRIPT_FOLDER}/common.sh
-   checkEnviroment
+    source ${SCRIPT_FOLDER}/common.sh
+    checkEnviroment
 fi
 
 if [[ -e "${CONFIG}_setup.sh" ]]; then
