@@ -154,9 +154,10 @@ PYTHON3_PACKAGES="\
  python3 python3-pip python3-virtualenv python3-argcomplete
 "
 
+PYENV_PYTHON=python3
 PYENV=pyenv
 PYENV_PACKAGES="\
- docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint pyratemp pyudev \
+ six docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint pyratemp pyudev \
  psutil sqlalchemy babel simplejson \
 "
 
@@ -208,12 +209,15 @@ main(){
             deinstallWSGI
             APACHE_reload
             ;;
+        installPy2)
+            install_mod_wsgi
+            ;;
         installAddSites)
             installAddSites
             ;;
 	*)
             echo
-	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI]"
+	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI|installPy2]"
             echo
             ;;
     esac
@@ -781,20 +785,27 @@ weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden:
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
     service apache2 restart
 
-    # ----------------------------------------------------------------------------
-    rstHeading "pyenv (${WWW_FOLDER}/pyApps)"
-    # ----------------------------------------------------------------------------
+    rstHeading "${PYENV} (${WWW_FOLDER}/pyApps)"
+    rstBlock "Es wird eine *virtuelle* Python Umgebung (${PYENV}) eingerichtet,
+in der die WEB-Anwendungen betrieben werden können.:
 
-    rstBlock "Es wird eine *virtuelle* Python Umgebung(${PYENV}) eingerichtet, in der die
-WEB-Anwendungen betrieben werden können.:
+* ${WSGI_APPS}/${PYENV}
+"
+    install_pyenv
 
-* ${WSGI_APPS}/${PYENV}"
+    installWSGITestApp
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_pyenv(){
+# ----------------------------------------------------------------------------
 
     pushd "${WSGI_APPS}" > /dev/null
     if [[ ! -x "${PYENV}" ]] ; then
-        virtualenv "${PYENV}" -p python3 --prompt="${PYENV}"
+        virtualenv "${PYENV}" -p "${PYENV_PYTHON}" --prompt="${PYENV}"
     else
-        rstBlock "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
+        echo -e "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
     fi
     waitKEY
 
@@ -827,11 +838,8 @@ virtuelle Python Umgebung auch in der Kommandozeile aktiviert werden::
 
   $ source ${WSGI_APPS}/${PYENV}/bin/activate"
 
-
     popd > /dev/null
     popd > /dev/null
-    installWSGITestApp
-    waitKEY
 }
 
 # ----------------------------------------------------------------------------
@@ -942,6 +950,73 @@ installAddSites(){
     fi
 }
 
+
+# ----------------------------------------------------------------------------
+install_mod_wsgi(){
+    rstHeading "Python 2 proxy"
+# ----------------------------------------------------------------------------
+
+    PYENV=py2env
+    PYENV_PYTHON=python
+
+    # http://modwsgi.readthedocs.io/
+    MOD_WSGI_GIT_URL="https://github.com/GrahamDumpleton/mod_wsgi.git"
+    MOD_WSGI_GIT_BRANCH="master"
+
+    rstHeading "${PYENV} (${WWW_FOLDER}/pyApps)" section
+    rstBlock "Es wird eine *virtuelle* Python Umgebung (${PYENV}) eingerichtet,
+gegen die das mod_wsgi gelinkt wird.:
+
+* ${WSGI_APPS}/${PYENV}
+"
+
+    install_pyenv
+
+    TITLE="Installation Apache Entwickler Pakete"\
+         aptInstallPackages apache2-dev
+
+    rstHeading "clone mod_wsgi" section
+    echo
+
+    source ${WSGI_APPS}/${PYENV}/bin/activate
+
+    cloneGitRepository ${MOD_WSGI_GIT_URL}  mod_wsgi
+    pushd "${CACHE}/mod_wsgi" > /dev/null
+    TEE_stderr <<EOF | bash | prefix_stdout |
+git checkout ${MOD_WSGI_GIT_BRANCH}
+EOF
+    waitKEY
+
+#     rstHeading "configure mod_wsgi" section
+#     echo
+#     TEE_stderr <<EOF | bash | prefix_stdout
+# make distclean
+# ./configure
+# EOF
+#     waitKEY
+#     rstHeading "build mod_wsgi" section
+#     echo
+#     TEE_stderr <<EOF | bash | prefix_stdout
+# make
+# EOF
+
+    rstHeading "build mod_wsgi" section
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+python setup.py build
+EOF
+    waitKEY
+    rstHeading "install mod_wsgi" section
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+python setup.py install
+EOF
+    waitKEY
+    popd > /dev/null
+    deactivate
+
+    # WIP
+}
 
 # ----------------------------------------------------------------------------
 main "$@"
