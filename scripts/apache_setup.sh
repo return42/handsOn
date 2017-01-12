@@ -151,7 +151,7 @@ WSGI_PACKAGES="\
 # keine virtuelle Umgebung einrichten.
 
 PYTHON3_PACKAGES="\
- python3 python3-pip python3-virtualenv python-argcomplete
+ python3 python3-pip python3-virtualenv python3-argcomplete
 "
 
 PYENV=pyenv

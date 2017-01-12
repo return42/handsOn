@@ -21,7 +21,7 @@ BASE_PACKAGES="\
  util-linux ppa-purge ssh \
  aptitude synaptic gdebi \
  build-essential dkms tree \
- python-dev python-argcomplete python-pip python-virtualenv pylint \
+ python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
  emacs curl colordiff \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
@@ -32,7 +32,7 @@ DEVELOP_PACKAGES="\
  autoconf autotools-dev automake libtool-bin gettext \
  devscripts \
  dkms \
- python-dev python-argcomplete python-pip python-virtualenv pylint \
+ python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
  emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
@@ -384,9 +384,9 @@ Zu den System *Monitoring-Tools* zählen:
 
 * htop(8) : das *schönere* ``top`` http://hisham.hm/htop/
 * glances : noch *schöneres* curses-based system monitoring tool
-            *  http://nicolargo.github.io/glances/
+            * http://nicolargo.github.io/glances/
             * http://glances.readthedocs.org/en/latest/glances-doc.html
-            FIXME: die Sensoren bekomme ich noch nciht zur Ansicht"
+            FIXME: die Sensoren bekomme ich noch nicht zur Ansicht"
 
     rstPkgList ${MONITORING_PACKAGES}
     if ! askNy "Sollen die Tools installiert werden?" 60; then
