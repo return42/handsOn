@@ -154,9 +154,10 @@ PYTHON3_PACKAGES="\
  python3 python3-pip python3-virtualenv python3-argcomplete
 "
 
+PYENV_PYTHON=python3
 PYENV=pyenv
 PYENV_PACKAGES="\
- docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint pyratemp pyudev \
+ six docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint pyratemp pyudev \
  psutil sqlalchemy babel simplejson \
 "
 
@@ -781,20 +782,27 @@ weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden:
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
     service apache2 restart
 
-    # ----------------------------------------------------------------------------
-    rstHeading "pyenv (${WWW_FOLDER}/pyApps)"
-    # ----------------------------------------------------------------------------
+    rstHeading "${PYENV} (${WWW_FOLDER}/pyApps)"
+    rstBlock "Es wird eine *virtuelle* Python Umgebung (${PYENV}) eingerichtet,
+in der die WEB-Anwendungen betrieben werden können.:
 
-    rstBlock "Es wird eine *virtuelle* Python Umgebung(${PYENV}) eingerichtet, in der die
-WEB-Anwendungen betrieben werden können.:
+* ${WSGI_APPS}/${PYENV}
+"
+    install_pyenv
 
-* ${WSGI_APPS}/${PYENV}"
+    installWSGITestApp
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_pyenv(){
+# ----------------------------------------------------------------------------
 
     pushd "${WSGI_APPS}" > /dev/null
     if [[ ! -x "${PYENV}" ]] ; then
-        virtualenv "${PYENV}" -p python3 --prompt="${PYENV}"
+        ${PYENV_PYTHON} -m virtualenv -p ${PYENV_PYTHON} --prompt="${PYENV}"  "${PYENV}"
     else
-        rstBlock "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
+        echo -e "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
     fi
     waitKEY
 
@@ -827,11 +835,8 @@ virtuelle Python Umgebung auch in der Kommandozeile aktiviert werden::
 
   $ source ${WSGI_APPS}/${PYENV}/bin/activate"
 
-
     popd > /dev/null
     popd > /dev/null
-    installWSGITestApp
-    waitKEY
 }
 
 # ----------------------------------------------------------------------------
