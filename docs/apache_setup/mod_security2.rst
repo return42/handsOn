@@ -162,7 +162,7 @@ Aufbau der ``mod_security2.conf`` Konfiguration und der Profile im
 
 Die `Beispiele für Sicherheitsprofile`_ werden weiter unten noch beschrieben.
 
-Zu diesem Setup existiert ein Script, mit dem die wie obenkonfigurierte WAF auch
+Zu diesem Setup existiert ein Script, mit dem die oben konfigurierte WAF auch
 kurzzeitig de-/aktiviert werden kann:
 
 .. code-block:: bash
