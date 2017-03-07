@@ -212,9 +212,15 @@ main(){
         installAddSites)
             installAddSites
             ;;
+        activateWAF)
+            mod_security2_activate
+            ;;
+        deactivateWAF)
+            mod_security2_deactivate
+            ;;
 	*)
             echo
-	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI]"
+	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI|(de)activateWAF]"
             echo
             ;;
     esac
@@ -464,6 +470,28 @@ kill \$TAIL_PID
 EOF
     waitKEY
 }
+
+
+# ----------------------------------------------------------------------------
+mod_security2_activate(){
+    rstHeading "Aktivierung WAF: ModSecurity"
+# ----------------------------------------------------------------------------
+    echo
+    a2enconf -f ${MOD_SECURITY_CONF} ${MOD_SEC_CRS_PROFILES} | prefix_stdout
+    a2enmod -f security2
+    APACHE_reload
+}
+
+# ----------------------------------------------------------------------------
+mod_security2_deactivate(){
+    rstHeading "Deaktivierung WAF: ModSecurity"
+# ----------------------------------------------------------------------------
+    echo
+    a2dismod -f security2
+    a2disconf -f ${MOD_SECURITY_CONF} ${MOD_SEC_CRS_PROFILES} | prefix_stdout
+    APACHE_reload
+}
+
 
 # ----------------------------------------------------------------------------
 site_html-intro(){

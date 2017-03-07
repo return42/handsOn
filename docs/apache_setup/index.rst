@@ -37,7 +37,8 @@ Zu diesem Setup existiert ein Script, das alle Setups vornimmt:
 
    $ ${SCRIPT_FOLDER}/apache_setup.sh install
 
-Das Setup besteht aus den folgenden Abschnitten:
+Das Setup besteht aus den folgenden Abschnitten und kann mit dem Script
+(teilweise) auch einzeln vorgenommen werden:
 
 .. toctree::
    :maxdepth: 1
