@@ -11,7 +11,7 @@
 ##! URL on which GitLab will be reachable.
 ##! For more details on configuring external_url see:
 ##! https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
-external_url 'http://ubu1604'
+external_url 'https://storage/gitlab'
 
 ## Legend
 ##! The following notations at the beginning of each line may be used to
@@ -239,6 +239,9 @@ external_url 'http://ubu1604'
 # gitlab_rails['manage_backup_path'] = true
 # gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
 
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_path'] = "/share/backups/gitlab"
+
 ###! Docs: https://docs.gitlab.com/ce/raketasks/backup_restore.html#backup-archive-permissions
 # gitlab_rails['backup_archive_permissions'] = 0644
 
@@ -262,6 +265,8 @@ external_url 'http://ubu1604'
 ###! **If you want to use a single non-default directory to store git data use a
 ###!   path that doesn't contain symlinks.**
 # git_data_dirs({"default" => "/var/opt/gitlab/git-data"})
+
+git_data_dirs({"default" => "/share/repos/gitlab"})
 
 ### For storing GitLab application uploads, eg. LFS objects, build artifacts
 ###! Docs: https://docs.gitlab.com/ce/development/shared_files.html
@@ -506,6 +511,7 @@ gitlab_workhorse['listen_addr'] = "127.0.0.1:8181"
 # unicorn['worker_processes'] = 2
 
 ### Advanced settings
+
 # unicorn['listen'] = '127.0.0.1'
 # unicorn['port'] = 8080
 # unicorn['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
