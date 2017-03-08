@@ -155,24 +155,37 @@ gitlab_workhorse['listen_network'] = "tcp"
 gitlab_workhorse['listen_addr'] = "127.0.0.1:8181"
 
 nginx['enable'] = false
+
+gitlab_rails['manage_backup_path'] = true
+gitlab_rails['backup_path'] = "/share/backups/gitlab"
 EOF
     waitKEY
 
     TEMPLATES_InstallOrMerge /etc/gitlab/gitlab.rb root root 644
 
-    rstBlock "Richte Ordner für die Repositories ein ..."
+    rstHeading "Ordner für die Repositories" section
+
     TEE_stderr <<EOF | bash | prefix_stdout
 mkdir -p "${GITLAB_REPO_FOLDER}"
 chown $GIT_USER:root  "$GITLAB_REPO_FOLDER"
 EOF
     waitKEY
 
-    rstBlock "Aktiviere Apache proxy_http und installiere gitlab site"
+    rstHeading "Apache proxy_http und gitlab-site"
+    echo
     a2enmod proxy_http
     APACHE_install_site gitlab
     waitKEY
 
+    rstHeading "GitLab reconfigure"
+    echo
     gitlab-ctl reconfigure
+    waitKEY
+
+    rstHeading "GitLab ist installiert"
+
+    rstBlock "   https://$HOSTNAME/gitlab"
+
 }
 
 
@@ -188,18 +201,47 @@ deinstall_gitlab(){
     if ! askNy "Wollen sie WIRKLICH die Konfiguration löschen?"; then
         return 42
     fi
+
+    rstHeading "Apache Site *disable*" section
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+a2dissite gitlab
+systemctl force-reload apache2
+EOF
+
+    APACHE_dissable_site gitlab
+
     aptPurgePackages ${GITLAB_PACKAGES}
 
-    if askNy "Sollen die 'Reste' aus /opt/gitlab auch entfernt werden?"; then
+    rstHeading "Aufräumen" section
+
+    if askNy "Sollen die 'Reste' aus ${BYellow}/opt/gitlab${_color_Off} auch entfernt werden?"; then
         echo
         TEE_stderr <<EOF | bash | prefix_stdout
 rm -rf /opt/gitlab/
 EOF
     fi
 
-    rstBlock "Die Anwendungsdaten unter /var/opt/gitlab/ als auch die
-Reposetories unter ${GITLAB_REPO_FOLDER} wurden nicht gelöscht. Diese müssen
-ggf. gesichert und anschließend gelöscht werden."
+    echo -e "
+Die Anwendungsdaten unter
+
+* ${BYellow}/var/opt/gitlab/${_color_Off} als auch die Reposetories unter
+* ${BYellow}${GITLAB_REPO_FOLDER}${_color_Off} wurden nicht gelöscht.
+
+Diese müssen ggf. gesichert und anschließend gelöscht werden."
+
+    waitKEY
+    rstBlock "Folgende Benutzer wurden bei der Installation angelegt, wurden
+aber hier bei der Deinstallation nicht wieder entfernt. Die Benutzer können mit
+dem Kommando 'userdel <user-login>' gelöscht werden.
+"
+    TEE_stderr <<EOF | bash | prefix_stdout
+getent passwd $GIT_USER $GITLAB_WWW_USER $GITLAB_REDIS_USER $GITLAB_PSQL_USER
+EOF
+
+    if askYn "Sollen die Paketquellen für gitlab_gitlab-ce auch entfernt werden?"; then
+        aptRemoveRepository gitlab_gitlab-ce
+    fi
     waitKEY
 
 }
