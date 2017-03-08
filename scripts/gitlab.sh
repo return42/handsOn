@@ -22,6 +22,7 @@ GITLAB_WWW_USER="gitlab-www"
 GITLAB_REDIS_USER="gitlab-redis"
 GITLAB_PSQL_USER="gitlab-psql"
 
+# Achtung: dieser Ordner darf kein symbolischer Link sein
 GITLAB_REPO_FOLDER="/share/repos/gitlab"
 
 GITLAB_DEB_SCRIPT_URL="https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
@@ -143,10 +144,31 @@ vorgenommen werden, bei der 'Nur lokal' ausgewählt werden sollte."
 gitlab-ctl stop
 EOF
 
+    rstHeading "Ordner für die Repositories" section
+    echo
+    if ! getent passwd $GIT_USER > /dev/null ; then
+        useradd -r -d /var/opt/gitlab -s /bin/sh $GIT_USER
+    fi
+
+    TEE_stderr <<EOF | bash | prefix_stdout
+mkdir -p "${GITLAB_REPO_FOLDER}"
+chown $GIT_USER:root  "$GITLAB_REPO_FOLDER"
+chmod 700 "$GITLAB_REPO_FOLDER"
+EOF
+    waitKEY
+
+    if [[ -e $GITLAB_REPO_FOLDER ]]; then
+        if ! [[ "$(readlink -f $GITLAB_REPO_FOLDER)" == "$GITLAB_REPO_FOLDER" ]]; then
+            rstBlock "${BRed}ACHTUNG:${_color_Off}\n$GITLAB_REPO_FOLDER darf kein symbolischer link
+sein! Es wird $(readlink -f $GITLAB_REPO_FOLDER) verwendet!"
+            GITLAB_REPO_FOLDER="$(readlink -f $GITLAB_REPO_FOLDER)"
+        fi
+    fi
+
     rstHeading "Einrichten des GitLab Setups" section
 
     rstBlock "Das Setup /etc/gitlab/gitlab.rb sollte wie folgt sein::"
-    echo
+
     prefix_stdout <<EOF
 external_url 'https://$HOSTNAME/gitlab'
 git_data_dirs({"default" => "${GITLAB_REPO_FOLDER}"})
@@ -163,14 +185,6 @@ EOF
 
     TEMPLATES_InstallOrMerge /etc/gitlab/gitlab.rb root root 644
 
-    rstHeading "Ordner für die Repositories" section
-
-    TEE_stderr <<EOF | bash | prefix_stdout
-mkdir -p "${GITLAB_REPO_FOLDER}"
-chown $GIT_USER:root  "$GITLAB_REPO_FOLDER"
-EOF
-    waitKEY
-
     rstHeading "Apache proxy_http und gitlab-site"
     echo
     a2enmod proxy_http
@@ -182,9 +196,15 @@ EOF
     gitlab-ctl reconfigure
     waitKEY
 
-    rstHeading "GitLab ist installiert"
+    rstHeading "GitLab Installation abgeschlossen"
 
-    rstBlock "   https://$HOSTNAME/gitlab"
+    rstBlock "Beim dem erstmaligen aufrufen der Adresse:
+
+  https://$HOSTNAME/gitlab
+
+wird nach einem Passwort gefragt. Dies ist das Passwort für den Benutzer mit dem
+*Username* 'root'. Will man sich als dieser Benutzer einloggen, dann verwendet
+man dafür eben diesen *Username* (und keine eMail Adresse)."
 
 }
 
