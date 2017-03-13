@@ -1,0 +1,95 @@
+# ------------------------------------------------------------------------------
+# Reverse Group Membership Maintenance
+# ------------------------------------------------------------------------------
+#
+# This loads and configurates the 'memberOf' overlay
+#
+#   http://www.openldap.org/doc/admin24/overlays.html#Reverse%20Group%20Membership%20Maintenance
+#
+# HINT:
+#
+#   Adding 'memberoff' to a database, does not automatically update the existing
+#   data in the database. For existing groups, you have to *splapcat* the groups,
+#   remove the groups from the database and add the same groups back from your
+#   slapcat.
+#
+#   The overlay is added to the 'olcDatabase={2}mdb', you have to change the
+#   Database identifier '{2}mdb' to point the right database in your DIT.
+#   To list the databases in your DIT use::
+#
+#     sudo ldapsearch -H ldapi:// -Y EXTERNAL -b "cn=config" -LLL \
+#          "(& (objectClass=olcDatabaseConfig) (olcSuffix=*))" \
+#          dn olcSuffix olcDatabase
+#
+# INSTALL::
+#
+#   sudo ldapadd -Y EXTERNAL -H ldapi:/// -f memberof_overlay.ldif
+#
+# To add recommended referential integrity to the ldap config, use::
+#
+#   sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f refint_add.ldif
+#   sudo ldapadd -Y EXTERNAL -H ldapi:/// -f refint_overlay.ldif
+#
+# list installed modules::
+#
+#   sudo ldapsearch -H ldapi:// -Y EXTERNAL -b "cn=config" -LLL -Q "(objectClass=olcModuleList)"
+#
+# list memberOf configuration of databases::
+#
+#   sudo ldapsearch -H ldapi:// -Y EXTERNAL -b "cn=config" -LLL -Q "(olcOverlay=memberof)"
+#
+# memberOf usage
+# --------------
+#
+# Here is a query example, which gives me the mail addresses of all 'People' who
+# valid gilab users. The example is *hypothetical* and for simplification it
+# works on database 'dc=mydb' ::
+#
+#   $ ldapsearch -LLL -Y EXTERNAL -H ldapi:/// "(memberOf=cn=gitlab,ou=Services,dc=mydb)" mail
+#   dn: uid=user1,ou=People,dc=mydb
+#   mail: user1@example.org
+#
+#   dn: uid=user2,ou=People,dc=mydb
+#   mail: user2@example.org
+#
+# In the last example memberOf was used in a filter. The next example shows all
+# the groups each person is member of. My persons are listet in 'ou=People,dc=mydb'.:
+#
+#   $ ldapsearch -LLL -Y EXTERNAL -H ldapi:/// -b ou=People,dc=mydb memberOf
+#
+#   dn: ou=People,dc=mydb
+#
+#   dn: uid=user1,ou=People,dc=mydb
+#   memberOf: cn=Developers,dc=mydb
+#   memberOf: cn=gitlab,ou=Services,dc=mydb
+#
+#   dn: uid=user2,ou=People,dc=mydb
+#   memberOf: cn=Developers,dc=mydb
+#   memberOf: cn=gitlab,ou=Services,dc=mydb
+#
+#   dn: uid=user3,ou=People,dc=mydb
+#   memberOf: cn=Guests,dc=mydb
+#
+# The last output shows, that user1 and user2 are developers with an gitlab
+# access, while user3 is only a guest.
+
+# Load memberof module
+dn: cn=module{1},cn=config
+cn: module{1}
+objectClass: olcModuleList
+olcModuleLoad: memberof
+olcModulePath: /usr/lib/ldap
+
+# Configurate memberof overlay for database '{2}mdb'
+dn: olcOverlay={0}memberof,olcDatabase={2}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcMemberOf
+objectClass: olcOverlayConfig
+objectClass: top
+olcOverlay: memberof
+olcMemberOfDangling: ignore
+olcMemberOfRefInt: TRUE
+olcMemberOfGroupOC: groupOfNames
+olcMemberOfMemberAD: member
+olcMemberOfMemberOfAD: memberOf
+

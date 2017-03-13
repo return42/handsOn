@@ -1,0 +1,13 @@
+# ------------------------------------------------------------------------------
+# Referential Integrity
+# ------------------------------------------------------------------------------
+#
+# This modifies the cn=module{1} entry to load refint
+#
+# INSTALL::
+#
+#   sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f refint_add.ldif
+
+dn: cn=module{1},cn=config
+add: olcmoduleload
+olcmoduleload: refint
