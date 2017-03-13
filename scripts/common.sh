@@ -521,10 +521,107 @@ askPassphrase(){
 }
 
 # ----------------------------------------------------------------------------
+ask_rm(){
+# ----------------------------------------------------------------------------
+
+    # Ask to remove files by glob pattern from (base) folder.  Without pattern,
+    # remove the entire folder.
+    #
+    # usage:
+    #
+    #    ask_rm [Yn|Ny] <base-folder> [<files to remove>, ...]
+    #
+    # e.g.: ask_rm /var/lib/samba '*.tdb' '*.dat' 'private'
+    #
+    local ask_default=$1
+    shift
+    local folder=$1
+    shift
+
+    if [[ ! -d "$folder" ]]; then
+        info_msg "Ordner $folder existiert nicht (Löschen nicht erforderlich)"
+        return 42
+    fi
+
+    if [[ $# -eq 0 ]]; then
+        if askYesNo "Soll der Ordner '${folder}' gelöscht werden?" ${ask_default}; then
+            rm -rf "$folder"
+        fi
+        return $?
+    fi
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+cd ${folder}; ls -la "$@"; exit $?
+EOF
+    if askYesNo "Sollen die Dateien (${folder}) gelöscht werden?" ${ask_default}; then
+        for pattern in "$@"; do
+            rm -rf ${folder}/${pattern}
+        done
+    fi
+}
+
+
+# ----------------------------------------------------------------------------
+TEE_stderr () {
+# ----------------------------------------------------------------------------
+
+    # Es wird Zeile für Zeile von stdin gelesen und auf stdout ausgegeben. Auf
+    # stderr erfolgt die gleiche Ausgabe (ggf. coloriert). Vor der Ausgabe der
+    # Zeile wird n-Sekunden gewartet (erstes Argument). Diese Funktion eignet
+    # sich um eine Reihe von Kommandos (Zeilen) sequentiell an einen Interpreter
+    # oder ähnliches weiter zu geben.
+
+    # Beispiel::
+    #
+    #     TEE_stderr 3 <<EOF | python -i 2>&1 | prefix_stdout "OUT: "
+    #     a=5+2
+    #     b=a+3
+    #     print "hello"
+    #     print b
+    #     EOF
+
+    local _t="0";
+    if [[ ! -z $1 ]] ; then _t="$1"; fi
+
+    (while read line; do
+        sleep $_t
+        echo -e "${BRed}$line${_color_Off}" >&2
+        echo "$line"
+    done)
+}
+
+# ----------------------------------------------------------------------------
+prefix_stdout () {
+# ----------------------------------------------------------------------------
+
+    # Fügt jeder Zeile aus dem Stream aus stdin ein Prefix hinzu und gibt diese
+    # Zeile auf stdout wieder aus. Kann man verwenden um Ausgaben eines Tools
+    # optisch (farblich) besonders hervorzuheben.
+
+    # usage:
+    #
+    #     <cmd> | prefix_stdout [prefix [color]]
+    #
+    #     ls -la | prefix_stdout "-->|" "${Yellow}"
+
+    local prefix="-->| "
+    local color_on="${Yellow}"
+    local color_off="${_color_Off}"
+
+    if [[ ! -z $1 ]] ; then prefix="$1"; fi
+    if [[ ! -z $2 ]] ; then color_on="$2"; fi
+    if [[ -z $color_on ]] ; then color_off=""; fi
+
+    (while IFS= read line; do
+        echo -e "${prefix}${color_on}$line${color_off}"
+    done)
+
+}
+
+# ----------------------------------------------------------------------------
 sudoOrExit() {
 # ----------------------------------------------------------------------------
     if [ ! $(id -u) -eq 0 ];  then
-        echo "this command requires root privilege (sudo) ausgeführt werden!"
+        echo "this command requires root (sudo) privilege!"
         exit 42
     fi
 }
@@ -627,295 +724,19 @@ cloneGitRepository() {
 }
 
 # ----------------------------------------------------------------------------
-aptInstallPackages(){
-# ----------------------------------------------------------------------------
-
-    rstHeading "${TITLE:-installation of deb-packages}" section
-    rstPkgList "$@"
-    if askYn "should packages be installed?" 30; then
-        apt-get install -y "$@"
-    fi
-    waitKEY 30
-}
-
-# ----------------------------------------------------------------------------
-aptPurgePackages(){
-# ----------------------------------------------------------------------------
-
-    rstHeading "${TITLE:-remove deb-packages}" section
-    rstPkgList "$@"
-    if askYn "should packages be de-installed (purged)?" 30; then
-        apt-get purge --ignore-missing -y "$@"
-        apt-get -y autoremove
-    fi
-    waitKEY 30
-}
-
-# ----------------------------------------------------------------------------
-aptPackageInstalled() {
-# ----------------------------------------------------------------------------
-    # if ! aptPackageInstalled virtualenv ; then
-    #     echo "Please install virtualenv!"
-    # fi
-    dpkg -l "$1" &> /dev/null
-    return
-}
-
-# ----------------------------------------------------------------------------
-aptRepositoryExist() {
-# ----------------------------------------------------------------------------
-
-    # Prüft, ob die APT-Datenquelle bereits eingerichtet ist.
-
-    # usage:
-    #
-    #     aptRepositoryExist '<deb[-src] URI Suite>' [apt-src-name]
-    #
-    #     aptRepositoryExist 'deb http://download.virtualbox.org/virtualbox/debian wily' oracle-vbox
-
-    local APT_SRC_ENTRY="${1}"
-    local APT_SOURCE_NAME="${2}"
-    local regexp="^\s*${APT_SRC_ENTRY}"
-
-    if [[ -f "/etc/apt/sources.list.d/${APT_SOURCE_NAME}.list" ]] ; then
-        info_msg "/etc/apt/sources.list.d/${APT_SOURCE_NAME}.list exists."
-    fi
-    grep --color=auto -n "$regexp" /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2> /dev/null
-    local retCode=$?
-    return $retCode
-}
-
-# ----------------------------------------------------------------------------
-aptAddRepositoryURL(){
-# ----------------------------------------------------------------------------
-
-    # Dem add-apt-repository fehlt (immernoch) die Option --sources-list-file,
-    # mit dem man den Eintrag in eine separate Datei in sources.list.d eintragen
-    # könnte (so wie bei ppa's). Deswegen mache ich das hier manuell. Typischer
-    # Weise verwendet man die drei aptXYZ-Funktionen zum anlegen löschen eines
-    # Repository gemeinsam::
-    #
-    #   APT_SOURCE_NAME="nodesource"
-    #   APT_SOURCE_URL="https://deb.nodesource.com/node_4.x"
-    #   APT_SOURCE_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    #
-    # Hinzufügen des APT-Repository *nodesource* (suite=main)::
-    #
-    #   aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main
-    #
-    # Hinzufügen der APT-Datenquelle (suite=nodesource, compnent=src)::
-    #
-    #   aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main src
-    #
-    # Hinzufügen des Public-Keys des APT-Repository *nodesource*::
-    #
-    #   aptAddPkeyFromURL "$APT_SOURCE_KEY_URL" "$APT_SOURCE_NAME"
-    #
-    # Löschen des APT-Repository *nodesource* (suites & components) und des
-    # public-keys::
-    #
-    #   aptRemoveRepository "$APT_SOURCE_NAME"
-    #
-    # usage:
-    #
-    #     addAptRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
-
-    local URL="${1}"
-    local FNAME="$(stripHostnameFromUrl ${1})".list
-    local APT_SOURCE_NAME="${FNAME}"
-
-    if [[ ! -z $2 ]] ; then
-        FNAME="${2}".list
-        APT_SOURCE_NAME="${2}"
-    fi
-
-    FNAME="/etc/apt/sources.list.d/${FNAME}"
-
-    local DEB="deb ${1} $(lsb_release -sc)"
-    if [[ ! -z "$4" ]] ; then
-        DEB="deb-$4 ${1} $(lsb_release -sc)"
-    fi
-    if aptRepositoryExist "${DEB}" "${APT_SOURCE_NAME}"; then
-        rstBlock "APT-Source: '${DEB}' allready exist"
-        if ! askNy "should it be added once more?"; then
-            return
-        fi
-    fi
-    if [[ ! -z "$3" ]] ; then
-        DEB="$DEB $3"
-    else
-        DEB="$DEB contrib"
-    fi
-
-    echo -e "add: ${Yellow}${DEB}${_color_Off}"
-    echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
-    echo "" >> "${FNAME}"
-    echo "# added $(date)" >> "${FNAME}"
-    echo "${DEB}" >> "${FNAME}"
-}
-
-# ----------------------------------------------------------------------------
-aptAddPkeyFromURL(){
-# ----------------------------------------------------------------------------
-
-    # usage: aptAddPkeyFromURL KEY-URL [REPOSETORY-NAME]
-
-    # aptAddPkeyFromURL
-    #      https://www.virtualbox.org/download/oracle_vbox.asc
-
-    local URL="${1}"
-    local FNAME="$(stripFilenameFromUrl ${1})".gpg
-
-    if [[ ! -z $2 ]] ; then
-        FNAME="${2}".gpg
-    fi
-
-    FNAME="/etc/apt/trusted.gpg.d/${FNAME}"
-    echo -e "add key from: ${Yellow}${URL}${_color_Off}"
-    echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
-
-    TEE_stderr <<EOF | bash | prefix_stdout
-    wget -q "$URL" -O- | sudo apt-key --keyring "$FNAME" add -
-EOF
-}
-
-# ----------------------------------------------------------------------------
-aptRemoveRepository() {
-# ----------------------------------------------------------------------------
-
-    # usage: aptRemoveRepository REPOSETORY-NAME
-    if [[ -z $1 ]] ; then
-	err_msg "missing REPOSETORY-NAME in line $(caller)"
-	exit
-    fi
-    local SRCL_FNAME="/etc/apt/sources.list.d/${1}.list"
-    local PKEY_FNAME="/etc/apt/trusted.gpg.d/${1}.gpg"
-
-    if [[ -e "${PKEY_FNAME}" ]]; then
-	echo -e "remove: ${Yellow}${PKEY_FNAME}${_color_Off}"
-	rm -f "${PKEY_FNAME}"
-    else
-	info_msg "${PKEY_FNAME} does not exists."
-    fi
-    if [[ -e "${SRCL_FNAME}" ]]; then
-	echo -e "remove: ${Yellow}${SRCL_FNAME}${_color_Off}"
-	rm -f "${SRCL_FNAME}"
-    else
-	err_msg "REPOSETORY $SRCL_FNAME does not exist!"
-    fi
-}
-
-# ----------------------------------------------------------------------------
-installDebFromURL () {
-# ----------------------------------------------------------------------------
-
-    # Installiert ein debian-Paket direkt aus einer URL. Sofern das Paket
-    # bereits im ${CACHE} ist, wird es nicht extra ein zweites mal
-    # *runtergeladen*. Als zweites Argument kann der Dateiname im ${CACHE}
-    # angegeben werden, falls dieser sich nicht *sauber* aus der URL ermitteln
-    # lässt.
-    #
-    # usage:
-    #
-    #    installDebFromURL <url> [<local-filename>]
-    #
-    #    installDebFromURL "http://www.teamviewer.com/download/teamviewer_i386.deb"
-
-    local URL="${1}"
-    local FNAME="$(stripFilenameFromUrl ${1})"
-
-    if [[ ! -z $2 ]] ; then
-        FNAME="${2}"
-    fi
-    echo
-    info_msg "${Green}install deb package: '$FNAME'${_color_Off}"
-    cacheDownload "${URL}" "${FNAME}"
-    echo ""
-    dpkg -i "${CACHE}/${FNAME}"
-    apt-get install -fy
-    waitKEY
-}
-
-# ----------------------------------------------------------------------------
-TEE_stderr () {
-# ----------------------------------------------------------------------------
-
-    # Es wird Zeile für Zeile von stdin gelesen und auf stdout ausgegeben. Auf
-    # stderr erfolgt die gleiche Ausgabe (ggf. coloriert). Vor der Ausgabe der
-    # Zeile wird n-Sekunden gewartet (erstes Argument). Diese Funktion eignet
-    # sich um eine Reihe von Kommandos (Zeilen) sequentiell an einen Interpreter
-    # oder ähnliches weiter zu geben.
-
-    # Beispiel::
-    #
-    #     TEE_stderr 3 <<EOF | python -i 2>&1 | prefix_stdout "OUT: "
-    #     a=5+2
-    #     b=a+3
-    #     print "hello"
-    #     print b
-    #     EOF
-
-    local _t="0";
-    if [[ ! -z $1 ]] ; then _t="$1"; fi
-
-    (while read line; do
-        sleep $_t
-        echo -e "${BRed}$line${_color_Off}" >&2
-        echo "$line"
-    done)
-}
-
-# ----------------------------------------------------------------------------
-prefix_stdout () {
-# ----------------------------------------------------------------------------
-
-    # Fügt jeder Zeile aus dem Stream aus stdin ein Prefix hinzu und gibt diese
-    # Zeile auf stdout wieder aus. Kann man verwenden um Ausgaben eines Tools
-    # optisch (farblich) besonders hervorzuheben.
-
-    # usage:
-    #
-    #     <cmd> | prefix_stdout [prefix [color]]
-    #
-    #     ls -la | prefix_stdout "-->|" "${Yellow}"
-
-    local prefix="-->| "
-    local color_on="${Yellow}"
-    local color_off="${_color_Off}"
-
-    if [[ ! -z $1 ]] ; then prefix="$1"; fi
-    if [[ ! -z $2 ]] ; then color_on="$2"; fi
-    if [[ -z $color_on ]] ; then color_off=""; fi
-
-    (while IFS= read line; do
-        echo -e "${prefix}${color_on}$line${color_off}"
-    done)
-
-}
-
-# ----------------------------------------------------------------------------
-CONFIG_installFolder() {
-# ----------------------------------------------------------------------------
-
-    # Installiert den angegebenen Ordner aus den ``${CONFIG}`` Ordner.
-    #
-    # CONFIG_installFolder {folder} [{owner} [{group} ]]
-    #
-
-    installFolder "${CONFIG}${1}" "${1}" $2 $3
-}
-
-# ----------------------------------------------------------------------------
 merge3FilesWithEmacs(){
 # ----------------------------------------------------------------------------
-    #set -x
+
+    # usage:
+    #
+    #    merge3FilesWithEmacs file-A file-B file-ancestor merge-buffer-file
+
     emacs -nw --no-desktop --eval "\
 (progn \
   (setq ediff-quit-hook 'kill-emacs)   \
   (ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\"))  \
 "
     #emacsclient -nw --eval "(ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\")"
-    #set +x
 }
 
 # ----------------------------------------------------------------------------
@@ -1284,7 +1105,7 @@ merge3Files() {
                 $MERGE_CMD "${files2merge[@]}" "$merged"
                 retCode=2
             else
-                $THREE_WAY_MERGE_CMD "${files2merge[@]}" "$merged"
+                $THREE_WAY_MERGE_CMD "$file_b" "$file_c" "$file_a" "$merged"
                 retCode=4
             fi
             if [[ -f "$merged" ]]; then
@@ -1317,6 +1138,215 @@ merge3Files() {
     return $retCode
 }
 
+
+# ----------------------------------------------------------------------------
+aptInstallPackages(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "${TITLE:-installation of deb-packages}" section
+    rstPkgList "$@"
+    if askYn "should packages be installed?" 30; then
+        apt-get install -y "$@"
+    fi
+    waitKEY 30
+}
+
+# ----------------------------------------------------------------------------
+aptPurgePackages(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "${TITLE:-remove deb-packages}" section
+    rstPkgList "$@"
+    if askYn "should packages be de-installed (purged)?" 30; then
+        apt-get purge --autoremove --ignore-missing -y "$@"
+    fi
+    waitKEY 30
+}
+
+# ----------------------------------------------------------------------------
+aptPackageInstalled() {
+# ----------------------------------------------------------------------------
+    # if ! aptPackageInstalled virtualenv ; then
+    #     echo "Please install virtualenv!"
+    # fi
+    dpkg -l "$1" &> /dev/null
+    return
+}
+
+# ----------------------------------------------------------------------------
+aptRepositoryExist() {
+# ----------------------------------------------------------------------------
+
+    # Prüft, ob die APT-Datenquelle bereits eingerichtet ist.
+
+    # usage:
+    #
+    #     aptRepositoryExist '<deb[-src] URI Suite>' [apt-src-name]
+    #
+    #     aptRepositoryExist 'deb http://download.virtualbox.org/virtualbox/debian wily' oracle-vbox
+
+    local APT_SRC_ENTRY="${1}"
+    local APT_SOURCE_NAME="${2}"
+    local regexp="^\s*${APT_SRC_ENTRY}"
+
+    if [[ -f "/etc/apt/sources.list.d/${APT_SOURCE_NAME}.list" ]] ; then
+        info_msg "/etc/apt/sources.list.d/${APT_SOURCE_NAME}.list exists."
+    fi
+    grep --color=auto -n "$regexp" /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2> /dev/null
+    local retCode=$?
+    return $retCode
+}
+
+# ----------------------------------------------------------------------------
+aptAddRepositoryURL(){
+# ----------------------------------------------------------------------------
+
+    # Dem add-apt-repository fehlt (immernoch) die Option --sources-list-file,
+    # mit dem man den Eintrag in eine separate Datei in sources.list.d eintragen
+    # könnte (so wie bei ppa's). Deswegen mache ich das hier manuell. Typischer
+    # Weise verwendet man die drei aptXYZ-Funktionen zum anlegen löschen eines
+    # Repository gemeinsam::
+    #
+    #   APT_SOURCE_NAME="nodesource"
+    #   APT_SOURCE_URL="https://deb.nodesource.com/node_4.x"
+    #   APT_SOURCE_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+    #
+    # Hinzufügen des APT-Repository *nodesource* (suite=main)::
+    #
+    #   aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main
+    #
+    # Hinzufügen der APT-Datenquelle (suite=nodesource, compnent=src)::
+    #
+    #   aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main src
+    #
+    # Hinzufügen des Public-Keys des APT-Repository *nodesource*::
+    #
+    #   aptAddPkeyFromURL "$APT_SOURCE_KEY_URL" "$APT_SOURCE_NAME"
+    #
+    # Löschen des APT-Repository *nodesource* (suites & components) und des
+    # public-keys::
+    #
+    #   aptRemoveRepository "$APT_SOURCE_NAME"
+    #
+    # usage:
+    #
+    #     addAptRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
+
+    local URL="${1}"
+    local FNAME="$(stripHostnameFromUrl ${1})".list
+    local APT_SOURCE_NAME="${FNAME}"
+
+    if [[ ! -z $2 ]] ; then
+        FNAME="${2}".list
+        APT_SOURCE_NAME="${2}"
+    fi
+
+    FNAME="/etc/apt/sources.list.d/${FNAME}"
+
+    local DEB="deb ${1} $(lsb_release -sc)"
+    if [[ ! -z "$4" ]] ; then
+        DEB="deb-$4 ${1} $(lsb_release -sc)"
+    fi
+    if aptRepositoryExist "${DEB}" "${APT_SOURCE_NAME}"; then
+        rstBlock "APT-Source: '${DEB}' allready exist"
+        if ! askNy "should it be added once more?"; then
+            return
+        fi
+    fi
+    if [[ ! -z "$3" ]] ; then
+        DEB="$DEB $3"
+    else
+        DEB="$DEB contrib"
+    fi
+
+    echo -e "add: ${Yellow}${DEB}${_color_Off}"
+    echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
+    echo "" >> "${FNAME}"
+    echo "# added $(date)" >> "${FNAME}"
+    echo "${DEB}" >> "${FNAME}"
+}
+
+# ----------------------------------------------------------------------------
+aptAddPkeyFromURL(){
+# ----------------------------------------------------------------------------
+
+    # usage: aptAddPkeyFromURL KEY-URL [REPOSETORY-NAME]
+
+    # aptAddPkeyFromURL
+    #      https://www.virtualbox.org/download/oracle_vbox.asc
+
+    local URL="${1}"
+    local FNAME="$(stripFilenameFromUrl ${1})".gpg
+
+    if [[ ! -z $2 ]] ; then
+        FNAME="${2}".gpg
+    fi
+
+    FNAME="/etc/apt/trusted.gpg.d/${FNAME}"
+    echo -e "add key from: ${Yellow}${URL}${_color_Off}"
+    echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
+
+    TEE_stderr <<EOF | bash | prefix_stdout
+    wget -q "$URL" -O- | sudo apt-key --keyring "$FNAME" add -
+EOF
+}
+
+# ----------------------------------------------------------------------------
+aptRemoveRepository() {
+# ----------------------------------------------------------------------------
+
+    # usage: aptRemoveRepository REPOSETORY-NAME
+    if [[ -z $1 ]] ; then
+	err_msg "missing REPOSETORY-NAME in line $(caller)"
+	exit
+    fi
+    local SRCL_FNAME="/etc/apt/sources.list.d/${1}.list"
+    local PKEY_FNAME="/etc/apt/trusted.gpg.d/${1}.gpg"
+
+    if [[ -e "${PKEY_FNAME}" ]]; then
+	echo -e "remove: ${Yellow}${PKEY_FNAME}${_color_Off}"
+	rm -f "${PKEY_FNAME}"
+    else
+	info_msg "${PKEY_FNAME} does not exists."
+    fi
+    if [[ -e "${SRCL_FNAME}" ]]; then
+	echo -e "remove: ${Yellow}${SRCL_FNAME}${_color_Off}"
+	rm -f "${SRCL_FNAME}"
+    else
+	err_msg "REPOSETORY $SRCL_FNAME does not exist!"
+    fi
+}
+
+# ----------------------------------------------------------------------------
+installDebFromURL () {
+# ----------------------------------------------------------------------------
+
+    # Installiert ein debian-Paket direkt aus einer URL. Sofern das Paket
+    # bereits im ${CACHE} ist, wird es nicht extra ein zweites mal
+    # *runtergeladen*. Als zweites Argument kann der Dateiname im ${CACHE}
+    # angegeben werden, falls dieser sich nicht *sauber* aus der URL ermitteln
+    # lässt.
+    #
+    # usage:
+    #
+    #    installDebFromURL <url> [<local-filename>]
+    #
+    #    installDebFromURL "http://www.teamviewer.com/download/teamviewer_i386.deb"
+
+    local URL="${1}"
+    local FNAME="$(stripFilenameFromUrl ${1})"
+
+    if [[ ! -z $2 ]] ; then
+        FNAME="${2}"
+    fi
+    echo
+    info_msg "${Green}install deb package: '$FNAME'${_color_Off}"
+    cacheDownload "${URL}" "${FNAME}"
+    echo ""
+    dpkg -i "${CACHE}/${FNAME}"
+    apt-get install -fy
+    waitKEY
+}
 
 # ----------------------------------------------------------------------------
 TEMPLATES_installFolder() {
@@ -1557,6 +1587,17 @@ TEMPLATES_InstallOrMerge() {
     fi
 }
 
+# ----------------------------------------------------------------------------
+CONFIG_installFolder() {
+# ----------------------------------------------------------------------------
+
+    # Installiert den angegebenen Ordner aus den ``${CONFIG}`` Ordner.
+    #
+    # CONFIG_installFolder {folder} [{owner} [{group} ]]
+    #
+
+    installFolder "${CONFIG}${1}" "${1}" $2 $3
+}
 
 # ----------------------------------------------------------------------------
 CONFIG_showDiff() {
@@ -1646,6 +1687,14 @@ CONFIG_cryptedBackup(){
     done
 
 }
+
+
+# Samba
+# =====
+
+if [[ -z "$SAMBA_SERVER" ]]; then
+    SAMBA_SERVER=127.0.0.1
+fi
 
 # Debian's Apache Setup
 # =====================
@@ -2055,27 +2104,29 @@ olcDbIndex: dc eq
 # The userPassword by default can be changed by the entry owning it if
 # they are authenticated. Others should not be able to see it, except
 # the admin entry above.
-olcAccess: to attrs=userPassword
-  by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage
-  by self write
-  by anonymous auth
-  by * none
 # Allow update of authenticated user's shadowLastChange attribute.
 # Updating it on password change is implemented at least by libpam-ldap,
 # libpam-ldapd, and the slapo-smbk5pwd overlay.
-olcAccess: to attrs=shadowLastChange
+olcAccess: to attrs=userPassword,shadowLastChange
+  by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage
+  by dn="cn=admin,${SUFFIX}" write
   by self write
-  by * read
+  by anonymous auth
+  by * none
 # User should be able to set 'loginShell, gecos'
 olcAccess: to attrs=loginShell,gecos
   by dn="cn=admin,${SUFFIX}" write
   by self write
   by * read
+olcAccess: to dn.base=""
+  by * read
 # The admin dn (olcRootDN) bypasses ACLs and so has total access,
 # everyone else can read everything and a login with the SASL EXTERNAL
 # method get 'manage' access.
 olcAccess: to *
+  by dn="cn=admin,${SUFFIX}" write
   by dn.exact=gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth manage
+  by self write
   by * read
 EOF
 )
