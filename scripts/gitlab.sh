@@ -22,7 +22,10 @@ GITLAB_WWW_USER="gitlab-www"
 GITLAB_REDIS_USER="gitlab-redis"
 GITLAB_PSQL_USER="gitlab-psql"
 
-# Achtung: dieser Ordner darf kein symbolischer Link sein
+GITLAB_LOG_FOLDER="/var/log/gitlab"
+GITLAB_DATA_FOLDER="/var/opt/gitlab"
+GITLAB_CONFIG_FOLDER="/etc/gitlab"
+# Achtung: der Ordner mit den Git-Reposetories darf kein symbolischer Link sein
 GITLAB_REPO_FOLDER="/share/repos/gitlab"
 
 GITLAB_DEB_SCRIPT_URL="https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh"
@@ -88,7 +91,7 @@ install_gitlab(){
 # ----------------------------------------------------------------------------
 
     rstBlock "Das GitLab wird so eingerichtet, dass es über eine bestehende
-Apache Installation im Netz verfügbar ist. Der URL Präfix ist 'gitlab', also
+Apache Installation im Netz verfügbar ist. Präfix der URL ist 'gitlab', also
 z.B.::
 
   https://$HOSTNAME/gitlab
@@ -147,7 +150,7 @@ EOF
     rstHeading "Ordner für die Repositories" section
     echo
     if ! getent passwd $GIT_USER > /dev/null ; then
-        useradd -r -d /var/opt/gitlab -s /bin/sh $GIT_USER
+        useradd -r -d "${GITLAB_DATA_FOLDER}" -s /bin/sh $GIT_USER
     fi
 
     TEE_stderr <<EOF | bash | prefix_stdout
@@ -167,7 +170,7 @@ sein! Es wird $(readlink -f $GITLAB_REPO_FOLDER) verwendet!"
 
     rstHeading "Einrichten des GitLab Setups" section
 
-    rstBlock "Das Setup /etc/gitlab/gitlab.rb sollte wie folgt sein::"
+    rstBlock "Das Setup ${GITLAB_CONFIG_FOLDER}/gitlab.rb sollte wie folgt sein::"
 
     prefix_stdout <<EOF
 external_url 'https://$HOSTNAME/gitlab'
@@ -183,7 +186,7 @@ gitlab_rails['backup_path'] = "/share/backups/gitlab"
 EOF
     waitKEY
 
-    TEMPLATES_InstallOrMerge /etc/gitlab/gitlab.rb root root 644
+    TEMPLATES_InstallOrMerge ${GITLAB_CONFIG_FOLDER}/gitlab.rb root root 644
 
     rstHeading "Apache proxy_http und gitlab-site"
     echo
@@ -214,7 +217,7 @@ deinstall_gitlab(){
     rstHeading "Deinstallation GitLab CE"
 # ----------------------------------------------------------------------------
 
-    rstBlock "${BRed}ACHTUNG: ${_color_Off}
+    rstBlock "${BRed}ACHTUNG:${_color_Off}
 
     Folgende Aktion löscht die GitLab samt Konfiguration!"
 
@@ -243,10 +246,12 @@ EOF
     fi
 
     echo -e "
-Die Anwendungsdaten unter
+Folgende Dateien bzw. Ordner wurden nicht gelöscht:
 
-* ${BYellow}/var/opt/gitlab/${_color_Off} als auch die Reposetories unter
-* ${BYellow}${GITLAB_REPO_FOLDER}${_color_Off} wurden nicht gelöscht.
+* Anwendungsdaten: ${BYellow}${GITLAB_DATA_FOLDER}${_color_Off}
+* Reposetories:    ${BYellow}${GITLAB_REPO_FOLDER}${_color_Off}
+* Konfiguration:   ${BYellow}${GITLAB_CONFIG_FOLDER}${_color_Off}
+* Log-Dateien:     ${BYellow}${GITLAB_LOG_FOLDER}${_color_Off}
 
 Diese müssen ggf. gesichert und anschließend gelöscht werden."
 
