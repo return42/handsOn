@@ -77,22 +77,26 @@ main(){
 	deinstall)
             deinstall_gitlab
 	    ;;
+        README)
+            rstHeading "README"
+            README_GITLAB
+            README_LDAP
+            ;;
 	*)
             echo
-	    echo "usage $0 [(de)install]"
+	    echo "usage $0 [(de)install|README]"
             echo
             ;;
     esac
 }
 
 # ----------------------------------------------------------------------------
-install_gitlab(){
-    rstHeading "Installation GitLab CE"
+README_GITLAB(){
 # ----------------------------------------------------------------------------
 
-    rstBlock "Das GitLab wird so eingerichtet, dass es über eine bestehende
-Apache Installation im Netz verfügbar ist. Präfix der URL ist 'gitlab', also
-z.B.::
+    rstBlock "Das GitLab wird mit diesem Script so eingerichtet, dass es über
+eine bestehende Apache Installation im Netz verfügbar ist. Präfix der URL ist
+'gitlab', also z.B.::
 
   https://$HOSTNAME/gitlab
 
@@ -100,6 +104,90 @@ Eine gute Beschreibung zum Setup einer gitlab Instanz findet man hier:
 
   https://docs.gitlab.com/omnibus/settings/configuration.html"
 
+}
+
+
+# ----------------------------------------------------------------------------
+README_LDAP(){
+    rstHeading "GitLab LDAP auth" section
+# ----------------------------------------------------------------------------
+
+    echo -e "
+Die Authentifizierung der GitLab Benutzer kann auch über den LDAP Dienst
+erfolgen, eine Beschreibung findet man hier::
+
+  https://docs.gitlab.com/ce/administration/auth/ldap.html
+
+Im Folgenden wird stichwortartig ein einfaches openLDAP Setup vorgestellt, mit
+dem Services wie 'gitlab' administriert werden können.
+
+1. Das Setup benötigt das openLDAP Overlay 'memberOf'.
+
+   siehe : templates/etc/ldap/memberof_overlay.ldif
+
+2. Im LDAP eine 'ou=Services,dc=example,dc=org' einrichten und in der eine
+   *groupOfNames* 'cn=gitlab,ou=Services,dc=example,dc=org' einrichten.
+
+   siehe : templates/etc/ldap/add_services.ldif
+
+3. Die Benutzerverwaltung im LDAP muss über Felder wie 'mail', 'cn', 'givenName'
+   und 'sn' verfügen. Für die ldapscripts eignet sich beispielsweise folgendes
+   Template, mit dem die Benutzer sowohl für POSIX Accounts als auch
+   für WEB-Dienste (*inetOrgPerson*) genutzt werden können::
+
+       dn: uid=<user>,<usuffix>,<suffix>
+       objectClass: top
+       objectClass: person
+       objectClass: organizationalPerson
+       objectClass: inetOrgPerson
+       objectClass: posixAccount
+       cn: <user>
+       uid: <user>
+       uidNumber: <uid>
+       gidNumber: <gid>
+       homeDirectory: <home>
+       loginShell: <shell>
+       gecos: <user>
+       description: User account
+       displayName: <user>
+       givenName: <ask>
+       sn: <ask>
+       mail: <ask>
+
+   Wer die ldapscripts nutzt sollte sich gleich die Templates installieren.
+
+   siehe : templates/etc/ldapscripts/*.template
+
+Mit den wenigen Schritten ist schon die Basis zur Verwaltung von Diensten und
+deren Membern im LDAP gelegt. In 'cn=gitlab,ou=Services,dc=example,dc=org'
+können nun die Benutzer hinzugefügt werden z.B.::
+
+   member: uid=test_user,ou=Users,dc=example,dc=org
+
+4. Einrichten LDAP im gitlab. In der Datei templates/etc/gitlab/gitlab.rb ist
+   ein (auskommentiertes) Setting für obiges LDAP Setup bereits eingetragen.
+   Es müssen die Werte für:
+
+   * gitlab_rails['ldap_enabled']
+   * gitlab_rails['ldap_servers']
+
+   aktiviert und ggf. angepasst werden. Danach noch einmal::
+
+     gitlab-ctl reconfigure
+
+Über den *memberOf* Filter '(memberOf=cn=gitlab,ou=Services,dc=example,dc=org)'
+in der gitlab Konfiguration wird sichergestellt, dass sich nur solche
+LDAP-Benutzer im gitlab einloggen können, die auch *member* der *groupOfNames*
+('cn=gitlab,ou=Services,dc=example,dc=org') sind.
+"
+}
+
+# ----------------------------------------------------------------------------
+install_gitlab(){
+    rstHeading "Installation GitLab CE"
+# ----------------------------------------------------------------------------
+
+    README_GITLAB
     if ! askYn "Soll GitLab CE installiert werden?"; then
         return 42
     fi

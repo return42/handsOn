@@ -151,58 +151,97 @@ external_url 'https://storage/gitlab'
 ###! **Be careful not to break the indentation in the ldap_servers block. It is
 ###!   in yaml format and the spaces must be retained. Using tabs will not work.**
 
-# gitlab_rails['ldap_enabled'] = false
+# ldapsearch -H ldaps://$host:$port -D "$bind_dn" -y bind_dn_password.txt  -b "$base" "$user_filter" sAMAccountName
+# ldapsearch -H ldaps://storage:636 -D "" -b "dc=storage" "(memberOf=cn=gitlab,ou=Services,dc=storage)" userid uid mail cn givenName sn
 
-###! **remember to close this block with 'EOS' below**
+# gitlab_rails['ldap_enabled'] = true
+
+# # ! **remember to close this block with 'EOS' below**
 # gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
 #   main: # 'main' is the GitLab 'provider ID' of this LDAP server
+
+#     ## label
+#     #
+#     # A human-friendly name for your LDAP server. It is OK to change the label later,
+#     # for instance if you find out it is too large to fit on the web page.
+#     #
+#     # Example: 'Paris' or 'Acme, Ltd.'
 #     label: 'LDAP'
-#     host: '_your_ldap_server'
-#     port: 389
-#     uid: 'sAMAccountName'
-#     method: 'plain' # "tls" or "ssl" or "plain"
-#     bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-#     password: '_the_password_of_the_bind_user'
-#     active_directory: true
-#     allow_username_or_email_login: false
+
+#     host: 'storage'
+#     port: 636
+#     uid: 'uid'
+#     method: 'ssl' # "tls" or "ssl" or "plain"
+#     bind_dn: ''
+#     password: ''
+
+#     # Set a timeout, in seconds, for LDAP queries. This helps avoid blocking
+#     # a request if the LDAP server becomes unresponsive.
+#     # A value of 0 means there is no timeout.
+#     timeout: 10
+
+#     # This setting specifies if LDAP server is Active Directory LDAP server.
+#     # For non AD servers it skips the AD specific queries.
+#     # If your LDAP server is not AD, set this to false.
+#     active_directory: false
+
+#     # If allow_username_or_email_login is enabled, GitLab will ignore everything
+#     # after the first '@' in the LDAP username submitted by the user on login.
+#     #
+#     # Example:
+#     # - the user enters 'jane.doe@example.com' and 'p@ssw0rd' as LDAP credentials;
+#     # - GitLab queries the LDAP server with 'jane.doe' and 'p@ssw0rd'.
+#     #
+#     # If you are using "uid: 'userPrincipalName'" on ActiveDirectory you need to
+#     # disable this setting, because the userPrincipalName contains an '@'.
+#     allow_username_or_email_login: true
+
+#     # To maintain tight control over the number of active users on your GitLab installation,
+#     # enable this setting to keep new users blocked until they have been cleared by the admin
+#     # (default: false).
 #     block_auto_created_users: false
-#     base: ''
-#     user_filter: ''
+
+#     # Base where we can search for users
+#     #
+#     #   Ex. 'ou=People,dc=gitlab,dc=example' or 'DC=mydomain,DC=com'
+#     #
+#     base: 'dc=storage'
+
+#     # Filter LDAP users
+#     #
+#     #   Format: RFC 4515 https://tools.ietf.org/search/rfc4515
+#     #   Ex. (employeeType=developer)
+#     #
+#     #   Note: GitLab does not support omniauth-ldap's custom filter syntax.
+#     #
+#     #   Below an example for get only specific users
+#     #   Example: '(&(objectclass=user)(|(samaccountname=momo)(samaccountname=toto)))'
+#     #
+#     user_filter: '(memberOf=cn=gitlab,ou=Services,dc=storage)'
+
+#     # LDAP attributes that GitLab will use to create an account for the LDAP user.
+#     # The specified attribute can either be the attribute name as a string (e.g. 'mail'),
+#     # or an array of attribute names to try in order (e.g. ['mail', 'email']).
+#     # Note that the user's LDAP login will always be the attribute specified as `uid` above.
+
 #     attributes:
+#       # The username will be used in paths for the user's own projects
+#       # (like `gitlab.example.com/username/project`) and when mentioning
+#       # them in issues, merge request and comments (like `@username`).
+#       # If the attribute specified for `username` contains an email address,
+#       # the GitLab username will be the part of the email address before the '@'.
 #       username: ['uid', 'userid', 'sAMAccountName']
 #       email:    ['mail', 'email', 'userPrincipalName']
+
+#       # If no full name could be found at the attribute specified for `name`,
+#       # the full name is determined using the attributes specified for
+#       # `first_name` and `last_name`.
 #       name:       'cn'
 #       first_name: 'givenName'
 #       last_name:  'sn'
-#     ## EE only
-#     group_base: ''
-#     admin_group: ''
-#     sync_ssh_keys: false
-#
-#   secondary: # 'secondary' is the GitLab 'provider ID' of second LDAP server
-#     label: 'LDAP'
-#     host: '_your_ldap_server'
-#     port: 389
-#     uid: 'sAMAccountName'
-#     method: 'plain' # "tls" or "ssl" or "plain"
-#     bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-#     password: '_the_password_of_the_bind_user'
-#     active_directory: true
-#     allow_username_or_email_login: false
-#     block_auto_created_users: false
-#     base: ''
-#     user_filter: ''
-#     attributes:
-#       username: ['uid', 'userid', 'sAMAccountName']
-#       email:    ['mail', 'email', 'userPrincipalName']
-#       name:       'cn'
-#       first_name: 'givenName'
-#       last_name:  'sn'
-#     ## EE only
-#     group_base: ''
-#     admin_group: ''
-#     sync_ssh_keys: false
 # EOS
+
+
 
 ### OmniAuth Settings
 ###! Docs: https://docs.gitlab.com/ce/integration/omniauth.html
