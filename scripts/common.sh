@@ -305,12 +305,12 @@ fi
 # ----------------------------------------------------------------------------
 err_msg() {
 # ----------------------------------------------------------------------------
-    echo "${BRed}ERROR:${_color_Off} $*" >&2
+    echo -e "${BRed}ERROR:${_color_Off} $*" >&2
 }
 # ----------------------------------------------------------------------------
 info_msg() {
 # ----------------------------------------------------------------------------
-    echo "${BYellow}INFO:${_color_Off} $*"
+    echo -e "${BYellow}INFO:${_color_Off} $*"
 }
 
 # ----------------------------------------------------------------------------
@@ -454,12 +454,12 @@ chooseOneMenu() {
     [[ ! -z $_t ]] && _t="-t $_t"
 
     list=("$@")
-    echo "${BGreen}Menu::${_color_Off}"
+    echo -e "${BGreen}Menu::${_color_Off}"
     for ((i=1; i<= $(($max -1)); i++)); do
         if [[ $i == $default ]]; then
-            echo "  ${Orange}$i.)${_color_Off} ${list[$i]}"
+            echo -e "  ${Orange}$i.)${_color_Off} ${list[$i]}"
         else
-            echo "  ${BGreen}$i.)${_color_Off} ${list[$i]}"
+            echo -e "  ${BGreen}$i.)${_color_Off} ${list[$i]}"
         fi
     done
     while true; do
