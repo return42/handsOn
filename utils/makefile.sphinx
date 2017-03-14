@@ -2,10 +2,10 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS  ?=
-SPHINXBUILD ?= sphinx-build
+SPHINXBUILD ?= $(PY_ENV_BIN)/sphinx-build
 DOCS_BUILD  ?= build/docs
 GH_PAGES    ?= gh-pages
-DOCS_DIST   ?= $(GH_PAGES)
+DOCS_DIST   ?= dist/docs
 
 docs-help:
 	@echo  'makefile.docs:'
@@ -16,24 +16,8 @@ docs-help:
 # requirements
 # ------------------------------------------------------------------------------
 
-PHONY += msg-sphinx-doc sphinx-doc
-
-msg-sphinx-doc:
-	@echo "\n  sphinx-doc is required\n\n\
-  Make sure you have an updated Sphinx installed, grab it from\n\
-  http://sphinx-doc.org or install it from the python package\n\
-  manager (pip). On debian based OS these requirements are\n\
-  installed by::\n\n\
-    sudo apt-get install pip\n\n\
-    pip install Sphinx\n" | $(FMT)
-
-ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)
-sphinx-doc: msg-sphinx-doc
-	$(error The '$(SPHINXBUILD)' command was not found)
-else
-sphinx-doc:
-	@:
-endif
+sphinx-doc: $(PY_ENV)
+	@$(PY_ENV_BIN)/pip install $(PIP_VERBOSE) Sphinx
 
 # ------------------------------------------------------------------------------
 # commands
@@ -49,29 +33,29 @@ quiet_cmd_sphinx = SPHINX  $@ --> file://$(abspath $(DOCS_DIST)/$5)
 	-b $2 -c $3 -d $(DOCS_BUILD)/.doctrees $4 $(DOCS_DIST)/$5
 
 quiet_cmd_sphinx_clean = CLEAN     $@
-      cmd_sphinx_clean = rm -rf $(DOCS_BUILD) $(DOCS_DIST)
+      cmd_sphinx_clean = rm -rf $(DOCS_BUILD) $(DOCS_DIST) $(GH_PAGES)/* $(GH_PAGES)/.buildinfo
 
 # ------------------------------------------------------------------------------
 # targets
 # ------------------------------------------------------------------------------
 
-PHONY += sphinx-clean
+PHONY += docs-clean
 docs-clean:
 	$(call cmd,sphinx_clean)
 
+PHONY += $(GH_PAGES)
 $(GH_PAGES):
-	git clone $(GIT_URL) $(GH_PAGES)
+	$(MAKE) docs
+	[ -d "gh-pages/.git" ] || git clone $(GIT_URL) gh-pages
+	-cd $(GH_PAGES); git checkout --orphan gh-pages
+	rm -rf $(GH_PAGES)/*
+	touch $(GH_PAGES)/.nojekyll ;\
+	cp -r $(DOCS_DIST)/* $(GH_PAGES)/
+	-cd $(GH_PAGES); git push origin :gh-pages
 	cd $(GH_PAGES);\
-		git push origin :gh-pages ;\
-		git checkout --orphan gh-pages;\
-		git rm -rf .
-	$(call cmd,sphinx,html,docs,docs)
-	cd $(GH_PAGES);\
-	        touch .nojekyll ;\
 		git add --all . ;\
 		git commit -m "gh-pages: updated" ;\
 		git push origin gh-pages
-
 
 .PHONY: $(PHONY)
 

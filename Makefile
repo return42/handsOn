@@ -1,12 +1,13 @@
 # -*- coding: utf-8; mode: makefile-gmake -*-
 
 include utils/makefile.include
+include utils/makefile.python
 include utils/makefile.sphinx
 
-GIT_URL   = https://github.com/return42/handsOn.git
-PYOBJECTS = linuxdoc
+GIT_URL   = https://github.com/return42/fspath.git
+#PYOBJECTS = xxxx
 
-all: clean docs
+all: clean pylint pytest build docs
 
 PHONY += help
 help:
@@ -23,11 +24,10 @@ docs:  sphinx-doc
 	$(call cmd,sphinx,html,docs,docs)
 
 PHONY += clean
-clean: docs-clean
+clean: pyclean docs-clean
 	$(call cmd,common_clean)
 
-PHONY += help-rqmts
-rqmts: msg-sphinx-doc
+PHONY += rqmts
+rqmts: msg-python-exe msg-virtualenv-exe
 
 .PHONY: $(PHONY)
-
