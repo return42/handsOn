@@ -51,10 +51,60 @@ Netzt diskutiert.  Wer einen (kleinen) WEB-Server im Netz betreibt und gerne
 zertiffiziert werden möchte, der möge sich mit der `letsencrypt.org`_ Campange
 auseinander setzen.
 
+.. _install_certs:
+
+Hinzufügen des Zertifikats eines Remote-Host
+=============================================
+
+Es empfiehlt sich die selbst-signierten Zertifikate der Server im **Intranet**
+auch auf den Client-Hosts zu registrieren.  Hierzu kann das beiliegende Script
+verwendet werden::
+
+  ./scripts/certs install
+
+Im allgemeinen akzeptieren die Programme auf dem Client die so installierten
+Zertifikate, aber wie immer gibt es auch hierbei Ausnahmen.
+
+.. hint::
+
+   Webbrowser wie Firefox, Chrome etc., als auch der Mailclient Mozilla
+   Thunderbird haben ihre eigenen Trust-Center.
+
+Bei solchen Anwendungen liegt die CA Datenbank i.d.R. irgendwo im HOME-Ordner
+des Anwenders, meist beim Profil der jeweiligen Anwendung. Das kann seitens der
+Administration nicht sinnvoll gehandhabt werden und so muss jeder Benutzer das
+Zertifikat des WEB-/Mail- Servers manuell akzeptieren. Leider sind dazu meist
+einige zusätzliche Maus-Klicks erforderlich, sobald man den Mail-Account
+einrichtet oder die Seite im Intranet aufruft.
+
+Andere Programme die den SSL Stack des Systems benutzen (ssh, git ...) nutzen
+die systemweiten CA's und arbeiten auch mit den selbst-signierten problemlos.
+
+Windows
+-------
+
+Auf Windows empfehle ich git zu installieren, dann hat man auch gleichzeitig ein
+openssl Client. Dazu die Git-Bash öffnen und folgendes eingeben. Dabei die
+beiden ``<hostname>`` durch den Namen des Remote-Host ersetzen::
+
+  cd Downloads
+  openssl s_client -showcerts -connect <hostname>:443 </dev/null 2>/dev/null | openssl x509 -outform PEM > <hostname>.crt
+
+Sollte sich das Programm nicht benden (bei Win stimmt was mit den PIPEs nicht)
+CTRL-C drücken und nachschauen ob es (trotzdem) geklappt hat::
+
+  cat <hostname>.crt
+
+Das ``cat`` sollte das Zertifikat anzeigen. Wenn nicht, muss man sich das
+irgendwie anders holen. Danach den Anweisungen unter dem *Link* folgen und dabei
+das Zertifikat ``<hostname>.crt`` einspielen.
+
+  * https://technet.microsoft.com/de-de/library/cc754841(v=ws.11).aspx#BKMK_addlocal
+
 .. _android_snakeoil:
 
-Android und selbst signierte Zertifikate
-========================================
+Android
+-------
 
 Die Installation eines selbst signierten Zertifikats (wie
 z.B. ``ssl-cert-snakeoil.pem``) auf einem Android Device wollte mir über das
