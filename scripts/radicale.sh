@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
-# Purpose:     gitlab radicale with apache
+# Purpose:     Radicale: WSGI CalDAV & CardDAV Server (apache)
 # ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
