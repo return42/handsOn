@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
-# Purpose:     Radicale: WSGI CalDAV & CardDAV Server (apache)
+# Purpose:     Glances / cross-platform system monitoring (apache)
 # ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
 sudoOrExit
+
+# Rverse Proxy with prefix URL e.g.: https:/myhost.org/glances did not work?
+#
+# https://github.com/nicolargo/glances/wiki/Start-Glances-through-Systemd
+# https://github.com/nicolargo/glances/wiki/Reverse-proxy-to-the-Glances-Web-UI
 
 # ----------------------------------------------------------------------------
 # Config
@@ -15,25 +20,19 @@ sudoOrExit
 WSGI_APPS="${WWW_FOLDER}/pyApps"
 PYENV=pyenv
 
-RADICALE_GIT_URL="https://github.com/Kozea/Radicale.git"
-RADICALE_DATA_FOLDER="$WSGI_APPS/Radicale.data"
-RADICALE_REPO_FOLDER="$WSGI_APPS/Radicale"
-
-DATA_BACKUP=(
-    "$RADICALE_DATA_FOLDER"
-)
+PYPI_PACKAGES="Glances Bottle"
 
 # ----------------------------------------------------------------------------
 main(){
-    rstHeading "Radicale" part
+    rstHeading "Glances" part
 # ----------------------------------------------------------------------------
 
     case $1 in
 	install)
-            install_radicale
+            install_glances
 	    ;;
 	deinstall)
-            deinstall_radicale
+            deinstall_glances
 	    ;;
 	*)
             echo
@@ -43,11 +42,14 @@ main(){
     esac
 }
 # ----------------------------------------------------------------------------
-install_radicale(){
-    rstHeading "Installation Radicale"
+install_glances(){
+    rstHeading "Installation Glances"
 # ----------------------------------------------------------------------------
 
-    if ! askYn "Soll Radicale installiert werden?"; then
+    rstBlock "Die Installation des Monitoring Werkzeugs Glances ${BRed}wird nur
+im Intranet empfohlen${_color_Off}."
+
+    if ! askYn "Soll Glances installiert werden?"; then
         return 42
     fi
 
@@ -57,54 +59,34 @@ install_radicale(){
 dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
+    systemctl stop glances.service
 
-    cloneGitRepository "${RADICALE_GIT_URL}" "${RADICALE_REPO_FOLDER}"
-    TEMPLATES_InstallOrMerge /var/www/pyApps/Radicale/radicale.wsgi root root 644
     source ${WSGI_APPS}/${PYENV}/bin/activate
-    pip install vobject
+    pip install ${PYPI_PACKAGES}
+    TEMPLATES_InstallOrMerge /lib/systemd/system/glances.service root root 644
 
-    APACHE_install_site radicale
+    systemctl enable glances.service
+    systemctl start glances.service
 
-    rstBlock "
-
-  https://$HOSTNAME/radicale/<username>
-"
-
+    rstBlock " --> http://$HOSTNAME:61208/<refresh in sec.>"
 }
 
-
 # ----------------------------------------------------------------------------
-deinstall_radicale(){
-    rstHeading "De-Installation Radicale"
+deinstall_glances(){
+    rstHeading "De-Installation Glances"
 # ----------------------------------------------------------------------------
 
-    rstBlock "${BRed}ACHTUNG:${_color_Off}
-
-    Folgende Aktion löscht die Radicale samt Konfiguration!"
-
-    if ! askNy "Wollen sie WIRKLICH die Konfiguration löschen?"; then
+    rstBlock "${BRed}ACHTUNG:${_color_Off}"
+    if ! askNy "  Wollen sie WIRKLICH Glances deinstallieren?"; then
         return 42
     fi
 
-    rstHeading "Apache Site *disable*" section
-    echo
-    TEE_stderr <<EOF | bash | prefix_stdout
-a2dissite radicale
-systemctl force-reload apache2
-EOF
+    systemctl stop glances.service
+    systemctl disable glances.service
+    rm /lib/systemd/system/glances.service
 
-    rstHeading "Aufräumen" section
-
-    echo -e "
-Folgende Dateien bzw. Ordner wurden nicht gelöscht:
-
-* Anwendungsdaten: ${BYellow}${RADICALE_DATA_FOLDER}${_color_Off}
-* Reposetorie:     ${BYellow}${RADICALE_REPO_FOLDER}${_color_Off}
-
-Diese müssen ggf. gesichert und anschließend gelöscht werden."
-
-    waitKEY
-
+    source ${WSGI_APPS}/${PYENV}/bin/activate
+    pip uninstall ${PYPI_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------

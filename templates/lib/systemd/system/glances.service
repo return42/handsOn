@@ -1,0 +1,13 @@
+[Service]
+
+[Unit]
+Description=Glances
+
+[Service]
+User = www-data
+Group = www-data
+ExecStart=/var/www/pyApps/pyenv/bin/glances -1 --tree --enable-process-extended --fs-free-space --diskio-iops -t 10 -w --bind 0.0.0.0
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
