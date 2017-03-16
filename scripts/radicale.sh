@@ -35,7 +35,6 @@ main(){
 	deinstall)
             deinstall_radicale
 	    ;;
-            ;;
 	*)
             echo
 	    echo "usage $0 [(de)install]"
@@ -48,7 +47,6 @@ install_radicale(){
     rstHeading "Installation Radicale"
 # ----------------------------------------------------------------------------
 
-    README_GITLAB
     if ! askYn "Soll Radicale installiert werden?"; then
         return 42
     fi
@@ -77,7 +75,7 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
 
 # ----------------------------------------------------------------------------
 deinstall_gitlab(){
-    rstHeading "Radicale"
+    rstHeading "De-Installation Radicale"
 # ----------------------------------------------------------------------------
 
     rstBlock "${BRed}ACHTUNG:${_color_Off}
