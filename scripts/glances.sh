@@ -52,23 +52,52 @@ im Intranet empfohlen${_color_Off}."
     if ! askYn "Soll Glances installiert werden?"; then
         return 42
     fi
+    systemctl stop glances.service 2>&1 >/dev/null
 
-    if ! aptPackageInstalled apache2; then
+    rstHeading "Benutzer glances" section
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+    adduser glances --disabled-password --gecos "" \
+           --shell /usr/sbin/nologin 2>&1 >/dev/null
+EOF
+    waitKEY
 
-        rstBlock "Apache is noch nicht installiert, die Installation sollte mit
-dem Skript 'apache_setup.sh' durchgeführt werden."
-        return 42
-    fi
-    systemctl stop glances.service
+    rstHeading "Benötigte System Pakete" section
+    rstPkgList            virtualenv python3
+    echo
+    apt-get install -y    virtualenv python3
+    waitKEY
 
-    source ${WSGI_APPS}/${PYENV}/bin/activate
+    rstHeading "Benötigte Python Pakete" section
+    rstPkgList  ${PYPI_PACKAGES}
+    echo
+
+    export HOME=~glances
+    TEE_stderr <<EOF | bash | prefix_stdout
+    cd $HOME
+    virtualenv --python=python3 py3
+    source ~glances/py3/bin/activate
     pip install ${PYPI_PACKAGES}
-    TEMPLATES_InstallOrMerge /lib/systemd/system/glances.service root root 644
+EOF
+    waitKEY
 
+    rstHeading "Dienst glances.service" section
+    TEMPLATES_InstallOrMerge /lib/systemd/system/glances.service root root 644
     systemctl enable glances.service
     systemctl start glances.service
 
-    rstBlock " --> http://$HOSTNAME:61208/<refresh in sec.>"
+    rstBlock "Dienst ist eingerichtet ..."
+
+    rstBlock "  --> http://$HOSTNAME:61208"
+
+    rstBlock "Die Refresh-Rate kann in Sekunden angegeben werden (default 10).
+Um z.B. alle 3 Sekunden zu aktualisieren::
+
+  --> http://$HOSTNAME:61208/3
+
+Die Spalten mit den Prozessen können sortiert werden, dazu mit der Maus auf
+z.B. 'CPU' oder 'MEM%' klicken (nicht alle Spalten können sortiert werden).
+"
 }
 
 # ----------------------------------------------------------------------------
@@ -77,16 +106,18 @@ deinstall_glances(){
 # ----------------------------------------------------------------------------
 
     rstBlock "${BRed}ACHTUNG:${_color_Off}"
-    if ! askNy "  Wollen sie WIRKLICH Glances deinstallieren?"; then
+    if ! askNy "  wollen sie Glances deinstallieren?"; then
         return 42
     fi
-
+    rstHeading "Dienst glances.service" section
+    echo
     systemctl stop glances.service
     systemctl disable glances.service
     rm /lib/systemd/system/glances.service
 
-    source ${WSGI_APPS}/${PYENV}/bin/activate
-    pip uninstall ${PYPI_PACKAGES}
+    rstHeading "Benutzer glances" section
+    echo
+    userdel -r -f glances
 }
 
 # ----------------------------------------------------------------------------
