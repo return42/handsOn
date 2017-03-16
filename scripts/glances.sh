@@ -21,6 +21,7 @@ WSGI_APPS="${WWW_FOLDER}/pyApps"
 PYENV=pyenv
 
 PYPI_PACKAGES="Glances Bottle"
+DEB_PCKG="virtualenv python3 python3-dev"
 
 # ----------------------------------------------------------------------------
 main(){
@@ -63,9 +64,9 @@ EOF
     waitKEY
 
     rstHeading "Benötigte System Pakete" section
-    rstPkgList            virtualenv python3
+    rstPkgList ${DEB_PCKG}
     echo
-    apt-get install -y    virtualenv python3
+    apt-get install -y ${DEB_PCKG}
     waitKEY
 
     rstHeading "Benötigte Python Pakete" section
@@ -77,6 +78,7 @@ EOF
     cd $HOME
     virtualenv --python=python3 py3
     source ~glances/py3/bin/activate
+    pip install -U pip setuptools
     pip install ${PYPI_PACKAGES}
 EOF
     waitKEY
