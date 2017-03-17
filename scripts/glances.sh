@@ -33,11 +33,22 @@ main(){
             install_glances
 	    ;;
 	deinstall)
-            deinstall_glances
 	    ;;
+        update)
+            rstHeading "Update des Systems"
+            echo
+            apt-get update -y
+            apt-get dist-upgrade -y
+            apt-get autoclean -y
+            apt-get autoremove -y
+            rstHeading "Update Glances"
+            rstBlock "Update mittels deinstallation und installation aktueller Version"
+            deinstall_glances
+            install_glances
+            ;;
 	*)
             echo
-	    echo "usage $0 [(de)install]"
+	    echo "usage $0 [(de)install|update]"
             echo
             ;;
     esac
@@ -98,7 +109,15 @@ Um z.B. alle 3 Sekunden zu aktualisieren::
   --> http://$HOSTNAME:61208/3
 
 Die Spalten mit den Prozessen können sortiert werden, dazu mit der Maus auf
-z.B. 'CPU' oder 'MEM%' klicken (nicht alle Spalten können sortiert werden).
+z.B. 'CPU' oder 'MEM%' klicken (nicht alle Spalten können sortiert werden).  Es
+ist auch möglich eine Steuerung über die Tastatur vorzunehmen, eine Übersicht
+gbt es mit der Taste 'h' (dazu mit der Maus vorher einmal in das Browser-Fenster
+klicken um es zu aktivieren).
+
+Für die Installation der Sensoren empfiehlt sich die Installation der Hardware
+Tools::
+
+  sudo ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh hwTools
 "
 }
 

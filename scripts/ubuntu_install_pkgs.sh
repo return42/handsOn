@@ -336,7 +336,8 @@ install_HardwareTools(){
     rstHeading "Hardware-Tools"
 # ----------------------------------------------------------------------------
 
-    echo -e "Zu den *Hardware-Tools* zählen:
+    echo -e "
+Zu den *Hardware-Tools* zählen:
 
 * powertop(8) zur Bewertung des Stromverbrachs von Programmen
 * pm-suspend(8), pm-hibernate(8) etc.  für die Power-Save Modi
@@ -351,8 +352,8 @@ install_HardwareTools(){
 
     rstBlock "${BYellow}\
 Folgend müssen Sie kurz die Hardware-Scans des lm-sensor Pakets bestätigen. Im
-Zweifelsfal reicht es einfach ENTER zu drücken. Lediglich bei der letzten Frage
-sollten Sie beachten, dass die erforderlichen Kernel-Module eingetragen
+Zweifelsfall reicht es aus, einfach ENTER zu drücken. Lediglich bei der letzten
+Frage sollten Sie beachten, dass die erforderlichen Kernel-Module eingetragen
 werden.${_color_Off}
 "
     sensors-detect
@@ -360,9 +361,12 @@ werden.${_color_Off}
     sensors
 
     rstBlock "${BYellow}\
-Zur Senosrauswertung kann *psensors* gestartet werden oder Für die Gnome-Shell
-kann die Erweiterung https://extensions.gnome.org/extension/120/system-monitor/
-instaliert werden.
+Zur Senosrauswertung kann *psensors* gestartet werden. Für die Gnome-Shell
+kann die Erweiterung
+
+  https://extensions.gnome.org/extension/120/system-monitor/
+
+installiert werden.
 
 Folgende Energiesparmodie werden unterstützt: ${_color_Off}
 "
