@@ -33,6 +33,7 @@ main(){
             install_glances
 	    ;;
 	deinstall)
+            deinstall_glances
 	    ;;
         update)
             rstHeading "Update des Systems"
