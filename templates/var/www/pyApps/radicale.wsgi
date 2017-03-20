@@ -20,14 +20,20 @@
 Radicale WSGI file (mod_wsgi and uWSGI compliant).
 
 """
+
 import site
 site.addsitedir('/var/www/pyApps/Radicale')
+site.addsitedir('/var/www/pyApps/RadicaleWeb')
 
 import os
 from radicale import Application, config, log
 
+#configuration = config.load([os.environ.get("RADICALE_CONFIG")])
+configuration = config.load(["/etc/radicale/config",])
 
-configuration = config.load(["/var/www/pyApps/Radicale.data/config",])
+# Start logging
+filename = os.path.expanduser(configuration.get("logging", "config"))
+debug = configuration.getboolean("logging", "debug")
+logger = log.start("radicale", filename, debug)
 
-logger = log.start()
 application = Application(configuration, logger)

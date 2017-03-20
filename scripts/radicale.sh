@@ -15,10 +15,17 @@ sudoOrExit
 WSGI_APPS="${WWW_FOLDER}/pyApps"
 PYENV=pyenv
 
+RADICALE_LOG_FOLDER=/var/log/radicale
 RADICALE_GIT_URL="https://github.com/Kozea/Radicale.git"
 RADICALE_DATA_FOLDER="$WSGI_APPS/Radicale.data"
 RADICALE_REPO_FOLDER="$WSGI_APPS/Radicale"
 
+RADICALE_WEB_GIT_URL="https://github.com/return42/RadicaleWeb.git"
+RADICALE_WEB_REPO_FOLDER="$WSGI_APPS/RadicaleWeb"
+
+RADICALE_REQUIRE="\
+  vobject \
+"
 DATA_BACKUP=(
     "$RADICALE_DATA_FOLDER"
 )
@@ -58,10 +65,19 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
 
-    cloneGitRepository "${RADICALE_GIT_URL}" "${RADICALE_REPO_FOLDER}"
-    TEMPLATES_InstallOrMerge /var/www/pyApps/Radicale/radicale.wsgi root root 644
+    mkdir -p "${RADICALE_REPO_FOLDER}"
+    SUDO_USER= cloneGitRepository "${RADICALE_GIT_URL}" "${RADICALE_REPO_FOLDER}"
+    SUDO_USER= cloneGitRepository "${RADICALE_WEB_GIT_URL}" "${RADICALE_WEB_REPO_FOLDER}" 
+    mkdir -p "/etc/radicale/"
+    TEMPLATES_InstallOrMerge /var/www/pyApps/radicale.wsgi root root 644
+    TEMPLATES_InstallOrMerge /etc/radicale/config root root 644
+    TEMPLATES_InstallOrMerge /etc/radicale/logging root root 644
+    TEMPLATES_InstallOrMerge /etc/radicale/rights root root 644
+    mkdir -p "${RADICALE_LOG_FOLDER}"
+    chown -R www-data:nogroup "${RADICALE_LOG_FOLDER}"
+
     source ${WSGI_APPS}/${PYENV}/bin/activate
-    pip install vobject
+    pip install ${RADICALE_REQUIRE}
 
     APACHE_install_site radicale
 
@@ -71,7 +87,6 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
 "
 
 }
-
 
 # ----------------------------------------------------------------------------
 deinstall_radicale(){
@@ -100,7 +115,7 @@ Folgende Dateien bzw. Ordner wurden nicht gelöscht:
 
 * Anwendungsdaten: ${BYellow}${RADICALE_DATA_FOLDER}${_color_Off}
 * Reposetorie:     ${BYellow}${RADICALE_REPO_FOLDER}${_color_Off}
-
+* Log-Dateien:     ${RADICALE_LOG_FOLDER}
 Diese müssen ggf. gesichert und anschließend gelöscht werden."
 
     waitKEY
