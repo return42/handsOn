@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/xhtml; charset=utf-8" />
     <title>Autoindex</title>
 
+    <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
     <link rel="stylesheet" type="text/css"
 	  href="/chrome/autoindex.css"/ >
 
