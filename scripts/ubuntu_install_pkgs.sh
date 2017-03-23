@@ -30,7 +30,7 @@ BASE_PACKAGES="\
 DEVELOP_PACKAGES="\
  build-essential linux-headers-generic \
  autoconf autotools-dev automake libtool-bin gettext \
- devscripts \
+ shellcheck devscripts \
  dkms \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
