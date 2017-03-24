@@ -1,0 +1,20 @@
+# ------------------------------------------------------------------------------
+# ou=Services,dc=storage
+# ------------------------------------------------------------------------------
+#
+# A organizationalUnit to organize your services and members
+#
+# INSTALL::
+#
+#   sudo ldapadd -Y EXTERNAL -H ldapi:/// -f add_services.ldif
+#
+dn: ou=Services,dc=storage
+ou: Services
+objectClass: organizationalUnit
+objectClass: top
+
+dn: cn=gitlab,ou=Services,dc=storage
+cn: gitlab
+objectClass: groupOfNames
+objectClass: top
+member: uid=test_user,ou=Users,dc=storage

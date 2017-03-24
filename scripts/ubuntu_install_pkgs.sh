@@ -19,7 +19,7 @@ sudoOrExit
 
 BASE_PACKAGES="\
  util-linux ppa-purge ssh \
- aptitude synaptic gdebi \
+ aptitude synaptic gdebi bash-completion \
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
@@ -30,7 +30,7 @@ BASE_PACKAGES="\
 DEVELOP_PACKAGES="\
  build-essential linux-headers-generic \
  autoconf autotools-dev automake libtool-bin gettext \
- devscripts \
+ shellcheck devscripts \
  dkms \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
@@ -336,7 +336,8 @@ install_HardwareTools(){
     rstHeading "Hardware-Tools"
 # ----------------------------------------------------------------------------
 
-    echo -e "Zu den *Hardware-Tools* zählen:
+    echo -e "
+Zu den *Hardware-Tools* zählen:
 
 * powertop(8) zur Bewertung des Stromverbrachs von Programmen
 * pm-suspend(8), pm-hibernate(8) etc.  für die Power-Save Modi
@@ -351,8 +352,8 @@ install_HardwareTools(){
 
     rstBlock "${BYellow}\
 Folgend müssen Sie kurz die Hardware-Scans des lm-sensor Pakets bestätigen. Im
-Zweifelsfal reicht es einfach ENTER zu drücken. Lediglich bei der letzten Frage
-sollten Sie beachten, dass die erforderlichen Kernel-Module eingetragen
+Zweifelsfall reicht es aus, einfach ENTER zu drücken. Lediglich bei der letzten
+Frage sollten Sie beachten, dass die erforderlichen Kernel-Module eingetragen
 werden.${_color_Off}
 "
     sensors-detect
@@ -360,9 +361,12 @@ werden.${_color_Off}
     sensors
 
     rstBlock "${BYellow}\
-Zur Senosrauswertung kann *psensors* gestartet werden oder Für die Gnome-Shell
-kann die Erweiterung https://extensions.gnome.org/extension/120/system-monitor/
-instaliert werden.
+Zur Senosrauswertung kann *psensors* gestartet werden. Für die Gnome-Shell
+kann die Erweiterung
+
+  https://extensions.gnome.org/extension/120/system-monitor/
+
+installiert werden.
 
 Folgende Energiesparmodie werden unterstützt: ${_color_Off}
 "

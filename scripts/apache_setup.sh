@@ -215,9 +215,15 @@ main(){
         installAddSites)
             installAddSites
             ;;
+        activateWAF)
+            mod_security2_activate
+            ;;
+        deactivateWAF)
+            mod_security2_deactivate
+            ;;
 	*)
             echo
-	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI|installPy2]"
+	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI|(de)activateWAF|installPy2]"
             echo
             ;;
     esac
@@ -467,6 +473,28 @@ kill \$TAIL_PID
 EOF
     waitKEY
 }
+
+
+# ----------------------------------------------------------------------------
+mod_security2_activate(){
+    rstHeading "Aktivierung WAF: ModSecurity"
+# ----------------------------------------------------------------------------
+    echo
+    a2enconf -f ${MOD_SECURITY_CONF} ${MOD_SEC_CRS_PROFILES} | prefix_stdout
+    a2enmod -f security2
+    APACHE_reload
+}
+
+# ----------------------------------------------------------------------------
+mod_security2_deactivate(){
+    rstHeading "Deaktivierung WAF: ModSecurity"
+# ----------------------------------------------------------------------------
+    echo
+    a2dismod -f security2
+    a2disconf -f ${MOD_SECURITY_CONF} ${MOD_SEC_CRS_PROFILES} | prefix_stdout
+    APACHE_reload
+}
+
 
 # ----------------------------------------------------------------------------
 site_html-intro(){
@@ -803,7 +831,7 @@ install_pyenv(){
 
     pushd "${WSGI_APPS}" > /dev/null
     if [[ ! -x "${PYENV}" ]] ; then
-        virtualenv "${PYENV}" -p "${PYENV_PYTHON}" --prompt="${PYENV}"
+        ${PYENV_PYTHON} -m virtualenv -p ${PYENV_PYTHON} --prompt="${PYENV}"  "${PYENV}"
     else
         echo -e "Virtuelle Python Umgebung (${WSGI_APPS}/${PYENV}) ist bereits eingerichtet"
     fi

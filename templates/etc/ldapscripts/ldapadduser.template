@@ -1,0 +1,18 @@
+dn: uid=<user>,<usuffix>,<suffix>
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: <user>
+uid: <user>
+uidNumber: <uid>
+gidNumber: <gid>
+homeDirectory: <home>
+loginShell: <shell>
+gecos: <user>
+description: User account
+displayName: <user>
+givenName: <ask>
+sn: <ask>
+mail: <ask>

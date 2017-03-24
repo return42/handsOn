@@ -1,0 +1,31 @@
+# ------------------------------------------------------------------------------
+# Configure refint module
+# ------------------------------------------------------------------------------
+#
+# This configurates the 'refint' overlay to your database:
+#
+#    http://www.openldap.org/doc/admin24/overlays.html#Referential%20Integrity
+#
+# HINT:
+#
+#   The overlay is added to the 'olcDatabase={2}mdb', you have to change the
+#   Database identifier '{2}mdb' to point the right database in your DIT.
+#   To list the databases in your DIT use::
+#
+#     sudo ldapsearch -H ldapi:// -Y EXTERNAL -b "cn=config" -LLL \
+#          "(& (objectClass=olcDatabaseConfig) (olcSuffix=*))" \
+#          dn olcSuffix olcDatabase
+#
+# INSTALL::
+#
+#   sudo ldapmodify -Y EXTERNAL -H ldapi:/// -f refint_add.ldif
+#   sudo ldapadd -Y EXTERNAL -H ldapi:/// -f refint_overlay.ldif
+
+dn: olcOverlay={1}refint,olcDatabase={2}mdb,cn=config
+objectClass: olcConfig
+objectClass: olcOverlayConfig
+objectClass: olcRefintConfig
+objectClass: top
+olcOverlay: {1}refint
+olcRefintAttribute: memberof member manager owner
+

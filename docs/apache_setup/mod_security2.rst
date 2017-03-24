@@ -66,7 +66,7 @@ Die aktuellen Sourcen sind über `ModSecurity (github)`_ verfügbar, auf dem auc
 ein Wiki mit den `ModSecurity Direktiven`_ zu finden ist.
 
 Die Konfiguration im Debian Setup ist in etwa wie folgt und besteht aus
-folgenden Teilen (Stand 02/2106).
+folgenden Teilen (Stand 02/2016).
 
 1. Die Konfiguration, die das Modul im Apache einbindet. Bei Debian ist das im
    Default die ``/etc/apache2/mods-available/security2.conf`` Datei.
@@ -161,6 +161,15 @@ Aufbau der ``mod_security2.conf`` Konfiguration und der Profile im
   ...
 
 Die `Beispiele für Sicherheitsprofile`_ werden weiter unten noch beschrieben.
+
+Zu diesem Setup existiert ein Script, mit dem die oben konfigurierte WAF auch
+kurzzeitig de-/aktiviert werden kann:
+
+.. code-block:: bash
+
+   $ ${SCRIPT_FOLDER}/apache_setup.sh deactivateWAF
+   ...
+   $ ${SCRIPT_FOLDER}/apache_setup.sh activateWAF
 
 
 .. _xref_mod_security2_conf:
