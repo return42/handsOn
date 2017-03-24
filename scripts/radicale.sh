@@ -5,8 +5,6 @@
 # ----------------------------------------------------------------------------
 
 source "$(dirname "${BASH_SOURCE[0]}")/setup.sh"
-#setupInfo
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -37,18 +35,27 @@ main(){
 
     case $1 in
 	install)
+            sudoOrExit
             install_radicale
 	    ;;
 	deinstall)
+            sudoOrExit
             deinstall_radicale
 	    ;;
+        README)
+             cat \
+                 ${REPO_ROOT}/docs/radicale/radicale_server.rst \
+                 ${REPO_ROOT}/docs/radicale/dav_client.rst \
+                 | grep -v "^\.\." | less
+            ;;
 	*)
             echo
-	    echo "usage $0 [(de)install]"
+	    echo "usage $0 [(de)install|README]"
             echo
             ;;
     esac
 }
+
 # ----------------------------------------------------------------------------
 install_radicale(){
     rstHeading "Installation Radicale"

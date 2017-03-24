@@ -4,7 +4,7 @@ include utils/makefile.include
 include utils/makefile.python
 include utils/makefile.sphinx
 
-GIT_URL   = https://github.com/return42/fspath.git
+GIT_URL   = https://github.com/return42/handsOn.git
 #PYOBJECTS = xxxx
 
 all: clean pylint pytest build docs

@@ -47,7 +47,7 @@ PHONY += $(GH_PAGES)
 $(GH_PAGES):
 	$(MAKE) docs
 	[ -d "gh-pages/.git" ] || git clone $(GIT_URL) gh-pages
-	-cd $(GH_PAGES); git checkout --orphan gh-pages
+	-cd $(GH_PAGES); git checkout --orphan gh-pages || exit 0
 	rm -rf $(GH_PAGES)/*
 	touch $(GH_PAGES)/.nojekyll ;\
 	cp -r $(DOCS_DIST)/* $(GH_PAGES)/

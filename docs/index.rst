@@ -24,6 +24,7 @@ bieten fertige Setups und unterstützen bei der Versionierung derselben.  Bitte
    install_nodejs/index
    apache_setup/index
    mozcloud/index
+   radicale/index
    LICENSE
 
 Exkursionen und Erfahrungswerte
