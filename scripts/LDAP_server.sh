@@ -87,17 +87,22 @@ Die User-IDs sind in Bereiche aufgeteilt:
   * UID 10.000 - xxxx:   Benutzer Logins, die im LDAP hinterlegt sind
 
 Die lokalen Benutzer bzw. Gruppen (inkl. der System-Benutzer) werden mit den
-Tools ``adduser(8)`` und ``groupadd(8)`` angelegt. Die Konfiguration der
+Tools ``adduser(8)`` und ``addgroup(8)`` angelegt. Die Konfiguration der
 ID-Bereiche dieser Benutzer bzw. Gruppen befindet sich in der Datei
-``adduser.conf(5)`` (``FIRST_SYSTEM_UID``., ``FIRST_UID``).
-
-* /etc/adduser.conf
+``adduser.conf(5)`` (``FIRST_SYSTEM_UID``., ``FIRST_UID``). In der
+/etc/adduser.conf sollte eingestellt sein::
 
   FIRST_SYSTEM_UID=100
   LAST_SYSTEM_UID=999
   ...
   FIRST_UID=1000
-  LAST_UID=29999
+  LAST_UID=9999
+
+In der /etc/ldapscripts/ldapscripts.conf sollte eingestellt sein::
+
+  # Start with these IDs *if no entry found in LDAP*
+  GIDSTART='10000' # Group ID
+  UIDSTART='10000' # User ID       // s.a.: /etc/pam.d/common-* die Option "minimum_uid=10000"
 
 Es kommt manchmal vor, dass ein LDAP-Benutzer einer System-Gruppe hinzugefügt
 werden muss, z.B. muss der Benutzer zur Gruppe 'mail' (das ist eine
