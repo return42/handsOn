@@ -1,0 +1,154 @@
+# -*- coding: utf-8; mode: sh -*-
+
+# ==============================================================================
+# Setup of the VirtualBox suite
+# ==============================================================================
+
+# ------------------------------
+# Automatic installation options
+# ------------------------------
+
+# To configure the installation process of our .deb and .rpm packages, you can
+# create a response file named /etc/default/virtualbox . The automatic
+# generation of the udev rule can be prevented by the following setting:
+#
+# INSTALL_NO_UDEV=1
+
+# The creation of the group vboxusers can be prevented by
+#
+# INSTALL_NO_GROUP=1
+
+# If 'INSTALL_NO_VBOXDRV=1' is specified, the package installer will not try to
+# build the vboxdrv kernel module if no module fitting the current kernel was
+# found.
+#
+# INSTALL_NO_VBOXDRV=1
+
+# --------------------
+# Setup the webservice
+# --------------------
+#
+# Unit:   /lib/systemd/system/vboxweb-service.service
+# Script: /usr/lib/virtualbox/vboxweb-service.sh
+#
+# The user as which the WEB service runs (""). To activate this service, set
+# this value (e.g. to vbox)
+VBOXWEB_USER=vbox
+
+# The host to bind the web service to (localhost)
+#VBOXWEB_HOST=localhost
+
+# The port to bind the web service to (18083)
+# VBOXWEB_PORT=18083
+
+# Server key and certificate file, PEM format ("").
+#VBOXWEB_SSL_KEYFILE=
+#VBOXWEB_SSL_KEYFILE="/etc/ssl/CRTandKEY.pem"
+VBOXWEB_SSL_KEYFILE="/etc/ssl/private/ssl-cert-snakeoil_pkey_cert.key"
+
+# File name for password to server key ("").
+#VBOXWEB_SSL_PASSWORDFILE=
+
+# CA certificate file, PEM format ("").
+#VBOXWEB_SSL_CACERT=
+VBOXWEB_SSL_CACERT="/etc/ssl/certs/ca-certificates.crt"
+
+# CA certificate path ("").
+#VBOXWEB_SSL_CAPATH=
+VBOXWEB_SSL_CAPATH="/etc/ssl/certs"
+
+# DH file name or DH key length in bits ("")
+#VBOXWEB_SSL_DHFILE=
+
+# File containing seed for random number generator ("")
+#VBOXWEB_SSL_RANDFILE=
+
+# Session timeout in seconds; 0 disables timeouts (300)
+#VBOXWEB_TIMEOUT=300
+
+# Frequency of timeout checks in seconds (5)
+#VBOXWEB_CHECK_INTERVAL=5
+
+# Maximum number of worker threads to run in parallel (100)
+#VBOXWEB_THREADS=100
+
+# Maximum number of requests before a socket will be closed (100)
+#VBOXWEB_KEEPALIVE=100
+
+# Name of file to write log to (no file).
+#VBOXWEB_LOGFILE=
+VBOXWEB_LOGFILE=/var/log/vboxweb.log
+
+# Number of log files; 0 disables log rotation (10)
+#VBOXWEB_ROTATE=10
+
+# Maximum size of a log file in bytes to trigger rotation (1048576Byte / 1MB)
+#VBOXWEB_LOGSIZE=1048576
+
+# Maximum time interval in seconds to trigger log rotation (86400sec / 1day)
+#VBOXWEB_LOGINTERVAL=86400
+
+# --------------------------
+# Setup the watchdog service
+# --------------------------
+#
+# Unit:   /lib/systemd/system/vboxballoonctrl-service.service
+# Script: /usr/lib/virtualbox/vboxballoonctrl-service.sh
+
+# The user as which the watchdog service runs (""). To activate this service,
+# set this value (e.g. to vbox)
+#VBOXWATCHDOG_USER=vbox
+
+# Interval for checking the balloon size (msec)
+#VBOXWATCHDOG_BALLOON_INTERVAL=30000
+
+# Balloon size increment (MByte)
+#VBOXWATCHDOG_BALLOON_INCREMENT=256
+
+# Balloon size decrement (MByte)
+#VBOXWATCHDOG_BALLOON_DECREMENT=128
+
+# Balloon size lower limit (MByte)
+#VBOXWATCHDOG_BALLOON_LOWERLIMIT=64
+
+# Free memory required for decreasing the balloon size (MByte)
+#VBOXWATCHDOG_BALLOON_SAFETYMARGIN=1024
+
+# Name of file to write log to (no file).
+#VBOXWATCHDOG_LOGFILE=
+VBOXWATCHDOG_LOGFILE=/var/log/vboxwatchdog.log
+
+# Number of log files; 0 disables log rotation (10)
+#VBOXWATCHDOG_ROTATE=10
+
+# Maximum size of a log file in bytes to trigger rotation (1048576Byte / 1MB)
+#VBOXWATCHDOG_LOGSIZE=1048576
+
+# Maximum time interval in seconds to trigger log rotation (86400sec / 1day)
+#VBOXWATCHDOG_LOGINTERVAL=86400
+
+# ---------------------------
+# Setup the autostart service
+# ---------------------------
+#
+# Unit:  /lib/systemd/system/vboxautostart-service.service
+# Script: /usr/lib/virtualbox/vboxautostart-service.sh
+#
+# On Linux, the autostart service is activated by setting two variables in
+# /etc/default/virtualbox.
+#
+# The first one is VBOXAUTOSTART_DB which contains an absolute path to the
+# autostart database directory. The directory should have write access for every
+# user who should be able to start virtual machines automatically. Furthermore
+# the directory should have the sticky bit set.
+#VBOXAUTOSTART_DB=
+
+VBOXAUTOSTART_DB=/etc/vbox/autostart.db
+
+# The second variable is VBOXAUTOSTART_CONFIG which points the service to the
+# autostart configuration file which is used during boot to determine whether to
+# allow individual users to start a VM automatically and configure startup
+# delays. The configuration file can be placed in /etc/vbox and contains several
+# options.
+#VBOXAUTOSTART_CONFIG=
+VBOXAUTOSTART_CONFIG=/etc/vbox/autostart.cfg
