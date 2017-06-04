@@ -84,6 +84,14 @@ main(){
             install_vbox
             vbox_services status
 	    ;;
+	update)
+            sudoOrExit
+            install_vbox_deb
+            if askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
+	        installExtensionPack
+            fi
+            vbox_services status
+	    ;;
 	deinstall)
             sudoOrExit
             deinstall_vbox
@@ -423,16 +431,13 @@ EOF
 
 # ----------------------------------------------------------------------------
 installExtensionPack() {
+    rstBlock "Installation des Extension-Pack & Guest-Additions"
 # ----------------------------------------------------------------------------
-
-    rstBlock "Installation des Extension-Pack & Guest-Additions" chapter
 
     local EXTPACK=$(stripFilenameFromUrl "${ORACLE_VBOX_EXTPACK_URL}")
     cacheDownload "${ORACLE_VBOX_EXTPACK_URL}" "${EXTPACK}"
-    TEE_stderr <<EOF | bash | prefix_stdout
-VBoxManage extpack install "${CACHE}/${EXTPACK}"
-EOF
-    waitKEY 20
+    VBoxManage extpack install "${CACHE}/${EXTPACK}"
+    waitKEY
 
     cacheDownload "${ORACLE_VBOX_GUEST_ADDONS_URL}" "${ORACLE_VBOX_GUEST_ADDONS_ISO}"
 
