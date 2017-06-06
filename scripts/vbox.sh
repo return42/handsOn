@@ -72,6 +72,11 @@ VBOX_SETUP=/etc/default/virtualbox
 VBOXAUTOSTART_DB=/etc/vbox/autostart.db
 VBOXAUTOSTART_CONFIG=/etc/vbox/autostart.cfg
 
+CONFIG_BACKUP=(
+    "/etc/default/virtualbox"
+    "/etc/vbox/autostart.db"
+    "/etc/vbox/autostart.cfg"
+)
 
 # ----------------------------------------------------------------------------
 main(){

@@ -174,5 +174,11 @@ CONFIG_BACKUP=(
 
     # Radicale
     "/etc/radicale"
+
+    # VirtualBox
+    "/etc/default/virtualbox"
+    "/etc/vbox/autostart.db"
+    "/etc/vbox/autostart.cfg"
+
 )
 
