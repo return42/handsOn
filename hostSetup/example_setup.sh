@@ -172,5 +172,7 @@ CONFIG_BACKUP=(
     # Firefox Sync-Server
     "/home/mozcloud/syncserver/syncserver.ini"
 
+    # Radicale
+    "/etc/radicale"
 )
 

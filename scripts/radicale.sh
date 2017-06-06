@@ -24,8 +24,13 @@ RADICALE_WEB_REPO_FOLDER="$WSGI_APPS/RadicaleWeb"
 RADICALE_REQUIRE=(
   vobject
 )
-export DATA_BACKUP=(
+
+DATA_BACKUP=(
     "$RADICALE_DATA_FOLDER"
+)
+
+CONFIG_BACKUP=(
+    "/etc/radicale"
 )
 
 # ----------------------------------------------------------------------------
