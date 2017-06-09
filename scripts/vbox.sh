@@ -91,11 +91,7 @@ main(){
 	    ;;
 	update)
             sudoOrExit
-            install_vbox_deb
-            if askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
-	        installExtensionPack
-            fi
-            vbox_services status
+            update_vbox
 	    ;;
 	deinstall)
             sudoOrExit
@@ -107,7 +103,7 @@ main(){
             ;;
 	*)
             echo
-	    echo "usage $0 [(de)install|README]"
+	    echo "usage $0 [(de)install|update|README]"
             echo
             ;;
     esac
@@ -173,11 +169,19 @@ danach erfolgt die Installation des VirtualBox ${ORACLE_VBOX_VERS}."
     install_setup
     installAutostartDB
     install_vbox_deb
-
-    if askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
-	installExtensionPack
-    fi
+    installExtensionPack
     customize_vbox
+}
+
+
+# ----------------------------------------------------------------------------
+update_vbox(){
+    rstHeading "Update VirtualBox"
+# ----------------------------------------------------------------------------
+
+    install_vbox_deb
+    installExtensionPack
+    vbox_services status
 }
 
 
@@ -222,7 +226,9 @@ deinstall_vbox(){
         return 42
     fi
 
-    deinstallExtensionPack
+    VBoxManage extpack uninstall "${ORACLE_VBOX_EXTPACK_NAME}"
+    waitKEY
+
     # aptPurgePackages ${ORACLE_VBOX_PACKAGE}
 
     # FIXME:
@@ -436,8 +442,17 @@ EOF
 
 # ----------------------------------------------------------------------------
 installExtensionPack() {
-    rstBlock "Installation des Extension-Pack & Guest-Additions"
+    rstHeading "Installation des Extension-Pack & Guest-Additions" section
 # ----------------------------------------------------------------------------
+
+    if ! askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
+	return42
+    fi
+
+    rstBlock "Deinstalliere ggf. vorhandenes Extension Pack ..."
+    echo
+    VBoxManage extpack uninstall "${ORACLE_VBOX_EXTPACK_NAME}"
+    waitKEY
 
     local EXTPACK=$(stripFilenameFromUrl "${ORACLE_VBOX_EXTPACK_URL}")
     cacheDownload "${ORACLE_VBOX_EXTPACK_URL}" "${EXTPACK}"
@@ -459,16 +474,6 @@ GAST-Host die Installation durchgeführt werden."
     rstBlock "Um RDP (Fernsteuerung) zu nutzen sollte nach der Installation das
 System neu gebootet werden"
 
-    waitKEY
-}
-
-# ----------------------------------------------------------------------------
-deinstallExtensionPack() {
-# ----------------------------------------------------------------------------
-
-    rstHeading "De-Installation des Extension-Pack" section
-    echo
-    VBoxManage extpack uninstall "${ORACLE_VBOX_EXTPACK_NAME}"
     waitKEY
 }
 
