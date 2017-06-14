@@ -694,16 +694,21 @@ cloneGitRepository() {
 
     # cloneGitRepository https://github.com/radarhere/Sane.git python-sane
 
+    local target_folder="${CACHE}/$2"
+    if [[  "${2:0:1}" = "/" ]]; then
+        target_folder="$2"
+    fi
+
     if [[ ! -z ${SUDO_USER} ]]; then
         sudo -u ${SUDO_USER} mkdir -p ${CACHE}
     else
         mkdir -p ${CACHE}
     fi
 
-    if [[ -d "${CACHE}/$2" ]] ; then
+    if [[ -d "${target_folder}" ]] ; then
 	info_msg "${Green}already cloned:${_color_Off} $1"
-        info_msg "  -->${Green} ${CACHE}/$2 ${_color_Off}"
-	pushd "${CACHE}/$2" > /dev/null
+        info_msg "  -->${Green} ${target_folder} ${_color_Off}"
+	pushd "${target_folder}" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
             sudo -u ${SUDO_USER} git pull --all
         else
@@ -712,8 +717,8 @@ cloneGitRepository() {
 	popd > /dev/null
     else
 	info_msg "${Green}clone:${_color_Off} $1"
-        info_msg "  -->${Green} ${CACHE}/$2 ${_color_Off}"
-	pushd "${CACHE}" > /dev/null
+        info_msg "  -->${Green} ${target_folder} ${_color_Off}"
+	pushd "$(dirname ${target_folder})" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
             sudo -u ${SUDO_USER} git clone "$1" "$2"
         else
