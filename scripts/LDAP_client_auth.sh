@@ -292,6 +292,10 @@ für diesen Host vorgenommen."
 Es wird geprüft, ob für die Kommonikation auf '${LDAP_SERVER}:${LDAP_SSL_PORT}'
 ein Zertifikat eingerichtete ist::
 "
+
+    # FIXME: hier muss man den LDAP_SERVER=storage angeben und man
+    # sollte das Skript "./certs install" ausführen um das Zertifikat
+    # vom storage zu installieren
     waitKEY
     TEE_stderr <<EOF | bash | prefix_stdout
 openssl s_client -showcerts -servername ${LDAP_SERVER}\
