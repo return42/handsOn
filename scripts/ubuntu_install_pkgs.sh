@@ -148,7 +148,8 @@ install_remmina(){
     REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
     REMMINA_SOURCE_NAME="remmina"
 
-    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt, deshalb wird Remmina aus dem PPA $PPA installiert."
+    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt,
+deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
     if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
         return 42
     fi
