@@ -53,7 +53,6 @@ OFFICE_PACKAGES="\
 # Remote Desktop (Server)
 # RDP_PACKAGES="\
 #  freerdp-x11 \
-#  remmina \
 # "
 
 MULTIMEDIA_CLIENT_PACKAGES="\
@@ -126,14 +125,43 @@ main(){
         netTools)
             install_NetworkTools
             ;;
+        remmina)
+            install_remmina
+            ;;
         *)
             echo
-	    echo "usage $0 [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools]"
+	    echo "usage $0 [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina]"
             echo
             ;;
     esac
     #apt-get -y autoremove
 }
+
+
+# ----------------------------------------------------------------------------
+install_remmina(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation Remmina RDP-Client"
+
+    # siehe https://bugs.launchpad.net/ubuntu/+source/remmina/+bug/1439478/comments/22
+    REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
+    REMMINA_SOURCE_NAME="remmina"
+
+    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt, deshalb wird Remmina aus dem PPA $PPA installiert."
+    if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
+        return 42
+    fi
+
+    add-apt-repository "$REMMINA_PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install remmina
+    waitKEY
+}
+
 
 # ----------------------------------------------------------------------------
 install_basePackages(){
