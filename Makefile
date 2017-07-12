@@ -5,6 +5,7 @@ include utils/makefile.python
 include utils/makefile.sphinx
 
 GIT_URL   = https://github.com/return42/handsOn.git
+SLIDES    = docs/slides
 #PYOBJECTS = xxxx
 
 all: clean pylint pytest build docs
@@ -22,6 +23,10 @@ help:
 PHONY += docs
 docs:  sphinx-doc
 	$(call cmd,sphinx,html,docs,docs)
+
+PHONY += git-slide
+git-slide:  sphinx-doc
+	$(call cmd,sphinx,html,$(SLIDES)/git,$(SLIDES)/git,git-slide)
 
 PHONY += clean
 clean: pyclean docs-clean
