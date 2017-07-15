@@ -8,7 +8,6 @@
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
-sudoOrExit
 
 test_account=test_user
 test_group=test_group
@@ -40,6 +39,9 @@ LIBPAM_LDAPD_PACKAGES="\
 README() {
     rstHeading "NSS, PAM & LDAP-Client"
 # ----------------------------------------------------------------------------
+
+    rstBlock "Folgend wird die README angezeigt. Taste 'q' zum Beenden der Anzeige, 'h' für Hilfe."
+    waitKEY
 
     echo -e "
 Für eine Authentifizierung über LDAP sind neben der LDAP-Infrastruktur
@@ -121,7 +123,6 @@ PAM & NSS:
 * nss-pam-ldapd: https://arthurdejong.org/nss-pam-ldapd/design
 * nscd: https://wiki.debian.org/LDAP/NSS#Offline_caching_of_NSS_with_nscd
 " | less
-    showConfigHints
 }
 
 # ----------------------------------------------------------------------------
@@ -179,7 +180,16 @@ DIT setup dc=$LDAP_AUTH_DC ${Yellow}
 
 Da der Hostname des LDAP Servers bei DNS Problemen u.U. nicht aufgelöst werden
 kann empfiehlt es sich i.d.R. anstatt dem Hostnamen, die feste IP des
-LDAP-Server zu verwenden."
+LDAP-Server zu verwenden.
+"
+    if [[ ! -e "${CONFIG}_setup.sh" ]]; then
+	info_msg "Es existiert kein Setup: ${CONFIG}_setup.sh"
+	info_msg "Oben gezeigte Werte ergeben sich aus den Defaults."
+	info_msg "Der Default für LDAP_SERVER wird vermutölich nicht stimmen"
+	info_msg "   LDAP_SERVER   : ${LDAP_SERVER}"
+	info_msg "Bitte ${CONFIG}/MEMO.rst lesen"
+    fi
+    waitKEY
 }
 
 # ----------------------------------------------------------------------------
@@ -700,7 +710,9 @@ main(){
             ;;
 
         install)
+	    sudoOrExit
             README
+            showConfigHints
             # LDAP-Client Config
             setup_ldap_client
             # LDAP-Auth Client
@@ -714,13 +726,16 @@ main(){
             probe_LDAP_auth
             ;;
         deinstall)
+	    sudoOrExit
             deinstall
             ;;
         reconfigure)
+	    sudoOrExit
             reconfigure
             ;;
         README)
             README
+	    showConfigHints
             ;;
         *)
             echo

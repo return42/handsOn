@@ -60,7 +60,7 @@ wie folgt auf::
   │   └── setup.sh
   └── templates
 
-* In dem ``doc`` Ordner sind die Sourcen zu *dieser* Dokumentation.
+* In dem ``doc`` Ordner sind die Quelldateien zu *dieser* Dokumentation.
 
 * In dem ``cache`` Ordner werden die Softwarepakete (die nicht von APT verwaltet
   werden) und Reposetories *gecached*, die beim Installieren der Anwendungen aus

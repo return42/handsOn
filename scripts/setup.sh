@@ -158,8 +158,14 @@ else
 fi
 
 if [[ -e "${CONFIG}_setup.sh" ]]; then
-    #info_msg "source file ${CONFIG}_setup.sh"
     source ${CONFIG}_setup.sh
     checkEnviroment
+else
+    info_msg "missing setup: ${CONFIG}_setup.sh"
+    info_msg "defaults are used!!! For more info about setup, read"
+    info_msg "    ${CONFIG}/MEMO.rst"
+    info_msg "Or use::"
+    info_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
+    waitKEY
 fi
 

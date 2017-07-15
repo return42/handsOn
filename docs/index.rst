@@ -4,10 +4,14 @@
                                     handsOn
 ================================================================================
 
-Willkommen bei **handsOn**, einer Sammlung von Skripten und Dokumentationen zur
-Installation von Anwendungen und Diensten (*kurz:* **Setup**). Die handsOn
-bieten fertige Setups und unterstützen bei der Versionierung derselben.  Bitte
-``LICENSE.txt`` beachten.
+Das **handsOn** Projekt besteht aus einer Ansammlung von Dokumenten zu
+verschiedenen Themen. Meist sind es Beschreibungen zur Installation
+von Programmen und Diensten auf Linux Hosts.
+
+Um die Installation und das Einrichten der Anwendungen zu vereinfachen
+sind in dem Ordner ``./scripts`` Skripte hinterlegt. Mit Hilfe dieser
+Skripte ist das Einrichten und Sichern der erstellten Konfiguration
+leicht möglich.
 
 * Dokumentation: http://return42.github.io/handsOn
 * Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
