@@ -59,21 +59,21 @@ CONFIG_BACKUP=(
     "/etc/skel"
 
     # Verschiedenes aus dem System
-    "/etc/fstab"
+    # "/etc/fstab"
     "/etc/rsyslog.conf"
     "/etc/modules"
     "/etc/rc.local"
 
     # SSH public
-    "/etc/ssh/ssh_config"
-    "/etc/ssh/sshd_config"
-    "/etc/ssh/ssh_host_rsa_key.pub"
-    "/etc/ssh/ssh_host_dsa_key.pub"
-    "/etc/ssh/ssh_host_ecdsa_key.pub"
-    "/etc/ssh/ssh_host_ed25519_key.pub"
+    # "/etc/ssh/ssh_config"
+    # "/etc/ssh/sshd_config"
+    # "/etc/ssh/ssh_host_rsa_key.pub"
+    # "/etc/ssh/ssh_host_dsa_key.pub"
+    # "/etc/ssh/ssh_host_ecdsa_key.pub"
+    # "/etc/ssh/ssh_host_ed25519_key.pub"
 
     # Das Zertifikat von *diesem* HOST
-    "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+    # "/etc/ssl/certs/ssl-cert-snakeoil.pem"
 
     # VDR
     #"/etc/default/vdr"
@@ -84,16 +84,16 @@ CONFIG_BACKUP=(
     "/etc/default/apport"
 
     # Drucker / Scanner
-    "/etc/sane.d/pixma.conf"
-    "/etc/cups"
+    # "/etc/sane.d/pixma.conf"
+    # "/etc/cups"
 
     # grub Einstellungen (Änderungen müssen mit sudo update-grup eingerichtet
     # werden)
     "/etc/default/grub"
 
     # Festplatteneinstellungen
-    "/etc/hdparm.conf"
-    "/etc/udisks2"
+    # "/etc/hdparm.conf"
+    # "/etc/udisks2"
 
     # locate / updatedb
     "/etc/updatedb.conf"
