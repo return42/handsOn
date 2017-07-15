@@ -63,6 +63,9 @@ main(){
         gnomeShell)
             install_gnomeShell
             ;;
+        chooseDM)
+            chooseDM
+            ;;
 	cinnamon)
             TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}
             ;;
@@ -84,18 +87,15 @@ main(){
         remove_unity)
             remove_unity
             ;;
-        chooseDM)
-            chooseDM
+        gnome3ppa)
+            install_gnome3_ppa
             ;;
         remove_gnome3ppa)
             deinstall_gnome3_ppa
             ;;
-        gnome3ppa)
-            install_gnome3_ppa
-            ;;
         *)
             echo
-	    echo "usage $0 [chooseDM|gnomeShell|remove_[gnome3ppa|unity|elementary|cinnamon|mate]]"
+	    echo "usage $0 [gnomeShell|chooseDM|[remove_][gnome3ppa|unity|elementary|cinnamon|mate]]"
             echo
             ;;
     esac

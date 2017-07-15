@@ -85,11 +85,12 @@ EOF
     rstPkgList  ${PYPI_PACKAGES}
     echo
 
-    export HOME=~glances
-    TEE_stderr <<EOF | bash | prefix_stdout
+    export HOME=/home/glances
+    TEE_stderr 2 <<EOF | bash | prefix_stdout
+    mkdir -p $HOME
     cd $HOME
     virtualenv --python=python3 py3
-    source ~glances/py3/bin/activate
+    source $HOME/py3/bin/activate
     pip install -U pip setuptools
     pip install ${PYPI_PACKAGES}
 EOF
