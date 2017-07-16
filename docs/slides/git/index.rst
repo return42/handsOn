@@ -451,15 +451,17 @@ get git started
 .. revealjs:: self hosted
    :title-heading: h3
 
-   *leichtgewicht* `gogs <https://gogs.io>`_
+   `gogs <https://gogs.io>`_ *leichtgewicht*
 
    .. figure:: gogs-logo.jpg
       :scale: 50 %
+      :target: https://gogs.io
 
-   *collaboration* `GitLab CE <https://about.gitlab.com>`_
+   `GitLab CE <https://about.gitlab.com>`_: *Team & CI*
 
    .. figure:: gitlab-logo.png
       :scale: 8 %
+      :target: https://about.gitlab.com
 
 .. revealjs:: Verweise
    :title-heading: h2
