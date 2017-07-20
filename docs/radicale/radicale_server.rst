@@ -27,7 +27,7 @@ bearbeiten, jedoch kann es keine neuen Kalender oder Adressbücher anlegen
 
 Zur Installation existiert ein Script, das alle Setups vornimmt::
 
-   $ ${SCRIPT_FOLDER}/apache_setup.sh install
+   $ ${SCRIPT_FOLDER}/radicale.sh install
 
 Es verwendet die beiden folgenden Reposetories:
 
