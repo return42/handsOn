@@ -13,10 +13,6 @@ sind in dem Ordner ``./scripts`` Skripte hinterlegt. Mit Hilfe dieser
 Skripte ist das Einrichten und Sichern der erstellten Konfiguration
 leicht möglich.
 
-* Dokumentation: http://return42.github.io/handsOn
-* Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
-* Autho e-mail:  *markus.heiser*\ *@*\ *darmarIT.de*
-
 .. toctree::
    :maxdepth: 1
 
@@ -30,6 +26,13 @@ leicht möglich.
    mozcloud/index
    radicale/index
    LICENSE
+
+
+Foliensammlungen
+================
+
+* `get git started <git-slide/index.html>`_
+
 
 Exkursionen und Erfahrungswerte
 ===============================
@@ -46,3 +49,6 @@ Exkursionen und Erfahrungswerte
       todo
 
 
+* Dokumentation: http://return42.github.io/handsOn
+* Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
+* Author e-mail:  markus.heiser@darmarIT.de
