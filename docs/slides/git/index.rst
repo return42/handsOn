@@ -4,10 +4,10 @@ get git started
 
 .. raw:: html
 
-   <aside style="height:15%; width:15%; position:fixed; bottom:-60px; right:-200px; ">
+   <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
      <a href="http://www.darmarit.de">
        <img src="_static/darmarIT_logo_512.png">
-     <a/>
+     </a>
    </aside>
 
 .. revealjs:: get git started
