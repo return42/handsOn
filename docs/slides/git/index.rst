@@ -2,6 +2,14 @@
 get git started
 =================================================
 
+.. raw:: html
+
+   <aside style="height:15%; width:15%; position:fixed; bottom:-60px; right:-200px; ">
+     <a href="http://www.darmarit.de">
+       <img src="_static/darmarIT_logo_512.png">
+     <a/>
+   </aside>
+
 .. revealjs:: get git started
    :title-heading: h2
    :data-transition: linear
