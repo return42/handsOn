@@ -20,7 +20,7 @@ html_use_index = False
 
 html_theme_options = {
     # Set the lang attribute of the html tag. Defaults to "ja"
-    'lang': 'en',
+    'lang': 'de',
 
     # The "normal" size of the presentation, aspect ratio will be preserved
     # when the presentation is scaled to fit different resolutions
@@ -153,6 +153,9 @@ html_theme_options = {
 
     # loading custom js after RevealJs.initialize.
     "customjs": "mysettings.js",
+
+    # loading custom css
+    "customcss": "mysettings.css",
 }
 
 html_static_path = ['_static']
