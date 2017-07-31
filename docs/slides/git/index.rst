@@ -14,15 +14,18 @@ get git started
    :title-heading: h2
    :data-transition: linear
 
-   Aufaben des Source-Code-Managment (SCM) bewältigen.
+   Aufaben des Source-Code-Managments (SCM)
 
-   Eine prakmatische Einarbeitung in git.
+   mit `git <https://git-scm.com>`_ bewältigen
+
+   Eine pragmatische Einarbeitung in git.
+
 
    .. rv_small::
 
-      *Hit '?' to see keyboard shortcuts*
-
       contributed by `return42 <http://github.com/return42>`_
+
+      *Hit '?' to see keyboard shortcuts / 's' to view speaker notes*
 
    .. rv_note::
 
@@ -35,7 +38,7 @@ get git started
       vielseitige Möglichkeiten, die andere Systeme z.T. vermissen lassen.
 
 
-.. revealjs:: Wofür SCM?
+.. revealjs:: Aufgaben des SCM?
    :title-heading: h3
 
    .. rst-class:: fragment roll-in
@@ -88,17 +91,18 @@ get git started
 
    .. rst-class:: fragment roll-in
 
-      SCM-System limitiert den Workflow
-
       Entwickler haben lokale **Workspaces**
+
+      Historie liegt auf dem SCM-Server
 
       .. figure:: zentralisiert-wf.png
          :scale: 100 %
          :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
 
-      Historie liegt auf dem SCM-Server
+      Patches gehen immer in das zentrale Repo
 
-      Patches gehen in das zentrale Repo
+      SCM-System limitiert den Workflow
+
 
    .. rv_note::
 
@@ -114,24 +118,24 @@ get git started
 
    .. rst-class:: fragment roll-in
 
-      Workflow frei wählbar
-
       Entwickler haben lokal einen **Klon**
+
+      Historie liegt auf jedem Klon vor
 
       .. figure::  verteilter-wf.png
          :scale: 100 %
          :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
 
-      Historie liegt auf jedem Klon vor
-
       Anstelle EINES SCM-Servers gibt es N ``remote``
+
+      Workflow frei wählbar
 
    .. rv_note::
 
       Anders als bei SVN, bei dem man nur den EINEN *remote* hat, der
-      gleichzeitig *origin* ist  kann man bei git mehrere *remotes* haben. Aber
+      gleichzeitig *origin* ist, kann man bei git mehrere *remotes* haben. Aber
       auch bei git wird man nur einen *remote* als *origin* haben. Auf dem
-      *origin* laufen am Ende alle Entwciklungen zusammen.
+      *origin* laufen am Ende alle Entwicklungen zusammen.
 
 
 .. revealjs:: Installation -- git
@@ -150,15 +154,17 @@ get git started
    seinen Namen:
 
    .. rv_code::
+      :class: shell
 
-      $ git config --global user.name "Markus Heiser"
-      $ git config --global user.email "markus.heiser@darmarit.de"
+      $ git config --global user.name "Max Mustermann"
+      $ git config --global user.email "max.mustermann@muster.org"
 
    .. rst-class:: fragment roll-in
 
       pedantisch ..
 
       .. rv_code::
+         :class: shell
 
          $ git config --global --unset credential.helper
          $ git config --global core.autocrlf false
@@ -180,12 +186,14 @@ get git started
       aufrüschen ..
 
       .. rv_code::
+         :class: shell
 
          $ git config --global color.ui true
 
       anpassen ..
 
       .. rv_code::
+         :class: shell
 
          $ git config --global push.default simple
          $ git config --global core.editor emacsclient
@@ -203,21 +211,13 @@ get git started
 .. revealjs:: lokales Arbeiten -- Dateien & Änderungen
    :title-heading: h3
 
-   .. rv_small::
+   - im Workspace (WS)
+   - im Stage (gibts beim SVN z.B. nicht)
+   - im lokalem Reposetory (beim SVN nur remote)
 
-      .. rst-class:: fragment roll-in
-
-         im Workspace (WS)
-
-         im Stage (gibts beim SVN z.B. nicht)
-
-         im lokalem Reposetory (beim SVN nur remote)
-
-   .. rst-class:: fragment roll-in
-
-      .. figure::  lifecycle.png
-         :scale: 100 %
-         :target: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+   .. figure::  lifecycle.png
+      :scale: 100 %
+      :target: https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
 
    .. rv_note::
 
@@ -231,44 +231,19 @@ get git started
 .. revealjs:: lokales Arbeiten -- Grundlagen
    :title-heading: h3
 
-   .. rst-class:: fragment roll-in
+   .. rv_code::
+      :class: shell
 
-      .. rv_code::
-
-         $ git init
-         $ git add .gitignore
-
-      .. rv_code::
-
-         $ git status ...
-
-      .. rv_code::
-
-         $ git add ...
-
-      .. rv_code::
-
-         $ git rm ...
-
-      .. rv_code::
-
-         $ git commit ...
-
-      .. rv_code::
-
-         $ git checkout ...
-
-      .. rv_code::
-
-         $ git log ...
-
-      .. rv_code::
-
-         $ git branch ...
-
-      .. rv_code::
-
-         $ git merge ...
+      $ git init
+      $ git add ...
+      $ git status ...
+      $ git add ...
+      $ git rm ...
+      $ git commit ...
+      $ git checkout ...
+      $ git log ...
+      $ git branch ...
+      $ git merge ...
 
    .. rv_note::
 
@@ -285,6 +260,7 @@ get git started
    .. rst-class:: fragment roll-in
 
       .. rv_code::
+         :class: shell
 
          $ mkdir git-teaching
          $ cd git-teaching
@@ -294,6 +270,7 @@ get git started
       Die erste Datei: README.txt
 
       .. rv_code::
+         :class: rst
 
          .. -*- coding: utf-8; mode: rst -*-
 
@@ -308,25 +285,26 @@ get git started
       Meist bekommt man sein Repo via ``clone`` aber auch das wurde mal mit
       ``init`` angelegt.
 
-
 .. revealjs:: lokales Arbeiten -- git status
    :title-heading: h3
 
    .. rv_code::
+      :class: shell
 
       $ git status
-      On branch master
+      Auf branch master
 
-      Initial commit
+      Initialaler Commit
 
-      Untracked files:
-        (use "git add [file]..." to include in what will be committed)
+      Unversionierte Dateien:
+        (benutzen Sie "git add <Datei>...", um die Änderungen\
+         zum Commit vorzumerken)
 
-	      README.txt
-	      README.txt~
+              README.txt
+              README.txt~
 
-      nothing added to commit but untracked files present (use "git add"
-      to track)
+      nichts zum Commit vorgemerkt, aber es gibt unversionierte
+      Dateien (benutzen Sie "git add" zum Versionieren)
 
    .. rst-class:: fragment roll-in
 
@@ -338,7 +316,7 @@ get git started
 
    .. rv_note::
 
-      git macht Annahmen darüber, was man wohl als nächstes machen will und gibt
+      Git macht Annahmen darüber, was man wohl als nächstes machen will und gibt
       dazu Hilfestellung hier z.B. ``git add``
 
 .. revealjs:: Einrichten -- .gitignore
@@ -359,13 +337,14 @@ get git started
       Beispiele für `.gitignore <https://github.com/github/gitignore>`__
 
       .. rv_code::
+         :class: shell
 
          $ git status
          ...
          Untracked files:
            ...
-	         .gitignore
-	         README.txt
+                 .gitignore
+                 README.txt
 
       sieht schon besser aus :)
 
@@ -378,6 +357,7 @@ get git started
       initial fügen wir einfach mal **alles** hinzu ..
 
       .. rv_code::
+         :class: shell
 
          $ git add --all ./
 
@@ -385,22 +365,25 @@ get git started
 
       .. rv_code::
 
-         On branch master
+         Auf branch master
 
-         Initial commit
+         Initialaler Commit
 
-         Changes to be committed:
-           (use "git rm --cached [file]..." to unstage)
+         zum Commit vorgemerkte Änderungen:
+           (benutzen Sie "git rm --cached <Datei>..."
+            zum Entfernen aus der Staging-Area)
 
-	         new file:   .gitignore
-	         new file:   README.txt
+                 neue Datei:   .gitignore
+                 neue Datei:   README.txt
 
       schon im Repo? .. nein, nur im Stage `Diagramm <#/8>`__.
 
    .. rv_note::
 
-      Angenommen wir wollen die README.txt noch nicht drin haben, dann gibt git uns
-      hier gleich den richtigen Hinweis, wie wir die Datei wieder rausbekommen ...
+      Angenommen wir wollen die README.txt noch nicht drin haben, dann gibt git
+      uns hier gleich den richtigen Hinweis, wie wir die Datei wieder
+      rausbekommen ... mit 'git rm --cached'
+
 
 .. revealjs:: lokales Arbeiten -- git rm
    :title-heading: h3
@@ -410,6 +393,7 @@ get git started
       zuviel hinzugefügt? .. nimm es wieder aus dem Stage:
 
       .. rv_code::
+         :class: shell
 
          $ git rm --cached README.txt
          rm 'README.txt'
@@ -417,16 +401,19 @@ get git started
       Ups, hat er die jetzt etwa gelöscht?!?!
 
       .. rv_code::
+         :class: shell
 
          $ git status
          ...
-         Changes to be committed:
-	         new file:   .gitignore
+         zum Commit vorgemerkte Änderungen:
+                 neue Datei:   .gitignore
 
-         Untracked files:
-	         README.txt
+         Unversionierte Dateien:
+                 README.txt
 
       nein, wurde nur aus dem Stage genommen `Diagramm <#/8>`__
+
+
 
 .. revealjs:: lokales Arbeiten -- git commit
    :title-heading: h3
@@ -438,20 +425,23 @@ get git started
       Alles was zum Patch gehört liegt im Stage.
 
       .. rv_code::
+         :class: shell
 
          $ git commit -m "inital boilerplate"
-         [master (root-commit) a69b20f] inital boilerplate
+         [master (Basis-Commit) 849c175] inital boilerplate
           1 file changed, 5 insertions(+)
           create mode 100644 .gitignore
 
       .. rv_code::
+         :class: shell
 
          $ git status
-         On branch master
-         Untracked files:
-           (use "git add [file]..." to include in what will be committed)
+         Auf Branch master
+         Unversionierte Dateien:
+           (benutzen Sie "git add <Datei>...", um die Änderungen
+            zum Commit vorzumerken)
 
-	         README.txt
+                README.txt
 
 .. revealjs:: lokales Arbeiten -- git show
    :title-heading: h3
@@ -463,11 +453,12 @@ get git started
    .. rst-class:: fragment roll-in
 
       .. rv_code::
+         :class: diff
 
-         $ git show HEAD
-         commit a69b20f5f64a371e035cfa1bcfcf8c4841b7b336
-         Author: Markus Heiser &lt;markus.heiser@darmarit.de>
-         Date:   Sun Jul 16 18:22:34 2017 +0200
+         $ git show
+         commit 849c17589476d9451bc55659008cda5ac2aa68cb
+         Author: Max Mustermann <max.mustermann@muster.org>
+         Date:   Mon Jul 31 14:59:40 2017 +0200
 
              inital boilerplate
 
@@ -487,10 +478,10 @@ get git started
 
       Anders als bei SVN & Co. gibt es keine fortlaufende Nummer. Ein commit
       wird an seinem SHA-1 Hash Value identifiziert. Üblicherweise braucht man
-      davon aber nur die ersten 6 oder 10 Stellen um ihn zu eindeutig zu
+      davon aber nur die ersten 6 oder 10 Stellen um ihn eindeutig zu
       referenzieren.
 
-        commit a69b20f
+        commit 849c17
 
 
 .. revealjs:: lokales Arbeiten -- git log
@@ -501,10 +492,11 @@ get git started
       jetzt mal die README.txt einchecken
 
       .. rv_code::
+         :class: shell
 
          $ git add README.txt
-         $ git commit -m "add project's README"
-         [master 537f468] add project's README
+         $ git commit -m "add README"
+         [master 9af1a51] add README
           1 file changed, 7 insertions(+)
           create mode 100644 README.txt
 
@@ -514,17 +506,18 @@ get git started
    :title-heading: h3
 
    .. rv_code::
+      :class: shell
 
       $ git log
-      commit 537f4681f22b6e9c7effae4a7cb3dd56fc4055ee
-      Author: Markus Heiser &lt;markus.heiser@darmarit.de>
-      Date:   Mon Jul 17 10:55:11 2017 +0200
+      commit 9af1a518a77bc56dc697bee6ba1c356bb0c1b2f8
+      Author: Max Mustermann <max.mustermann@muster.org>
+      Date:   Mon Jul 31 15:03:40 2017 +0200
 
-          add project's README
+          add README
 
-      commit a69b20f5f64a371e035cfa1bcfcf8c4841b7b336
-      Author: Markus Heiser &lt;markus.heiser@darmarit.de>
-      Date:   Sun Jul 16 18:22:34 2017 +0200
+      commit 849c17589476d9451bc55659008cda5ac2aa68cb
+      Author: Max Mustermann <max.mustermann@muster.org>
+      Date:   Mon Jul 31 14:59:40 2017 +0200
 
           inital boilerplate
 
@@ -536,6 +529,7 @@ get git started
          was wie einen Graphen sehen..
 
       .. rv_code::
+         :class: shell
 
          $ git log --graph
 
@@ -554,6 +548,7 @@ get git started
       Für faule Leute wie mich 'git st' & 'git unadd'
 
       .. rv_code::
+         :class: shell
 
          $ git config --global alias.st "status"
          $ git config --global alias.unadd "reset HEAD"
@@ -601,7 +596,7 @@ get git started
       .. rv_code::
 
          $ git branch -v
-         * master 537f468 add project's README
+         * master 9af1a51 add README
 
       feature branch 'hello-world' anlegen
 
@@ -609,15 +604,15 @@ get git started
 
          $ git branch hello-world
          $ git branch -v
-           hello-world   537f468 add projects README
-         * master        537f468 add projects README
+           hello-world 9af1a51 add README
+         * master      9af1a51 add README
 
       um den branch auszuchecken
 
       .. rv_code::
 
          $ git checkout hello-world
-         Switched to branch "hello-world"
+         Zu Branch 'hello-world' gewechselt
 
 
 .. revealjs:: branch: hello-world
@@ -626,15 +621,17 @@ get git started
    .. rst-class:: fragment roll-in
 
       .. rv_code::
+         :class: python
 
          #!/usr/bin/env python
          # -*- coding: utf-8; mode: python -*-
 
          print("hello world")
 
-      Implementierung testen
+      Implementierung ``hello-world.py`` testen
 
       .. rv_code::
+         :class: shell
 
          $ python hello-world.py
          hello world
@@ -642,10 +639,11 @@ get git started
       und einchecken
 
       .. rv_code::
+         :class: shell
 
          $ git add hello-world.py
          $ git commit -m "add hello-world script"
-         [hello-world ffeafda] add hello-world script
+         [hello-world 0dd2abe] add hello-world script
           1 file changed, 4 insertions(+)
           create mode 100755 hello-world.py
 
@@ -659,8 +657,8 @@ get git started
       iso-88591, cp1252 ..) muss man dem Editor ein paar Metadaten an die Hand
       geben. Diese Metadaten stehen dann meist in der zweiten Zeile (falls in
       der ersten ein shebang steht). Gute Editoren werten das 'coding:xyz' aus
-      und sehr gute Editoren werten dann auch noch den 'mode: ...' und schalten
-      in einen Bearbeitungsmodus, der zur Programmiersprache passt.
+      und sehr gute Editoren werten dann auch noch den 'mode: ...' aus und
+      schalten in einen Bearbeitungsmodus, der zur Programmiersprache passt.
 
 
 .. revealjs:: branch: master
@@ -671,15 +669,14 @@ get git started
       .. rv_code::
 
          $ git checkout master
-         Switched to branch "master"
+         Zu Branch 'master' gewechselt
 
       Änderungen an der README.txt vornehmen ..
 
       .. rv_code::
 
-         We created a 'hello-world' branch where
-         one of our provider implements an
-         amazing 'hello world' program.
+         We created a 'hello-world' branch where one of our
+         provider implements an amazing 'hello world' program.
 
       und einchecken
 
@@ -687,13 +684,20 @@ get git started
 
          $ git add README.txt
          $ git commit -m "add remark about 'hello world' order"
+         [master c1ce07c] add remark about 'hello world' order
+          1 file changed, 3 insertions(+)
 
    .. rv_note::
 
-      Wir wechseln in den *master* Branch und arbeiten da auch weiter.  Am Emde
+      Wir wechseln in den *master* Branch und arbeiten da auch weiter.  Am Ende
       müssen Feature-Branch und master wieder zusammengführt werden. Dabei kann
       es Konflikte geben und einen solchen Konflikt wollen wir jetzt mal
       vorbereiten.
+
+.. revealjs:: git graph
+
+   .. figure:: git-graph-001.svg
+
 
 .. revealjs:: branch: hello-world
    :title-heading: h3
@@ -703,7 +707,13 @@ get git started
       .. rv_code::
 
          $ git checkout hello-world
-         Switched to branch "hello-world"
+         Zu Branch 'hello-world' gewechselt
+
+      Die README ist noch die *alte* (logisch)
+
+      .. rv_code::
+         :class: rst
+
          $ cat README.txt
          .. -*- coding: utf-8; mode: rst -*-
 
@@ -713,64 +723,206 @@ get git started
 
          Nothing special here, only intended for teaching purposes.
 
-      Wir fügen ChangeLog Eintrag zur README hinzu:
-
-      .. rv_code::
-
-         ChangeLog:
-
-         2017-07-17  Markus Heiser &lt;markus.heiser@darmarit.de>
-
-         * hello-world.py: inital implemented
-
-   .. rv_note::
-
-      Wir sind wieder zurück im *hello-world* Branch und arbeiten da auch
-      weiter. Die Änderung an der README aus dem *master* Branch ist hier
-      natürlich noch nicht drin. Jetzt editieren wir auch mal die README in
-      diesem Branch. Wenn das nacher im *master* Zusammengführt wird, müssten
-      wir einen Konflikt bekommen.
-
 .. revealjs:: branch: hello-world
    :title-heading: h3
 
+   Wir fügen ChangeLog Eintrag zur README hinzu:
+
+   .. rv_code::
+
+      ChangeLog:
+
+      2017-07-31  Max Mustermann <max.mustermann@muster.org>
+
+      * hello-world.py: inital implemented & tested
+
    .. rst-class:: fragment roll-in
+
+      und im branch (hello-world) einchecken
 
       .. rv_code::
 
          $ git add README.txt
-         $ git commit -m "hello-world: add changelog entry"
-         [hello-world b6ece99] hello-world: add changelog entry
+         $ git commit -m "hello-world: add changelog"
+         [hello-world 8e448cd] hello-world: add changelog
           1 file changed, 6 insertions(+)
 
-   .. figure::  git-graph-hello-world.png
-      :scale: 140 %
+   .. rv_note::
+
+      Wir sind wieder zurück im *hello-world* branch und arbeiten da auch
+      weiter. Die Änderung an der README aus dem *master* branch ist hier
+      natürlich noch nicht drin. Jetzt editieren wir auch mal die README in
+      diesem branch. Wenn das nacher im *master* zusammengführt wird, müssten
+      wir einen Konflikt bekommen.
+
+.. revealjs:: git graph
+   :title-heading: h3
+
+   .. figure::  git-graph-002.svg
+
+   .. rv_note::
+
+      An diesem Bild können wir mal kurz *inne halten*. Wir sehen, dass der
+      master sich weiter entwickelt hat und der feature-branch (hello-world)
+      seine eigenen vortschritt hat.
+
+      Ziel ist es ja, das 'feature' jetzt in den 'master' zu bekommen (mergen).
+
+      Dabei wird es u.U. Konflikte geben. In der Grafik nicht zu sehen, aber
+      oben bereits erwähnt, erwarten wir ja so einen Konflikt in der README.txt.
 
 
+.. revealjs:: git merge
+   :title-heading: h3
+
+   Der *feature* branch ``hello-world`` wird mit dem ``master`` zusammengeführt.
+
+   .. rv_code::
+
+      $ git checkout master
+      Zu Branch 'master' gewechselt
+
+   Im ``master`` wird jetzt der Merge durchgeführt
+
+   .. rv_code::
+
+      $ git merge hello-world
+      automatischer Merge von README.txt
+      KONFLIKT (Inhalt): Merge-Konflikt in README.txt
+      Automatischer Merge fehlgeschlagen; beheben Sie die Konflikte
+      und committen Sie dann das Ergebnis.
+
+   Konflikte liegen in der Natur paralleler Entwicklung. Das SCM System hilft
+   uns diese zu erkennen!
 
 
-          
-          
-..
-   - log anschauen
-   - feature branch 'hello world'
-   - merge des feature branch
-
-
-
-
-
-
-..
-
-
-.. revealjs:: git ...
+.. revealjs:: git merge
    :title-heading: h3
 
    .. rv_code::
 
-      $ ...
+      $ git status
+      Auf Branch master
+      Sie haben nicht zusammengeführte Pfade.
+        (beheben Sie die Konflikte und führen Sie "git commit" aus)
 
+      zum Commit vorgemerkte Änderungen:
+
+              neue Datei:     hello-world.py
+
+      Nicht zusammengeführte Pfade:
+        (benutzen Sie "git add/rm <Datei>...",
+         um die Auflösung zu markieren)
+
+              von beiden geändert:    README.txt
+
+   Mit ``hello-world.py`` gab es keine Konflikte, wurde bereits *ge-added*.
+   Die ``README.txt`` hatte einen Konflikt.
+
+
+.. revealjs:: git merge conflict
+   :title-heading: h3
+
+   .. rv_code::
+      :class: diff
+
+      <<<<<<< HEAD
+      We created a 'hello-world' branch where one of our
+      provider implements an amazing 'hello world' program.
+      =======
+      ChangeLog:
+
+      2017-07-31  Max Mustermann <max.mustermann@muster.org>
+
+      * hello-world.py: inital implemented & tested
+      >>>>>>> hello-world
+
+
+   git hat die ``README.txt`` zusammengeführt. Stellen die nicht automatisch
+   zusammengeführt werden können sind mit ``<<<<<<<``, ``=======`` und
+   ``>>>>>>>`` gekennzeichnet.
+
+
+.. revealjs:: git merge conflict
+   :title-heading: h3
+
+   semantische Zusammenführung!
+
+   der alte Kommentar hat keine Gültigkeit mehr
+
+   .. rv_code::
+      :class: diff
+
+      Features:
+
+      * amazing 'hello world' program
+
+      ChangeLog:
+
+      2017-07-31  Max Mustermann <max.mustermann@muster.org>
+
+      * hello-world.py: inital implemented & tested
+
+   er wird durch einen komplett neuen Kommentar ersetzt.
+
+.. revealjs:: git merge conflict
+   :title-heading: h3
+
+   ``git diff``
+
+   .. rv_code::
+      :class: diff
+
+      @@@ -6,5 -6,8 +6,12 @@@ READM
+
+        Nothing special here, only intended for teaching purposes.
+
+      - We created a 'hello-world' branch where one of our
+      - provider implements an amazing 'hello world' program.
+      ++Features:
+      ++
+      ++* amazing 'hello world' program
+      ++
+      + ChangeLog:
+      +
+      + 2017-07-31  Max Mustermann <max.mustermann@muster.org>
+      +
+      + * hello-world.py: inital implemented & tested
+
+
+.. revealjs:: git merge conflict
+   :title-heading: h3
+
+   Implementierung testen ...
+
+   .. rv_code::
+      :class: shell
+
+      $ python hello-world.py
+      hello world
+
+   und einchecken
+
+   .. rv_code::
+      :class: shell
+
+      $ git add README.txt
+      $ git commit -m "merge hello-world branch"
+      [master f5f3b62] merge hello-world branch
+
+.. revealjs:: git graph
+   :title-heading: h3
+
+   .. figure::  git-graph-003.svg
+      :scale: 50 %
+
+
+.. revealjs:: git remotes
+   :title-heading: h3
+
+   Arbeiten mit ``remotes``
+
+   comming soon ..
 
 .. revealjs:: online server
    :title-heading: h3
