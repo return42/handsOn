@@ -31,7 +31,8 @@ leicht möglich.
 Foliensammlungen
 ================
 
-* `get git started <git-slide/index.html>`_
+* `get git started <slides/git/index.html>`_  (`zip <slides/git.zip>`__)
+* `CDB Komponenten & Entwicklung <slides/cdb/index.html>`_  (`zip <slides/cdb.zip>`__)
 
 
 Exkursionen und Erfahrungswerte

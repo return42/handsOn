@@ -17,4 +17,6 @@ pip
 git+https://github.com/return42/sphinxjp.themes.revealjs
 # -e file:../sphinxjp.themes.revealjs#egg=sphinxjp.themes.revealjs
 
+# linuxdoc for DOT support
+git+http://github.com/return42/linuxdoc.git
 
