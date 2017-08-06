@@ -21,8 +21,11 @@ help:
 	@$(MAKE) -s -f utils/makefile.sphinx docs-help
 
 PHONY += docs
-docs:  sphinx-doc git-slide
+docs:  sphinx-doc slides
 	$(call cmd,sphinx,html,docs,docs)
+
+PHONY += slides
+slides: git-slide
 
 PHONY += git-slide
 git-slide:  sphinx-doc

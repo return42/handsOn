@@ -14,6 +14,7 @@ Sphinx
 sphinx_rtd_theme
 pip
 
-# sphinxjp.themes.revealjs: slide-shows with revaljs
-git+https://github.com/return42/sphinxjp.themes.revealjs@master#egg=sphinxjp.themes.revealjs
-# -e file:/share/revealjs
+git+https://github.com/return42/sphinxjp.themes.revealjs
+# -e file:../sphinxjp.themes.revealjs#egg=sphinxjp.themes.revealjs
+
+

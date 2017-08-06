@@ -2,6 +2,45 @@
 get git started
 =================================================
 
+.. _git: https://git-scm.com
+.. _return42: https://github.com/return42
+.. _`Git Aliases`: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+.. _`git-config`: https://git-scm.com/docs/git-config.html
+.. _`git init`: https://git-scm.com/docs/git-init
+.. _`git status`: https://git-scm.com/docs/git-init
+.. _`git add`: https://git-scm.com/docs/git-add
+.. _`git rm`: https://git-scm.com/docs/git-rm
+.. _`git commit`: https://git-scm.com/docs/git-commit
+.. _`git show`: https://git-scm.com/docs/git-show
+.. _`git log`: https://git-scm.com/docs/git-log
+.. _`git merge`: https://git-scm.com/docs/git-merge
+.. _`git branch`: https://git-scm.com/docs/git-branch
+.. _`git checkout`: https://git-scm.com/docs/git-branch
+.. _`git push`: https://git-scm.com/docs/git-push
+.. _`git clone`: https://git-scm.com/docs/git-clone
+.. _`git fetch`: https://git-scm.com/docs/git-fetch
+.. _`git pull`: https://git-scm.com/docs/git-pull
+.. _`git remote`: https://git-scm.com/docs/git-remote
+
+
+.. _`Getting a Git Repository`: https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository
+.. _`.gitignore`: https://git-scm.com/docs/gitignore
+.. _`.gitignore Vorlagen`: https://github.com/github/gitignore
+.. _`GitLab CE`: https://about.gitlab.com
+
+.. _gogs: https://gogs.io
+.. _`Pro Git` : https://git-scm.com/book/de/v1
+.. _`sphinxjp.themes.revealjs`: https://github.com/return42/sphinxjp.themes.revealjs
+.. _`REVEAL.JS`: https://lab.hakim.se/reveal-js
+.. _`Sphinx-doc`: https://www.sphinx-doc.org
+.. _reST: https://www.sphinx-doc.org/en/stable/rest.html
+.. _docutils: http://docutils.sourceforge.net/rst.html
+.. _GitHub: https://github.com
+.. _`GitLab.com`: https://gitlab.com/explore
+.. _Bitbucket: https://bitbucket.org/account/signup
+.. _`remote Branches`: https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches
+.. _Refspec: https://git-scm.com/book/en/v2/Git-Internals-The-Refspec
+   
 .. raw:: html
 
    <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
@@ -16,14 +55,13 @@ get git started
 
    Aufaben des Source-Code-Managments (SCM)
 
-   mit `git <https://git-scm.com>`_ bewältigen
+   mit git_ bewältigen
 
    Eine pragmatische Einarbeitung in git.
 
-
    .. rv_small::
 
-      contributed by `return42 <http://github.com/return42>`_
+      contributed by `return42`_
 
       *Hit '?' to see keyboard shortcuts / 's' to view speaker notes*
 
@@ -89,25 +127,22 @@ get git started
    :title-heading: h3
    :class: fragment
 
-   .. rst-class:: fragment roll-in
+   Entwickler haben lokale **Workspaces**
 
-      Entwickler haben lokale **Workspaces**
+   Historie liegt auf dem SCM-Server
 
-      Historie liegt auf dem SCM-Server
+   .. figure:: zentralisiert-wf.png
+      :scale: 100 %
+      :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
 
-      .. figure:: zentralisiert-wf.png
-         :scale: 100 %
-         :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
+   Patches gehen immer in das zentrale Repo
 
-      Patches gehen immer in das zentrale Repo
-
-      SCM-System limitiert den Workflow
-
+   SCM-System limitiert den Workflow
 
    .. rv_note::
 
       Am Ende werden zwar bei jeder Entwicklung alle Änderungen in den *master*
-      Zweig auf dem *origin* Reposetory eingepflegt. Das Problem bei SVN ist
+      Zweig auf dem *origin* Repository eingepflegt. Das Problem bei SVN ist
       aber, dass auch die Branches nur auf dem Server liegen können. Alles muss
       gegen diesen EINEN Server laufen.
 
@@ -116,19 +151,17 @@ get git started
    :title-heading: h3
    :class: fragment
 
-   .. rst-class:: fragment roll-in
+   Entwickler haben lokal einen **Klon**
 
-      Entwickler haben lokal einen **Klon**
+   Historie liegt auf jedem Klon vor
 
-      Historie liegt auf jedem Klon vor
+   .. figure::  verteilter-wf.png
+      :scale: 100 %
+      :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
 
-      .. figure::  verteilter-wf.png
-         :scale: 100 %
-         :target: https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
+   Anstelle EINES SCM-Servers gibt es N ``remote``
 
-      Anstelle EINES SCM-Servers gibt es N ``remote``
-
-      Workflow frei wählbar
+   Workflow frei wählbar
 
    .. rv_note::
 
@@ -142,11 +175,9 @@ get git started
 
    https://git-scm.com/downloads
 
-   .. rst-class:: fragment roll-in
-
-      * MS-Win: https://git-for-windows.github.io
-      * GUIs: https://git-scm.com/downloads/guis
-      * Git Extensions: https://gitextensions.github.io/
+   * MS-Win: https://git-for-windows.github.io
+   * GUIs: https://git-scm.com/downloads/guis
+   * Git Extensions: https://gitextensions.github.io/
 
 .. revealjs:: Einrichten -- git-config
 
@@ -159,16 +190,15 @@ get git started
       $ git config --global user.name "Max Mustermann"
       $ git config --global user.email "max.mustermann@muster.org"
 
-   .. rst-class:: fragment roll-in
 
-      pedantisch ..
+   pedantisch ..
 
-      .. rv_code::
-         :class: shell
+   .. rv_code::
+      :class: shell
 
-         $ git config --global --unset credential.helper
-         $ git config --global core.autocrlf false
-         $ git config --global core.symlinks true
+      $ git config --global --unset credential.helper
+      $ git config --global core.autocrlf false
+      $ git config --global core.symlinks true
 
    .. rv_note::
 
@@ -181,26 +211,24 @@ get git started
 
 .. revealjs:: Einrichten -- git-config (optional)
 
-   .. rst-class:: fragment roll-in
+   aufrüschen ..
 
-      aufrüschen ..
+   .. rv_code::
+      :class: shell
 
-      .. rv_code::
-         :class: shell
+      $ git config --global color.ui true
 
-         $ git config --global color.ui true
+   anpassen ..
 
-      anpassen ..
+   .. rv_code::
+      :class: shell
 
-      .. rv_code::
-         :class: shell
+      $ git config --global push.default simple
+      $ git config --global core.editor emacsclient
 
-         $ git config --global push.default simple
-         $ git config --global core.editor emacsclient
+   nachlesen ..
 
-      nachlesen ..
-
-      `git help config <https://git-scm.com/docs/git-config.html>`_
+   `git help config <git-config>`_
 
    .. rv_note::
 
@@ -213,7 +241,7 @@ get git started
 
    - im Workspace (WS)
    - im Stage (gibts beim SVN z.B. nicht)
-   - im lokalem Reposetory (beim SVN nur remote)
+   - im lokalem Repository (beim SVN nur remote)
 
    .. figure::  lifecycle.png
       :scale: 100 %
@@ -223,7 +251,7 @@ get git started
 
       Dateien werden am Ende im Repository committet .. vorher bewegen sie sich
       aber im lokalen WS und im Stage (auch Index genannt). Der *Stage* ist
-      sozusagen die Vorstufe auf dem Weg ins Reposetory.
+      sozusagen die Vorstufe auf dem Weg ins Repository.
 
       Wir brauchen uns das Schaubild jetzt noch nicht so genau anschauen, wir
       werden da aber später wieder drauf zurück kommen.
@@ -249,43 +277,41 @@ get git started
 
       Es gibt bei weitem mehr Komandos, aber dies sind die wichtigsten wenn man
       lokal mit seinem git arbeitet. Die *remotes* sind am Ende nur *andere*
-      Reposetories aus denen man sich die Patches holen kann (fetch nennt sich
+      Repositories aus denen man sich die Patches holen kann (fetch nennt sich
       das dann).
 
 .. revealjs:: lokales Arbeiten -- git init
    :title-heading: h3
 
-   Am Anfang war nichts ... (`Getting a Git Repository <https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository>`__)
+   Am Anfang war nichts ... (`Getting a Git Repository`_, `git init`_)
 
-   .. rst-class:: fragment roll-in
+   .. rv_code::
+      :class: shell
 
-      .. rv_code::
-         :class: shell
+      $ mkdir git-teaching
+      $ cd git-teaching
+      $ git init
+      Initialized empty Git repository in git-teaching/.git/
 
-         $ mkdir git-teaching
-         $ cd git-teaching
-         $ git init
-         Initialized empty Git repository in git-teaching/.git/
+   Die erste Datei: README.txt
 
-      Die erste Datei: README.txt
+   .. rv_code::
+      :class: rst
 
-      .. rv_code::
-         :class: rst
+      .. -*- coding: utf-8; mode: rst -*-
 
-         .. -*- coding: utf-8; mode: rst -*-
+      ======
+      README
+      ======
 
-         ======
-         README
-         ======
-
-         Nothing special here, only intended for teaching purposes.
+      Nothing special here, only intended for teaching purposes.
 
    .. rv_note::
 
       Meist bekommt man sein Repo via ``clone`` aber auch das wurde mal mit
       ``init`` angelegt.
 
-.. revealjs:: lokales Arbeiten -- git status
+.. revealjs:: lokales Arbeiten -- `git status
    :title-heading: h3
 
    .. rv_code::
@@ -308,11 +334,12 @@ get git started
 
    .. rst-class:: fragment roll-in
 
-      aktueller Branch ist ``master``
+      `git status`_: aktueller Branch ist ``master``, Stage ist gerade leer,
+      vergleiche mit dem `Diagramm <#/8>`__
 
-      Stage ist gerade leer, vergleiche mit dem  `Diagramm <#/8>`__
+      .. rv_small::
 
-      besser wir ignorieren ``README.txt~``
+         besser wir ignorieren ``README.txt~``
 
    .. rv_note::
 
@@ -322,7 +349,7 @@ get git started
 .. revealjs:: Einrichten -- .gitignore
    :title-heading: h3
 
-   ``.gitignore``: Pattern die ignoriert werden `(nachlesen) <https://git-scm.com/docs/gitignore>`__
+   ``.gitignore``: Pattern die ignoriert werden `(nachlesen) <.gitignore>`_
 
    .. rst-class:: fragment roll-in
 
@@ -334,7 +361,7 @@ get git started
          *.pyc
          *.pyo
 
-      Beispiele für `.gitignore <https://github.com/github/gitignore>`__
+      `.gitignore Vorlagen`_
 
       .. rv_code::
          :class: shell
@@ -354,7 +381,7 @@ get git started
 
    .. rst-class:: fragment roll-in
 
-      initial fügen wir einfach mal **alles** hinzu ..
+      initial fügen wir einfach mal **alles** hinzu `git add`_
 
       .. rv_code::
          :class: shell
@@ -390,7 +417,7 @@ get git started
 
    .. rst-class:: fragment roll-in
 
-      zuviel hinzugefügt? .. nimm es wieder aus dem Stage:
+      zuviel hinzugefügt? .. nimm es wieder aus dem Stage `git rm`_
 
       .. rv_code::
          :class: shell
@@ -422,7 +449,7 @@ get git started
 
       So, jetzt ist der Patch aber fertig!
 
-      Alles was zum Patch gehört liegt im Stage.
+      Alles was zum Patch gehört liegt im Stage, `git commit`_
 
       .. rv_code::
          :class: shell
@@ -448,7 +475,7 @@ get git started
 
    .. rv_small::
 
-      Wie sieht so ein Patch im Repo eigentlich aus?
+      Wie sieht so ein Patch im Repo eigentlich aus? `git show`_
 
    .. rst-class:: fragment roll-in
 
@@ -500,7 +527,7 @@ get git started
           1 file changed, 7 insertions(+)
           create mode 100644 README.txt
 
-      und mal das Log anschauen
+      und mal das Log anschauen `git log`_
 
 .. revealjs:: lokales Arbeiten -- git log
    :title-heading: h3
@@ -525,27 +552,24 @@ get git started
 
       .. rv_small::
 
-         Wenn erst mal mehrere Patches & Branches existieren möchte man eher so
-         was wie einen Graphen sehen..
+         Für die Branches eignen sich Graphen, aber auch das ist recht
+         ausführlich. Man hätte da gerne was kompakteres (*two-liner als
+         alias*).
 
       .. rv_code::
          :class: shell
 
          $ git log --graph
 
-      .. rv_small::
-
-         Das Log ist recht ausführlich. Der Graph wird irgendwann nicht mehr
-         erkennbar sein. Wir brauchen *two-liner* ..
 
 .. revealjs:: Einrichten -- git config / alias
    :title-heading: h3
 
    .. rst-class:: fragment roll-in
 
-      `Git Aliases <https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases>`_
+      `Git Aliases`_
 
-      Für faule Leute wie mich 'git st' & 'git unadd'
+      Für faule Leute wie mich ``git st`` & ``git unadd``
 
       .. rv_code::
          :class: shell
@@ -598,7 +622,7 @@ get git started
          $ git branch -v
          * master 9af1a51 add README
 
-      feature branch 'hello-world' anlegen
+      feature branch 'hello-world' anlegen `git branch`_
 
       .. rv_code::
 
@@ -607,7 +631,7 @@ get git started
            hello-world 9af1a51 add README
          * master      9af1a51 add README
 
-      um den branch auszuchecken
+      `git checkout`_ um den branch auszuchecken
 
       .. rv_code::
 
@@ -782,7 +806,7 @@ get git started
       $ git checkout master
       Zu Branch 'master' gewechselt
 
-   Im ``master`` wird jetzt der Merge durchgeführt
+   Im ``master`` wird jetzt der Merge durchgeführt `git merge`_
 
    .. rv_code::
 
@@ -838,7 +862,7 @@ get git started
       >>>>>>> hello-world
 
 
-   git hat die ``README.txt`` zusammengeführt. Stellen die nicht automatisch
+   git hat die ``README.txt`` zusammengeführt. Passagen die nicht automatisch
    zusammengeführt werden können sind mit ``<<<<<<<``, ``=======`` und
    ``>>>>>>>`` gekennzeichnet.
 
@@ -917,55 +941,281 @@ get git started
       :scale: 50 %
 
 
-.. revealjs:: git remotes
+.. revealjs:: remotes -- Grundlagen
    :title-heading: h3
 
-   Arbeiten mit ``remotes``
+   Mit git_ können Remotes verfolgt werden (*track*).
 
-   comming soon ..
+   .. rst-class:: fragment roll-in
+   
+      `remote Branches`_ (u. Tags) werden in das lokale Repository geklont.
 
+      Arbeiten mit remote Branches ist analog den lokalen Branches.
+
+      Es sind nur wenige zusätzliche Komandos erforderlich.
+
+      .. rv_code::
+         :class: shell
+
+         $ git clone  ..
+         $ git remote ..
+         $ git fetch  ..
+         $ git pull   ..
+         $ git push   ..
+
+ 
+.. revealjs:: remotes -- git clone
+   :title-heading: h3
+
+   Meist beginnt es mit dem ersten Klonen `git clone`_
+
+   .. rst-class:: fragment roll-in
+
+      .. rv_code::
+         :class: shell
+
+         $git clone https://github.com/return42/git-teaching.git
+
+      .. rv_code::
+         :class: shell
+
+         Klone nach 'git-teaching' ...
+         remote: Counting objects: 18, done.
+         remote: Compressing objects: 100% (12/12), done.
+         remote: Total 18 (delta 4), reused 18 (delta 4), pack-reused 0
+         Entpacke Objekte: 100% (18/18), Fertig.
+         Prüfe Konnektivität ... Fertig.
+
+      was hat ``git clone`` alles gemacht?
+      
+.. revealjs:: remotes -- Grundlagen
+   :title-heading: h3
+
+   .. rv_code::
+      :class: shell
+
+      $ tree -L 1 -at git-teaching/
+      git-teaching/           # working tree
+         ├── .git             # repository
+         ├── .gitignore       
+         ├── hello-world.py
+         └── README.txt
+
+   - Repo wurde nach ``./git-teaching/.git`` geklont und 
+   - es wurde der Working-Tree ``git-teaching`` ausgecheckt
+
+.. revealjs:: remotes -- Grundlagen
+   :title-heading: h3
+
+   .. rv_code::
+      :class: shell
+
+      $ git branch -vva
+      * master                f5f3b62 [origin/master] merge hello-world
+        remotes/origin/HEAD   -> origin/master
+        remotes/origin/master f5f3b62 merge hello-world branch
+
+   - lokaler Branch ``master`` wurde angelegt, er ist
+   - ein Klon des Remote Branch ``origin/master``
+   - der lokale ``master`` folgt (tracking) dem ``[origin/master]``
+
+   .. rv_code::
+      :class: shell
+
+      $ git status
+      Auf Branch master
+      Ihr Branch ist auf dem selben Stand wie 'origin/master'.
+      nichts zu committen, Arbeitsverzeichnis unverändert
+
+.. revealjs:: remotes -- Grundlagen
+   :title-heading: h3
+
+   Der Alias-Name für das Original der Klon-Kopie ist ``origin``
+
+   .. rv_code::
+      :class: shell
+
+      $ git remote -v
+      origin    https://github.com/return42/git-teaching.git (fetch)
+      origin    https://github.com/return42/git-teaching.git (push)
+
+   Die URL des ``origin`` ist https://github.com/return42/git-teaching.git
+
+   Sie wird zum *hochladen* (``push``) und zum *runterladen* (``fetch``)
+   verwendet.
+
+.. revealjs:: remotes -- Grundlagen
+   :title-heading: h3
+
+   Zuvor Beschriebenes ist kompakt in der ``.git/config`` zu finden, die ``git
+   clone`` automatisch angelegt hat.
+
+   .. rv_code::
+      :class: shell
+
+      $ cat .git/config 
+      [core]
+              repositoryformatversion = 0
+              filemode = true
+              bare = false
+              logallrefupdates = true
+      [remote "origin"]
+              url = https://github.com/return42/git-teaching.git
+              fetch = +refs/heads/*:refs/remotes/origin/*
+      [branch "master"]
+              remote = origin
+              merge = refs/heads/master
+
+
+.. revealjs:: remotes -- git push
+   :title-heading: h3
+
+   .. rv_code::
+      :class: shell
+
+      $ git status
+      Auf Branch master
+      Ihr Branch ist vor 'origin/master' um 1 Commit.
+      (benutzen Sie "git push", um lokale Commits zu publizieren)
+
+   Änderungen müssen im lokalem Repository *commited* werden.
+
+   .. rv_code::
+      :class: shell
+
+      $ git push origin master:master
+
+   `git push`_: Alias ``origin`` wählt den Remote. Die *refspec*
+   ``master:master`` gibt an, dass der lokale ``master`` (links) auf den Remote
+   ``master`` (rechts) *gepusht* werden soll. Einfacher:
+
+   .. rv_code::
+
+      $ git push
+   
+.. revealjs:: remotes -- git fetch & pull
+   :title-heading: h3
+
+   Mit `git fetch`_ werden die remote Branches aktualisiert.
+
+   .. rv_code::
+      :class: shell
+
+      $ git fetch -v origin master
+      Von https://github.com/return42/git-teaching
+      * branch            master     -> FETCH_HEAD
+      = [aktuell]         master     -> origin/master
+
+   Der Remote ist wieder ``origin``. Die *refspec* ``master`` gibt an,
+   dass der Fetch vom remote ``master`` erfolgt.
+
+   Mit `git pull`_ kann man in einem Schritt *fetchen* und den ``FETCH_HEAD``
+   gleich in den aktullen (lokalen) Branch *mergen*:
+
+   .. rv_code::
+      :class: shell
+
+      $ git pull
+   
+.. revealjs:: remotes -- git remote
+   :title-heading: h3
+
+   Mit `git remote`_ werden die Remotes verwaltet.
+
+   Alias ``origin`` in ``upstream`` umbenennen
+
+   .. rv_code::
+      :class: shell
+
+      $ git remote rename origin upstream
+
+   Einbinden eines Forks als ``origin``
+
+   .. rv_code::
+      :class: shell
+
+      $ git remote add origin https://githost.intranet/git-teaching.git
+   
+.. revealjs:: remotes -- git remote
+   :title-heading: h3
+
+   Anzeigen der eingetragenen Remotes
+
+   .. rv_code::
+      :class: shell
+
+      $ git remote -v 
+      origin    https://githost.intranet/git-teaching.git (fetch)
+      origin    https://githost.intranet/git-teaching.git (push)
+      upstream  https://github.com/return42/git-teaching.git (fetch)
+      upstream  https://github.com/return42/git-teaching.git (push)
+
+   Es können beliebig viele Remotes eingebunden werden, über den Alias kann man
+   steuern mit welchem Remote man was machen will.
+
+   .. rv_small::
+
+      Obiges Beispiel ist typisch für ein Szenario bei dem der Fork eines
+      Projekts im Intranet ``origin`` liegt und das Original des Forks im
+      Internet ``upstream`` liegt.  Mit ``git push origin`` können die lokalen
+      Branches im Intranet abgelegt werden. Mit ``git push upstream`` können die
+      Branches im Internet public gestellt werden.
+   
 .. revealjs:: online server
    :title-heading: h3
 
    .. image:: github-octocat.png
       :scale: 19 %
-
+      :target: https://github.com
+      
    .. image:: gitlab-logo.png
       :scale: 6 %
-      :align: right
+      :target: https://about.gitlab.com
 
    .. image:: bitbucket-logo.png
       :scale: 40 %
+      :target: https://bitbucket.org/account/signup
 
-   * `GitHub <https://github.com/>`_
-   * `GitLab.com <https://gitlab.com/explore>`_
-   * `Bitbucket <https://bitbucket.org/account/signup/>`_
+   .. raw:: html
+
+      <p></p>
+
+   `GitLab.com`_  -- GitHub_  -- Bitbucket_
 
 
 .. revealjs:: self hosted
    :title-heading: h3
 
-   `gogs <https://gogs.io>`_ *leichtgewicht*
-
-   .. figure:: gogs-logo.jpg
-      :scale: 50 %
+   .. image:: gogs-logo.jpg
+      :scale: 53 %
       :target: https://gogs.io
 
-   `GitLab CE <https://about.gitlab.com>`_: *Team & CI*
-
-   .. figure:: gitlab-logo.png
+   .. image:: gitlab-logo.png
       :scale: 8 %
       :target: https://about.gitlab.com
 
+   .. raw:: html
+
+      <p></p>
+
+   gogs_ *leichtgewicht* -- `GitLab CE`_ *Team & CI*
+
+
+.. revealjs:: offline Szenarien
+
+   comming soon ...
+
+.. revealjs:: Danke
+
+.. revealjs::
+
 .. revealjs:: Verweise
-   :title-heading: h2
+   :title-heading: h5
 
-   .. rv_small::
-
-      - `git <https://git-scm.com>`_
-      - `Pro Git <https://git-scm.com/book/de/v1>`_
-      - `sphinxjp.themes.revealjs <https://github.com/tell-k/sphinxjp.themes.revealjs>`_
-      - `REVEAL.JS <http://lab.hakim.se/reveal-js>`_
-      - `Sphinx-doc <http://www.sphinx-doc.org>`_
-      - `reST <http://www.sphinx-doc.org/en/stable/rest.html>`_
-      - `docutils <http://docutils.sourceforge.net/rst.html>`_
+   - git_
+   - `Pro Git`_
+   - `sphinxjp.themes.revealjs`_
+   - `REVEAL.JS`_
+   - Sphinx-doc_
+   - reST_
+   - docutils_
