@@ -118,14 +118,12 @@ Debian/Ubuntu kann man diese mit dem apt Paketmanager installieren:
 
    $ sudo apt-get install android-tools-adb android-tools-fastboot
 
-Das fastboot ist nicht unbedingt notwendig, wer aber ein *recovery* Image auf
-seinem Smartphone installieren will wird es früher oder später auch benötigen
-(siehe z.B. `All About Recovery Images`_).
+.. Das fastboot ist nicht unbedingt notwendig, wer aber ein *recovery* Image auf
+.. seinem Smartphone installieren will wird es früher oder später auch benötigen
+.. (siehe z.B. `All About Recovery Images`_).
 
-Als nächstes muss man das *versteckte* "Entwickler Menü" aktivieren (`developer
-options`_), dazu geht man auf dem Android auf "Einstellungen > Über das Telefon
-> Build-Nummer" und drückt da sieben mal drauf (ja, einfach sieben mal auf den
-Eintrag hauen, das ist quasi das *easter egg* für Entwickler).
+Als nächstes muss man das *versteckte* "Entwickler Menü" aktivieren
+(:ref:`android_dev_options`).
 
 Wenn man jetzt wieder auf "Einstellungen" wechselt, sieht man in dem Menu ganz
 unten als vorletzten Eintrag die "Entwickleroptionen", dort drauf klicken und

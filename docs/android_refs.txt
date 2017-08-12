@@ -1,4 +1,9 @@
 .. _`Android Debug Bridge (adb)`: https://developer.android.com/studio/command-line/adb.html
-.. _`All About Recovery Images`: https://wiki.cyanogenmod.org/w/All_About_Recovery_Images
-.. _`developer options`: https://wiki.cyanogenmod.org/w/Doc:_developer_options
 .. _`CAcert: Android Phones & Tablets`: http://wiki.cacert.org/FAQ/ImportRootCert#Android_Phones_.26_Tablets
+
+.. _TWRP: https://twrp.me/
+.. _SoC: https://de.wikipedia.org/wiki/System-on-a-Chip
+.. _Exynos: https://en.wikipedia.org/wiki/Exynos
+.. _Heimdall: http://glassechidna.com.au/heimdall/
+.. _Odin: https://samsungodin.com/
+.. _Fastboot: http://android-dls.com/wiki/index.php?title=Fastboot
