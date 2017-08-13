@@ -4,9 +4,9 @@
 
 .. _twrp_intro:
              
-====
-TWRP
-====
+=========================
+Team Win Recovery Project
+=========================
 
 Team Win Recovery Project (TWRP_) ist ein herstellerunabhängiges
 Custom-Recovery-System für Android-Geräte. Das Projekt ist OpenSource und liegt

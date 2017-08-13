@@ -13,10 +13,12 @@ Partition gemeint. Man kann sich das so vorstellen als würde man ein
 *Rettungs-System* von einer CD booten nur mit dem Unterschied, dass es keine CD
 gibt. Das Rettungs- (oder auch Recover-) System ist auf einer Partition im
 Android Device installiert. Der Speicher im Android Device ist in Partitionen
-aufgeteilt. Auf einer Partition liegt das Recoery-Image auf einer anderen das
-Android Betriebsystem, das normalerweise gestartet wird (boot). Es kann aber
-auch noch mehr Partitionen geben. Legt man z.B. eine SD-Karte ein und formatiert
-die, hat man mindestens eine weitere Partition.
+aufgeteilt. Auf einer Partition liegt das Recovery-Image auf einer anderen das
+Android Betriebsystem, das normalerweise gestartet wird (boot). Die Android
+Geräte verfügen z.T. über eine ganze Reihe von Partitionen (siehe
+z.B. :ref:`SM-T580_PIT` dort findet man auch ``Partition Name: RECOVERY``).
+Legt man z.B. eine SD-Karte ein und formatiert die, so hat man mindestens eine
+weitere Partition.
 
 Die Ausprägung der Recovery Partition variert und ist nicht für alle Geräte
 gleich. Da die Recovery Systeme der Hersteller meist noch nicht mal ein

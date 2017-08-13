@@ -142,3 +142,11 @@ Services und Apps
 
 - S Voice: Nein
 - Mobile TV: Nein
+
+.. _SM-T580_PIT:
+
+SM-T580 PIT
+===========
+
+.. literalinclude:: SM-T580_PIT.txt
+   :linenos:

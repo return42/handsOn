@@ -101,3 +101,5 @@ Partition Information Table (kurz PIT) Abfrage:
 .. code-block:: bash
 
    $ sudo ./bin/heimdall print-pit  > my_samsung_device_PIT.txt
+
+Ausgabebeispiel siehe :ref:`SM-T580_PIT`
