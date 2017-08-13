@@ -2,12 +2,16 @@
 
 .. include:: ../android_refs.txt
 
+.. _exynos_7_octa_7870:
+
 ===================================
 Samsung Exynos 7 Octa 7870 (Joshua)
 ===================================
 
+Quelle: `PDADB Samsung Exynos 7 Octa 7870 (Joshua) datasheet`_
+
 - Design by:    Samsung
-- Type:         Exynos 7 Octa 7870
+- Type:         Exynos_ 7 Octa 7870
 - Hersteller:   Samsung
 - Codename:     Joshua
 - Released:     2016

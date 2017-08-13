@@ -7,7 +7,7 @@ Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580
 ==========================================
 
 - Technische Daten bei Samsung: SM-T580NZKADBT_
-- Wikipedia `Samsung_Galaxy Tab A 10.1 (wiki)`_
+- Wikipedia `Samsung Galaxy Tab A 10.1 (wiki)`_
 
 Artikelinformationen
 ====================
@@ -43,9 +43,11 @@ Chipsatz & Board
 
 - Prozessorgeschwindigkeit: 1,6 GHz
 - Prozessortyp: Octa-Core
-- SoC_: Exynos_ 7870 (`PDADB Samsung Exynos 7 Octa 7870 (Joshua) datasheet`_)
-- CPU:  Octa-core (4x1.6 GHz Cortex-A53 & 4x1.0 GHz Cortex-A53)
-- GPU:  Mali-T830 MP2
+- SoC_: Exynos_ 7870
+  
+  - CPU:  Octa-core (4x1.6 GHz Cortex-A53 & 4x1.0 GHz Cortex-A53)
+  - GPU:  Mali-T830 MP2
+  - siehe :ref:`exynos_7_octa_7870`
 
 
 Speicher

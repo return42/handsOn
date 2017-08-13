@@ -4,7 +4,10 @@
 
 .. _android_dev_options:
 
-===================
+===========================
+Entwickler-Optionen & Modes
+===========================
+
 Entwickler-Optionen
 ===================
 
@@ -35,6 +38,49 @@ wie 'Speicher' finden (manchmal gibt es den auch zweimal, dann muss man schauen
 welcher der richtige ist). Klickt man da drauf, gibt es einen Button ``Daten
 Löschen``. Wenn man da drauf haut, werden die Entwickler-Optionen
 deaktiviert. Was noch an *Einstellungen* zurück gesetzt wird, kann ich nicht
-sagen, bei scheint es sich aber tatsächlich nur auf die Deaktivierung der
+sagen, bei mir scheint es sich aber tatsächlich nur auf die Deaktivierung der
 Entwickler-Optionen zu beschränken.
 
+
+Samsung Download & Recovery
+===========================
+
+Die Samsung Androids verfügen i.d.R. über einen Download-Boot und eine
+Recovery-Boot. Der Download-Boot dient zum flashen der Geräte und mit dem
+Recovery-Boot kann man ein Recovery-System starten (s.a. :ref:`android_recovery`
+). Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
+kryptische Kombinationen der Volume (up/down & laut/leise) Buttons, des Home
+Buttons (der Button in der Mitte) und des Power Buttons erforderlich.
+
+.. hint::
+
+   Man sollte den Download-Mode nur dann aktivieren, wenn man sich vorher
+   :ref:`heimdall-intro`, Odin_ oder die `Android Debug Bridge (adb)`_
+   installiert hat, denn meist kommt man aus diesem Modus nur wieder raus, wenn
+   der Akku leer ist oder man mit einem dieser Tools einen Re-Boot anstößt.  Das
+   Starten eines Recovery-Systems ist unkritisch, da man dort meist ein Menü hat
+   wo man einen Re-Boot neu anstoßen kann.
+
+
+Smartphones:
+
+- Gerät komplett abschalten
+- Gleichzeitig: Volume Button (Up/Down zusammen) + Power Button
+- Es kommt eine Meldung / ein Bildschirm.  Mit dem Volume Up/Down kann man meist
+  was auswählen. Z.B Download-Mode oder Recovery-Boot
+
+
+Tablets:
+
+- Recovery:
+
+  - Gleichzeitig: Home Button + Volume Up (laut) + Power Button
+  - Sobald das Logo aufleuchtet wieder alles loslassen
+  - Nach ein paar Sekunden kommt das Recovery Menü
+
+- Download:
+
+  - Gleichzeitig: Home Button + Volume Down (leise) + Power Button
+  - Sobald das Logo aufleuchtet wieder alles loslassen
+  - danach erscheint ein Bildschirm mit einer Warnung
+  - jetzt Volume Up um in den Download Mode zu aktivieren.
