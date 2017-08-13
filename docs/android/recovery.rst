@@ -47,10 +47,6 @@ weitere Links. Ich hab hier beispielsweise ein *Galaxy Tab A 10.1 (wifi)*
 Galaxy Tab A (2016, 10.1, Wi-Fi)
 --------------------------------
 
-Technische Daten bei Samsung: http://www.samsung.com/de/support/model/SM-T580NZKADBT
-
-Verbaut ist ein Exynos_ SoC_, der TWRP_ Codename ist: ``gtaxlwifi``.
-
 - TWRP Download: https://eu.dl.twrp.me/gtaxlwifi/
 - TWRP for Samsung Galaxy Tab A 10.1 WiFi (2016):
   https://twrp.me/devices/samsunggalaxytaba101wifi2016.html

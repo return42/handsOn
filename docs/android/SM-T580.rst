@@ -1,0 +1,142 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. include:: ../android_refs.txt
+
+==========================================
+Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580
+==========================================
+
+- Technische Daten bei Samsung: SM-T580NZKADBT_
+- Wikipedia `Samsung_Galaxy Tab A 10.1 (wiki)`_
+
+Artikelinformationen
+====================
+
+- Artikelname:   Galaxy Tab A (2016, 10.1, Wi-Fi)
+- Model:         SM-T580
+- Artikelnummer: SM-T580NZKADBT
+- EAN:           8806088372150
+- Farbe:         black
+- Codename:      ``gtaxlwifi``
+
+Weitere Varianten des Galaxy Tab A 10.1 (2016):
+
+- T580 (Wi-Fi only)
+- T585 (LTE/Wi-Fi)
+- P580 (Wi-Fi only) S-Pen
+- P585 (LTE/Wi-Fi) S-Pen
+
+
+Betriebssystem & Co.
+====================
+
+- Android 7.0 (Nougat)
+- Linux Kernel 3.18.14
+- Bootloader: T580XXU2BQE7
+- Runtime: ART 2.1.0
+- Toolchain: GCC 4.9
+- SDK Version: 24
+- Java VM: Dalvik Core Library 0.9
+
+Chipsatz & Board
+================
+
+- Prozessorgeschwindigkeit: 1,6 GHz
+- Prozessortyp: Octa-Core
+- SoC_: Exynos_ 7870 (`PDADB Samsung Exynos 7 Octa 7870 (Joshua) datasheet`_)
+- CPU:  Octa-core (4x1.6 GHz Cortex-A53 & 4x1.0 GHz Cortex-A53)
+- GPU:  Mali-T830 MP2
+
+
+Speicher
+========
+
+- Arbeitsspeicher in GB: 2
+- Interner Gerätespeicher in GB: 16
+- Frei verfügbarer interner Gerätespeicher in GB*: Ca. 10,5
+- Speichererweiterung: microSD (bis zu 200 GB)
+
+
+Display
+=======
+
+- Displaygröße (Hauptdisplay): 25,54 cm / 10,1"
+- Displayauflösung in Pixel (Hauptdisplay): 1920 x 1200 (WUXGA)
+- Displaytechnologie (Hauptdisplay): TFT
+- Anzahl Farben (Hauptdisplay): 16 Mio.
+- S Pen-Unterstützung: Nein
+
+Kamera
+======
+
+- Auflösung Videoaufnahme: Full HD (1.920 x 1.080 Pixel) @30fps
+- Rear Camera - Resolution:  8 Megapixel (CMOS)
+- Front Camera - Resolution: 2 Megapixel (CMOS)
+- Blitz Hauptkamera: Ja
+- Rear Camera - Auto Focus: Ja
+
+
+Netzwerkspezifikation
+=====================
+
+- Infrastruktur: Wi-Fi only
+
+Konnektivität
+=============
+
+- ANT+:  Ja
+- USB-Version: USB 2.0
+- Standortbestimmung: GPS, Glonass
+- Headset/Kopfhöreranschluss: 3,5mm Klinkenanschluss
+- MHL-Schnittstelle: Nein
+- WLAN: 802.11 a/b/g/n/ac 2,4 + 5 GHz, VHT80
+- Wi-Fi Direct: Ja
+- Bluetooth®-Version: Bluetooth® v4.2
+- NFC: Nein
+- Bluetooth®-Profile: A2DP, AVRCP, DI, HID, HOGP, HSP, OPP, PAN
+- Synchronisation:  Smart Switch (PC Version)
+
+Artikelinformationen
+====================
+
+- Formfaktor:  Tablet
+
+Sensoren
+========
+
+- Beschleunigungssensor, Hall-Sensor, Umgebungslichtsensor
+
+Abmessung und Gewicht
+=====================
+
+- Abmessungen (HxBxT in mm): 254,2 x 155,3 x 8,2
+- Gewicht (in g):  525
+
+Akku
+====
+
+- Internet-Nutzungsdauer (WLAN) (in Stunden): Bis zu 13
+- Videowiedergabe (in Stunden): Bis zu 13
+- Akku-Kapazität (mAh): 7300
+- Austauschbar: Nein
+- Musikwiedergabe (in Stunden): Bis zu 187
+
+Audio und Video
+===============
+
+- Videoformate (Wiedergabe):
+  MP4, M4V, 3GP, 3G2, WMV, ASF, AVI, FLV, MKV, WEBM
+
+- Videoauflösung (Wiedergabe):
+  Full HD (1.920 x 1.080 Pixel) @60fps
+
+- Audioformate (Wiedergabe):
+
+  MP3, M4A, 3GA, AAC, OGG, OGA, WAV, WMA, AMR, AWB, FLAC, MID, MIDI, XMF, MXMF,
+  IMY, RTTTL, RTX, OTA
+
+Services und Apps
+=================
+
+- S Voice: Nein
+- Mobile TV: Nein

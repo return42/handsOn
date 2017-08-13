@@ -13,3 +13,5 @@ Die Artikel in dieser Rubrik befinden sich noch im Aufbau!
 
    dev_options
    recovery
+   SM-T580
+   exynos_7_octa_7870
