@@ -13,6 +13,9 @@
 
 .. _SM-T580NZKADBT: http://www.samsung.com/de/support/model/SM-T580NZKADBT
 .. _`Samsung Galaxy Tab A 10.1 (wiki)`: https://en.wikipedia.org/wiki/Samsung_Galaxy_Tab_A_10.1
+.. _`Samsung OSRC SM-T580`: http://opensource.samsung.com/reception/receptionSub.do?method=sub&sub=F&searchValue=t580
+.. _`Samsung Updates SM-T580`: http://samsung-updates.com/device/?id=SM-T580
+
 
 .. _`PDADB Samsung Exynos 7 Octa 7870 (Joshua) datasheet`: http://pdadb.net/index.php?m=processor&id=660&c=samsung_exynos_7_octa_7870__joshua&d=detailed_specs
 .. _`Samsung Exynos 7 Octa 7870`: http://www.samsung.com/semiconductor/minisite/Exynos/Solution/MobileProcessor/Exynos_7_Octa_7870.html

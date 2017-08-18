@@ -8,6 +8,15 @@ Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580
 
 - Technische Daten bei Samsung: SM-T580NZKADBT_
 - Wikipedia `Samsung Galaxy Tab A 10.1 (wiki)`_
+- `Samsung OSRC SM-T580`_
+- `Samsung Updates SM-T580`_
+
+Gesammeltes:
+
+- `Extremely DeOdexed, DeBloated ROM Nougat 7.0
+  <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`__
+- `Ultra Lean Nougat
+  <https://forum.xda-developers.com/galaxy-tab-a/development/rom-ultra-lean-rom-galaxy-tab-10-1-2016-t3467942/page46>`__
 
 Artikelinformationen
 ====================

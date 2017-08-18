@@ -41,6 +41,17 @@ deaktiviert. Was noch an *Einstellungen* zurück gesetzt wird, kann ich nicht
 sagen, bei mir scheint es sich aber tatsächlich nur auf die Deaktivierung der
 Entwickler-Optionen zu beschränken.
 
+.. _android_oem_unlock:
+
+OEM Entsperren (unlock)
+=======================
+
+Will man ein Custom-Recovery System auf sein Gerät spielen, so muss man
+i.d.R. dazu das Gerät entsperren. In den Entwickler-Optionen gibt es dafür einen
+Schalter, der 'OEM unlock' oder eben 'OEM Entspreren' heißt.
+
+
+.. samsung_download_mode::
 
 Samsung Download & Recovery
 ===========================
@@ -49,7 +60,7 @@ Die Samsung Androids verfügen i.d.R. über einen Download-Boot und eine
 Recovery-Boot. Der Download-Boot dient zum flashen der Geräte und mit dem
 Recovery-Boot kann man ein Recovery-System starten (s.a. :ref:`android_recovery`
 ). Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
-kryptische Kombinationen der Volume (up/down & laut/leise) Buttons, des Home
+kryptische Kombinationen der Volume (up&down & laut&leise) Buttons, des Home
 Buttons (der Button in der Mitte) und des Power Buttons erforderlich.
 
 .. hint::
@@ -80,7 +91,7 @@ Tablets:
 
 - Download:
 
-  - Gleichzeitig: Home Button + Volume Down (leise) + Power Button
+  - Gleichzeitig: Home Button + Volume *Down* (leise) + Power Button
   - Sobald das Logo aufleuchtet wieder alles loslassen
   - danach erscheint ein Bildschirm mit einer Warnung
-  - jetzt Volume Up um in den Download Mode zu aktivieren.
+  - jetzt Volume *Up* (laut) um in den Download Mode zu aktivieren.

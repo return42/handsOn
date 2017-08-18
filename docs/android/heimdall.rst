@@ -96,10 +96,17 @@ haben in dem die ausführbaren Binaries liegen:
    $ ./bin/heimdall version
    v1.4.2
 
-Partition Information Table (kurz PIT) Abfrage:
+Um mit Heimdall auf das Android Gerät zugreifen zu können, muss man das Gerät im
+Download Mode (s.a. :ref:`samsung_download_mode`) booten und dann noch das USB
+Kabel anschließen.
+
+Abfrage des  Partition Information Table (kurz PIT):
 
 .. code-block:: bash
 
-   $ sudo ./bin/heimdall print-pit  > my_samsung_device_PIT.txt
+   $ sudo ./bin/heimdall print-pit --no-reboot > my_samsung_device_PIT.txt
+
+Die Option ``--no-reboot`` verhindert, dass das Gerät neu gebootet wird. Will
+man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.
 
 Ausgabebeispiel siehe :ref:`SM-T580_PIT`
