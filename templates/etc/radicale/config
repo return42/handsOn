@@ -85,7 +85,7 @@ stock = utf-8
 
 # Rights backend
 # Value: None | authenticated | owner_only | owner_write | from_file
-#type = None
+type = owner_only
 
 # File for rights management from_file
 #file = ~/.config/radicale/rights
@@ -95,7 +95,7 @@ file = /etc/radicale/rights
 
 # Storage backend
 # Value: multifilesystem
-#type = filesystem
+type = multifilesystem
 
 # Folder for storing local collections, created if not present
 #filesystem_folder = ~/.config/radicale/collections
@@ -115,6 +115,8 @@ filesystem_fsync = True
 # Example: git add -A && (git diff --cached --quiet || git commit -m "Changes by "%(user)s)
 #hook =
 
+[web]
+type = radicale_infcloud
 
 [logging]
 
@@ -126,7 +128,7 @@ config = /etc/radicale/logging
 
 # Set the default logging level to debug
 #debug = False
-debug=False
+debug = False
 
 # Store all environment variables (including those set in the shell)
 full_environment = False

@@ -18,8 +18,8 @@ RADICALE_GIT_URL="https://github.com/return42/Radicale.git"
 RADICALE_DATA_FOLDER="$WSGI_APPS/Radicale.data"
 RADICALE_REPO_FOLDER="$WSGI_APPS/Radicale"
 
-RADICALE_WEB_GIT_URL="https://github.com/return42/RadicaleWeb.git"
-RADICALE_WEB_REPO_FOLDER="$WSGI_APPS/RadicaleWeb"
+RADICALE_WEB_GIT_URL="https://github.com/return42/RadicaleInfCloud.git"
+RADICALE_WEB_REPO_FOLDER="$WSGI_APPS/RadicaleInfCloud"
 
 RADICALE_REQUIRE=(
   vobject
@@ -77,7 +77,6 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
 
-    mkdir -p "${RADICALE_REPO_FOLDER}"
     # shellcheck disable=SC1007
     SUDO_USER= cloneGitRepository "${RADICALE_GIT_URL}" "${RADICALE_REPO_FOLDER}"
     # shellcheck disable=SC1007
@@ -94,6 +93,8 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
 
     source "${WSGI_APPS}/${PYENV}/bin/activate"
     pip install "${RADICALE_REQUIRE[@]}"
+    cd ${RADICALE_WEB_REPO_FOLDER}
+    pip install -e .
 
     APACHE_install_site radicale
 
@@ -124,13 +125,17 @@ a2dissite radicale
 systemctl force-reload apache2
 EOF
 
+    source "${WSGI_APPS}/${PYENV}/bin/activate"
+    pip uninstall radicale_infcloud
+
     rstHeading "Aufräumen" section
 
     echo -e "
 Folgende Dateien bzw. Ordner wurden nicht gelöscht:
 
 * Anwendungsdaten: ${BYellow:?}${RADICALE_DATA_FOLDER}${_color_Off:?}
-* Reposetorie:     ${BYellow:?}${RADICALE_REPO_FOLDER}${_color_Off:?}
+* Reposetorie:     ${BYellow:?}${RADICALE_REPO_FOLDER}
+                   ${RADICALE_WEB_REPO_FOLDER}${_color_Off:?}
 * Log-Dateien:     ${RADICALE_LOG_FOLDER}
 Diese müssen ggf. gesichert und anschließend gelöscht werden."
 

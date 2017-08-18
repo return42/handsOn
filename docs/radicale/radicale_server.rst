@@ -6,10 +6,9 @@ Radicale Server
 ===============
 
 Die CalDAV und CardDAV Server Installation (Radicale) erfolgt in eine bestehende
-Apache Instanz (so wie sie vom Script ``${SCRIPT_FOLDER}/apache_setup.sh``
-eingerichtet wird).
+Apache Instanz (siehe :ref:`xref_apache_setup`)
 
-* Radicale Server: http://radicale.org
+* Radicale: http://radicale.org
 
 Ich habe mich für Radicale entschieden, da es sich auf CalDAV und CardDAV
 beschränkt und keine Groupware ist, die mehr Lösungen anbietet als ich
@@ -18,21 +17,16 @@ URL (``radicale``) platzieren:
 
 * ``https://<hostname>/radicale``
 
-Zu dieser Installation gehört auch das WEB-Frontend InfCloud. InfCloud ist ein
-sehr einfaches WEB-Frontend. Es kann Kalender und Adressen Anzeigen und
-bearbeiten, jedoch kann es keine neuen Kalender oder Adressbücher anlegen
-(s.u.). InfCloud ist erreichbar über die URL:
-
-* ``https://<hostname>/infcloud``
-
-Zur Installation existiert ein Script, das alle Setups vornimmt::
+Zu dieser Installation gehört auch das WEB-Frontend InfCloud. Mit InfCloud
+können Kalender und Adressen angezeigt und bearbeitet werden.  Zur Installation
+existiert ein Script, das alle Setups vornimmt::
 
    $ ${SCRIPT_FOLDER}/radicale.sh install
 
 Es verwendet die beiden folgenden Reposetories:
 
 * https://github.com/return42/Radicale.git
-* https://github.com/return42/RadicaleWeb.git
+* https://github.com/return42/RadicaleInfCloud
 
 
 Authentifizierung
@@ -40,18 +34,25 @@ Authentifizierung
 
 Die Authentifizierung wird vom Apache übernommen::
 
+    WSGIScriptAlias /radicale /var/www/pyApps/radicale.wsgi
+
     <Location /radicale>
-        ...
+
+        <IfModule mod_security2.c>
+            SecRuleEngine Off
+        </IfModule>
+
         Require valid-user
+
+        Order deny,allow
+        Deny from all
+        Allow from fd00::/8 192.168.0.0/16 fe80::/10 127.0.0.0/8 ::1
+
         AuthType Basic
         AuthBasicProvider external
         AuthName "radicale"
         AuthExternal pwauth
-        ...
-    </Location>
 
-    <Location /radicale/.web/infcloud>
-        Require all granted
     </Location>
 
 Zusammengefasst ergibt sich::
