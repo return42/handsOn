@@ -51,7 +51,7 @@ i.d.R. dazu das Gerät entsperren. In den Entwickler-Optionen gibt es dafür ein
 Schalter, der 'OEM unlock' oder eben 'OEM Entspreren' heißt.
 
 
-.. samsung_download_mode::
+.. _samsung_download_mode:
 
 Samsung Download & Recovery
 ===========================
