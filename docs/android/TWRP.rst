@@ -3,7 +3,7 @@
 .. include:: ../android_refs.txt
 
 .. _twrp_intro:
-             
+
 =========================
 Team Win Recovery Project
 =========================
@@ -25,15 +25,16 @@ weitere Links. Ich hab hier beispielsweise ein *Galaxy Tab A 10.1 (wifi)*
 
 .. hint::
 
-   Wer einen Google Konto hat sollte sicherstellen, dass er den `Geräteschutz
-   bei Google <https://support.google.com/nexus/answer/6172890?hl=de>`_
-   deaktiviert hat, bevor er TWRP oder ein ROM aufspielt!!!
+   Wer ein Google Konto hat sollte sicherstellen, dass er den `Geräteschutz bei
+   Google <https://support.google.com/nexus/answer/6172890?hl=de>`_ deaktiviert
+   hat, bevor er TWRP oder ein ROM aufspielt!!!
 
    Man sollte eine (externe) SD-Karte in das Gerät stecken.  Auf dieser Karte
    können dann die Sicherungen erfolgen. Auch wird man Custom-ROMs und andere
    Installationen (z.B. SuperSU) dort ablegen und von dort im Recoery-Mode
    installieren.
-   
+
+.. _twrp_gtaxlwifi:
 
 Galaxy Tab A 6 (2016, 10.1, Wi-Fi)
 ==================================
@@ -81,7 +82,7 @@ hinzukopieren.
 
 
 3. verschlüsselte Partition formatieren
-----------------------------------------
+---------------------------------------
 
 .. hint::
 
@@ -90,16 +91,16 @@ hinzukopieren.
 
 Der verschlüsselte 'Interne Storage' muss formatiert werden, dabei gehen die
 *Nutzdaten* dann verloren. Dazu im TWRP auf "Löschen" (wipe), dann auf "Daten
-formatieren" (format). Da dieser Schritt nicht mehr Rückgängig gemaccht werden
+formatieren" (format). Da dieser Schritt nicht mehr Rückgängig gemacht werden
 kann muss man expliziet "yes" eintippen.
 
 Dieser Schritt ist nur einmal erforderlich, danach gibt es keine verschlüsselte
-Partition mehr und man kann anfangen ein anderes ROM, SuperSU oder sonst was
+Partition mehr und man kann anfangen ein anderes ROM oder *sonst was*
 installieren.
 
 
 3. TWRP App Installieren
-=========================
+------------------------
 
 Nachdem man die verschlüsselte Partition gelöscht (formatiert) hat, kann man
 noch die TWRP App installieren. Bzw. das wird man automatisch gefragt, wenn man
@@ -107,6 +108,7 @@ einen Neustart wählt.
 
 .. hint::
 
-   Nach dem Installieren eines ROMs wird man auch gefragt ob man die App
-   installieren will, dass sollte man aber besser nicht machen, weil dann die
-   Checksummen ROMs beim ersten Start nicht mehr stimmen (war bei mir der Fall).
+   Nach dem Installieren eines ROMs wird man auch jedesmall gefragt ob man die
+   App installieren will, dass sollte man aber besser nicht machen, weil dann
+   die Checksummen des ROMs beim ersten Start nicht mehr stimmen (war bei mir
+   der Fall).

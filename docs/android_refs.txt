@@ -1,7 +1,14 @@
 .. _`Android Debug Bridge (adb)`: https://developer.android.com/studio/command-line/adb.html
 .. _`CAcert: Android Phones & Tablets`: http://wiki.cacert.org/FAQ/ImportRootCert#Android_Phones_.26_Tablets
 
+.. _`xda-developers`: https://www.xda-developers.com/
+.. _`APK Mirror`: https://www.apkmirror.com
+.. _`APK Downloader`: https://apps.evozi.com/apk-downloader/
+.. _`F-Droid`: https://f-droid.org/
+.. _`Yalp Store`: https://f-droid.org/packages/com.github.yeriomin.yalpstore/
+.. _`apkpure`: https://apkpure.com/
 
+.. _`Bloatware`: https://de.wikipedia.org/wiki/Bloatware
 .. _DroidWiki: https://www.droidwiki.org/
 .. _Cellular: https://en.wikipedia.org/wiki/Cellular_network
 .. _TWRP: https://twrp.me/

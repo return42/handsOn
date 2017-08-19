@@ -11,13 +11,53 @@ Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580
 - `Samsung OSRC SM-T580`_
 - `Samsung Updates SM-T580`_
 
-Gesammeltes:
+
+Custom ROM
+==========
+
+Als Custom-ROM empfehle ich:
 
 - `Extremely DeOdexed, DeBloated ROM Nougat 7.0
-  <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`__
+  <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`_
+
+Es ist ein auf der `Samsung OSRC SM-T580`_ Firmware basierendes ROM aus dem
+sämtliche Bloatware_ entfernt wurde. Es ist damit nur halb so groß wie das
+Original. Es kann über das xda-developers_ Forum bezogen werden. Die wichtigsten
+Posts sind.
+
+- `Extremely DeOdexed, DeBloated ROM Nougat 7.0`_
+- `Some "debloated" informations <https://forum.xda-developers.com/showpost.php?p=72556068&postcount=86>`__
+- `Explanations on the version numbers of the rom "Extremely" <https://forum.xda-developers.com/showpost.php?p=72611141&postcount=111>`__
+- `app that include some stock rom applications and more for those who want
+  <https://forum.xda-developers.com/showpost.php?p=72743116&postcount=152>`__
+
+Installationsschritte
+---------------------
+
+0. SD-Karte einsetzen und Daten Sichern
+1. :ref:`heimdall-intro` auf dem PC installieren
+2. :ref:`android_dev_options` aktivieren
+3. :ref:`android_oem_unlock`
+4. :ref:`TWRP <twrp_intro>` für :ref:`twrp_gtaxlw` installieren und
+   verschlüsselte Partition formatieren
+5. Exmely_vx.x.xb85x.zip über das `Forum
+   <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`__
+   beziehen und auf die SD-Karte kopieren.
+6. Im Recovery Mode booten und mit TWRP das Exmely_vx.x.xb85x.zip installieren.
+7. Neues System booten / Es kann sein, dass dabei automatisch zweimal gebootet
+   wird. Das booten dauert beim ersten mal verhältnissmäßig lang .. *Geduld soll
+   er haben, der junge Jedi*.
+
+Alternativen
+------------
+
 - `Ultra Lean Nougat
   <https://forum.xda-developers.com/galaxy-tab-a/development/rom-ultra-lean-rom-galaxy-tab-10-1-2016-t3467942/page46>`__
+  was allerdings nicht so *lean* ist wie das `Extremely DeOdexed, DeBloated ROM
+  Nougat 7.0`_
 
+
+  
 Artikelinformationen
 ====================
 

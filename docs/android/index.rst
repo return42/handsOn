@@ -6,11 +6,14 @@
 Android
 =======
 
-Die Artikel in dieser Rubrik befinden sich noch im Aufbau!
+In dieser Rubrik beschäftige ich mich mit Android Geräten und wie man sie ohne
+Google, Tracking und die ganze Bloatware_ betreiben kann. Da ich aktuell nur
+Samsunng Geräte hab sind die Artikel etwas *Samsung-lastig*.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
+   nogoogle
    dev_options
    recovery
    TWRP

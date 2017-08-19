@@ -2,11 +2,12 @@
 
 .. include:: ../android_refs.txt
 
-.. _android_dev_options:
 
 ===========================
 Entwickler-Optionen & Modes
 ===========================
+
+.. _android_dev_options:
 
 Entwickler-Optionen
 ===================
