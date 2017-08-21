@@ -28,6 +28,28 @@ Es verwendet die beiden folgenden Reposetories:
 * https://github.com/return42/Radicale.git
 * https://github.com/return42/RadicaleInfCloud
 
+Sharing
+-------
+
+Radicale ist ein leichtgewichitiger CalDAV & CardDAV Server, der allerings kein
+Sharing von (z.B.) Kalendern über CalDAV vorsieht. Die sogenannten *Vertreter-*
+Regelungen die es auch für CalDAV gibt sind im Radicale nicht vorgesehen (wäre
+zu ausufernd und nicht alle Clients *sprechen* exakt das gleiche Protokoll).
+
+Unten gezeigte Authentifizierung über den Apache hat den Vorteil (oder auch
+Nachteil), dass alle Objekte über die URL *public* lesbar sind (zumindest für
+die Benutzer, die ein gültiges Login auf dem Host haben). Der Vorteil ist, dass
+so beispielsweise die Kalender anderer Benutzer über die URL als Abbo bereit
+gestellt werden können.
+
+Die URL zu einem seiner Kalender kann man über sein Login ermitteln. Über:
+
+  https://<hostname>/raidcale
+
+meldet man sich an und kann die URLs bestehender Kalender sehen oder auch neue
+Kalender anlegen. Will man seinem Kollegen den Kalender bereit stellen, muss man
+ihm nur diese URL geben, die er als *Abo* in seinen Kalender mit aufnimmt.
+
 
 Authentifizierung
 -----------------
