@@ -5,7 +5,7 @@
 source_suffix = '.rst'
 master_doc = 'index'
 
-project = u'sphinx theme for reveal.js'
+project = u'CDB Komponenten Architektur'
 copyright = u'2017, return42'
 
 version = '1.0.0'

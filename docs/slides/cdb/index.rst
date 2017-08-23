@@ -41,7 +41,21 @@ CDB Komponenten
       *Hit '?' to see keyboard shortcuts*
 
 
-.. revealjs:: CDB & andere Pakete
+.. revealjs:: Übersicht
+
+   - :ref:`CDB Pakete <cdb_pakete_intro>`
+   - :ref:`Struktur Kundenpaket <struktur_kundenpaket>`
+   - :ref:`Voraussetzungen <voraussetzungen>` plus *repair* tools
+     (:ref:`Schema <schema_repair>` & :ref:`Konfiguration <config_repair>`)
+   - :ref:`Updates & Konflikte <updates_und_konflikte>`
+   - :ref:`Transport einer Änderung <transport_aenderung>` (merge Code & Config :ref:`Schaubild <merge_graph>`)
+   - :ref:`CDB & SCM-System <cdb_und_scm>` (SCM gestützte Lieferantenanbindung)
+
+
+
+.. _cdb_pakete_intro:
+
+.. revealjs:: CDB Pakete
    :title-heading: h3
 
    Hersteller-Pakete in ``site-packages``
@@ -69,10 +83,10 @@ CDB Komponenten
 
         Namensräume sind was anderes als Pakete. Ein Namensraum beinhaltet
         i.d.R. mehrere Pakete -- z.B. die Pakete ``cs.base`` und ``cs.vp`` im
-        Namensraum ``cs``. Die Module in einem Paket gehören aber alle zum
-        Namensraum des Pakets -- z.B. das Modul ``cs.calender`` aus dem Paket
-        ``cs.base``. Der Hersteller pflegt seinen Namensraum und schnürrt die
-        Pakete.
+        Namensraum ``cs``. Die CDB-Module in einem Paket gehören aber alle zum
+        Namensraum des Pakets -- z.B. das CDB-Modul ``cs.calender`` aus dem
+        Paket ``cs.base``. Der Hersteller pflegt seinen Namensraum und schnürrt
+        die Pakete.
 
 .. revealjs:: Anpassungen des Customer
    :title-heading: h3
@@ -91,28 +105,27 @@ CDB Komponenten
       Die Anpassungen einer Kundeninstallation werden in einem Paket verwaltet
       -- z.B. Paket ``cust.plm`` im Namensraum ``cust``. Die Anpassungen
       beschränken sich aber nicht auf diesen Namensraum, man wird auch
-      Konfigurationen aus ``cs`` und ``tpm`` anpassen wollen.
+      Konfigurationen in der DB aus ``cs`` und ``tpm`` anpassen wollen.
 
-     
+
 .. revealjs:: app_conf
    :title-heading: h3
 
-   Master + Historie für jedes Modul
+   Master + Historie für jedes CDB-Modul, wird aus der DB aufgebaut, von
+   ``cdbpkg`` verwaltet und wird **nicht** im SCM-System versioniert!
 
    ::
 
-     \---app_conf
-         +---cs
-             ...
-             \---erp
-                 +---current
-                 +---history
-                 \---master
-         \---cust
-             ...
-
-   wird aus der DB aufgebaut, von ``cdbpkg`` verwaltet und wird **nicht** im
-   SCM-System versioniert!
+     CADDOK_BASE
+       +---app_conf
+           +---cs
+           |   ...
+           |   \---erp
+           |       +---current
+           |       +---history
+           |       \---master
+           + ...
+           \---cust.plm
 
    .. rv_small::
 
@@ -120,19 +133,20 @@ CDB Komponenten
       Ordner gibt und das die ``cdbpkg`` Tools ihn für so eine Art *micro*
       Versionsverwaltung nutzen.
 
+.. _struktur_kundenpaket:
 
-.. revealjs:: Struktur cust.plm Paket
+.. revealjs:: Struktur cust.plm Paket (1)
 
-   Beispiel Paket mit zwei Modulen ``cust.plm`` und ``cust.foo``
+   CDB-Paket mit zwei CDB-Modulen ``cust.plm`` und ``cust.foo``
 
    ::
 
-      \---cust.plm
+      \---cust.plm             # CDB-Paket
           +---cust.plm.egg-info
           |   setup.py         # schauen wir uns gleich an
           |                    #   ansonsten keine weiteren Dateien
           \---cust             # Python Namespace 'from cust import foo'
-              | __init__.py    #   ist ein Python Paket
+              | __init__.py    #   ist ein Python (kein CDB) Paket
               |                #   ansonsten keine weiteren Dateien
               +---plm          # Modul 'plm' nicht zwingend erforderlich
               \---foo          # Modul 'foo' schauen wir uns gleich an
@@ -141,13 +155,34 @@ CDB Komponenten
    .. rv_small::
 
       CDB-Paketname ist ``cust.plm``. Die CDB-Module sind Python-Pakete deren
-      Namespace ist ``cust``. Typische Modul-Namen ``cust.foo``, ``cust.bar`` ..
-      ``cust.plm`` kann, muss es aber nicht geben. Wenn im Namespace ``cust``
-      mehrere Module rumliegen -- hier z.B. ``foo`` und ``plm`` -- dann müssen
-      diese auch in der Paket-Konfig in CDB als Module existieren -- anderes
-      darf hier nicht rumliegen! Vergleiche ``cs.base`` Paket, das n-Module
-      vereintin.  Häufig ist das Customizing ein Paket ``cust.plm`` in dem nur
-      ein Modul ``cust.plm`` exisitert.
+      Namespace ``cust.*`` ist. Typische Namen von CDB-Modulen: ``cust.foo`` oder
+      ``cust.bar``. Ein ``cust.plm`` kann, muss es aber nicht geben.
+
+
+.. revealjs:: Struktur cust.plm Paket (2)
+
+   ::
+
+      \---cust.plm             # CDB-Paket
+          +---cust.plm.egg-info
+          |   setup.py         # schauen wir uns gleich an
+          |                    #   ansonsten keine weiteren Dateien
+          \---cust             # Python Namespace 'from cust import foo'
+              | __init__.py    #   ist ein Python (kein CDB) Paket
+              |                #   ansonsten keine weiteren Dateien
+              +---plm          # Modul 'plm' nicht zwingend erforderlich
+              \---foo          # Modul 'foo' schauen wir uns gleich an
+
+
+   .. rv_small::
+
+      Wenn im Namespace ``cust`` mehrere CDB-Module rumliegen -- hier
+      z.B. ``cust.foo`` und ``cust.plm`` -- dann müssen diese auch in der
+      Paket-Konfig in CDB als Module existieren, Anderes darf hier nicht
+      rumliegen! Vergleiche ``cs.base`` Paket, das n-CDB-Module vereint.  Häufig
+      ist das Customizing ein CDB-Paket ``cust.plm`` in dem nur ein Modul
+      ``cust.plm`` exisitert.
+
 
 .. revealjs:: cust.plm setup.py
    :title-heading: h3
@@ -175,14 +210,13 @@ CDB Komponenten
       Die ``install_requires`` muss vollständig sein! `setup.py`_ gehört zu
       Python, für CDB wurde es um ``cdb_`` Eigenschaften erweitert.
 
-        
+
 .. revealjs:: Modul cust.foo
    :title-heading: h3
 
    ::
 
       \--foo                      # CDB 10.x
-
          |  module_metadata.json
          |  content_metadata.json # in 15.x unter ./configuration
          |  schema.json           # in 15.x unter ./configuration
@@ -205,7 +239,7 @@ CDB Komponenten
       ``configuration``.
 
 
-.. revealjs:: configuration Modul cust.foo
+.. revealjs:: configuration Ordner vom CDB-Modul cust.foo
    :title-heading: h3
 
    ::
@@ -254,7 +288,6 @@ CDB Komponenten
       diese Voraussetzungen ist eine verteilte Entwicklung nicht oder nur mit
       Fehlern möglich.
 
-   
 .. _schema_repair:
 
 .. revealjs:: schema -- check & repair
@@ -295,6 +328,8 @@ CDB Komponenten
 
    Kontextmenü *Modulkonfigurationsüberprüfung*
 
+.. _updates_und_konflikte:
+
 .. revealjs:: Updates & Konflikte
    :title-heading: h3
 
@@ -329,6 +364,73 @@ CDB Komponenten
       Konfliktpotential .. eigentlich logisch: *Neu* seit CDB 10 ist nur, dass
       der DB Content jetzt mit dazu gehört.
 
+.. _transport_aenderung:
+
+.. revealjs:: Transport Source-Code & Konfiguration
+   :title-heading: h3
+
+   ::
+
+      \---cust.plm             # CDB-Paket
+          ...
+          \---cust             # Python Namespace 'from cust import foo'
+              ...              # Python Pakete ...
+              \--foo           # Python Paket 'foo'
+                 |  module_metadata.json
+                 +---configuration
+                 \---resources
+
+   - **Source-Code**: sind die Python Pakete wie z.B. ``foo``. Diese werden mit
+     dem SCM *gemerged*.
+
+   - **Konfiguration**: ist im Ordner ``configuration``. Der Ordner muss mit
+     ``cdpkg diff`` und ``cdpkg patch`` *gemerged* werden.
+
+.. _merge_graph:
+
+.. revealjs:: Merge Source-Code & Konfiguration
+   :title-heading: h3
+
+   .. figure::  merge_graph.svg
+      :scale:   100 %
+
+   Typisches Schaubild für einen *Feature-Branch*, der in den *master* Branch
+   gemerged wird. Der *master* Branch kann z.B. **QS** oder **PROD** sein.  Egal
+   ob man eine Kopie anlegt oder dazu ein SCM-System, es gibt immer einen
+   Branch-Point und einen Merge-Point.  Die Änderungen in der DB können nur mit
+   ``cdbpkg`` gemerged werden.
+
+
+.. revealjs:: Merge und Commit der Konfiguration
+   :title-heading: h3
+
+   Diff zur Kopie des **Branch-Point** (Abzweigung) bilden:
+
+   .. rv_code::
+      :class: bash
+
+      $ cdbpkg diff cust.plm -p ./branch-point-copy -d ./patch_folder
+
+   **Merge-Point**: Patch in DB des ``PROD``-Systems einspielen:
+
+   .. rv_code::
+      :class: bash
+
+      $ cdbpkg patch ./patch_folder/patch_cust.fo_xx_yyyy
+
+   Konflikte in CDB auflösen, anschließend commiten
+
+   .. rv_code::
+      :class: bash
+
+      $ cdbkg build                         # DB export
+      # git add --all .                     # SCM-Commit
+      $ git commit -m "merged branch 'foo'" # ..
+      $ cdbpkg commit                       # CDB-Commit
+
+
+.. _cdb_und_scm:
+
 .. revealjs:: CDB & SCM-System
    :title-heading: h3
    :subtitle: einfach mal ins SCM committen ist vorbei!
@@ -350,7 +452,7 @@ CDB Komponenten
       Später werden wird noch sehen, wie SCM-System und CDB-Tools synchron
       verlaufen und das dabei *einiges* zu Beachten ist.
 
-   
+
 .. revealjs:: Wahl des SCM-System
 
    prinzipell geht jedes, populär sind SVN_ & git_
@@ -358,14 +460,14 @@ CDB Komponenten
    Verglichen mit SVN ist git beim Branchen und verteiltem Arbeiten wesentlich
    stärker. Z.B. diverse Protokolle_ zum Transport: ``file://``,
    ``http://``, ``ssh://`` usw. / s.a. `git URLs`_, `git-send-email`_
-   
+
    nicht zu vergessen: SVN ist tot.
 
    Wir verwenden hier git_ / siehe auch `get git started`_
 
 .. revealjs:: SCM-System einrichten
    :title-heading: h3
-   
+
    .. rv_code::
       :class: bash
 
@@ -373,7 +475,7 @@ CDB Komponenten
       (prod)$ git init
       (prod)$ git add --all .
       (prod)$ git commit -m 'cust.plm initial'
-   
+
    Ggf. letzte Änderungen beenden und *festschreiben*
 
    .. rv_code::
@@ -417,14 +519,14 @@ CDB Komponenten
 
       (dev)$ git clone file:///path/to/prod/cust.plm.git/
       (dev)$ cd cust.plm
-      (dev)$ git checkout foo 
+      (dev)$ git checkout foo
       Zu Branch 'foo' gewechselt
 
    Für einen Spiegel beim Auftragnehmer -- ggf. auch mit Nutzdaten -- sind
    i.d.R. weitere Maßnahmen erforderlich.  Meist wird initial die komplette
    Instanz (ohne Storage) ausgeliefert.
 
-      
+
 .. revealjs:: Spiegel einrichten
    :title-heading: h3
    :data-background: #333344
@@ -432,7 +534,7 @@ CDB Komponenten
    Auftragnehmer muss Spiegel-System einrichten.
 
    .. rv_small::
-   
+
       Abhängig von den benötigten CDB & *Third-Party* Diensten oder externen
       Anwendungen kann das z.T. sehr Aufwändig bis unmöglich sein.
 
@@ -484,7 +586,7 @@ CDB Komponenten
       :class: bash
 
       (dev)$ cdbpkg commit
-  
+
 .. revealjs:: Änderung implementieren (2)
    :title-heading: h3
    :data-background: #333344
@@ -507,7 +609,7 @@ CDB Komponenten
    .. figure:: dd_class_foo_2.png
       :scale: 150 %
 
-.. revealjs:: Änderung implementieren (2) 
+.. revealjs:: Änderung implementieren (2)
    :title-heading: h3
    :data-background: #333344
 
@@ -523,7 +625,7 @@ CDB Komponenten
 
    Die Änderung ist nun vollständig (Source Code und Konfiguration) im
    SCM-System erfasst und kann an den Auftraggeber ausgeliefert werden.
-      
+
 .. revealjs:: Änderung ausliefern
    :title-heading: h3
    :data-background: #332222
@@ -549,7 +651,7 @@ CDB Komponenten
    ausgelegt.  Lösungen für *offline* Szenarien sind z.B. git-send-email_ oder
    git-bundle_ .. um nur zwei zu nennen.
 
-   
+
 .. revealjs:: Zusammenfassung Lieferantenanbindung
 
    - Es muss einen reproduzierbaren Übergabepunkt (Gesammtzustand des Systems)
@@ -566,7 +668,7 @@ CDB Komponenten
 
 .. revealjs:: Entwicklungszweige
 
-   .. kernel-figure::  git-graph_001.dot   
+   .. kernel-figure::  git-graph_001.dot
 
 
 .. revealjs:: Merge Strategien
@@ -586,7 +688,7 @@ CDB Komponenten
 
    git_ unterstützt *alternative* `Merge Strategien`_, mittels `Git Attributen`_
    kann die Strategie individuell gewählt werden.
-   
+
    Um ``configuration`` **nicht** zu mergen; Strategie ``ours``.
 
    .. rv_code::
@@ -604,7 +706,7 @@ CDB Komponenten
       :class: bash
 
       $ git config --local merge.ours.driver true
-   
+
    .. rv_small::
 
       In CDB 10.x müssen noch ``patches``, ``schema.json``,
@@ -642,11 +744,11 @@ CDB Komponenten
    :title-heading: h3
 
    Branch ``foo`` wurde ausgecheckt, jetzt diff ermitteln
-   
+
    .. rv_code::
       :class: bash
 
-      $ cdbpkg diff cust.plm -p ./.foo-start -d ./.foo-start 
+      $ cdbpkg diff cust.plm -p ./.foo-start -d ./.foo-start
       Writing changes to directory ./.foo-start/patch_cust.fo_xx_yyyy
       11 changes on cust.foo
        1 changes on cust.plm
@@ -657,7 +759,7 @@ CDB Komponenten
       :class: bash
 
       $ dir .foo-start/patch_cust.fo_xx_yyyy
-     
+
 .. revealjs:: Merge foo into master
    :title-heading: h3
 
@@ -694,7 +796,7 @@ CDB Komponenten
    - Source Code kann im SCM-System gemerged werden.
 
    - ``configuration`` benötigt andere Merge-Strategie
-              
+
    - Um Konfig-Änderungen zu mergen, muss der Start-Punkt reproduzierbar
      sein (Gesammtzustand des Systems). Hierfür eignen sich die Branch-Points.
 
@@ -713,7 +815,7 @@ CDB Komponenten
    :title-heading: h5
 
    .. rv_small::
-      
+
       CIM DATABASE (CDB) und CONTACT Elements sind Produktenamen der `Contact
       Software GmbH`_.
 
