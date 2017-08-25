@@ -38,7 +38,7 @@ Installationsschritte
 1. :ref:`heimdall-intro` auf dem PC installieren
 2. :ref:`android_dev_options` aktivieren
 3. :ref:`android_oem_unlock`
-4. :ref:`TWRP <twrp_intro>` für :ref:`twrp_gtaxlw` installieren und
+4. :ref:`TWRP <twrp_intro>` für :ref:`twrp_gtaxlwifi` installieren und
    verschlüsselte Partition formatieren
 5. Exmely_vx.x.xb85x.zip über das `Forum
    <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`__
