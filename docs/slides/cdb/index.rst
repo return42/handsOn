@@ -41,16 +41,21 @@ CDB Komponenten
       *Hit '?' to see keyboard shortcuts*
 
 
-.. revealjs:: Übersicht
+.. revealjs:: Themen
 
    - :ref:`CDB Pakete <cdb_pakete_intro>`
    - :ref:`Struktur Kundenpaket <struktur_kundenpaket>`
-   - :ref:`Voraussetzungen <voraussetzungen>` plus *repair* tools
-     (:ref:`Schema <schema_repair>` & :ref:`Konfiguration <config_repair>`)
+   - :ref:`Voraussetzungen <voraussetzungen>` + *repair* :ref:`Schema
+     <schema_repair>` & :ref:`Konfiguration <config_repair>`
    - :ref:`Updates & Konflikte <updates_und_konflikte>`
-   - :ref:`Transport einer Änderung <transport_aenderung>` (merge Code & Config :ref:`Schaubild <merge_graph>`)
-   - :ref:`CDB & SCM-System <cdb_und_scm>` (SCM gestützte Lieferantenanbindung)
-
+   - :ref:`Transport einer Änderung <transport_aenderung>`: Code & Config
+     :ref:`Merge-Schaubild <merge_graph>`
+   - :ref:`CDB & SCM-System <cdb_und_scm>`
+   - :ref:`Merge Strategien <merge_strategien>`
+   - :ref:`Lieferantenanbindung <lieferantenanbindung>`: :ref:`Beauftragung
+     <aenderung_beauftragen>` & :ref:`Auslieferung <aenderung_ausliefern>`
+   - :ref:`Entwicklungszweige mergen <merge_dev_branches>`
+     
 
 
 .. _cdb_pakete_intro:
@@ -423,34 +428,29 @@ CDB Komponenten
    .. rv_code::
       :class: bash
 
-      $ cdbkg build                         # DB export
+      $ cdbpkg build cust.plm               # DB export
       # git add --all .                     # SCM-Commit
       $ git commit -m "merged branch 'foo'" # ..
-      $ cdbpkg commit                       # CDB-Commit
-
+      $ cdbpkg commit cust.plm              # CDB-Commit
 
 .. _cdb_und_scm:
 
 .. revealjs:: CDB & SCM-System
    :title-heading: h3
-   :subtitle: einfach mal ins SCM committen ist vorbei!
    :subtitle-heading: h4
 
-   wer **das** ``pull``\ 't hat u.U. ein bisect_ Problem
+   - Transport des Source-Code über SCM-System.
 
    - Paket ``cust.plm`` wird im SCM-System versioniert.  Besteht aus
      Source-Code + ``configuration``
 
-   - Transport des Source-Code über SCM-System.
-
    - Abgleich zw. DB & ``configuration`` machen die CDB-Tools
 
-   - CDB-Tools und SCM-System müssen synchron verlaufen
+   - CDB-Tools und SCM-System müssen synchron verlaufen (siehe
+     :ref:`Merge-Schaubild <merge_graph>`)
 
-   .. rv_small::
-
-      Später werden wird noch sehen, wie SCM-System und CDB-Tools synchron
-      verlaufen und das dabei *einiges* zu Beachten ist.
+   - Einfach mal ins SCM committen ist vorbei!  wer **das** ``pull``\ 't hat
+     u.U. ein bisect_ Problem
 
 
 .. revealjs:: Wahl des SCM-System
@@ -464,6 +464,7 @@ CDB Komponenten
    nicht zu vergessen: SVN ist tot.
 
    Wir verwenden hier git_ / siehe auch `get git started`_
+
 
 .. revealjs:: SCM-System einrichten
    :title-heading: h3
@@ -484,7 +485,68 @@ CDB Komponenten
       (prod)$ cdbpkg build cust.plm
       (prod)$ git add --all .
       (prod)$ git commit -m "add 'cust.foo' to package 'cust.plm'"
-      (prod)$ cdbpkg commit
+      (prod)$ cdbpkg commit cust.plm
+
+
+.. _merge_strategien:
+
+.. revealjs:: Merge Strategien
+   :title-heading: h3
+
+   SCM-Systeme wie git_ verfügen über ausgereifte Merge Strategien zum Mergen
+   von **S**\ ource-\ **C**\ ode (*build-in*).
+
+   Merge der CDB-Konfiguration benötigt besondere Strategie.
+
+   Diese Strategie bedarf ``cdbpkg`` Tools, welche die Semantik der
+   Konfiguration *kennen* und Checksummen neu berechnen können.
+
+
+.. _git_merge_strategie:
+
+.. revealjs:: Merge Strategie (git)
+   :title-heading: h3
+
+   git_ unterstützt *alternative* `Merge Strategien`_, mittels `Git Attributen`_
+   kann die Strategie individuell gewählt werden.
+
+   Um ``configuration`` **nicht** zu mergen; Strategie ``ours``.
+
+   .. rv_code::
+      :class: bash
+
+      # location: cust.plm/.gitattributes
+      # CDB 15.x
+      cust/*/configuration         merge=ours
+
+   .. *
+
+   Dummy handler ``true`` für ``ours`` registrieren
+
+   .. rv_code::
+      :class: bash
+
+      $ git config --local merge.ours.driver true
+
+   .. rv_small::
+
+      In CDB 10.x müssen noch ``patches``, ``schema.json``,
+      ``module_metadata.json`` und ``content_metadata.json`` analog gesetzt
+      werden (`.gitattributes`_)
+
+
+.. _lieferantenanbindung:
+
+.. revealjs:: Lieferantenanbindung
+   :title-heading: h2
+
+   .. figure::  clone_graph.svg
+      :scale:   100 %
+
+   Lieferantenanbindung erfolgt an einem Branch-Point (``foo``). Ob Branch-Point
+   vom PROD- oder dem QS-System (aka. ``master``) genommen wird, muss durch die
+   Projektplanung entschieden werden.  Die Auslieferung an den Lieferanten ist
+   ein *Clone*.
 
 .. revealjs:: Änderung einplanen (master)
    :title-heading: h3
@@ -508,12 +570,14 @@ CDB Komponenten
         foo    268a44e add 'cust.foo' to package 'cust.plm'
       * master 268a44e add 'cust.foo' to package 'cust.plm'
 
-.. revealjs:: Änderung beauftragen (dev)
+.. _aenderung_beauftragen:
+        
+.. revealjs:: Änderung beauftragen (clone)
    :title-heading: h3
    :data-background: #332222
 
-   Der Übergabepunkt einer Beauftragung ist der feature Branch. Er muss dem
-   Auftragnehmer übergeben werden.
+   Der Übergabepunkt einer Beauftragung ist der Branch-Point (``foo``). Er muss
+   dem Auftragnehmer übergeben werden.
 
    .. rv_code::
 
@@ -543,8 +607,8 @@ CDB Komponenten
    .. rv_code::
       :class: bash
 
-      (dev)$ cdbpkg sync
-      (dev)$ cdbpkg commit
+      (dev)$ cdbpkg sync cust.plm
+      (dev)$ cdbpkg commit cust.plm
 
    .. rv_small::
 
@@ -565,6 +629,8 @@ CDB Komponenten
      .. figure:: dd_class_foo_2.png
         :scale: 150 %
 
+   In der Entwickler-Übersicht den Dev-Build anstoßen.  Doppel-Klick auf 'Dev
+   Patches' zeigt die lokalen Änderungen.
 
 .. revealjs:: Änderung implementieren (1)
    :title-heading: h3
@@ -579,13 +645,17 @@ CDB Komponenten
       (dev)$ git add --all .
       (dev)$ git commit -m "configured 'foo' schema"
 
-   Da *diese* Teil-Änderung nun schon im SCM-System ist, müssen alle weiteren
-   lokalen Änderungen relativ zu dem Stand **jetzt** *aufgezeichnet* werden.
+   *Dieser* Teil-Änderung ist nun im SCM-System. Alle weiteren lokalen
+   Änderungen sollen relativ zu dem Stand **jetzt** *aufgezeichnet* werden.
 
    .. rv_code::
       :class: bash
 
-      (dev)$ cdbpkg commit
+      (dev)$ cdbpkg commit cust.plm
+
+   In der Entwickler-Übersicht ist der Eintrag 'Dev Patches' für die lokalen
+   Änderungen nun *verschwunden*.
+
 
 .. revealjs:: Änderung implementieren (2)
    :title-heading: h3
@@ -613,25 +683,41 @@ CDB Komponenten
    :title-heading: h3
    :data-background: #333344
 
-   Änderungen sind abgeschlossen, zweiter Commit
+   Änderungen sind abgeschlossen, zweiten Commit vorbereiten ..
 
    .. rv_code::
       :class: bash
 
       (dev)$ cdbpkg build cust.plm
+
+   In der Entwickler-Übersicht ist wieder der Eintrag 'Dev Patches' zu sehen.
+   Doppel-Klick darauf zeigt die lokalen Änderungen.
+
+   .. rv_code::
+      :class: bash
+
       (dev)$ git add --all .
       (dev)$ git commit -m "implemented class 'Foo'"
-      (dev)$ cdbpkg commit
+      (dev)$ cdbpkg commit cust.plm
 
-   Die Änderung ist nun vollständig (Source Code und Konfiguration) im
-   SCM-System erfasst und kann an den Auftraggeber ausgeliefert werden.
+   Umsetzung der Anforderung ist nun vollständig im SCM-System (Source-Code und
+   Konfiguration) und kann ausgeliefert werden.
+
+.. _aenderung_ausliefern:
+
+.. revealjs:: Änderung ausliefern (push)
+   :title-heading: h3
+   :data-background: #332222
+
+   Auslieferung erfolgt in den Übergabepunkt; Branch ``foo`` des Auftraggebers.
+
+   .. figure::  push_graph.svg
+      :scale:   100 %
 
 .. revealjs:: Änderung ausliefern
    :title-heading: h3
    :data-background: #332222
-
-   Die Lieferung erfolgt in den Übergabepunkt; Brnach ``foo`` des Auftraggebers.
-
+   
    .. rv_code::
       :class: bash
 
@@ -666,54 +752,24 @@ CDB Komponenten
    Bisher nicht betrachtet, wie bekommt der Auftrageber die Änderung in seinen
    ``master``?
 
-.. revealjs:: Entwicklungszweige
+.. _merge_dev_branches:
+   
+.. revealjs:: Entwicklungszweige mergen
 
    .. kernel-figure::  git-graph_001.dot
 
+.. revealjs:: Merge ist immer gleich
 
-.. revealjs:: Merge Strategien
-   :title-heading: h3
+   .. figure::  merge_graph.svg
+      :scale:   100 %
 
-   SCM-Systeme wie git_ verfügen über ausgereifte Merge Strategien zum Mergen
-   von **S**\ ource-\ **C**\ ode (*build-in*).
+   Der Merge des Branch ``foo`` enspricht genau dem :ref:`Merge-Schaubild
+   <merge_graph>`. Es gibt den Branch-Point und im Merge-Point sollen die
+   Änderungen aus Source-Code (``git merge``) und Konfiguration (``cdbpkg``) im
+   ``master`` Branch zusammengeführt werden.
 
-   Merge der CDB-Konfiguration benötigt besondere Strategie.
-
-   Diese Strategie bedarf ``cdbpkg`` Tools, welche die Semantik der
-   Konfiguration *kennen* und Checksummen neu berechnen können.
-
-
-.. revealjs:: Merge Strategie (git)
-   :title-heading: h3
-
-   git_ unterstützt *alternative* `Merge Strategien`_, mittels `Git Attributen`_
-   kann die Strategie individuell gewählt werden.
-
-   Um ``configuration`` **nicht** zu mergen; Strategie ``ours``.
-
-   .. rv_code::
-      :class: bash
-
-      # location: cust.plm/.gitattributes
-      # CDB 15.x
-      cust/*/configuration         merge=ours
-
-   .. *
-
-   Dummy handler ``true`` für ``ours`` registrieren
-
-   .. rv_code::
-      :class: bash
-
-      $ git config --local merge.ours.driver true
-
-   .. rv_small::
-
-      In CDB 10.x müssen noch ``patches``, ``schema.json``,
-      ``module_metadata.json`` und ``content_metadata.json`` analog gesetzt
-      werden (`.gitattributes`_)
-
-.. revealjs:: Merge Strategie (cdbpkg diff & patch)
+                       
+.. revealjs:: Merge Strategie (cdbpkg diff)
    :title-heading: h3
 
    Für den ``diff`` wird der Working-tree des Branch-Points benötigt.
@@ -721,35 +777,37 @@ CDB Komponenten
    .. rv_code::
       :class: bash
 
-      $ git worktree add .foo-start 268a44e
-      $ git checkout foo
+      $ git worktree add /tmp/foo-start 268a44e
       $ git worktree list
-        /path/to/cust.plm             3e3838e [foo]
-        /path/to/cust.plm/.foo-start  268a44e (detached HEAD)
+        /path/to/cust.plm    3e3838e [foo]
+        /tmp/foo-start       268a44e (detached HEAD)
 
-   Der Branch-Point ``268a44e`` wurde aus dem Log entnommen.
+   Der Branch-Point ``268a44e`` wurde aus dem Log entnommen. Die Kopie des
+   Branch-Points liegt nun unter ``/tmp/foo-start``.
 
-   .. rv_small::
+   ..
+      .. rv_small::
 
-      Fürs Scripting kann er auch wie folgt ermittelt werden:
+         Fürs Scripting kann er auch wie folgt ermittelt werden:
 
-   .. rv_code::
-      :class: bash
+      .. rv_code::
+         :class: bash
 
-      $ BRANCH=foo
-      $ diff -u <(git rev-list ${BRANCH}) <(git rev-list master) \
-                | tail -2 | head -1
+         $ BRANCH=foo
+         $ diff -u <(git rev-list ${BRANCH}) <(git rev-list master) \
+                   | tail -2 | head -1
 
-.. revealjs:: Merge Strategie (cdbpkg diff & patch)
+.. revealjs:: Merge Strategie (cdbpkg diff)
    :title-heading: h3
 
-   Branch ``foo`` wurde ausgecheckt, jetzt diff ermitteln
+   Branch ``foo`` wird ausgecheckt, jetzt diff zum Branch-Point ermitteln
 
    .. rv_code::
       :class: bash
 
-      $ cdbpkg diff cust.plm -p ./.foo-start -d ./.foo-start
-      Writing changes to directory ./.foo-start/patch_cust.fo_xx_yyyy
+      $ git checkout foo
+      $ cdbpkg diff cust.plm -p /tmp/foo-start -d /tmp
+      Writing changes to directory /tmp/patch_cust.fo_xx_yyyy
       11 changes on cust.foo
        1 changes on cust.plm
 
@@ -758,7 +816,11 @@ CDB Komponenten
    .. rv_code::
       :class: bash
 
-      $ dir .foo-start/patch_cust.fo_xx_yyyy
+      $ dir /tmp/patch_cust.fo_xx_yyyy
+
+   Die Vorbereitungen sind damit abgeschlossen, der eigentliche Merge
+   (SCM-Merge + ``cdbpkg patch``) kann nun beginnen.
+
 
 .. revealjs:: Merge foo into master
    :title-heading: h3
@@ -770,42 +832,53 @@ CDB Komponenten
 
       $ cd cust.plm
       $ git checkout master
-      $ git merge foo
-      $ cdbpkg patch ./.foo-start/patch_cust.fo_xx_yyyy
-      ...
+      $ git merge foo                               # SCM-Merge
+      $ cdbpkg patch /tmp/patch_cust.fo_xx_yyyy     # CDB-Merge
 
-   Konflikte auflösen, anschließend commiten
+   Konflikte in CDB auflösen, anschließend commiten
 
    .. rv_code::
       :class: bash
 
-      $ cdbkg build
+      $ cdbpkg build cust.plm
       $ git add --all .
       $ git commit -m "merged branch 'foo'"
-      $ cdbpkg commit
+      $ cdbpkg commit cust.plm
 
    .. rv_small::
 
-      Konflikte in den Sourcen werden vom SCM-System erkannt. Konflikte der
-      Konfiguration von CDB erkannt und können über das Protokoll eingesehen und
-      mit anderen Warnungen in CDB behandelt werden.
+      Konflikte in Sourcen werden vom SCM-System erkannt. Außnahme ist
+      ``configuration`` siehe :ref:`Merge Strategie <git_merge_strategie>`.
+      Konflikte in Konfiguration werden von CDB erkannt. Letztere werden über
+      das Protokoll eingesehen und mit anderen Warnungen in CDB behandelt.
 
 
 .. revealjs:: Zusammenfassung Merge
 
-   - Source Code kann im SCM-System gemerged werden.
+   - Source-Code wird vom SCM-System gemerged.
 
-   - ``configuration`` benötigt andere Merge-Strategie
+   - ``configuration`` benötigt andere :ref:`Merge Strategie
+     <git_merge_strategie>`
 
    - Um Konfig-Änderungen zu mergen, muss der Start-Punkt reproduzierbar
-     sein (Gesammtzustand des Systems). Hierfür eignen sich die Branch-Points.
+     sein. **Hierfür eignen sich die Branch-Points.**
 
-   - Der ``master`` war exemplarisch, i.d.R. wird man für den *master* drei
-     Branches haben: ``DEV``, ``QS`` und ``PROD``
+   - Der ``master`` war exemplarisch, i.d.R. wird man für den *master* min. zwei
+     Branches haben: ``QS`` und ``PROD``
 
-   - Der Transport zw. ``DEV``, ``QS`` und ``PROD`` ist der hier beschriebene
-     Merge.
+   - Der Transport zw. ``QS`` und ``PROD`` ist wieder vergleichbar, nur mit *anderem*
+     Branch-Point und Merge-Point.
 
+     
+.. revealjs:: Merge ist immer gleich
+
+   .. figure::  merge_graph.svg
+      :scale:   100 %
+
+   Für die Umsetzung eines *Features* (einer Anforderung) gibt es den
+   Feature-Branch. Im Merge-Point werden die Änderungen aus Source-Code (``git
+   merge``) und Konfiguration (``cdbpkg``) im ``master`` Branch zusammengeführt
+   werden.
 
 .. revealjs:: Danke!
 
