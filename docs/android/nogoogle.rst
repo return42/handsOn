@@ -33,7 +33,13 @@ Software Empfehlungen
 
 Sofern nicht anders angegeben können die Apps über F-Droid_ bezogen werden:
 
-- `VIA Browser Internet browser <http://via.1year.cc/>`_ (über Yalp)
+- `DNS66 <https://github.com/julian-klode/dns66>`_ DNS basierter Add-Blocker
+  *!!must have!!*, bei dem man auch seinen eigenen DNS (z.B. pi-hole) eintragen
+  kann.
+- `VIA Browser Internet browser <http://via.1year.cc/>`_ (über Yalp). Eine noch
+  junge Alternative mit einem etwas anderem Bedienkonzept ist `Browser
+  <https://github.com/scoute-dich/browser>`_ (über `F-Droid
+  <https://f-droid.org/packages/de.baumann.browser/>`__)
 - `RealCalc Scientific Calculator <http://www.quartic-software.co.uk/>`_
 - `AFWall+ (Android Firewall +) <https://github.com/ukanth/afwall>`_
 - `K-9 Mail Client <https://k9mail.github.io/>`_
