@@ -401,7 +401,7 @@ CDB Komponenten
 
    Typisches Schaubild für einen *Feature-Branch*, der in den *master* Branch
    gemerged wird. Der *master* Branch kann z.B. **QS** oder **PROD** sein.  Egal
-   ob man eine Kopie anlegt oder dazu ein SCM-System, es gibt immer einen
+   ob man eine Kopie anlegt oder dazu ein SCM-System nutzt, es gibt immer einen
    Branch-Point und einen Merge-Point.  Die Änderungen in der DB können nur mit
    ``cdbpkg`` gemerged werden.
 
