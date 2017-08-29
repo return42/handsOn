@@ -5,7 +5,7 @@ CDB Komponenten
 .. _darmarIT: http://www.darmarit.de
 .. _`setup.py`: https://docs.python.org/2/distutils/setupscript.html
 .. _bisect: https://en.wikipedia.org/wiki/Bisection_(software_engineering)
-.. _`get git started`: https://return42.github.io/handsOn/git-slide/index.html
+.. _`get git started`: https://return42.github.io/handsOn/slides/git/index.html
 .. _git: https:/git-scm.com/
 .. _SVN: https://subversion.apache.org/
 .. _Protokolle: https://git-scm.com/book/id/v2/Git-on-the-Server-The-Protocols
