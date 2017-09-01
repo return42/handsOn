@@ -323,7 +323,7 @@ CDB Komponenten
       ...
       cs.tools.batchoperations
       ------------------------
-      masken: name=cdbbop_operation/owner=public/attribut=button_execute
+      masken: name=cdbbop_operation/owner=public/attribut=button_ex...
         error: Referenced object does not exist
         reference: Icons
         foreign keys: {u'string1': u'foofoo'}
@@ -588,30 +588,35 @@ CDB Komponenten
 
    Für einen Spiegel beim Auftragnehmer -- ggf. auch mit Nutzdaten -- sind
    i.d.R. weitere Maßnahmen erforderlich.  Meist wird initial die komplette
-   Instanz (ohne Storage) ausgeliefert.
+   Instanz ausgeliefert (z.B. ZIP des ``CADDOK_BASE`` am Branchpoint plus
+   DB-Dump aber ohne Storage).
 
 
 .. revealjs:: Spiegel einrichten
    :title-heading: h3
    :data-background: #333344
 
-   Auftragnehmer muss Spiegel-System einrichten.
+   Auftragnehmer muss (Teil-) Spiegel-System einrichten.
 
    .. rv_small::
 
-      Abhängig von den benötigten CDB & *Third-Party* Diensten oder externen
-      Anwendungen kann das z.T. sehr Aufwändig bis unmöglich sein.
+      Abhängig von den benötigten CDB- und *Third-Party-* Diensten (z.B. SAP)
+      und *externen* Anwendungen kann ein *vollständiger** Spiegel z.T. sehr
+      Aufwändig bis unmöglich sein.
 
    Stand aus Branch ``foo`` in den lokalen Spiegel einspielen
 
    .. rv_code::
       :class: bash
 
-      (dev)$ cdbpkg sync cust.plm
+      (dev)$ cdbpkg sync      
+      (dev)$ cdbpkg import_blobs    # falls DB-Dump verwendet wurde
       (dev)$ cdbpkg commit cust.plm
 
    .. rv_small::
 
+      Ein ``import_blobs`` ist i.d.R. erforderlich, wenn der Spiegel aus einem
+      DB-Dump aufgebaut wurde (und der storage des Spiegels noch *leer** ist).
       Das ``commit`` sollte nicht unbedingt erforderlich sein, stellt aber in
       jedem Fall sicher, dass ab **jetzt** lokale Änderungen *aufgezeichnet*
       werden.
