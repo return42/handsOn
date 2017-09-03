@@ -54,8 +54,8 @@ Schalter, der 'OEM unlock' oder eben 'OEM Entspreren' heißt.
 
 .. _samsung_download_mode:
 
-Samsung Download & Recovery
-===========================
+Samsung Download- & Recovery-Mode
+=================================
 
 Die Samsung Androids verfügen i.d.R. über einen Download-Boot und eine
 Recovery-Boot. Der Download-Boot dient zum flashen der Geräte und mit dem

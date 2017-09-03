@@ -26,3 +26,7 @@
 
 .. _`PDADB Samsung Exynos 7 Octa 7870 (Joshua) datasheet`: http://pdadb.net/index.php?m=processor&id=660&c=samsung_exynos_7_octa_7870__joshua&d=detailed_specs
 .. _`Samsung Exynos 7 Octa 7870`: http://www.samsung.com/semiconductor/minisite/Exynos/Solution/MobileProcessor/Exynos_7_Octa_7870.html
+
+
+.. _`Galaxy Nexus`: https://de.wikipedia.org/wiki/Galaxy_Nexus
+.. _GT-I9250: http://www.samsung.com/de/support/model/GT-I9250CWAVD2
