@@ -26,6 +26,7 @@ leicht möglich.
    mozcloud/index
    radicale/index
    android/index
+   snappy/index
    LICENSE
 
 
