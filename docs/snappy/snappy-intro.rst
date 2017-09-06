@@ -3,7 +3,7 @@
 .. include:: ../snappy_refs.txt
 
 ===============================================================================
-snappy Intro
+snap Intro
 ===============================================================================
 
 Ein Paket wird ``snap`` genannt und es wird mit dem gleichnamigen Kommando
