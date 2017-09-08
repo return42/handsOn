@@ -2,6 +2,8 @@
 
 .. include:: ../snappy_refs.txt
 
+.. _snap:
+
 =================
 Linux snap-Pakete
 =================
@@ -11,7 +13,8 @@ Pakete unabhängig vom *nativem* Paket-Manager einer Linux Distribution
 installiert werden. Snappy_ kann auf den gängigen Distributuionen installiert
 werden (s.a. `install snapd`_).
 
-**Themen**
+Themen
+======
 
 .. toctree::
    :maxdepth: 1
@@ -23,7 +26,8 @@ werden (s.a. `install snapd`_).
    snap-confinement
 
 
-**ToDo**
+ToDo
+====
 
 Dieser Artikel befindet sich noch im Aufbau, folgende Themen müssen noch
 ausgearbeitet werden:
@@ -33,8 +37,9 @@ ausgearbeitet werden:
 - `Create your own Core Image <https://tutorials.ubuntu.com/tutorial/create-your-own-core-image?backURL=%2F#0>`_
 - `Build a nodejs service snap <https://tutorials.ubuntu.com/tutorial/build-a-nodejs-service?backURL=%2F#0>`_
 - `Build for another architecture <https://snapcraft.io/docs/build-snaps/build-for-another-arch>`_
-   
-**Verweise**
+
+Verweise
+========
 
 - `snapcraft Syntax`_
 
@@ -47,5 +52,3 @@ ausgearbeitet werden:
 
 - Konfiguration zu den Beispielen in diesem Artikel:
   - hello Paket: :download:`hello/snap/snapcraft.yaml <hello/snap/snapcraft.yaml>`
-
-

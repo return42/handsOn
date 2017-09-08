@@ -1,0 +1,11 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _LXC: https://linuxcontainers.org/lxc/introduction/
+.. _LXD: https://linuxcontainers.org/lxd/introduction/
+.. _`LXD@github`: https://github.com/lxc/lxd
+
+.. _`chroot (wiki)`: https://de.wikipedia.org/wiki/Chroot
+.. _`cgroups`: https://en.wikipedia.org/wiki/Cgroups
+
+.. _`FreeBSD-Jails`: https://www.freebsd.org/doc/handbook/jails.html
+.. _`Kernel-Namespaces`: https://lwn.net/Articles/531114/
