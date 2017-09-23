@@ -151,10 +151,10 @@ external_url 'https://storage/gitlab'
 ###! **Be careful not to break the indentation in the ldap_servers block. It is
 ###!   in yaml format and the spaces must be retained. Using tabs will not work.**
 
-# ldapsearch -H ldaps://$host:$port -D "$bind_dn" -y bind_dn_password.txt  -b "$base" "$user_filter" sAMAccountName
-# ldapsearch -H ldaps://storage:636 -D "" -b "dc=storage" "(memberOf=cn=gitlab,ou=Services,dc=storage)" userid uid mail cn givenName sn
-
 # gitlab_rails['ldap_enabled'] = true
+
+# # ldapsearch -H ldaps://$host:$port -D "$bind_dn" -y bind_dn_password.txt  -b "$base" "$user_filter" sAMAccountName
+# # ldapsearch -H ldaps://storage:636 -D "" -b "dc=storage" "(memberOf=cn=gitlab,ou=Services,dc=storage)" userid uid mail cn givenName sn
 
 # # ! **remember to close this block with 'EOS' below**
 # gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
@@ -166,14 +166,49 @@ external_url 'https://storage/gitlab'
 #     # for instance if you find out it is too large to fit on the web page.
 #     #
 #     # Example: 'Paris' or 'Acme, Ltd.'
-#     label: 'LDAP'
+#     label: 'LDAP storage'
 
 #     host: 'storage'
-#     port: 636
-#     uid: 'uid'
-#     method: 'ssl' # "tls" or "ssl" or "plain"
+#     port: 636       # usually 636 for SSL else 389
+#     uid: 'uid'      # This should be the attribute, not the value that maps to uid. (e.g. 'sAMAccountName')
+
+#     # Examples: 'america\\momo' or 'CN=Gitlab Git,CN=Users,DC=mydomain,DC=com'
 #     bind_dn: ''
 #     password: ''
+
+#     # Encryption method. The "method" key is deprecated in favor of
+#     # "encryption".
+#     #
+#     #   Examples: "start_tls" or "simple_tls" or "plain"
+#     #
+#     #   Deprecated values: "tls" was replaced with "start_tls" and "ssl" was
+#     #   replaced with "simple_tls".
+#     #
+#     encryption: 'simple_tls'
+
+#     # Enables SSL certificate verification if encryption method is
+#     # "start_tls" or "simple_tls". Defaults to true since GitLab 10.0 for
+#     # security. This may break installations upon upgrade to 10.0, that did
+#     # not know their LDAP SSL certificates were not setup properly. For
+#     # example, when using self-signed certificates, the ca_file path may
+#     # need to be specified.
+#     verify_certificates: true
+
+#     # Specifies the path to a file containing a PEM-format CA certificate,
+#     # e.g. if you need to use an internal CA.
+#     #
+#     #   Example: '/etc/ca.pem'
+#     #
+#     # Tipp: copy 'TLS_CACERT' configuration from your LDAP-clients /etc/ldap/ldap.conf
+
+#     ca_file: '/etc/ssl/certs/ca-certificates.crt'
+
+#     # Specifies the SSL version for OpenSSL to use, if the OpenSSL default
+#     # is not appropriate.
+#     #
+#     #   Example: 'TLSv1_1'
+#     #
+#     ssl_version: ''
 
 #     # Set a timeout, in seconds, for LDAP queries. This helps avoid blocking
 #     # a request if the LDAP server becomes unresponsive.
@@ -305,7 +340,7 @@ gitlab_rails['backup_path'] = "/share/backups/gitlab"
 ###!   path that doesn't contain symlinks.**
 # git_data_dirs({"default" => "/var/opt/gitlab/git-data"})
 
-git_data_dirs({"default" => "/share/repos/gitlab"})
+git_data_dirs({"default" => "/x/001-1/repos/gitlab"})
 
 ### For storing GitLab application uploads, eg. LFS objects, build artifacts
 ###! Docs: https://docs.gitlab.com/ce/development/shared_files.html
