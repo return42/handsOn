@@ -25,17 +25,12 @@ docs:  sphinx-doc slides
 	$(call cmd,sphinx,html,docs,docs)
 
 PHONY += slides
-slides: git-slide cdb-slide
+slides: git-slide
 	cd $(DOCS_DIST)/slides; zip -r git.zip git
-	cd $(DOCS_DIST)/slides; zip -r cdb.zip cdb
 
 PHONY += git-slide
 git-slide:  sphinx-doc
 	$(call cmd,sphinx,html,$(SLIDES)/git,$(SLIDES)/git,slides/git)
-
-PHONY += cdb-slide
-cdb-slide:  sphinx-doc
-	$(call cmd,sphinx,html,$(SLIDES)/cdb,$(SLIDES)/cdb,slides/cdb)
 
 PHONY += clean
 clean: pyclean docs-clean
