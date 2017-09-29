@@ -11,7 +11,6 @@
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -73,8 +72,10 @@ main(){
     case $1 in
 	install)
             install_gitlab
+            sudoOrExit
 	    ;;
 	deinstall)
+            sudoOrExit
             deinstall_gitlab
 	    ;;
         README)
