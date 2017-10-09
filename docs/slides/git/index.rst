@@ -1204,6 +1204,8 @@ get git started
    gogs_ *leichtgewicht* -- `GitLab CE`_ *Team & CI*
 
 
+.. _git-format-git-am:
+
 .. revealjs:: offline Szenarien 
 
    Patches mit `git format-patch`_ und `git am`_ transportieren.
