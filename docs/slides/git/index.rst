@@ -21,7 +21,8 @@ get git started
 .. _`git fetch`: https://git-scm.com/docs/git-fetch
 .. _`git pull`: https://git-scm.com/docs/git-pull
 .. _`git remote`: https://git-scm.com/docs/git-remote
-
+.. _`git format-patch`: https://git-scm.com/docs/git-format-patch
+.. _`git am`: https://git-scm.com/docs/git-am
 
 .. _`Getting a Git Repository`: https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository
 .. _`.gitignore`: https://git-scm.com/docs/gitignore
@@ -795,6 +796,7 @@ get git started
       Dabei wird es u.U. Konflikte geben. In der Grafik nicht zu sehen, aber
       oben bereits erwähnt, erwarten wir ja so einen Konflikt in der README.txt.
 
+.. _git-merge-hello-world:
 
 .. revealjs:: git merge
    :title-heading: h3
@@ -842,7 +844,6 @@ get git started
 
    Mit ``hello-world.py`` gab es keine Konflikte, wurde bereits *ge-added*.
    Die ``README.txt`` hatte einen Konflikt.
-
 
 .. revealjs:: git merge conflict
    :title-heading: h3
@@ -933,6 +934,8 @@ get git started
       $ git add README.txt
       $ git commit -m "merge hello-world branch"
       [master f5f3b62] merge hello-world branch
+
+.. _git-graph:
 
 .. revealjs:: git graph
    :title-heading: h3
@@ -1201,9 +1204,36 @@ get git started
    gogs_ *leichtgewicht* -- `GitLab CE`_ *Team & CI*
 
 
-.. revealjs:: offline Szenarien
+.. revealjs:: offline Szenarien 
 
-   comming soon ...
+   Patches mit `git format-patch`_ und `git am`_ transportieren.
+              
+   .. rv_code::
+      :class: shell
+
+      host_a$ git format-patch 9af1a51..hello-world \
+                  -M -C --output-directory=patches
+
+   .. rv_small::
+
+      Patches von Commit ``9af1a51`` an (Abzweig ``hello-world`` / s.a.
+      :ref:`git-graph <git-graph>`), bis zum aktuellen Stand des ``hello-world``
+      Branch werden im Ordner ``./patches`` angelegt.
+
+   .. rv_code::
+      :class: shell
+
+      host_b$ git checkout master
+      host_b$ git am --keep-cr ./patches/*
+
+   .. rv_small::
+
+      Merge der Patches aus Ordner ``./patches`` in den ``master``.  Schalter
+      ``--keep-cr`` erhält die CR (`erforderlich bei Windows
+      <https://serverfault.com/a/197574>`_). Bei Konflikten muss man diese
+      auflösen (wie bereits bei `git-merge <git-merge-hello-world>`_
+      erläutert). Manchmal kann auch der Schalter ``--reject`` `hilfreich sein
+      <https://git-scm.com/docs/git-apply#git-apply---reject>`_.
 
 .. revealjs:: Danke
 
