@@ -80,7 +80,7 @@ ARCHIVE_TOOLS_PACKAGES="\
 "
 
 HARDWARE_PACKAGES="\
- powertop lm-sensors psensor pm-utils \
+ powertop lm-sensors psensor pm-utils exfat-fuse exfat-utils \
 "
 
 MONITORING_PACKAGES="\
@@ -371,6 +371,7 @@ Zu den *Hardware-Tools* zählen:
 * powertop(8) zur Bewertung des Stromverbrachs von Programmen
 * pm-suspend(8), pm-hibernate(8) etc.  für die Power-Save Modi
 * psensor(1) für die Temparaturüberwachung
+* exFAT ein Dateisystem das häufig auf SD-Karten verwendet wird
 "
     rstPkgList ${HARDWARE_PACKAGES}
     if ! askNy "Sollen die Hardware Tools installiert werden?" 60; then
