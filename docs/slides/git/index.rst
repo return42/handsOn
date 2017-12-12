@@ -28,9 +28,8 @@ get git started
 .. _`.gitignore`: https://git-scm.com/docs/gitignore
 .. _`.gitignore Vorlagen`: https://github.com/github/gitignore
 .. _`GitLab CE`: https://about.gitlab.com
-
 .. _gogs: https://gogs.io
-.. _`Pro Git` : https://git-scm.com/book/de/v1
+.. _`Pro Git` : https://git-scm.com/book/en/v2/
 .. _`sphinxjp.themes.revealjs`: https://github.com/return42/sphinxjp.themes.revealjs
 .. _`REVEAL.JS`: https://lab.hakim.se/reveal-js
 .. _`Sphinx-doc`: https://www.sphinx-doc.org
@@ -40,8 +39,8 @@ get git started
 .. _`GitLab.com`: https://gitlab.com/explore
 .. _Bitbucket: https://bitbucket.org/account/signup
 .. _`remote Branches`: https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches
-.. _Refspec: https://git-scm.com/book/en/v2/Git-Internals-The-Refspec
-   
+.. _refspec: https://git-scm.com/book/tr/v2/Git-Internals-The-Refspec
+
 .. raw:: html
 
    <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
@@ -88,7 +87,7 @@ get git started
 
       parallele Weiterentwicklung-->  *feature branch*
 
-      Produktivität --> *jonglieren statt editieren*
+      Produktivität --> Änderungen *jonglieren statt editieren*
 
       .. figure:: Passing_2jugglers_6balls_Ultimate-Valse_side.gif
          :target: https://commons.wikimedia.org/wiki/File:Passing_2jugglers_6balls_Ultimate-Valse_side.gif
@@ -143,9 +142,9 @@ get git started
    .. rv_note::
 
       Am Ende werden zwar bei jeder Entwicklung alle Änderungen in den *master*
-      Zweig auf dem *origin* Repository eingepflegt. Das Problem bei SVN ist
-      aber, dass auch die Branches nur auf dem Server liegen können. Alles muss
-      gegen diesen EINEN Server laufen.
+      Zweig auf dem *origin* Repository eingepflegt. Der Nachteil bei zentralem
+      SCM wie SVN ist aber, dass auch die Branches nur auf dem Server liegen
+      können. Alles muss gegen diesen EINEN Server laufen.
 
 
 .. revealjs:: Verteiltes SCM mit Remotes
@@ -312,7 +311,7 @@ get git started
       Meist bekommt man sein Repo via ``clone`` aber auch das wurde mal mit
       ``init`` angelegt.
 
-.. revealjs:: lokales Arbeiten -- `git status
+.. revealjs:: lokales Arbeiten -- git status
    :title-heading: h3
 
    .. rv_code::
@@ -333,14 +332,12 @@ get git started
       nichts zum Commit vorgemerkt, aber es gibt unversionierte
       Dateien (benutzen Sie "git add" zum Versionieren)
 
-   .. rst-class:: fragment roll-in
+   `git status`_: aktueller Branch ist ``master``, Stage ist gerade leer,
+   vergleiche mit dem `Diagramm <#/8>`__
 
-      `git status`_: aktueller Branch ist ``master``, Stage ist gerade leer,
-      vergleiche mit dem `Diagramm <#/8>`__
+   .. rv_small::
 
-      .. rv_small::
-
-         besser wir ignorieren ``README.txt~``
+      besser wir ignorieren ``README.txt~``
 
    .. rv_note::
 
@@ -376,7 +373,6 @@ get git started
 
       sieht schon besser aus :)
 
-
 .. revealjs:: lokales Arbeiten -- git add
    :title-heading: h3
 
@@ -408,9 +404,9 @@ get git started
 
    .. rv_note::
 
-      Angenommen wir wollen die README.txt noch nicht drin haben, dann gibt git
-      uns hier gleich den richtigen Hinweis, wie wir die Datei wieder
-      rausbekommen ... mit 'git rm --cached'
+      Angenommen wir wollen die README.txt noch nicht im initalen commit drin
+      haben, dann gibt git uns hier gleich den richtigen Hinweis, wie wir die
+      Datei wieder rausbekommen ... mit 'git rm --cached'
 
 
 .. revealjs:: lokales Arbeiten -- git rm
@@ -562,6 +558,9 @@ get git started
 
          $ git log --graph
 
+   .. rv_note::
+
+      Jetzt bitte mal ``git log --graph`` auf der Komandozeile ausprobieren.
 
 .. revealjs:: Einrichten -- git config / alias
    :title-heading: h3
@@ -977,7 +976,7 @@ get git started
       .. rv_code::
          :class: shell
 
-         $git clone https://github.com/return42/git-teaching.git
+         $ git clone https://github.com/return42/git-teaching.git
 
       .. rv_code::
          :class: shell
@@ -1081,16 +1080,22 @@ get git started
       Ihr Branch ist vor 'origin/master' um 1 Commit.
       (benutzen Sie "git push", um lokale Commits zu publizieren)
 
-   Änderungen müssen im lokalem Repository *commited* werden.
+   .. rv_small::
+
+      Änderungen müssen im lokalem Branch (Repository) *commited* werden. Erst
+      danach kann man sie mit `git push`_ zum Remote *schieben*. Der Alias
+      ``origin`` wählt dabei den Remote.
 
    .. rv_code::
       :class: shell
 
       $ git push origin master:master
 
-   `git push`_: Alias ``origin`` wählt den Remote. Die *refspec*
-   ``master:master`` gibt an, dass der lokale ``master`` (links) auf den Remote
-   ``master`` (rechts) *gepusht* werden soll. Einfacher:
+   .. rv_small::
+
+      refspec_ ``master:master`` sagt: lokaler ``master`` (links) auf Remote
+      ``master`` (rechts) *schieben*.  Lokaler ``master`` folgt (tracking)
+      ohnehin schon dem ``[origin/master]``. Einfacher:
 
    .. rv_code::
 
@@ -1109,7 +1114,7 @@ get git started
       * branch            master     -> FETCH_HEAD
       = [aktuell]         master     -> origin/master
 
-   Der Remote ist wieder ``origin``. Die *refspec* ``master`` gibt an,
+   Der Remote ist wieder ``origin``. Die refspec_ ``master`` gibt an,
    dass der Fetch vom remote ``master`` erfolgt.
 
    Mit `git pull`_ kann man in einem Schritt *fetchen* und den ``FETCH_HEAD``
