@@ -1,0 +1,7 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _SANE: http://www.sane-project.org
+.. _SANE-Backend: https://wiki.ubuntuusers.de/SANE/#Backend
+.. _SANE-Frontend: https://wiki.ubuntuusers.de/Scanner/Software/
+.. _`Simple Scan`: http://wiki.ubuntuusers.de/Simple_Scan
+.. _`pdfsandwich`: http://www.tobias-elze.de/pdfsandwich
