@@ -1,6 +1,6 @@
 .. -*- coding: utf-8; mode: rst -*-
 
-.. include:: ../print_scan.txt
+.. include:: ../print_scan_refs.txt
 
 .. _print_scan:
 

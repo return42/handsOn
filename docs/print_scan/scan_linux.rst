@@ -1,6 +1,6 @@
 .. -*- coding: utf-8; mode: rst -*-
 
-.. include:: ../print_scan.txt
+.. include:: ../print_scan_refs.txt
 
 .. _scan_linux:
 
@@ -41,11 +41,14 @@ Verfügung steht.
 Scanner am USB Anschluss einrichten
 ===================================
 
+comming soon ..
 
 .. _sane_lan_scanner:
 
 Scanner im LAN Netzwerk einrichten
-=================================
+==================================
+
+comming soon ..
 
 https://wiki.ubuntuusers.de/Scanner/Canon/#Scannen-ueber-Netzwerk
 
@@ -55,7 +58,7 @@ http://lists.alioth.debian.org/pipermail/sane-devel/2017-December/035825.html
 Scanner Treiber
 ===============
 
-
+comming soon ..
 
 https://wiki.ubuntuusers.de/Scanner/Canon/
 
