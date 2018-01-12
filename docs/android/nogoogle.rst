@@ -104,7 +104,7 @@ gut gepflegte OpenSource Projekte sicherer und weitaus flexiebler sind als
 ClosedSource vom Microsoft, Apple und anderen Software-Häusern.  Sie wissen
 nicht ob sie wirklich OpenSource wollen? ... Sie haben es schon lange, ein
 Beispiel ist Android selbst, es basiert auf dem Linux Kernel welcher OpenSource
-ist. Ein anderes bekanntes Beispiel ist der Internet Browser von FireFox.
+ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
 
 - `DNS66 <https://github.com/julian-klode/dns66>`_ / (`F-Droid
   <https://f-droid.org/packages/org.jak_linux.dns66>`__) **!!must have!!**
