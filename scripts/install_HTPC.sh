@@ -38,8 +38,8 @@ sudoOrExit
 # Config
 # ----------------------------------------------------------------------------
 
-#KODI_PPA=ppa:team-xbmc/ppa
-KODI_PPA=ppa:team-xbmc/unstable
+KODI_PPA=ppa:team-xbmc/ppa
+#KODI_PPA=ppa:team-xbmc/unstable
 #KODI_PPA=add-apt-repository ppa:team-xbmc/xbmc-nightly
 
 BASE_PACKAGES="\
@@ -61,21 +61,11 @@ main(){
 
     case $1 in
 
-        kodi-ppa)
-            rstHeading "Installation des kodi PPA"
-            echo
-            echo "Zuerst wird kodi deinstalliert"
-            systemctl stop kodi
-            aptPurgePackages kodi kodi-bin kodi-data
-	    apt-get install software-properties-common
-	    add-apt-repository $KODI_PPA
-	    apt-get update
-            ;;
         install-kodi)
-            TITLE="Installation kodi (base)" aptInstallPackages ${BASE_PACKAGES}
+            install_kodi
             ;;
        	deinstall-kodi)
-            systemctl start kodi
+            systemctl stop kodi
             TITLE="De-Installation kodi (base)" aptPurgePackages ${BASE_PACKAGES}
             ;;
         install-vdr)
@@ -118,6 +108,19 @@ main(){
     esac
 }
 
+# ----------------------------------------------------------------------------
+install_kodi(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation des kodi PPA"
+    rstBlock "Kodi wird aus dem PPA ($KODI_PPA) neu installiert. Falls installiert wird das (alte) Kodi jetzt deinstalliert."
+    systemctl stop kodi 2>&1  > /dev/null
+    aptPurgePackages kodi kodi-bin kodi-data
+    apt-get install software-properties-common
+    add-apt-repository $KODI_PPA
+    apt-get update
+    TITLE="Installation kodi (base)" aptInstallPackages ${BASE_PACKAGES}
+}
 
 # ----------------------------------------------------------------------------
 install_vdr(){
