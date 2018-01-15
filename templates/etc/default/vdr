@@ -1,0 +1,15 @@
+# /etc/default/vdr
+#
+# See also /usr/share/doc/vdr/README.Debian.gz
+#
+
+# VDR automatisch beim Start laden
+# Change to 1 do enable vdr's init-script
+ENABLED=1
+
+# VDR ermöglichen den Rechner auszuschalten
+# Change this to 1 if you want vdr to be able to shutdown the
+# computer
+ENABLE_SHUTDOWN=0
+
+# OPTIONS="--lirc=/dev/null"
