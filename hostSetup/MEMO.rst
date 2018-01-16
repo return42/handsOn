@@ -16,7 +16,7 @@ z.B. ein Client Programm auf einem Desktop einrichten, dann muss man
 wissen wie der Hostname des Servers ist. Hierfür kann es keinen
 sinnvollen Default geben. Um solche Vor-Einstellungen *je Host* setzen
 zu können, kann man eine Datei anlegen in der die Umgebungsvariablen
-passend zu dem Hoszt gesetzt werden können.
+passend zu dem Host gesetzt werden können.
 
 Welche Umgebungsvariablen in dieser Datei gesetzt werden können, ist
 in der ``scripts/setup.sh`` beschrieben. Alternativ kann die

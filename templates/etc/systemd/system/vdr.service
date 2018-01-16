@@ -1,13 +1,12 @@
 [Unit]
-Description=Video Disk Recorder
+Description=Video Disk Recorder (VDR) service
+After=network.target
 
 [Service]
-Type=notify
-ExecStartPre=/bin/sh /usr/lib/vdr/merge-commands.sh "commands"
-ExecStartPre=/bin/sh /usr/lib/vdr/merge-commands.sh "reccmds"
-ExecStart=/usr/bin/vdr
+Type=simple
+ExecStart=/usr/sbin/runvdr
+RestartSec=1
 Restart=on-failure
-RestartPreventExitStatus=0
 
 [Install]
 WantedBy=multi-user.target

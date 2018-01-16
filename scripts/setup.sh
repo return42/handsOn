@@ -145,6 +145,10 @@ LSB (Linux Standard Base) and Distribution information.
 CWD : $(pwd -P)"
 }
 
+cfg_msg() {
+    echo -e "${BYellow}CFG:${_color_Off} $*" >&2
+}
+
 # ----------------------------------------------------------------------------
 # load common scripts and check environment
 # ----------------------------------------------------------------------------
@@ -161,11 +165,11 @@ if [[ -e "${CONFIG}_setup.sh" ]]; then
     source ${CONFIG}_setup.sh
     checkEnviroment
 else
-    info_msg "missing setup: ${CONFIG}_setup.sh"
-    info_msg "defaults are used!!! For more info about setup, read"
-    info_msg "    ${CONFIG}/MEMO.rst"
-    info_msg "Or use::"
-    info_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
-    waitKEY
+    cfg_msg "missing setup: ${CONFIG}_setup.sh"
+    cfg_msg "defaults are used!!! For more info about setup, read"
+    cfg_msg "    ${CONFIG}/MEMO.rst"
+    cfg_msg "Or use::"
+    cfg_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
+    waitKEY 5
 fi
 

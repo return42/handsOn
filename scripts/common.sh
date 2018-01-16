@@ -1206,6 +1206,9 @@ aptRepositoryExist() {
 aptAddRepositoryURL(){
 # ----------------------------------------------------------------------------
 
+    # FIXME: inzwischen unterstützt add-apt-repository separate Dateien in
+    # sources.list.d und mit --remove kann man sie wieder entfernen.
+
     # Dem add-apt-repository fehlt (immernoch) die Option --sources-list-file,
     # mit dem man den Eintrag in eine separate Datei in sources.list.d eintragen
     # könnte (so wie bei ppa's). Deswegen mache ich das hier manuell. Typischer

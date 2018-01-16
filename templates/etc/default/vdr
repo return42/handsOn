@@ -1,15 +1,50 @@
-# /etc/default/vdr
-#
-# See also /usr/share/doc/vdr/README.Debian.gz
-#
+# Config-Directory
+CFG_DIR='/etc/vdr'
 
-# VDR automatisch beim Start laden
-# Change to 1 do enable vdr's init-script
-ENABLED=1
+# Plugin-Directory
+PLUGIN_DIR='/usr/lib/vdr/plugins'
 
-# VDR ermöglichen den Rechner auszuschalten
-# Change this to 1 if you want vdr to be able to shutdown the
-# computer
-ENABLE_SHUTDOWN=0
+# Plugin Config-Directory
+PLUGIN_CFG_DIR='/etc/vdr/plugins'
 
+# Commmand executed by vdr to shutdown the system
+SHUTDOWNCMD='/sbin/shutdown -h now'
+
+# EPG data file
+EPG_FILE='/var/cache/vdr/epg.data'
+
+# Default port for SVDRP
+SVDRP_PORT='0'
+
+# Video-Directory
+VIDEO_DIR='/share/video/vdr-recording'
+
+# Environment variables to be set before starting VDR
+VDR_ENV=''
+
+# VDR options
+OPTIONS='--vfat -w 60'
 # OPTIONS="--lirc=/dev/null"
+
+# Space separated names of plugins to be loaded on VDR startup. To pass any 
+# arguments to a plugin put them into the $PLUGIN_CFG_DIR/plugin.{name}.conf file.
+PLUGINS=$(echo -n $(ls $PLUGIN_DIR/libvdr-*.so.* 2> /dev/null | sed -r 's:.*/libvdr-(.+)\.so\..+:\1:g'))
+
+# Reload DVB drivers on start.
+RELOAD_DRIVERS='true'
+
+# Maximum number of retries when reloading drivers.
+RELOAD_RETRIES='5'
+
+# Reload drivers until either this condition is met or RELOAD_RETRIES exceeded.
+RELOAD_CONDITION='[ -e /dev/dvb/adapter0/frontend0 ]'
+
+# Number of seconds to wait after drivers unload but before load.
+LOAD_DRIVERS_DELAY='0'
+
+# Number of seconds to wait after drivers load but before checking 
+# the RELOAD_CONDITION.
+RELOAD_CONDITION_DELAY='5'
+
+# Number of seconds to wait before VDR start.
+START_DELAY='0'
