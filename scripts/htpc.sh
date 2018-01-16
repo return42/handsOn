@@ -59,7 +59,7 @@ VDR_PACKAGES="\
  vdr\
  vdr-plugin-vnsiserver\
  vdr-plugin-streamdev-server\
- vdr-plugin-vdrmanager 
+ vdr-plugin-vdrmanager
 "
 
 XINE_PACKAGES="\
@@ -90,7 +90,6 @@ main(){
                    ;;
             esac
             ;;
-
         deinstall)
             sudoOrExit
             case $2 in
@@ -104,7 +103,6 @@ main(){
                    ;;
             esac
             ;;
-        
         info)
             case $2 in
                 kodi) rstHeading "Kodi (PPA)"; info_kodi
@@ -184,7 +182,7 @@ install_kodi(){
     rstHeading "Kodi (PPA)"
     info_kodi
     waitKEY 10
-    
+
     systemctl stop kodi 2>&1  > /dev/null
     aptPurgePackages 'kodi-.*'
     apt-get install software-properties-common
@@ -271,7 +269,6 @@ install_vdr(){
     waitKEY 10
 
     service vdr stop 2>&1  > /dev/null
-    aptPurgePackages ${VDR_PACKAGES}
     aptPurgePackages 'vdr-.*'
     apt-get install software-properties-common
 
