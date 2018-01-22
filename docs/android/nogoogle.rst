@@ -1,6 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../android_refs.txt
+.. include:: ../ffox_refs.txt
 
 .. _nogoogle_intro:
              
@@ -133,27 +134,16 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   der i.A. mit in den FireFox einkompiliert wird. Auch die Grundeinstellungen
   zur Sicherheit und Privatsphäre sind hier für mein Empfinden wesentlich
   vernüftiger (endlich mal eine Browser der in den Grundeinstellung keine
-  Cookies von Dritanbietern aktzeptiert).
+  Cookies von Drittanbietern aktzeptiert).
 
   Folgende Add-ons empfehlen sich zur Wahrung der Privatsphäre und zum Schutz
-  vor Schadsoftware:
+  vor Schadsoftware (s.a. :ref:`search_engines`):
 
-  1. `uBlock-origin
-     <https://addons.mozilla.org/de/firefox/addon/ublock-origin>`_ **!!must
-     have!!**
+  1. `uBlock-origin`_ **!!must have!!**
+  2. `Google search link fix`_ **!!must have!!**
+  3. `CanvasBlocker`_
+  4. `Decentraleyes`_
 
-  2. `Google search link fix
-     <https://addons.mozilla.org/de/firefox/addon/google-search-link-fix>`_
-     **!!must have!!**
-  
-  3. `CanvasBlocker
-     <https://addons.mozilla.org/de/firefox/addon/canvasblocker>`_
-
-  4. `Decentraleyes
-     <https://addons.mozilla.org/de/firefox/addon/decentraleyes>`_
-
-
-  
 - `K-9 Mail Client <https://k9mail.github.io/>`_ / (`F-Droid
   <https://f-droid.org/en/packages/com.fsck.k9>`__)
 
