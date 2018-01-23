@@ -182,14 +182,6 @@ etwas mehr als uBlock:
 
 - `Decentraleyes`_
 
-.. hint::
-
-   !!!!ToDo!!!!!
-
-   Auch das Layout dieser WEB-Seite bedient sich (noch) dieser Technik. Wir
-   bitten das zu entschuldigen und versuchen das in Zukunft abzustellen (ist
-   nicht immer ganz einfach, wenn man auf Bibliotheken aufbaut).
-
 
 DNS Blocker
 ===========
