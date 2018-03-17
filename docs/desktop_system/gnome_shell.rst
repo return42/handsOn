@@ -21,7 +21,7 @@ Shell installiert werden kann.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh gnomeShell
+   $ sudo ./scripts/desktop_system.sh gnomeShell
 
 Das Skript installiert die, für eine GNOME Shell *empfohlenen Pakete* und *Shell
 Erweiterungen*. Nachdem die GNOME SHELL installiert ist, kann der `Unity`_

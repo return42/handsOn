@@ -32,7 +32,7 @@ zu einem Themengebiet installiert werden.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh \
+   $ sudo ./scripts/ubuntu_install_pkgs.sh \
        [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools]
 
 

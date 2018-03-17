@@ -24,7 +24,7 @@ vorgestellten Setups installiert oder auch deinstalliert werden können.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh --help
+   $ sudo ./scripts/desktop_system.sh --help
 
 .. hint::
 

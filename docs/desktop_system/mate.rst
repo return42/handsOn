@@ -20,7 +20,7 @@ Desktop Umgebung installiert werden kann.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh mate
+   $ sudo ./scripts/desktop_system.sh mate
 
 Mit dem oben stehenden Skript wird das Paket :deb:`mate-desktop-environment`
 installiert. Das Paket umfasst den Mate Desktop und noch einiges mehr, so
@@ -35,4 +35,4 @@ Zur De-Installation eignet sich:
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh remove_mate
+   $ sudo ./scripts/desktop_system.sh remove_mate

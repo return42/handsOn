@@ -122,4 +122,4 @@ Installation
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh codecs
+   $ sudo ./scripts/ubuntu_install_pkgs.sh codecs

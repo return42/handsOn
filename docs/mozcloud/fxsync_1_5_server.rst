@@ -23,7 +23,7 @@ erforderlichen Schritte für eine Installation durchführen.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/mozcloud_setup.sh installMozCloudEnv
+   $ sudo ./scripts/mozcloud_setup.sh installMozCloudEnv
    $ sudo -i -u mozcloud
    mozcloud$ ${SCRIPT_FOLDER}/mozcloud_fxsync.sh installSyncServer
 
@@ -265,7 +265,7 @@ Installation durchgeführt werden kann.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/mozcloud.sh installApacheSite
+   $ sudo ./scripts/mozcloud.sh installApacheSite
 
 Die oben durchgeführte Installation besteht aus einer *Site*, die in der Datei
 

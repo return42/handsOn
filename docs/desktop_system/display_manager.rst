@@ -93,4 +93,4 @@ Display-Manager ausgewählt werden kann.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh chooseDM
+   $ sudo ./scripts/desktop_system.sh chooseDM

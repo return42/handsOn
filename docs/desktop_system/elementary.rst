@@ -30,7 +30,7 @@ und der elementary Desktop Umgebung installiert werden kann.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh elementary
+   $ sudo ./scripts/desktop_system.sh elementary
 
 Mit dem Skript wird auch ein PPA eingerichtet (:man:`add-apt-repository`). Das
 PPA sollte nicht gelöscht werden, solange noch Pakete aus dem PPA installiert
@@ -44,7 +44,7 @@ Zur vollständigen De-Installation eignet sich:
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/desktop_system.sh remove_elementary
+   $ sudo ./scripts/desktop_system.sh remove_elementary
 
 Das Kommando deinstalliert zuerst die elementary OS Desktop-Umgebung und löscht
 dann das PPA.

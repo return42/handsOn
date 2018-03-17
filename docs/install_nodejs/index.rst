@@ -30,7 +30,7 @@ Schritte durchführt.
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/node_source.sh install
+   $ sudo ./scripts/node_source.sh install
 
 * Einrichten der Paketquellen von https://deb.nodesource.com/node_4.x
   (:man:`add-apt-repository`)
@@ -46,7 +46,7 @@ von NodeSource in den APT-Sourcen ist mit dem folgenden Kommando einfach möglic
 
 .. code-block:: bash
 
-   $ sudo ${SCRIPT_FOLDER}/install_nodejs.sh deinstall
+   $ sudo ./scripts/install_nodejs.sh deinstall
 
 
 
