@@ -178,6 +178,7 @@ install_basePackages(){
     waitKEY 30
 
     rstHeading "Default Einstellungen für Synaptic" section
+    mkdir -p /root/.synaptic
     TEMPLATES_InstallOrMerge /root/.synaptic/synaptic.conf root root 644
 }
 
