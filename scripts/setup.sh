@@ -12,12 +12,13 @@ if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT=$(cd ${REPO_ROOT}/.. && pwd -P )
 fi
 
-# Hier können die Umgebungsvariablen angepasst werden. Das ist aber nur
-# erforderlich, wenn die Defaults nicht *passend* sind.
 
-# ===============
-# handsOn Scripts
-# ===============
+_color_Off='\e[0m'  # Text Reset
+BYellow='\e[1;33m'
+
+cfg_msg() {
+    echo -e "${BYellow}CFG:${_color_Off} $*" >&2
+}
 
 # SCRIPT_FOLDER: Ordner mit den Skripten für die Setups
 #
@@ -25,93 +26,55 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 
 # TEMPLATES: Ordner in dem die vorlagen für die Setups zu finden sind
 #
-#TEMPLATES="${REPO_ROOT}/templates"
+TEMPLATES="${REPO_ROOT}/templates"
 
 # CACHE: Ordner in dem die Downloads und Builds gecached werden
 #
-#CACHE=${REPO_ROOT}/cache
+CACHE=${REPO_ROOT}/cache
 
 # CONFIG: Ordner unter dem die Konfiguration eines Hosts gesichert werden soll
+# Das wird nicht hier gesetzt sondern in der .config Datei (templates/do_config)
 #
-#CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
+# CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
 
-# WWW_USER: Benutzer für die Prozesse des WEB-Servers
-#
-#WWW_USER=www-data
+if [[ ! -e "${REPO_ROOT}/.config" ]]; then
+    cfg_msg "installing ${REPO_ROOT}/.config"
+    cp "${TEMPLATES}/dot_config" "${REPO_ROOT}/.config"
+fi
 
-# WWW_FOLDER: Ordner in dem die Resourcen des WEB-Servers liegen
-#
-#WWW_FOLDER=/var/www
+source ${REPO_ROOT}/.config
 
-# =========
-# toolchain
-# =========
+if [[ ! -e "${CONFIG}_setup.sh" ]]; then
+    cfg_msg "missing setup:"
+    cfg_msg "    ${CONFIG}_setup.sh"
+    cfg_msg "Mostly you will edit the CONFIG variable in ${REPO_ROOT}/.config"
+    cfg_msg "which points to your setup::"
+    cfg_msg "    CONFIG=/path/to/my-config/$(hostname)"
+    cfg_msg "Or use::"
+    cfg_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
+    cfg_msg "For more info about setup, read::"
+    cfg_msg "    ${REPO_ROOT}/hostSetup/MEMO.rst"
+    cfg_msg "To NOT continue with defaults press CTRL-C now!"
+    read -n1 $_t -p "** press any [KEY] to continue **"
+    printf "\n"
+fi
 
-# THREE_WAY_MERGE_CMD: Kommando oder Funktion mit der ein (interaktives)
-# drei-Wege Merge gemacht werden kann. Das Kommando muss die vier Argumente für
-# Dateinamen entgegennehmen.
-#
-#    $THREE_WAY_MERGE_CMD {mine} {yours} {ancestor} {merged}
-#
-#THREE_WAY_MERGE_CMD=merge3FilesWithEmacs
-
-# MERGE_CMD: Kommando oder Funktion mit der ein (interaktiver) Merge gemacht
-# werden kann. Das Kommando muss die drei Argumente für Dateinamen
-# entgegennehmen.
-#
-#     $MERGE_CMD {file_a} {file_b} {merged}
-#
-#MERGE_CMD=merge2FilesWithEmacs
-
-# DIFF_CMD: Kommando oder Funktion mit der ein diff angezeigt werden soll. Im
-# Default wird ``colordiff`` verwendet, wenn das nicht vorhanden ist, dann wird
-# das ganz normale ``diff`` verwendet.
-#
-#DIFF_CMD=colordiff
-
-# =====================
-# Debian's Apache Setup
-# =====================
-
-# APACHE_SETUP="/etc/apache2"
-# APACHE_SITES_AVAILABE="${APACHE_SETUP}/sites-available"
-# APACHE_MODS_AVAILABE="${APACHE_SETUP}/mods-available"
-# APACHE_CONF_AVAILABE="${APACHE_SETUP}/conf-available"
-
-
-# Debian's OpenLDAP Setup
-# =======================
-
-# LDAP_SERVER="myserver"
-# LDAP_SSL_PORT=636
-# OPENLDAP_USER=openldap
-# SLAPD_DBDIR=/var/lib/ldap
-# SLAPD_CONF="/etc/ldap/slapd.d"
-
-# =======
-# Firefox
-# =======
-
-# FFOX_GLOBAL_EXTENSIONS=/usr/lib/firefox-addons/extensions
-
-# =====
-# GNOME
-# =====
-
-# GNOME_APPL_FOLDER=/usr/share/applications
+source ${CONFIG}_setup.sh
+source ${SCRIPT_FOLDER}/common.sh
+checkEnviroment
 
 # ----------------------------------------------------------------------------
 setupInfo () {
 # ----------------------------------------------------------------------------
     rstHeading "setup info"
     echo "
+CONFIG        : ${CONFIG}
 ORGANIZATION  : ${ORGANIZATION}
 
 REPO_ROOT     : ${REPO_ROOT}
 SCRIPT_FOLDER : ${SCRIPT_FOLDER}
 TEMPLATES     : ${TEMPLATES}
 CACHE         : ${CACHE}
-CONFIG        : ${CONFIG}
 WWW_USER      : ${WWW_USER}
 WWW_FOLDER    : ${WWW_FOLDER}
 DEB_ARCH      : ${DEB_ARCH}
@@ -144,32 +107,3 @@ LSB (Linux Standard Base) and Distribution information.
 
 CWD : $(pwd -P)"
 }
-
-cfg_msg() {
-    echo -e "${BYellow}CFG:${_color_Off} $*" >&2
-}
-
-# ----------------------------------------------------------------------------
-# load common scripts and check environment
-# ----------------------------------------------------------------------------
-
-if [[ ! -e "${SCRIPT_FOLDER}/common.sh" ]]; then
-    echo "ERROR: can't source file common.sh"
-    exit
-else
-    source ${SCRIPT_FOLDER}/common.sh
-    checkEnviroment
-fi
-
-if [[ -e "${CONFIG}_setup.sh" ]]; then
-    source ${CONFIG}_setup.sh
-    checkEnviroment
-else
-    cfg_msg "missing setup: ${CONFIG}_setup.sh"
-    cfg_msg "defaults are used!!! For more info about setup, read"
-    cfg_msg "    ${CONFIG}/MEMO.rst"
-    cfg_msg "Or use::"
-    cfg_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
-    waitKEY 5
-fi
-
