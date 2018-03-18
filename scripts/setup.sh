@@ -40,6 +40,7 @@ CACHE=${REPO_ROOT}/cache
 if [[ ! -e "${REPO_ROOT}/.config" ]]; then
     cfg_msg "installing ${REPO_ROOT}/.config"
     cp "${TEMPLATES}/dot_config" "${REPO_ROOT}/.config"
+    chown -R ${SUDO_USER}:${SUDO_USER} "${REPO_ROOT}/.config"
 fi
 
 source ${REPO_ROOT}/.config
