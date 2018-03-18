@@ -71,7 +71,7 @@ IMAGE_TOOLS_PACKAGES="\
  darktable \
  rawtherapee \
  pinta \
- gnome-photo \
+ gnome-photos \
  inkscape \
 "
 
