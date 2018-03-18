@@ -128,9 +128,15 @@ main(){
         remmina)
             install_remmina
             ;;
+        timeshift)
+            install_timeshift
+            ;;
+        ukuu)
+            install_ukuu
+            ;;
         *)
             echo
-	    echo "usage $0 [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina]"
+	    echo "usage $0 [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina|timeshift|ukuu]"
             echo
             ;;
     esac
@@ -463,6 +469,53 @@ Zu den *Network-Tools* zählen:
     apt-get install -y ${NETWORK_PACKAGES}
 
     waitKEY 30
+}
+
+# ----------------------------------------------------------------------------
+install_timeshift(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation Timeshift (backup)"
+
+    # siehe https://medium.com/@teejeetech/timeshift-v18-2-843bb4d39dfd
+    TIMESHIFT_PPA="ppa:teejee2008/ppa"
+
+    rstBlock "Die Ubuntu Pakete zum Timeshift sind schlecht gepflegt,
+deshalb wird Timeshift aus dem PPA $TIMESHIFT_PPA installiert."
+    if ! askYn "soll das Backup-Tool Timeshift installiert werden?" 60; then
+        return 42
+    fi
+
+    add-apt-repository "$TIMESHIFT_PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install timeshift
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_ukuu(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation Timeshift (backup)"
+
+    # siehe http://www.teejeetech.in/p/ukuu-kernel-upgrade-utility.html
+    UKUU_PPA="ppa:teejee2008/ppa"
+
+    rstBlock "Ukuu wird aus dem PPA $UKUU_PPA installiert."
+    if ! askYn "soll das Kernel-Tool Ukuu installiert werden?" 60; then
+        return 42
+    fi
+
+    add-apt-repository "$UKUU_PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install ukuu
+    waitKEY
 }
 
 # ----------------------------------------------------------------------------
