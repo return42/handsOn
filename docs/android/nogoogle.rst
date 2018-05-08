@@ -4,7 +4,7 @@
 .. include:: ../ffox_refs.txt
 
 .. _nogoogle_intro:
-             
+
 ===========================
 Ein Leben ohne Google Konto
 ===========================
@@ -141,8 +141,9 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
 
   1. `uBlock-origin`_ **!!must have!!**
   2. `Google search link fix`_ **!!must have!!**
-  3. `CanvasBlocker`_
-  4. `Decentraleyes`_
+  3. `Privacy Possum`_
+  4. `CanvasBlocker`_
+  5. `Decentraleyes`_
 
 - `K-9 Mail Client <https://k9mail.github.io/>`_ / (`F-Droid
   <https://f-droid.org/en/packages/com.fsck.k9>`__)
@@ -153,7 +154,7 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   GMX, WEB.de und anderen Mail-Hostern auch deren Mail-Apps sind nicht
   *frei*. Es gibt auch noch andere *freie* Mail-Clients, K9 scheint mir aber der
   bessere zu sein.
-  
+
 - `DAVdroid <https://davdroid.bitfire.at/>`_ / (`F-Droid
   <https://f-droid.org/packages/at.bitfire.davdroid>`__)
 
@@ -170,7 +171,7 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   - Spiegel: http://www.spiegel.de/schlagzeilen/tops/index.rss
   - taz: http://www.taz.de/!p4608;rss/
   - buten un binnen: https://www.butenunbinnen.de/feed/rss/neuste-inhalte100.xml
-  
+
 - `OsmAnd <http://osmand.net/>`_ / (`F-Droid
   <https://f-droid.org/en/packages/net.osmand.plus>`__)
 
@@ -187,10 +188,9 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   Live-TV der deutschen öffentlich-rechtlichen Fernsehsender, einfach zu
   bedienen und schön übersichtlich.
 
-Wofür ich grad selber noch Alternativen suche:  
+Wofür ich grad selber noch Alternativen suche:
 
 - `VLC Audio & Video player <http://www.videolan.org/>`_
 - `Sky Map <http://sky-map-team.github.io/stardroid/>`_
 - `RealCalc Scientific Calculator <http://www.quartic-software.co.uk/>`_
 - `CAdroid <http://cadroid.bitfire.at/>`_
-

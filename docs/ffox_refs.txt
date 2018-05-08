@@ -3,3 +3,4 @@
 .. _CanvasBlocker: https://addons.mozilla.org/de/firefox/addon/canvasblocker
 .. _Decentraleyes: https://addons.mozilla.org/de/firefox/addon/decentraleyes
 .. _lightbeam: https://www.mozilla.org/en-US/lightbeam/
+.. _`Privacy Possum`: https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/

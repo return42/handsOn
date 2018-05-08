@@ -8,7 +8,7 @@
 .. _DNS: https://de.wikipedia.org/wiki/Domain_Name_System
 .. _Domain: https://de.wikipedia.org/wiki/Domain_(Internet)
 .. _search_engines:
-   
+
 ========================
 Suchmaschinen & Tracking
 ========================
@@ -20,10 +20,11 @@ Für die ganz Ungeduldigen unter uns:
 - Zu viel Text, intressiert mich alles nicht, was muss ich in meinen FireFox
   installieren?
 
-1. `uBlock-origin`_ **!!must have!!**
-2. `Google search link fix`_ **!!must have!!**
-3. `CanvasBlocker`_
-4. `Decentraleyes`_
+  1. `uBlock-origin`_ **!!must have!!**
+  2. `Google search link fix`_ **!!must have!!**
+  3. `Privacy Possum`_
+  4. `CanvasBlocker`_
+  5. `Decentraleyes`_
 
 - und was kann ich auf dem Android Gerät machen? .. schau :ref:`hier
   <nogoogle_intro>`
@@ -162,12 +163,12 @@ doch auch das kann man einschränken, im Firefox z.B. mit dem folgenden AddOn:
 
 Werbeblocker & Co. im WEB-Browser
 ---------------------------------
-  
+
 Gute Werbeblocker blockieren nicht nur die Werbung sondern gleich den ganzen
 Tracking Kram und WEB-Seiten die als Virenschleuder bekannt sind. Das gelingt
 nicht immer zu 100% aber annähernd. Empfehlenswert ist:
 
-- `uBlock-origin`_ und 
+- `uBlock-origin`_ und
 - `CanvasBlocker`_
 
 Eine in den letzten Jahren modern gewordene Methode des Trackings besteht darin,
@@ -258,12 +259,12 @@ abzuschalten. Sie soll auch nur verdeutlichen, wie schnell (nach 10Min) so ein
 Trackernetzwerk aufgebaut ist.
 
 .. _xref-figure-search_engines-tracker_mash_up:
-   
+
 .. figure:: search_engines/tracker_mash_up.png
    :alt:     Figure (tracker_mash_up.png)
    :align:   center
    :class:   rst-figure
- 
+
    _`Vernetzung besuchter Seiten und deren Tracker`
 
 Um so mehr Tracker eine Seite verwendet, um so schneller und dichter wird das
