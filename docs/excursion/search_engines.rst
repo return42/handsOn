@@ -168,7 +168,8 @@ Gute Werbeblocker blockieren nicht nur die Werbung sondern gleich den ganzen
 Tracking Kram und WEB-Seiten die als Virenschleuder bekannt sind. Das gelingt
 nicht immer zu 100% aber annähernd. Empfehlenswert ist:
 
-- `uBlock-origin`_ und
+- `uBlock-origin`_
+- `Privacy Possum`_
 - `CanvasBlocker`_
 
 Eine in den letzten Jahren modern gewordene Methode des Trackings besteht darin,
