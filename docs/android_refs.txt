@@ -33,3 +33,5 @@
 
 .. _pi-hole: https://pi-hole.net/
 .. _APK: https://en.wikipedia.org/wiki/Android_application_package
+
+.. _Kuketz: https://www.kuketz-blog.de

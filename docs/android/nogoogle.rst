@@ -194,3 +194,8 @@ Wofür ich grad selber noch Alternativen suche:
 - `Sky Map <http://sky-map-team.github.io/stardroid/>`_
 - `RealCalc Scientific Calculator <http://www.quartic-software.co.uk/>`_
 - `CAdroid <http://cadroid.bitfire.at/>`_
+
+Wie immer, sehr empfehlenswert ist auch der Artikel `Andriod Apps
+<https://www.kuketz-blog.de/empfehlungsecke/#android>`_ in Kuketz_
+seiner Empfehlungsecke.
+
