@@ -18,7 +18,7 @@ sudoOrExit
 # "Entwicklertools".
 
 BASE_PACKAGES="\
- util-linux ppa-purge ssh \
+ util-linux ppa-purge ssh ubuntu-drivers-common \
  aptitude synaptic gdebi bash-completion \
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
@@ -60,7 +60,6 @@ MULTIMEDIA_CLIENT_PACKAGES="\
 "
 
 CODEC_PACKAGES="\
- libav-tools libavcodec-extra \
  gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
 "
 # gstreamer1.0-plugins-ugly
@@ -134,9 +133,12 @@ main(){
         ukuu)
             install_ukuu
             ;;
+        flatpak)
+            install_flatpak
+            ;;
         *)
             echo
-	    echo "usage $0 [base|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina|timeshift|ukuu]"
+	    echo "usage $0 [base|flatpak|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina|timeshift|ukuu]"
             echo
             ;;
     esac
@@ -499,7 +501,7 @@ deshalb wird Timeshift aus dem PPA $TIMESHIFT_PPA installiert."
 install_ukuu(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "Installation Timeshift (backup)"
+    rstHeading "Installation Ukuu"
 
     # siehe http://www.teejeetech.in/p/ukuu-kernel-upgrade-utility.html
     UKUU_PPA="ppa:teejee2008/ppa"
@@ -516,6 +518,33 @@ install_ukuu(){
     apt-get update
     apt-get install ukuu
     waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_flatpak(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation Flatpak"
+
+    # siehe https://flatpak.org/setup/Ubuntu/
+    PPA="ppa:alexlarsson/flatpak"
+
+    rstBlock "Flatpack wird aus dem PPA $PPA installiert."
+    if ! askYn "soll das Flatpack installiert werden?" 60; then
+        return 42
+    fi
+
+    add-apt-repository "$PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install flatpak
+    waitKEY
+
+    apt install gnome-software-plugin-flatpak
+
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 # ----------------------------------------------------------------------------

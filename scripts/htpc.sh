@@ -13,7 +13,9 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # file:///usr/share/doc/mpv/mpv.html
 
 
-# Aktueller Stand: Man sollte sich zuerst das PPA installieren, danach das kodi
+# Aktueller Stand:
+# Ubuntu 18.04:: Kodi am besten über snap installieren
+# Ubuntu 16.04:: Man sollte sich zuerst das PPA installieren, danach das kodi
 # aus dem PPA installieren. Für VDR und Live TV sollte man dann die
 # $VDR_PACKAGES installieren. Danach VDR Server neu starten.
 #
@@ -171,10 +173,13 @@ main(){
 
 info_kodi(){
     rstBlock "\
-Die Kodi Instanz aus den LTE Distributionen ist hoffnungslos veraltet
-und sollte -- falls bereits installiert -- zuerst deinstalliert werden.
-Eine aktuelle Version des Kodi kann dann aus dem PPA ($KODI_PPA)
-installiert werden."
+Die Kodi Instanz aus den LTE Distributionen ist z.T. hoffnungslos
+veraltet und sollte -- falls bereits installiert -- zuerst
+deinstalliert werden.  Eine aktuelle Version des Kodi kann dann aus
+dem PPA ($KODI_PPA) installiert werden.
+
+Da es für Ubuntu 18:04 noch kein PPA gibt wird ersatzweise über snap
+installiert.  "
 }
 
 install_kodi(){
@@ -185,13 +190,20 @@ install_kodi(){
 
     systemctl stop kodi 2>&1  > /dev/null
     aptPurgePackages 'kodi-.*'
-    apt-get install software-properties-common
 
-    rstHeading "Füge PPA hinzu" section
+    TITLE="Installation Voraussetzungen" aptInstallPackages software-properties-common snap
+
+    #rstHeading "Füge PPA hinzu" section
+    #echo
+    #add-apt-repository $KODI_PPA
+    #apt-get update
+
+    #TITLE="Installation Kodi (base)" aptInstallPackages ${KODI_PACKAGES}
+
+    rstHeading "snap kodi (edge)" section
     echo
-    add-apt-repository $KODI_PPA
-    apt-get update
-    TITLE="Installation Kodi (base)" aptInstallPackages ${KODI_PACKAGES}
+    snap install kodi --edge
+
 }
 
 deinstall_kodi(){

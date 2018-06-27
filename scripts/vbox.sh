@@ -84,16 +84,23 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
-	install)
+	install-desktop)
+	    install_vbox_desktop
+	    ;;
+	install-service)
             sudoOrExit
-            install_vbox
+            install_vbox_service
             vbox_services status
 	    ;;
 	update)
             sudoOrExit
             update_vbox
 	    ;;
-	deinstall)
+	deinstall-desktop)
+            sudoOrExit
+            deinstall_vbox
+	    ;;
+	deinstall-service)
             sudoOrExit
             deinstall_vbox
 	    ;;
@@ -102,8 +109,13 @@ main(){
             README_VBOX
             ;;
 	*)
+
+	    rstBlock "VBox kann auf dem Desktop genutzt werden, oder
+man installiert hierfür die Dienste mit denen GAST Systeme *headless*
+(ohne VBox auf einem Desktop) betrieben werden können.  Als Desktop
+Anwender wird man i.d.R. die Desktop-Variante bevorzugen."
             echo
-	    echo "usage $0 [(de)install|update|README]"
+	    echo "usage $0 [[de]install[-service|-desktop]|update|README]"
             echo
             ;;
     esac
@@ -113,7 +125,7 @@ main(){
 README_VBOX(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "Setup der VirtualBox Suite" section
+    rstHeading "Setup der VirtualBox Suite (headless)" section
     echo -e "
 * Konfiguration: ${VBOX_SETUP}
 * Autostart Datenbank: ${VBOXAUTOSTART_DB}
@@ -154,9 +166,17 @@ EOF
 }
 
 # ----------------------------------------------------------------------------
-install_vbox(){
-    rstHeading "Installation VirtualBox"
+install_vbox_service(){
+    rstHeading "Installation VirtualBox (headless)"
 # ----------------------------------------------------------------------------
+
+    rstBlock "VBox wird als Dienst installiert. Damit ist es möglich
+Gast-Systeme als Dienst bereit zu stellen. Die GAST-Systeme laufen
+*Headless* sie könne nur remote genutzt werden (z.B. mit remmina).
+Diese Art der Installation eignet sich für einen Server der
+GAST-Systeme bereit stellen soll. Für typische Desktop Nutzung ist
+diese Art der installation nicht geeignet, hierfür sollte besser die
+Desktop Variante der Installation gewählt werden."
 
     rstBlock "Im ersten Schritt werden einige Voraussetzungen installiert, erst
 danach erfolgt die Installation des VirtualBox ${ORACLE_VBOX_VERS}."
@@ -169,6 +189,7 @@ danach erfolgt die Installation des VirtualBox ${ORACLE_VBOX_VERS}."
     install_setup
     installAutostartDB
     install_vbox_deb
+    check_vboxuser_grp
     installExtensionPack
     customize_vbox
 }
@@ -176,12 +197,41 @@ danach erfolgt die Installation des VirtualBox ${ORACLE_VBOX_VERS}."
 
 # ----------------------------------------------------------------------------
 update_vbox(){
-    rstHeading "Update VirtualBox"
+    rstHeading "Update VirtualBox (headless)"
 # ----------------------------------------------------------------------------
 
     install_vbox_deb
     installExtensionPack
-    vbox_services status
+    if [[ -d "/home/${VBOX_USER}" ]]; then
+	vbox_services status
+    fi
+}
+
+# ----------------------------------------------------------------------------
+install_vbox_desktop(){
+    rstHeading "Install VirtualBox (Desktop)"
+# ----------------------------------------------------------------------------
+
+    install_vbox_deb
+
+    rstBlock "Die Dienste, die in der Desktop Version nicht benötigt
+werden, werden nun abgeschaltet .."
+
+    TEE_stderr 0.5 <<EOF | bash
+systemctl stop vboxballoonctrl-service.service
+systemctl disable vboxballoonctrl-service.service
+
+systemctl stop vboxautostart-service.service
+systemctl disable vboxautostart-service.service
+
+systemctl list-units 'vbox*' --all
+EOF
+    waitKEY
+
+    if ! askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
+	return42
+    fi
+    installExtensionPack
 }
 
 
@@ -215,7 +265,7 @@ EOF
 
 # ----------------------------------------------------------------------------
 deinstall_vbox(){
-    rstHeading "De-Installation VirtualBox"
+    rstHeading "De-Installation VirtualBox (headless)"
 # ----------------------------------------------------------------------------
 
     rstBlock "${BRed}ACHTUNG:${_color_Off}
@@ -225,32 +275,11 @@ deinstall_vbox(){
     if ! askNy "Wollen sie WIRKLICH VirtualBox löschen?"; then
         return 42
     fi
-
+    vbox_services stop
     VBoxManage extpack uninstall "${ORACLE_VBOX_EXTPACK_NAME}"
     waitKEY
 
-    # aptPurgePackages ${ORACLE_VBOX_PACKAGE}
-
-    # FIXME:
-    #
-    # Ich hatte Probleme mit der 5.1.20 Version, diese lies sich nur manuell::
-    #
-    #   sudo apt-get remove virtualbox-5.1
-    #
-    # deinstallieren. Hier im Script kam aus unerklärlichen Gründen immer die
-    # Meldung, dass angeblich noch ein VBoxSVC Dienst noch laufen würde (was aber
-    # nicht der Fall ist)."
-
-    echo
-    apt-get remove  ${ORACLE_VBOX_PACKAGE}
-
-    # Vermutlich liegt das an der Funktion check_running aus der Datei
-    # /usr/lib/virtualbox/routines.sh. Diese Funktion wird während der
-    # De-Installation von dem Skript /usr/lib/virtualbox/prerm-common.sh
-    # aufgerufen und liefert häufig (nicht immer) einen exit-code 1. Erweckt
-    # also den Anschein, als würde hier noch ein Dienst laufen.
-
-    waitKEY
+    aptPurgePackages ${ORACLE_VBOX_PACKAGE}
 
     rstHeading "Repository entfernen" section
     echo
@@ -297,6 +326,7 @@ EOF
     waitKEY
 }
 
+
 # ----------------------------------------------------------------------------
 userdel_vbox(){
     rstHeading "Löschen des ${VBOX_USER} Benutzers" section
@@ -320,7 +350,7 @@ EOF
 
 # ----------------------------------------------------------------------------
 remove_setup(){
-    rstHeading "Löschen des Setups der VirtualBox Suite " section
+    rstHeading "Löschen des Setups der VirtualBox Suite" section
 # ----------------------------------------------------------------------------
 
     rstBlock "Es existieren ggf. noch folgende Setups für VirtualBox"
@@ -418,6 +448,11 @@ benötigt um die VBox-Kernel-Module nach einem Kernel-Update neu zu bauen."
 systemctl list-units 'vbox*' --all
 EOF
     waitKEY
+}
+
+# ----------------------------------------------------------------------------
+check_vboxuser_grp(){
+# ----------------------------------------------------------------------------
 
     rstHeading "Überprüfung vboxuser-Gruppe" section
 
@@ -461,11 +496,9 @@ installExtensionPack() {
 
     cacheDownload "${ORACLE_VBOX_GUEST_ADDONS_URL}" "${ORACLE_VBOX_GUEST_ADDONS_ISO}"
 
-    cp "${CACHE}/${ORACLE_VBOX_GUEST_ADDONS_ISO}"  "/home/${VBOX_USER}/${ORACLE_VBOX_GUEST_ADDONS_ISO}"
-
     rstBlock "Die CD mit den 'GuestAdditions' (das Image) wurde in den Ordner
 
-* /home/${VBOX_USER}/${ORACLE_VBOX_GUEST_ADDONS_ISO}
+* ${CACHE}/${ORACLE_VBOX_GUEST_ADDONS_ISO}
 
 kopiert. Die CD muss in den GAST-Host *eingelegt* werden und dann muss in dem
 GAST-Host die Installation durchgeführt werden."
@@ -476,22 +509,6 @@ System neu gebootet werden"
 
     waitKEY
 }
-
-
-# # ----------------------------------------------------------------------------
-# deinstall_vboxweb_service(){
-#     rstHeading "VirtualBox WEB Service De-Installation"
-# # ----------------------------------------------------------------------------
-
-#     TEE_stderr 1 <<EOF | bash | prefix_stdout
-#     service vboxweb-service stop
-#     service vboxweb-service status
-#     update-rc.d vbox-vm-manage disable
-# EOF
-#     waitKEY
-# }
-
-
 
 
 # ----------------------------------------------------------------------------

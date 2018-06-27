@@ -15,17 +15,20 @@ GNOME3_PPA="ppa:gnome3-team/gnome3"
 GNOME_SHELL_EXTENSIONS="/usr/share/gnome-shell/extensions"
 
 GNOME3_PACKAGES="\
- ubuntu-gnome-desktop \
- ubuntu-gnome-wallpapers \
- tracker-gui \
- gnome-tweak-tool gconf-editor \
+ language-pack-gnome-de \
+ gnome-core gnome-screenshot\
+ gnome-session \
+ gnome-getting-started-docs-de \
+ gnome-power-manager gnome-tweak-tool gconf-editor \
+ gnome-packagekit gnome-packagekit-session \
+ vanilla-gnome-desktop \
  elementary-icon-theme \
  gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 \
 "
 # ubuntu-gnome-default-settings \
 
 DISPLAY_MANAGER_PACKAGES="\
-  gdm \
+  gdm3 \
   lightdm lightdm-webkit-greeter \
 "
 #  sddm \
@@ -33,8 +36,14 @@ DISPLAY_MANAGER_PACKAGES="\
 #  ldm \
 
 CINNAMON_PACKAGES="cinnamon-desktop-environment"
-MATE_PACKAGES="mate-desktop-environment"
-UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*')"
+MATE_PACKAGES="\
+  mate-desktop mate-desktop-common mate-desktop-environment-core\
+  mate-notification-daemon-common\
+  mate-polkit-common"
+
+UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*')  ubuntu-gnome-desktop \
+ ubuntu-gnome-wallpapers \
+"
 
 # elementary
 # ----------
@@ -50,8 +59,28 @@ UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*')"
 #
 #ELEMENTARY_PPA="ppa:elementary-os/stable"
 #ELEMENTARY_PPA="ppa:elementary-os/daily"
-
 ELEMENTARY_PPA="ppa:elementary-os/staging"
+
+usage(){
+    cat <<EOF
+
+$1
+
+usage:
+  $(basename $0) [chooseDM]
+  $(basename $0) install [GNOME|GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) remove [GNOME3-PPA|elementary|cinnamon|mate]
+
+- GNOME: GNOME3 shell https://wiki.gnome.org/Projects/GnomeShell
+- GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
+- elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
+- cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
+- mate: Mate-Desktop https://mate-desktop.org/
+EOF
+}
+
+
+
 
 # ----------------------------------------------------------------------------
 main(){
@@ -60,44 +89,27 @@ main(){
 
     sudoOrExit
     case $1 in
-        gnomeShell)
-            install_gnomeShell
-            ;;
-        chooseDM)
-            chooseDM
-            ;;
-	cinnamon)
-            TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}
-            ;;
-	remove_cinnamon)
-            TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}
-            ;;
-	mate)
-            TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}
-            ;;
-	remove_mate)
-            TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}
-            ;;
-        elementary)
-            install_elementary
-            ;;
-        remove_elementary)
-            remove_elementary
-            ;;
-        remove_unity)
-            remove_unity
-            ;;
-        gnome3ppa)
-            install_gnome3_ppa
-            ;;
-        remove_gnome3ppa)
-            deinstall_gnome3_ppa
-            ;;
-        *)
-            echo
-	    echo "usage $0 [gnomeShell|chooseDM|[remove_][gnome3ppa|unity|elementary|cinnamon|mate]]"
-            echo
-            ;;
+        chooseDM) chooseDM ;;
+        install)
+            case $2 in
+                GNOME3-PPA)   install_gnome3_ppa   ;;
+                GNOME)        install_gnomeShell   ;;
+                elementary)   install_elementary   ;;
+	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
+	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
+                *)            usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42          ;;
+            esac  ;;
+        remove)
+            case $2 in
+                GNOME3-PPA)   remove_gnome3_ppa   ;;
+                elementary)   remove_elementary   ;;
+                unity)        remove_unity ;;
+                cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
+                mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
+                *)            usage "${BRed}ERROR:${_color_Off} unknown or missing remove command $2"; exit 42           ;;
+            esac  ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
+	   ;;
     esac
 }
 
@@ -143,13 +155,19 @@ install_elementary() {
 
     rstBlock ".. hint::
 
-  Die Installation ist nicht mit ubuntu 15.04 oder 15.10 möglich. Erst ab 16.04
-  scheint es wieder einen Support in dem PPA zu geben."
+  Die Installation ist nicht mit ubuntu 15.04 oder 15.10 möglich. Erst
+  ab 16.04 scheint es wieder einen Support in dem PPA zu geben."
 
     if askYn "Soll die Installation durchgeführt werden?"; then
         echo
+        rstBlock "deinstaliere ggf. vorhandene Pakete"
+        apt-get purge elementary-desktop
+        waitKEY
+
+        rstBlock "add PPA: ${Yellow}${ELEMENTARY_PPA}${_color_Off}"
         add-apt-repository --yes "${ELEMENTARY_PPA}"
         waitKEY
+
         apt-get update
         apt-get install elementary-desktop
     else
@@ -163,9 +181,10 @@ remove_elementary() {
     rstHeading "De-Installation elementary"
 # ----------------------------------------------------------------------------
 
-    echo
+    rstBlock "deinstaliere ggf. vorhandene Pakete"
     apt-get purge elementary-desktop
     waitKEY
+    rstBlock "remove PPA: ${Yellow}${ELEMENTARY_PPA}${_color_Off}"
     add-apt-repository --yes --remove "${ELEMENTARY_PPA}"
     apt-get update
     waitKEY
@@ -176,8 +195,12 @@ install_gnome3_ppa() {
     rstHeading "GNOME3 Team PPA"
 # ----------------------------------------------------------------------------
 
-    echo
-    if askYn "Soll gnome3 ppa eingerichtet werden?"; then
+    rstBlock ".. hint::
+
+  Die Installation des PPA für die GNOME3 Shell ist mit ubuntu 18.04 nicht mehr
+erforderlich."
+
+    if askYn "Soll gnome3 PPA eingerichtet werden?"; then
         apt-get install -y ppa-purge
 	ppa-purge ${GNOME3_PPA}
         add-apt-repository --yes "${GNOME3_PPA}"
@@ -189,7 +212,7 @@ install_gnome3_ppa() {
     waitKEY
 }
 
-deinstall_gnome3_ppa() {
+remove_gnome3_ppa() {
 # ----------------------------------------------------------------------------
     rstHeading "Deinstallation GNOME3 Team PPA"
 # ----------------------------------------------------------------------------

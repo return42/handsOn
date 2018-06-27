@@ -35,12 +35,13 @@ sudoOrExit
 # * https://bugs.launchpad.net/ubuntu/+source/ureadahead
 
 REMOVE_PACKAGES_UBUNTU="\
+ ubuntu-web-launchers \
  unity-webapps-common \
  ureadahead \
  whoopsie \
  $(dpkg-query -f '${binary:Package} ' -W 'xul-ext*') \
  flashplugin-installer \
- evolution-data-server-online-accounts \
+ evolution-data-server-online-accounts speech-dispatcher \
 "
 
 COMERCIAL_PACKAGES="\
@@ -59,6 +60,7 @@ main(){
     common_ubuntu
     commercial
     gnomeAccounts
+    remove_cloud_init
     apt-get autoremove -y
 
 }
@@ -90,7 +92,7 @@ commercial(){
     # FIXME: die ganzen searchengines sind in den language-packs gebundelt:
     #        /usr/lib/firefox-addons/extensions/langpack-de@firefox.mozilla.org.xpi
     # und dann liegen sie auch nochmal hier rum::
-    rm /usr/lib/firefox/distribution/searchplugins/locale/*/amazondotcom*.xml
+    rm -f /usr/lib/firefox/distribution/searchplugins/locale/*/amazondotcom*.xml
     waitKEY 20
 }
 
@@ -103,6 +105,26 @@ gnomeAccounts(){
     if askYn "Sollen die Pakete deinstalliert werden?" ; then
         apt-get purge --ignore-missing -y ${GNOME_ACCOUNT_PLUGINS}
     fi
+    waitKEY 20
+}
+
+# ----------------------------------------------------------------------------
+remove_cloud_init(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Cloud-Init"
+
+    rstBlock "Cloud-Init wird i.d.R. nur benötigt, wenn der Server
+eine Instanz in einer Server Cloud ist."
+
+    rstPkgList cloud-init
+    if askYn "Sollen die Pakete deinstalliert werden?" ; then
+        apt-get purge --ignore-missing -y cloud-init
+    fi
+    if askYn "Sollen die Ordner /etc/cloud und /var/lib/cloud auch gelöscht werden?" ; then
+       rm -rf /etc/cloud /var/lib/cloud/
+    fi
+
     waitKEY 20
 }
 
