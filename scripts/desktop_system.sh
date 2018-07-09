@@ -69,7 +69,7 @@ $1
 usage:
   $(basename $0) [chooseDM]
   $(basename $0) install [GNOME|GNOME3-PPA|elementary|cinnamon|mate]
-  $(basename $0) remove [GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) remove [GNOME3-PPA|remove_unity|elementary|cinnamon|mate]
 
 - GNOME: GNOME3 shell https://wiki.gnome.org/Projects/GnomeShell
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
