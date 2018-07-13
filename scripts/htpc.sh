@@ -313,6 +313,7 @@ install_vdr(){
     dpkg-reconfigure vdr
 
     rstBlock "Es wird der VDR Server gestartet."
+    systemctl enable vdr.service
     systemctl restart vdr.service
     systemctl status vdr.service
 }
