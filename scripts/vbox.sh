@@ -43,13 +43,17 @@ export SYSTEMD_PAGER=cat
 # Oracle Downloads
 ORACLE_VBOX_DOWNLOAD_URL="http://download.virtualbox.org/virtualbox"
 ORACLE_VBOX_LATEST="$(curl ${ORACLE_VBOX_DOWNLOAD_URL}/LATEST.TXT 2> /dev/null)"
+# FIXME: die LATEST.TXT scheint mit Version 5.2.14 nicht mehr gepflegt zu
+# werden, deshalb muss man (zumindest bei dieser Version) den Versionsstring
+# expliziet setzen.
+#ORACLE_VBOX_LATEST="5.2.14"
 ORACLE_VBOX_LATEST_URL="${ORACLE_VBOX_DOWNLOAD_URL}/${ORACLE_VBOX_LATEST}"
 
 ORACLE_VBOX_EXTPACK_NAME="Oracle VM VirtualBox Extension Pack"
 ORACLE_VBOX_EXTPACK_URL="${ORACLE_VBOX_LATEST_URL}/Oracle_VM_VirtualBox_Extension_Pack-${ORACLE_VBOX_LATEST}.vbox-extpack"
 
 ORACLE_VBOX_GUEST_ADDONS_ISO="VBoxGuestAdditions_${ORACLE_VBOX_LATEST}.iso"
-ORACLE_VBOX_GUEST_ADDONS_URL="${ORACLE_VBOX_LATEST_URL}/${ORACLE_VBOX_GUEST_ADDONS_IDO}"
+ORACLE_VBOX_GUEST_ADDONS_URL="${ORACLE_VBOX_LATEST_URL}/${ORACLE_VBOX_GUEST_ADDONS_ISO}"
 
 # Paketverwaltung
 ORACLE_VBOX_APT="oracle-vbox"
