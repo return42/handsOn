@@ -42,6 +42,7 @@ REMOVE_PACKAGES_UBUNTU="\
  $(dpkg-query -f '${binary:Package} ' -W 'xul-ext*') \
  flashplugin-installer \
  evolution-data-server-online-accounts speech-dispatcher \
+ dleyna* libdleyna* \
 "
 
 COMERCIAL_PACKAGES="\
