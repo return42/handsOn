@@ -42,7 +42,7 @@ MATE_PACKAGES="\
   mate-polkit-common"
 
 UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*')  ubuntu-gnome-desktop \
- ubuntu-gnome-wallpapers \
+ ubuntu-gnome-wallpapers ubuntu-session ubuntu-desktop \
 "
 
 # elementary
