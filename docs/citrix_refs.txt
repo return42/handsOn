@@ -1,0 +1,6 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _`Citrix Receiver`: https://www.citrix.com/products/receiver/
+.. _`Citrix Receiver (wiki)`: https://en.wikipedia.org/wiki/Citrix_Receiver
+.. _`Citrix Receiver (ubuntu)`: https://wiki.ubuntu.com/Enterprise/Remote/CitrixReceiver
+.. _`Citrix ICA Client HowTo`: https://help.ubuntu.com/community/CitrixICAClientHowTo
