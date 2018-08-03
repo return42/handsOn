@@ -2,13 +2,15 @@
 
 .. include:: ../lxdlxc_refs.txt
 
+.. _xref_lxdlxc:
+
 ===========================
 Linux Container (LXC & LXD)
 ===========================
 
 Linux Container (LXC_) sind *Standard* Container mit Linux Installationen.  LXC
 implementiert den Container und eine API. LXD_ implementiert unter `LXD@github`_
-die Manager-Suite (ein *Deamon* Prozess).
+die Manager-Suite (ein *Daemon* Prozess).
 
 .. toctree::
    :maxdepth: 1

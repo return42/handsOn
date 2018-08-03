@@ -36,6 +36,7 @@ DEVELOP_PACKAGES="\
  git subversion mercurial bzr \
  emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
+ docker.io \
 "
 # libjpeg-dev \
 
@@ -223,6 +224,10 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 
 * sqlitebrowser, sqlite3: *SQLite* inkl. Komandozeile und ein *DB Browser für
   SQLite*.
+
+* docker: Vereinfacht die Bereitstellung von Anwendungen in Containern. Damit
+  ein Benutzer Docker verwenden kann, muss er der Gruppe 'docker' hinzgefügt
+  werden.
 "
 
     rstPkgList ${DEVELOP_PACKAGES}

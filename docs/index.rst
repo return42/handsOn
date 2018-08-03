@@ -29,6 +29,7 @@ leicht möglich.
    android/index
    snappy/index
    lxdlxc/index
+   docker/index
    citrix/index
    LICENSE
 

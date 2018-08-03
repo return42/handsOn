@@ -1,0 +1,6 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _Docker: https://www.docker.com
+.. _Docker-Hub: https://hub.docker.com
+.. _dockerd: https://docs.docker.com/engine/reference/commandline/dockerd/
+.. _docs.docker: https://docs.docker.com/

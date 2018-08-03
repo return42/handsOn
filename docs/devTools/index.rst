@@ -25,6 +25,7 @@ wird.  Die Build-Tools werden auch `Toolchain (wiki)`_ genannt.
    edit
    scm
    relationalDB
+   docker
    devTools_refs
 
 
