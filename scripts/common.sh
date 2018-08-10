@@ -1686,11 +1686,11 @@ CONFIG_cryptedBackup(){
         then
             echo "backup folder : ${ITEM} --> ${ITEM}.tar.gpg"
             rm -f "${CONFIG}${ITEM}.tar.gpg"
-            tar -cf - "${ITEM}" | gpg --no-options --openpgp --passphrase "${passphrase}"  --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.tar.gpg"
+            tar -cf - "${ITEM}" | gpg --batch --no-options --openpgp --passphrase "${passphrase}"  --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.tar.gpg"
         else
             echo "backup file : ${ITEM} --> ${ITEM}.gpg"
             rm -f "${CONFIG}${ITEM}.gpg"
-            gpg --no-options --passphrase "${passphrase}" --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.gpg" "${ITEM}"
+            gpg --batch --no-options --passphrase "${passphrase}" --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.gpg" "${ITEM}"
         fi
     done
 
