@@ -33,7 +33,7 @@ DEVELOP_PACKAGES="\
  shellcheck devscripts \
  dkms \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
- git subversion mercurial bzr \
+ git git-email git-svn subversion mercurial bzr \
  emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
  docker.io \
