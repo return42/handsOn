@@ -45,7 +45,7 @@ sudo lsblk -o NAME,FSTYPE,UUID,RO,RM,SIZE,STATE,OWNER,GROUP,MODE,TYPE,MOUNTPOINT
 # EOF
 # ))
 
-ATA_DEVICES=( $(ls -1 /dev/disk/by-id/ata* | grep -v "part[0-9]\$") )
+ATA_DEVICES=( $(ls -1 /dev/disk/by-id/ata-* /dev/disk/by-id/nvme-* | grep -v "part[0-9]\$") )
 
 for DEV in "${ATA_DEVICES[@]}"  ; do
 
