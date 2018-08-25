@@ -58,9 +58,10 @@ if [[ ! -e "${CONFIG}_setup.sh" ]]; then
     cfg_msg "To NOT continue with defaults press CTRL-C now!"
     read -n1 $_t -p "** press any [KEY] to continue **"
     printf "\n"
+else
+    source ${CONFIG}_setup.sh
 fi
 
-source ${CONFIG}_setup.sh
 source ${SCRIPT_FOLDER}/common.sh
 checkEnviroment
 
