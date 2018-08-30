@@ -6,7 +6,6 @@
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -161,70 +160,181 @@ PYENV_PACKAGES="\
  psutil sqlalchemy babel simplejson \
 "
 
+usage(){
+    cat <<EOF
+
+$1
+
+usage:
+  $(basename $0) install    [common|PHP|WSGI|ACME]
+  $(basename $0) remove     [common|PHP|WSGI]
+  $(basename $0) update     [WSGI]
+  $(basename $0) activate   [WAF]
+  $(basename $0) deactivate [WAF]
+
+common:
+  geführte Installation aller wichtigen Apache Komponenten
+sites: ${APACHE_ADD_SITES:-<aktuell keine zusätzlichen Sites konfiguriert>}
+  zusätzliche Sites installieren
+PHP:
+  installiert PHP und Apache Modul
+WSGI:
+  installiert Apache-Modul für WSGI-Python3 plus ein virtualenv für welches auch
+  ein 'update' Kommando gibt
+WAF:
+  installiert Apache-Modul für ModSecurity plius OWASP Profiele
+ACME:
+  installiert ACME für Let's Encrypt (Zertifikat für HTTPS)
+EOF
+}
+
+
 # ----------------------------------------------------------------------------
 main(){
     rstHeading "Apache Setup" part
 # ----------------------------------------------------------------------------
 
-    sudoOrExit
     case $1 in
         info)
             info
             ;;
-	install)
-            installApachePackages
-            serverwide_cfg
-            site_static-content
-            site_html-intro
-            mod_security2
-            site_sysdoc
-            site_expimp
-            site_webshare
-            [[ ! -z ${APACHE_ADD_SITES} ]] && installAddSites
-            APACHE_reload
-	    ;;
+
+        install)
+            sudoOrExit
+            case $2 in
+                common)
+                    installApachePackages
+                    serverwide_cfg
+                    site_static-content
+                    site_html-intro
+                    mod_security2
+                    site_sysdoc
+                    site_expimp
+                    site_webshare
+                    [[ ! -z ${APACHE_ADD_SITES} ]] && installAddSites
+                    APACHE_reload
+	            ;;
+                PHP)     installPHP               ;;
+                WSGI)    installWSGI              ;;
+                sites)   installAddSites          ;;
+                ACME)    installACME              ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        remove)
+            sudoOrExit
+            case $2 in
+                common)
+                    echo
+                    service apache2 stop
+                    deinstallPHP
+                    deinstallWSGI
+                    a2dissite  webShare.conf exp-imp.conf static-content.conf
+                    a2dismod   dav_fs dav
+                    deinstallApachePackages
+	            ;;
+                PHP)
+                    deinstallPHP
+                    APACHE_reload
+                    ;;
+                WSGI)
+                    deinstallWSGI
+                    APACHE_reload
+                    ;;
+                ACME)    deinstallACME              ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+
+
         update)
-            updateWSGI
-            ;;
-	deinstall)
-            echo
-            service apache2 stop
-            deinstallPHP
-            deinstallWSGI
-            a2dissite  webShare.conf exp-imp.conf static-content.conf
-            a2dismod   dav_fs dav
-            deinstallApachePackages
-	    ;;
-        installPHP)
-            installPHP
-            ;;
-        deinstallPHP)
-            deinstallPHP
-            APACHE_reload
-            ;;
-        installWSGI)
-            installWSGI
-            ;;
-        deinstallWSGI)
-            deinstallWSGI
-            APACHE_reload
-            ;;
-        installAddSites)
-            installAddSites
-            ;;
-        activateWAF)
-            mod_security2_activate
-            ;;
-        deactivateWAF)
-            mod_security2_deactivate
-            ;;
-	*)
-            echo
-	    echo "usage $0 [(de)install|update|(de)installPHP|(de)installWSGI|(de)activateWAF]"
-            echo
-            ;;
+            sudoOrExit
+            case $2 in
+                WSGI)    updateWSGI               ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        activate)
+            sudoOrExit
+            case $2 in
+                WAF)     mod_security2_activate   ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        deactivate)
+            sudoOrExit
+            case $2 in
+                WAF)     mod_security2_deactivate   ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
 }
+
+
+# ----------------------------------------------------------------------------
+installACME(){
+    rstHeading "Installation ACME (Let's Encrypt)"
+# ----------------------------------------------------------------------------
+
+    rstBlock "Es wird der ACME Client von 'cerbot' installiert."
+    if ! askYn "Soll der ACM Client installiert werden?"; then
+        return
+    fi
+
+    apt-get update
+    apt-get install software-properties-common
+    add-apt-repository ppa:certbot/certbot
+    apt-get update
+    apt-get install python-certbot-apache
+
+    rstBlock "Der ACME Client wurde installiert"
+    waitKEY
+
+    if askYn "Soll ein Zertifikat angefordert und im Apache eingerichtet werden?"; then
+        APACHE_install_site acme-challenges.conf
+        certbot --apache
+        waitKEY
+        APACHE_dissable_site acme-challenges.conf
+        APACHE_dissable_site 000-default-le-ssl.conf
+        mv /etc/apache2/sites-available/000-default-le-ssl.conf /etc/apache2/sites-available/000-default-le-ssl.conf.bak
+        echo
+        echo
+        cat /etc/apache2/sites-available/000-default-le-ssl.conf.bak | prefix_stdout
+        echo
+        echo
+        rstBlock "Leider klappt das mit der automatischen Konfiguration des
+Apache nicht so wirklich gut, deshalb muss man da nochmal manuell eingreifen.
+In der /etc/apache2/sites-available/default-ssl.conf müssen in etwa folgende
+Settings eingestellt werden (Servername muss natürlich der sein, den man
+eben eingegeben hat, s.o.)::"
+
+        echo -en "${Yellow}
+ServerName xxx.yyy.zz
+SSLCertificateFile /etc/letsencrypt/live/xxx.yyy.zz/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/xxx.yyy.zz/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
+${_color_Off}"
+
+        waitKEY
+    fi
+
+    rstBlock "Es wird die automatische Erneuerung getestet"
+    TEE_stderr <<EOF | bash | prefix_stdout
+certbot renew --dry-run
+EOF
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+deinstallACME(){
+    rstHeading "De-Installation ACME (Let's Encrypt)"
+# ----------------------------------------------------------------------------
+
+    rstBlock "Es wird der ACME Client von 'cerbot' de-installiert."
+    if askYn "Soll der ACM Client de-installiert werden?"; then
+         python-certbot-apache
+    fi
+    waitKEY
+}
+
+
 
 # ----------------------------------------------------------------------------
 info(){
@@ -501,9 +611,7 @@ site_html-intro(){
     rstBlock "Die HTML-Startseite stellt Verweise auf die Anwendungen zur
 Verfügung, die mit diesem Skript installiert werden. Die Installation erfolgt
 nach 'DocumentRoot' (siehe apache.conf).  Die Startseite ist nur *exemplarisch*
-und kann bei Bedarf auch wieder deaktiviert werden:
-
-.. code-block::
+und kann bei Bedarf auch wieder deaktiviert werden::
 
   sudo a2dissite ${HTML_INTRO_SITE}"
 
@@ -530,9 +638,7 @@ site_sysdoc(){
 über den WEB-Server freigegeben.  Die sysdoc-Site sollte nur in einer
 Entwickler-Umgebung installiert werden. ${BRed}Sie sollte in KEINEM Fall in
 einer produktiven Umgebung installiert werden!${_color_Off}. Die sysdoc-Site
-kann bei Bedarf auch wieder deaktiviert werden:
-
-.. code-block::
+kann bei Bedarf auch wieder deaktiviert werden::
 
   sudo a2dissite ${SYSDOC_SITE}"
 
@@ -560,9 +666,7 @@ WEB-Seiten nachgeladen werden. Zu der Site gehört auch eine *Autoindex*
 Installation/Konfiguration, die es ermöglicht in den freigegeben Ordnern via
 WEB-Browser zu navigieren.  Die Installation wird empfohlen, da auch noch
 weitere Setups die ${SITE} benötigen. Autoindex als auch ${SITE} können
-abgeschaltet werden.
-
-.. code-block::
+abgeschaltet werden::
 
   sudo a2dismod autoindex
   sudo a2dissite ${SITE}"
@@ -602,9 +706,7 @@ ihn über $EXPIMP_URL ins Netz. Sinnvoller Weise sollte man eine solche
 ExpImp-Konfiguration nicht ohne weiteres ins Internet stellen.
 
 Man kann die Konfiguration später aber auch wieder zurück nehmen, indem man die
-Site deaktiviert.
-
-.. code-block::
+Site deaktiviert.::
 
   sudo a2dissite ${SITE}"
 
@@ -632,9 +734,7 @@ site_webshare() {
 
     rstBlock "Diese Konfiguration sollte man nicht ohne weiteres (z.B. quota) im
 Internet betreiben! Man kann die Konfiguration später aber auch wieder zurück
-nehmen, indem man die Site deaktiviert.
-
-.. code-block:: bash
+nehmen, indem man die Site deaktiviert::
 
   sudo a2dissite ${SITE}
 
@@ -680,11 +780,9 @@ und sqlite3. Es wird der Ordner ${PHP_APPS} angelegt und eine Aapche
 Konfiguration für diesen Ordner eingerichtet. In dem Ordner können
 PHP-Anwendungen installiert werden.  Das Setup des ${PHP_APPS} Ordners ist
 exemplarisch und sollte nicht ohne weiteres ins Internet gestellt werden. Das
-Setup kann deinstalliert werden:
+Setup kann deinstalliert werden::
 
-.. code-block::
-
-  sudo ${0} deinstallPHP"
+  sudo ${0} remove PHP"
 
     if ! askYn "Soll PHP für Apache installiert werden?"; then
         return 42
@@ -749,9 +847,7 @@ installPHPTestApp(){
 werden. ${BRed}Sie sollte in KEINEM Fall in einer produktiven Umgebung installiert
 werden!${_color_Off}
 
-Zur DEINSTALLATION folgendes verwenden:
-
-.. code-block::
+Zur DEINSTALLATION folgendes verwenden::
 
   sudo a2dissite ${PHP_TEST_SITE}
   sudo rm -rf ${PHP_TEST_TEMPLATE}
@@ -782,11 +878,9 @@ der die Python-Anwendungen laufen, wenn sie im WEB-Server betrieben werden. In
 dieser Umgebung werden eine Reihe von Python Modulen vorinstalliert.
 
 Das Setup des ${WSGI_APPS} Ordners ist exemplarisch und sollte nicht ohne
-weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden:
+weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden::
 
-.. code-block::
-
-  sudo ${0} deinstallWSGI"
+  sudo ${0} remove WSGI"
 
     if ! askYn "Soll WSGI für Apache installiert werden?"; then
         return 42
@@ -874,7 +968,13 @@ installWSGITestApp(){
 
     rstBlock "Die Test-Site sollte nur in einer Entwickler-Umgebung installiert
 werden. ${BRed}Sie sollte in KEINEM Fall in einer produktiven Umgebung installiert
-werden!${_color_Off}"
+werden!${_color_Off}
+
+Zur DEINSTALLATION folgendes verwenden::
+
+  sudo a2dissite ${WSGI_TEST_SITE}
+  sudo rm -rf ${WSGI_TEST_TEMPLATE}
+"
 
     if askNy "Soll die WSGI-Test Site installiert werden?"; then
 
