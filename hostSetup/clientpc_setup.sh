@@ -122,5 +122,10 @@ CONFIG_BACKUP=(
     # Apache: PHP
     # "/var/www/phpApps/helloWorld"
 
+    # boinc
+    # "/etc/default/boinc-client"
+    # "/etc/init.d/boinc-client"
+    # "/etc/boinc-client/gui_rpc_auth.cfg"
+    # "/etc/boinc-client/remote_hosts.cfg"
 )
 

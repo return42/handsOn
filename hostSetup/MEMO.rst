@@ -7,7 +7,7 @@ MEMO: hostSetup
 
 Umgebungsvariablen für die Skripte
 ==================================
-  
+
 Die Vor-Einstellungen von z.B. Pfad- oder Hostnamen, die von den
 Installations-Skripten benötigt werden, werden in Umgebungsvariablen
 übergeben. Für diese Umgebungsvariablen gibt es sinnvolle Defaults.
@@ -122,9 +122,9 @@ angepasst werden. Überprüfen kann man das dann am besten mit::
 
 Versionierung des Setups
 ========================
-  
+
 Es kann auch sehr hilfreich sein, wenn man die die ganzen Setups
-versioniert (z.B. mit git). So kann man 
+versioniert (z.B. mit git). So kann man
 
 
 Also z.B. den Ordner anlegen::
@@ -143,7 +143,7 @@ Anschließend Backup anlegen::
 
 Zum Schluss das Git-Reposetory einrichten und den initialen Stand
 comitten::
-  
+
   $ cp ./.gitignore /my/repo
   $ cd /my/repo
   $ git init

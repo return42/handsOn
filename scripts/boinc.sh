@@ -24,15 +24,25 @@ BOINC_PACKAGES="\
  boinc boinc-manager boinc-client \
 "
 
-BOINC_INIT_DEFAULTS=/etc/default/boinc-client
-
 # This is the data directory of the BOINC core client.
 BOINC_DIR="/var/lib/boinc-client"
-
 
 if [ -e $BOINC_INIT_DEFAULTS ]; then
     . $BOINC_INIT_DEFAULTS
 fi
+
+BOINC_INIT_DEFAULTS=/etc/default/boinc-client
+
+CONFIG_BACKUP=(
+    "$BOINC_INIT_DEFAULTS"
+    "/etc/init.d/boinc-client"
+    "/etc/boinc-client/gui_rpc_auth.cfg"
+    "/etc/boinc-client/remote_hosts.cfg"
+)
+
+CONFIG_BACKUP_ENCRYPTED=(
+)
+
 
 # ----------------------------------------------------------------------------
 usage(){
@@ -110,8 +120,8 @@ deactivate_boinc_client () {
     echo ""
 
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
-systemctl disable boinc-client.service
 systemctl stop boinc-client.service
+systemctl disable boinc-client.service
 EOF
     if [ "$ENABLED" == "0" ]; then
         err_msg "BOINC client is already enabled see ENABLED in $BOINC_INIT_DEFAULTS"
@@ -210,8 +220,8 @@ systemctl daemon-reload
 systemctl start boinc-client.service
 systemctl status boinc-client.service
 EOF
-    waitKEY
     #_dump_ps
+    waitKEY
 }
 
 # ----------------------------------------------------------------------------
@@ -226,29 +236,8 @@ remove_boinc() {
 
     deactivate_boinc_client
     aptPurgePackages ${BOINC_PACKAGES}
-
-#     rstHeading "BOINC client Konfiguration" section
-#     echo
-#     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
-# rm /etc/default/boinc-client
-# rm /etc/init.d/boinc-client
-# EOF
-#     waitKEY
-#     rstHeading "BOINC Daten" section
-#     rstBlock "Das Setup der Sitzungen und die Nutzdaten verbleiben im Ordner
-# $BOINC_DIR und müssen ggf. manuell gelsöscht werden."
-#     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
-# ls -la ${BOINC_DIR}
-# EOF
-
-#     if askNy "Soll der Ordner $BOINC_DIR jetzt gelöscht werden?"; then
-#         TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
-# rm -rf "${BOINC_DIR}"
-# EOF
-#         rstBlock "Ordner wurde gelöscht."
-#     fi
-#    waitKEY
     #_dump_ps
+    waitKey
 }
 
 

@@ -217,4 +217,10 @@ CONFIG_BACKUP=(
     "/etc/default/virtualbox"
     "/etc/vbox/autostart.db"
     "/etc/vbox/autostart.cfg"
+
+    # boinc
+    "/etc/default/boinc-client"
+    "/etc/init.d/boinc-client"
+    "/etc/boinc-client/gui_rpc_auth.cfg"
+    "/etc/boinc-client/remote_hosts.cfg"
 )
