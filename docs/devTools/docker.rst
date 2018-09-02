@@ -13,6 +13,7 @@ Docker
 Eine Beschreibung befindet sich im Kapitel :ref:`xref_docker`.  APT Paket(e):
 
 * :deb:`docker.io`
+* :deb:`docker-compose`
 
 Mit dem APT Paket :deb:`docker.io` wird die Gruppe `docker` eingerichtet. Damit
 ein Benutzer Docker verwenden kann, muss er zu dieser Gruppe hinzgefügt werden::

@@ -13,7 +13,7 @@ sudoOrExit
 
 # BASE_PACKAGES und DEVELOP_PACKAGES bilden eine große Schnittmenge, da die
 # handsOn für z.B. die mozCloud oder den Apache Server diverse Pakete benötigen,
-# die auch den "Entwicklertools" zuzuordnen sind. Die Eräuterungen zu diesen
+# die auch den "Entwicklertools" zuzuordnen sind. Die Erläuterungen zu diesen
 # Paketen findet sich entsprechend in der Dokumentation zu den
 # "Entwicklertools".
 
@@ -40,6 +40,11 @@ DEVELOP_PACKAGES="\
 "
 # libjpeg-dev \
 
+AUTHORING_PACKAGES="\
+ texlive-base texlive-xetex texlive-latex-recommended \
+ texlive-extra-utils dvipng ttf-dejavu \
+ graphviz \
+"
 
 BASE_DOC_PACKAGES="\
  debian-handbook libpam-doc \
@@ -228,9 +233,13 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 * docker: Vereinfacht die Bereitstellung von Anwendungen in Containern. Damit
   ein Benutzer Docker verwenden kann, muss er der Gruppe 'docker' hinzgefügt
   werden.
+
+* TeX Live: Eine LaTeX Installation (https://www.tug.org/texlive/)
+
+* graphviz: Ein Visualisierungs Werkzeug (http://graphviz.org/)
 "
 
-    rstPkgList ${DEVELOP_PACKAGES}
+    rstPkgList ${DEVELOP_PACKAGES} ${AUTHORING_PACKAGES}
     if ! askYn "sollen die Entwickler Pakete installiert werden?" 60; then
         return 42
     fi
