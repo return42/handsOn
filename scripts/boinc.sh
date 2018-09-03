@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
-# --                             --  File:     boink.sh
-# -- Copyright (C) 2015 darmarIT --  Author:   Markus Heiser
+# --                             --  File:     boinc.sh
+# -- Copyright (C) 2018 darmarIT --  Author:   Markus Heiser
 # --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
 # --                             --  http://www.darmarIT.de
 # ----------------------------------------------------------------------------

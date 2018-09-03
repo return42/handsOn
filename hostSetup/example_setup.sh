@@ -92,6 +92,8 @@ CONFIG_BACKUP_ENCRYPTED=(
     "/etc/gitlab/gitlab.rb"
     "/etc/gitlab/gitlab-secrets.json"
 
+    # boinc
+    "/etc/boinc-client/gui_rpc_auth.cfg"
 )
 
 # ==============================================================================
@@ -221,6 +223,5 @@ CONFIG_BACKUP=(
     # boinc
     "/etc/default/boinc-client"
     "/etc/init.d/boinc-client"
-    "/etc/boinc-client/gui_rpc_auth.cfg"
     "/etc/boinc-client/remote_hosts.cfg"
 )
