@@ -11,7 +11,6 @@
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -27,11 +26,11 @@ BOINC_PACKAGES="\
 # This is the data directory of the BOINC core client.
 BOINC_DIR="/var/lib/boinc-client"
 
+BOINC_INIT_DEFAULTS=/etc/default/boinc-client
+
 if [ -e $BOINC_INIT_DEFAULTS ]; then
     . $BOINC_INIT_DEFAULTS
 fi
-
-BOINC_INIT_DEFAULTS=/etc/default/boinc-client
 
 CONFIG_BACKUP=(
     "$BOINC_INIT_DEFAULTS"
@@ -237,7 +236,7 @@ remove_boinc() {
     deactivate_boinc_client
     aptPurgePackages ${BOINC_PACKAGES}
     #_dump_ps
-    waitKey
+    waitKEY
 }
 
 
