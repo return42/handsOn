@@ -51,8 +51,8 @@ usage(){
 $1
 
 usage:
-  $(basename $0) install    [boinc]
-  $(basename $0) remove     [boinc]
+  $(basename $0) install    [boinc|manager]
+  $(basename $0) remove     [boinc|manager]
   $(basename $0) activate   [boinc-client]
   $(basename $0) deactivate [boinc-client]
 
@@ -69,12 +69,14 @@ main(){
             sudoOrExit
             case $2 in
                 boinc)    install_boinc ;;
+                manager)  install_boinc_manager ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
                 boinc)    remove_boinc ;;
+                manager)  remove_boinc_manager ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
             esac ;;
         activate)
@@ -129,12 +131,24 @@ EOF
     #_dump_ps
 }
 
+# ----------------------------------------------------------------------------
+install_boinc_manager(){
+    rstHeading "Installation BOINC-Manager"
+# ----------------------------------------------------------------------------
+    aptInstallPackages boinc-manager
+}
+
+# ----------------------------------------------------------------------------
+remove_boinc_manager() {
+    rstHeading "De-Installation BOINC-Manager"
+# ----------------------------------------------------------------------------
+    aptPurgePackages boinc-manager
+}
 
 # ----------------------------------------------------------------------------
 install_boinc(){
-# ----------------------------------------------------------------------------
-
     rstHeading "Installation BOINC"
+# ----------------------------------------------------------------------------
 
     rstBlock_stdin <<EOF
 Für die BOINC Installation werden folgende Pakete installiert.
@@ -225,9 +239,8 @@ EOF
 
 # ----------------------------------------------------------------------------
 remove_boinc() {
-# ----------------------------------------------------------------------------
-
     rstHeading "De-Installation BOINC"
+# ----------------------------------------------------------------------------
 
     if ! askYn "Soll BOINC deinstalliert werden?"; then
         return
@@ -236,7 +249,6 @@ remove_boinc() {
     deactivate_boinc_client
     aptPurgePackages ${BOINC_PACKAGES}
     #_dump_ps
-    waitKEY
 }
 
 
