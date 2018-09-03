@@ -121,6 +121,11 @@ echo " --> usb.txt"
 sudo lsusb --verbose > usb.txt
 waitKEY 5
 
+rstHeading "Devices"
+echo "  --> ubuntu-drivers-devices.txt"
+sudo ubuntu-drivers devices > ubuntu-drivers-devices.txt
+echo
+
 # Das funktioniert natürlich nur wenn man das DISPLAY geöffnet hat ..
 rstHeading "Display infos"
 echo "  --> xrandr.txt"
