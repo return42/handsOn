@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8; mode: sh -*-
+# ----------------------------------------------------------------------------
+# --                             --  File:     ???.sh
+# -- Copyright (C) 2018 darmarIT --  Author:   Markus Heiser
+# --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
+# --                             --  http://www.darmarIT.de
+# ----------------------------------------------------------------------------
+# Purpose:     ???
+# ----------------------------------------------------------------------------
+
+source $(dirname ${BASH_SOURCE[0]})/setup.sh
+#setupInfo
+
+# ----------------------------------------------------------------------------
+# Config
+# ----------------------------------------------------------------------------
+
+???_PACKAGES="\
+ ???-server ???-client \
+"
+
+CONFIG_BACKUP=(
+    "/etc/default/???"
+)
+
+CONFIG_BACKUP_ENCRYPTED=(
+)
+
+
+# ----------------------------------------------------------------------------
+usage(){
+# ----------------------------------------------------------------------------
+    cat <<EOF
+
+$1
+
+usage:
+  $(basename $0) install    [???-client|???-server]
+  $(basename $0) remove     [???-client|???-server]
+  $(basename $0) activate   [server]
+  $(basename $0) deactivate [server]
+
+EOF
+}
+
+# ----------------------------------------------------------------------------
+main(){
+    rstHeading "???" part
+# ----------------------------------------------------------------------------
+
+    case $1 in
+        install)
+            sudoOrExit
+            case $2 in
+                ???-client)  install_???_client ;;
+                ???-server)  install_???_server ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        remove)
+            sudoOrExit
+            case $2 in
+                ???-client)  remove_???_client ;;
+                ???-server)  remove_???_server ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        activate)
+            sudoOrExit
+            case $2 in
+                server)  activate_server ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        deactivate)
+            sudoOrExit
+            case $2 in
+                server)  deactivate_server ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+            esac ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
+    esac
+}
+
+# ----------------------------------------------------------------------------
+activate_server () {
+    rstHeading "Aktivieren des ??? (service)" section
+# ----------------------------------------------------------------------------
+    echo ""
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+systemctl enable ???-server.service
+systemctl restart ???-server.service
+EOF
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+systemctl status ???-server.service
+EOF
+    waitKEY 10
+}
+
+# ----------------------------------------------------------------------------
+deactivate_server () {
+    rstHeading "De-Aktivieren des ??? (service)" section
+# ----------------------------------------------------------------------------
+    echo ""
+
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+systemctl stop ???-server.service
+systemctl disable ???-server.service
+EOF
+    waitKEY 10
+}
+
+# ----------------------------------------------------------------------------
+install_???_client(){
+    rstHeading "Installation ???-Client"
+# ----------------------------------------------------------------------------
+    aptInstallPackages ???-client
+}
+
+# ----------------------------------------------------------------------------
+remove_???_client() {
+    rstHeading "De-Installation ???-Client"
+# ----------------------------------------------------------------------------
+    aptPurgePackages ???-client
+}
+
+# ----------------------------------------------------------------------------
+install_???_server(){
+    rstHeading "Installation ???"
+# ----------------------------------------------------------------------------
+    aptInstallPackages ${???_PACKAGES}
+    TEMPLATES_InstallOrMerge /etc/default/??? root root 644
+}
+
+# ----------------------------------------------------------------------------
+remove_???_server() {
+    rstHeading "De-Installation ???"
+# ----------------------------------------------------------------------------
+
+    if ! askYn "Soll ??? deinstalliert werden?"; then
+        return
+    fi
+    deactivate_server
+    aptPurgePackages ${???_PACKAGES}
+}
+
+# ----------------------------------------------------------------------------
+main "$@"
+# ----------------------------------------------------------------------------
