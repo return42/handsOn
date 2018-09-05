@@ -14,19 +14,19 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
-build/
-local/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-parts/
-sdist/
-*.egg-info/
-.installed.cfg
-*.egg
+/env/
+/build/
+/local/
+/develop-eggs/
+/dist/
+/downloads/
+/eggs/
+/.eggs/
+/parts/
+/sdist/
+/*.egg-info/
+/.installed.cfg
+/*.egg
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
