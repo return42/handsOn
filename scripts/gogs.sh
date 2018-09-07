@@ -29,21 +29,38 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 GO_PKG_URL=https://dl.google.com/go/go1.11.linux-amd64.tar.gz
 GO_TAR="$(basename https://dl.google.com/go/go1.11.linux-amd64.tar.gz)"
 
+GOGS_DESCRIPTION="Gogs (Go Git Service)"
 GOGS_USER=gogs
+
+GOGS_SYSTEMD_UNIT=/lib/systemd/system/gogs.service
+
 
 # Den HOME Ordner sollte man nicht ändern, er (/home/gogs) wird auch in den
 # Konfigurationen verwendet.
 GOGS_HOME=/home/gogs
 
+# Domain in welcher der Gogs Server lauscht:
+GOGS_DOMAIN=127.0.0.1
+
+# Apache Redirect URL
+GOGS_APACHE_DOMAIN="$(uname -n)"
+GOGS_APACHE_URL="/gogs"
+
+# Port für den Gogs Server auf dem localhost
+GOGS_PORT=3000
 # Die URI muss sein 'github.com/gogs/gogs' nicht '...gogits/gogs' wie in einigen
-# älteren Dokumentationen zu finden.
+# älteren Dokumentationen zu finden. Siehe ChangeLog 0.11.53@2018-06-05:
+#
+# - https://gogs.io/docs/intro/change_log#0.11.53-%40-2018-06-05
+#
 GOGS_URI=github.com/gogs/gogs
 
 #GOGS_PACKAGES="\
 #"
 
 CONFIG_BACKUP=(
-    # "/lib/systemd/system/gogs.service"
+    "${GOGS_SYSTEMD_UNIT}"
+    "/home/gogs/local/gogs/custom/conf/app.ini"
 )
 
 CONFIG_BACKUP_ENCRYPTED=(
@@ -76,7 +93,7 @@ main(){
         install)
             sudoOrExit
             case $2 in
-                gogs)  install_gogs ;;
+                gogs)  setup_gogs_server ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
             esac ;;
         remove)
@@ -101,19 +118,23 @@ main(){
     esac
 }
 
+
 # ----------------------------------------------------------------------------
-install_gogs(){
+setup_gogs_server(){
     rstHeading "Installation Gogs"
 # ----------------------------------------------------------------------------
 
     rstBlock "Es wird Gogs mit einer SQLite Datenbank eingerichtet"
 
-    if ! askYn "Soll Gogs installiert werden?"; then
+    if ! aptPackageInstalled apache2; then
+        rstBlock "Apache is noch nicht installiert, die Installation sollte mit
+dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
 
-    rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
-    deactivate_server
+    if ! askYn "Soll Gogs installiert werden?"; then
+        return 42
+    fi
 
     echo -e "
 Die Installation bedarf einiger Vorbereitung und erfolgt in folgenden Schritten:
@@ -121,9 +142,11 @@ Die Installation bedarf einiger Vorbereitung und erfolgt in folgenden Schritten:
 1. Es werden die erforderlichen Systempakete installiert
 2. Es wird der Benutzer '$GOGS_USER' angelegt
 3. In dessen HOME Ordner erfolgt eine aktuelle Go Installation.
-4. Es wird gogs heruntergeladen und in HOME installiert.
-"
+4. Es wird gogs heruntergeladen und in HOME installiert."
     waitKEY
+
+    rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
+    deactivate_server
 
     # Wenn man go eh neu installiert hat, dann braucht man hier im System kein
     # golang Paket (das wäre ja die alte Installation, also 1.6 bei Ubuntu 16.04).
@@ -131,21 +154,55 @@ Die Installation bedarf einiger Vorbereitung und erfolgt in folgenden Schritten:
     # aptInstallPackages golang libpam0g-dev libsqlite3-0
     aptInstallPackages libpam0g-dev libsqlite3-0
 
-    _assert_user
-    _assert_go
-    _assert_gogs
+    assert_user
+    install_go
 
+    download_gogs
+    build_gogs
+    install_gogs
+    TEMPLATES_InstallOrMerge --eval /home/gogs/local/gogs/custom/conf/app.ini root root 644
     waitKEY
+
+    rstHeading "Test der Gogs Installation" section
+    echo
+    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
+source ~/.env_gogs
+\$HOME/local/gogs/gogs web &
+sleep 5
+curl --location --verbose --head --insecure http://$GOGS_DOMAIN:$GOGS_PORT 2>&1
+kill \$(jobs -p)
+EOF
+    waitKEY
+
+    rstHeading "Install System-D Unit gogs.service ..." section
+    TEMPLATES_InstallOrMerge --eval ${GOGS_SYSTEMD_UNIT} root root 644
+    waitKEY
+    activate_server
+
+    rstHeading "Apache Site mit ProxyPass einrichten" section
+    echo
+    a2enmod proxy_http
+    APACHE_install_site --eval gogs
+    rstBlock "Dienst: https://${GOGS_APACHE_DOMAIN}${GOGS_APACHE_URL}"
+    waitKEY
+
+    rstHeading "Test des Gogs Dienstes im WWW" section
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+curl --location --verbose --head --insecure https://${GOGS_APACHE_DOMAIN}${GOGS_APACHE_URL}
+EOF
+    waitKEY
+
 }
 
 
-_assert_go(){
+install_go(){
     rstHeading "Install Go in user's HOME" section
 
     rstBlock "Es wird ein aktuelles Go binary heruntergeladen und installiert..."
     cacheDownload "${GO_PKG_URL}" "${GO_TAR}"
 
-    TEE_stderr 1 <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
+    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
 echo \$HOME
 rm -rf \$HOME/local/go
 mkdir -p \$HOME/local
@@ -154,8 +211,7 @@ EOF
 
     rstBlock "${GO_TAR} wurde nach $GOGS_HOME/go entpackt"
     TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-export PATH=\$PATH:\$HOME/local/go/bin
-export GOPATH="\$HOME/go/"
+source ~/.env_gogs
 env
 ! which go &&  echo "Go Installation not found in PATH!?!"
 which go &&  echo "congratulations, Go Installation OK :)"
@@ -163,7 +219,7 @@ EOF
     waitKEY
 }
 
-_assert_user(){
+assert_user(){
 
     rstHeading "Benutzer $GOGS_USER" section
     echo
@@ -172,118 +228,51 @@ sudo adduser --shell /bin/bash --system --home $GOGS_HOME --group --gecos 'Gogs'
 EOF
     export GOGS_HOME="$(sudo -i -u $GOGS_USER echo \$HOME)"
     rstBlock "export GOGS_HOME=$GOGS_HOME" | prefix_stdout
-    # sollte immer /home/gogs sein
+
+    cat > $GOGS_HOME/.env_gogs <<EOF
+export PATH=\$PATH:\$HOME/local/go/bin:\$HOME/local/gogs
+export GOPATH=\$HOME/go-apps
+EOF
+    rstBlock "Umgebung $GOGS_HOME/.env_gogs wurde angelegt"
     waitKEY
 
 }
 
-_assert_gogs(){
 
+download_gogs(){
     rstHeading "Download Gogs" section
     echo
-    TEE_stderr 1 <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-export PATH=\$PATH:\$HOME/local/go/bin
-export GOPATH="\$HOME/go/"
-env
+    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
+source ~/.env_gogs
 mkdir -p "\${GOPATH}"
 go get -v -u -tags "sqlite pam" $GOGS_URI
 EOF
     waitKEY
+}
 
+build_gogs(){
     rstHeading "Build Gogs" section
     echo
-    TEE_stderr 1 <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-export PATH=\$PATH:\$HOME/local/go/bin
-export GOPATH="\$HOME/go/"
+    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
+source ~/.env_gogs
 cd "\${GOPATH}/src/$GOGS_URI"
 pwd
 go build -v -tags "sqlite pam"
 EOF
     waitKEY
+}
 
+install_gogs(){
     rstHeading "Install Gogs (user's HOME)" section
     echo
-    TEE_stderr 1 <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-export PATH=\$PATH:\$HOME/local/go/bin
-export GOPATH="\$HOME/go/"
+    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
+source ~/.env_gogs
 cd "\${GOPATH}/src/$GOGS_URI"
-pwd
-# alte Installation löschen ...
 rm -rf \$HOME/local/gogs
-
-# neu installieren ...
 mkdir -p \$HOME/local/gogs/custom/conf
 cp -fr gogs LICENSE public README.md README_ZH.md scripts templates \$HOME/local/gogs
-
-# app.ini aus den Vorlagen übernehmen ...
-cp ${TEMPLATES}/home/gogs/local/gogs/custom/conf/app.ini \$HOME/local/gogs/custom/conf
-ls -la \$HOME/local/gogs
 EOF
     waitKEY
-
-    rstHeading "Test Gogs binary ..." section
-    echo
-    TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-\$HOME/local/gogs/gogs web --help
-EOF
-    waitKEY
-
-    rstBlock "\
-Der Gogs Dienst wird am einfachsten initial über die WEB-gui installiert
-(http://$(uname -n):3000).  Bei einer Installation im Internet sollte die
-Installation über die WEB-gui umgehend erfolgen (bevor ein *Anderer* darauf
-zugreift).
-
-In der WEB-gui wählt man SQlite3 aus und trägt beim 'Run User' noch gogs (statt
-git) ein. Alles Andere beläßt man bei den Defaults, wie localhost und Port 3000.
-Dienst wird initial gestartet (nach Abschluss WEB-gui mit STRG-C abbrechen) .."
-
-    rstBlock " --> http://$(uname -n):3000"
-
-    TEE_stderr 3 <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
-\$HOME/local/gogs/gogs web &
-curl --location --verbose --head --insecure http://localhost:3111 2>&1
-sleep 20
-EOF
-    waitKEY
-
-
-# Type=simple
-# User=gogs
-# Group=gogs
-# WorkingDirectory=/home/gogs
-# ExecStart=/home/gogs/local/gogs/gogs web
-# Restart=always
-# Environment=USER=gogs HOME=/home/gogs GOGS_CUSTOM=/home/gogs/local/gogs
-/home/gogs/local/gogs/custom
-
-    
-    rstHeading "Install System-D Unit gogs.service ..." section
-
-    TEMPLATES_InstallOrMerge /lib/systemd/system/gogs.service root root 644
-    activate_server
-
-    rstBlock "Dienst ist eingerichtet ..."
-    rstBlock "  --> http://$HOSTNAME:3000"
-
-    
-
-    jetzt kann schon getestet werden .. evtl. jetzt schon den Dienst installieren nund starten.
-    
-
-
-
-
-
-    rstHeading "Install gogs in user's home" section
-
-
-    FIXME: hier liegt der gogs Ordner: "\${GOPATH}/src/$GOGS_URI"
-
-    
-    echo "FIXME ...."
-    waitKEY
-
 }
 
 
@@ -296,7 +285,7 @@ remove_gogs() {
         return
     fi
     deactivate_server
-    rm /lib/systemd/system/gogs.service
+    rm "${GOGS_SYSTEMD_UNIT}"
 
     rstHeading "Benutzer $GOGS_USER" section
     if askNy "Soll der Benutzer wirklich ganz gelöscht werden? Alle Daten gehen verloren!!!"; then

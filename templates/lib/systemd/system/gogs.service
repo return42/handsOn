@@ -1,5 +1,6 @@
 [Unit]
-Description=Gogs (Go Git Service)
+
+Description=${GOGS_DESCRIPTION}
 After=syslog.target
 After=network.target
 #After=mysqld.service
@@ -8,19 +9,29 @@ After=network.target
 #After=redis.service
 
 [Service]
+
 # Modify these two values and uncomment them if you have
 # repos with lots of files and get an HTTP error 500 because
 # of that
 ###
 #LimitMEMLOCK=infinity
 #LimitNOFILE=65535
+
 Type=simple
-User=gogs
-Group=gogs
-WorkingDirectory=/home/gogs
-ExecStart=/home/gogs/local/gogs/gogs web
+User=${GOGS_USER}
+Group=${GOGS_USER}
+WorkingDirectory=${GOGS_HOME}
+ExecStart=${GOGS_HOME}/local/gogs/gogs web
 Restart=always
-Environment=USER=gogs HOME=/home/gogs GOGS_CUSTOM=/home/gogs/local/gogs
+Environment=USER=${GOGS_USER} HOME=${GOGS_HOME}
+
+# Some distributions may not support these hardening directives. If you cannot start the service due
+# to an unknown option, comment out the ones not supported by your version of systemd.
+ProtectSystem=full
+PrivateDevices=yes
+PrivateTmp=yes
+NoNewPrivileges=true
 
 [Install]
+
 WantedBy=multi-user.target

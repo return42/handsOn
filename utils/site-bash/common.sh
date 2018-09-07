@@ -1753,14 +1753,19 @@ APACHE_install_site() {
     #
     # usage:
     #
-    #   APACHE_install_site <apache-sites.conf-filename>
+    #   APACHE_install_site [--eval] <apache-sites.conf-filename>
     #
     #   APACHE_install_site phpvirtualbox
+
+    local do_eval=""
+    if [[ "$1" == "--eval" ]]; then
+        do_eval=$1; shift
+    fi
 
     local CONF
     for CONF in $*; do
         CONF=${CONF%.conf}.conf
-        TEMPLATES_InstallOrMerge "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
+        TEMPLATES_InstallOrMerge $do_eval "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
     done
     sudo a2ensite -q "$@"
     APACHE_reload
