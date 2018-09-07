@@ -1420,15 +1420,25 @@ TEMPLATES_InstallOrMerge() {
     # Installiert die angegebene Datei aus dem ${TEMPLATES} Ordner, sofern diese
     # am Zielort nicht bereits existiert. Im Falle, dass die Datei im Ziel
     # bereits existiert oder es eine Sicherung im ${CONFIG}-Ordner gibt, wird
-    # ein Merge durchgeführt.
+    # ein Merge durchgeführt. Mit dem Schalter --eval wird die Template Datei
+    # vorher noch evaluiert (``echo "$(cat ${TEMPLATES}${dst})"``)
     #
     # usage:
     #
-    #     TEMPLATES_InstallOrMerge {file} [{owner} [{group} [{chmod}]]]
+    #     TEMPLATES_InstallOrMerge [--eval] {file} [{owner} [{group} [{chmod}]]]
     #
     #     TEMPLATES_InstallOrMerge /etc/updatedb.conf root root 644
 
+    local do_eval=0
     local dst="${1}"
+
+    local template_file="${TEMPLATES}${dst}"
+    if [[ "$1" == "--eval" ]]; then
+        do_eval=1; shift
+        local dst="${1}"
+        template_file="${CACHE}${dst}"
+    fi
+
     local owner=${2-$(id -un)}
     local group=${3-$(id -gn)}
     local chmod=${4-755}
@@ -1441,6 +1451,17 @@ TEMPLATES_InstallOrMerge() {
         waitKEY
         return 42
     fi
+
+    if [[ "$do_eval" == "1" ]]; then
+        if [[ -f "${CONFIG}${dst}" ]] ; then
+            err_msg "Template file does not exists!"
+            err_msg "  ${template_file}"
+            waitKEY
+            return42
+        fi
+        mkdir -p $(dirname "${template_file}")
+        eval "echo \"$(cat ${TEMPLATES}${dst})\"" > "${template_file}"
+    fi
     echo
     info_msg "install: ${dst}"
     if [[ -f "${dst}" ]] ; then
@@ -1448,7 +1469,7 @@ TEMPLATES_InstallOrMerge() {
     fi
     info_msg "determine template file(s)"
 
-    if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}" ]] ; then
 
         # Es existieren alle drei Dateien (Ziel, TEMPLATES u. CONFIG).  Es wird
         # ein Merge aller drei Dateien durchgeführt. Als "gemeinsammer Vorfahre"
@@ -1469,7 +1490,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge3Files "${dst}" "${TEMPLATES}${dst}" "${CONFIG}${dst}"
+            merge3Files "${dst}" "${template_file}" "${CONFIG}${dst}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1488,7 +1509,7 @@ TEMPLATES_InstallOrMerge() {
             fi
         done
 
-    elif [[ -f "${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    elif [[ -f "${dst}" && -f "${template_file}" ]] ; then
 
         # Die Zieldatei existiert, es gibt ein TEMPLATE aber es gibt keine
         # Sicherung
@@ -1498,7 +1519,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge2Files "${dst}" "${TEMPLATES}${dst}"
+            merge2Files "${dst}" "${template_file}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1546,7 +1567,7 @@ TEMPLATES_InstallOrMerge() {
             fi
         done
 
-    elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" && -f "${TEMPLATES}${dst}"  ]] ; then
+    elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}"  ]] ; then
 
         # Die Zieldatei existiert NICHT, aber es gibt eine CONFIG-Sicherung und
         # die TEMPLATES Datei. Es wird ein Merge von TEMPLATES nach CONFIG
@@ -1557,7 +1578,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge2Files "${TEMPLATES}${dst}" "${CONFIG}${dst}" "${dst}"
+            merge2Files "${template_file}" "${CONFIG}${dst}" "${dst}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1575,11 +1596,11 @@ TEMPLATES_InstallOrMerge() {
         sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
 
-    elif [[ ! -f "${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    elif [[ ! -f "${dst}" && -f "${template_file}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt ein TEMPLATE aber es gibt KEINE
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${TEMPLATES}${dst}" "${dst}"
+        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
 
     elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt KEIN TEMPLATE aber es gibt eine

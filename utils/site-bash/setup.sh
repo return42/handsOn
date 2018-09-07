@@ -12,16 +12,17 @@ if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT=$(cd ${REPO_ROOT}/.. && pwd -P )
 fi
 
-# Hier können die Umgebungsvariablen angepasst werden. Das ist aber nur
-# erforderlich, wenn die Defaults nicht *passend* sind.
 
-# ===============
-# handsOn Scripts
-# ===============
+_color_Off='\e[0m'  # Text Reset
+BYellow='\e[1;33m'
+
+cfg_msg() {
+    echo -e "${BYellow}CFG:${_color_Off} $*" >&2
+}
 
 # SCRIPT_FOLDER: Ordner mit den Skripten für die Setups
 #
-SCRIPT_FOLDER=${REPO_ROOT}/scripts
+#SCRIPT_FOLDER=${REPO_ROOT}/scripts
 
 # TEMPLATES: Ordner in dem die vorlagen für die Setups zu finden sind
 #
@@ -29,11 +30,12 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 
 # CACHE: Ordner in dem die Downloads und Builds gecached werden
 #
-#CACHE=${REPO_ROOT}/cache
+CACHE=${REPO_ROOT}/cache
 
 # CONFIG: Ordner unter dem die Konfiguration eines Hosts gesichert werden soll
+# Das wird nicht hier gesetzt sondern in der .config Datei (templates/do_config)
 #
-#CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
+# CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
 
 # WWW_USER: Benutzer für die Prozesse des WEB-Servers
 #
@@ -69,6 +71,12 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 #
 #DIFF_CMD=colordiff
 
+# =====
+# SAMBA
+# =====
+
+# SAMBA_SERVER=127.0.0.1
+
 # =====================
 # Debian's Apache Setup
 # =====================
@@ -100,18 +108,46 @@ SCRIPT_FOLDER=${REPO_ROOT}/scripts
 
 # GNOME_APPL_FOLDER=/usr/share/applications
 
+if [[ ! -e "${REPO_ROOT}/.config" ]]; then
+    cfg_msg "installing ${REPO_ROOT}/.config"
+    cp "${TEMPLATES}/dot_config" "${REPO_ROOT}/.config"
+    chown -R ${SUDO_USER}:${SUDO_USER} "${REPO_ROOT}/.config"
+fi
+
+source ${REPO_ROOT}/.config
+
+if [[ ! -e "${CONFIG}_setup.sh" ]]; then
+    cfg_msg "missing setup:"
+    cfg_msg "    ${CONFIG}_setup.sh"
+    cfg_msg "Mostly you will edit the CONFIG variable in ${REPO_ROOT}/.config"
+    cfg_msg "which points to your setup::"
+    cfg_msg "    CONFIG=/path/to/my-config/$(hostname)"
+    cfg_msg "Or use::"
+    cfg_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
+    cfg_msg "For more info about setup, read::"
+    cfg_msg "    ${REPO_ROOT}/hostSetup/MEMO.rst"
+    cfg_msg "To NOT continue with defaults press CTRL-C now!"
+    read -n1 $_t -p "** press any [KEY] to continue **"
+    printf "\n"
+else
+    source ${CONFIG}_setup.sh
+fi
+
+source ${REPO_ROOT}/utils/site-bash/common.sh
+checkEnviroment
+
 # ----------------------------------------------------------------------------
 setupInfo () {
 # ----------------------------------------------------------------------------
     rstHeading "setup info"
     echo "
+CONFIG        : ${CONFIG}
 ORGANIZATION  : ${ORGANIZATION}
 
 REPO_ROOT     : ${REPO_ROOT}
 SCRIPT_FOLDER : ${SCRIPT_FOLDER}
 TEMPLATES     : ${TEMPLATES}
 CACHE         : ${CACHE}
-CONFIG        : ${CONFIG}
 WWW_USER      : ${WWW_USER}
 WWW_FOLDER    : ${WWW_FOLDER}
 DEB_ARCH      : ${DEB_ARCH}
@@ -145,21 +181,4 @@ LSB (Linux Standard Base) and Distribution information.
 CWD : $(pwd -P)"
 }
 
-# ----------------------------------------------------------------------------
-# load common scripts and check environment
-# ----------------------------------------------------------------------------
-
-if [[ ! -e "${SCRIPT_FOLDER}/common.sh" ]]; then
-    echo "ERROR: can't source file common.sh"
-    exit
-else
-    source ${SCRIPT_FOLDER}/common.sh
-    checkEnviroment
-fi
-
-if [[ -e "${CONFIG}_setup.sh" ]]; then
-    #info_msg "source file ${CONFIG}_setup.sh"
-    source ${CONFIG}_setup.sh
-    checkEnviroment
-fi
 
