@@ -9,16 +9,6 @@
 # Purpose:     Gogs Installation mit SQLite DB
 # ----------------------------------------------------------------------------
 
-# https://blog.cadena-it.com/linux-tips-how-to/gogs-on-ubuntu-16-04/
-
-# Auf dem Server ist ein steinaltes Go, da muss man was aktuelles installieren:
-#  https://tecadmin.net/install-go-on-ubuntu/
-#
-# Noch einfacher ist es evtl. das tar einfach in den ~gogs/go Pfad hin
-# auszupacken.
-#
-# https://golang.org/doc/install?download=go1.11.linux-amd64.tar.gz
-
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
 
@@ -76,8 +66,9 @@ $1
 
 usage:
 
-  $(basename $0) install    [gogs]
-  $(basename $0) remove     [gogs]
+  $(basename $0) info
+  $(basename $0) install    [server]
+  $(basename $0) remove     [server]
   $(basename $0) activate   [server]
   $(basename $0) deactivate [server]
 
@@ -90,16 +81,17 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
+        info) less "${REPO_ROOT}/docs/gogs.rst" ;;
         install)
             sudoOrExit
             case $2 in
-                gogs)  setup_gogs_server ;;
+                server)  setup_gogs_server ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
-                gogs)  remove_gogs ;;
+                server)  remove_gogs ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
             esac ;;
         activate)
@@ -127,7 +119,7 @@ setup_gogs_server(){
     rstBlock "Es wird Gogs mit einer SQLite Datenbank eingerichtet"
 
     if ! aptPackageInstalled apache2; then
-        rstBlock "Apache is noch nicht installiert, die Installation sollte mit
+        rstBlock "Apache ist noch nicht installiert, die Installation sollte mit
 dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
@@ -135,15 +127,6 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
     if ! askYn "Soll Gogs installiert werden?"; then
         return 42
     fi
-
-    echo -e "
-Die Installation bedarf einiger Vorbereitung und erfolgt in folgenden Schritten:
-
-1. Es werden die erforderlichen Systempakete installiert
-2. Es wird der Benutzer '$GOGS_USER' angelegt
-3. In dessen HOME Ordner erfolgt eine aktuelle Go Installation.
-4. Es wird gogs heruntergeladen und in HOME installiert."
-    waitKEY
 
     rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
     deactivate_server
@@ -167,10 +150,9 @@ Die Installation bedarf einiger Vorbereitung und erfolgt in folgenden Schritten:
     echo
     TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
 source ~/.env_gogs
-\$HOME/local/gogs/gogs web &
+timeout 20 \$HOME/local/gogs/gogs web &
 sleep 5
 curl --location --verbose --head --insecure http://$GOGS_DOMAIN:$GOGS_PORT 2>&1
-kill \$(jobs -p)
 EOF
     waitKEY
 
