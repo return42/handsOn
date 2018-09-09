@@ -48,10 +48,6 @@ Eigenschaften aus:
 
 - PAM Authentifizierung
 
-  .. todo::
-
-     https://discuss.gogs.io/t/pam-authentication-fails/602/4
-
 - Gogs Server wird hinter einer (Apache-) URL ``https://<hostname>/gogs``
   betrieben (s.a. :origin:`gogs.conf
   <templates/etc/apache2/sites-available/gogs.conf>` & `ProxyPass
@@ -184,7 +180,7 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
 
       xdg-open https://$(uname -n)/gogs
 
-   Das erste Login, dass man online einrichtet erhält automatsich
+   Das erste Login, dass man online einrichtet erhält automatisch
    Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.
 
      **Gogs muss JETZT online eingerichtet werden!!!**
