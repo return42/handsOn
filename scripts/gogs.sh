@@ -150,7 +150,7 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
     echo
     TEE_stderr <<EOF | sudo -i -u $GOGS_USER | prefix_stdout
 source ~/.env_gogs
-timeout 20 \$HOME/local/gogs/gogs web &
+timeout 10 \$HOME/local/gogs/gogs web &
 sleep 5
 curl --location --verbose --head --insecure http://$GOGS_DOMAIN:$GOGS_PORT 2>&1
 EOF
@@ -175,6 +175,21 @@ curl --location --verbose --head --insecure https://${GOGS_APACHE_DOMAIN}${GOGS_
 EOF
     waitKEY
 
+    rstHeading "Gogs online einrichten" section
+
+    rstBlock "Der Gogs-Dienst ist nun vollständig eingerichtet und steht im
+Internet zur Verfügung:
+
+   https://$(uname -n)/gogs
+
+Das erste Login, dass man online einrichtet erhält automatsich
+Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.
+
+  ${BRed}**Gogs muss JETZT online eingerichtet werden!!!**${_color_Off}"
+
+    if askYn "Soll die WEB-Seite JETZT geöffnet werden?"; then
+        xdg-open https://$(uname -n)/gogs
+    fi
 }
 
 
@@ -205,8 +220,11 @@ assert_user(){
 
     rstHeading "Benutzer $GOGS_USER" section
     echo
-    TEE_stderr <<EOF | bash | prefix_stdout
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
 sudo adduser --shell /bin/bash --system --home $GOGS_HOME --group --gecos 'Gogs' $GOGS_USER
+ls -la /etc/shadow
+sudo usermod -a -G shadow $GOGS_USER
+groups $GOGS_USER
 EOF
     export GOGS_HOME="$(sudo -i -u $GOGS_USER echo \$HOME)"
     rstBlock "export GOGS_HOME=$GOGS_HOME" | prefix_stdout

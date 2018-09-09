@@ -83,6 +83,13 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
      export PATH=$PATH:$HOME/local/go/bin:$HOME/local/gogs
      export GOPATH=$HOME/go-apps
 
+   Für die später noch einzurichtende PAM_ Authentifizierung muss der
+   ``${GOGS_USER}`` noch zur Gruppe ``shadow`` hinzugefügt werden::
+
+     ls -la /etc/shadow
+     -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+     sudo usermod -a -G shadow $GOGS_USER
+
 3. Die Go Installation (s.a. go-linux_ && goX.YY.linux-amd64.tar.gz_) erfolgt
    nach nach ``$HOME/local``::
 
@@ -177,11 +184,40 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
 
       xdg-open https://$(uname -n)/gogs
 
-   Gogs muss **JETZT online** eingerichtet werden!!!
+   Das erste Login, dass man online einrichtet erhält automatsich
+   Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.
 
-     Das erste Login ist ein Admin Login ... oder wie ist das genau!?!?!?!
-
-
-
+     **Gogs muss JETZT online eingerichtet werden!!!**
 
 
+PAM
+===
+
+In der Web-GUI unter 'Administration' können unter 'Authentifizierung' *weitere
+Quellen* hinzugefügt werden. Hier wählt man PAM aus. Als Name setzt man ``PAM``
+und als PAM-Dienstname ``gogs``.
+
+Damit der ``${GOGS_USER}`` lesenden Zugriff auf die ``/etc/shadow`` erhält wurde
+er bereits der Gruppe ``shadow`` hinzugefügt (s.o.)::
+
+  ls -la /etc/shadow
+  -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+
+  sudo usermod -a -G shadow $GOGS_USER
+
+Will man vermeiden, dass sich weitere Benutzer (als die, aus dem PAM) im Gogs
+registrieren können, so kann man in der ``apt.ini`` den Schalter auf true
+setzen::
+
+  DISABLE_REGISTRATION   = true
+
+Um die Änderung zur Wirkung zu bringen muss der Gogs Server einmal neu gestartet
+werden::
+
+  sudo systemctl restart gogs.service
+
+
+LDAP
+====
+
+comming soon ..
