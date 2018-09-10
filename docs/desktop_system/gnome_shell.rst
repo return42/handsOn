@@ -96,3 +96,6 @@ systemweite Installation empfiehlt sich:
 
 * `GNOME Shell System-Monitor Applet`_ (benötigt :deb:`gir1.2-gtop-2.0`,
   :deb:`gir1.2-networkmanager-1.0` und :deb:`gir1.2-clutter-1.0`).
+
+* tracker-search-provider_ Eine GNOME-Shell Extension, mit der die
+  Such-Ergebnisse aus dem Tracker in der Shell-Übersicht anzeigt werden.
