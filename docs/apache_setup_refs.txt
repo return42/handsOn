@@ -1,3 +1,5 @@
+.. -*- coding: utf-8; mode: rst -*-
+
 .. _`Apache Software Foundation`: https://de.wikipedia.org/wiki/Apache_Software_Foundation
 .. _`Apache httpd SVN`: http://svn.apache.org/viewvc/httpd/
 .. _`Apache Tutorials (netnea.com)`: https://www.netnea.com/cms/apache-tutorials/

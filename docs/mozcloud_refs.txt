@@ -1,3 +1,5 @@
+.. -*- coding: utf-8; mode: rst -*-
+
 .. _`Mozilla Services Documentation`: https://docs.services.mozilla.com/
 .. _`Mozilla Cloud Wiki`: https://wiki.mozilla.org/CloudServices
 .. _`Mozilla (public) Account Server`: https://accounts.firefox.com/signup

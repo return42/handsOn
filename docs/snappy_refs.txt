@@ -1,7 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. _`install snapd`: https://snapcraft.io/docs/core/install
-.. _`snapcraft Syntax`: https://snapcraft.io/docs/build-snaps/syntax   
+.. _`snapcraft Syntax`: https://snapcraft.io/docs/build-snaps/syntax
 .. _`snap Parts`: https://snapcraft.io/docs/build-snaps/parts
 .. _`snap Confinement`: https://snapcraft.io/docs/reference/confinement
 .. _`uApp Explorer`: https://uappexplorer.com

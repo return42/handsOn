@@ -1,3 +1,5 @@
+.. -*- coding: utf-8; mode: rst -*-
+
 .. _`Metapaket`: https://wiki.ubuntuusers.de/Metapakete/
 .. _`VLC`: http://www.videolan.org/
 .. _`MPV`: https://mpv.io/

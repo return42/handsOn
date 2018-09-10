@@ -1,3 +1,5 @@
+.. -*- coding: utf-8; mode: rst -*-
+
 .. _`Drei-Wege Merge (wiki)`: https://en.wikipedia.org/wiki/Merge_%28version_control%29#Three-way_merge
 .. _`Stackoverflow (best 3 way merge tool)`: http://stackoverflow.com/questions/572237/whats-the-best-three-way-merge-tool
 .. _`Wikipedia (File comparision tools / features)`: https://en.wikipedia.org/wiki/Comparison_of_file_comparison_tools#Compare_features
