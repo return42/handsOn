@@ -331,12 +331,6 @@ install_gnomeShell(){
     fi
     TITLE="Installation GNOME Pakete" aptInstallPackages ${GNOME3_PACKAGES}
 
-    #rstHeading "Nautilus Extensions"
-    #echo
-    #mkdir -p /usr/share/nautilus-python/extensions
-    #TEMPLATES_InstallOrMerge /usr/share/nautilus-python/extensions/open-terminator.py root root 644
-    #waitKEY
-
     install_gnome_extensions
     rstHeading "Deinstallation Unity"
 
