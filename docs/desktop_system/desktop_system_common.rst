@@ -19,33 +19,37 @@ Window-Manager erfolgt durch den Anwender bei der Anmeldung und ist nur durch
 die Anzahl der auf dem System installierten Window-Manager begrenzt, es gibt
 keine Abhängigkeit zum Display-Manager.
 
-Die Ubuntu Distribution bringt im Standard den Window-Manager `Unity (wiki)`_
-mit und als Display-Manager wird `LightDM (wiki)`_ eingesetzt.  Die Wahl des
-Standard-Desktop bei Ubuntu war heiß umstritten, einen Rückblick gibt der Blog
-`Fünf Jahre später: Unity vs. Gnome Shell revisited`_ von Dirk Schmidtke. In dem
-Blog ist auch zu lesen, dass die Entwicklung von `Unity`_ eher etwas
-eingeschlafen ist. Auch die, in dem Blog erwähnten Mankos des Unity empfinde ich
-ähnlich. Ähnlich wie der Blog komme ich auch zu der Überzeugung, dass Unity nur
-was für Benutzer ist, die schon immer mit Unity arbeiten. Neue Linux Anwender
-oder Anwender die ihren Window-Manager wechseln möchten werden keinen wirklichen
-Grund finden, sich zugunsten Unity zu entscheiden.
+Die `GNOME Shell`_ ist seit Ubuntu 17.10 wieder Standard-Desktop. Dem Voran ging
+ein langer Irrweg, hier ein paar Worte und Überlegungen aus der Historie:
 
-`Unity`_ gehört zu den modernen Bedienoberflächen, die auf 3D Animierung
-basieren und zum Ziel haben, die Desktop- mit der Tablet- Bedienung zu
-vereinheitlichen. Ob es gelingen wird, die Bedienung von Desktop und Tablet
-vollkommen zu harmonisieren, kann angezweifelt werden. Der Umgang mit Maus &
-Tastatur (im Sitzen vor einem Schreibtisch) auf der einen Seite und der Umgang
-mit einem Touch-Device (auf dem Sofa liegend und wischend) auf der anderen Seite
-ist *von der haptischen Erfahrung her* einfach schon zu unterschiedlich.
+  Die Ubuntu Distribution hatte in der Vergangenheit im Standard den
+  Window-Manager `Unity (wiki)`_ mit und als Display-Manager wurde `LightDM
+  (wiki)`_ eingesetzt.  Die Wahl des Standard-Desktop bei Ubuntu war heiß
+  umstritten, einen Rückblick gibt der Blog `Fünf Jahre später: Unity vs. Gnome
+  Shell revisited`_ von Dirk Schmidtke. In dem Blog ist auch zu lesen, dass die
+  Entwicklung von `Unity`_ eher etwas eingeschlafen ist. Auch die, in dem Blog
+  erwähnten Mankos des Unity empfinde ich ähnlich. Ähnlich wie der Blog komme
+  ich auch zu der Überzeugung, dass Unity nur was für Benutzer ist, die schon
+  immer mit Unity arbeiten. Neue Linux Anwender oder Anwender die ihren
+  Window-Manager wechseln möchten werden keinen wirklichen Grund finden, sich
+  zugunsten Unity zu entscheiden.
 
-Das die Bedienung nicht so einfach zu harmonisieren ist, wird von einigen
-Anwendern auch so empfunden. Nicht jeder freundet sich gleich mit jeder neuen
-Desktop-Umgebung und ihrer geänderten Benutzerführung an. Dementsprechend
-haben die neuen Bedienkonzepte auch sehr viel Kritik erfahren müssen. Auch wenn
-man -- wie ich -- der Vereinheitlichung von Desktop und Tablet kritisch
-gegenübersteht, so muss man doch auch anerkennen, dass das Bestreben den Content
-von der Präsentationsschicht besser zu abstrahieren richtig und erforderlich
-ist.
+  `Unity`_ gehört zu den modernen Bedienoberflächen, die auf 3D Animierung
+  basieren und zum Ziel haben, die Desktop- mit der Tablet- Bedienung zu
+  vereinheitlichen. Ob es gelingen wird, die Bedienung von Desktop und Tablet
+  vollkommen zu harmonisieren, kann angezweifelt werden. Der Umgang mit Maus &
+  Tastatur (im Sitzen vor einem Schreibtisch) auf der einen Seite und der Umgang
+  mit einem Touch-Device (auf dem Sofa liegend und wischend) auf der anderen
+  Seite ist *von der haptischen Erfahrung her* einfach schon zu unterschiedlich.
+
+  Das die Bedienung nicht so einfach zu harmonisieren ist, wird von einigen
+  Anwendern auch so empfunden. Nicht jeder freundet sich gleich mit jeder neuen
+  Desktop-Umgebung und ihrer geänderten Benutzerführung an. Dementsprechend
+  haben die neuen Bedienkonzepte auch sehr viel Kritik erfahren müssen. Auch wenn
+  man -- wie ich -- der Vereinheitlichung von Desktop und Tablet kritisch
+  gegenübersteht, so muss man doch auch anerkennen, dass das Bestreben den Content
+  von der Präsentationsschicht besser zu abstrahieren richtig und erforderlich
+  ist.
 
 Das Projekt `freedesktop.org`_ versucht die Basis für einheitliche Desktop
 Umgebungen zu legen, ist dabei aber auch nicht ganz unumstritten. Die Umstellung
@@ -94,7 +98,7 @@ Desktop-Umgebungen zurückgreifen. Zwei Beispiele sind:
 
 Jedoch ist es nicht erforderlich die Distribution zu wechseln, wenn man eine
 dieser Desktop-Umgebungen nutzen möchte. Da sich alle Distributionen *mehr oder
-minder* aus den gleichen oder ähnlich aufgebauten Reposetories bedienen, können
+minder* aus den gleichen oder ähnlich aufgebauten Repositorien bedienen, können
 die Desktops in jeder Distribution *mehr oder minder* beliebig ausgetauscht
 werden.
 

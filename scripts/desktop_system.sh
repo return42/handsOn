@@ -5,7 +5,6 @@
 # ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -23,7 +22,8 @@ GNOME3_PACKAGES="\
  gnome-packagekit gnome-packagekit-session \
  vanilla-gnome-desktop \
  elementary-icon-theme \
- gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 \
+ gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-gconf-2.0 gir1.2-clutter-1.0 \
+ tracker tracker-extract tracker-miner-fs \
 "
 # ubuntu-gnome-default-settings \
 
@@ -41,8 +41,9 @@ MATE_PACKAGES="\
   mate-notification-daemon-common\
   mate-polkit-common"
 
-UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*')  ubuntu-gnome-desktop \
- ubuntu-gnome-wallpapers ubuntu-session ubuntu-desktop \
+UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*') \
+ ubuntu-gnome-desktop ubuntu-gnome-wallpapers-* \
+ ubuntu-session ubuntu-desktop \
 "
 
 # elementary
@@ -63,15 +64,14 @@ ELEMENTARY_PPA="ppa:elementary-os/staging"
 
 usage(){
     cat <<EOF
-
 $1
-
 usage:
   $(basename $0) [chooseDM]
-  $(basename $0) install [GNOME|GNOME3-PPA|elementary|cinnamon|mate]
-  $(basename $0) remove  [unity|GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) install [GNOME[-ext]]|GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) remove  [GNOME-ext]]|[unity|GNOME3-PPA|elementary|cinnamon|mate]
 
-- GNOME: GNOME3 shell https://wiki.gnome.org/Projects/GnomeShell
+- GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
+- GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
 - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
 - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
@@ -87,29 +87,32 @@ main(){
     rstHeading "Desktop System" part
 # ----------------------------------------------------------------------------
 
-    sudoOrExit
     case $1 in
         chooseDM) chooseDM ;;
         install)
+	    sudoOrExit
             case $2 in
                 GNOME3-PPA)   install_gnome3_ppa   ;;
                 GNOME)        install_gnomeShell   ;;
+                GNOME-ext)    install_gnome_extensions ;;
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
                 *)            usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42          ;;
             esac  ;;
         remove)
+	    sudoOrExit
             case $2 in
                 GNOME3-PPA)   remove_gnome3_ppa   ;;
+                GNOME-ext)    remove_gnome_extensions ;;
                 elementary)   remove_elementary   ;;
                 unity)        remove_unity ;;
                 cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
                 mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
                 *)            usage "${BRed}ERROR:${_color_Off} unknown or missing remove command $2"; exit 42           ;;
             esac  ;;
-        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
-	   ;;
+	--help|"") usage "" ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown command $1"; exit 42 ;;
     esac
 }
 
@@ -190,8 +193,8 @@ remove_elementary() {
     waitKEY
 }
 
-install_gnome3_ppa() {
 # ----------------------------------------------------------------------------
+install_gnome3_ppa() {
     rstHeading "GNOME3 Team PPA"
 # ----------------------------------------------------------------------------
 
@@ -212,8 +215,8 @@ erforderlich."
     waitKEY
 }
 
-remove_gnome3_ppa() {
 # ----------------------------------------------------------------------------
+remove_gnome3_ppa() {
     rstHeading "Deinstallation GNOME3 Team PPA"
 # ----------------------------------------------------------------------------
 
@@ -242,42 +245,104 @@ remove_unity(){
     fi
 }
 
-
 # ----------------------------------------------------------------------------
-install_gnomeShell(){
-    rstHeading "Gnome-Shell"
-# ----------------------------------------------------------------------------
-
-    rstPkgList ${GNOME3_PACKAGES}
-
-    if ! askYn "Sollen die Gnome-Shell Pakete installiert werden?"; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${GNOME3_PACKAGES}
+install_gnome_extensions(){
     rstHeading "Installation der Gnome-Shell Extensions"
+# ----------------------------------------------------------------------------
 
-    # https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet
+    local _origin=
+    local _name=
+    local _dst=
+    local _ws=
 
     rstHeading "gnome-shell: system-monitor" section
     echo
-
-    local _gitUrl="https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git"
-    local _folder="gnome-shell-system-monitor-applet"
-    local _dst="${GNOME_SHELL_EXTENSIONS}/system-monitor@paradoxxx.zero.gmail.com"
-    cloneGitRepository \
-        "$_gitUrl" \
-        "$_folder"
-    rstBlock "install extension into $_dst"
-    rm -rf "$_dst"
-    cp -r "${CACHE}/${_folder}/system-monitor@paradoxxx.zero.gmail.com" "${GNOME_SHELL_EXTENSIONS}"
+    _origin="https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git"
+    _name="system-monitor@paradoxxx.zero.gmail.com"
+    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+    _ws="${CACHE}/${_name}"
+    cloneGitRepository "$_origin" "$_name"
+    rstBlock "Aus dem Repo wird der Unter-Ordner $_name installiert"
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+rm -rf "$_dst"
+cd "${_ws}"
+cp -r system-monitor@paradoxxx.zero.gmail.com "$_dst"
+EOF
     waitKEY
 
+    rstHeading "gnome-shell: tracker-search-provider" section
+    echo
+    _origin="https://github.com/hamiller/tracker-search-provider.git"
+    _name="tracker-search-provider@sinnix.de"
+    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+    _ws="${CACHE}/${_name}"
+    cloneGitRepository "$_origin" "$_name"
+    rstBlock "Aus dem Repo (branch gnome_16) werden die zwei Dateien in Ordner
+$_name installiert"
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+rm -rf "$_dst"
+mkdir -p "$_dst"
+cd "${_ws}"
+git checkout -f gnome_16
+cp -r extension.js metadata.json "$_dst"
+EOF
+    waitKEY
+
+    rstHeading "Liste installierter Extensions" section
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+ls -la ${GNOME_SHELL_EXTENSIONS}
+EOF
+    waitKEY
+
+
+}
+
+
+# ----------------------------------------------------------------------------
+remove_gnome_extensions(){
+    rstHeading "De-Installation der Gnome-Shell Extensions"
+# ----------------------------------------------------------------------------
+
+    rstHeading "gnome-shell: system-monitor" section
+    _name="system-monitor@paradoxxx.zero.gmail.com"
+    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+    TEE_stderr <<EOF | bash | prefix_stdout
+rm -rf "$_dst"
+EOF
+    waitKEY
+
+    rstHeading "gnome-shell: tracker-search-provider" section
+
+    _name="tracker-search-provider@sinnix.de"
+    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+    TEE_stderr <<EOF | bash | prefix_stdout
+rm -rf "$_dst"
+EOF
+}
+
+
+# ----------------------------------------------------------------------------
+install_gnomeShell(){
+    rstHeading "GNOME Shell"
+# ----------------------------------------------------------------------------
+
+    if ! askYn "Soll die GNOME Shell installiert werden?"; then
+        return 42
+    fi
+    TITLE="Installation GNOME Pakete" aptInstallPackages ${GNOME3_PACKAGES}
+
+    #rstHeading "Nautilus Extensions"
+    #echo
+    #mkdir -p /usr/share/nautilus-python/extensions
+    #TEMPLATES_InstallOrMerge /usr/share/nautilus-python/extensions/open-terminator.py root root 644
+    #waitKEY
+
+    install_gnome_extensions
     rstHeading "Deinstallation Unity"
 
     rstBlock "Es wurde der Gnome-Shell Desktop installiert. Der Desktop Unity
-ist damit nicht weiter erforderlich. Unity kann mit allen seinen Komponenten
-deinstalliert werden."
+Klimbim von Ubuntu ist damit nicht weiter erforderlich. Unity kann mit allen
+seinen Komponenten deinstalliert werden."
 
     remove_unity
 }

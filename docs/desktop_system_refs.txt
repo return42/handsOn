@@ -1,3 +1,5 @@
+.. -*- coding: utf-8; mode: rst -*-
+
 .. _`Fünf Jahre später: Unity vs. Gnome Shell revisited`: http://privatstrand.dirkschmidtke.de/2015/10/29/fuenf-jahre-spaeter-unity-vs-gnome-shell-revisited
 .. _`systemd (wiki)`: https://de.wikipedia.org/wiki/Systemd
 .. _`devfs (wiki)`: https://de.wikipedia.org/wiki/Devfs
@@ -41,3 +43,4 @@
 .. _`Teamviewer`: https://www.teamviewer.com/de/
 .. _`GObject`: https://developer.gnome.org/gobject/stable
 .. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
+.. _tracker-search-provider: https://github.com/hamiller/tracker-search-provider.git

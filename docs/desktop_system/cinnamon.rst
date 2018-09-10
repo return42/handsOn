@@ -8,6 +8,10 @@
                                 Cinnamon Desktop
 ================================================================================
 
+.. todo::
+
+   Dieser Artikel wurde noch nicht mit Ubuntu 18.04 getestet.
+
 Das Layout des `Cinnamon`_ Desktop ist mit dem GNOME 2 verwandt, bzw. eine
 Weiterentwicklung des Layouts von GNOME 2. Die Code-Basis `Cinnamon (github)`_
 ist ein Fork der GNOME-Shell. Es bestehen 4 Arten von *Erweiterungen*:
@@ -43,11 +47,9 @@ Installation
 ============
 
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem die
-Cinnamon Desktop Umgebung installiert werden kann.
+Cinnamon Desktop Umgebung installiert werden kann::
 
-.. code-block:: bash
-
-   $ sudo ./scripts/desktop_system.sh cinnamon
+  $ sudo ./scripts/desktop_system.sh install cinnamon
 
 Mit dem oben stehenden Skript wird das Paket :deb:`cinnamon-desktop-environment`
 installiert. Das Paket umfasst den Cinnamon Desktop der recht *schlank* ist. Der
@@ -57,8 +59,6 @@ GNOME-Shell kann ich nur empfehlen.
 De-Installation
 ===============
 
-Zur De-Installation eignet sich:
+Zur De-Installation eignet sich::
 
-.. code-block:: bash
-
-   $ sudo ./scripts/desktop_system.sh remove_cinnamon
+  $ sudo ./scripts/desktop_system.sh remove cinnamon

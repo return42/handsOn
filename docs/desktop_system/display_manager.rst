@@ -89,8 +89,6 @@ chooseDM
 ========
 
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem ein
-Display-Manager ausgewählt werden kann.
+Display-Manager ausgewählt werden kann::
 
-.. code-block:: bash
-
-   $ sudo ./scripts/desktop_system.sh chooseDM
+  $ sudo ./scripts/desktop_system.sh chooseDM

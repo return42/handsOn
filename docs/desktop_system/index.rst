@@ -24,7 +24,23 @@ vorgestellten Setups installiert oder auch deinstalliert werden können.
 
 .. code-block:: bash
 
-   $ sudo ./scripts/desktop_system.sh --help
+   $ ./scripts/desktop_system.sh
+
+   ==============
+   Desktop System
+   ==============
+
+   usage:
+     desktop_system.sh [chooseDM]
+     desktop_system.sh install [GNOME|GNOME3-PPA|elementary|cinnamon|mate]
+     desktop_system.sh remove  [unity|GNOME3-PPA|elementary|cinnamon|mate]
+
+   - GNOME: GNOME3 shell https://wiki.gnome.org/Projects/GnomeShell
+   - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
+   - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
+   - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
+   - mate: Mate-Desktop https://mate-desktop.org/
+
 
 .. hint::
 
