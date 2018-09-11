@@ -186,24 +186,48 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
      **Gogs muss JETZT online eingerichtet werden!!!**
 
 
-PAM
-===
+.. _gogs_web_setup:
 
-In der Web-GUI unter 'Administration' können unter 'Authentifizierung' *weitere
-Quellen* hinzugefügt werden. Hier wählt man PAM aus. Als Name setzt man ``PAM``
-und als PAM-Dienstname ``gogs``.
+Gogs online einrichten
+======================
 
-Damit der ``${GOGS_USER}`` lesenden Zugriff auf die ``/etc/shadow`` erhält wurde
-er bereits der Gruppe ``shadow`` hinzugefügt (s.o.)::
+Normalerweise wird Gogs so eingerichtet, dass man einfach nur das Binary auf dem
+Server auspackt, den Gogs-Server startet und dann den Rest online einrichtet.
+Obige Installation war dann ja nur so ausufernd, weil man auf den LTS
+Distributionen meist uralte Versionen von Gogs und Go hat und weil man den
+Gogs-Server hinter einem Apache *verstecken* wollte (ProxyPass).
 
-  ls -la /etc/shadow
-  -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+.. note::
 
-  sudo usermod -a -G shadow $GOGS_USER
+   Folgendes sind nur Anregungen/Vorschläge, die konkrete Ausprägung sieht in
+   der eigenen Infrastruktur ggf. anders aus
+
+In dem hier vorgeschlagenen Setup soll eine Authentifizierung nur über PAM
+möglich sein. D.h. es sollen sich nur solche Benutzer im Gogs anmelden können,
+die bereits ein Account auf dem HOST haben, resp. die sich auf diesem HOST
+(z.B. mittels ssh) anmelden können.
+
+Das erste Login, dass man online einrichtet ist eine *lokaler Account* (kein
+PAM, LDAP oder ..). Es erhält automatisch Admin-Rechte. Mit diesem Konto richtet
+man den Gogs-Server grob ein, danach kann man diesen *lokalen* Account wieder
+löschen. Ich gehe dabei wie folgt vor:
+
+1. 'gogs-admin' Account registrieren und als 'gogs-admin' anmelden
+
+2. PAM aktivieren
+
+3. Abmelden und einmal mit gültigen Account aus dem PAM anmelden/abmelden
+   (z.B. 'myloginname')
+
+3. Wieder als 'gogs-admin' anmelden und dem PAM Login ('myloginname') mit Admin
+   Rechten ausstatten.
+
+4. Wieder als PAM User anmelden und den *lokalen* Gogs-Account 'gogs-admin'
+   löschen.
 
 Will man vermeiden, dass sich weitere Benutzer (als die, aus dem PAM) im Gogs
-registrieren können, so kann man in der ``apt.ini`` den Schalter auf true
-setzen::
+(lokal) registrieren können, so kann man in der ``apt.ini`` den dis-Schalter auf
+true setzen::
 
   DISABLE_REGISTRATION   = true
 
@@ -211,6 +235,56 @@ Um die Änderung zur Wirkung zu bringen muss der Gogs Server einmal neu gestarte
 werden::
 
   sudo systemctl restart gogs.service
+
+Im `Gogs Configuration Cheat Sheet`_ sind alle Schalter aufgeführt, ggf. setzt
+man in der ``app.ini`` auch gleich noch die anderen Schalter seinen
+Anforderungen entsprechend. Anschauen sollte man sich folgende Schalter, wobei
+die Variablen ``${xyz}`` durch die richtigen Werte ersetzt werden muss.
+
+- Wenn der Gogs Server hinter einem Apache läuft (ProxyPass), dann sollte die
+  ``HTTP_ADDR`` auf 127.0.0.1 gesetzt werden, ansonsten nimmt der Gogs Server
+  auf seinem Port 3000 auch Anfragen aus dem WEB an (und nicht nur die von
+  Apache weitergeleiteten). Ebenso sollte man ggf. CDN (Content Delivery Network)
+  Inhalte wie Avatars  etc. aus dem Netz deaktivieren (``OFFLINE_MODE``)::
+
+    [server]
+    DOMAIN           = myhost.mydomain.xy
+    HTTP_ADDR        = 127.0.0.1
+    HTTP_PORT        = 3000
+    ROOT_URL         = https://myhost.mydomain.xy
+    OFFLINE_MODE     = true
+
+- Bei einer SQLite-DB muss der vollständige ``PATH`` angegeben werden, hier
+  inder Konfiguration ist das ``/home/gogs/data``::
+
+    [database]
+    DB_TYPE  = sqlite3
+    ...
+    PATH     = home/gogs/data/gogs.db
+
+- Bei den Einstellungen zum ``service`` kann man die *lokale* Registrierung
+  abschalten und wenn man Gogs ganz schließen will, kann noch
+  ``REQUIRE_SIGNIN_VIEW`` setzen, damit muss man sich anmelden um überhaupt
+  etwas zu sehen::
+
+    [service]
+    DISABLE_REGISTRATION   = true
+    REQUIRE_SIGNIN_VIEW = true
+
+
+PAM
+===
+
+In der Web-GUI unter 'Administration' können unter 'Authentifizierung' *weitere
+Quellen* hinzugefügt werden. Hier wählt man PAM aus. Als Name setzt man ``PAM``
+und als PAM-Dienstname ``gogs``.  Damit der ``${GOGS_USER}`` lesenden Zugriff
+auf die ``/etc/shadow`` erhält wurde er bereits der Gruppe ``shadow``
+hinzugefügt (s.o.)::
+
+  ls -la /etc/shadow
+  -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+
+  sudo usermod -a -G shadow $GOGS_USER
 
 
 LDAP

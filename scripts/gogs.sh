@@ -185,7 +185,11 @@ Internet zur Verfügung:
 Das erste Login, dass man online einrichtet erhält automatsich
 Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.
 
-  ${BRed}**Gogs muss JETZT online eingerichtet werden!!!**${_color_Off}"
+  ${BRed}**Gogs muss JETZT online eingerichtet werden!!!**${_color_Off}
+
+Weitere Hinweise siehe:
+
+  https://return42.github.io/handsOn/gogs.html#gogs-online-einrichten"
 
     if askYn "Soll die WEB-Seite JETZT geöffnet werden?"; then
         xdg-open https://$(uname -n)/gogs
