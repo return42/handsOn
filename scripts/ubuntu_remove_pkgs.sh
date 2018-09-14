@@ -33,6 +33,15 @@ sudoOrExit
 # seiner Distro?
 #
 # * https://bugs.launchpad.net/ubuntu/+source/ureadahead
+#
+# launchpadlib
+# ------------
+#
+# Man muss auch APT python-testresources installieren, sonst hat man immer diese
+# lästigen Fehlermeldungen, wenn man pip benutzt, ich brauche das nicht und
+# halte eh nichts von diesem launchpad .. viel zu kompliziert.
+# https://bazaar.launchpad.net/~lazr-developers/launchpadlib/trunk/revision/118#setup.py
+
 
 REMOVE_PACKAGES_UBUNTU="\
  ubuntu-web-launchers \
@@ -43,6 +52,7 @@ REMOVE_PACKAGES_UBUNTU="\
  flashplugin-installer \
  evolution-data-server-online-accounts speech-dispatcher \
  dleyna* libdleyna* \
+ python*-launchpad \
 "
 
 COMERCIAL_PACKAGES="\
