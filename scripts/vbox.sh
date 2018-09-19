@@ -500,9 +500,11 @@ installExtensionPack() {
 
     cacheDownload "${ORACLE_VBOX_GUEST_ADDONS_URL}" "${ORACLE_VBOX_GUEST_ADDONS_ISO}"
 
+    ln -f "${CACHE}/${ORACLE_VBOX_GUEST_ADDONS_ISO}" "${CACHE}/VBoxGuestAdditions.iso"
+
     rstBlock "Die CD mit den 'GuestAdditions' (das Image) wurde in den Ordner
 
-* ${CACHE}/${ORACLE_VBOX_GUEST_ADDONS_ISO}
+* ${CACHE}/VBoxGuestAdditions.iso
 
 kopiert. Die CD muss in den GAST-Host *eingelegt* werden und dann muss in dem
 GAST-Host die Installation durchgeführt werden."
