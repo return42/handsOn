@@ -53,6 +53,7 @@ REMOVE_PACKAGES_UBUNTU="\
  evolution-data-server-online-accounts speech-dispatcher \
  dleyna* libdleyna* \
  python*-launchpad \
+ javascript-common libapache2-mod-dnssd
 "
 
 COMERCIAL_PACKAGES="\
