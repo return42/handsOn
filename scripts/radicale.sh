@@ -110,7 +110,7 @@ deinstall_radicale(){
     rstHeading "De-Installation Radicale"
 # ----------------------------------------------------------------------------
 
-    rstBlock "${BRed:?}ACHTUNG:${_color_Off:?}
+    rstBlock "${BRed}ACHTUNG:${_color_Off}
 
     Folgende Aktion löscht die Radicale samt Konfiguration!"
 
@@ -133,9 +133,9 @@ EOF
     echo -e "
 Folgende Dateien bzw. Ordner wurden nicht gelöscht:
 
-* Anwendungsdaten: ${BYellow:?}${RADICALE_DATA_FOLDER}${_color_Off:?}
-* Reposetorie:     ${BYellow:?}${RADICALE_REPO_FOLDER}
-                   ${RADICALE_WEB_REPO_FOLDER}${_color_Off:?}
+* Anwendungsdaten: ${BYellow}${RADICALE_DATA_FOLDER}${_color_Off}
+* Reposetorie:     ${BYellow}${RADICALE_REPO_FOLDER}
+                   ${RADICALE_WEB_REPO_FOLDER}${_color_Off}
 * Log-Dateien:     ${RADICALE_LOG_FOLDER}
 Diese müssen ggf. gesichert und anschließend gelöscht werden."
 
