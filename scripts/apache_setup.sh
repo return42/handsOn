@@ -22,8 +22,7 @@ SQLITE3_PACKAGES="sqlitebrowser sqlite3"
 SERVICE_PACKAGES="\
  apache2 apache2-doc apache2-utils \
  libapache2-mod-authnz-external libapache2-mod-authz-unixgroup pwauth \
- libapache2-modsecurity \
- openssl-blacklist \
+ libapache2-mod-security2 \
 "
 
 # Sites
@@ -497,13 +496,6 @@ die Benutzer Logins und Passwörter des Systems (PAM)."
 
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
     service apache2 restart
-
-    rstHeading "Test des SSL Schlüssels" section
-    echo
-    TEE_stderr <<EOF | bash | prefix_stdout
-     echo | openssl s_client -connect localhost:https | openssl-vulnkey -
-EOF
-    waitKEY
 
     rstHeading "Test der Konfigurationen" section
     echo

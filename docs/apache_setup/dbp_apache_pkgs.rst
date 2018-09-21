@@ -36,7 +36,9 @@ empfiehlt sich die Installation folgender Pakete:
 * :deb:`openssl-blacklist`
 
   Eine paar Tools und eine Datenbank zum Prüfen von SSL Schlüsseln. Siehe
-  openssl-vulnkey(8) und `Der kleine OpenSSL-Wegweiser (heise)`_.
+  openssl-vulnkey(8) und `Der kleine OpenSSL-Wegweiser (heise)`_ (wird schon
+  länger nicht mehr benötigt und ist seit Ubuntu 16.10 auch nicht mehr im APT
+  Repository)
 
 Installation der Pakete:
 
