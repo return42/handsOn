@@ -19,7 +19,7 @@ sudoOrExit
 
 BASE_PACKAGES="\
  util-linux ppa-purge ssh ubuntu-drivers-common \
- aptitude synaptic gdebi bash-completion \
+ aptitude apt-file synaptic gdebi bash-completion \
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
