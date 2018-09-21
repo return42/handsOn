@@ -739,22 +739,21 @@ merge3FilesWithEmacs(){
     emacs -nw --no-desktop --eval "\
 (progn \
   (setq ediff-quit-hook 'kill-emacs)   \
-  (ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\"))  \
-"
-    #emacsclient -nw --eval "(ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\")"
+  (ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\"))"
 }
 
 # ----------------------------------------------------------------------------
 merge2FilesWithEmacs(){
 # ----------------------------------------------------------------------------
-    #set -x
+
+    # usage:
+    #
+    #    merge2FilesWithEmacs file-A file-B merge-buffer-file
+
     emacs -nw --no-desktop --eval "\
 (progn \
   (setq ediff-quit-hook 'kill-emacs)   \
-  (ediff-merge-files \"$1\" \"$2\" nil \"$3\"))  \
-"
-    #emacsclient -nw --eval "(ediff-merge-files \"$1\" \"$2\" nil \"$3\")"
-    #set +x
+  (ediff-merge-files \"$1\" \"$2\" nil \"$3\"))"
 }
 
 # ----------------------------------------------------------------------------
