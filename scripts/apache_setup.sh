@@ -165,8 +165,8 @@ usage(){
 $1
 
 usage:
-  $(basename $0) install    [common|PHP|WSGI|ACME]
-  $(basename $0) remove     [common|PHP|WSGI]
+  $(basename $0) install    [server|PHP|WSGI|ACME]
+  $(basename $0) remove     [all|PHP|WSGI]
   $(basename $0) update     [WSGI]
   $(basename $0) activate   [WAF]
   $(basename $0) deactivate [WAF]
@@ -190,31 +190,28 @@ EOF
 
 # ----------------------------------------------------------------------------
 main(){
-    rstHeading "Apache Setup" part
 # ----------------------------------------------------------------------------
 
     case $1 in
-        info)
+
+	--source-only)  ;;
+
+	info)
             info
             ;;
 
         install)
             sudoOrExit
             case $2 in
-                common)
-                    installApachePackages
-                    serverwide_cfg
-                    site_static-content
-                    site_html-intro
-                    mod_security2
-                    site_sysdoc
-                    site_expimp
-                    site_webshare
-                    [[ ! -z ${APACHE_ADD_SITES} ]] && installAddSites
-                    APACHE_reload
-	            ;;
-                PHP)     installPHP               ;;
-                WSGI)    installWSGI              ;;
+                server)  install_server           ;;
+                PHP)
+		    installPHP
+		    installPHPTestApp
+		    ;;
+                WSGI)
+		    installWSGI
+		    installWSGITestApp
+		    ;;
                 sites)   installAddSites          ;;
                 ACME)    installACME              ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
@@ -222,15 +219,7 @@ main(){
         remove)
             sudoOrExit
             case $2 in
-                common)
-                    echo
-                    service apache2 stop
-                    deinstallPHP
-                    deinstallWSGI
-                    a2dissite  webShare.conf exp-imp.conf static-content.conf
-                    a2dismod   dav_fs dav
-                    deinstallApachePackages
-	            ;;
+                all)  remove_all;;
                 PHP)
                     deinstallPHP
                     APACHE_reload
@@ -268,6 +257,74 @@ main(){
 
 
 # ----------------------------------------------------------------------------
+install_server(){
+    rstHeading "Installation Apache und Komponmenten" part
+# ----------------------------------------------------------------------------
+
+    rstBlock "Es werden der Apache WEB Server und weitere Komponenten (zur
+Absicherung) installiert. Die Installation und das Setup wird (prinzipell) so
+vorgenommen, dass der Apache auch im Internet betrieben werden kann. Einge
+Dienste sollte man jedoch nicht im Internet freigeben. Sofern das der Fall ist
+werden gesondert Hinweise bei den entsprechenden Abfragen gegeben."
+
+    waitKEY
+    installApachePackages
+    serverwide_cfg
+    site_static-content
+    site_html-intro
+    mod_security2
+    site_sysdoc
+    site_expimp
+    site_webshare
+    [[ ! -z ${APACHE_ADD_SITES} ]] && installAddSites
+    APACHE_reload
+
+}
+
+
+# ----------------------------------------------------------------------------
+remove_all(){
+    rstHeading "De-Installation Apache und Komponmenten" part
+# ----------------------------------------------------------------------------
+
+    rstBlock "Es wird der Apache WEB Server deinstalliert. Desweiteren werden
+die, mit diesen Skripten installierten Komponenten deinstalliert. Am Ende kommen
+dann noch Abfragen ob die Konfigurationen und etwaige Nutzdaten auch mit
+abgeräumt werden sollen."
+
+    if ! aptPackageInstalled apache2 ; then
+	echo -e "${BYellow}
+hint::
+
+    Apache selbst scheint nicht installiert zu sein, es wird dennoch versucht
+    auch alle anderen Komponenten zu deinstallieren, dabei kann es zu
+    Fehlermeldungen kommen, also bitte nicht wundern.${_color_Off}
+"
+	waitKEY
+    fi
+    echo
+    systemctl stop apache2
+    deinstallPHP
+    deinstallWSGI
+    a2dissite  webShare.conf exp-imp.conf static-content.conf
+    a2dismod   dav_fs dav
+    deinstallApachePackages
+
+    rstHeading "Aufräumen Config & Setup Dateien" section
+    ask_rm Ny "$CHROME_TEMPLATE"
+    ask_rm Ny "$HTML_INTRO_TEMPLATE"
+    ask_rm Ny "$APACHE_SITES"
+    ask_rm Ny "$OWASP_CRS_GIT_FOLDER"
+
+    rstHeading "Aufräumen Nutzdaten" section
+    ask_rm Ny "$EXPIMP_FOLDER"
+    ask_rm Ny "$WEBSHARE_FOLDER"
+
+    return 0
+}
+
+
+# ----------------------------------------------------------------------------
 installACME(){
     rstHeading "Installation ACME (Let's Encrypt)"
 # ----------------------------------------------------------------------------
@@ -292,15 +349,15 @@ installACME(){
         waitKEY
         APACHE_dissable_site acme-challenges.conf
         APACHE_dissable_site 000-default-le-ssl.conf
-        mv /etc/apache2/sites-available/000-default-le-ssl.conf /etc/apache2/sites-available/000-default-le-ssl.conf.bak
+        mv "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf" "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak"
         echo
         echo
-        cat /etc/apache2/sites-available/000-default-le-ssl.conf.bak | prefix_stdout
+        cat "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak" | prefix_stdout
         echo
         echo
         rstBlock "Leider klappt das mit der automatischen Konfiguration des
 Apache nicht so wirklich gut, deshalb muss man da nochmal manuell eingreifen.
-In der /etc/apache2/sites-available/default-ssl.conf müssen in etwa folgende
+In der ${APACHE_SITES_AVAILABE}/default-ssl.conf müssen in etwa folgende
 Settings eingestellt werden (Servername muss natürlich der sein, den man
 eben eingegeben hat, s.o.)::"
 
@@ -332,7 +389,6 @@ deinstallACME(){
     fi
     waitKEY
 }
-
 
 
 # ----------------------------------------------------------------------------
@@ -372,6 +428,11 @@ installApachePackages(){
     echo
     waitKEY
     apt-get install -y ${SERVICE_PACKAGES}
+
+    rstBlock "Da das Setup noch im Aufbau ist, kann es im Folgenden beim
+*Reload* zu Meldungen bezüglich des 'ServerName' kommen, diese bitte erst mal
+ignorieren, die verschwinden am Ende wieder, sobald der 'ServerName'
+eingerichtet ist."
 
     if [[ ! -z ${DISABLE_MODS} ]]; then
         rstHeading "de-aktiviere Module" section
@@ -495,7 +556,7 @@ die Benutzer Logins und Passwörter des Systems (PAM)."
     waitKEY
 
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     rstHeading "Test der Konfigurationen" section
     echo
@@ -628,11 +689,12 @@ site_sysdoc(){
 * ${SYSDOC_FOLDER}
 
 über den WEB-Server freigegeben.  Die sysdoc-Site sollte nur in einer
-Entwickler-Umgebung installiert werden. ${BRed}Sie sollte in KEINEM Fall in
-einer produktiven Umgebung installiert werden!${_color_Off}. Die sysdoc-Site
-kann bei Bedarf auch wieder deaktiviert werden::
+Entwickler-Umgebung installiert werden. Die sysdoc-Site kann bei Bedarf auch
+wieder deaktiviert werden::
 
-  sudo a2dissite ${SYSDOC_SITE}"
+  sudo a2dissite ${SYSDOC_SITE}
+
+${BRed}Nicht im Internet freigeben!${_color_Off}."
 
     if askNy "Soll die System-Dokumentation im WEB freigegeben werden?"; then
 
@@ -677,7 +739,7 @@ abgeschaltet werden::
     TEMPLATES_installFolder "${CHROME_TEMPLATE}" root www-data
 
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     echo
     echo "Zum static-Content --> https://$HOSTNAME/chrome"
@@ -700,7 +762,9 @@ ExpImp-Konfiguration nicht ohne weiteres ins Internet stellen.
 Man kann die Konfiguration später aber auch wieder zurück nehmen, indem man die
 Site deaktiviert.::
 
-  sudo a2dissite ${SITE}"
+  sudo a2dissite ${SITE}
+
+${BRed}Nicht im Internet freigeben!${_color_Off}."
 
     if ! askNy "Soll ${EXPIMP_FOLDER} erstellt und via Apache exportiert werden?"; then
         return 42
@@ -732,7 +796,9 @@ nehmen, indem man die Site deaktiviert::
 
   sudo a2dismod dav
 
-  sudo a2dismod dav_fs"
+  sudo a2dismod dav_fs
+
+${BRed}Nicht im Internet freigeben!${_color_Off}."
 
     if ! askNy "Soll ${WEBSHARE_FOLDER} erstellt und via WebDAV exportiert werden?"; then
         return 42
@@ -788,11 +854,9 @@ Setup kann deinstalliert werden::
     apt-get install -y ${PHP_PACKAGES}
     a2enmod php7
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     APACHE_install_site ${PHP_APPS_SITE}
-
-    installPHPTestApp
     waitKEY
 }
 
@@ -812,7 +876,7 @@ deinstallPHP(){
     apt-get clean
 
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     if [[ -d ${PHP_APPS} ]]; then
         rstHeading "Löschen der phpApps WEB-Anwendungen" section
@@ -894,7 +958,7 @@ weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden::
     a2enmod wsgi
     APACHE_install_site ${WSGI_APPS_SITE}
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     rstHeading "${PYENV} (${WWW_FOLDER}/pyApps)"
     rstBlock "Es wird eine *virtuelle* Python Umgebung (${PYENV}) eingerichtet,
@@ -903,8 +967,6 @@ in der die WEB-Anwendungen betrieben werden können.:
 * ${WSGI_APPS}/${PYENV}
 "
     install_pyenv
-
-    installWSGITestApp
     waitKEY
 }
 
@@ -998,7 +1060,7 @@ updateWSGI() {
         if askYn "sollen die PIP-Pakete aktualisiert werden?"; then
             pip install --upgrade ${PYENV_PACKAGES}
             rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-            service apache2 restart
+	    systemctl restart apache2
         fi
         popd > /dev/null
     fi
@@ -1023,7 +1085,7 @@ deinstallWSGI(){
     apt-get clean
 
     rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
-    service apache2 restart
+    systemctl restart apache2
 
     if [[ -d "${WSGI_APPS}/${PYENV}" ]]; then
         rstHeading "Löschen der ${PYENV} Umgebung"
