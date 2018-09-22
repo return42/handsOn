@@ -12,4 +12,7 @@ if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT=$(cd ${REPO_ROOT}/.. && pwd -P )
 fi
 
-source ${REPO_ROOT}/utils/site-bash/setup.sh
+if [[ -z ${_SETUP_OK+x} ]]; then
+    source ${REPO_ROOT}/utils/site-bash/setup.sh
+    export _SETUP_OK
+fi
