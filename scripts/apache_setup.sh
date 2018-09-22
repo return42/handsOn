@@ -313,7 +313,7 @@ hint::
     rstHeading "Aufräumen Config & Setup Dateien" section
     ask_rm Ny "$CHROME_TEMPLATE"
     ask_rm Ny "$HTML_INTRO_TEMPLATE"
-    ask_rm Ny "$APACHE_SITES"
+    ask_rm Ny "$APACHE_SETUP"
     ask_rm Ny "$OWASP_CRS_GIT_FOLDER"
 
     rstHeading "Aufräumen Nutzdaten" section
