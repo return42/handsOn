@@ -35,6 +35,7 @@ GOGS_DOMAIN=127.0.0.1
 # Apache Redirect URL
 GOGS_APACHE_DOMAIN="$(uname -n)"
 GOGS_APACHE_URL="/gogs"
+GOGS_APACHE_SITE=gogs
 
 # Port für den Gogs Server auf dem localhost
 GOGS_PORT=3000
@@ -51,6 +52,7 @@ GOGS_URI=github.com/gogs/gogs
 CONFIG_BACKUP=(
     "${GOGS_SYSTEMD_UNIT}"
     "/home/gogs/local/gogs/custom/conf/app.ini"
+    "${APACHE_SITES_AVAILABE}/${GOGS_APACHE_SITE}.conf"
 )
 
 CONFIG_BACKUP_ENCRYPTED=(
@@ -164,7 +166,7 @@ EOF
     rstHeading "Apache Site mit ProxyPass einrichten" section
     echo
     a2enmod proxy_http
-    APACHE_install_site --eval gogs
+    APACHE_install_site --eval ${GOGS_APACHE_SITE}
     rstBlock "Dienst: https://${GOGS_APACHE_DOMAIN}${GOGS_APACHE_URL}"
     waitKEY
 
@@ -309,6 +311,8 @@ activate_server(){
 # ----------------------------------------------------------------------------
     echo ""
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+a2ensite gogs
+systemctl force-reload apache2
 systemctl enable gogs.service
 systemctl restart gogs.service
 EOF
@@ -325,6 +329,8 @@ deactivate_server(){
     echo ""
 
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+a2dissite gogs
+systemctl force-reload apache2
 systemctl stop gogs.service
 systemctl disable gogs.service
 EOF
