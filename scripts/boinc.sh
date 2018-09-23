@@ -46,9 +46,9 @@ CONFIG_BACKUP_ENCRYPTED=(
 # ----------------------------------------------------------------------------
 usage(){
 # ----------------------------------------------------------------------------
-    cat <<EOF
 
-$1
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
 
 usage:
   $(basename $0) install    [boinc|manager]
@@ -65,31 +65,34 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
+	--source-only)  ;;
+        -h|--help) usage;;
+
         install)
             sudoOrExit
             case $2 in
                 boinc)    install_boinc ;;
                 manager)  install_boinc_manager ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
                 boinc)    remove_boinc ;;
                 manager)  remove_boinc_manager ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
                 boinc-client)  activate_boinc_client ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
                 boinc-client)  deactivate_boinc_client ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac

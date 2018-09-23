@@ -62,9 +62,9 @@ CONFIG_BACKUP_ENCRYPTED=(
 # ----------------------------------------------------------------------------
 usage(){
 # ----------------------------------------------------------------------------
-    cat <<EOF
 
-$1
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
 
 usage:
 
@@ -83,30 +83,33 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
+	--source-only)  ;;
+        -h|--help) usage;;
         info) less "${REPO_ROOT}/docs/gogs.rst" ;;
+
         install)
             sudoOrExit
             case $2 in
                 server)  setup_gogs_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
                 server)  remove_gogs ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
                 server)  activate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
                 server)  deactivate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac

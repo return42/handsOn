@@ -56,9 +56,9 @@ NEXTCLOUD_ALLOW="Allow from all"
 # ----------------------------------------------------------------------------
 usage(){
 # ----------------------------------------------------------------------------
-    cat <<EOF
 
-$1
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
 
 usage:
   $(basename $0) install    server
@@ -75,29 +75,31 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
+	--source-only)  ;;
+        -h|--help) usage;;
         install)
             sudoOrExit
             case $2 in
                 server)  install_nextCloud_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
                 server)  remove_nextCloud_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
                 server)  activate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
                 server)  deactivate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac

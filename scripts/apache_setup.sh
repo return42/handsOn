@@ -159,10 +159,12 @@ PYENV_PACKAGES="\
  psutil sqlalchemy babel simplejson \
 "
 
+# ----------------------------------------------------------------------------
 usage(){
-    cat <<EOF
+# ----------------------------------------------------------------------------
 
-$1
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
 
 usage:
   $(basename $0) install    [server|PHP|WSGI|ACME]
@@ -195,10 +197,8 @@ main(){
     case $1 in
 
 	--source-only)  ;;
-
-	info)
-            info
-            ;;
+        -h|--help) usage ;;
+	info) info ;;
 
         install)
             sudoOrExit
@@ -214,7 +214,7 @@ main(){
 		    ;;
                 sites)   installAddSites          ;;
                 ACME)    installACME              ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
@@ -229,7 +229,7 @@ main(){
                     APACHE_reload
                     ;;
                 ACME)    deinstallACME              ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
 
 
@@ -237,19 +237,19 @@ main(){
             sudoOrExit
             case $2 in
                 WSGI)    updateWSGI               ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
                 WAF)     mod_security2_activate   ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
                 WAF)     mod_security2_deactivate   ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac

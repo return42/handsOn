@@ -62,9 +62,13 @@ UNITY_REMOVE_PACKAGES="$(dpkg-query -f '${binary:Package} ' -W 'unity*') \
 #ELEMENTARY_PPA="ppa:elementary-os/daily"
 ELEMENTARY_PPA="ppa:elementary-os/staging"
 
+# ----------------------------------------------------------------------------
 usage(){
+# ----------------------------------------------------------------------------
+
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
     cat <<EOF
-$1
+
 usage:
   $(basename $0) [chooseDM]
   $(basename $0) install [GNOME[-ext]]|GNOME3-PPA|elementary|cinnamon|mate]
@@ -80,14 +84,15 @@ EOF
 }
 
 
-
-
 # ----------------------------------------------------------------------------
 main(){
     rstHeading "Desktop System" part
 # ----------------------------------------------------------------------------
 
     case $1 in
+	--source-only)  ;;
+        -h|--help) usage;;
+
         chooseDM) chooseDM ;;
         install)
 	    sudoOrExit
@@ -98,7 +103,7 @@ main(){
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
-                *)            usage "${BRed}ERROR:${_color_Off} unknown or missing install command $2"; exit 42          ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac  ;;
         remove)
 	    sudoOrExit
@@ -109,10 +114,9 @@ main(){
                 unity)        remove_unity ;;
                 cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
                 mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
-                *)            usage "${BRed}ERROR:${_color_Off} unknown or missing remove command $2"; exit 42           ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac  ;;
-	--help|"") usage "" ;;
-        *) usage "${BRed}ERROR:${_color_Off} unknown command $1"; exit 42 ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
 }
 
