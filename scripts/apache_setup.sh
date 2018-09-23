@@ -33,6 +33,10 @@ APACHE_DEFAULT_SITES=(
     "default-ssl.conf"
 )
 
+APACHE_HELLO_SITE=hello
+APACHE_HELLO_URL_ALIAS=".hello"
+APACHE_HELLO_TXT_FILE="/var/www/html/hello.txt"
+
 # Modules
 # -------
 
@@ -93,26 +97,26 @@ CHROME_TEMPLATE=/var/www/chrome
 # EXPIMP_FOLDER muss ggf. auch im Template
 # /etc/apache2/sites-available/exp-imp.conf angepasst werden.
 EXPIMP_FOLDER="/share/EXPIMP"
-EXPIMP_URL="https://$HOSTNAME/EXPIMP"
+EXPIMP_URL="https://$(uname -n)/EXPIMP"
 
 # WEBSHARE_FOLDER muss ggf. auch im Template
 # /etc/apache2/sites-available/webShare.conf angepasst werden.
 WEBSHARE_FOLDER="/share/WEBSHARE"
-WEBSHARE_URL="davs://$HOSTNAME/WEBSHARE"
+WEBSHARE_URL="davs://$(uname -n)/WEBSHARE"
 
 # HTML-Intro
 # ==========
 
 HTML_INTRO_SITE=html-intro
 HTML_INTRO_TEMPLATE="/var/www/html"
-HTML_INTRO_URL="https://$HOSTNAME"
+HTML_INTRO_URL="https://$(uname -n)"
 
 # System Dokumentationen
 # ======================
 
 SYSDOC_SITE=sysdoc
 SYSDOC_FOLDER=/usr/share/doc
-SYSDOC_URL="https://$HOSTNAME/sysdoc"
+SYSDOC_URL="https://$(uname -n)/sysdoc"
 
 # phpApps
 # =======
@@ -126,11 +130,7 @@ PHP_APPS="${WWW_FOLDER}/phpApps"
 
 PHP_TEST_SITE=hello_php
 PHP_TEST_TEMPLATE="${PHP_APPS}/helloWorld"
-PHP_TEST_URL="https://$HOSTNAME/hello.php"
-
-PHP_EXPLOIT_SITE=exploit_php
-PHP_EXPLOIT_TEMPLATE="${PHP_APPS}/exploit_php"
-PHP_EXPLOIT_URL="https://127.0.0.1/exploit.php"
+PHP_TEST_URL="https://$(uname -n)/hello.php"
 
 # pyApps
 # ======
@@ -139,7 +139,7 @@ WSGI_APPS_SITE=py-apps
 WSGI_APPS="${WWW_FOLDER}/pyApps"
 WSGI_TEST_SITE=hello_py
 WSGI_TEST_TEMPLATE="${WSGI_APPS}/helloWorld"
-WSGI_TEST_URL="https://$HOSTNAME/hello.py"
+WSGI_TEST_URL="https://$(uname -n)/hello.py"
 
 WSGI_PACKAGES="\
  libapache2-mod-wsgi-py3 \
@@ -559,9 +559,27 @@ die Benutzer Logins und Passwörter des Systems (PAM)."
     systemctl restart apache2
 
     rstHeading "Test der Konfigurationen" section
-    echo
-    TEE_stderr <<EOF | bash | prefix_stdout
-    curl --location --verbose --head --insecure http://localhost 2>&1
+
+    rstBlock "Es wird eine mini WEB-Seite eingerichtet (hello). Diese wird im
+Laufe der Installationen des öfteren zum Testen benötigt.  Diese Seite stellt
+i.A. kein Sicherheitsrisiko dar und sollte am besten einfach installiert
+bleiben.  Wenn die hello-Seite später nicht mehr gewünscht ist und unbedingt weg
+soll, kann sie auch wieder deaktiviert werden::
+
+  sudo a2dissite ${APACHE_HELLO_SITE}
+"
+
+    waitKEY
+
+    TEMPLATES_InstallOrMerge --eval "${APACHE_HELLO_TXT_FILE}" root www-data
+    APACHE_install_site --eval ${APACHE_HELLO_SITE}
+    rstBlock "Zur hello Seite --> https://$(uname -n)/${APACHE_HELLO_URL_ALIAS}"
+    rstBlock "Im Folgendem wird nun ein erster Test durchgeführt"
+    waitKEY
+
+    TEE_stderr 3 <<EOF | bash | prefix_stdout
+curl --location --verbose --head --insecure http://$(uname -n)/${APACHE_HELLO_URL_ALIAS} 2>&1
+curl --location --insecure http://ryzen/.hello
 EOF
     waitKEY
 }
@@ -742,7 +760,7 @@ abgeschaltet werden::
     systemctl restart apache2
 
     echo
-    echo "Zum static-Content --> https://$HOSTNAME/chrome"
+    echo "Zum static-Content --> https://$(uname -n)/chrome"
 
     waitKEY
 
@@ -867,7 +885,7 @@ deinstallPHP(){
 
     echo
     a2dismod php7
-    APACHE_dissable_site ${PHP_TEST_SITE} ${PHP_APPS_SITE}
+    APACHE_dissable_site ${PHP_TESTSITE} ${PHP_APPS_SITE}
 
     rstPkgList ${PHP_PACKAGES}
     waitKEY
