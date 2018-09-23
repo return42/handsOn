@@ -219,7 +219,7 @@ main(){
         remove)
             sudoOrExit
             case $2 in
-                all)  remove_all;;
+                all)  API_apache_remove_all;;
                 PHP)
                     deinstallPHP
                     APACHE_reload
@@ -268,11 +268,11 @@ Dienste sollte man jedoch nicht im Internet freigeben. Sofern das der Fall ist
 werden gesondert Hinweise bei den entsprechenden Abfragen gegeben."
 
     waitKEY
-    installApachePackages
-    serverwide_cfg
+    API_installApachePackages
+    API_serverwide_cfg_install
     site_static-content
     site_html-intro
-    mod_security2
+    API_mod_security2_install
     site_sysdoc
     site_expimp
     site_webshare
@@ -283,7 +283,7 @@ werden gesondert Hinweise bei den entsprechenden Abfragen gegeben."
 
 
 # ----------------------------------------------------------------------------
-remove_all(){
+API_apache_remove_all(){
     rstHeading "De-Installation Apache und Komponmenten" part
 # ----------------------------------------------------------------------------
 
@@ -420,7 +420,7 @@ info(){
 }
 
 # ----------------------------------------------------------------------------
-installApachePackages(){
+API_installApachePackages(){
     rstHeading "Installation der Apache Pakete"
 # ----------------------------------------------------------------------------
 
@@ -486,7 +486,7 @@ deinstallApachePackages(){
 }
 
 # ----------------------------------------------------------------------------
-serverwide_cfg(){
+API_serverwide_cfg_install(){
     rstHeading "Serverweite Konfigurationen"
 # ----------------------------------------------------------------------------
 
@@ -585,7 +585,7 @@ EOF
 }
 
 # ----------------------------------------------------------------------------
-mod_security2(){
+API_mod_security2_install(){
     rstHeading "WAF: ModSecurity"
 # ----------------------------------------------------------------------------
 
