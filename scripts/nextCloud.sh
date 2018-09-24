@@ -85,7 +85,7 @@ Apache Servers nutzt die Methoden und Skripte, die in den handsOn bereitstehen,
 mehr dazu kann man unter [1] nachlesen.
 
 Neben dem WEB-Server benötigt nextCloud noch eine Datenbank. Es wird der von
-nextCloud empfohlene DB-Server mariaDB installiert [3]. mariaDB [2] ist der
+nextCloud empfohlene DB-Server mariaDB [2] installiert [3]. mariaDB ist der
 (echte) Open-Source Nachfolger von MySQL. Eine MySQL Abspaltung aus dem Jahre
 2009, die inzwischen stabiler und performanter ist als MySQL, welches in den
 Fuchteln von Oracle dem Marketing geschuldet kaputt gefrickelt wird.
@@ -94,11 +94,12 @@ Entgegen den z.T. noch veralteten Dokumentationen wird bei der DB Installation
 kein Passwort mehr vergeben. Die Standard Installation bei debian/Ubuntu
 verwendet zur Authentifizierung das Plugin 'Unix Socket' [4]. Die root-Anmeldung
 an der DB erfolgt als root Benutzer des localhost ohne weitere Passwort-Abfrage.
-So kann man sich dann mittels sudo an der DB als DB root anmelden, ohne dass man
-dafür ein Passwort eingeben muss::
+So kann man sich dann mittels sudo an der DB als root (User der DB) anmelden, ohne
+dass man dafür ein Passwort eingeben muss::
 
   sudo mariadb
-
+"
+    echo "\
 [1] https://return42.github.io/handsOn/apache_setup/index.html
 [2] https://mariadb.com
 [3] https://mariadb.com/kb/en/library/installing-mariadb-deb-files
