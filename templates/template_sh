@@ -27,6 +27,12 @@ CONFIG_BACKUP=(
 CONFIG_BACKUP_ENCRYPTED=(
 )
 
+???_DATA_FOLDER=/var/lib/???
+
+DATA_BACKUP=(
+    "$???_DATA_FOLDER"
+)
+
 
 # ----------------------------------------------------------------------------
 usage(){

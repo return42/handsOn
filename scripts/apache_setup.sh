@@ -292,6 +292,10 @@ die, mit diesen Skripten installierten Komponenten deinstalliert. Am Ende kommen
 dann noch Abfragen ob die Konfigurationen und etwaige Nutzdaten auch mit
 abgeräumt werden sollen."
 
+    if ! askNy "Soll Apache deinstalliert werden?" ; then
+	return 42
+    fi
+
     if ! aptPackageInstalled apache2 ; then
 	echo -e "${BYellow}
 hint::
@@ -319,6 +323,9 @@ hint::
     rstHeading "Aufräumen Nutzdaten" section
     ask_rm Ny "$EXPIMP_FOLDER"
     ask_rm Ny "$WEBSHARE_FOLDER"
+
+    rstBlock "Deinstallation Apache abgeschlossen."
+    waitKEY
 
     return 0
 }
