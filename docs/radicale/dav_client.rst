@@ -139,24 +139,28 @@ aber u.U. einige Minuten in Anspruch nehmen kann.
 Thunderbird mit CardBook
 ------------------------
 
-CardBook ist ein AddOn für den Thunderbird, das das Standard-Adressbuch des
-Thunderbird vollständig ersetzen kann. Mit CardBook kann ein CardDAV Adressbuch
-auf einem Server synchronisieren (der Kram, der in Thunderbird standard ist,
-ist schrottig und auch das SOgo Plugin ist schrottig, beides braucht man nicht
-ausprobieren).
+`CardBook <https://gitlab.com/CardBook/CardBook>`_ ist ein AddOn für den
+Thunderbird, welches das Standard-Adressbuch des Thunderbird vollständig
+ersetzen kann.
 
-* CardBook: https://addons.mozilla.org/en-US/thunderbird/addon/cardbook/?src=api
-* CardBook Forum: https://cardbook.6660.eu/
+.. hint::
 
-CardBook im AddOn Manager des Thunderbirds suchen und installieren.  Danach über
-"Tools --> CardBook" die Adressbuchverwaltung öffnen. Links oben gibt es ein
-Menü auf das man klicken muss, damit es sich öffnet, darin "Adressbuch -->
-Adressbuch hinzufügen" auswählen.::
+   Der Standard-Kalender in dem Thunderbird ist schrottig, auch das SOGo Plugin
+   kann man `nicht <https://github.com/Kozea/Radicale/issues/861>`__ empfehlen.
+
+- CardBook: https://addons.mozilla.org/en-US/thunderbird/addon/cardbook/?src=api
+- CardBook Forum: https://cardbook.6660.eu/
+- CrdBook GitLab: https://gitlab.com/CardBook/CardBook
+
+Zur Installation: CardBook im AddOn Manager (Extensions) des Thunderbirds suchen
+und installieren.  Danach über "Tools --> CardBook" die Adressbuchverwaltung
+öffnen.  Links oben gibt es ein Menü auf das man klicken muss, damit es sich
+öffnet, darin "Adressbuch --> Adressbuch hinzufügen" auswählen.::
 
   Im Netzwerk
 
   Art:           CardDAV
-  URL:           https://<hostname>/radicale/<user>/<calendar-folder>
+  URL:           https://<hostname>/radicale/<user>/<addressbook-name>
   Benutzer Name: <user>
   Passwot:       <passwd>
 
@@ -165,21 +169,22 @@ kann. Ich musste danach nochmal das soeben eingerichteten Adressbuch auswählen
 und synchronisieren.
 
 Anders als evtl. bei anderen CardDAV Clients -- die mehrere Adressbücher unter
-einem Account verwalten können -- müss bei CardBook für jedes Adressbuch auf dem
+einem Account verwalten können -- muss bei CardBook für jedes Adressbuch auf dem
 Server ein, wie oben beschriebener Account eingerichtet werden. Bei dem immer
-die vollständige URL des Ordners mit dem Adressbuch angegeben werden muss in
-meinem Setup ist das beispielsweise mein 'markus-adressbuch'::
+die vollständige URL des Ordners mit dem Adressbuch angegeben werden muss.  In
+meinem Setup ist das beispielsweise mein ``markus-adressbuch``::
 
   https://storage/radicale/markus/markus-adressbuch
 
-Ein wünscheswertes Feature wäre eine Sortierung der Adressbücher nicht nach der
+Ein wünschenswertes Feature wäre eine Sortierung der Adressbücher nicht nach der
 Eigenschaft ``CATEGORIES`` sondern nach den vCards für Listen. Dies ist die
 übliche Methode zur Gruppierung in MacOS und -- soweit ich weiß -- auch bei den
-Google Adressbüchern. Bei DAVDroid kann man das einstellen ob "Gruppen vCards"
-oder aber "CATEGORIES" sind. Im Grunde liest CardBook die beiden Felder
-``X-ADDRESSBOOKSERVER-KIND`` und ``X-ADDRESSBOOKSERVER-MEMBER`` der vCard-Listen
-schon ganz richtig ein und in der Listenansicht sind auch die Mitglieder einer
-Gruppe aufgeführt.
+Google Adressbüchern.
+
+Bei DAVDroid kann man einstellen ob "Gruppen vCards" oder aber "CATEGORIES"
+sind. Im Grunde liest CardBook die beiden Felder ``X-ADDRESSBOOKSERVER-KIND``
+und ``X-ADDRESSBOOKSERVER-MEMBER`` der vCard-Listen schon ganz richtig ein und
+in der Listenansicht sind auch die Mitglieder einer Gruppe aufgeführt.
 
 Die Möglichkeit zur Gruppierung in der Addressbar (auf der linken Seite des
 CardBook) entlang dieser Gruppen ist leider nicht möglich. Der Entwickler
