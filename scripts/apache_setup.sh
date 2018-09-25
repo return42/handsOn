@@ -513,7 +513,7 @@ ${APACHE_SETUP}/envvars festgelegt."
     rstBlock "In der Konfigration werden die Ports 80 und 443 konfiguriert auf
 denen der Apache Server *lauschen* soll."
 
-    TEMPLATES_InstallOrMerge "${APACHE_SETUP}/ports.conf" root www-data 644
+    TEMPLATES_InstallOrMerge "${APACHE_SETUP}/ports.conf" root ${WWW_USER} 644
     waitKEY
 
     rstHeading "Server-Wide Configuration" section
@@ -562,7 +562,7 @@ die Benutzer Logins und Passwörter des Systems (PAM)."
     APACHE_install_conf authnz_external
     waitKEY
 
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     rstHeading "Test der Konfigurationen" section
@@ -578,7 +578,7 @@ soll, kann sie auch wieder deaktiviert werden::
 
     waitKEY
 
-    TEMPLATES_InstallOrMerge --eval "${APACHE_HELLO_TXT_FILE}" root www-data
+    TEMPLATES_InstallOrMerge --eval "${APACHE_HELLO_TXT_FILE}" root ${WWW_USER}
     APACHE_install_site --eval ${APACHE_HELLO_SITE}
     rstBlock "Zur hello Seite --> https://$(uname -n)/${APACHE_HELLO_URL_ALIAS}"
     rstBlock "Im Folgendem wird nun ein erster Test durchgeführt"
@@ -586,7 +586,7 @@ soll, kann sie auch wieder deaktiviert werden::
 
     TEE_stderr 3 <<EOF | bash | prefix_stdout
 curl --location --verbose --head --insecure http://$(uname -n)/${APACHE_HELLO_URL_ALIAS} 2>&1
-curl --location --insecure http://ryzen/.hello
+curl --location --insecure http://$(uname -n)/.hello
 EOF
     waitKEY
 }
@@ -647,18 +647,16 @@ EOF
 
     rstBlock "Der folgende Test führt einen Request aus, der einer XSS Attacke
 ähnelt, bei der ein Script-Tag in ein Formular eingebettet wurde. Der Request
-müsste auf dem Server-Log des ModSecurity ein 'Message: Access denied ...'
-liefern:"
+müsste auf dem Server-Log des ModSecurity ein 'Access denied ...'  liefern:"
 
-    TEE_stderr <<EOF | bash | prefix_stdout
+    TEE_stderr <<EOF | bash | prefix_stdout  | grep --color "ModSecurity: Access denied"
 tail -n 1 -f /var/log/apache2/modsec_audit.log &
 TAIL_PID=\$!
-curl -k "https://127.0.0.1/exploit.php?secret_file=%3Cscript%20xss%3E" 2>/dev/null
+curl -k "https://127.0.0.1/.hello?secret_file=%3Cscript%20xss%3E" 2>/dev/null
 kill \$TAIL_PID
 EOF
     waitKEY
 }
-
 
 # ----------------------------------------------------------------------------
 mod_security2_activate(){
@@ -695,7 +693,7 @@ und kann bei Bedarf auch wieder deaktiviert werden::
 
     if askYn "Soll die HTML Startseite installiert werden?"; then
 
-        TEMPLATES_installFolder ${HTML_INTRO_TEMPLATE} root www-data
+        TEMPLATES_installFolder ${HTML_INTRO_TEMPLATE} root ${WWW_USER}
         waitKEY
         APACHE_install_site ${HTML_INTRO_SITE}
         echo
@@ -761,9 +759,9 @@ abgeschaltet werden::
 
     rstHeading "static-site Konfiguration" section
     APACHE_install_site ${SITE}
-    TEMPLATES_installFolder "${CHROME_TEMPLATE}" root www-data
+    TEMPLATES_installFolder "${CHROME_TEMPLATE}" root ${WWW_USER}
 
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     echo
@@ -878,7 +876,7 @@ Setup kann deinstalliert werden::
     waitKEY
     apt-get install -y ${PHP_PACKAGES}
     a2enmod php7
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     APACHE_install_site ${PHP_APPS_SITE}
@@ -900,7 +898,7 @@ deinstallPHP(){
     apt-get autoremove -y
     apt-get clean
 
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     if [[ -d ${PHP_APPS} ]]; then
@@ -936,7 +934,7 @@ Zur DEINSTALLATION folgendes verwenden::
 
     if askNy "Soll die php-Test Site installiert werden?"; then
 
-        TEMPLATES_installFolder ${PHP_TEST_TEMPLATE} root www-data
+        TEMPLATES_installFolder ${PHP_TEST_TEMPLATE} root ${WWW_USER}
         waitKEY
         APACHE_install_site ${PHP_TEST_SITE}
         echo
@@ -982,7 +980,7 @@ weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden::
     APACHE_disable_mod_conf wsgi
     a2enmod wsgi
     APACHE_install_site ${WSGI_APPS_SITE}
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     rstHeading "${PYENV} (${WWW_FOLDER}/pyApps)"
@@ -1057,7 +1055,7 @@ Zur DEINSTALLATION folgendes verwenden::
 
     if askNy "Soll die WSGI-Test Site installiert werden?"; then
 
-        TEMPLATES_installFolder ${WSGI_TEST_TEMPLATE} root www-data
+        TEMPLATES_installFolder ${WSGI_TEST_TEMPLATE} root ${WWW_USER}
         waitKEY
         APACHE_install_site ${WSGI_TEST_SITE}
         echo
@@ -1084,7 +1082,7 @@ updateWSGI() {
         source bin/activate
         if askYn "sollen die PIP-Pakete aktualisiert werden?"; then
             pip install --upgrade ${PYENV_PACKAGES}
-            rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+            rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
 	    systemctl restart apache2
         fi
         popd > /dev/null
@@ -1109,7 +1107,7 @@ deinstallWSGI(){
     apt-get autoremove -y
     apt-get clean
 
-    rstBlock "${BGreen}Apache muss neu gestartet werden...${_color_Off}"
+    rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
     if [[ -d "${WSGI_APPS}/${PYENV}" ]]; then
