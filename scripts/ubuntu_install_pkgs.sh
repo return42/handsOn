@@ -25,6 +25,7 @@ BASE_PACKAGES="\
  git subversion mercurial bzr \
  emacs curl colordiff \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
+ ncdu poppler-utils \
 "
 
 DEVELOP_PACKAGES="\
