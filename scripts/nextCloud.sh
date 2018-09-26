@@ -89,8 +89,9 @@ DATA_BACKUP=(
 info(){
 # ----------------------------------------------------------------------------
 
-    rstBlock "Die Installation von nextCloud erfolgt hinter einem WEB-Server.
-Die nextCloud Anwendung selbst wird danach online eingerichtet."
+    rstBlock "Die Installation von nextCloud erfolgt hinter einem WEB-Server
+(https://$(uname -n)/${NEXTCLOUD_URL_ALIAS}).  Die nextCloud Anwendung selbst
+wird danach online eingerichtet."
 
     rstHeading "WEB-Server Apache" section
 
@@ -132,6 +133,7 @@ Pfade & Pakete auf Debian anders sind als auf ArchLinux."
 [4] https://mariadb.com/kb/en/library/authentication-plugin-unix-socket/
 [5] https://docs.nextcloud.com/server/14/admin_manual/installation/source_installation.html
 [6] https://wiki.archlinux.org/index.php/Nextcloud
+[7] https://github.com/nextcloud
 "
 }
 
