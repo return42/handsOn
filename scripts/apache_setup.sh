@@ -640,14 +640,15 @@ API_mod_security2_install(){
     rstBlock "Prüfen ob das Modul geladen wird, Es sollte folgend eine Zeile
 ausgegeben werden in der in etwa 'security2_module (shared)' steht:"
 
-    TEE_stderr <<EOF | bash | prefix_stdout
-apachectl -M | grep --color security2
+    TEE_stderr <<EOF | bash | prefix_stdout | grep --color security2
+apachectl -M
 EOF
     waitKEY
 
     rstBlock "Der folgende Test führt einen Request aus, der einer XSS Attacke
 ähnelt, bei der ein Script-Tag in ein Formular eingebettet wurde. Der Request
-müsste auf dem Server-Log des ModSecurity ein 'Access denied ...'  liefern:"
+müsste auf dem Server-Log des ModSecurity ein '${BRed}ModSecurity: Access denied
+...${_color_Off}' liefern:"
 
     TEE_stderr <<EOF | bash | prefix_stdout  | grep --color "ModSecurity: Access denied"
 tail -n 1 -f /var/log/apache2/modsec_audit.log &
