@@ -30,9 +30,14 @@ NEXTCLOUD_PACKAGES="\
  ${_PHP}-curl ${_PHP}-mbstring ${_PHP}-intl \
  ${_PHP}-imagick ${_PHP}-xml ${_PHP}-zip \
 "
+
+NEXTCLOUD_DOWNLOAD_URL=https://download.nextcloud.com/server/releases/
+# leave this empty to get *latest*
+#NEXTCLOUD_VERSION=14.0.1
+
 #NEXTCLOUD_DATA_FOLDER=/var/lib/???
 
-# Apache setup
+# WEB setup
 # ------------
 
 NEXTCLOUD_APACHE_SITE="nextCloud"
@@ -42,9 +47,13 @@ NEXTCLOUD_ROOT="${PHP_APPS}/nextcloud"
 NEXTCLOUD_ALLOW="Allow from all"
 #NEXTCLOUD_ALLOW="Allow from fd00::/8 192.168.0.0/16 fe80::/10 127.0.0.0/8 ::1"
 
-NEXTCLOUD_DOWNLOAD_URL=https://download.nextcloud.com/server/releases/
-# leave this empty to get *latest*
-#NEXTCLOUD_VERSION=14.0.1
+# DB-Setup
+# --------
+
+NEXTCLOUD_DB_NAME=nextcloud
+NEXTCLOUD_DB_USER=nextcloud
+NEXTCLOUD_DB_HOST=localhost
+
 
 # maraiDB setup
 # -------------
@@ -223,6 +232,7 @@ nun alle weiteren, von nextCloud benötigten (APT) Pakete installiert."
     info_msg "Voraussetzung: ${BGreen}APTPaket Installationen --> OK${_color_Off}"
 
     install_mariaDB
+    setup_nextCloud_DB
     info_msg "Voraussetzung: ${BGreen}mariaDB --> OK${_color_Off}"
 
     download_install_nextcloud
@@ -348,13 +358,71 @@ entfernt werden ..."
 }
 
 
+
+sql_SELECT_EXISTS_FROM(){
+    local retVal=$(sudo mariadb -sse "SELECT EXISTS( SELECT 1 FROM ${1})" )
+    [[ $retVal == "1" ]]
+}
+
+
 # ----------------------------------------------------------------------------
 install_mariaDB(){
     rstHeading "Installation der mariaDB"
 # ----------------------------------------------------------------------------
 
     aptInstallPackages ${MARIADB_PACKAGES}
+    rstHeading "Status des DB-Servers" section
+    echo
     systemctl status mariadb.service
+}
+
+
+# ----------------------------------------------------------------------------
+setup_nextCloud_DB(){
+    rstHeading "Setup Datenbank für nextCloud" section
+# ----------------------------------------------------------------------------
+
+    rstBlock "Für nextCloud werden der DB-Benutzer
+(${NEXTCLOUD_DB_USER}@${NEXTCLOUD_DB_HOST}), eine Datenbank
+(${NEXTCLOUD_DB_NAME}) und die erforderlichen Zugriffsrechten eingerichtet."
+
+    if sql_SELECT_EXISTS_FROM "mysql.user WHERE user='${NEXTCLOUD_DB_USER}'"
+    then
+	info_msg "DB-Benutzer ${NEXTCLOUD_DB_USER} existiert bereits."
+    else
+	info_msg "DB-Benutzer ${NEXTCLOUD_DB_USER} existiert noch nicht / muss angelegt werden."
+	rstBlock "Für den Benutzer muss ein Passwort vergeben werden.
+Es wird später noch benötigt / ${BRed}merken!${_color_Off}"
+	askPassphrase "  password"
+	NEXTCLOUD_DB_PWD="$passphrase"
+	TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+CREATE USER '${NEXTCLOUD_DB_USER}'@'${NEXTCLOUD_DB_HOST}' IDENTIFIED BY '${NEXTCLOUD_DB_PWD}';
+quit
+EOF
+    fi
+    waitKEY
+
+    if sql_SELECT_EXISTS_FROM "information_schema.schemata WHERE schema_name = '${NEXTCLOUD_DB_NAME}'"
+    then
+	info_msg "Datenbank ${NEXTCLOUD_DB_NAME} existiert bereits."
+    else
+	info_msg "Datenbank ${NEXTCLOUD_DB_NAME} existiert noch nicht / muss angelegt werden."
+	# https://docs.nextcloud.com/server/14/admin_manual/configuration_database/linux_database_configuration.html#configuring-a-mysql-or-mariadb-database
+	#
+	# Die Doku ist z.T. nicht ganz aktuell: man sollte bei neuen Datenbanken
+	# immer 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' wählen!
+	TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+CREATE DATABASE IF NOT EXISTS ${NEXTCLOUD_DB_NAME} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+quit
+EOF
+    fi
+    waitKEY
+
+    info_msg "Zugriffsrechte DB-Benutzers (${NEXTCLOUD_DB_USER}) auf DB (${NEXTCLOUD_DB_NAME}) "
+    TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+GRANT ALL PRIVILEGES ON ${NEXTCLOUD_DB_NAME}.* TO '${NEXTCLOUD_DB_USER}'@'${NEXTCLOUD_DB_HOST}';
+quit
+EOF
     waitKEY
 }
 
