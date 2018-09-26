@@ -205,6 +205,8 @@ Installation wird nun eine Apache Installation eingerichtet ..."
 	API_mod_security2_install
     fi
 
+    info_msg "Voraussetzung: ${BGreen}Apache --> OK${_color_Off}"
+
     if ! aptPackageInstalled libapache2-mod-php ; then
 	rstBlock "nextCloud ist eine PHP Anwendung. Das PHP-Modul für Apache ist
 noch nicht installiert. Die Basis-Installation für PHP wird nun vorgenommen ..."
@@ -212,12 +214,17 @@ noch nicht installiert. Die Basis-Installation für PHP wird nun vorgenommen ...
 	installPHP
     fi
 
+    info_msg "Voraussetzung: ${BGreen}PHP --> OK${_color_Off}"
+
     rstBlock "Die Basis Installation des Apache ist bereits erfolgt. Es werden
 nun alle weiteren, von nextCloud benötigten (APT) Pakete installiert."
 
     aptInstallPackages ${NEXTCLOUD_PACKAGES}
+    info_msg "Voraussetzung: ${BGreen}APTPaket Installationen --> OK${_color_Off}"
 
     install_mariaDB
+    info_msg "Voraussetzung: ${BGreen}mariaDB --> OK${_color_Off}"
+
     download_install_nextcloud
 
     rstHeading "Einrichten der Apache-Site für nextCloud"
