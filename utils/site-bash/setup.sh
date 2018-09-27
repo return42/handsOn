@@ -108,29 +108,22 @@ CACHE=${REPO_ROOT}/cache
 
 # GNOME_APPL_FOLDER=/usr/share/applications
 
+# dot_config
+# ==========
+
 if [[ ! -e "${REPO_ROOT}/.config" ]]; then
     cfg_msg "installing ${REPO_ROOT}/.config"
-    cp "${TEMPLATES}/dot_config" "${REPO_ROOT}/.config"
+    cp "$(dirname ${BASH_SOURCE[0]})/setup_dot_config" "${REPO_ROOT}/.config"
     chown -R ${SUDO_USER}:${SUDO_USER} "${REPO_ROOT}/.config"
 fi
-
 source ${REPO_ROOT}/.config
 
-if [[ ! -e "${CONFIG}_setup.sh" ]]; then
-    cfg_msg "missing setup:"
-    cfg_msg "    ${CONFIG}_setup.sh"
-    cfg_msg "Mostly you will edit the CONFIG variable in ${REPO_ROOT}/.config"
-    cfg_msg "which points to your setup::"
-    cfg_msg "    CONFIG=/path/to/my-config/$(hostname)"
-    cfg_msg "Or use::"
-    cfg_msg "    CONFIG=/path/to/my-config/$(hostname) $0 $*"
-    cfg_msg "For more info about setup, read::"
-    cfg_msg "    ${REPO_ROOT}/hostSetup/MEMO.rst"
-    cfg_msg "To NOT continue with defaults press CTRL-C now!"
-    read -n1 $_t -p "** press any [KEY] to continue **"
-    printf "\n"
-else
-    source ${CONFIG}_setup.sh
+# load setup
+# ==========
+
+if declare -F __load_setup >/dev/null
+then
+    __load_setup
 fi
 
 source ${REPO_ROOT}/utils/site-bash/common.sh

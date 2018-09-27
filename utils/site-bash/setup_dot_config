@@ -1,12 +1,11 @@
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
-# handsOn Konfiguration
+# setup config
 # ----------------------------------------------------------------------------
 
 # Hier bitte den Pfad zum Setup eintragen. I.d.R. wird man sein Setup je
 # *Hostname* vornehmen oder man hat ein typische Setups wie z.B. ein 'clientpc'
-# Setup und ein 'server' Setup. Wie man ein solches Setup einrichtet kann man in
-# ${REPO_ROOT}/MEMO.rst nachlesen
+# Setup und ein 'server'
 
 if [[ -z ${CONFIG} ]]; then
     CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
