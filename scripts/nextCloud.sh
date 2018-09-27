@@ -214,6 +214,8 @@ Installation wird nun eine Apache Installation eingerichtet ..."
 	API_installApachePackages
 	API_serverwide_cfg_install
 	API_mod_security2_install
+	# FIXME: aktuell reicht ein "SecRuleEngine Off" scheinbar nicht aus.
+	mod_security2_deactivate
     fi
 
     info_msg "Voraussetzung: ${BGreen}Apache --> OK${_color_Off}"
@@ -427,6 +429,7 @@ quit
 EOF
     waitKEY
 }
+
 
 # ----------------------------------------------------------------------------
 remove_mariaDB(){
