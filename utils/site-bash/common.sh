@@ -1738,7 +1738,7 @@ if [[ -z "${APACHE_MODS_AVAILABE}" ]]; then
 fi
 if [[ -z "${APACHE_CONF_AVAILABE}" ]]; then
     APACHE_CONF_AVAILABE="${APACHE_SETUP}/conf-available"
-   # APACHE_CONF_ENABLED="${APACHE_SETUP}/conf-enabled"
+    # APACHE_CONF_ENABLED="${APACHE_SETUP}/conf-enabled"
 fi
 
 # ----------------------------------------------------------------------------

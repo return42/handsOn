@@ -5,11 +5,19 @@
 # org stuff
 # =====================
 
-# ORGANIZATION="darmarIT"
+# ORGANIZATION="myorg"
 
 # =====================
 # Debian's Apache Setup
 # =====================
+
+# WWW_USER: Benutzer & Gruppe für die Prozesse des WEB-Servers
+#
+# WWW_USER=www-data
+
+# WWW_FOLDER: Ordner in dem die Resourcen des WEB-Servers liegen
+#
+# WWW_FOLDER=/var/www
 
 # APACHE_SETUP="/etc/apache2"
 # APACHE_SITES_AVAILABE="${APACHE_SETUP}/sites-available"
@@ -20,6 +28,12 @@
 #   fxSyncServer\
 #   OnlineDoc\
 # "
+
+# =====
+# SAMBA
+# =====
+
+# SAMBA_SERVER=127.0.0.1
 
 # Debian's OpenLDAP Setup
 # =======================
@@ -46,37 +60,30 @@
 # Backup der Konfigurationen
 # ==============================================================================
 #
-# .. hint::
+# Dateien werden in der Sicherung für *alle* lesbar gesichert.  Will man
+# Schlüssel oder Passwörter sichern, muss man die mit einer Passphrase
+# verschlüsseln.  Die Dateien bzw. Ordner die verschlüsselt werden sollen,
+# müssen in der Variablen
 #
-#    Dateien werden in der Sicherung für *alle* lesbar gesichert. Will man
-#    Schlüssel oder Passwörter sichern, muss man die mit einer Passphrase
-#    verschlüsseln. Die Dateien bzw. Ordner die verschlüsselt werden sollen,
-#    müssen in der:
+# * CONFIG_BACKUP_ENCRYPTED definiert werden.
 #
-#    * CONFIG_BACKUP_ENCRYPTED definiert werden.
+# Die unverschlüsselten Sicherungen werden in der
 #
-#    Die unverschlüsselten Sicherungen werden in der
+# * CONFIG_BACKUP definiert.
 #
-#    * CONFIG_BACKUP definiert.
+# Ob eine Konfigurations-Datei oder ein Ordner in die Sicherung & ins SCM mit
+# aufgenommen werden soll ist eine Entscheidung, die man selber treffen muss.
+# Grundsätzlich gilt auch hier *weniger ist mehr*, dennoch sollten alle Config-
+# Dateien in die Sicherung mit aufgenommen werden, die auch angepasst wurden.
 #
-#    Ob eine Datei oder ein Ordner in die Sicherung & Versionierung soll ist
-#    eine Entscheidung, die man selber treffen muss. Die handsOn Scripte spielen
-#    Vorlagen aus dem TEMPLATE Ordner, es sein denn, sie finden im Backup eine
-#    Datei (bzw. einen Ordner) am selben Pfad, dann verwenden die handsOn
-#    Skripte diese Datei als *Template*.
-#
-#    Dateien der Konfiguration die ohnehin in ungeänderter Form im TEMPLATE -
-#    Ordner vorliegen sollten deshalb besser nicht gesichert werden, zumindest
-#    nicht solange, wie sie mit dem Original aus dem TEMPLATE Ordner identisch
-#    sind. So bekommt man für die ungeänderten Dateien noch die Updates aus dem
-#    TEMPLATE mit, wenn man eine Anwendung neu installiert oder *updatet*.
-#
-#    Eine grobe Empfehlung könnte sein:
-#
-#        *Sichere nur das, was Du auf DEM Host an Einstellungen geändert hast*
-#
+# Dateien der Konfiguration, die ohnehin in ungeänderter Form aus dem TEMPLATE
+# Ordner übernommen wurden brauchen nicht unbbedingt gesichert zu werden.  So
+# bekommt man für die ungeänderten Dateien noch die Updates aus dem TEMPLATE
+# Ordner mit, wenn man eine Anwendung neu installiert oder ein Update macht.
 
+# ==============================================================================
 CONFIG_BACKUP_ENCRYPTED=(
+# ==============================================================================
 
     "/etc/ssl/private"
     "/etc/ldapscripts/ldapscripts.passwd"
@@ -97,10 +104,8 @@ CONFIG_BACKUP_ENCRYPTED=(
 )
 
 # ==============================================================================
-# Backup von Konfigurationsdateien
-# ==============================================================================
-
 CONFIG_BACKUP=(
+# ==============================================================================
 
     # LDAP-Client
     "/etc/ldap.conf"
