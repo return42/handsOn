@@ -112,6 +112,11 @@ LSB (Linux Standard Base) and Distribution information.
   DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
   DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
 
+Tools:
+
+ MERGE_CMD            : ${MERGE_CMD}
+ THREE_WAY_MERGE_CMD  : ${THREE_WAY_MERGE_CMD}
+
 CWD : $(pwd -P)"
 }
 

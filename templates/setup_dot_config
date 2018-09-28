@@ -9,3 +9,9 @@
 
 CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
 #CONFIG="${REPO_ROOT}/hostSetup/clientpc"
+
+# $MERGE_CMD {file_a} {file_b} {merged}
+MERGE_CMD=merge2FilesWithEmacs
+
+# $THREE_WAY_MERGE_CMD {mine} {yours} {ancestor} {merged}
+THREE_WAY_MERGE_CMD=merge3FilesWithEmacs

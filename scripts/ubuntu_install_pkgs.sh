@@ -23,7 +23,7 @@ BASE_PACKAGES="\
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git subversion mercurial bzr \
- emacs curl colordiff \
+ emacs curl colordiff meld \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
  ncdu poppler-utils \
 "

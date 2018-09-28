@@ -4,19 +4,28 @@
                                     handsOn
 ================================================================================
 
-Das **handsOn** Projekt besteht aus einer Ansammlung von Dokumenten zu
-verschiedenen Themen. Meist sind es Beschreibungen zur Installation
-von Programmen und Diensten auf Linux Hosts.
+Aufgabe der handsOn ist es, eine möglichst *saubere* Installation und
+Orchestrierung von Diensten und Anwendungen auf Linux Systemen zu ermöglichen.
+Um eine reproduzierbare Installation und Konfiguration der Anwendungen zu
+gewährleisten sind in dem Ordner ``./scripts`` ausführbare Skripte hinterlegt.
+Die Basis ist eine Ubuntu/debian Distribution, das hier dokumentierte Know-how
+ist jedoch allgemeiner Natur.
 
-Um die Installation und das Einrichten der Anwendungen zu vereinfachen
-sind in dem Ordner ``./scripts`` Skripte hinterlegt. Mit Hilfe dieser
-Skripte ist das Einrichten und Sichern der erstellten Konfiguration
-leicht möglich.
+About handsOn
+=============
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
-   get_started/index
+   get_started
+   motivation
+
+Themen
+======
+
+.. toctree::
+   :maxdepth: 2
+
    desktop_system/index
    ubuntu_remove_pkgs/index
    ubuntu_install_pkgs/index
@@ -56,6 +65,8 @@ Exkursionen und Erfahrungswerte
 
       todo
 
-* Dokumentation: http://return42.github.io/handsOn
+
+
+* Dokumentation: https://return42.github.io/handsOn
 * Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
-* Author e-mail:  markus.heiser@darmarIT.de
+* Author e-mail: markus.heiser@darmarIT.de
