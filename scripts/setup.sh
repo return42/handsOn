@@ -27,20 +27,22 @@ if [[ ! -e "${REPO_ROOT}/.config" ]]; then
     init_msg "a default setup is created right now ..."
 
     init_msg " --> create initial ${REPO_ROOT}/.config"
-    cp "${REPO_ROOT}/templates/setup_dot_config" "${REPO_ROOT}/.config"
-    chown ${SUDO_USER}:${SUDO_USER} "${REPO_ROOT}/.config"
+    cp -ua "${REPO_ROOT}/templates/setup_dot_config" "${REPO_ROOT}/.config"
     source "${REPO_ROOT}/.config"
 
     init_msg " --> create version controlled folder to store configurations:"
     init_msg "      $(dirname ${CONFIG})"
-    cp -r "${REPO_ROOT}/templates/hostSetup" "${REPO_ROOT}"
-    pushd "${REPO_ROOT}/hostSetup" > /dev/null
-    git init > /dev/null
-    popd > /dev/null
+    cp -uar "${REPO_ROOT}/templates/hostSetup" "${REPO_ROOT}"
 
+    pushd "${REPO_ROOT}/hostSetup" > /dev/null
+
+    git init > /dev/null
     init_msg " --> create inital setup from example_setup.sh in"
     init_msg "      ${CONFIG}_setup.sh"
-    cp -u "${REPO_ROOT}/templates/hostSetup/example_setup.sh" "${CONFIG}_setup.sh"
+    cp -ua "${REPO_ROOT}/templates/hostSetup/example_setup.sh" "${CONFIG}_setup.sh"
+    chown -R ${SUDO_USER}:${SUDO_USER} .
+
+    popd > /dev/null
 
     init_msg "If all this is not what you want than visit: "
     init_msg "  - ${GET_STARTET_URL}"
