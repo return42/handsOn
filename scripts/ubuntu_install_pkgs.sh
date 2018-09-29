@@ -22,8 +22,7 @@ BASE_PACKAGES="\
  aptitude apt-file synaptic gdebi bash-completion \
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
- git subversion mercurial bzr \
- emacs curl colordiff meld \
+ git emacs curl colordiff meld \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
  ncdu poppler-utils \
 "
@@ -34,7 +33,8 @@ DEVELOP_PACKAGES="\
  shellcheck devscripts \
  dkms \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
- git git-email git-svn subversion mercurial bzr \
+ git git-email git-svn \
+ subversion mercurial bzr \
  emacs diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
  docker.io \
@@ -100,6 +100,9 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
+        bootstrap)
+            install_bootstrap
+            ;;
 	base)
             install_basePackages
             install_baseDoc
@@ -154,30 +157,17 @@ main(){
 
 
 # ----------------------------------------------------------------------------
-install_remmina(){
+install_bootstrap(){
+    rstHeading "Installation erforderlicher Pakete"
 # ----------------------------------------------------------------------------
 
-    rstHeading "Installation Remmina RDP-Client"
-
-    # siehe https://bugs.launchpad.net/ubuntu/+source/remmina/+bug/1439478/comments/22
-    REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
-    REMMINA_SOURCE_NAME="remmina"
-
-    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt,
-deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
-    if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
-        return 42
-    fi
-
-    add-apt-repository "$REMMINA_PPA"
-
-    rstHeading "Katalog aktualisieren" section
+    rstPkgList ${BASE_PACKAGES}
     echo
-    apt-get update
-    apt-get install remmina
-    waitKEY
+    apt-get install -y ${BASE_PACKAGES}
+    echo
+    info_msg "Installation der handsOn abgeschlossen"
+    waitKEY 30
 }
-
 
 # ----------------------------------------------------------------------------
 install_basePackages(){
@@ -210,6 +200,32 @@ install_baseDoc(){
     apt-get install -y ${BASE_DOC_PACKAGES}
     waitKEY 30
 }
+
+# ----------------------------------------------------------------------------
+install_remmina(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Installation Remmina RDP-Client"
+
+    # siehe https://bugs.launchpad.net/ubuntu/+source/remmina/+bug/1439478/comments/22
+    REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
+    REMMINA_SOURCE_NAME="remmina"
+
+    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt,
+deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
+    if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
+        return 42
+    fi
+
+    add-apt-repository "$REMMINA_PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install remmina
+    waitKEY
+}
+
 
 # ----------------------------------------------------------------------------
 install_devPackages(){

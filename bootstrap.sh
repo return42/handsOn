@@ -11,7 +11,7 @@ appl="handsOn"
 download_url="https://github.com/return42/${appl}/raw/master/bootstrap.sh"
 git_clone_url="https://github.com/return42/${appl}.git"
 BASE_PACKAGES="git"
-INSTALL_CMD="sudo ./scripts/ubuntu_install_pkgs.sh base"
+INSTALL_CMD="sudo ./scripts/ubuntu_install_pkgs.sh bootstrap"
 
 # ----------------------------------------------------------------------------
 main(){
@@ -57,8 +57,6 @@ bootstrap() {
         git clone "$git_clone_url" "$PWD/$appl"
     fi
 
-    rstHeading "installing $appl" chapter
-    waitKEY
     cd "$PWD/$appl"
     $INSTALL_CMD
 }
