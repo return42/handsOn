@@ -16,3 +16,5 @@
 .. _`Xubuntu (wiki)`: https://de.wikipedia.org/wiki/Xubuntu
 .. _`GNU Bash`: https://www.gnu.org/software/bash/
 .. _`python`: https://www.python.org/
+
+.. _`hostSetup/example_setup.sh`: https://github.com/return42/handsOn/blob/master/templates/hostSetup/example_setup.sh

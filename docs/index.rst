@@ -15,7 +15,7 @@ About handsOn
 =============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    get_started
    motivation

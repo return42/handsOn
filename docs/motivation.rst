@@ -35,21 +35,23 @@ schnell mal auf eine neue *dependency hell* trifft.  Einige (wenige?) JavaScript
 Projekte auf Basis von npm könnten hierfür als negatives Beispiel genannt
 werden.  Doch diese Sicht auf das Negative ist zu einseitig.  Im Konsum- als
 auch im Unternehmens-Bereich werden kurze time-to-market Zyklen und schnelles
-Bugfixing erwartet, gleichzeitig muss die Softwareentwicklung effizienter
-werden.  Die Antwort auf diese Anforderungen sind die Paket-Manager der
-Entwicklungsumgebungen, die Entwicklung und Deployment enger aneinander rücken.
-In diesem veränderten Umfeld müssen die Distributoren ihre Rolle neu definieren
-und über kurz oder lang auch ihre Konzepte resp. Paket-Manager anpassen.
-Interessant in dem Zusammenhang ist auch der Artikel `Package managers all the
-way down <https://lwn.net/Articles/712318/>`__ zu lesen.
+Bugfixing erwartet.  Gleichzeitig soll die Softwareentwicklung bei anhaltend
+steigender Komplexität auch noch effizienter werden ..  *ziemlich viele
+Anforderungen* .. eine Teil-Antwort auf diese Anforderungen sind die
+Paket-Manager der Entwicklungsumgebungen, die Entwicklung und Deployment enger
+aneinander rücken.  In diesem veränderten Umfeld müssen die Distributoren ihre
+Rolle neu definieren und über kurz oder lang auch ihre Konzepte
+resp. Paket-Manager anpassen.  Interessant in dem Zusammenhang ist auch der
+Artikel `Package managers all the way down <https://lwn.net/Articles/712318/>`__
+zu lesen.
 
-Egal wie kritisch man diese aktuellen Veränderungen auf dem Softwaremarkt auch
+Egal wie kritisch man die aktuellen Veränderungen auf dem Softwaremarkt auch
 betrachtet, sie haben in den letzten Jahren zu einer Beschleunigung der
 Softwareentwicklung als auch zu einer Stärkung der Open-Source Community
 beigetragen.  Für die eher problematischen Auswirkungen auf Distributoren gibt
 es aktuell noch keine umfassende Antwort.  :ref:`Snap <snap>` und Container wie
-:ref:`xref_docker` resp. :ref:`xref_lxdlxc` können Teil einer Antwort sein und
-so findet man auch immer mehr solcher Distributionsformen, die von den
+:ref:`xref_docker` resp. :ref:`xref_lxdlxc` können ebenfalls Teil einer Antwort
+sein und so findet man auch immer mehr solcher Distributionsformen, die von den
 Softwareentwicklern paketiert werden.  Für Stand-Alone Software ist diese
 Antwort i.d.R. auch ausreichend, sobald es aber um die Orchestrierung von
 Diensten geht, treffen diese Lösungsansätze auf ihre Grenzen.  Für den
@@ -66,10 +68,10 @@ Jahren werden ausprägen müssen. Die strikte Auftrennung von Entwicklung
 (**dev**\eleopment) und Administration (*Betrieb* / **Op**\erations) wird man
 sukzessive aufgeben müssen.  Die idealen Akteure -- die ich auch als devOps
 bezeichnen möchte -- sind devOps mit unterschiedlichen Focus.  Auf der einen
-Seite der klassische Entwickler, der sich mit den Aspekten Betrieb und
-Auslieferung wird auseinander setzen müssen und auf der Anderen Seite der
-klassische Administrator der sich wird intensiver mit den Softwareprojekten wird
-beschäftigen müssen.
+Seite der klassische Entwickler, der sich mit den Aspekten "Betrieb" und
+"Auslieferung" wird auseinander setzen müssen und auf der Anderen Seite der
+klassische Administrator, der sich wird intensiver mit den Softwareprojekten
+wird beschäftigen müssen.
 
 Kurzum, es gibt keine *fertigen* Antworten. Niemand nimmt uns die Arbeit ab, im
 Gegenteil: Egal aus welcher Ecke wir kommen, wir werden unseren Blickwinkel
@@ -83,13 +85,11 @@ Verfügung zu stellen.
 
 Die handsOn Sammlung wurde unter `Ubuntu (wiki)`_ getestet und die Skripte
 sollten mit jeder aktuellen Ubuntu Version lauffähig sein. Langfristiges Ziel
-ist es, dass die jeweils aktuelle LTS Version unterstützt wird.
-
-Nicht getestet aber zu erwarten ist, dass die Skripte auch auf allen aktuellen
-und gängigen LTS Versionen der Ubuntu-Derivate wie z.B. `lubuntu`_ ohne
-Anpassungen laufen (:ref:`xref_debian_derivates_refs`).
-
-Die meisten Installationen der handsOn Sammlung basieren auf den `Advanced
-Package Tool (APT)`_ oder installieren aus den Quellen direkt und sollten damit
-auch auf `Debian`_ und anderen APT basierten Distributionen funktionieren.
+ist es, dass die jeweils aktuelle LTS Version unterstützt wird.  Nicht getestet
+aber zu erwarten ist, dass die Skripte auch auf allen aktuellen und gängigen LTS
+Versionen der Ubuntu-Derivate wie z.B. `lubuntu`_ ohne Anpassungen laufen
+(:ref:`xref_debian_derivates_refs`).  Die meisten Installationen der handsOn
+Sammlung basieren auf den `Advanced Package Tool (APT)`_ oder installieren aus
+den Quellen direkt und sollten damit auch auf `Debian`_ und anderen APT
+basierten Distributionen funktionieren.
 
