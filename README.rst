@@ -4,13 +4,12 @@
                                 handsOn Sammlung
 ================================================================================
 
-Das **handsOn** Projekt besteht aus einer Ansammlung von Dokumenten zu
-verschiedenen Themen.  Meist sind es Beschreibungen zur Installation von
-Programmen und Diensten auf Linux Hosts.
-
-Um die Installation und das Einrichten der Anwendungen zu vereinfachen sind in
-dem Ordner ``./scripts`` Skripte hinterlegt.  Mit Hilfe dieser Skripte können
-die Dienste eingerichtet und deren Konfigurationen gesichert werden.
+Aufgabe der handsOn ist es, eine möglichst *saubere* Installation und
+Orchestrierung von Diensten und Anwendungen auf Linux Systemen zu ermöglichen.
+Um eine reproduzierbare Installation und Konfiguration der Anwendungen zu
+gewährleisten sind in dem Ordner ``./scripts`` ausführbare Skripte hinterlegt.
+Die Basis ist eine Ubuntu/debian Distribution, das hier dokumentierte Know-how
+ist jedoch allgemeiner Natur.
 
 * Dokumentation: https://return42.github.io/handsOn
 * Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
@@ -20,4 +19,4 @@ Bootstrap Installation::
 
   wget --no-check -O /tmp/bs.sh "https://github.com/return42/handsOn/raw/master/bootstrap.sh" ; bash /tmp/bs.sh
 
-Siehe auch: https://return42.github.io/handsOn/get_started/index.html
+Siehe auch: https://return42.github.io/handsOn/get_started.html
