@@ -1,5 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
+.. include:: get_started_refs.txt
+
 ===================
 Motivation & Umfeld
 ===================
