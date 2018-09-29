@@ -18,6 +18,7 @@ About handsOn
    :maxdepth: 1
 
    get_started
+   handson_concept
    motivation
 
 Themen

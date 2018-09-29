@@ -9,7 +9,7 @@
 ================================================================================
 
 Für das Arbeiten mit Sourcen (und dem handsOn Konfigurationen / siehe
-:ref:`xref_get_started_concept`) ist ein minimaler Satz an Werkzeugen
+:ref:`xref_handson_concept`) ist ein minimaler Satz an Werkzeugen
 erforderlich.  Dazu gehören mindestens ein Editor, ein Tool zum *Durchsuchen*
 von Ordnern und Dateien (nach Mustern) sowie ein diff- und ein patch-Tool.
 

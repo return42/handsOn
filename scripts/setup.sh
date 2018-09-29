@@ -116,8 +116,8 @@ LSB (Linux Standard Base) and Distribution information.
 
 Tools:
 
- MERGE_CMD            : ${MERGE_CMD}
- THREE_WAY_MERGE_CMD  : ${THREE_WAY_MERGE_CMD}
+  MERGE_CMD           : ${MERGE_CMD}
+  THREE_WAY_MERGE_CMD : ${THREE_WAY_MERGE_CMD}
 
 CWD : $(pwd -P)"
 }

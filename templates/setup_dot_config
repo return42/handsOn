@@ -12,9 +12,11 @@ CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
 
 # $MERGE_CMD {file_a} {file_b} {merged}
 # MERGE_CMD=merge2FilesWithEmacs
+# MERGE_CMD=merge2FilesWithMeld
 
 # $THREE_WAY_MERGE_CMD {mine} {yours} {ancestor} {merged}
 # THREE_WAY_MERGE_CMD=merge3FilesWithEmacs
+# THREE_WAY_MERGE_CMD=merge3FilesWithMeld
 
 # $DIFF_CMD {file_a} {file_b}
 # DIFF_CMD=colordiff

@@ -39,6 +39,7 @@
 #    $THREE_WAY_MERGE_CMD {mine} {yours} {ancestor} {merged}
 #
 #THREE_WAY_MERGE_CMD=merge3FilesWithEmacs
+#THREE_WAY_MERGE_CMD=merge3FilesWithMeld
 
 # MERGE_CMD: Kommando oder Funktion mit der ein (interaktiver) Merge gemacht
 # werden kann. Das Kommando muss die drei Argumente für Dateinamen
@@ -47,6 +48,7 @@
 #     $MERGE_CMD {file_a} {file_b} {merged}
 #
 #MERGE_CMD=merge2FilesWithEmacs
+#MERGE_CMD=merge2FilesWithMeld
 
 # DIFF_CMD: Kommando oder Funktion mit der ein diff angezeigt werden soll. Im
 # Default wird ``colordiff`` verwendet, wenn das nicht vorhanden ist, dann wird
