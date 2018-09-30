@@ -179,7 +179,7 @@ legen sie die erforderlichen Config-Dateien der Anwendungen an.  Die Vorlagen
 für solche Config-Dateien entnehmen die Skripte aus dem Ordner :term:`TEMPLATES`.
 
 Hat man eine Sicherung seiner Config-Dateien im Profil angelegt (CONFIG_BACKUP_)
-so schauen die Skripte nach, ob es zu der Datei aus dem Ordner :ref:`TEMPLATES`
+so schauen die Skripte nach, ob es zu der Datei aus dem Ordner :term:`TEMPLATES`
 eine gleichnamige Datei in der Sicherung gibt.  Wird zu einer Konfiguration eine
 Sicherung gefunden, so wird diese in die Installation mit einbezogen.
 I.d.R. kann der Anwender dann auswählen ob er die Standard-Vorlage oder die
