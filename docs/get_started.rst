@@ -3,15 +3,11 @@
 .. include:: get_started_refs.txt
 
 .. _xref_get_started:
+.. _xref_install_handson:
 
 ================================================================================
                                   Get Started
 ================================================================================
-
-.. _xref_install_handson:
-
-Installation
-============
 
 Zur Installation ein Terminal öffnen und folgendes eingeben::
 
@@ -28,10 +24,10 @@ erforderlich.::
    git clone https://github.com/return42/handsOn.git
    sudo handsOn/scripts/ubuntu_install_pkgs.sh base
 
-Bei dem ersten Aufruf eines der Skripte wird eine ``.config`` Datei sowie ein
+Bei dem ersten Aufruf eines der Skripte wird eine :term:`.config` Datei sowie ein
 Ordner eingerichtet.  In dem Ordner werden die Konfigurationen gesichert (siehe
 auch :ref:`xref_handson_concept`).  Am besten man macht das gleich mal als
-Erstes und lässt sich dabei noch das Setup anzeigen (info_sh_)::
+Erstes und lässt sich dabei noch das Setup anzeigen (:ref:`info.sh <info_sh>`)::
 
    ./scripts/info.sh
 
@@ -64,16 +60,18 @@ Die Ausgabe ist dann in etwa:
 .. hint::
 
    Wenn Sie mit dem Emacs_ nicht klar kommen, dann sollten Sie am besten gleich
-   jetzt die Variablen MERGE_CMD_ und THREE_WAY_MERGE_CMD_ in der `.config
-   <dot_config>`_ so ändern, dass der Meld_ verwendet wird::
+   jetzt die Variablen :ref:`MERGE_CMD <MERGE_CMD>` und
+   :ref:`THREE_WAY_MERGE_CMD <THREE_WAY_MERGE_CMD>` in der :term:`.config` so
+   ändern, dass der Meld_ verwendet wird::
 
      MERGE_CMD=merge2FilesWithMeld
      THREE_WAY_MERGE_CMD=merge3FilesWithMeld
 
-Hier in dem Beispiel werden die Config-Dateien der Hosts im Ordner hostSetup_
-gesammelt und versioniert.  Der Name des Hosts aus obigen Beispiel ist
-``ryzen``.  Anpassungen für diesen Host werden in der Datei
+Hier in dem Beispiel werden die Config-Dateien der Hosts im Ordner
+:term:`hostSetup` gesammelt und versioniert.  Der Name des Hosts aus
+obigen Beispiel ist ``ryzen``.  Anpassungen für diesen Host werden in der Datei
 ``./hostSetup/ryzen_setup.sh`` vorgenommen.  Die Versionierung der
 Config-Dateien ist Teil des :ref:`handsOn-Konzepts <xref_handson_concept>`.
+
 
 

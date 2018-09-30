@@ -41,60 +41,52 @@ Ordnerstruktur
   │   └── gogs.sh
   └── templates
 
-.. _dot_config:
+.. glossary::
 
-``.config``
-  In der Datei werden nur allgemeine Settings, die nur die handsOn selbst
-  betreffen vorgenommen.  Z.B. Angaben dazu wo die Config-Dateien zu finden sind
-  oder welche Tools für einen Merge verwendet werden sollen.  Von zentraler
-  Bedeutung ist die Variable ``CONFIG`` die den Pfad zum Setup angibt
-  (:ref:`xref_handsOn_setup`).
+   .config
+     In der Datei werden nur allgemeine Settings, die nur die handsOn selbst
+     betreffen vorgenommen.  Z.B. Angaben dazu wo die Config-Dateien zu finden
+     sind oder welche Tools für einen Merge verwendet werden sollen.  Von
+     zentraler Bedeutung ist die Variable ``CONFIG`` die den Pfad zum Setup
+     angibt (:ref:`xref_handsOn_setup`).
 
-.. _hostSetup:
+   hostSetup
+     In dem Ordner werden die Sicherungen der Setups eines HOSTs abgelegt und
+     **versioniert**.  Voraussetzung für eine Sicherung ist das Vorhandensein
+     einer ``<profile>_setup.sh`` Datei in der angegeben wird, was alles
+     gesichert werden soll (CONFIG_setup_sh_).
 
-``hostSetup``
-  In dem Ordner werden die Sicherungen der Setups eines HOSTs abgelegt und
-  **versioniert**.  Voraussetzung für eine Sicherung ist das Vorhandensein einer
-  ``<profile>_setup.sh`` Datei in der angegeben wird, was alles gesichert
-  werden soll (CONFIG_setup_sh_).
 
-.. _doc:
+   doc
+     In dem Ordner sind die Quelldateien zu *dieser* Dokumentation.
 
-``doc``
-  In dem Ordner sind die Quelldateien zu *dieser* Dokumentation.
+   cache
+     In dem Ordner werden die Reposetories und Softwarepakete zu den
+     Installationen *gecached* (Downloads aus dem Internet)
 
-.. _cache:
+   scripts
+   scripts_folder
+     In dem Ordner sind die Skripte zum Installieren der Dienste & Anwendungen.
 
-``cache``
-  In dem Ordner werden die Reposetories und Softwarepakete zu den Installationen
-  *gecached* (Downloads aus dem Internet)
+     Die Skripte sind i.d.R. Shell-Skripte (`GNU Bash`_).  Warum Shell-Skripte?
+     Es ist die pragmatischste Herangehensweise Anwendungen einzurichten.
+     Nahezu alle Dienste und Anwendungen können letztlich über eine
+     Kommandozeile eingerichtet werden und da liegt ein Shell-Skript zur
+     Automatisierung einfach nur nahe.  Sollten irgendwann mal komplexere
+     Anforderungen an das Skripting gestellt werden, werde ich ergänzend
+     `python`_ zum Einsatz bringen.  Das war bisher aber nicht erforderlich, da
+     sich die Skripte im allgemeinen recht einfach gestalten und mit `GNU Bash`_
+     am einfachsten implementiert werden konnten.
 
-.. _SCRIPTS:
-.. _SCRIPT_FOLDER:
-
-``scripts``
-  In dem Ordner sind die Skripte zum Installieren der Dienste & Anwendungen.
-
-  Die Skripte sind i.d.R. Shell-Skripte (`GNU Bash`_).  Warum Shell-Skripte?  Es
-  ist die pragmatischste Herangehensweise Anwendungen einzurichten.  Nahezu alle
-  Dienste und Anwendungen können letztlich über eine Kommandozeile eingerichtet
-  werden und da liegt ein Shell-Skript zur Automatisierung einfach nur nahe.
-  Sollten irgendwann mal komplexere Anforderungen an das Skripting gestellt
-  werden, werde ich ergänzend `python`_ zum Einsatz bringen.  Das war bisher
-  aber nicht erforderlich, da sich die Skripte im allgemeinen recht einfach
-  gestalten und mit `GNU Bash`_ am einfachsten implementiert werden konnten.
-
-.. _TEMPLATES:
-
-``templates``
-  In dem Ordner sind *Vorlagen* von Konfigurationsdateien, die zu den
-  Anwendungen gehören, welche mit den Skripten installiert werden.  Diese
-  *Vorlagen* sind erste gute Einstellungen, die man sich aber -- über kurz oder
-  lang -- wird anpassen wollen.  Angepasst werden die Dateien im System selbst.
-  Hat meine seine Anpassung beendet, nimmt man die im System angepasste Datei in
-  seine Liste (``hostSetup/<hostname>_setup.sh``) der zu sichernden
-  Konfigurationsdateien mit auf und versioniert sie mit allen anderen
-  Anpassungen auf dem Host.
+   templates
+     In dem Ordner sind *Vorlagen* von Konfigurationsdateien, die zu den
+     Anwendungen gehören, welche mit den Skripten installiert werden.  Diese
+     *Vorlagen* sind erste gute Einstellungen, die man sich aber -- über kurz
+     oder lang -- wird anpassen wollen.  Angepasst werden die Dateien im System
+     selbst.  Hat meine seine Anpassung beendet, nimmt man die im System
+     angepasste Datei in seine Liste (``hostSetup/<hostname>_setup.sh``) der zu
+     sichernden Konfigurationsdateien mit auf und versioniert sie mit allen
+     anderen Anpassungen auf dem Host.
 
 
 .. _xref_handsOn_setup:
@@ -104,8 +96,8 @@ Versionierung des Setups
 
 Im Rahmen der :ref:`Installation <xref_install_handson>` wurde der Ordner
 ``hostSetup`` angelegt.  In diesem Ordner können die Setups versioniert werden.
-Das dieser Ordner für die Setups verwendet werden soll, wurde in der ``.config``
-Datei über die Variable ``CONFIG`` festgelegt.::
+Das dieser Ordner für die Setups verwendet werden soll, wurde in der
+:term:`.config` Datei über die Variable ``CONFIG`` festgelegt.::
 
   CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
   #CONFIG="${REPO_ROOT}/hostSetup/clientpc"
@@ -173,21 +165,22 @@ mit aufgenommen werden soll ist eine Entscheidung, die man selber treffen muss.
 Grundsätzlich gilt auch hier *weniger ist mehr*, dennoch sollten alle Config-
 Dateien in die Sicherung mit aufgenommen werden, die auch angepasst wurden oder
 aus anderen Gründen *getract* werden sollen.  Dateien der Konfiguration, die
-ohnehin in unveränderter Form aus dem TEMPLATES_ Ordner übernommen wurden,
-brauchen nicht unbedingt gesichert zu werden.  So bekommt man für die
-unveränderten Dateien noch die Updates aus dem TEMPLATES_ Ordner mit, wenn man
-eine Anwendung neu installiert oder ein Update über die handsOn Skripte macht.
+ohnehin in unveränderter Form aus dem :term:`TEMPLATES` Ordner übernommen
+wurden, brauchen nicht unbedingt gesichert zu werden.  So bekommt man für die
+unveränderten Dateien noch die Updates aus dem :term:`TEMPLATES` Ordner mit,
+wenn man eine Anwendung neu installiert oder ein Update über die handsOn Skripte
+macht.
 
 Anwendung gesicherter Config-Dateien
 ====================================
 
-Die Skripte in dem Ordner SCRIPTS_ richten die Anwendungen ein. Dabei
+Die Skripte in dem Ordner :term:`SCRIPTS` richten die Anwendungen ein. Dabei
 legen sie die erforderlichen Config-Dateien der Anwendungen an.  Die Vorlagen
-für solche Config-Dateien entnehmen die Skripte aus dem Ordner TEMPLATES_
+für solche Config-Dateien entnehmen die Skripte aus dem Ordner :term:`TEMPLATES`.
 
 Hat man eine Sicherung seiner Config-Dateien im Profil angelegt (CONFIG_BACKUP_)
-so schauen die Skripte nach, ob es zu der Datei aus dem Ordner TEMPLATES_ eine
-gleichnamige Datei in der Sicherung gibt.  Wird zu einer Konfiguration eine
+so schauen die Skripte nach, ob es zu der Datei aus dem Ordner :ref:`TEMPLATES`
+eine gleichnamige Datei in der Sicherung gibt.  Wird zu einer Konfiguration eine
 Sicherung gefunden, so wird diese in die Installation mit einbezogen.
 I.d.R. kann der Anwender dann auswählen ob er die Standard-Vorlage oder die
 Sicherung nutzen will.  Meist hat er auch noch die Wahl beide Dateien
@@ -200,7 +193,7 @@ zusammenzuführen (MERGE_CMD_).
 ======================
 
 In der Datei werden alle Anpassungen des Profils definiert.  Sie wird in dem
-Ordner hostSetup_ angelegt, also z.B::
+Ordner :term:`hostSetup` angelegt, also z.B::
 
   /foo/repo_setups/<profile>_setup.sh
 
@@ -234,9 +227,9 @@ werden::
 
   ./scripts/backup_config.sh
 
-Obiger Aufruf legt thematisch sortiert Dateien in dem Ordner hostSetup_
-(``${CONFIG}_sysinfo``) an.  Z.B. wird für jede Festplatte eine Protokolldatei mit
-performance Messungen und SMART Werten erzeugt und es werden Dateien mit den
+Obiger Aufruf legt thematisch sortiert Dateien in dem Ordner :term:`hostSetup`
+(``${CONFIG}_sysinfo``) an.  Z.B. wird für jede Festplatte eine Protokolldatei
+mit performance Messungen und SMART Werten erzeugt und es werden Dateien mit den
 Ausgaben zu ``lshw``, ``lsusb``, ``lspci`` und zum X-Display (``xrander``)
 angelegt.
 
@@ -249,7 +242,7 @@ Merge Tool
 ----------
 
 Als Merge Tool wird im Default der `Emacs`_ genutzt.  Will man davon abweichend
-ein anderes Werkzeug nutzen, so kann man dafür in der `.config <dot_config>`_ Datei die
+ein anderes Werkzeug nutzen, so kann man dafür in der :term:`.config` Datei die
 Variablen MERGE_CMD_ und THREE_WAY_MERGE_CMD_ setzen.  Alternativen zum Emacs
 finden sich z.B. in den Artikeln auf `Stackoverflow (best 3 way merge tool)`_
 oder `Wikipedia (File comparision tools / features)`_. In jedem Fall muss das
@@ -265,8 +258,8 @@ verwendete Werkzeug ein `Drei-Wege Merge (wiki)`_ beherrschen.
     $MERGE_CMD {file_a} {file_b} {merged}
 
   Im Default ist der Emacs_ eingestellt ``merge2FilesWithEmacs``. Wenn Sie
-  besser mit Meld_ klar kommen, ändern Sie den Wert in der `.config
-  <dot_config>`_ auf ``merge2FilesWithMeld``.::
+  besser mit Meld_ klar kommen, ändern Sie den Wert in der :term:`.config` auf
+  ``merge2FilesWithMeld``.::
 
     MERGE_CMD=merge2FilesWithMeld
 
@@ -281,8 +274,8 @@ verwendete Werkzeug ein `Drei-Wege Merge (wiki)`_ beherrschen.
     $THREE_WAY_MERGE_CMD {mine} {yours} {ancestor} {merged}
 
   Im Default ist der Emacs_ eingestellt ``merge3FilesWithEmacs``. Wenn Sie
-  besser mit Meld_ klar kommen, ändern Sie den Wert in der `.config
-  <dot_config>`_ auf ``merge3FilesWithMeld``.::
+  besser mit Meld_ klar kommen, ändern Sie den Wert in der :term:`.config` auf
+  ``merge3FilesWithMeld``.::
 
     THREE_WAY_MERGE_CMD=merge3FilesWithMeld
 
@@ -294,7 +287,7 @@ Diff Tool
 
 Im Default wird :man:`colordiff` verwendet, wenn das nicht vorhanden ist, wird
 :man:`diff` verwendet.  Will man davon abweichend ein anderes Werkzeug nutzen,
-so kann man in der `.config <dot_config>`_ Datei die Variablen dafür setzen::
+so kann man in der :term:`.config` Datei die Variablen dafür setzen::
 
   # $DIFF_CMD {file_a} {file_b}
   DIFF_CMD=??
