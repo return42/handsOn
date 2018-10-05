@@ -91,9 +91,12 @@ main(){
             apt-get autoremove -y
             apt-get clean
 	    ;;
+        update)
+            installFFAddOns
+            ;;
 	*)
             echo
-	    echo "usage $0 [install|deinstall]"
+	    echo "usage $0 [install|deinstall|update]"
             echo
             ;;
     esac
