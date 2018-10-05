@@ -53,8 +53,13 @@ if [[ ! -e "${REPO_ROOT}/.config" ]]; then
     echo
 fi
 
-
 hook_load_setup_pre(){
+    if [[ ! -e "${CONFIG}_setup.sh" ]]; then
+	init_msg " --> create inital setup from example_setup.sh in"
+	init_msg "      ${CONFIG}_setup.sh"
+	cp -ua "${REPO_ROOT}/templates/hostSetup/example_setup.sh" "${CONFIG}_setup.sh"
+	chown -R ${SUDO_USER}:${SUDO_USER} .
+    fi
     source "${CONFIG}_setup.sh"
 }
 
