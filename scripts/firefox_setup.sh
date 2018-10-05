@@ -81,6 +81,7 @@ main(){
 
     case $1 in
 	install)
+            sudo apt install firefox firefox-locale-de
             installFFSysPrefs
 	    installFFAddOns
 	    installTorBrowser
@@ -109,22 +110,27 @@ installFFSysPrefs(){
 
     rstHeading "Setup der globalen Firefox-Einstellungen" chapter
 
-    err_msg "ich hab keine Ahnung, ob das den heute überhaupt noch funktioniert"
-    waitKEY
-
     rstBlock "Es werden die systemweiten *Preferences* des Firefox
 gesetzt. Eine Beschreibung hierzu findet man unter:
 
 * https://developer.mozilla.org/en-US/docs/Mozilla/Preferences
+
 * https://developer.mozilla.org/de/Firefox/Nutzung_in_Unternehmen
+
+Der Link /usr/lib/firefox/browser/defaults/preferences/ zeigt auf
+/etc/firefox/syspref.js siehe auch:
+
+* https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Modifying_preferences
+
 "
     rstHeading "System Einstellungen" section
-    err_msg "funktioniert nicht mehr !!! ..."
     TEMPLATES_InstallOrMerge /etc/firefox/syspref.js root root 644
     waitKEY
 
     rstHeading "Handling der apt-URLs" section
-    err_msg "funktioniert nicht mehr !!! ..."
+    err_msg "Datei /etc/firefox/pref/apturl.js wird scheinbar gar nicht vom FFox gelesen"
+    err_msg "... funktioniert deshalb nicht mehr !!! ..."
+    waitKEY
     TEMPLATES_InstallOrMerge /etc/firefox/pref/apturl.js root root 644
     waitKEY
 

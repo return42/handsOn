@@ -3,7 +3,7 @@
 // Defaults für den Firefox findet man hier:
 //
 // * resource:///defaults/preferences/firefox.js
-// * http://mxr.mozilla.org/mozilla-release/source/browser/app/profile/firefox.js
+// * https://dxr.mozilla.org/mozilla-release/source/browser/app/profile/firefox.js
 //
 // Es gibt meist aber noch *brandigs* bzw. Ergänzungen
 //
@@ -12,7 +12,7 @@
 // Firefox Sync-1.5 Server
 // -----------------------
 
-lockPref(
+pref(
     "identity.sync.tokenserver.uri"
     , "https://storage/fxSyncServer/token/1.0/sync/1.5");
 
@@ -30,15 +30,8 @@ lockPref(
 // auch nicht groß anderes als hier eine Suchmaschine als unveränderbare
 // Startseite einzutragen ;-)
 
+// funktioniert nicht mehr seit 20180105
 //pref("browser.startup.homepage", "http://darmarIT.de");
-
-// DuckDuckGo-DE-dark
-// lockPref("browser.startup.homepage"
-//          , "https://duckduckgo.com/?kn=1&kad=de_DE&kl=de-de&kae=d&k8=ffb&kj=aaa&kd=1&k5=1&kak=-1&kal=-1&kai=1&kt=n&ks=l&kw=s&");
-
-// DuckDuckGo-DE-bright
-lockPref("browser.startup.homepage"
-         , "https://duckduckgo.com/?kn=1&kad=de_DE&kl=de-de&kd=1&k5=1&kak=-1&kal=-1&kai=1&ks=l&kw=s&");
 
 // Usage
 // -----
@@ -48,59 +41,64 @@ lockPref("browser.startup.homepage"
 //
 // * https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Mozilla_preferences_for_uber-geeks#Security_preferences
 //
+// zuletzt getestet: 20181005
 pref("browser.xul.error_pages.expert_bad_cert", true);
 
 // Safebrowsing
 // ------------
 
 // Safebrowsing schützt vor Pishing-Angriffen. Die Lösung von Google hat jedoch
-// den Nacheil, dass sie eklatant die Privatsphäre verletzt.  Durch Nutzung von
+// den Nacheil, dass sie die Privatsphäre eklatant verletzt.  Durch Nutzung von
 // Safebrowsing willigt man automatisch in die `Google Privacy Policy
-// <http://www.google.com/policies/privacy/>`_ ein. Zusätzlich werden beim
+// <http://www.google.com/policies/privacy/>`_ ein.  Zusätzlich werden beim
 // Safe-Browsing Cookies gesetzt (siehe `Information Google receives when you
 // use the Safe Browsing feature on Chrome or other browsers
-// <https://www.google.com/intl/en/chrome/browser/privacy/>`_). Diese Cookies
-// (so munkelt man) sollen es der NSA ermöglichen sollen Rechner im Internet
-// eindeutig zu identifizieren. Seit Snowden glaube ich das die Realität noch
-// krasser ist als die Gerüchteküche es vermuten lässt. --> abschalten!
+// <https://www.google.com/intl/en/chrome/browser/privacy/>`_).  Diese Cookies
+// (so munkelt man) sollen es der NSA ermöglichen Rechner im Internet eindeutig
+// zu identifizieren.  Seit Snowden glaube ich das die Realität noch krasser ist
+// als die Gerüchteküche es vermuten lässt. --> abschalten!
 //
 // * Wikipedia : https://en.wikipedia.org/wiki/Google_Safe_Browsing
 // * Mozilla : https://wiki.mozilla.org/Safe_Browsing
 //
-// Als Alternative empfiehlt sich uBlock Origin
-//
-// * https://github.com/gorhill/uBlock
-// * https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
+// Hier wird Safebrowsing abgeschaltet, wir haben dafür das uBlock Origin
+// AddOn installiert.
 
-lockPref("browser.safebrowsing.enabled",                    false);
-lockPref("browser.safebrowsing.malware.enabled",            false);
-lockPref("browser.safebrowsing.downloads.enabled",          false);
+pref("browser.safebrowsing.malware.enabled",            false);
+pref("browser.safebrowsing.phishing.enabled",           false);
+pref("browser.safebrowsing.downloads.enabled",          false);
 
 // den google provider ganz löschen ...
-lockPref("browser.safebrowsing.appRepURL", "");
-lockPref("browser.safebrowsing.provider.google.gethashURL", "");
-lockPref("browser.safebrowsing.provider.google.lists",      "");
-lockPref("browser.safebrowsing.provider.google.reportURL",  "");
-lockPref("browser.safebrowsing.provider.google.updateURL",  "");
+pref("browser.safebrowsing.provider.google.gethashURL", "");
+pref("browser.safebrowsing.provider.google.lists",      "");
+pref("browser.safebrowsing.provider.google.reportURL",  "");
+pref("browser.safebrowsing.provider.google.updateURL",  "");
+
 
 // Privatsphäre
 // ------------
 
 // https://github.com/amq/firefox-debloat
-lockPref("datareporting.healthreport.service.enabled",      false);
-lockPref("datareporting.healthreport.uploadEnabled",        false);
-lockPref("toolkit.telemetry.unified",                       false);
-lockPref("toolkit.telemetry.enabled",                       false);
-lockPref("loop.enabled",                                    false);
-lockPref("browser.pocket.enabled",                          false);
-pref("browser.search.suggest.enabled",                      false);
-//pref("media.peerconnection.enabled",                        false);
-lockPref("media.peerconnection.ice.default_address_only",   true);
-pref("geo.enabled",                                         false);
-lockPref("plugin.state.flash",                              false);
+pref("datareporting.healthreport.infoURL",              "");
+pref("datareporting.healthreport.uploadEnabled",        false);
+pref("browser.tabs.crashReporting.sendReport",          false);
+
+pref("toolkit.telemetry.unified",                       false);
+pref("toolkit.telemetry.enabled",                       false);
 pref("privacy.trackingprotection.enabled",                  true);
 
-lockPref("browser.tabs.crashReporting.sendReport",          false);
+pref("extensions.pocket.enabled",                       false);
+pref("browser.search.suggest.enabled",                  false);
+pref("geo.enabled",                                         false);
+pref("plugin.state.flash",                              false);
+
+// pref("media.peerconnection.enabled",                    false);
+pref("media.peerconnection.ice.default_address_only",   true);
+
+
+lockPref("loop.enabled",                                    false);
+
+
 
 // about:home
 // ----------
@@ -122,51 +120,16 @@ lockPref("browser.tabs.crashReporting.sendReport",          false);
 //    that is being stored – NOT the IP address.  The IP address is not stored
 //    after country is established on either the client or server ..."""
 
-lockPref("browser.aboutHomeSnippets.updateUrl", "nonexistent://test");
+pref("browser.aboutHomeSnippets.updateUrl", "nonexistent://test");
 
 // FIXME: about:home speichert noch eine Snipptsammlung in der DB, die muss man
 // löschen:
 // * https://support.mozilla.org/en-US/questions/1004495
 
-
-
-// DuckDuck Go Searchengine (de-dark)
-// ---------------------------------
-
-// Bei der DDG Searchengine hat man immer die englischen defaults, ich hab mir
-// deshalb eine mit den deutschen Voreinstellungen und einem *dark* Theme gebaastelt:
-//
-// * TEMPLATES/usr/lib/firefox/distribution/searchplugins/locale/de/ddg-de-dark.xml
-
 // Searchengines
 // -------------
-
-// Das ist ein ziemliches Durcheinander, oder ich versteh ees nur einfach
-// nicht. Mein Eindruck: man wollte sich konkurierende Anforderungen umsetzen:
 //
-// * Der Benutzer soll sich seine eigenen Werte einstellen, die werden in einer
-//   DB gespeichert
-//
-// * Es werden defaults in den Prefs gespeichert, diese können zusätzlich noch
-//   um z.B. "DE" oder "EN" erweitert sein (*getGeoSpecificPrefName*).
-//
-// * Diese defaults sollen sich die Distributoren (zu erkennen an der
-//   "distribution.id") selber einstellen können.
-//
-// * Mozilla will eigene defaults setzen ("distribution.id"=="mozilla...")
-//
-// * Es soll fallbacks geben, falls obiges alles nicht zutrifft.
-//
-// * Man kann noch die Sortierung über "browser.search.order.extra" eine
-//   Sortierung präferieren .. und das kann dann auch nochmal mit Lang-Code
-//   erweitert sein.
-//
-// Ich hab da nicht den kompletten Durchblick. Diese ganzen Anforderungen führen
-// am Ende zu einem ziemlichen Durcheinander, wenn man als Admin versucht ein
-// vernüftiges Setup in seinen syspref.js zu konfigurieren. Man weiß eigentlich
-// nie, was vom FF an Einstellungen angezogen wird.
-//
-// Hinzu kommt:
+// Das ist ein ziemliches Durcheinander, oder ich versteh es nur einfach nicht.
 //
 // Die Searchengines werden einmal über die Distribution des FF installiert
 //
@@ -188,12 +151,12 @@ lockPref("browser.aboutHomeSnippets.updateUrl", "nonexistent://test");
 // * Regionale Settings: chrome://browser-region/locale/region.properties
 //
 // * Dokumentierte Sourcen zu den *standard* FF Settings:
-//   http://mxr.mozilla.org/mozilla-release/source/browser/app/profile/firefox.js
+//   https://dxr.mozilla.org/mozilla-release/source/browser/app/profile/firefox.js
 //
 // Die Funktion *Searchengines* werden über diese Resource angeboten:
 //
 // * resource://gre/components/nsSearchService.js
-// * http://mxr.mozilla.org/mozilla-release/source/toolkit/components/search/nsSearchService.js
+// * http://dxr.mozilla.org/mozilla-release/source/toolkit/components/search/nsSearchService.js
 //
 // Anzeigen des Propertie Namens für die default-engine::
 //
@@ -204,52 +167,41 @@ lockPref("browser.aboutHomeSnippets.updateUrl", "nonexistent://test");
 // FFox baut eine liste der *sortierten* Suchmaschinen mit der Funktion
 // nsSearchService.SearchService.prototype._buildSortedEngineList auf:
 //
-// * http://mxr.mozilla.org/mozilla-release/ident?i=_buildSortedEngineList
+// * https://dxr.mozilla.org/mozilla-release/search?q=_buildSortedEngineList
 //
 // Diese Funktion ist die zentrale Stelle zum Aufbau der *ordered* Listen der
 // Searchengines. Und der ganze geoSpecific-Kram scheint mir buggy oder
 // zumindest missverständlich zu sein.  Zumindest scheint mir die
 // getGeoSpecificPrefName:
 //
-// * http://mxr.mozilla.org/mozilla-release/ident?i=getGeoSpecificPrefName
+// * https://dxr.mozilla.org/mozilla-release/search?q=getGeoSpecificPrefName
 //
 // völlig überflüssig zu sein, sie liefert jedenfalls nicht das, was der Name
 // einen glauben lässt. Der Returnwert ist immer der Eingabewert, nur bei US
 // wird was drangeklebt.
 //
 // Verschiedenes:
-//   * http://mxr.mozilla.org/mozilla-release/ident?i=geoSpecificDefaultsEnabled
-
+//
+// * https://dxr.mozilla.org/mozilla-release/search?q=geoSpecificDefaultsEnabled
 
 // Aus dem Durcheinander versuche ich jetzt mal was vernüftiges zu konfigurieren
 
 pref("browser.search.isUS", false); // spätestens jetzt ist getGeoSpecificPrefName komplett überflüssig
 
-// Die lokalisierten Settings nimmt er nicht an ....
-//
-// pref("browser.search.geoSpecificDefaults", true);
-// pref("general.useragent.locale", "de");
-// pref("browser.search.defaultenginename.DE",      "data:text/plain,browser.search.defaultenginename.DE=DuckDuckGo");
-// pref("browser.search.order.DE.1",                "data:text/plain,browser.search.order.DE.1=DuckDuckGo");
-// pref("browser.search.order.DE.2",                "data:text/plain,browser.search.order.DE.2=Google");
-// pref("browser.search.order.DE.3",                "data:text/plain,browser.search.order.DE.3=Yahoo");
+pref("browser.search.geoSpecificDefaults", true);
+pref("general.useragent.locale", "de");
 
-// Die nicht lokaliserten Settings ignoriert er auch
+pref("browser.search.defaultenginename",      "DuckDuckGo");
+
+// Die Browser-Settings
+//    https://dxr.mozilla.org/mozilla-release/search?q=browser.search.order
+// FIXME: die funktionieren nicht mehr?
 //
-// pref("browser.search.geoSpecificDefaults", false);
-// pref("browser.search.defaultenginename",      "DuckDuckGo");
 // pref("browser.search.order.1",                "DuckDuckGo");
 // pref("browser.search.order.2",                "Google");
 // pref("browser.search.order.3",                "Yahoo");
 
-// Die .extra.n Settings nimmt er an
+// Die .extra.n Settings nimmt er an ?!?!?
 //
 // pref("browser.search.order.extra.1",          "DuckDuckGo");
-lockPref("browser.search.order.extra.1",          "DuckDuckGo-DE-bright");
-lockPref("browser.search.order.extra.2",          "DuckDuckGo-DE-dark");
-logPref("browser.search.order.extra.3",          "Google");
-//pref("browser.search.order.extra.4",          "Yahoo");
-
-// für die default-searchengine gib es kein .extra
-pref("browser.search.defaultenginename",      "DuckDuckGo-DE-bright");
-//pref("browser.search.defaultenginename",      "DuckDuckGo");
+// pref("browser.search.order.extra.2",          "Google");
