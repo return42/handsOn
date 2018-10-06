@@ -467,7 +467,7 @@ base dc=${LDAP_AUTH_DC}
 
 # The distinguished name to bind to the server with if the effective user ID is
 # root. Password is stored in /etc/ldap.secret (mode 600)
-rootbinddn cn=admin,dc=${LDAP_AUTH_BaseDN}
+rootbinddn cn=admin,${LDAP_AUTH_BaseDN}
 
 # Another way to specify your LDAP server is to provide an
 uri ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/
@@ -485,7 +485,7 @@ ${_color_Off}"
 Um auf dem Client-Host die Tools zum Ändern des Passworts nutzen zu können, muss
 für das zuvor eingerichtete 'rootbinddn'::
 
-    ${Red}rootbinddn cn=admin,dc=${LDAP_AUTH_BaseDN}${_color_Off}
+    ${Red}rootbinddn cn=admin,${LDAP_AUTH_BaseDN}${_color_Off}
 
 das Passwort des DIT-Admins auf dem Client-Host hinterlegt werden. Im folgenden
 Dialog muss dazu die Frage 'Make local root Database admin?' mit 'Ja'
@@ -727,7 +727,8 @@ main(){
             setup_libpam_ldapd
             # probe client config
             probe_LDAP_server
-            probe_LDAP_auth
+            info_msg "Erst mal einen Reboot machen, danach noch ein Test::"
+            info_msg "   $0 probe"
             ;;
         deinstall)
 	    sudoOrExit
