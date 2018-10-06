@@ -1454,18 +1454,15 @@ TEMPLATES_InstallOrMerge() {
     #     TEMPLATES_InstallOrMerge /etc/updatedb.conf root root 644
 
     local do_eval=0
-    local dst="${1}"
-
-    local template_file="${TEMPLATES}${dst}"
     if [[ "$1" == "--eval" ]]; then
         do_eval=1; shift
-        local dst="${1}"
-        template_file="${CACHE}${dst}"
     fi
-
+    local dst="${1}"
     local owner=${2-$(id -un)}
     local group=${3-$(id -gn)}
     local chmod=${4-755}
+
+    info_msg "install: ${dst}"
 
     if [[ ! -f "${CONFIG}${dst}" && ! -f "${TEMPLATES}${dst}" ]] ; then
         err_msg "none of this (source) files exists"
@@ -1476,22 +1473,23 @@ TEMPLATES_InstallOrMerge() {
         return 42
     fi
 
+    local template_file="${TEMPLATES}${dst}"
     if [[ "$do_eval" == "1" ]]; then
-        if [[ -f "${CONFIG}${dst}" ]] ; then
-            err_msg "Template file does not exists!"
-            err_msg "  ${template_file}"
-            waitKEY
+        info_msg "BUILD template ${BRed}${template_file}${_color_Off}"
+        if [[ -f "${TEMPLATES}${dst}" ]] ; then
+            template_file="${CACHE}${dst}"
+            mkdir -p $(dirname "${template_file}")
+            eval "echo \"$(cat ${TEMPLATES}${dst})\"" > "${template_file}"
+        else
+            err_msg "  FAILED ${template_file}"
             return 42
         fi
-        mkdir -p $(dirname "${template_file}")
-        eval "echo \"$(cat ${TEMPLATES}${dst})\"" > "${template_file}"
     fi
-    echo
-    info_msg "install: ${dst}"
+
     if [[ -f "${dst}" ]] ; then
-        info_msg "file allready exists on this host"
+        info_msg "file ${dst} allready exists on this host"
     fi
-    info_msg "determine template file(s)"
+    info_msg "examine <prefix>${dst} file(s)"
 
     if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}" ]] ; then
 
