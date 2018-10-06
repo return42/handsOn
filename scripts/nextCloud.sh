@@ -9,6 +9,15 @@
 # Purpose:     nextCloud
 # ----------------------------------------------------------------------------
 
+# Alternativ sollte man sich um https://cozy.io kümmern:
+#
+#     https://docs.cozy.io/en/tutorials/selfhost-debian/
+#
+# Aktuell in einem anderen Repo:
+#
+#     https://storage/gitlab/markus/hostSetup/blob/master/scripts/cozy.sh
+#
+
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 source "${SCRIPT_FOLDER}/apache_setup.sh" --source-only
 
