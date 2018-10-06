@@ -261,8 +261,9 @@ EOF
 Anmeldung auch ein HOME Ordner angelegt werden (falls er nicht bereits
 exisitert)."
     echo
-    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout "OUT: "
+    TEE_stderr 3 <<EOF | bash 2>&1 | prefix_stdout "OUT: "
 su -l ${test_account} -c "ls -la ~"
+rm  -rvf ~${test_account}
 EOF
     waitKEY
 }
