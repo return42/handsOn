@@ -470,7 +470,7 @@ base dc=${LDAP_AUTH_DC}
 rootbinddn cn=admin,dc=${LDAP_AUTH_BaseDN}
 
 # Another way to specify your LDAP server is to provide an
-uri ldaps://${LDAP_SERVER}/
+uri ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/
 
 pam_password md5
 nss_initgroups_ignoreusers <die system-user> ...
@@ -492,8 +492,10 @@ Dialog muss dazu die Frage 'Make local root Database admin?' mit 'Ja'
 beantwortet werden, darauf hin gibt man das Passwort ein und dieses wird dann in
 /etc/ldap.secret (nur für root lesbar) hinterlegt.
 ${Red}
-    Im folgenden Setup sollten die Werte entsprechend
-    obigen Angaben gesetzt werden ...
+    Im folgenden Setup sollten die Werte entsprechend obigen
+    Angaben gesetzt werden ... in einem anderen Terminal::
+
+        ./scripts/LDAP_client_auth.sh show
 ${_color_Off}"
 
     # FIXME: mir gefällt es nicht, dass Passwort für "cn=admin,dc=..."  auf

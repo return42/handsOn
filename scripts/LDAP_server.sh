@@ -192,7 +192,7 @@ und Server im Focus liegt (Zertifiziert oder eben *nicht* Zertifiziert).::"
 
     echo -en "${Yellow}
   BASE  $LDAP_AUTH_BaseDN
-  URI   ldaps://${LDAP_SERVER}/
+  URI   ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/
 
   # TLS_CACERT:
   #   Datei mit den CA's. Meint: Datei mit den anerkannten (selbst-signierten)
@@ -228,7 +228,7 @@ ${_color_Off}"
     rstHeading "Test LDAP-Client (ldaps://)" section
     echo
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-ldapsearch -H ldaps://${LDAP_SERVER} -W -D "cn=admin,cn=config" -b cn=config -LLL "(olcDatabase=*)"
+ldapsearch -H ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/ -W -D "cn=admin,cn=config" -b cn=config -LLL "(olcDatabase=*)"
 EOF
 
     rstBlock "Sollte obige Anfrage nicht erfolgreich sein, so sollte man prüfen
@@ -243,7 +243,7 @@ etwa folgender Fehler in der Ausgaben erscheinen::${Yellow}
 "
     if askNy "Soll die Anfrage im Debug Modus wiederholt werden?"; then
         TEE_stderr 1 <<EOF | bash | prefix_stdout
-ldapsearch -d 1 -H ldaps://${LDAP_SERVER} -W -D "cn=admin,cn=config" -b cn=config -LLL "(olcDatabase=*)"
+ldapsearch -d 1 -H ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/ -W -D "cn=admin,cn=config" -b cn=config -LLL "(olcDatabase=*)"
 EOF
         waitKEY
     fi
@@ -726,7 +726,7 @@ gefunden werden::
 "
 
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-ldapsearch -x -LLL -v  -b "${LDAP_AUTH_BaseDN}" -H ldaps://${LDAP_SERVER}/ uid=${test_account}
+ldapsearch -x -LLL -v  -b "${LDAP_AUTH_BaseDN}" -H ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/ uid=${test_account}
 EOF
     waitKEY
 
