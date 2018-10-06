@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
+# --                             --  File:     LDAP_client_auth.sh
+# -- Copyright (C) 2018 darmarIT --  Author:   Markus Heiser
+# --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
+# --                             --  http://www.darmarIT.de
+# ----------------------------------------------------------------------------
 # Purpose:     install LDAP-Client
 # ----------------------------------------------------------------------------
 
@@ -39,9 +44,6 @@ LIBPAM_LDAPD_PACKAGES="\
 README() {
     rstHeading "NSS, PAM & LDAP-Client"
 # ----------------------------------------------------------------------------
-
-    rstBlock "Folgend wird die README angezeigt. Taste 'q' zum Beenden der Anzeige, 'h' für Hilfe."
-    waitKEY
 
     echo -e "
 Für eine Authentifizierung über LDAP sind neben der LDAP-Infrastruktur
@@ -122,7 +124,7 @@ PAM & NSS:
 * NSS: https://de.wikipedia.org/wiki/Name_Service_Switch
 * nss-pam-ldapd: https://arthurdejong.org/nss-pam-ldapd/design
 * nscd: https://wiki.debian.org/LDAP/NSS#Offline_caching_of_NSS_with_nscd
-" | less
+"
 }
 
 # ----------------------------------------------------------------------------
@@ -173,15 +175,15 @@ DIT setup dc=$LDAP_AUTH_DC ${Yellow}
   * LDAP root account  --> cn=admin,${LDAP_AUTH_BaseDN}
   * LDAP URI (ssl)     --> ldaps://${LDAP_SERVER}:${LDAP_SSL_PORT}/
                            ldaps://$(getIPfromHostname ${LDAP_SERVER}):${LDAP_SSL_PORT}/
-
   * Organization       --> o=${ORGANIZATION}
-  * LDAP Version       --> 3${_color_Off}
-  * LDAP config admin  --> cn=admin,cn=config
+  * LDAP Version       --> 3
+  * LDAP config admin  --> cn=admin,cn=config${_color_Off}
 
-Da der Hostname des LDAP Servers bei DNS Problemen u.U. nicht aufgelöst werden
-kann empfiehlt es sich i.d.R. anstatt dem Hostnamen, die feste IP des
-LDAP-Server zu verwenden.
-"
+Der Hostname des LDAP Servers sollte vom DNS aufgelöst werden können.  Ansonsten
+muss man ggf. die IP Adresse verwenden.  Bei SSL kann das aber wieder Probleme
+mit dem Zertifikat bereiten, weil dieses (z.B.) auf den Hostnamen ausgestellt
+wurde."
+
     if [[ ! -e "${CONFIG}_setup.sh" ]]; then
 	info_msg "Es existiert kein Setup: ${CONFIG}_setup.sh"
 	info_msg "Oben gezeigte Werte ergeben sich aus den Defaults."
@@ -365,7 +367,7 @@ und Server im Focus liegt (Zertifiziert oder eben *nicht* Zertifiziert).::
 
     echo -en "${Yellow}
   BASE  $LDAP_AUTH_BaseDN
-  URI   ldaps://$(getIPfromHostname ${LDAP_SERVER})/
+  URI   ldaps://${LDAP_SERVER}/
 
   # TLS_CACERT:
   #   Datei mit den CA's. Meint: Datei mit den anerkannten (selbst-signierten)
@@ -390,7 +392,7 @@ und Server im Focus liegt (Zertifiziert oder eben *nicht* Zertifiziert).::
 ${_color_Off}"
 
     waitKEY
-    TEMPLATES_InstallOrMerge /etc/ldap/ldap.conf root root 644
+    TEMPLATES_InstallOrMerge --eval /etc/ldap/ldap.conf root root 644
     waitKEY
 
     rstHeading "Test LDAP-Client anonymous (ldaps://)" section
@@ -468,13 +470,13 @@ base dc=${LDAP_AUTH_DC}
 rootbinddn cn=admin,dc=${LDAP_AUTH_BaseDN}
 
 # Another way to specify your LDAP server is to provide an
-uri ldaps://$(getIPfromHostname ${LDAP_SERVER})/
+uri ldaps://${LDAP_SERVER}/
 
 pam_password md5
 nss_initgroups_ignoreusers <die system-user> ...
 ${_color_Off}"
 
-    TEMPLATES_InstallOrMerge /etc/ldap.conf root root 644
+    TEMPLATES_InstallOrMerge --eval /etc/ldap.conf root root 644
     waitKEY
 
     showConfigHints
@@ -593,14 +595,14 @@ nslcd.conf(8). In der Datei sollte Folgendes konfiguriert werden: ${Yellow}
   gid nslcd
 
   # The search base that will be used for all queries.
-  uri ldaps://$(getIPfromHostname ${LDAP_SERVER})/
+  uri ldaps://${LDAP_SERVER}/
   base dc=${LDAP_AUTH_DC}
 
   ldap_version 3
   tls_cacertfile  /etc/ssl/certs/ca-certificates.crt
   tls_reqcert     demand
 ${_color_Off}"
-    TEMPLATES_InstallOrMerge /etc/nslcd.conf  root ${NSLCD_GID} 640
+    TEMPLATES_InstallOrMerge --eval /etc/nslcd.conf  root ${NSLCD_GID} 640
     waitKEY
 
     echo -e "
@@ -698,7 +700,7 @@ main(){
 
     case $1 in
 
-        info)
+        show)
             setupInfo
             waitKEY
             showConfigHints
@@ -739,7 +741,7 @@ main(){
             ;;
         *)
             echo
-            echo "usage $0 [README|info|install|probe|deinstall|reconfigure]"
+            echo "usage $0 [README|show|install|probe|deinstall|reconfigure]"
             echo
             ;;
     esac

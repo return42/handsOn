@@ -1481,7 +1481,7 @@ TEMPLATES_InstallOrMerge() {
             err_msg "Template file does not exists!"
             err_msg "  ${template_file}"
             waitKEY
-            return42
+            return 42
         fi
         mkdir -p $(dirname "${template_file}")
         eval "echo \"$(cat ${TEMPLATES}${dst})\"" > "${template_file}"
