@@ -8,8 +8,11 @@
                                  Netzwerk Tools
 ================================================================================
 
-comming soon ..
+Zu den *Network-Tools* zählen:
 
+- :deb:`wireshark`:  Netzwerk Protokoll Analyzer https://www.wireshark.org/
+- :deb:`nmap`:       Portscanner https://nmap.org/
+- :deb:`iptraf`:     console-based network monitoring http://iptraf.seul.org/
 
 Installation
 ============

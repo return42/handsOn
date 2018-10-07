@@ -8,8 +8,11 @@
                                Prozess-Monitoring
 ================================================================================
 
-comming soon ..
+Zu den System *Monitoring-Tools* zählen:
 
+- :deb:`htop`: das *schönere* ``top`` http://hisham.hm/htop/
+- :deb:`lm-sensors`
+- :deb:`iotop`
 
 Installation
 ============

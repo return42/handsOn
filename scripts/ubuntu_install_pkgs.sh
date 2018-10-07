@@ -11,22 +11,26 @@ sudoOrExit
 # Config
 # ----------------------------------------------------------------------------
 
+EMACS_VERSION=emacs26
+
 # BASE_PACKAGES und DEVELOP_PACKAGES bilden eine große Schnittmenge, da die
 # handsOn für z.B. die mozCloud oder den Apache Server diverse Pakete benötigen,
 # die auch den "Entwicklertools" zuzuordnen sind. Die Erläuterungen zu diesen
 # Paketen findet sich entsprechend in der Dokumentation zu den
 # "Entwicklertools".
 
+BASE_PACKAGES_TITLE="Basispakete zum Betrieb eines Servers"
 BASE_PACKAGES="\
  util-linux ppa-purge ssh ubuntu-drivers-common \
  aptitude apt-file synaptic gdebi bash-completion \
  build-essential dkms tree \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
- git emacs curl colordiff meld \
+ git curl colordiff meld \
  gparted usbmount exfat-fuse exfat-utils smartmontools \
  ncdu poppler-utils \
 "
 
+DEVELOP_PACKAGES_TITLE="Basispakete zum Kompilieren & Installieren"
 DEVELOP_PACKAGES="\
  build-essential linux-headers-generic \
  autoconf autotools-dev automake libtool-bin gettext \
@@ -35,7 +39,7 @@ DEVELOP_PACKAGES="\
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git git-email git-svn \
  subversion mercurial bzr \
- emacs diffutils colordiff patch grep \
+ diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
  docker.io \
 "
@@ -50,6 +54,8 @@ AUTHORING_PACKAGES="\
 BASE_DOC_PACKAGES="\
  debian-handbook libpam-doc \
 "
+OFFICE_PACKAGES_TITLE="Pakete für Desktop & Office"
+OFFICE_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/office.html"
 
 OFFICE_PACKAGES="\
  libreoffice libreoffice-l10n-de libreoffice-help-de libreoffice-gtk libreoffice-style-sifr \
@@ -62,15 +68,21 @@ OFFICE_PACKAGES="\
 #  freerdp-x11 \
 # "
 
+MULTIMEDIA_CLIENT_PACKAGES_TITLE="MultiMedia Pakete, Video, Audio"
+MULTIMEDIA_CLIENT_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/multimedia.html"
 MULTIMEDIA_CLIENT_PACKAGES="\
  vlc qmmp openshot handbrake mixxx audacious mpv
 "
-
+CODEC_PACKAGES_TITLE="Codec Pakete; Audio & Video Tools"
+CODEC_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/codecs.html"
 CODEC_PACKAGES="\
+ ffmpeg libavcodec-extra
  gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
 "
 # gstreamer1.0-plugins-ugly
 
+IMAGE_TOOLS_PACKAGES_TITLE="Tools zur Bildbearbeitung / -Betrachtung"
+IMAGE_TOOLS_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/imgTools.html"
 IMAGE_TOOLS_PACKAGES="\
  gimp gimp-plugin-registry gimp-data-extras gimp-help-de \
  cheese \
@@ -81,18 +93,34 @@ IMAGE_TOOLS_PACKAGES="\
  inkscape \
 "
 
+ARCHIVE_TOOLS_PACKAGES_TITLE="Tools zur Archivierung und Komprimierung"
+ARCHIVE_TOOLS_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/archTools.html"
 ARCHIVE_TOOLS_PACKAGES="\
  tar gzip unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller \
 "
 
+HARDWARE_PACKAGES_TITLE="Hardware-Tools"
 HARDWARE_PACKAGES="\
  powertop lm-sensors psensor pm-utils exfat-fuse exfat-utils \
 "
 
+MONITORING_PACKAGES_TITLE="System-Monitoring-Tools"
+MONITORING_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/monitoring.html"
 MONITORING_PACKAGES="\
  htop \
- glances lm-sensors \
+ lm-sensors \
  iotop \
+"
+
+#* dhcpcd(8) :  DHCP and DHCPv6 client. It's also an IPv4LL (aka ZeroConf) client
+#               http://roy.marples.name/projects/dhcpcd
+NETWORK_PACKAGES_TITLE="Network-Tools"
+NETWORK_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/netTools.html"
+
+NETWORK_PACKAGES="\
+ wireshark libwireshark-data wireshark-doc \
+ iptraf \
+ nmap \
 "
 
 # ----------------------------------------------------------------------------
@@ -100,61 +128,76 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
-        bootstrap)
-            install_bootstrap
-            ;;
-	base)
-            install_basePackages
-            install_baseDoc
-	    ;;
-        devTools)
-            install_devPackages
-            ;;
-        office)
-            install_Office
-            ;;
-        multimedia)
-            install_MultiMedia
-            ;;
-        codecs)
-            install_Codecs
-            ;;
-        imgTools)
-            install_ImageTools
-            ;;
-        archTools)
-            install_ArchiveTools
-            ;;
-        hwTools)
-            install_HardwareTools
-            ;;
-        monitoring)
-            install_MonitoringTools
-            ;;
-        netTools)
-            install_NetworkTools
-            ;;
-        remmina)
+        usage|-h|--help) usage;;
+        bootstrap)    install_bootstrap;;
+
+        all)
+            FORCE_TIMEOUT=2
+            install_base
+            install_develop
+            install_office
+            install_multimedia
+            install_codecs
+            install_imgTools
+            install_archTools
+            install_hwTools
+            install_monitoring
+            install_netTools
             install_remmina
             ;;
-        timeshift)
-            install_timeshift
-            ;;
-        ukuu)
-            install_ukuu
-            ;;
-        flatpak)
-            install_flatpak
-            ;;
+	base)         install_base;;
+        develop)      install_develop;;
+        office)       install_office;;
+        multimedia)   install_multimedia;;
+        codecs)       install_codecs;;
+        imgTools)     install_imgTools;;
+        archTools)    install_archTools;;
+        hwTools)      install_hwTools;;
+        monitoring)   install_monitoring;;
+        netTools)     install_netTools;;
+        remmina)      install_remmina;;
+        timeshift)    install_timeshift;;
+        ukuu)         install_ukuu;;
+        flatpak)      install_flatpak;;
         *)
-            echo
-	    echo "usage $0 [base|flatpak|devTools|office|multimedia|codecs|imgTools|archTools|hwTools|monitoring|netTools|remmina|timeshift|ukuu]"
-            echo
+            usage "${BRed}ERROR:${_color_Off} unknown or missing command"
+            exit 42
             ;;
     esac
     #apt-get -y autoremove
 }
 
+
+# ----------------------------------------------------------------------------
+usage(){
+# ----------------------------------------------------------------------------
+
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
+usage:
+  $(basename $0) [all|<install-bundle>]
+
+Alias 'all' umfasst folgende <install-bundle>
+
+- base:       ${BASE_PACKAGES_TITLE}
+- develop:    ${DEVELOP_PACKAGES_TITLE}
+- office:     ${OFFICE_PACKAGES_TITLE}
+- multimedia: ${MULTIMEDIA_CLIENT_PACKAGES_TITLE}
+- codecs:     ${CODEC_PACKAGES_TITLE}
+- imgTools:   ${IMAGE_TOOLS_PACKAGES_TITLE}
+- archTools:  ${ARCHIVE_TOOLS_PACKAGES_TITLE}
+- hwTools:    ${HARDWARE_PACKAGES_TITLE}
+- monitoring: ${MONITORING_PACKAGES_TITLE}
+- netTools:   ${NETWORK_PACKAGES_TITLE}
+- remmina:    RDP-Client
+
+Ansonsten stehen noch zur Verfügung:
+
+- timeshift:  Timeshift (backup)
+- ukuu:       Ubuntu Kernel Upgrade Utility
+
+EOF
+}
 
 # ----------------------------------------------------------------------------
 install_bootstrap(){
@@ -170,66 +213,23 @@ install_bootstrap(){
 }
 
 # ----------------------------------------------------------------------------
-install_basePackages(){
-    rstHeading "Installation der Basis-Pakete"
+install_base(){
+    rstHeading "${BASE_PACKAGES_TITLE}" part
 # ----------------------------------------------------------------------------
 
-    rstPkgList ${BASE_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${BASE_PACKAGES}
-    waitKEY 30
+    aptInstallPackages ${BASE_PACKAGES}
 
     rstHeading "Default Einstellungen für Synaptic" section
     mkdir -p /root/.synaptic
     TEMPLATES_InstallOrMerge /root/.synaptic/synaptic.conf root root 644
-}
 
-# ----------------------------------------------------------------------------
-install_baseDoc(){
     rstHeading "Installation verschiedener Dokumentationen"
-# ----------------------------------------------------------------------------
-
-    rstPkgList ${BASE_DOC_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${BASE_DOC_PACKAGES}
-    waitKEY 30
+    aptInstallPackages ${BASE_DOC_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------
-install_remmina(){
-# ----------------------------------------------------------------------------
-
-    rstHeading "Installation Remmina RDP-Client"
-
-    # siehe https://bugs.launchpad.net/ubuntu/+source/remmina/+bug/1439478/comments/22
-    REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
-    REMMINA_SOURCE_NAME="remmina"
-
-    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt,
-deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
-    if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
-        return 42
-    fi
-
-    add-apt-repository "$REMMINA_PPA"
-
-    rstHeading "Katalog aktualisieren" section
-    echo
-    apt-get update
-    apt-get install remmina
-    waitKEY
-}
-
-
-# ----------------------------------------------------------------------------
-install_devPackages(){
-    rstHeading "Entwickler Pakete"
+install_develop(){
+    rstHeading "${DEVELOP_PACKAGES_TITLE}" part
 # ----------------------------------------------------------------------------
 
     # .. _`Standard C Library`: http://www.gnu.org/software/libc/
@@ -256,12 +256,9 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 * graphviz: Ein Visualisierungs Werkzeug (http://graphviz.org/)
 "
 
-    rstPkgList ${DEVELOP_PACKAGES} ${AUTHORING_PACKAGES}
-    if ! askYn "sollen die Entwickler Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${DEVELOP_PACKAGES}
+    aptInstallPackages ${DEVELOP_PACKAGES} ${AUTHORING_PACKAGES}
+    installEmacsStable
+
     rstBlock "Pfade in denen Bibliotheken zu finden sind ..."
     TEE_stderr <<EOF| bash | prefix_stdout
     ldconfig -v 2> /dev/null | grep "^/"
@@ -280,129 +277,69 @@ EOF
     waitKEY 30
 }
 
-
 # ----------------------------------------------------------------------------
-install_Office(){
-    rstHeading "Office"
-# ----------------------------------------------------------------------------
-
-    rstPkgList ${OFFICE_PACKAGES}
-    if ! askYn "Sollen die Office-Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${OFFICE_PACKAGES}
-    waitKEY 30
-}
-
-# ----------------------------------------------------------------------------
-install_MultiMedia(){
-    rstHeading "MultiMedia Pakete"
+installEmacsStable() {
+    rstHeading "Emacs" section
 # ----------------------------------------------------------------------------
 
-    echo -e "
-Es werden verschiedene (Client) Multimedia Pakete installiert:
-
-* vlc:       Videoplayer                http://www.videolan.org/
-* handbrake: Videokonvertierung         https://handbrake.fr/
-* openshot:  Videoeditor                http://openshot.org/
-* qmmp:      Qt Mediaplayer             http://qmmp.ylsoftware.com/
-* mixxx:     Disk Jokey Mix Software    http://mixxx.org/
-* audacious: Audioplayer (winamp like)  http://audacious-media-player.org/"
-
-    rstPkgList ${MULTIMEDIA_CLIENT_PACKAGES}
-    if ! askYn "sollen die Multimedia Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${MULTIMEDIA_CLIENT_PACKAGES}
-    waitKEY 30
-}
-
-# ----------------------------------------------------------------------------
-install_Codecs(){
-    rstHeading "Codecs"
-# ----------------------------------------------------------------------------
-
-    rstPkgList ${CODEC_PACKAGES}
-    if ! askYn "Sollen Pakete für erweiterte Codecs installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${CODEC_PACKAGES}
+    local PPA="ppa:kelleyk/emacs"
+    rstBlock "Alte Emacs Installationen werden deinstalliert"
+    apt purge -y "emacs*"
+    apt autoremove -y
+    rstBlock "Aktuelle Emacs Version (${EMACS_VERSION}) wird aus $PPA bezogen .."
+    add-apt-repository -y $PPA
+    apt-get update
+    apt-get install ${EMACS_VERSION} ${EMACS_VERSION}-el aspell-de aspell-en
+    update-alternatives --set emacs /usr/bin/${EMACS_VERSION}
     waitKEY 30
 }
 
 
 # ----------------------------------------------------------------------------
-install_ImageTools(){
-    rstHeading "Tools zur Bildbearbeitung / -Betrachtung"
+install_office(){
+    rstHeading "${OFFICE_PACKAGES_TITLE}" part
 # ----------------------------------------------------------------------------
-
-    echo -e "
-Es werden verschiedene Tools zur Bildbearbeitung installiert:
-
-* gimp        High-End 2D *pixel-based* Bildbearbeitung
-              http://www.gimp.org/
-
-  - gimp-data-extras zusätzliche Pinsel, Paletten und Gradienten
-  - gimp-plugin-registry Depot mit optionalen Erweiterungen für GIMP
-
-* cheese      Aufnahmen mit der *Webcam*
-              https://wiki.gnome.org/Apps/Cheese
-
-* pinta       Einfaches 2D *pixel-based* Zeichenprogramm
-              http://pinta-project.com/
-
-* inkscape    Einfaches Tool zur 2D *vector-based* Grafikbearbeitung
-              https://inkscape.org/de/
-
-* darktable   Software zur Aufbereitung und Verwaltung von Digitalfotos
-              http://www.darktable.org/
-
-* rawtherapee RawTherapee ist ein RAW-Konverter zur Umwandlung und Bearbeitung
-              von fotografischen Rohdaten von Digitalkameras in gängige
-              Bildformate.
-              http://rawtherapee.com/blog/screenshots
-
-* gnome-photo Phot Verwaltung aus dem GNOME Projekt
-              https://wiki.gnome.org/Apps/Photos
-
-.. hint::
-
-  Man könnte noch digikam als etwas aufwendigere Alternative zu 'gnome-photo'
-  installieren."
-
-    rstPkgList ${IMAGE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${IMAGE_TOOLS_PACKAGES}
-    waitKEY 30
+    rstBlock "${OFFICE_PACKAGES_DOC}"
+    aptInstallPackages ${OFFICE_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------
-install_ArchiveTools(){
-    rstHeading "Tools zur Archivierung und Komprimierung"
+install_multimedia(){
+    rstHeading "${MULTIMEDIA_CLIENT_PACKAGES_TITLE}" part
 # ----------------------------------------------------------------------------
-
-    rstBlock "Es werden verschiedene Tools zum Packen und Entpacken von Dateien
-installiert: "
-
-    rstPkgList ${ARCHIVE_TOOLS_PACKAGES}
-    if ! askYn "sollen die Pakete installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${ARCHIVE_TOOLS_PACKAGES}
-    waitKEY 30
-
+    rstBlock "${MULTIMEDIA_CLIENT_PACKAGES_DOC}"
+    aptInstallPackages ${MULTIMEDIA_CLIENT_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------
-install_HardwareTools(){
-    rstHeading "Hardware-Tools"
+install_codecs(){
+    rstHeading "${CODEC_PACKAGES_TITLE}" part
+# ----------------------------------------------------------------------------
+    rstBlock "${CODEC_PACKAGES_DOC}"
+    aptInstallPackages ${CODEC_PACKAGES}
+    TITLE="Sollen die ubuntu-restricted-extras installiert werden?"\
+         aptInstallPackages ubuntu-restricted-extras
+}
+
+# ----------------------------------------------------------------------------
+install_imgTools(){
+    rstHeading "${IMAGE_TOOLS_PACKAGES_TITLE}" part
+# ----------------------------------------------------------------------------
+    rstBlock "${IMAGE_TOOLS_PACKAGES_DOC}"
+    aptInstallPackages ${IMAGE_TOOLS_PACKAGES}
+}
+
+# ----------------------------------------------------------------------------
+install_archTools(){
+    rstHeading "${ARCHIVE_TOOLS_PACKAGES_TITLE}"  part
+# ----------------------------------------------------------------------------
+    rstBlock "${ARCHIVE_TOOLS_PACKAGES_DOC}"
+    aptInstallPackages ${ARCHIVE_TOOLS_PACKAGES}
+}
+
+# ----------------------------------------------------------------------------
+install_hwTools(){
+    rstHeading "${HARDWARE_PACKAGES_TITLE}"
 # ----------------------------------------------------------------------------
 
     echo -e "
@@ -413,12 +350,7 @@ Zu den *Hardware-Tools* zählen:
 * psensor(1) für die Temparaturüberwachung
 * exFAT ein Dateisystem das häufig auf SD-Karten verwendet wird
 "
-    rstPkgList ${HARDWARE_PACKAGES}
-    if ! askNy "Sollen die Hardware Tools installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${HARDWARE_PACKAGES}
+    aptInstallPackages ${HARDWARE_PACKAGES}
 
     rstBlock "${BYellow}\
 Folgend müssen Sie kurz die Hardware-Scans des lm-sensor Pakets bestätigen. Im
@@ -447,68 +379,50 @@ Folgende Energiesparmodie werden unterstützt: ${_color_Off}
     waitKEY 30
 }
 
-
 # ----------------------------------------------------------------------------
-install_MonitoringTools(){
-    rstHeading "Monitoring-Tools"
+install_monitoring(){
+    rstHeading "${MONITORING_PACKAGES_TITLE}"  part
 # ----------------------------------------------------------------------------
-
-    echo -e "
-Zu den System *Monitoring-Tools* zählen:
-
-* htop(8) : das *schönere* ``top`` http://hisham.hm/htop/
-* glances : noch *schöneres* curses-based system monitoring tool
-            * http://nicolargo.github.io/glances/
-            * http://glances.readthedocs.org/en/latest/glances-doc.html
-            FIXME: die Sensoren bekomme ich noch nicht zur Ansicht"
-
-    rstPkgList ${MONITORING_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 60; then
-        return 42
-    fi
-    echo
-    apt-get install -y ${MONITORING_PACKAGES}
-
-    waitKEY 30
+    rstBlock "${MONITORING_PACKAGES_DOC}"
+    aptInstallPackages ${MONITORING_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------
-install_NetworkTools(){
-    rstHeading "Network-Tools"
+install_netTools(){
+    rstHeading "${NETWORK_PACKAGES_TITLE}"  part
 # ----------------------------------------------------------------------------
-#* dhcpcd(8) :  DHCP and DHCPv6 client. It's also an IPv4LL (aka ZeroConf) client
-#               http://roy.marples.name/projects/dhcpcd
+    rstBlock "${NETWORK_PACKAGES_DOC}"
+    aptInstallPackages ${NETWORK_PACKAGES}
+}
 
-    NETWORK_PACKAGES="\
- wireshark libwireshark-data wireshark-doc \
- iptraf \
- nmap \
-"
-    echo -e "
-Zu den *Network-Tools* zählen:
+# ----------------------------------------------------------------------------
+install_remmina(){
+    rstHeading "Installation Remmina RDP-Client"
+# ----------------------------------------------------------------------------
 
-* wireshark :  Netzwerk Protokoll Analyzer
-               https://www.wireshark.org/
-* nmap      :  Portscanner
-               https://nmap.org/
-* iptraf    :  console-based network monitoring
-               http://iptraf.seul.org/"
+    # siehe https://bugs.launchpad.net/ubuntu/+source/remmina/+bug/1439478/comments/22
+    REMMINA_PPA="ppa:remmina-ppa-team/remmina-next"
+    REMMINA_SOURCE_NAME="remmina"
 
-    rstPkgList ${NETWORK_PACKAGES}
-    if ! askNy "Sollen die Tools installiert werden?" 60; then
+    rstBlock "Die Ubuntu Pakete zum Remmina sind schlecht gepflegt,
+deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
+    if ! askYn "soll der Remmina RDP-Client installiert werden?" 60; then
         return 42
     fi
-    echo
-    apt-get install -y ${NETWORK_PACKAGES}
 
-    waitKEY 30
+    add-apt-repository "$REMMINA_PPA"
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    apt-get install remmina
+    waitKEY
 }
 
 # ----------------------------------------------------------------------------
 install_timeshift(){
-# ----------------------------------------------------------------------------
-
     rstHeading "Installation Timeshift (backup)"
+# ----------------------------------------------------------------------------
 
     # siehe https://medium.com/@teejeetech/timeshift-v18-2-843bb4d39dfd
     TIMESHIFT_PPA="ppa:teejee2008/ppa"
@@ -530,9 +444,8 @@ deshalb wird Timeshift aus dem PPA $TIMESHIFT_PPA installiert."
 
 # ----------------------------------------------------------------------------
 install_ukuu(){
-# ----------------------------------------------------------------------------
-
     rstHeading "Installation Ukuu"
+# ----------------------------------------------------------------------------
 
     # siehe http://www.teejeetech.in/p/ukuu-kernel-upgrade-utility.html
     UKUU_PPA="ppa:teejee2008/ppa"
@@ -553,9 +466,8 @@ install_ukuu(){
 
 # ----------------------------------------------------------------------------
 install_flatpak(){
-# ----------------------------------------------------------------------------
-
     rstHeading "Installation Flatpak"
+# ----------------------------------------------------------------------------
 
     # siehe https://flatpak.org/setup/Ubuntu/
     PPA="ppa:alexlarsson/flatpak"
@@ -577,6 +489,7 @@ install_flatpak(){
 
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
+
 
 # ----------------------------------------------------------------------------
 main "$@"
