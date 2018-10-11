@@ -37,9 +37,9 @@ intersphinx_mapping['python']  = ('https://docs.python.org/', None)
 
 extlinks = {}
 # usage:    :man:`make`
-extlinks['man']       = ('http://manpages.ubuntu.com/cgi-bin/search.py?q=%s', ' ')
-#extlinks['man']      = ('http://manpages.ubuntu.com/manpages/' + language + '/%s.html', ' ')
-extlinks['deb']       = ('http://packages.ubuntu.com/%s', ' ')
+extlinks['man']       = ('http://manpages.ubuntu.com/cgi-bin/search.py?q=%s', '')
+#extlinks['man']      = ('http://manpages.ubuntu.com/manpages/' + language + '/%s.html', '')
+extlinks['deb']       = ('http://packages.ubuntu.com/%s', '')
 #extlinks['rfc']      = ('https://tools.ietf.org/html/rfc%s', 'RFC ')
 extlinks['launchpad'] = ('https://launchpad.net/%s/trunk', 'launchpad')
 extlinks['origin']    = ('https://github.com/return42/handsOn/blob/master/%s', 'git')
