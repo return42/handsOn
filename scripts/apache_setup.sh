@@ -168,7 +168,7 @@ usage(){
 
 usage:
   $(basename $0) install    [server|PHP|WSGI|ACME]
-  $(basename $0) remove     [all|PHP|WSGI]
+  $(basename $0) remove     [all|PHP|WSGI|ACME]
   $(basename $0) update     [WSGI]
   $(basename $0) activate   [WAF]
   $(basename $0) deactivate [WAF]
@@ -337,24 +337,30 @@ installACME(){
 # ----------------------------------------------------------------------------
 
     rstBlock "Es wird der ACME Client von 'cerbot' installiert."
-    if ! askYn "Soll der ACM Client installiert werden?"; then
-        return
-    fi
+
+    # V-Hosts mit Hostnamen wie hxxxxxx.stratoserver.net können nicht registiert
+    # werden, da sie in der Domain stratoserver.net registriert sind, siehe
+    # https://community.letsencrypt.org/t/error-too-many-certificates-already-issued-for-stratoserver-net/43867
 
     apt-get update
     apt-get install software-properties-common
     add-apt-repository ppa:certbot/certbot
     apt-get update
     apt-get install python-certbot-apache
-
     rstBlock "Der ACME Client wurde installiert"
+    waitKEY
+
+    rstHeading "Test auf existierende Zertifikate"
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+certbot certificates
+EOF
     waitKEY
 
     if askYn "Soll ein Zertifikat angefordert und im Apache eingerichtet werden?"; then
         APACHE_install_site acme-challenges.conf
-        certbot --apache
+        certbot certonly --apache  --debug-challenges
         waitKEY
-        APACHE_dissable_site acme-challenges.conf
         APACHE_dissable_site 000-default-le-ssl.conf
         mv "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf" "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak"
         echo
@@ -380,7 +386,7 @@ ${_color_Off}"
 
     rstBlock "Es wird die automatische Erneuerung getestet"
     TEE_stderr <<EOF | bash | prefix_stdout
-certbot renew --dry-run
+certbot renew --dry-run --apache
 EOF
     waitKEY
 }
@@ -392,7 +398,7 @@ deinstallACME(){
 
     rstBlock "Es wird der ACME Client von 'cerbot' de-installiert."
     if askYn "Soll der ACM Client de-installiert werden?"; then
-         python-certbot-apache
+         apt-get purge certbot 'pyth*certbot*'
     fi
     waitKEY
 }
