@@ -60,7 +60,7 @@ OFFICE_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/offic
 OFFICE_PACKAGES="\
  libreoffice libreoffice-l10n-de libreoffice-help-de libreoffice-gtk libreoffice-style-sifr \
  firefox \
- thunderbird \
+ thunderbird xul-ext-lightnin \
  hunspell hunspell-de-de \
 "
 # Remote Desktop (Server)

@@ -136,6 +136,47 @@ muss, anschließend::
 Nach dem Anlegen ist der Account bereits aktiviert und wird synchronisiert, was
 aber u.U. einige Minuten in Anspruch nehmen kann.
 
+Thunderbird mit Lightning
+-------------------------
+
+.. _Lightning: https://www.thunderbird.net/en-US/calendar/
+
+Als Kalender eignet sich Lightning_ im Thunderbird.  Seit Thunderbird 60 kann
+man das Lightning AddOn leider nicht mehr über die AddOn-Suche innerhalb des
+Thunderbirds installieren.  Ursache ist die veraltete Version 5.4 des AddOn in
+der AddOn-Suche.  Das AddOn wird allerdings noch weiterentwickelt, aktuellere
+Versionen und die Builds kann man bei mozilla.org recherchieren:
+
+- Versionen: https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions
+- Builds: https://ftp.mozilla.org/pub/calendar/lightning/candidates/
+
+Bei den Versionen scheint es erste *stable releases* zu geben.  Bei den Builds
+findet man allerdings nur die beta Versionen, was evtl. auch der Grund ist,
+warum es auch keine aktuelle Version in der AddOn-Suche des Thunderbird selbst
+gibt.  Wenn man sich da was aus den Builds installieren würde hätte das den
+Nachteil, dass man keine Updates dafür bekommt.  Auf den debian/ubuntu Systemen
+kann man ersatzweise mittels eines APT Pakets die XUL-Extension für den
+Lightning installieren::
+
+   sudo apt install thunderbird xul-ext-lightning
+
+Die Updates erfolgen dann über das normale Update des Systems.  Derzeit hat aber
+auch diese Lösung noch den Nachteil, dass es die XUL-Extension nur in der
+englischen Übersetzung gibt.  Da mir das aber dennoch als das kleinere Übel
+erscheint -- im Gegensatz zu manuellen Updates -- empfehle ich das APT Paket.
+In der englischen Version gehen die Dialoge dann wie folgt.
+
+- :menuselection:`Locate your calendar --> New Calendar ... --> On the Network`
+
+- Format :menuselection:`CalDAV`
+
+- Location: ``https://<hostname>/radicale/<user>/<calendar-id>``
+
+Die ``<calendar-id>`` ist der komplette Name des Ordners, z.B.:
+
+  ``https://<hostname>/radicale/<user>/d50d7ce1-e006-5b64-8f18-7ed4b2a64c7b/``
+
+
 Thunderbird mit CardBook
 ------------------------
 
