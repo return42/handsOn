@@ -336,12 +336,27 @@ installACME(){
     rstHeading "Installation ACME (Let's Encrypt)"
 # ----------------------------------------------------------------------------
 
-    rstBlock "Es wird der ACME Client von 'cerbot' installiert."
+    rstBlock "\
+Es wird der ACME Client ``cerbot`` installiert.
 
-    # V-Hosts mit Hostnamen wie hxxxxxx.stratoserver.net können nicht registiert
-    # werden, da sie in der Domain stratoserver.net registriert sind, siehe
-    # https://community.letsencrypt.org/t/error-too-many-certificates-already-issued-for-stratoserver-net/43867
+- https://certbot.eff.org/docs/using.html
 
+.. hint::
+
+   V-Hosts mit Hostnamen resp. subdomains wie xyz.stratoserver.net können nicht
+   registiert werden, da sie in der Domain stratoserver.net registriert sind und
+   diese Domain auch nicht als *Public Suffix* registriert ist:
+
+   - \`Public Suffix List
+     <https://github.com/publicsuffix/list/blob/master/public_suffix_list.dat>\`__
+
+   - \`Error: Too many certificates already issued for stratoserver.net
+     <https://community.letsencrypt.org/t/error-too-many-certificates-already-issued-for-stratoserver-net/43867>\`__
+"
+
+    if ! askYn "Soll mit der Einrichtung fortgefahren werden?"; then
+        return 42
+    fi
     apt-get update
     apt-get install software-properties-common
     add-apt-repository ppa:certbot/certbot
@@ -361,13 +376,12 @@ EOF
         APACHE_install_site acme-challenges.conf
         certbot certonly --apache  --debug-challenges
         waitKEY
-        APACHE_dissable_site 000-default-le-ssl.conf
-        mv "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf" "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak"
-        echo
-        echo
-        cat "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak" | prefix_stdout
-        echo
-        echo
+
+        if [ -e "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf" ]; then
+            APACHE_dissable_site 000-default-le-ssl.conf
+            mv "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf" "${APACHE_SITES_AVAILABE}/000-default-le-ssl.conf.bak"
+        fi
+
         rstBlock "Leider klappt das mit der automatischen Konfiguration des
 Apache nicht so wirklich gut, deshalb muss man da nochmal manuell eingreifen.
 In der ${APACHE_SITES_AVAILABE}/default-ssl.conf müssen in etwa folgende
@@ -375,11 +389,17 @@ Settings eingestellt werden (Servername muss natürlich der sein, den man
 eben eingegeben hat, s.o.)::"
 
         echo -en "${Yellow}
-ServerName xxx.yyy.zz
-SSLCertificateFile /etc/letsencrypt/live/xxx.yyy.zz/fullchain.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/xxx.yyy.zz/privkey.pem
-Include /etc/letsencrypt/options-ssl-apache.conf
-${_color_Off}"
+<IfModule mod_ssl.c>
+    <VirtualHost _default_:443>
+    ...
+        SSLEngine on
+        ServerName foobar.cloud
+        SSLCertificateFile /etc/letsencrypt/live/foobar.cloud/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/foobar.cloud/privkey.pem
+        Include /etc/letsencrypt/options-ssl-apache.conf
+    ...
+    </VirtualHost>
+</IfModule>${_color_Off}"
 
         waitKEY
     fi
