@@ -95,6 +95,9 @@ CONFIG_BACKUP_ENCRYPTED=(
     "/etc/ssh/ssh_host_ecdsa_key"
     "/etc/ssh/ssh_host_ed25519_key"
 
+    # certbot setup & keys
+    "/etc/letsencrypt"
+
     # GitLab
     "/etc/gitlab/gitlab.rb"
     "/etc/gitlab/gitlab-secrets.json"
