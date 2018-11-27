@@ -3,61 +3,119 @@
 # ----------------------------------------------------------------------------
 # Purpose:     Glances / cross-platform system monitoring (apache)
 # ----------------------------------------------------------------------------
-
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
-#setupInfo
-sudoOrExit
-
-# Rverse Proxy with prefix URL e.g.: https:/myhost.org/glances did not work?
-#
-# https://github.com/nicolargo/glances/wiki/Start-Glances-through-Systemd
-# https://github.com/nicolargo/glances/wiki/Reverse-proxy-to-the-Glances-Web-UI
 
 # ----------------------------------------------------------------------------
 # Config
 # ----------------------------------------------------------------------------
 
-WSGI_APPS="${WWW_FOLDER}/pyApps"
-PYENV=pyenv
+# glances on localhost
+GLANCES_PORT=61208
+GLANCES_BIND=127.0.0.1
 
-PYPI_PACKAGES="Glances Bottle"
+# systemd services
+GLANCES_DESCRIPTION="Glances"
+GLANCES_SYSTEMD_UNIT=/lib/systemd/system/glances.service
+GLANCES_USER=glances
+GLANCES_HOME=/home/${GLANCES_USER}
+
+# Apache Redirect
+GLANCES_APACHE_URL="/glances"
+GLANCES_APACHE_SITE=glances
+
+PYPI_PACKAGES="glances bottle"
 DEB_PCKG="virtualenv python3 python3-dev"
+
+# ----------------------------------------------------------------------------
+# Config Backup
+# ----------------------------------------------------------------------------
+
+CONFIG_BACKUP=(
+    "${GLANCES_SYSTEMD_UNIT}"
+    "${APACHE_SITES_AVAILABE}/${GLANCES_APACHE_SITE}.conf"
+)
+
+CONFIG_BACKUP_ENCRYPTED=(
+)
+
+# ----------------------------------------------------------------------------
+usage(){
+# ----------------------------------------------------------------------------
+
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
+
+usage:
+
+  $(basename $0) info
+  $(basename $0) install    [server]
+  $(basename $0) update     [server]
+  $(basename $0) remove     [server]
+  $(basename $0) activate   [server]
+  $(basename $0) deactivate [server]
+
+EOF
+}
 
 # ----------------------------------------------------------------------------
 main(){
     rstHeading "Glances" part
 # ----------------------------------------------------------------------------
 
+    _usage="${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"
+
     case $1 in
-	install)
-            install_glances
-	    ;;
-	deinstall)
-            deinstall_glances
-	    ;;
+	--source-only)  ;;
+        -h|--help) usage;;
+        info) less "${REPO_ROOT}/docs/glances.rst" ;;
+
+        install)
+            sudoOrExit
+            case $2 in
+                server)  setup_glances_server ;;
+                *)       usage $_usage; exit 42;;
+            esac ;;
         update)
-            rstHeading "Update des Systems"
-            echo
-            apt-get update -y
-            apt-get dist-upgrade -y
-            apt-get autoclean -y
-            apt-get autoremove -y
-            rstHeading "Update Glances"
-            rstBlock "Update mittels deinstallation und installation aktueller Version"
-            deinstall_glances
-            install_glances
-            ;;
-	*)
-            echo
-	    echo "usage $0 [(de)install|update]"
-            echo
-            ;;
+            sudoOrExit
+            case $2 in
+                server)  update_glances ;;
+                *)       usage $_usage; exit 42;;
+            esac ;;
+        remove)
+            sudoOrExit
+            case $2 in
+                server)  remove_glances ;;
+                *)       usage $_usage; exit 42;;
+            esac ;;
+        activate)
+            sudoOrExit
+            case $2 in
+                server)  activate_server ;;
+                *)       usage $_usage; exit 42;;
+            esac ;;
+        deactivate)
+            sudoOrExit
+            case $2 in
+                server)  deactivate_server ;;
+                *)       usage $_usage; exit 42;;
+            esac ;;
+        *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
 }
+
+
 # ----------------------------------------------------------------------------
-install_glances(){
+setup_glances_server(){
     rstHeading "Installation Glances"
 # ----------------------------------------------------------------------------
+
+    rstBlock "Es wird Glances eingerichtet mit einem Apache ReverseProxy"
+
+    if ! aptPackageInstalled apache2; then
+        rstBlock "Apache ist noch nicht installiert, die Installation sollte mit
+dem Skript 'apache_setup.sh' durchgeführt werden."
+        return 42
+    fi
 
     rstBlock "Die Installation des Monitoring Werkzeugs Glances ${BRed}wird nur
 im Intranet empfohlen${_color_Off}."
@@ -65,15 +123,19 @@ im Intranet empfohlen${_color_Off}."
     if ! askYn "Soll Glances installiert werden?"; then
         return 42
     fi
-    systemctl stop glances.service 2>&1 >/dev/null
 
-    rstHeading "Benutzer glances" section
-    echo
-    TEE_stderr <<EOF | bash | prefix_stdout
-    adduser glances --disabled-password --gecos "" \
-           --shell /usr/sbin/nologin 2>&1 >/dev/null
-EOF
-    waitKEY
+    rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
+    deactivate_server
+
+    if aptPackageInstalled glances; then
+        if [[ -f /etc/init.d/glances || -f /etc/glances/glances.conf ]] ; then
+           rstBlock "Es wurde bereits das Paket 'glances' installiert. Die \
+/etc/init.d/glances aus dem Paket ist veraltet und passt nicht zu dem hier \
+einzurichtenden Dienst und wird nun gelöscht."
+           waitKEY
+           rm -f /etc/init.d/glances
+        fi
+    fi
 
     rstHeading "Benötigte System Pakete" section
     rstPkgList ${DEB_PCKG}
@@ -81,66 +143,128 @@ EOF
     apt-get install -y ${DEB_PCKG}
     waitKEY
 
-    rstHeading "Benötigte Python Pakete" section
-    rstPkgList  ${PYPI_PACKAGES}
-    echo
+    assert_user
+    install_glances
 
-    export HOME=/home/glances
-    TEE_stderr 2 <<EOF | bash | prefix_stdout
-    mkdir -p $HOME
-    cd $HOME
-    virtualenv --python=python3 py3
-    source $HOME/py3/bin/activate
-    pip install -U pip setuptools
-    pip install ${PYPI_PACKAGES}
-EOF
+    rstHeading "Install System-D Unit glances.service ..." section
+    TEMPLATES_InstallOrMerge --eval ${GLANCES_SYSTEMD_UNIT} root root 644
     waitKEY
 
-    rstHeading "Dienst glances.service" section
-    TEMPLATES_InstallOrMerge /lib/systemd/system/glances.service root root 644
-    systemctl enable glances.service
-    systemctl start glances.service
+    rstHeading "Apache Site mit ProxyPass einrichten" section
+    echo
+    a2enmod proxy_http
+    APACHE_install_site --eval ${GLANCES_APACHE_SITE}
+
+    activate_server
 
     rstBlock "Dienst ist eingerichtet ..."
+    rstBlock "  --> https://${APACHE_SERVER_NAME}${GLANCES_APACHE_URL}"
+    waitKEY
+}
 
-    rstBlock "  --> http://$HOSTNAME:61208"
 
-    rstBlock "Die Refresh-Rate kann in Sekunden angegeben werden (default 10).
-Um z.B. alle 3 Sekunden zu aktualisieren::
+install_glances(){
+    rstHeading "Install Glances (user's HOME)" section
+    rstPkgList  ${PYPI_PACKAGES}
+    echo
+    TEE_stderr <<EOF | bash | prefix_stdout
+cd ${GLANCES_HOME}
+virtualenv --python=python3 py3
+source ${GLANCES_HOME}/py3/bin/activate
+pip install -U pip setuptools
+pip install ${PYPI_PACKAGES}
+EOF
+    TEMPLATES_InstallOrMerge /etc/glances/glances.conf root root 644
+    waitKEY
+}
 
-  --> http://$HOSTNAME:61208/3
-
-Die Spalten mit den Prozessen können sortiert werden, dazu mit der Maus auf
-z.B. 'CPU' oder 'MEM%' klicken (nicht alle Spalten können sortiert werden).  Es
-ist auch möglich eine Steuerung über die Tastatur vorzunehmen, eine Übersicht
-gbt es mit der Taste 'h' (dazu mit der Maus vorher einmal in das Browser-Fenster
-klicken um es zu aktivieren).
-
-Für die Installation der Sensoren empfiehlt sich die Installation der Hardware
-Tools::
-
-  sudo ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh hwTools
-"
+assert_user(){
+    rstHeading "Benutzer $GLANCES_USER" section
+    echo
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+sudo adduser --shell /usr/sbin/nologin --disabled-password --home $GLANCES_HOME --gecos 'Glances' $GLANCES_USER
+groups $GLANCES_USER
+EOF
+    export GGLANCES_HOME="$(sudo -i -u $GLANCES_USER echo \$HOME)"
+    rstBlock "export GLANCES_HOME=$GLANCES_HOME" | prefix_stdout
+    waitKEY
 }
 
 # ----------------------------------------------------------------------------
-deinstall_glances(){
+activate_server(){
+    rstHeading "Aktivieren des Glances (service)" section
+# ----------------------------------------------------------------------------
+    echo ""
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+a2ensite ${GLANCES_APACHE_SITE}
+systemctl force-reload apache2
+systemctl enable glances.service
+systemctl restart glances.service
+EOF
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+systemctl status glances.service
+EOF
+    waitKEY 10
+}
+
+# ----------------------------------------------------------------------------
+deactivate_server(){
+    rstHeading "De-Aktivieren des Glances (service)" section
+# ----------------------------------------------------------------------------
+    echo ""
+
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+a2dissite ${GLANCES_APACHE_SITE}
+systemctl force-reload apache2
+systemctl stop glances.service
+systemctl disable glances.service
+EOF
+    waitKEY 10
+}
+
+# ----------------------------------------------------------------------------
+remove_glances() {
     rstHeading "De-Installation Glances"
 # ----------------------------------------------------------------------------
 
-    rstBlock "${BRed}ACHTUNG:${_color_Off}"
-    if ! askNy "  wollen sie Glances deinstallieren?"; then
+    if ! askYn "Soll Glances deinstalliert werden?"; then
+        return
+    fi
+    deactivate_server
+    rm -f "${GLANCES_SYSTEMD_UNIT}"
+    rm -f "${APACHE_SITES_AVAILABE}/${GLANCES_APACHE_SITE}.conf"
+    systemctl force-reload apache2
+
+    rstHeading "Benutzer $GLANCES_USER" section
+    userdel -r -f "$GLANCES_USER"
+}
+
+# ----------------------------------------------------------------------------
+update_glances() {
+    rstHeading "Update Glances"
+# ----------------------------------------------------------------------------
+
+    rstBlock "Das Update besteht aus eine Systemupdate und einer erneuten Installation des glances"
+    if ! askYn "Update durchführen?"; then
         return 42
     fi
-    rstHeading "Dienst glances.service" section
-    echo
-    systemctl stop glances.service
-    systemctl disable glances.service
-    rm /lib/systemd/system/glances.service
 
-    rstHeading "Benutzer glances" section
-    echo
-    userdel -r -f glances
+    rstHeading "Update des Systems" section
+
+    apt-get update -y
+    apt-get dist-upgrade -y
+    apt-get autoclean -y
+    apt-get autoremove -y
+
+    deactivate_server
+
+    rstHeading "Update Glances" section
+    rstBlock "Update mittels deinstallation und installation aktueller Version"
+    remove_glances
+    install_glances
+
+    activate_server
+    waitKEY 10
 }
 
 # ----------------------------------------------------------------------------

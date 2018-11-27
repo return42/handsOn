@@ -42,6 +42,7 @@ Themen
    docker/index
    citrix/index
    gogs
+   glances
    LICENSE
 
 

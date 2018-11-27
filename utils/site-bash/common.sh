@@ -1747,6 +1747,10 @@ fi
 # Debian's Apache Setup
 # =====================
 
+if [[ -z "$APACHE_SERVER_NAME" ]]; then
+    APACHE_SERVER_NAME="$(uname -n)"
+fi
+
 if [[ -z "$APACHE_SETUP" ]]; then
     APACHE_SETUP="/etc/apache2"
 fi

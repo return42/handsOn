@@ -1,13 +1,24 @@
-[Service]
-
 [Unit]
-Description=Glances
+Description=${GLANCES_DESCRIPTION}
+After=syslog.target
+After=network.target
 
 [Service]
-User = glances
-Group = glances
-ExecStart=/home/glances/py3/bin/glances -1 --tree --enable-process-extended --fs-free-space --diskio-iops -t 10 -w --bind 0.0.0.0
+
+Type=simple
+User=${GLANCES_USER}
+Group=${GLANCES_USER}
+ExecStart=${GLANCES_HOME}/py3/bin/glances -1 --enable-process-extended --fs-free-space --diskio-iops --enable-irq  -t 10 -w --bind ${GLANCES_BIND} --port ${GLANCES_PORT}
 Restart=on-abort
+Environment=USER=${GLANCES_USER} HOME=${GLANCES_HOME}
+
+# Some distributions may not support these hardening directives. If you cannot
+# start the service due to an unknown option, comment out the ones not supported
+# by your version of systemd.
+ProtectSystem=full
+PrivateDevices=yes
+PrivateTmp=yes
+NoNewPrivileges=true
 
 [Install]
 WantedBy=multi-user.target
