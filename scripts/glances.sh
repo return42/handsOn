@@ -12,6 +12,7 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # glances on localhost
 GLANCES_PORT=61208
 GLANCES_BIND=127.0.0.1
+GLANCES_CONF=/etc/glances/glances.conf
 
 # systemd services
 GLANCES_DESCRIPTION="Glances"
@@ -31,6 +32,7 @@ DEB_PCKG="virtualenv python3 python3-dev"
 # ----------------------------------------------------------------------------
 
 CONFIG_BACKUP=(
+    "${GLANCES_CONF}"
     "${GLANCES_SYSTEMD_UNIT}"
     "${APACHE_SITES_AVAILABE}/${GLANCES_APACHE_SITE}.conf"
 )
@@ -128,7 +130,7 @@ im Intranet empfohlen${_color_Off}."
     deactivate_server
 
     if aptPackageInstalled glances; then
-        if [[ -f /etc/init.d/glances || -f /etc/glances/glances.conf ]] ; then
+        if [[ -f /etc/init.d/glances ]] ; then
            rstBlock "Es wurde bereits das Paket 'glances' installiert. Die \
 /etc/init.d/glances aus dem Paket ist veraltet und passt nicht zu dem hier \
 einzurichtenden Dienst und wird nun gelöscht."
@@ -174,7 +176,7 @@ source ${GLANCES_HOME}/py3/bin/activate
 pip install -U pip setuptools
 pip install ${PYPI_PACKAGES}
 EOF
-    TEMPLATES_InstallOrMerge /etc/glances/glances.conf root root 644
+    TEMPLATES_InstallOrMerge "${GLANCES_CONF}" root root 644
     waitKEY
 }
 

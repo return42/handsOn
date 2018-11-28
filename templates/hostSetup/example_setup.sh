@@ -232,4 +232,8 @@ CONFIG_BACKUP=(
     "/etc/default/boinc-client"
     "/etc/init.d/boinc-client"
     "/etc/boinc-client/remote_hosts.cfg"
+
+    # glances
+    "/etc/glances/glances.conf"
+    "/lib/systemd/system/glances.service"
 )
