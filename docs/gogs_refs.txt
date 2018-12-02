@@ -6,7 +6,5 @@
 .. _go-linux: https://golang.org/doc/install#tarball
 .. _golang: https://golang.org/doc/
 .. _Go-VCS-Projects: https://github.com/golang/go/wiki/Projects#version-control
-.. _Service-Unit: https://www.freedesktop.org/software/systemd/man/systemd.service.html
-.. _systemd: https://github.com/systemd/systemd
 .. _goX.YY.linux-amd64.tar.gz: https://golang.org/doc/install?download=go1.11.linux-amd64.tar.gz
 .. _`Gogs Configuration Cheat Sheet`: https://gogs.io/docs/advanced/configuration_cheat_sheet

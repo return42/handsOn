@@ -93,3 +93,8 @@
 .. _`DB Browser for SQLite`: https://github.com/sqlitebrowser/sqlitebrowser
 .. _`SQLite`: https://www.sqlite.org
 .. _`Building A Linux Filesystem From An Ordinary File`: http://linuxgazette.net/109/chirico.html
+
+.. _Service-Unit: https://www.freedesktop.org/software/systemd/man/systemd.service.html
+.. _systemd: https://github.com/systemd/systemd
+.. _`ProxyPass`: http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#ProxyPass
+

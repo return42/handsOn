@@ -1,6 +1,8 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: gogs_refs.txt
+.. include:: apache_setup_refs.txt
+
 .. _xref_gogs:
 
 =====================
@@ -50,8 +52,7 @@ Eigenschaften aus:
 
 - Gogs Server wird hinter einer (Apache-) URL ``https://<hostname>/gogs``
   betrieben (s.a. :origin:`gogs.conf
-  <templates/etc/apache2/sites-available/gogs.conf>` & `ProxyPass
-  <http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#ProxyPass>`_).
+  <templates/etc/apache2/sites-available/gogs.conf>` & ProxyPass_).
 
 Zur Installation existiert ein Script, das alle Setups vornimmt::
 

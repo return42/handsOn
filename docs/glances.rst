@@ -1,4 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
+.. include:: devTools_refs.txt
+.. include:: apache_setup_refs.txt
+
 .. _xref_glances:
 
 ==============================
@@ -13,7 +16,7 @@ aber im Client/Server Betrieb auch im Verbund.
 
 Es wird in den Ubuntu/Debian Paketen (APT), angeboten, jedoch ist diese Version
 i.d.R. veraltet, weshalb hier eine Installation der WEB-UI als Dienst aus den
-`PyPi`_ Paketen vorgenommen wird.
+`PyPI`_ Paketen vorgenommen wird.
 
 Die hier vorgestellte Installation weist sich durch folgende besondere
 Eigenschaften aus:
