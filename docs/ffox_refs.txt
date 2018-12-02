@@ -6,3 +6,7 @@
 .. _Decentraleyes: https://addons.mozilla.org/de/firefox/addon/decentraleyes
 .. _lightbeam: https://www.mozilla.org/en-US/lightbeam/
 .. _`Privacy Possum`: https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/
+.. _`Startpage`: https://addons.mozilla.org/de/firefox/addon/startpage-privacy-search-engin
+.. _`Startpage.com`: https://www.startpage.com
+.. _DDG: https://duckduckgo.com
+.. _`DDG FFox AddOn`: https://addons.mozilla.org/de/firefox/addon/duckduckgo-for-firefox

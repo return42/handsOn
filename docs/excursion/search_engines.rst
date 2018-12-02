@@ -15,10 +15,12 @@ Suchmaschinen & Tracking
 
 Für die ganz Ungeduldigen unter uns:
 
-- Einleitung überspringen :ref:`hier <do-not-track>`.
+- Einleitung überspringen und hier starten mit: :ref:`do-not-track`.
 
 - Zu viel Text, intressiert mich alles nicht, was muss ich in meinen FireFox
   installieren?
+
+  0.  `Startpage`_ *die bessere google Suchmaschine!*
 
   1. `uBlock-origin`_ **!!must have!!**
   2. `Google search link fix`_ **!!must have!!**
@@ -116,14 +118,20 @@ Anonyme Suchmaschinen
 
 Anonyme Suchmaschinen setzen kein Tracking ein. Jedoch blenden sie zwecks
 Finanzierung gekennzeichnete Werbung ein (s.a. :ref:`add_blocker`). Als anonyme
-Suchmaschine kann z.B. DuckDuckGo (DDG) empfohln werden:
+Suchmaschine kann z.B. Startpage.com_ oder DuckDuckGo (DDG_) empfohlen werden:
 
-- https://duckduckgo.com/
+- https://www.startpage.com
+- https://duckduckgo.com
 
-Wenn man die Seite aufruft, wird einem (rechts) angeboten DDG als
-voreingestellte Suchmaschine im WEB-Browser einzurichten. Man kann für den
+DDG
+~~~
+
+Wenn man die DDG_ Seite aufruft, wird einem (rechts) angeboten DDG als
+voreingestellte Suchmaschine im WEB-Browser einzurichten.  Man kann für den
 Firefox auch ein AddOn installieren, das braucht man aber meiner Ansicht nach
 nicht, die Suchmaschine im WEB-Broweser sollte genug sein.
+
+- `DDG FFox AddOn`_
 
 DDG bereitet die Treffer recht komfortabel auf und hat z.T. nette Features in
 der Trefferliste, so z.B. einen Taschenrechner, wenn man Suchbegriffe wie "1+1"
@@ -154,10 +162,18 @@ anonymen Suchmaschine:
 - https://startpage
 
 Manchmal will man aber auch wirklich mit Google suchen, dafür stellt man dann
-der Suche ein "!google" voran. Bei Google ist man dann aber wieder im Tracking,
-doch auch das kann man einschränken, im Firefox z.B. mit dem folgenden AddOn:
+der Suche ein "!g" voran.  Bei Google ist man dann aber wieder im Tracking, doch
+auch das kann man einschränken, im Firefox z.B. mit dem folgenden AddOn:
 
 - `Google search link fix`_
+
+Startpage.com
+~~~~~~~~~~~~~
+
+Startpage.com_ ist werbefinanziert.  Oben die ersten Treffer sind immer
+Anzeigen, es sei denn man hat sich `uBlock-origin`_ installiert.  Das AddOn
+blockiert die Einbelndung von Werbung (Anzeigen).
+
 
 .. _add_blocker:
 

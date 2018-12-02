@@ -16,7 +16,16 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
+DEB_PCKG="firefox firefox-locale-de"
+
 MOZILLA_XPI_URL=(
+
+    # Startpage.com
+    # FIXME: wird derzeit (Dez.2018) noch nicht im FFox angezeigt, warum?
+    "https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom.xpi"
+
+    # DuckDuckGo
+    "https://addons.mozilla.org/firefox/downloads/file/1122630/duckduckgo_privacy_essentials.xpi"
 
     # Privacy Possum by cowlicks
     # zuletzt verifiziert: 20181005
@@ -81,7 +90,7 @@ main(){
 
     case $1 in
 	install)
-            sudo apt install firefox firefox-locale-de
+	    aptInstallPackages ${DEB_PCKG}
             installFFSysPrefs
 	    installFFAddOns
 	    installTorBrowser
@@ -108,10 +117,11 @@ main(){
 installFFSysPrefs(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "Setup der globalen Firefox-Einstellungen" chapter
+    rstHeading "Setup der globalen Firefox-Einstellungen" section
 
-    rstBlock "Es werden die systemweiten *Preferences* des Firefox
-gesetzt. Eine Beschreibung hierzu findet man unter:
+    echo -e "
+Es werden die systemweiten *Preferences* des Firefox gesetzt. Eine Beschreibung
+hierzu findet man unter:
 
 * https://developer.mozilla.org/en-US/docs/Mozilla/Preferences
 
@@ -120,29 +130,18 @@ gesetzt. Eine Beschreibung hierzu findet man unter:
 Der Link /usr/lib/firefox/browser/defaults/preferences/ zeigt auf
 /etc/firefox/syspref.js siehe auch:
 
-* https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Modifying_preferences
-
-"
+* https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Modifying_preferences"
     rstHeading "System Einstellungen" section
+    echo
     TEMPLATES_InstallOrMerge /etc/firefox/syspref.js root root 644
     waitKEY
 
     rstHeading "Handling der apt-URLs" section
-    err_msg "Datei /etc/firefox/pref/apturl.js wird scheinbar gar nicht vom FFox gelesen"
-    err_msg "... funktioniert deshalb nicht mehr !!! ..."
+    err_msg "FIXME: Datei /etc/firefox/pref/apturl.js wird scheinbar gar nicht mehr vom FFox gelesen"
+    err_msg "FIXME: ... funktioniert deshalb nicht mehr !!! ..."
     waitKEY
     TEMPLATES_InstallOrMerge /etc/firefox/pref/apturl.js root root 644
     waitKEY
-
-#    mkdir -p /usr/lib/firefox/distribution/searchplugins/locale/de/ddg-de-dark.xm
-
-#    rstHeading "DuckDuckGO Searchplugin DE (dark Theme)" section
-#    TEMPLATES_InstallOrMerge /usr/lib/firefox/distribution/searchplugins/locale/de/ddg-de-dark.xml root root 644
-#    waitKEY
-
-#    rstHeading "DuckDuckGO Searchplugin DE (bright Theme)" section
-#    TEMPLATES_InstallOrMerge /usr/lib/firefox/distribution/searchplugins/locale/de/ddg-de-bright.xml root root 644
-#    waitKEY
 }
 
 # ----------------------------------------------------------------------------
@@ -151,8 +150,8 @@ installFFAddOns(){
 
     rstHeading "Installation der globalen Firefox-AddOns" chapter
 
-    rstBlock "Die Installation der globalen Erweiterungen erfolgt in den
-Ordner::
+    echo -e "
+Die Installation der globalen Erweiterungen erfolgt in den Ordner::
 
   ${FFOX_GLOBAL_EXTENSIONS}
 
@@ -195,7 +194,7 @@ ${BRed}.. hint::
 deinstallFFAddOns(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "De-Installation der globalen Firefox-AddOns" chapter
+    rstHeading "De-Installation der globalen Firefox-AddOns" section
 
     rstBlock "Die Installation der globalen Erweiterungen erfolgt
 
@@ -221,9 +220,9 @@ deinstallFFAddOns(){
 
 # ----------------------------------------------------------------------------
 installTorBrowser(){
+    rstHeading "Tor-Browser (launcher)"
 # ----------------------------------------------------------------------------
 
-    rstHeading "Tor-Browser (launcher)"
     rstBlock "Der Tor-Browser muss von jedem Anwender selber installiert werden. Um
 dies komfortabel zu ermöglichen gibt es das Paket 'torbrowser-launcher' welches
 nun installiert wird.
@@ -246,11 +245,10 @@ Browser (Launcher) aufruft.
 
 # ----------------------------------------------------------------------------
 deinstallTorBrowser(){
+    rstHeading "Deinstallation Tor-Browser (launcher)"
 # ----------------------------------------------------------------------------
 
     # zuletzt verifiziert: 20181005
-
-    rstHeading "Deinstallation Tor-Browser (launcher)"
     echo
     apt-get remove -y --purge torbrowser-launcher
     waitKEY 20
