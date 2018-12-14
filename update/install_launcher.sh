@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
-# Purpose:     update os
+# Purpose:     instal handsOn launcher
 # ----------------------------------------------------------------------------
+
 source "$(dirname "${BASH_SOURCE[0]}")/../scripts/setup.sh"
+exitOnSudo
 
 # ----------------------------------------------------------------------------
 installDesktopLauncher() {
@@ -17,13 +19,13 @@ installDesktopLauncher() {
 
     tee "$LAUNCHER_FOLDER/$LAUNCHER_FILENAME" > /dev/null <<EOF
 [Desktop Entry]
-Name=OS update (handsOn)
+Name=handsOn (OS Update)
 Type=Application
 Icon=system-software-update
-Exec=gnome-terminal -- pkexec ${SCRIPT_FOLDER}/os_update.sh
+Exec=gnome-terminal -- ${REPO_ROOT}/update/update_all.sh
 Terminal=false
-StartupNotify=true
-GenericName=OS update (handsOn)
+StartupNotify=false
+GenericName=handsOn (OS update)
 Comment=System update with the scripts from handsOn
 Categories=Utility;
 Keywords=update;system update
