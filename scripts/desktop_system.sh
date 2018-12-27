@@ -13,12 +13,19 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 GNOME3_PPA="ppa:gnome3-team/gnome3"
 GNOME_SHELL_EXTENSIONS="/usr/share/gnome-shell/extensions"
 
+# dconf-editor gconf-editor
+# -------------------------
+#
+# - https://wiki.ubuntuusers.de/GNOME_Konfiguration/#gconf-und-dconf
+# - https://wiki.gnome.org/Initiatives/GnomeGoals/GSettingsMigration
+
 GNOME3_PACKAGES="\
  language-pack-gnome-de \
  gnome-core gnome-screenshot\
  gnome-session \
  gnome-getting-started-docs-de \
- gnome-power-manager gnome-tweak-tool gconf-editor \
+ gnome-power-manager gnome-tweak-tool \
+ dconf-editor gconf-editor \
  gnome-packagekit gnome-packagekit-session \
  vanilla-gnome-desktop \
  elementary-icon-theme \
@@ -71,11 +78,12 @@ usage(){
 
 usage:
   $(basename $0) [chooseDM]
-  $(basename $0) install [GNOME[-ext]]|GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) install [GNOME[-ext|-dconf]]|GNOME3-PPA|elementary|cinnamon|mate]
   $(basename $0) remove  [GNOME-ext]]|[unity|GNOME3-PPA|elementary|cinnamon|mate]
 
 - GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
 - GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
+- GNOME-dconf: Anpassungen an de GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
 - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
 - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
@@ -100,6 +108,7 @@ main(){
                 GNOME3-PPA)   install_gnome3_ppa   ;;
                 GNOME)        install_gnomeShell   ;;
                 GNOME-ext)    install_gnome_extensions ;;
+		GNOME-dconf)  install_dconf_defaults ;;
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
@@ -324,6 +333,30 @@ rm -rf "$_dst"
 EOF
 }
 
+# ----------------------------------------------------------------------------
+install_dconf_defaults(){
+    rstHeading "Installation angepasster 'dconf' Defaults"
+# ----------------------------------------------------------------------------
+
+    rstBlock "\
+Die GNOME Einstellungen werden in den \*dconf\* Settings verwaltet
+(siehe 'dconf - System Administrator Guide' [1]).
+
+Im Folgenden werden einige GNOME-Defaults geändert, die mir nicht
+gefallen.  Dazu gehört z.B. das man seine minimieren/maximieren Button
+wieder in der Fensterleiste hat und das Icons auf dem Desktop abgelegt
+werden können.
+
+[1] https://wiki.gnome.org/Projects/dconf/SystemAdministrators
+"
+
+    TEMPLATES_InstallOrMerge "/etc/dconf/profile/user" root root 644
+    echo
+    mkdir -p "/etc/dconf/db/site.d/locks/"
+    TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_site_settings" root root 644
+    dconf update
+    waitKEY
+}
 
 # ----------------------------------------------------------------------------
 install_gnomeShell(){
@@ -336,6 +369,8 @@ install_gnomeShell(){
     TITLE="Installation GNOME Pakete" aptInstallPackages ${GNOME3_PACKAGES}
 
     install_gnome_extensions
+    install_dconf_defaults
+
     rstHeading "Deinstallation Unity"
 
     rstBlock "Es wurde der Gnome-Shell Desktop installiert. Der Desktop Unity

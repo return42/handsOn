@@ -1,0 +1,24 @@
+# -*- coding: utf-8; mode: conf -*-
+# Some useful default settings for our site
+
+[org/gnome/desktop/calendar]
+show-weekdate=true
+
+#[org/gnome/desktop/input-sources]
+#sources=[('xkb', 'de')]
+#xkb-options=@as []
+
+[org/gnome/desktop/interface]
+clock-show-date=true
+clock-show-seconds=true
+menus-have-icons=true
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+visual-bell=true
+
+[org/gnome/shell/overrides]
+attach-modal-dialogs=true
+
+[org/gnome/desktop/background]
+show-desktop-icons=true
