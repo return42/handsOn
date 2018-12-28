@@ -4,7 +4,7 @@
 # ----------------------------------------------------------------------------
 
 # Hier bitte den Pfad zum Setup eintragen. I.d.R. wird man sein Setup je
-# *Hostname* vornehmen oder man hat ein typische Setups wie z.B. ein 'clientpc'
+# *Hostname* vornehmen oder man hat ein typisches Setup wie z.B. ein 'clientpc'
 # Setup und ein 'server'
 
 CONFIG="${REPO_ROOT}/hostSetup/$(hostname)"
