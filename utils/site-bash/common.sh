@@ -308,6 +308,11 @@ err_msg() {
     echo -e "${BRed}ERROR:${_color_Off} $*" >&2
 }
 # ----------------------------------------------------------------------------
+warn_msg() {
+# ----------------------------------------------------------------------------
+    echo -e "${BBlue}WARN:${_color_Off} $*" >&2
+}
+# ----------------------------------------------------------------------------
 info_msg() {
 # ----------------------------------------------------------------------------
     echo -e "${BYellow}INFO:${_color_Off} $*"
@@ -1682,7 +1687,7 @@ CONFIG_Backup() {
 
     for ITEM in "$@"  ; do
         if [[ ! -e "${ITEM}" ]]; then
-            err_msg "path \"${ITEM}\" does not exists / skip backup"
+            warn_msg "path \"${ITEM}\" does not exists / skip backup"
             continue
         fi
         if [[ -d "${ITEM}" ]]
@@ -1716,7 +1721,7 @@ CONFIG_cryptedBackup(){
     for ITEM in "$@"; do
 
         if [[ ! -e "${ITEM}" ]]; then
-            err_msg "path \"${ITEM}\" does not exists / skip backup"
+            warn_msg "path \"${ITEM}\" does not exists / skip backup"
             continue
         fi
 
