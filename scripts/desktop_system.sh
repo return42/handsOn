@@ -350,11 +350,24 @@ werden können.
 [1] https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 "
 
+    rstHeading "Einrichten des 'user' Profile für dconf" section
+    echo
     TEMPLATES_InstallOrMerge "/etc/dconf/profile/user" root root 644
     echo
-    mkdir -p "/etc/dconf/db/site.d/locks/"
+
+    rstHeading "Einstellungen zur GNOME Shell" section
+    echo
     TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_site_settings" root root 644
+
+    rstHeading "Einstellungen zu den GNOME Extenions" section
+    echo
+    TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_gnome_extensions" root root 644
+
+    rstHeading "Einstellungen zum GNOME Dateiexplorer (aka. File, aka Nautilus)" section
+    echo
+    TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_nautilus_settings" root root 644
     dconf update
+
     waitKEY
 }
 

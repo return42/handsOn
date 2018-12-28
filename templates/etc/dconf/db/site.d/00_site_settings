@@ -1,6 +1,20 @@
 # -*- coding: utf-8; mode: conf -*-
 # Some useful default settings for our site
 
+# GNOME Shell
+# -----------
+#
+# Verschiedene Einstellungen zur GNOME Shell
+#
+
+[org/gnome/desktop/background]
+color-shading-type='solid'
+picture-options='wallpaper'
+picture-uri='file:////usr/share/gnome-control-center/pixmaps/noise-texture-light.png'
+primary-color='#425265'
+secondary-color='#425265'
+show-desktop-icons=true
+
 [org/gnome/desktop/calendar]
 show-weekdate=true
 
@@ -15,10 +29,16 @@ menus-have-icons=true
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
+visual-bell-type='frame-flash'
 visual-bell=true
+
+[org/gnome/settings-daemon/peripherals/mouse]
+locate-pointer=true
+
+[org/gnome/shell]
+
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'tracker-search-provider@sinnix.de', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com']
 
 [org/gnome/shell/overrides]
 attach-modal-dialogs=true
 
-[org/gnome/desktop/background]
-show-desktop-icons=true

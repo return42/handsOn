@@ -1,0 +1,51 @@
+# -*- coding: utf-8; mode: conf -*-
+
+# GNOME extension: window-switcher
+# --------------------------------
+#
+# siehe auch org/gnome/shell/enabled-extensions:
+#
+#   alternate-tab@gnome-shell-extensions.gcampax.github.com
+#
+
+[org/gnome/shell/window-switcher]
+current-workspace-only=false
+app-icon-mode='both'
+
+# GNOME extension: system-monitor
+# -------------------------------
+#
+# siehe auch org/gnome/shell/enabled-extensions:
+#
+#   system-monitor@paradoxxx.zero.gmail.com
+#
+
+[org/gnome/shell/extensions/system-monitor]
+battery-display=false
+compact-display=true
+cpu-display=true
+cpu-graph-width=50
+cpu-individual-cores=true
+cpu-refresh-time=1000
+cpu-show-text=true
+disk-display=false
+disk-style='graph'
+fan-display=false
+fan-style='graph'
+freq-display=true
+freq-show-menu=true
+freq-show-text=false
+freq-style='digit'
+gpu-display=false
+memory-display=false
+memory-graph-width=30
+memory-show-text=false
+memory-style='graph'
+net-display=true
+net-graph-width=50
+net-up-color='#73d216ff'
+swap-display=false
+thermal-display=false
+thermal-sensor-file='/sys/class/hwmon/hwmon0/temp1_input'
+
+

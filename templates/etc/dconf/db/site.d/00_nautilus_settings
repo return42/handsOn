@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: conf -*-
+
+# GNOME File (aka Nautilus)
+# -------------------------
+#
+# siehe https://gitlab.gnome.org/GNOME/nautilus/blob/master/data/org.gnome.nautilus.gschema.xml
+#
+[org/gnome/nautilus/preferences]
+default-folder-viewer='list-view'
+executable-text-activation='ask'
+fts-default=true
+search-filter-time-type='last_modified'
+show-delete-permanently=true
+show-directory-item-counts='always'
+
+[org/gnome/nautilus/list-view]
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'mime_type', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency']
+default-visible-columns=['name', 'size', 'date_modified']
+default-zoom-level='small'
+
+[org/gnome/nautilus/desktop]
+background-fade=true
+home-icon-visibl=true
+trash-icon-visible=true
+volumes-visible=true
