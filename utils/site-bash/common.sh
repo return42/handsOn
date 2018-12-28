@@ -1912,7 +1912,7 @@ FFOX_globalAddOn() {
     # get extension UID from manifest.json or alternative from META-INF/mozilla.rsa
 
     UID_ADDON=$(unzip -p $2 manifest.json \
-        | python -c  'import json,sys;print json.load(sys.stdin)["applications"]["gecko"]["id"]' 2>/dev/null)
+        | python -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
 
     if [[ -z ${UID_ADDON} ]] ; then
         UID_ADDON=$(unzip -p $2 META-INF/mozilla.rsa \
@@ -1922,7 +1922,7 @@ FFOX_globalAddOn() {
     if [[ -z ${UID_ADDON} ]] ; then
         err_msg "can't read 'id' from: $2"
     else
-        info_msg "using 'id': $UID_ADDON"
+        info_msg "using 'id' $UID_ADDON"
         case $1 in
             install)
                 info_msg "installing: ${UID_ADDON}.xpi --> ${FFOX_GLOBAL_EXTENSIONS}"
