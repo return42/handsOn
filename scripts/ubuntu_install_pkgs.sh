@@ -22,7 +22,7 @@ EMACS_VERSION=emacs26
 BASE_PACKAGES_TITLE="Basispakete zum Betrieb eines Servers"
 BASE_PACKAGES="\
  util-linux ppa-purge ssh ubuntu-drivers-common \
- aptitude apt-file synaptic gdebi bash-completion \
+ aptitude software-properties-common apt-file synaptic gdebi bash-completion \
  build-essential dkms tree \
  python \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
