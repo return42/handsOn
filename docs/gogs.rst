@@ -256,12 +256,12 @@ die Variablen ``${xyz}`` durch die richtigen Werte ersetzt werden muss.
     OFFLINE_MODE     = true
 
 - Bei einer SQLite-DB muss der vollständige ``PATH`` angegeben werden, hier
-  inder Konfiguration ist das ``/home/gogs/data``::
+  inder Konfiguration ist das ``/home/gogs/gogs.db``::
 
     [database]
     DB_TYPE  = sqlite3
     ...
-    PATH     = home/gogs/data/gogs.db
+    PATH     = /home/gogs/gogs.db
 
 - Bei den Einstellungen zum ``service`` kann man die *lokale* Registrierung
   abschalten und wenn man Gogs ganz schließen will, kann noch
