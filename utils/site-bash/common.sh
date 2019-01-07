@@ -1466,6 +1466,7 @@ TEMPLATES_InstallOrMerge() {
     local owner=${2-$(id -un)}
     local group=${3-$(id -gn)}
     local chmod=${4-755}
+    local parent_folder=$(dirname "${1}")
 
     info_msg "install: ${dst}"
 
@@ -1495,6 +1496,8 @@ TEMPLATES_InstallOrMerge() {
         info_msg "file ${dst} allready exists on this host"
     fi
     info_msg "examine <prefix>${dst} file(s)"
+
+    mkdir -pv "$parent_folder"
 
     if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}" ]] ; then
 
