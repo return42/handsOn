@@ -37,7 +37,7 @@ locate-pointer=true
 
 [org/gnome/shell]
 
-enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'window-list@gnome-shell-extensions.gcampax.github.com', 'tracker-search-provider@sinnix.de', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'tracker-search-provider@sinnix.de', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com']
 
 [org/gnome/shell/overrides]
 attach-modal-dialogs=true
