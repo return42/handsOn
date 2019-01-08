@@ -156,9 +156,12 @@ install_boinc(){
     rstBlock_stdin <<EOF
 Für die BOINC Installation werden folgende Pakete installiert.
 EOF
-    rstPkgList ${BOINC_PACKAGES}
+    rstPkgList ${BOINC_PACKAGES} xauth
+    rstBlock_stdin <<EOF
+Das xauth Paket wird für X-Forwarding (GUI auf dem Remote-Server) benötigt.
+EOF
     waitKEY 10
-    apt-get install -y ${BOINC_PACKAGES}
+    apt-get install -y ${BOINC_PACKAGES} xauth
 
     rstHeading "BOINC Einstellungen" section
 
