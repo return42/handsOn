@@ -8,7 +8,7 @@ CalDAV und CardDAV Clients
 Radicale unterstützt eine ganze Reihe von DAV-Client Anwendungen. Man sollte
 sich in jedem Fall die Doku der Clients anschauen:
 
-* http://radicale.org/user_documentation/#idstarting-the-client
+* https://radicale.org/clients
 
 Manche können nur CardDAV, manche nur CalDAV und manche Clients unterstützen
 sowohl CardDAV als auch CalDAV. Meist sind die Clients etwas *hakelig* so können
