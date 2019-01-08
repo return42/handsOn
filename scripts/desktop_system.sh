@@ -268,6 +268,27 @@ install_gnome_extensions(){
     local _dst=
     local _ws=
 
+    rstHeading "gnome-shell: dash to dock" section
+    echo
+    _origin="https://github.com/micheleg/dash-to-dock.git"
+    _name="dash-to-dock@micxgx.gmail.com"
+    _ws="${CACHE}/${_name}"
+    cloneGitRepository "$_origin" "$_name"
+
+    rstBlock "run make ..."
+    pushd "$_ws" > /dev/null
+    if [[ ! -z ${SUDO_USER} ]]; then
+        sudo -u ${SUDO_USER} make | prefix_stdout
+    else
+       make | prefix_stdout
+    fi
+
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+DESTDIR=/ make install
+EOF
+    popd > /dev/null
+    waitKEY
+
     rstHeading "gnome-shell: system-monitor" section
     echo
     _origin="https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git"
