@@ -12,6 +12,9 @@ fts-default=true
 search-filter-time-type='last_modified'
 show-delete-permanently=true
 show-directory-item-counts='always'
+# ATM 01/2019 (v3.26) breaks drag & drop and some other stuff.
+# This might change with Nautilus 3.30
+use-experimental-views=false
 
 [org/gnome/nautilus/list-view]
 default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'mime_type', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency']
