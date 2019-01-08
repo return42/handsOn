@@ -387,6 +387,9 @@ werden können.
     rstHeading "Einstellungen zum GNOME Dateiexplorer (aka. File, aka Nautilus)" section
     echo
     TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_nautilus_settings" root root 644
+    # FIXME: ich weiß nicht warum, aber ich muss bei mir die DB erst ganz löschen
+    # sonst werden ein paar Settings nicht in die DB übernommen ?!?!
+    rm /etc/dconf/db/site
     dconf update
 
     waitKEY

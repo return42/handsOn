@@ -1,5 +1,9 @@
 # -*- coding: utf-8; mode: conf -*-
 
+[org/gnome/shell]
+
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com', 'tracker-search-provider@sinnix.de', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'places-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com']
+
 # GNOME extension: window-switcher
 # --------------------------------
 #
@@ -20,14 +24,11 @@ app-icon-mode='both'
 #   dash-to-dock@micxgx.gmail.com
 #
 
-[/org/gnome/shell/extensions/dash-to-dock]
+[org/gnome/shell/extensions/dash-to-dock]
 apply-custom-theme=true
-background-color='#2e3436'
 click-action='cycle-windows'
-custom-theme-customize-running-dots=false
 dock-position='RIGHT'
 extend-height=false
-transparency-mode='FIXED'
 
 # GNOME extension: system-monitor
 # -------------------------------
