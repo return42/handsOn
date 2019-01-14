@@ -6,7 +6,7 @@
 # --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
 # --                             --  http://www.darmarIT.de
 # ----------------------------------------------------------------------------
-# Purpose:     install cannon MX860 printer/scanner
+# Purpose:     install boinc client
 # ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
