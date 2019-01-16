@@ -43,24 +43,37 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
-APACHE_SERVER_NAME=${APACHE_SERVER_NAME:-$(hostname)}
+SEAFILE_SERVER_NAME=${APACHE_SERVER_NAME:-$(hostname)}
 ORGANIZATION=${ORGANIZATION-myOrg}
+
+SEAFILE_SYSTEMD_UNITS="\
+  /etc/systemd/system/seafile.service  \
+  /etc/systemd/system/seahub.service  \
+"
+SEAFILE_CONFIGS="\
+  /home/seafile/conf/ccnet.conf \
+  /home/seafile/conf/seafdav.conf \
+  /home/seafile/conf/seafile.conf \
+  /home/seafile/conf/seahub_settings.py \
+"
 
 SEAFILE_VERSION="6.3.4"
 SEAFILE_PKG_URL="https://download.seadrive.org/seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz"
 
 SEAFILE_USER=seafile
 SEAFILE_HOME=/home/${SEAFILE_USER}
-#SEAFILE_PORT=xxxxx
+
 SEAFILE_BIND=127.0.0.1
-SEAFILE_PORT=48736
+SEAFILE_PORT=48736  # default 8082
+SEAHUB_PORT=48737   # default 8000
+
 SEAFILE_CONF_DIR=${SEAFILE_USER}/conf
 
 SEAFILE_SEND_MAILS="False"  # "True"
 SEAFILE_TIME_ZONE="CET"  # "UTC"
 
 # Apache Redirect
-SEAFILE_APACHE_URL="/seafile/"
+SEAFILE_APACHE_URL="/seafile"   # Apache ridirect for all the seafile components (SITE_ROOT)
 SEAFILE_APACHE_SITE=seafile
 SEAFILE_ID="$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 40 | head -n 1)"
 # FIXME: ich habe WebDAV erst mal deaktiviert (default)
@@ -68,7 +81,6 @@ SEAFILE_WEBDAV_URL="/seafile-dav"
 SEAFILE_WEBDAV_PORT=${SEAFILE_WEBDAV_PORT:-48762}
 
 SEAHUB_SECRET_KEY="$(cat /dev/urandom | tr -cd 'a-z0-9!@#$%^&*(\-_=+)' | fold -w 50 | head -n 1)"
-
 
 DEB_PCKG="\
  python2.7 libpython2.7 python-setuptools python-ldap python-urllib3 \
@@ -100,6 +112,8 @@ main(){
     rstHeading "Gogs / Go Git Service" part
 # ----------------------------------------------------------------------------
 
+    _usage="${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"
+
     case $1 in
 	--source-only)  ;;
         -h|--help) usage;;
@@ -109,25 +123,25 @@ main(){
             sudoOrExit
             case $2 in
                 server)  setup_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       usage "$_usage"; exit 42;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
                 server)  remove_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       usage "$_usage"; exit 42;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
-                server)  echo "not yet implemented"  ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                server)  activate_server  ;;
+                *)       usage "$_usage"; exit 42;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
-                server)  echo "not yet implemented"  ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                server)  deactivate_server  ;;
+                *)       usage "$_usage"; exit 42;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
@@ -182,8 +196,9 @@ EOF
 
 # ----------------------------------------------------------------------------
 install_seafile_server(){
-    rstHeading "Install Seafile (into user's HOME)" section
 # ----------------------------------------------------------------------------
+
+    rstHeading "Install Seafile (into user's HOME)" section
 
     local TAR="$(basename ${SEAFILE_PKG_URL})"
 
@@ -209,14 +224,75 @@ cd ${SEAFILE_HOME}/seafile-server
 tar -C ${SEAFILE_HOME} -xzf ${CACHE}/${TAR}
 EOF
 
-    pushd "${SEAFILE_HOME}/seafile-server-${SEAFILE_VERSION}" 2> /dev/null
-    sudo -H -u $SEAFILE_USER bash -i ./setup-seafile.sh auto -n localhost -i 127.0.0.1 -p 
-    popd 2> /dev/null
-    # TEMPLATES_InstallOrMerge "${GLANCES_CONF}" root root 644
+    # FIXME
+    #pushd "${SEAFILE_HOME}/seafile-server-${SEAFILE_VERSION}" 2> /dev/null
+    #sudo -H -u $SEAFILE_USER bash -i ./setup-seafile.sh auto -n localhost -i 127.0.0.1 -p 
+    #popd 2> /dev/null
+
+    rstHeading "Install Seafile config ..." section
+    for ITEM in "${SEAFILE_CONFIGS}"  ; do
+	TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
+    done
+
+    rstHeading "Install System-D Units ..." section
+    for ITEM in "${SEAFILE_SYSTEMD_UNITS"  ; do
+	TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
+    done
+
+    rstHeading "Apache Site mit ProxyPass einrichten" section
+    echo
+    a2enmod proxy_http
+    a2enmod rewrite
+    APACHE_install_site --eval ${SEAFILE_APACHE_SITE}
+
+    activate_server
+
+    rstBlock "Dienst ist eingerichtet ..."
+    rstBlock "  --> https://${APACHE_SERVER_NAME}${SEAFILE_APACHE_URL}"
     waitKEY
 }
 
 
+# ----------------------------------------------------------------------------
+activate_server(){
+    rstHeading "Aktivieren der Seafile Dienste" section
+# ----------------------------------------------------------------------------
+    echo ""
+
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+a2ensite ${SEAFILE_APACHE_SITE}
+systemctl force-reload apache2
+EOF
+
+    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
+	rstBlock "enable $ITEM ..."
+	echo
+	systemctl enable  $ITEM 2>&1  | prefix_stdout
+	systemctl restart $ITEM 2>&1  | prefix_stdout
+	systemctl status  $ITEM 2>&1  | prefix_stdout
+    done
+    waitKEY 10
+}
+
+# ----------------------------------------------------------------------------
+deactivate_server(){
+    rstHeading "De-Aktivieren der Seafile Dienste" section
+# ----------------------------------------------------------------------------
+    echo ""
+    TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
+systemctl ${SEAFILE_APACHE_SITE}
+systemctl force-reload apache2
+EOF
+
+    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
+	rstBlock "disable $ITEM ..."
+	echo
+	systemctl stop    $ITEM 2>&1  | prefix_stdout
+	systemctl disable $ITEM 2>&1  | prefix_stdout
+	systemctl status  $ITEM 2>&1  | prefix_stdout
+    done
+    waitKEY 10
+}
 
 # ----------------------------------------------------------------------------
 remove_server() {
@@ -227,12 +303,16 @@ remove_server() {
         return
     fi
 
-    # FIXME ....
-  
-    # deactivate_server
-    # rm -f "${SEAFILE_SYSTEMD_UNIT}"
-    # rm -f "${APACHE_SITES_AVAILABE}/${SEAFILE_APACHE_SITE}.conf"
-    # systemctl force-reload apache2
+    deactivate_server
+
+    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
+	rstBlock "delete $ITEM ..."
+	rm -f "${$ITEM}"
+    done
+
+    rstBlock "delete apache site: ${SEAFILE_APACHE_SITE}.conf ..."
+    rm -f "${APACHE_SITES_AVAILABE}/${SEAFILE_APACHE_SITE}.conf"
+    systemctl force-reload apache2
 
     rstHeading "Benutzer $SEAFILE_USER" section
     echo

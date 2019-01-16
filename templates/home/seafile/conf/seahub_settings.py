@@ -235,6 +235,8 @@ SITE_TITLE = 'Private Seafile'
 # on http://example.com/seahub/.
 
 SITE_ROOT = '${SEAFILE_APACHE_URL}'
+HTTP_SERVER_ROOT = 'https://${SEAFILE_SERVER_NAME}${SEAFILE_APACHE_URL}'
+FILE_SERVER_ROOT = 'https://${SEAFILE_SERVER_NAME}${SEAFILE_APACHE_URL}/seafhttp'
 
 # Max number of files when user upload file/folder.
 # Since version 6.0.4

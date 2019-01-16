@@ -1,0 +1,14 @@
+[Unit]
+Description=Seafile hub
+After=network.target seafile.service
+
+[Service]
+Type=forking
+# change start to start-fastcgi if you want to run fastcgi
+ExecStart=${SEAFILE_HOME}/seafile-server-latest/seahub.sh start
+ExecStop=${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
+User=seafile
+Group=seafile
+
+[Install]
+WantedBy=multi-user.target
