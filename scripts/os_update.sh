@@ -22,6 +22,7 @@ case "$(lsb_release -si)" in
 	apt-get dist-upgrade -y
 	apt-get autoclean -y
 	apt-get autoremove -y
+	"${SCRIPT_FOLDER}/vbox.sh" update
 	;;
 
 esac

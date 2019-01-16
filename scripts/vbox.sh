@@ -204,8 +204,19 @@ update_vbox(){
     rstHeading "Update VirtualBox (headless)"
 # ----------------------------------------------------------------------------
 
-    install_vbox_deb
+    local DEB="deb ${ORACLE_VBOX_APT_DEB} $(lsb_release -sc)"
+    local FNAME="$(stripHostnameFromUrl ${ORACLE_VBOX_APT_DEB})".list
+    local APT_SOURCE_NAME="${FNAME}"
+
+    if ! aptRepositoryExist "${DEB}" "${APT_SOURCE_NAME}" > /dev/null; then
+	rstBlock "APT-Source: '${DEB}' does not exists / no update needed"
+	return 0
+    fi
+    local FORCE_TIMEOUT=1
+    echo
+    apt-get install -y ${ORACLE_VBOX_PACKAGE} dkms
     installExtensionPack
+
     if [[ -d "/home/${VBOX_USER}" ]]; then
 	vbox_services status
     fi
