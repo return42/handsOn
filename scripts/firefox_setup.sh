@@ -167,9 +167,6 @@ Eine Deinstallation ist für die Anwender nicht möglich.
 
 ${BRed}.. hint::
 
-   Die Benutzer müssen die AddOns einmal deaktivieren und dann wieder
-   aktivieren.  Dann hat man auch die Icons in der Werkzeugleiste.
-
    Die AddOns sollten hier nun folgend nicht aus dem Cache installiert werden,
    wenn man sie updaten will (logisch).${_color_Off}"
 
