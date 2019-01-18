@@ -50,8 +50,14 @@ SEAFILE_SYSTEMD_UNITS="\
   /etc/systemd/system/seafile.service  \
   /etc/systemd/system/seahub.service  \
 "
+
+# HINT: die conf/ccnet.conf muss erst über das setup-seafile.sh erzeugt werden,
+#       das legt nämlich den P-Key (RSA) und berechnet dazu die "ID" (sha1) zu
+#       dem RSA P-Key (siehe SEAFILE_ID).
+
 SEAFILE_CONFIGS="\
   /home/seafile/conf/ccnet.conf \
+  /home/seafile/conf/gunicorn.conf \
   /home/seafile/conf/seafdav.conf \
   /home/seafile/conf/seafile.conf \
   /home/seafile/conf/seahub_settings.py \
@@ -65,6 +71,7 @@ SEAFILE_HOME=/home/${SEAFILE_USER}
 
 SEAFILE_BIND=127.0.0.1
 SEAFILE_PORT=48736  # default 8082
+
 SEAHUB_PORT=48737   # default 8000
 
 SEAFILE_CONF_DIR=${SEAFILE_USER}/conf
@@ -75,7 +82,7 @@ SEAFILE_TIME_ZONE="CET"  # "UTC"
 # Apache Redirect
 SEAFILE_APACHE_URL="/seafile"   # Apache ridirect for all the seafile components (SITE_ROOT)
 SEAFILE_APACHE_SITE=seafile
-SEAFILE_ID="$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 40 | head -n 1)"
+
 # FIXME: ich habe WebDAV erst mal deaktiviert (default)
 SEAFILE_WEBDAV_URL="/seafile-dav"
 SEAFILE_WEBDAV_PORT=${SEAFILE_WEBDAV_PORT:-48762}
@@ -92,12 +99,14 @@ DEB_PCKG="\
 usage(){
 # ----------------------------------------------------------------------------
 
+    # FIXME:
+    # $(basename $0) info
+
     [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
     cat <<EOF
 
 usage:
 
-  $(basename $0) info
   $(basename $0) install    [server]
   $(basename $0) remove     [server]
   $(basename $0) activate   [server]
@@ -109,7 +118,7 @@ EOF
 
 # ----------------------------------------------------------------------------
 main(){
-    rstHeading "Gogs / Go Git Service" part
+    rstHeading "Seafile Service" part
 # ----------------------------------------------------------------------------
 
     _usage="${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"
@@ -117,7 +126,7 @@ main(){
     case $1 in
 	--source-only)  ;;
         -h|--help) usage;;
-        info) less "${REPO_ROOT}/docs/gogs.rst" ;;
+        # info) less "${REPO_ROOT}/docs/seafile.rst" ;;
 
         install)
             sudoOrExit
@@ -147,7 +156,6 @@ main(){
     esac
 }
 
-
 # ----------------------------------------------------------------------------
 setup_server(){
     rstHeading "Installation Seafile"
@@ -167,6 +175,11 @@ folgt durchgeführt werden::
     if ! askYn "Soll Seafile installiert werden?"; then
         return 42
     fi
+
+    rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
+    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
+    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop
+    deactivate_server
 
     rstHeading "Benötigte System Pakete" section
     rstPkgList ${DEB_PCKG}
@@ -193,7 +206,6 @@ EOF
     waitKEY
 }
 
-
 # ----------------------------------------------------------------------------
 install_seafile_server(){
 # ----------------------------------------------------------------------------
@@ -219,31 +231,58 @@ EOF
 
     TEE_stderr <<EOF | sudo -H -u $SEAFILE_USER bash | prefix_stdout
 rm -rf ${SEAFILE_HOME}/seafile-server-*
-mkdir -p ${SEAFILE_HOME}/seafile-server
-cd ${SEAFILE_HOME}/seafile-server
 tar -C ${SEAFILE_HOME} -xzf ${CACHE}/${TAR}
 EOF
 
     # FIXME
-    #pushd "${SEAFILE_HOME}/seafile-server-${SEAFILE_VERSION}" 2> /dev/null
-    #sudo -H -u $SEAFILE_USER bash -i ./setup-seafile.sh auto -n localhost -i 127.0.0.1 -p 
-    #popd 2> /dev/null
+    pushd "${SEAFILE_HOME}/seafile-server-${SEAFILE_VERSION}" > /dev/null
+    TEE_stderr <<EOF |  sudo -H -u $SEAFILE_USER bash | prefix_stdout
+./setup-seafile.sh auto \
+    -n "${SEAFILE_SERVER_NAME}" \
+    -i "${SEAFILE_BIND}" \
+    -p "${SEAFILE_PORT}" \
+    -d "${SEAFILE_HOME}/seafile-data"
+EOF
+    popd > /dev/null
+    waitKEY
 
-    rstHeading "Install Seafile config ..." section
-    for ITEM in "${SEAFILE_CONFIGS}"  ; do
-	TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
+    rstHeading "Seafile config ..." section
+
+    SEAFILE_ID=$(sed -n 's/\s*ID\s*=\s*\([0-9a-z]*\)\s*$/\1/p' /home/seafile/conf/ccnet.conf)
+    rstBlock "ccnet ID = $SEAFILE_ID"
+    for ITEM in ${SEAFILE_CONFIGS[@]}; do
+        echo
+        TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
     done
+    waitKEY
+
+    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seafile.sh start
+    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seahub.sh start
+
+    rstBlock "Dienst wurde lokal eingerichtet ..."
+    rstBlock "  --> http://${SEAFILE_BIND}:${SEAHUB_PORT}"
+    waitKEY
+
+    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seahub.sh stop
+    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seafile.sh start
+    waitKEY
 
     rstHeading "Install System-D Units ..." section
-    for ITEM in "${SEAFILE_SYSTEMD_UNITS"  ; do
-	TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
+
+    for ITEM in ${SEAFILE_SYSTEMD_UNITS[@]}; do
+        echo
+        TEMPLATES_InstallOrMerge --eval "$ITEM"  root root 644
     done
+    waitKEY
 
     rstHeading "Apache Site mit ProxyPass einrichten" section
     echo
     a2enmod proxy_http
     a2enmod rewrite
     APACHE_install_site --eval ${SEAFILE_APACHE_SITE}
+
+
+
 
     activate_server
 
@@ -264,12 +303,12 @@ a2ensite ${SEAFILE_APACHE_SITE}
 systemctl force-reload apache2
 EOF
 
-    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
-	rstBlock "enable $ITEM ..."
+    for ITEM in ${SEAFILE_SYSTEMD_UNITS[@]}  ; do
+	rstBlock "enable $(basename "$ITEM") ..."
 	echo
-	systemctl enable  $ITEM 2>&1  | prefix_stdout
-	systemctl restart $ITEM 2>&1  | prefix_stdout
-	systemctl status  $ITEM 2>&1  | prefix_stdout
+	systemctl enable  $(basename "$ITEM") 2>&1  | prefix_stdout
+	systemctl restart $(basename "$ITEM") 2>&1  | prefix_stdout
+	systemctl status  $(basename "$ITEM") 2>&1  | prefix_stdout
     done
     waitKEY 10
 }
@@ -284,12 +323,12 @@ systemctl ${SEAFILE_APACHE_SITE}
 systemctl force-reload apache2
 EOF
 
-    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
-	rstBlock "disable $ITEM ..."
+    for ITEM in ${SEAFILE_SYSTEMD_UNITS[@]}  ; do
+	rstBlock "disable $(basename "$ITEM") ..."
 	echo
-	systemctl stop    $ITEM 2>&1  | prefix_stdout
-	systemctl disable $ITEM 2>&1  | prefix_stdout
-	systemctl status  $ITEM 2>&1  | prefix_stdout
+	systemctl stop    $(basename "$ITEM") 2>&1  | prefix_stdout
+	systemctl disable $(basename "$ITEM") 2>&1  | prefix_stdout
+	systemctl status  $(basename "$ITEM") 2>&1  | prefix_stdout
     done
     waitKEY 10
 }
@@ -303,11 +342,14 @@ remove_server() {
         return
     fi
 
+    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
+    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop
+
     deactivate_server
 
-    for ITEM in "${SEAFILE_SYSTEMD_UNITS}"  ; do
+    for ITEM in ${SEAFILE_SYSTEMD_UNITS[@]}; do
 	rstBlock "delete $ITEM ..."
-	rm -f "${$ITEM}"
+	rm -f "${ITEM}"
     done
 
     rstBlock "delete apache site: ${SEAFILE_APACHE_SITE}.conf ..."
@@ -316,6 +358,8 @@ remove_server() {
 
     rstHeading "Benutzer $SEAFILE_USER" section
     echo
+    # FIXME: ... hier muss noch eine Anfrage rein, ob der HOME Ordner wwirklich
+    # gelöscht werden soll  ... vorher aber DATENSICHERUNG!!!!!
     userdel -r -f "$SEAFILE_USER"
 }
 

@@ -3,7 +3,7 @@
 # Security settings
 # =================
 
-SECRET_KEY = "${SEAHUB_SECRET_KEY}"
+SECRET_KEY = '${SEAHUB_SECRET_KEY}'
 
 # For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = ['.example.com'].
 # Please refer https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts for details.
@@ -12,20 +12,20 @@ SECRET_KEY = "${SEAHUB_SECRET_KEY}"
 # User management options
 # =======================
 
-# Enalbe or disalbe registration on web. Default is `False`.
+# Enalbe or disalbe registration on web. Default is 'False'.
 ENABLE_SIGNUP = False
 
-# Activate or deactivate user when registration complete. Default is `True`.
-# If set to `False`, new users need to be activated by admin in admin panel.
+# Activate or deactivate user when registration complete. Default is 'True'.
+# If set to 'False', new users need to be activated by admin in admin panel.
 ACTIVATE_AFTER_REGISTRATION = False
 
-# Whether to send email when a system admin adding a new member. Default is `True`.
+# Whether to send email when a system admin adding a new member. Default is 'True'.
 SEND_EMAIL_ON_ADDING_SYSTEM_MEMBER = ${SEAFILE_SEND_MAILS}
 
-# Whether to send email when a system admin resetting a user's password. Default is `True`.
+# Whether to send email when a system admin resetting a user's password. Default is 'True'.
 SEND_EMAIL_ON_RESETTING_USER_PASSWD = ${SEAFILE_SEND_MAILS}
 
-# Send system admin notify email when user registration is complete. Default is `False`.
+# Send system admin notify email when user registration is complete. Default is 'False'.
 NOTIFY_ADMIN_AFTER_REGISTRATION = ${SEAFILE_SEND_MAILS}
 
 # Remember days for login. Default is 7
@@ -60,10 +60,10 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
-# Whether to save the session data on every request. Default is `False`
+# Whether to save the session data on every request. Default is 'False'
 SESSION_SAVE_EVERY_REQUEST = False
 
-# Whether enable personal wiki and group wiki. Default is `False`
+# Whether enable personal wiki and group wiki. Default is 'False'
 # Since 6.1.0 CE
 ENABLE_WIKI = True
 
@@ -78,7 +78,7 @@ ENABLE_WIKI = True
 # repo snapshot label feature
 # ===========================
 
-# Turn on this option to let users to add a label to a library snapshot. Default is `False`
+# Turn on this option to let users to add a label to a library snapshot. Default is 'False'
 ENABLE_REPO_SNAPSHOT_LABEL = False
 
 # Library options
@@ -110,7 +110,7 @@ SHARE_LINK_LOGIN_REQUIRED = True
 # enable water mark when view(not edit) file in web browser (since version 6.3.6)
 ENABLE_WATERMARK = True
 
-# Disable sync with any folder. Default is `False`
+# Disable sync with any folder. Default is 'False'
 # NOTE: since version 4.2.4
 DISABLE_SYNC_WITH_ANY_FOLDER = True
 
@@ -132,7 +132,7 @@ ENABLE_USER_CLEAN_TRASH = True
 # Options for online file preview
 # -------------------------------
 
-# Whether to use pdf.js to view pdf files online. Default is `True`,  you can turn it off.
+# Whether to use pdf.js to view pdf files online. Default is 'True',  you can turn it off.
 # NOTE: since version 1.4.
 USE_PDFJS = True
 
@@ -141,10 +141,10 @@ FILE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024
 
 # Extensions of previewed text files.
 # NOTE: since version 6.1.1
-TEXT_PREVIEW_EXT = """ac, am, bat, c, cc, cmake, cpp, cs, css, diff, el, h, html,
+TEXT_PREVIEW_EXT = '''ac, am, bat, c, cc, cmake, cpp, cs, css, diff, el, h, html,
 htm, java, js, json, less, make, org, php, pl, properties, py, rb,
 scala, script, sh, sql, txt, text, tex, vi, vim, xhtml, xml, log, csv,
-groovy, rst, patch, go"""
+groovy, rst, patch, go'''
 
 # Enable or disable thumbnails
 # NOTE: since version 4.0.2
@@ -172,7 +172,7 @@ THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
 # Cloud Mode
 # ==========
 
-# Enable cloude mode and hide `Organization` tab.
+# Enable cloude mode and hide 'Organization' tab.
 # CLOUD_MODE = True
 
 # Disable global address book
@@ -272,5 +272,5 @@ ENABLE_CHANGE_PASSWORD = False
 
 # Throtting whitelist used to disable throttle for certain IPs.
 # e.g. REST_FRAMEWORK_THROTTING_WHITELIST = ['127.0.0.1', '192.168.1.1']
-# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/deploy/deploy_with_nginx.html.
+# Please make sure 'REMOTE_ADDR' header is configured in Nginx conf according to https://manual.seafile.com/deploy/deploy_with_nginx.html.
 REST_FRAMEWORK_THROTTING_WHITELIST = []
