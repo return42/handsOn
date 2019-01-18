@@ -21,8 +21,8 @@ DEB_PCKG="firefox firefox-locale-de"
 MOZILLA_XPI_URL=(
 
     # Startpage.com
-    # FIXME: wird derzeit (Dez.2018) noch nicht im FFox angezeigt, warum?
-    "https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom.xpi"
+    # FIXME:  wird derzeit (Dez.2018) noch nicht im FFox angezeigt, warum?
+    "https://addons.mozilla.org/firefox/downloads/file/1180731/startpagecom.xpi"
 
     # DuckDuckGo
     "https://addons.mozilla.org/firefox/downloads/file/1122630/duckduckgo_privacy_essentials.xpi"
