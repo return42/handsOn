@@ -183,7 +183,7 @@ WSGI:
   installiert Apache-Modul für WSGI-Python3 plus ein virtualenv für welches auch
   ein 'update' Kommando gibt
 WAF:
-  installiert Apache-Modul für ModSecurity plius OWASP Profiele
+  Apache-Modul für ModSecurity plus OWASP Profile
 ACME:
   installiert ACME für Let's Encrypt (Zertifikat für HTTPS)
 EOF
