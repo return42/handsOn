@@ -177,8 +177,6 @@ folgt durchgeführt werden::
     fi
 
     rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
-    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
-    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop
     deactivate_server
 
     rstHeading "Benötigte System Pakete" section

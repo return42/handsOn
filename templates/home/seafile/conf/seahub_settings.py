@@ -216,12 +216,10 @@ TIME_ZONE = '${SEAFILE_TIME_ZONE}'
 LANGUAGE_CODE = 'en'
 
 # Custom language code choice.
-LANGUAGES = (
-    ('en', 'English'),
-    ('de-DE', 'Deutsch')
-    # ('zh-cn', '简体中文'),
-    # ('zh-tw', '繁體中文'),
-)
+# LANGUAGES = (
+#     ('en', 'English'),
+#     ('de-DE', 'Deutsch')
+# )
 
 # Set this to your website/company's name. This is contained in email
 # notifications and welcome message when user login for the first time.
@@ -236,7 +234,19 @@ SITE_TITLE = 'Private Seafile'
 
 SITE_ROOT = '${SEAFILE_APACHE_URL}'
 HTTP_SERVER_ROOT = 'https://${SEAFILE_SERVER_NAME}${SEAFILE_APACHE_URL}'
-FILE_SERVER_ROOT = 'https://${SEAFILE_SERVER_NAME}${SEAFILE_APACHE_URL}/seafhttp'
+
+# Note: The file server path MUST be /seafhttp because this path is hardcoded in
+# the clients.
+FILE_SERVER_ROOT = 'https://${SEAFILE_SERVER_NAME}/seafhttp'
+
+# Using Django to server static file. Set to `False` if deployed behide a web
+# server.
+SERVE_STATIC = False
+MEDIA_URL = '/seafmedia/'
+COMPRESS_URL = MEDIA_URL
+STATIC_URL = MEDIA_URL + 'assets/'
+LOGIN_URL = '${SEAFILE_APACHE_URL}/accounts/login/'
+LOGOUT_URL = '${SEAFILE_APACHE_URL}/accounts/logout/'
 
 # Max number of files when user upload file/folder.
 # Since version 6.0.4
