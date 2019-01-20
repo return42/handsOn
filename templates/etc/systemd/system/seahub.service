@@ -4,9 +4,8 @@ After=network.target seafile.service
 
 [Service]
 Type=forking
-# change start to start-fastcgi if you want to run fastcgi
-ExecStart=${SEAFILE_HOME}/seafile-server-latest/seahub.sh start
-ExecStop=${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
+ExecStart=/bin/bash -c 'source ${SEAFILE_HOME}/pyenv/bin/activate && ${SEAFILE_HOME}/seafile-server-latest/seahub.sh start'
+ExecStop=/bin/bash -c 'source ${SEAFILE_HOME}/pyenv/bin/activate && ${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop'
 User=seafile
 Group=seafile
 

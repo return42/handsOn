@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=${SEAFILE_HOME}/seafile-server-latest/seafile.sh start
-ExecStop=${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop
+ExecStart=/bin/bash -c 'source ${SEAFILE_HOME}/pyenv/bin/activate && ${SEAFILE_HOME}/seafile-server-latest/seafile.sh start'
+ExecStop=/bin/bash -c 'source ${SEAFILE_HOME}/pyenv/bin/activate && ${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop'
 User=seafile
 Group=seafile
 

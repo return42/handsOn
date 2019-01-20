@@ -237,6 +237,7 @@ EOF
     # FIXME
     pushd "${SEAFILE_HOME}/seafile-server-${SEAFILE_VERSION}" > /dev/null
     TEE_stderr <<EOF |  sudo -H -u $SEAFILE_USER bash | prefix_stdout
+source ${SEAFILE_HOME}/pyenv/bin/activate
 ./setup-seafile.sh auto \
     -n "${SEAFILE_SERVER_NAME}" \
     -i "${SEAFILE_BIND}" \
@@ -256,15 +257,15 @@ EOF
     done
     waitKEY
 
-    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seafile.sh start
-    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seahub.sh start
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seafile.sh start'
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seahub.sh start'
 
     rstBlock "Dienst wurde lokal eingerichtet ..."
     rstBlock "  --> http://${SEAFILE_BIND}:${SEAHUB_PORT}"
     waitKEY
 
-    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seahub.sh stop
-    sudo -H -u $SEAFILE_USER bash $SEAFILE_HOME/seafile-server-latest/seafile.sh start
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seahub.sh stop'
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seafile.sh stop'
     waitKEY
 
     rstHeading "Install System-D Units ..." section
@@ -280,9 +281,6 @@ EOF
     a2enmod proxy_http
     a2enmod rewrite
     APACHE_install_site --eval ${SEAFILE_APACHE_SITE}
-
-
-
 
     activate_server
 
@@ -341,9 +339,8 @@ remove_server() {
     if ! askYn "Soll Seafile deinstalliert werden?"; then
         return
     fi
-
-    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seahub.sh stop
-    sudo -H -u $SEAFILE_USER bash ${SEAFILE_HOME}/seafile-server-latest/seafile.sh stop
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seahub.sh stop'
+    sudo -H -u $SEAFILE_USER /bin/bash -c 'source ~/pyenv/bin/activate && ~/seafile-server-latest/seafile.sh stop'
 
     deactivate_server
 
