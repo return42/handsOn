@@ -100,6 +100,9 @@ main(){
             sudoOrExit
             update_vbox
 	    ;;
+	macOS)
+	    macOS
+	    ;;
 	deinstall-desktop)
             sudoOrExit
             deinstall_vbox
@@ -119,7 +122,7 @@ man installiert hierfür die Dienste mit denen GAST Systeme *headless*
 (ohne VBox auf einem Desktop) betrieben werden können.  Als Desktop
 Anwender wird man i.d.R. die Desktop-Variante bevorzugen."
             echo
-	    echo "usage $0 [[de]install[-service|-desktop]|update|README]"
+	    echo "usage $0 [[de]install[-service|-desktop]|update|macOS|README]"
             echo
             ;;
     esac
@@ -526,6 +529,38 @@ System neu gebootet werden"
 
     waitKEY
 }
+
+# ----------------------------------------------------------------------------
+macOS() {
+    rstHeading "Virtuelle Maschine für macOS vorbereiten" section
+    exitOnSudo
+# ----------------------------------------------------------------------------
+
+    # https://techsviewer.com/install-macos-sierra-virtualbox-windows/
+    # http://suzywu2014.github.io/ubuntu/2017/02/23/macos-sierra-virtualbox-vm-on-ubuntu
+
+    local vm_name
+
+    rstBlock "FIXME:  das ist alles noch nicht getestet !!!"
+    chooseOneMenu vm_name \
+	          "Auswahl einer VM: " \
+	          $(VBoxManage list -s vms | sed 's/^"\(.*\)".*$/\1/')
+
+    if ! askNy "Soll die VM ${BRed}${vm_name}${_color_Off} für macOS umgebaut werden?"; then
+	return 42
+    fi
+
+    TEE_stderr 0.5 <<EOF | bash | prefix_stdout
+VBoxManage modifyvm "$vm_name" --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff
+VBoxManage setextradata "$vm_name" VBoxInternal/Devices/efi/0/Config/DmiSystemProduct "iMac11,3"
+VBoxManage setextradata "$vm_name" VBoxInternal/Devices/efi/0/Config/DmiSystemVersion "1.0"
+VBoxManage setextradata "$vm_name" VBoxInternal/Devices/efi/0/Config/DmiBoardProduct "Iloveapple"
+VBoxManage setextradata "$vm_name" VBoxInternal/Devices/smc/0/Config/DeviceKey "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "$vm_name" VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC 1
+EOF
+    waitKEY
+}
+
 
 
 # ----------------------------------------------------------------------------
