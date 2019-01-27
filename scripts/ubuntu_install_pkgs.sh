@@ -63,6 +63,7 @@ OFFICE_PACKAGES="\
  firefox \
  thunderbird xul-ext-lightning \
  hunspell hunspell-de-de \
+ mu-pdf qpdfview \
 "
 # Remote Desktop (Server)
 # RDP_PACKAGES="\
@@ -219,6 +220,10 @@ install_base(){
 # ----------------------------------------------------------------------------
 
     aptInstallPackages ${BASE_PACKAGES}
+
+    rstHeading "Aktualisiere PCI-IDs (für lspci)" section
+    echo
+    update-pciids
 
     rstHeading "Default Einstellungen für Synaptic" section
     mkdir -p /root/.synaptic
