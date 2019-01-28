@@ -248,6 +248,8 @@ probe_LDAP_auth(){
     rstHeading "Test der LDAP basierenden Dienste"
 # ----------------------------------------------------------------------------
 
+    sudoOrExit
+
     rstHeading "getent" section
     echo
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout "OUT: "
@@ -710,6 +712,7 @@ main(){
             ;;
 
         probe)
+	    sudoOrExit
             probe_LDAP_server
             probe_LDAP_auth
             ;;
@@ -729,7 +732,7 @@ main(){
             # probe client config
             probe_LDAP_server
             info_msg "Erst mal einen Reboot machen, danach noch ein Test::"
-            info_msg "   $0 probe"
+            info_msg "   sudo $0 probe"
             ;;
         deinstall)
 	    sudoOrExit
