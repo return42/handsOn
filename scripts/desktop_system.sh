@@ -291,7 +291,9 @@ EOF
 
     rstHeading "gnome-shell: system-monitor" section
     echo
-    _origin="https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet.git"
+    # FIXME: interim solution as long as #469 is open
+    # [#469] https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet/issues/496
+    _origin="https://github.com/return42/gnome-shell-system-monitor-applet.git"
     _name="system-monitor@paradoxxx.zero.gmail.com"
     _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
     _ws="${CACHE}/${_name}"
