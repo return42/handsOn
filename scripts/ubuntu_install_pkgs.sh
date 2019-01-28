@@ -63,7 +63,7 @@ OFFICE_PACKAGES="\
  firefox \
  thunderbird xul-ext-lightning \
  hunspell hunspell-de-de \
- mu-pdf qpdfview \
+ mupdf qpdfview \
 "
 # Remote Desktop (Server)
 # RDP_PACKAGES="\
@@ -453,20 +453,30 @@ install_ukuu(){
     rstHeading "Installation Ukuu"
 # ----------------------------------------------------------------------------
 
-    # siehe http://www.teejeetech.in/p/ukuu-kernel-upgrade-utility.html
-    UKUU_PPA="ppa:teejee2008/ppa"
+    local _repo=https://github.com/return42/ukuu
+    local _ws="${CACHE}/ukuu"
 
-    rstBlock "Ukuu wird aus dem PPA $UKUU_PPA installiert."
+    rstBlock "Ukuu wird aus dem Reposetory $_repo installiert."
     if ! askYn "soll das Kernel-Tool Ukuu installiert werden?" 60; then
         return 42
     fi
 
-    add-apt-repository "$UKUU_PPA"
+    apt-get install libgee-0.8-dev libjson-glib-dev libvte-2.91-dev valac
 
-    rstHeading "Katalog aktualisieren" section
-    echo
-    apt-get update
-    apt-get install ukuu
+    cloneGitRepository "$_repo" ukuu
+
+    rstBlock "run make ..."
+    pushd "$_ws" > /dev/null
+    if [[ ! -z ${SUDO_USER} ]]; then
+        sudo -u ${SUDO_USER} make all | prefix_stdout
+    else
+       make all | prefix_stdout
+    fi
+
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
+make install
+EOF
+    popd > /dev/null
     waitKEY
 }
 
