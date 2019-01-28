@@ -83,7 +83,7 @@ usage:
 
 - GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
 - GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
-- GNOME-dconf: Anpassungen an de GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
+- GNOME-dconf: Anpassungen GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
 - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
 - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
