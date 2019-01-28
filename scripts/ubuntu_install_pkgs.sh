@@ -27,7 +27,7 @@ BASE_PACKAGES="\
  python \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
  git curl colordiff meld \
- gparted usbmount exfat-fuse exfat-utils smartmontools \
+ gparted exfat-fuse exfat-utils smartmontools \
  ncdu poppler-utils \
 "
 
