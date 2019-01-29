@@ -141,40 +141,41 @@ Thunderbird mit Lightning
 
 .. _Lightning: https://www.thunderbird.net/en-US/calendar/
 
-Als Kalender eignet sich Lightning_ im Thunderbird.  Seit Thunderbird 60 kann
-man das Lightning AddOn leider nicht mehr über die AddOn-Suche innerhalb des
-Thunderbirds installieren.  Ursache ist die veraltete Version 5.4 des AddOn in
-der AddOn-Suche.  Das AddOn wird allerdings noch weiterentwickelt, aktuellere
-Versionen und die Builds kann man bei mozilla.org recherchieren:
+Als Kalender eignet sich Lightning_ im Thunderbird.  Eine Zeit lang gab es dafür
+kein passendes AddOn für Thunderbird, inzwischen steht es aber wieder zur
+Verfügung und man installiert es am besten einfach im Thunderbird über:
 
-- Versionen: https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions
-- Builds: https://ftp.mozilla.org/pub/calendar/lightning/candidates/
+- :menuselection:`Extras --> Add-ons -->` und dort 'lightning' suchen
 
-Bei den Versionen scheint es erste *stable releases* zu geben.  Bei den Builds
-findet man allerdings nur die beta Versionen, was evtl. auch der Grund ist,
-warum es auch keine aktuelle Version in der AddOn-Suche des Thunderbird selbst
-gibt.  Wenn man sich da was aus den Builds installieren würde hätte das den
-Nachteil, dass man keine Updates dafür bekommt.  Auf den debian/ubuntu Systemen
-kann man ersatzweise mittels eines APT Pakets die XUL-Extension für den
-Lightning installieren::
+Wenn man schon dabei ist, kann man sich auch gleich das *LightningButton* AddOn
+noch installieren.  Das Plugin stellt Buttons für den Kalender im eMail Tab zur
+Verfügung, da gibt es auch einen sehr praktischen Button, der aus einer eMail
+einen Termin generieren kann.  Nachdem das Lightning_ im Thunderbird installiert
+wurde, muss dieser neu gestartet werden.  Danach kann man in die Ansicht zum
+Kalender wechseln, dort legt man einen neuen Kalender an:
 
-   sudo apt install thunderbird xul-ext-lightning
+- Neuen Kalender erstellen: :menuselection:`Im Netzwerk`
+- Format: :menuselection:`CalDAV`
+- Location: :menuselection:`https://<hostname>/radicale/<user>/<calendar-id>`
 
-Die Updates erfolgen dann über das normale Update des Systems.  Derzeit hat aber
-auch diese Lösung noch den Nachteil, dass es die XUL-Extension nur in der
-englischen Übersetzung gibt.  Da mir das aber dennoch als das kleinere Übel
-erscheint -- im Gegensatz zu manuellen Updates -- empfehle ich das APT Paket.
-In der englischen Version gehen die Dialoge dann wie folgt.
+Die ``<calendar-id>`` ist der komplette Name des Ordners, z.B.::
 
-- :menuselection:`Locate your calendar --> New Calendar ... --> On the Network`
+  https://<hostname>/radicale/<user>/d50d7ce1-e006-5b64-8f18-7ed4b2a64c7b/
 
-- Format :menuselection:`CalDAV`
+Damit ist der Kalender dann auch schon eingerichtet.  Noch ein paar Hinweise zum
+Lightning_ AddOn für den Thunderbird.
 
-- Location: ``https://<hostname>/radicale/<user>/<calendar-id>``
+- Auf den debian/ubuntu Systemen gibt es das Paket ``xul-ext-lightning``, in der
+  LTS 18.04 funktioniert das aber schon nicht mehr.  Ich würde darauf besser
+  ganz verzichten, denn wie man aktuell in der LTS 18.04 sieht, sind solche
+  Pakete nie so aktuell wie das Add-On, das man direkt über Thunderbird beziehen
+  kann.
 
-Die ``<calendar-id>`` ist der komplette Name des Ordners, z.B.:
+- Aktuelle Versionen und Builds kann man hier recherchieren:
 
-  ``https://<hostname>/radicale/<user>/d50d7ce1-e006-5b64-8f18-7ed4b2a64c7b/``
+  - Versionen: https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions
+  - Builds: https://ftp.mozilla.org/pub/calendar/lightning/candidates/
+
 
 
 Thunderbird mit CardBook
@@ -194,7 +195,7 @@ ersetzen kann.
 - CrdBook GitLab: https://gitlab.com/CardBook/CardBook
 
 Zur Installation: CardBook im AddOn Manager (Extensions) des Thunderbirds suchen
-und installieren.  Danach über "Tools --> CardBook" die Adressbuchverwaltung
+und installieren.  Danach über "Tools --> CardBook" die Adressbuch-Verwaltung
 öffnen.  Links oben gibt es ein Menü auf das man klicken muss, damit es sich
 öffnet, darin "Adressbuch --> Adressbuch hinzufügen" auswählen.::
 
