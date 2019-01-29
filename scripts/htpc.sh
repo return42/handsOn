@@ -14,7 +14,7 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 
 
 # Aktueller Stand:
-# Ubuntu 18.04:: Kodi am besten über snap installieren
+# Ubuntu 18.04:: inzwischen gibt es auch die PPAs
 # Ubuntu 16.04:: Man sollte sich zuerst das PPA installieren, danach das kodi
 # aus dem PPA installieren. Für VDR und Live TV sollte man dann die
 # $VDR_PACKAGES installieren. Danach VDR Server neu starten.
@@ -43,26 +43,30 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
-#KODI_PPA=ppa:team-xbmc/ppa
-KODI_PPA=ppa:team-xbmc/unstable
-#KODI_PPA=add-apt-repository ppa:team-xbmc/xbmc-nightly
-
 KODI_PACKAGES="\
  kodi kodi-pvr-vdr-vnsi \
 "
-# https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests
-MPV_PPA=ppa:mc3man/mpv-tests
+
+KODI_PPA="ppa:team-xbmc/ppa"
+#KODI_PPA="ppa:team-xbmc/unstable"
+#KODI_PPA="ppa:team-xbmc/xbmc-nightly"
+
 MPV_PACKAGES="\
  mpv \
 "
 
-VDR_PPA=ppa:aap/vdr
+# https://launchpad.net/~djcj/+archive/ubuntu/vapoursynth
+MPV_PPA="ppa:djcj/vapoursynth"
+# https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests
+#MPV_PPA="ppa:mc3man/mpv-tests"
+
 VDR_PACKAGES="\
  vdr\
  vdr-plugin-vnsiserver\
  vdr-plugin-streamdev-server\
  vdr-plugin-vdrmanager
 "
+VDR_PPA=ppa:yavdr/stable-vdr
 
 XINE_PACKAGES="\
   xine-ui xine-plugin vdr-plugin-xine \
@@ -81,6 +85,7 @@ main(){
 
         install)
             sudoOrExit
+	    apt-get -q install software-properties-common 2>/dev/null 1>/dev/null
             case $2 in
                 kodi) install_kodi
                       ;;
@@ -94,6 +99,7 @@ main(){
             ;;
         deinstall)
             sudoOrExit
+	    apt-get -q install software-properties-common 2>/dev/null 1>/dev/null
             case $2 in
                 kodi) deinstall_kodi
                       ;;
@@ -173,13 +179,9 @@ main(){
 
 info_kodi(){
     rstBlock "\
-Die Kodi Instanz aus den LTE Distributionen ist z.T. hoffnungslos
-veraltet und sollte -- falls bereits installiert -- zuerst
-deinstalliert werden.  Eine aktuelle Version des Kodi kann dann aus
-dem PPA ($KODI_PPA) installiert werden.
-
-Da es für Ubuntu 18:04 noch kein PPA gibt wird ersatzweise über snap
-installiert.  "
+Die Kodi Instanz aus den LTE Distributionen ist z.T. hoffnungslos veraltet und
+sollte -- falls bereits installiert -- zuerst deinstalliert werden.  Eine
+aktuelle Version des Kodi wird am besten aus dem PPA ($KODI_PPA) installiert."
 }
 
 install_kodi(){
@@ -188,31 +190,41 @@ install_kodi(){
     info_kodi
     waitKEY 10
 
-    systemctl stop kodi 2>&1  > /dev/null
-    aptPurgePackages 'kodi-.*'
+    deinstall_kodi
 
-    TITLE="Installation Voraussetzungen" aptInstallPackages software-properties-common snap
-
-    #rstHeading "Füge PPA hinzu" section
-    #echo
-    #add-apt-repository $KODI_PPA
-    #apt-get update
-
-    #TITLE="Installation Kodi (base)" aptInstallPackages ${KODI_PACKAGES}
-
-    rstHeading "snap kodi (edge)" section
+    rstHeading "Füge PPA hinzu" section
     echo
-    snap install kodi --edge
+    add-apt-repository -y $KODI_PPA
+    apt-get update
+
+    TITLE="Installation Kodi (base)" \
+	 aptInstallPackages ${KODI_PACKAGES}
+
+    # TITLE="Installation Voraussetzungen" \
+    #	 aptInstallPackages software-properties-common snap
+
+    # rstHeading "snap kodi (edge)" section
+    # echo
+    # snap install kodi --edge
 
 }
 
 deinstall_kodi(){
 
+    rstHeading "uninstall Kodi" section
+    echo
     systemctl stop kodi 2>&1  > /dev/null
-    TITLE="De-Installation kodi (base)" aptPurgePackages ${KODI_PACKAGES}
+
+    TITLE="De-Installation kodi (base)" \
+	 aptPurgePackages 'kodi-.*' ${KODI_PACKAGES}
+
     rstHeading "Entferne PPA" section
     echo
-    add-apt-repository --remove $KODI_PPA
+    add-apt-repository -y --remove $KODI_PPA
+    # Falls über snap installiert wurde (aus der Übergangszeit als es kein PPA
+    # gab)
+    snap remove kodi
+
 }
 
 custom_kodi(){
@@ -231,27 +243,38 @@ info_mpv(){
 Die MPV Instanz aus den LTE Distributionen ist hoffnungslos veraltet
 und sollte -- falls bereits installiert -- zuerst deinstalliert werden.
 Eine aktuelle Version des MPV kann dann aus dem PPA ($MPV_PPA)
-installiert werden."
+installiert werden.
+
+Es wird empfohlen die VapourSynth version zu installieren, damit haben auch
+Python Skripte Zugriff auf die Funktionen des MPV:
+
+  https://github.com/vapoursynth/vapoursynth
+"
 }
 
 install_mpv(){
     rstHeading "MPV (PPA)"
     info_mpv
     waitKEY 10
-    aptPurgePackages ${MPV_PACKAGES}
-    apt-get install software-properties-common
+
+    deinstall_mpv
+
     rstHeading "Füge PPA hinzu" section
     echo
-    add-apt-repository $MPV_PPA
+    add-apt-repository -y $MPV_PPA
     apt-get update
-    TITLE="Installation MPV" aptInstallPackages ${MPV_PACKAGES}
+    TITLE="Installation MPV" \
+	 aptInstallPackages ${MPV_PACKAGES}
 }
 
 deinstall_mpv(){
-    TITLE="De-Installation MPV" aptPurgePackages ${MPV_PACKAGES}
+    rstHeading "uninstall MPV" section
+    echo
+    TITLE="De-Installation MPV" \
+	 aptPurgePackages ${MPV_PACKAGES}
     rstHeading "Entferne PPA" section
     echo
-    add-apt-repository --remove $MPV_PPA
+    add-apt-repository -y --remove $MPV_PPA
 }
 
 custom_mpv(){
