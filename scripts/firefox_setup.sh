@@ -2,7 +2,7 @@
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
 # --                             --  File:     firefox_addons.sh
-# -- Copyright (C) 2018 darmarIT --  Author:   Markus Heiser
+# -- Copyright (C) 2019 darmarIT --  Author:   Markus Heiser
 # --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
 # --                             --  http://www.darmarIT.de
 # ----------------------------------------------------------------------------
@@ -21,63 +21,70 @@ DEB_PCKG="firefox firefox-locale-de"
 MOZILLA_XPI_URL=(
 
     # Startpage.com
-    # FIXME:  wird derzeit (Dez.2018) noch nicht im FFox angezeigt, warum?
-    "https://addons.mozilla.org/firefox/downloads/file/1180731/startpagecom.xpi"
+    # FIXME:  wird derzeit (Jan. 2019) noch nicht im FFox angezeigt, warum?
+    "https://addons.mozilla.org/firefox/downloads/latest/1180731/startpagecom/addon-1180731-latest.xpi"
 
     # DuckDuckGo
-    "https://addons.mozilla.org/firefox/downloads/file/1122630/duckduckgo_privacy_essentials.xpi"
+    # zuletzt verifiziert: 20190129
+    # Homepage: https://github.com/duckduckgo/duckduckgo-privacy-extension
+    #           https://addons.mozilla.org/de/firefox/addon/duckduckgo-for-firefox/
+     "https://addons.mozilla.org/firefox/downloads/file/1000998/duckduckgo_privacy_essentials.xpi"
 
     # Privacy Possum by cowlicks
-    # zuletzt verifiziert: 20181005
+    # zuletzt verifiziert: 20190129
     # Homepage: https://github.com/cowlicks/privacypossum
     #           https://addons.mozilla.org/de/firefox/addon/privacy-possum/
     "https://addons.mozilla.org/firefox/downloads/latest/privacy-possum/addon-1062944-latest.xpi"
 
     # CanvasBlocker
-    # zuletzt verifiziert: 20181005
+    # zuletzt verifiziert: 20190129
     # Homepage: https://github.com/kkapsner/CanvasBlocker/
     #           https://addons.mozilla.org/de/firefox/addon/canvasblocker/
     # https://addons.mozilla.org/firefox/downloads/file/1086424/canvasblocker-0.5.4-an+fx.xpi?src=dp-btn-primary
     "https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-1086424-latest.xpi"
 
     # Decentraleyes
-    # zuletzt verifiziert: 20181005
+    # zuletzt verifiziert: 20190129
     # Homepage: https://decentraleyes.org/
     #           https://addons.mozilla.org/de/firefox/addon/decentraleyes/
     # "https://addons.mozilla.org/firefox/downloads/file/1078499/decentraleyes-2.0.8-an+fx.xpi?src=dp-btn-primary"
     "https://addons.mozilla.org/firefox/downloads/latest/decentraleyes/addon-1078499-latest.xpi"
 
-    # disconnect
-    # wird nicht mehr gepflegt / einen Ersatz braucht man nicht
-    # "https://addons.mozilla.org/firefox/downloads/latest/disconnect/platform:2/addon-464050-latest.xpi"
-
     # Dict.cc Translation
-    # zuletzt verifiziert: 20181005
+    # zuletzt verifiziert: 20190129
+    # Homepage: https://github.com/Lusito/dict.cc-translation
+    #           https://addons.mozilla.org/de/firefox/addon/dictcc-translation/
     "https://addons.mozilla.org/firefox/downloads/latest/dictcc-translation/platform:2/addon-15095-latest.xpi"
 
     # Google search link fix
-    # zuletzt verifiziert: 20181005
-    # https://addons.mozilla.org/de/firefox/addon/google-search-link-fix
+    # zuletzt verifiziert: 20190129
+    # Homepage: https://github.com/palant/searchlinkfix
+    #           https://addons.mozilla.org/de/firefox/addon/google-search-link-fix
     "https://addons.mozilla.org/firefox/downloads/latest/google-search-link-fix/addon-351740-latest.xpi"
 
     # Privacy Settings
     # FIXME: könnte immernoch ganz praktisch sein .. aber braucht man das immernoch?
-    # https://addons.mozilla.org/de/firefox/addon/privacy-settings
+    # Homepage: https://add0n.com/privacy-settings.html
+    #           https://addons.mozilla.org/de/firefox/addon/privacy-settings
     "https://addons.mozilla.org/firefox/downloads/latest/privacy-settings/addon-627512-latest.xpi"
 
     # Disable Hello, Pocket & Reader+
     # https://addons.mozilla.org/en-US/firefox/addon/disable-hello-pocket-reader
     #"https://addons.mozilla.org/firefox/downloads/latest/620266/addon-620266-latest.xpi?src=search"
 
-    # "uBlock origin" https://github.com/gorhill/uBlock
-    # zuletzt verifiziert: 20181005
-    # "Adblock Plus" ist sch..., "Adblock Edge" wird nicht mehr weiter entwickelt.
+    # "uBlock origin"
+    # zuletzt verifiziert: 20190129
+    # Homepage: https://github.com/gorhill/uBlock
+    #           https://addons.mozilla.org/de/firefox/addon/ublock-origin/
     "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/addon-607454-latest.xpi"
 
-    # sqlite-manager http://lazierthanthou.github.io/sqlite-manager/
-    # Besser ist das Paket "sudo apt-get instal sqlitebrowser"
-    # "https://addons.mozilla.org/firefox/downloads/latest/5817/addon-5817-latest.xpi"
-
+    # SQLite Manager
+    # zuletzt verifiziert: 20190129
+    # Homepage: https://github.com/lunu-bounir/sqlite-manager/
+    #           https://addons.mozilla.org/de/firefox/addon/sqlite-manager-webext/
+    # Als Alternative zu einem PlugIn bietet sich auch das Paket ... an::
+    #           sudo apt-get install sqlitebrowser"
+    "https://addons.mozilla.org/firefox/downloads/latest/1157859/sqlite_manager/addon-1157859-latest.xpi"
 )
 
 
@@ -245,7 +252,7 @@ deinstallTorBrowser(){
     rstHeading "Deinstallation Tor-Browser (launcher)"
 # ----------------------------------------------------------------------------
 
-    # zuletzt verifiziert: 20181005
+    # zuletzt verifiziert: 20190129
     echo
     apt-get remove -y --purge torbrowser-launcher
     waitKEY 20
