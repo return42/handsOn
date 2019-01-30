@@ -23,7 +23,12 @@ BOINC_CLIENT="/usr/bin/boinc"
 
 # Here you can specify additional options to pass to the BOINC core client.
 # Type 'boinc --help' or 'man boinc' for a full summary of allowed options.
-#BOINC_OPTS="--allow_remote_gui_rpc"
+#
+# HINWEIS: "--allow_remote_gui_rpc" schaltet für alle Remotes frei und prüft nur
+#          das passwort.  Wenn die Option nicht gesetzt ist, können sich nur die
+#          Remotes aus der remote_hosts.cfg verbinden.
+#
+# BOINC_OPTS="--allow_remote_gui_rpc"
 BOINC_OPTS=""
 
 # Scheduling options
