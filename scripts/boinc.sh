@@ -127,7 +127,7 @@ deactivate_boinc_client () {
 systemctl stop boinc-client.service
 systemctl disable boinc-client.service
 EOF
-    if [ "$ENABLED" == "0" ]; then
+    if [ "$ENABLED" != "0" ]; then
         err_msg "BOINC client is already enabled see ENABLED in $BOINC_INIT_DEFAULTS"
       exit 1
     fi
