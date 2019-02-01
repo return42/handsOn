@@ -138,7 +138,15 @@ EOF
 install_boinc_manager(){
     rstHeading "Installation BOINC-Manager"
 # ----------------------------------------------------------------------------
+
     aptInstallPackages boinc-manager
+
+    rstBlock "\
+Aufgrund der Paketabhängigkeiten wird mit dem boinc-manager auch immer gleich
+der boinc-client Dienst installiert und in B etrieb genommen.  Dieser wird nun
+deaktiviert, da ja nur der Manager installiert werden sollte."
+
+    deactivate_boinc_client
 }
 
 # ----------------------------------------------------------------------------
