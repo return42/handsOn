@@ -5,3 +5,25 @@
 .. _SANE-Frontend: https://wiki.ubuntuusers.de/Scanner/Software/
 .. _`Simple Scan`: http://wiki.ubuntuusers.de/Simple_Scan
 .. _`pdfsandwich`: http://www.tobias-elze.de/pdfsandwich
+.. _`PDF`: https://en.wikipedia.org/wiki/PDF
+.. _`PPD (wiki)`: https://de.wikipedia.org/wiki/PostScript_Printer_Description
+.. _`CUPS (git)`: https://github.com/apple/cups
+.. _`CUPS (wiki)`: https://de.wikipedia.org/wiki/Common_Unix_Printing_System
+.. _`Canon UFR`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
+.. _`IPP (wiki)`: https://en.wikipedia.org/wiki/Internet_Printing_Protocol
+.. _`IPP 3D`: https://www.pwg.org/3d/index.html
+.. _IPP: https://www.pwg.org/ipp
+.. _`IPP Everywhere`: https://www.pwg.org/ipp/everywhere.html
+.. _`IANA IIP Registration`: https://www.iana.org/assignments/ipp-registrations
+.. _`IPP Version 2.0, 2.1, and 2.2`: https://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf
+
+.. _Zeroconf: https://de.wikipedia.org/wiki/Zeroconf
+.. _Avahi: https://wiki.archlinux.org/index.php/Avahi
+.. _`Avahi (git)`: https://github.com/lathiat/avahi
+.. _`Bonjour`: https://de.wikipedia.org/wiki/Bonjour_(Apple)
+.. _`Canon UFR-II`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
+.. _`Postscript (wiki)`: https://de.wikipedia.org/wiki/PostScript
+.. _MF623Cn: https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn
+.. _`MF631Cn`: https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn
+.. _AirPrint: https://wiki.debian.org/AirPrint
+.. _driverless-printing: https://wiki.debian.org/DriverlessPrinting

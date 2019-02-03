@@ -15,16 +15,4 @@ Themen
    :maxdepth: 1
 
    scan_linux
-
-ToDo
-====
-
-Dieser Artikel befindet sich noch im Aufbau, folgende Themen müssen noch
-ausgearbeitet werden:
-
-- lorem ...
-
-Verweise
-========
-
-lorem ...
+   cups_canon
