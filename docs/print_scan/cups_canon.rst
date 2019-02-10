@@ -146,8 +146,9 @@ Bei der Spezifikation des MF631Cn_ ist u.A. zu lesen: *Drucken von
 USB-Speicherstick (JPEG, TIFF, PDF)*. Dass lässt mich vermuten, dass es sich --
 im Gegensatz zum MF623Cn_ -- um einen PDF-fähigen Drucker handelt.
 
-Schaut man sich mal die gesamte Ausgabe an (:download:`MF623Cn-attributes.txt`),
-dann wird sieht man schon die ersten *Kinderkrankheiten*::
+Schaut man sich mal die gesamte Ausgabe an (:origin:`MF623Cn-attributes.txt
+<docs/print_scan/MF623Cn-attributes.txt>`), dann wird erkennt man schon die
+ersten *Kinderkrankheiten*::
 
   $ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
   ..
@@ -429,12 +430,11 @@ Den bekommt man über die ``F1`` Taste im :ref:`system-config-printer
 werden.  Deren Studium kann z.T. auch mal nützliche Informationen hervorbringen.
 Als ein Beispiel sei Commit :commit:`e3b130` gegeben.
 
-
 Ansonsten kann man auch nochmal den Verweisen folgen:
 
 - `Debugging Printer Problems (ubuntu-wiki)`_
 - `How to debug printing problems (fedora wiki)`_
-- `Drucker (archlinux wiki)`_
+- `Drucker (archlinux wiki)`_ & `CUPS (archlinux)`_ & `CUPS Troubleshooting (archlinux wiki)`_
 
 
 Debug ``cups-browsed.service``
@@ -445,9 +445,8 @@ Dienst eingestellt werden::
 
   /etc/cups/cups-browsed.conf
 
-Mit der folgenden Einstellung:
+Mit der folgenden Einstellung::
 
-::
    # Where should cups-browsed create its debug log file (if "DebugLogging file"
    # is set)?
 
@@ -466,11 +465,4 @@ wird ein Debug-LOG in der Datei ``/var/log/cups/cups-browsed_log`` angelegt,
 sobald der Dienst neu gestartet wurde::
 
   $ sudo systemctl restart cups-browsed
-
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXX FIXME XXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-- https://wiki.archlinux.org/index.php/CUPS/Troubleshooting
-- https://fedoraproject.org/wiki/How_to_debug_printing_problems
 

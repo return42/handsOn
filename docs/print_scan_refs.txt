@@ -9,6 +9,7 @@
 .. _`PPD (wiki)`: https://de.wikipedia.org/wiki/PostScript_Printer_Description
 .. _`CUPS (git)`: https://github.com/apple/cups
 .. _`CUPS (wiki)`: https://de.wikipedia.org/wiki/Common_Unix_Printing_System
+.. _`CUPS (archlinux)`: https://wiki.archlinux.org/index.php/CUPS
 .. _`Canon UFR`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
 .. _`IPP (wiki)`: https://en.wikipedia.org/wiki/Internet_Printing_Protocol
 .. _`IPP 3D`: https://www.pwg.org/3d/index.html
@@ -20,6 +21,7 @@
 .. _Zeroconf: https://de.wikipedia.org/wiki/Zeroconf
 .. _Avahi: https://wiki.archlinux.org/index.php/Avahi
 .. _`Drucker (archlinux wiki)`: https://wiki.archlinux.de/title/Drucker
+.. _`CUPS Troubleshooting (archlinux wiki)`: https://wiki.archlinux.org/index.php/CUPS/Troubleshooting
 .. _`Avahi (git)`: https://github.com/lathiat/avahi
 .. _`Bonjour`: https://de.wikipedia.org/wiki/Bonjour_(Apple)
 .. _`Canon UFR-II`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
