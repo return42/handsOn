@@ -43,6 +43,7 @@ extlinks['deb']       = ('http://packages.ubuntu.com/%s', '')
 #extlinks['rfc']      = ('https://tools.ietf.org/html/rfc%s', 'RFC ')
 extlinks['launchpad'] = ('https://launchpad.net/%s/trunk', 'launchpad')
 extlinks['origin']    = ('https://github.com/return42/handsOn/blob/master/%s', 'git')
+extlinks['commit']    = ('https://github.com/return42/handsOn/commit/%s', '#')
 
 html_search_language = 'de'
 html_theme           = "sphinx_rtd_theme"

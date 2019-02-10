@@ -19,6 +19,7 @@
 
 .. _Zeroconf: https://de.wikipedia.org/wiki/Zeroconf
 .. _Avahi: https://wiki.archlinux.org/index.php/Avahi
+.. _`Drucker (archlinux wiki)`: https://wiki.archlinux.de/title/Drucker
 .. _`Avahi (git)`: https://github.com/lathiat/avahi
 .. _`Bonjour`: https://de.wikipedia.org/wiki/Bonjour_(Apple)
 .. _`Canon UFR-II`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
@@ -27,3 +28,7 @@
 .. _`MF631Cn`: https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn
 .. _AirPrint: https://wiki.debian.org/AirPrint
 .. _driverless-printing: https://wiki.debian.org/DriverlessPrinting
+.. _`Debugging Printer Problems (ubuntu-wiki)`: https://wiki.ubuntu.com/DebuggingPrintingProblems
+.. _`How to debug printing problems (fedora wiki)`: https://fedoraproject.org/wiki/How_to_debug_printing_problems#Printing_troubleshooter
+
+.. _QR-Code (wiki): https://de.wikipedia.org/wiki/QR-Code

@@ -164,12 +164,22 @@ Druck-Ergebnisse liefert (oder evtl. gar nicht funktioniert).
 In einer Standard Installation des Ubuntu (18.04) resp. Debian Desktop Systems
 (mit CUPS) müsste einem der Drucker bereits im Setup unter "Geräte" angeboten
 werden.  Alternativ kann man dort auch auf *"Zusätzliche Druckereinstellungen"*
-drücken, womit dem das Programm ``system-config-printer`` gestartet wird.  In
-dem Fenster kann man *"Hinzufügen"* klicken und über einen geführten Dialog den
-Drucker einrichten.  Hier beim MF623Cn wurde der Drucker mit dem Treiber::
+drücken, womit dem das Programm ``system-config-printer`` gestartet wird.
 
-  "CNMF620C Series, driverless"
+.. _figure-cups-system-config-printer-gui:
 
+.. figure:: system-config-printer-gui.png
+   :alt:     Figure (system-config-printer-gui.png)
+   :align:   center
+   :target:  https://github.com/zdohnal/system-config-printer
+
+   ``system-config-printer-gui``: CUPS GUI für Drucker- Konfiguration und
+   Statusabfrage.
+
+
+In dem Fenster kann man *"Hinzufügen"* klicken und über einen geführten Dialog
+den Drucker einrichten.  Hier beim MF623Cn wurde der Drucker mit dem Treiber
+:origin:`CNMF620C Series, driverless <docs/print_scan/CNMF620C-Series.ppd>`
 eingerichtet.  Zu sehen im GNOME-Setup unter *Geräte/Drucker* und über einen
 Klick auf *Zahnrad / Drucker-Details*.  Den *driverless* Drucker sollte man mal
 testen.  Mit einem modernen PDF-fähigen Drucker (``application/pdf``) von einem
@@ -182,14 +192,15 @@ Fällen gibt es zwei Möglichkeiten.
  1. man installiert sich den **proprietären** Druckertreiber des Herstellers
     (sofern für Linux vorhanden) und schaut sich Druck-Ergebnisse damit an.
 
- 2. Man steigt etwas tiefer in die Materie CUPS_ (-Filter) und ggf. IPP_ ein und
-    richtet sich eine eigene `PPD (wiki)`_ ein.
+ 2. Man steigt etwas tiefer in die Materie `CUPS (wiki)`_ (-Filter) und
+    ggf. IPP_ ein und richtet sich eine eigene `PPD (wiki)`_ ein.
 
-Mit CUPS_ kann man für den physikalisch gleichen Drucker mehrere unabhängige
-Drucker-Setups einrichten, so kann man beispielsweise ein bestehendes Setup auch
-kopieren und dann verändern.  Diese Drucker-Setups sind aus Sicht der Programme
-voneinander unabhängige Drucker.  Man braucht also sein *funktionierendes* Setup
-erst mal nicht *anfassen*, wenn man mal was ausprobieren möchte.
+Mit `CUPS (wiki)`_ kann man für den physikalisch gleichen Drucker mehrere
+unabhängige Drucker-Setups einrichten, so kann man beispielsweise ein
+bestehendes Setup auch kopieren und dann verändern.  Diese Drucker-Setups sind
+aus Sicht der Programme voneinander unabhängige Drucker.  Man braucht also sein
+*funktionierendes* Setup erst mal nicht *anfassen*, wenn man mal was
+ausprobieren möchte.
 
 
 CUPS-Filter
@@ -216,10 +227,11 @@ Linux Treiber für die Drucker der MF620C Serie gibt es bei Canon:
 Dort sind auch Installationsanleitungen gegeben, diesen sollte man **nicht**
 folgen: **Die Linux Pakete von Canon sind schon immer dafür bekannt, diversen
 Schrott zu installieren**.  Das gilt sowohl für die Druck- als auch für die
-SCAN- Funktionen.  Es empfiehlt sich von daher nur die nötigsten Sachen (die
-binären Treiber und die PPDs) aus dem Treiber-Download zu installieren und das
-ist auch ganz einfach: In den ``linux-UFRII-drv-v{xxx}-uken.tar.gz`` Archiven gibt
-es zwei, max. drei Pakete die man installieren muss, mehr bitte nicht:
+SCAN- Funktionen (Bitte auch :ref:`driverless-vs-canon` lesen).  Es empfiehlt
+sich von daher nur die nötigsten Sachen (die binären Treiber und die PPDs) aus
+dem Treiber-Download zu installieren und das ist auch ganz einfach: In den
+``linux-UFRII-drv-v{xxx}-uken.tar.gz`` Archiven gibt es zwei, max. drei Pakete
+die man installieren muss, mehr bitte nicht:
 
 - ``cndrvcups-common_{4.10}-1_amd64.deb``
 - ``cndrvcups-ufr2-uk_{3.70}-1_amd64.deb``
@@ -256,6 +268,44 @@ Bei moderneren Druckern, sollte der Drucker nun automatisch gefunden und
 eingebunden werden.  Falls das bei dem eigenen Drucker noch nicht klappt, sollte
 man mit dem :ref:`printer_setup` fortfahren.
 
+- PPD für :origin:`Canon MF620C Series UFRII LT <docs/print_scan/MF623C-TWF19694.ppd>`
+
+
+.. _driverless-vs-canon:
+
+Druckbild Canon VS driverless
+=============================
+
+Hier ein Vergleich des Druckbilds des All-in-One Drucker MF623Cn_, einmal mit
+dem origignal :ref:`Canon URF-II Treiber <canon_urf>` (links) und dem
+:ref:`driverless-printing <printer_setup>` (rechts).
+
+.. _figure-MFC620-Series-driverless-vs-canon:
+
+.. figure:: MFC620-Series-driverless-vs-canon.png
+   :alt:     Figure (MFC620-Series-driverless-vs-canon.png)
+
+   Druckbild MFC620 Series: :ref:`Canon URF-II Treiber <canon_urf>` (links)
+   :ref:`driverless-printing <printer_setup>` (rechts)
+
+
+Das :ref:`oben gezeigt Bild <figure-MFC620-Series-driverless-vs-canon>` ist der
+rechte-obere Ausschnitt eines A4-Drucks, bei dem oben in der Ecke ein `QR-Code
+(wiki)`_ war.  Links sieht man, dass der Original Canon Treiber zwar bis in die
+Ecken druckt aber den QR-Code im PDF nur zerstört ausdruckt.  Bei genauerer
+Betrachtung (nicht im Bild zu erkennen) stellt man auch fest, dass der original
+Treiber nicht farbecht ist.
+
+Der Druck über den Drucker des :ref:`driverless-printing <printer_setup>` zeigt
+das Problem, dass er nicht bis in die Ecken drucken kann, dafür wird aber der
+QR-Code nicht zerstört (was manchmal wichtiger sein kann).  Bei genauerer
+Betrachtung (nicht im Bild zu erkennen) hat man den Eindruck, dass der Druck
+Farbecht ist, jedoch scheint die Auflösung und Farbtiefe nicht ganz ausgereizt
+zu werden.
+
+
+FIXME:  Ich mache erst mal hier weiter ... print_troubleshooting_
+
 
 
 .. _printer_setup:
@@ -264,15 +314,16 @@ Netzwerk-Drucker Setup
 ======================
 
 Im GNOME Setup unter "Geräte" kann man den Drucker einrichten, i.d.R. wir der
-Drucker im Netz gefunden, allerdings wählt GNOME (resp CUPS) die **driverless**
-PPA, bei mir (Ubuntu 18.04 und MF623Cn Drucker) war das::
+Drucker im Netz gefunden, i.d.R: wählt GNOME (resp CUPS) die **driverless** PPA,
+bei mir (Ubuntu 18.04 und MF623Cn Drucker) war das:
 
-  "CNMF620C Series, driverless"
+- :origin:`CNMF620C Series, driverless <docs/print_scan/CNMF620C-Series.ppd>`
 
 Über den Button *"Zusätzliche Druckereinstellungen"* kann man bestehende Setups
-ändern oder auch weitere Setups einrichten.  Die GUI (``system-config-printer``)
-ist die Druckerverwaltung des CUPS, alternativ kann man diese auch im WEB
-Browser unter http://localhost:631/printers über HTML Formulare vornehmen.
+ändern oder auch weitere Setups einrichten.  Die GUI
+(:ref:`system-config-printer <figure-cups-system-config-printer-gui>`) ist die
+Druckerverwaltung des CUPS, alternativ kann man diese auch im WEB Browser unter
+http://localhost:631/printers über HTML Formulare vornehmen.
 
 Über die HTML GUI können nur bestimmte Benutzer die Drucker verwalten. Nur die,
 die zur Gruppe lpadmin gehören::
@@ -298,7 +349,7 @@ mit ``ipp://`` beginnt).
 
 Nun muss man einen eindeutigen Druckernamen vergeben, diesen wird man später
 nicht mehr ändern können.  Ich verwende hierfür die genaue Typ-Bezeichnung plus
-die Seriennummer (``MF623C-TWF19694`)`.  Als Beschreibung wähle ich "Farb-Laser
+die Seriennummer (``MF623C-TWF19694``).  Als Beschreibung wähle ich "Farb-Laser
 A4 einseitig" und bei Ort gebe ich das Büro an (z.B. "Büro Markus").
 
 Danach kann man auf "Vorwärts" drücken, dann kommt ein Dialog "Treiber wird
@@ -365,19 +416,61 @@ Falls sich dennoch Fragen ergeben, am besten hier schauen:
 
 - https://wiki.debian.org/PrinterDriver/Canon/UFR-II
 
+
+.. _print_troubleshooting:
+
 Troubleshooting
 ===============
+
+Eine einfache und erste, schnelle Hilfe kann der *Troubleshooting Wizard* sein.
+Den bekommt man über die ``F1`` Taste im :ref:`system-config-printer
+<figure-cups-system-config-printer-gui>`.  Mit dem Tool können
+:origin:`troubleshoot.txt <docs/print_scan/troubleshoot.txt>` Dateien erzeugt
+werden.  Deren Studium kann z.T. auch mal nützliche Informationen hervorbringen.
+Als ein Beispiel sei Commit :commit:`e3b130` gegeben.
+
+
+Ansonsten kann man auch nochmal den Verweisen folgen:
+
+- `Debugging Printer Problems (ubuntu-wiki)`_
+- `How to debug printing problems (fedora wiki)`_
+- `Drucker (archlinux wiki)`_
+
+
+Debug ``cups-browsed.service``
+------------------------------
+
+Das Debug-LOG des Dienstes ``cups-browsed.service`` kann in der Config-Datei zum
+Dienst eingestellt werden::
+
+  /etc/cups/cups-browsed.conf
+
+Mit der folgenden Einstellung:
+
+::
+   # Where should cups-browsed create its debug log file (if "DebugLogging file"
+   # is set)?
+
+   LogDir /var/log/cups
+
+   # How should debug logging be done? Into the file
+   # /var/log/cups/cups-browsed_log ('file'), to stderr ('stderr'), or
+   # not at all ('none')?
+
+   DebugLogging file
+   # DebugLogging stderr
+   # DebugLogging file stderr
+   # DebugLogging none
+
+wird ein Debug-LOG in der Datei ``/var/log/cups/cups-browsed_log`` angelegt,
+sobald der Dienst neu gestartet wurde::
+
+  $ sudo systemctl restart cups-browsed
+
+
 
 XXXXXXXXXXXXXXXXXXXXXXXXX FIXME XXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 - https://wiki.archlinux.org/index.php/CUPS/Troubleshooting
 - https://fedoraproject.org/wiki/How_to_debug_printing_problems
-
-
-
-
-
-
-
-
 

@@ -1,0 +1,99 @@
+"/usr/share/cups/ipptool/get-printer-attributes.test":
+    Get-Printer-Attributes:
+        attributes-charset (charset) = utf-8
+        attributes-natural-language (naturalLanguage) = en
+        printer-uri (uri) = ipp://MF623Cn.local:80/
+    Get printer attributes using Get-Printer-Attributes                  [PASS]
+        RECEIVED: 6763 bytes in response
+        status-code = successful-ok (successful-ok)
+        attributes-charset (charset) = utf-8
+        attributes-natural-language (naturalLanguage) = de
+        printer-uri-supported (uri) = ipp://MF623Cn.local:80/ipp/print
+        uri-security-supported (keyword) = none
+        uri-authentication-supported (keyword) = none
+        printer-name (nameWithoutLanguage) = MF623Cn
+        printer-location (textWithoutLanguage) = Office (mhe)
+        printer-info (textWithoutLanguage) = 
+        printer-more-info (uri) = http://MF623Cn.local:80/airprint.html
+        printer-make-and-model (textWithoutLanguage) = CNMF620C Series
+        printer-state (enum) = idle
+        printer-state-reasons (keyword) = none
+        ipp-versions-supported (1setOf keyword) = 2.0,1.1,1.0
+        operations-supported (1setOf enum) = Print-Job,Validate-Job,Create-Job,Send-Document,Cancel-Job,Get-Job-Attributes,Get-Jobs,Get-Printer-Attributes,Identify-Printer
+        multiple-document-jobs-supported (boolean) = false
+        charset-configured (charset) = utf-8
+        charset-supported (charset) = utf-8
+        natural-language-configured (naturalLanguage) = de
+        generated-natural-language-supported (naturalLanguage) = de
+        document-format-default (mimeMediaType) = application/octet-stream
+        document-format-supported (1setOf mimeMediaType) = image/urf,application/octet-stream,image/jpeg,image/pwg-raster
+        printer-is-accepting-jobs (boolean) = true
+        queued-job-count (integer) = 0
+        color-supported (boolean) = true
+        pdl-override-supported (keyword) = attempted
+        printer-up-time (integer) = 2223
+        compression-supported (keyword) = none
+        pages-per-minute (integer) = 14
+        pages-per-minute-color (integer) = 14
+        copies-default (integer) = 1
+        copies-supported (rangeOfInteger) = 1-99
+        finishings-default (enum) = none
+        finishings-supported (enum) = none
+        media-default (keyword) = iso_a4_210x297mm
+        media-supported (1setOf keyword) = custom_min_83x127mm,custom_max_215.9x355.6mm,iso_a4_210x297mm,iso_a5_148x210mm,jis_b5_182x257mm,iso_dl_110x220mm,iso_c5_162x229mm,na_letter_8.5x11in,na_legal_8.5x14in,na_invoice_5.5x8.5in,na_executive_7.25x10.5in,na_foolscap_8.5x13in,om_officio_215.9x317.5mm,na_number-10_4.125x9.5in,na_monarch_3.875x7.5in,na_govt-letter_8x10in,na_govt-legal_8x13in,om_indian-legal_215x345mm,om_a-foolscap_205.7x337.8mm,na_oficio_8.5x13.4in,na_index-3x5_3x5in
+        orientation-requested-default (enum) = portrait
+        orientation-requested-supported (1setOf enum) = portrait,landscape
+        output-bin-default (keyword) = face-down
+        output-bin-supported (keyword) = face-down
+        print-quality-default (enum) = normal
+        print-quality-supported (enum) = normal
+        printer-resolution-default (resolution) = 300dpi
+        printer-resolution-supported (resolution) = 300dpi
+        sides-default (keyword) = one-sided
+        sides-supported (keyword) = one-sided
+        jpeg-k-octets-supported (rangeOfInteger) = 0-51200
+        jpeg-x-dimension-supported (rangeOfInteger) = 0-9600
+        jpeg-y-dimension-supported (rangeOfInteger) = 1-9600
+        landscape-orientation-requested-preferred (enum) = 4
+        marker-colors (1setOf nameWithoutLanguage) = #000000,#00FFFF,#FF00FF,#FFFF00
+        marker-high-levels (1setOf integer) = 100,100,100,100
+        marker-levels (1setOf integer) = 97,94,94,95
+        marker-low-levels (1setOf integer) = 7,7,7,7
+        marker-names (1setOf nameWithoutLanguage) = Canon CRG731 Black Toner,Canon CRG731 Cyan Toner,Canon CRG731 Magenta Toner,Canon CRG731 Yellow Toner
+        marker-types (1setOf keyword) = toner,toner,toner,toner
+        media-bottom-margin-supported (1setOf integer) = 500,1000
+        media-left-margin-supported (1setOf integer) = 500,1000
+        media-right-margin-supported (1setOf integer) = 500,1000
+        media-source-supported (1setOf keyword) = manual,tray-1,auto
+        media-top-margin-supported (1setOf integer) = 500,1000
+        media-type-supported (keyword) = auto
+        printer-icons (1setOf uri) = http://MF623Cn.local:80/ipp_image/128.png,http://MF623Cn.local:80/ipp_image/512.png
+        printer-uuid (uri) = urn:uuid:6d4ff0ce-6b11-11d8-8020-f48139e3ba8e
+        urf-supported (1setOf keyword) = CP1,PQ4,V1.4,MT1-2-3-4-5,OB10,RS300,W8,SRGB24,IS1-4
+        output-mode-default (keyword) = color
+        output-mode-supported (1setOf keyword) = color,monochrome,auto,auto-monochrome
+        pdf-versions-supported (keyword) = none
+        printer-dns-sd-name (nameWithoutLanguage) = Canon MF620C Series
+        media-size-supported (1setOf collection) = {x-dimension=21000 y-dimension=29700},{x-dimension=14800 y-dimension=21000},{x-dimension=18200 y-dimension=25700},{x-dimension=11000 y-dimension=22000},{x-dimension=16200 y-dimension=22900},{x-dimension=21590 y-dimension=27940},{x-dimension=21590 y-dimension=35560},{x-dimension=13970 y-dimension=21590},{x-dimension=18415 y-dimension=26670},{x-dimension=21590 y-dimension=33020},{x-dimension=21590 y-dimension=31750},{x-dimension=10477 y-dimension=24130},{x-dimension=9842 y-dimension=19050},{x-dimension=20320 y-dimension=25400},{x-dimension=20320 y-dimension=33020},{x-dimension=21500 y-dimension=34500},{x-dimension=20570 y-dimension=33780},{x-dimension=21590 y-dimension=34036},{x-dimension=7620 y-dimension=12700},{x-dimension=8300-21590 y-dimension=12700-35560}
+        media-col-default (collection) = {media-size={x-dimension=21000 y-dimension=29700} media-bottom-margin=500 media-left-margin=500 media-right-margin=500 media-top-margin=500 media-type=auto media-source=tray-1 media-source-properties={media-source-feed-direction=short-edge-first media-source-feed-orientation=3}}
+        printer-supply-info-uri (uri) = http://MF623Cn.local:80/airprint.html
+        print-color-mode-default (keyword) = auto
+        print-color-mode-supported (1setOf keyword) = auto,color,monochrome,auto-monochrome
+        printer-geo-location (uri) = geo:0.000000,0.000000
+        media-ready (keyword) = iso_a4_210x297mm
+        media-col-ready (collection) = {media-size={x-dimension=21000 y-dimension=29700} media-bottom-margin=500 media-left-margin=500 media-right-margin=500 media-top-margin=500 media-type=auto media-source=tray-1 media-source-properties={media-source-feed-direction=short-edge-first media-source-feed-orientation=3}}
+        page-ranges-supported (boolean) = false
+        multiple-operation-time-out (integer) = 60
+        print-scaling-default (keyword) = auto
+        print-scaling-supported (1setOf keyword) = auto,auto-fit,fill,fit,none
+        printer-kind (1setOf keyword) = document,envelope,postcard
+        identify-actions-default (keyword) = flash
+        identify-actions-supported (1setOf keyword) = flash,sound
+        print-content-optimize-default (keyword) = auto
+        print-content-optimize-supported (1setOf keyword) = auto,graphics,photo,text
+        ipp-features-supported (keyword) = airprint-1.4
+        printer-input-tray (1setOf octetString) = type=sheetFeedManual;mediafeed=-2;mediaxfeed=-2;maxcapacity=1;level=0;status=1;name=Stack\ Bypass;,type=sheetFeedAutoRemovableTray;mediafeed=29700;mediaxfeed=21000;maxcapacity=150;level=-3;status=0;name=Drawer1;,type=other;mediafeed=29700;mediaxfeed=21000;maxcapacity=150;level=-3;status=0;name=auto;
+        printer-output-tray (octetString) = type=unRemovableBin;maxcapacity=125;remaining=-2;status=0;name=Tray1;pagedelivery=faceDown;stackingorder=firstToLast;
+        printer-firmware-name (nameWithoutLanguage) = IPP
+        printer-firmware-string-version (textWithoutLanguage) = 03.05
+        printer-firmware-version (octetString) = 0305
