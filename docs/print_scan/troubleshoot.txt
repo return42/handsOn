@@ -1,18 +1,18 @@
-Page 1 (<troubleshoot.SchedulerNotRunning.SchedulerNotRunning object at 0x7f10db48ec18>):
+Page 1 (<troubleshoot.SchedulerNotRunning.SchedulerNotRunning object at 0x7f20609a3390>):
 {'cups_connection_failure': False}
-Page 2 (<troubleshoot.CheckLocalServerPublishing.CheckLocalServerPublishing object at 0x7f10db471d68>):
+Page 2 (<troubleshoot.CheckLocalServerPublishing.CheckLocalServerPublishing object at 0x7f20609a3fd0>):
 {'local_server_exporting_printers': False}
-Page 3 (<troubleshoot.ChoosePrinter.ChoosePrinter object at 0x7f10da707c88>):
+Page 3 (<troubleshoot.ChoosePrinter.ChoosePrinter object at 0x7f20609a3f98>):
 {'cups_dest': <cups.Dest MF623C-TWF19694 (default)>,
  'cups_instance': None,
  'cups_queue': 'MF623C-TWF19694',
  'cups_queue_listed': True}
-Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da784e80>):
-{'cups_device_uri_scheme': 'dnssd',
- 'cups_printer_dict': {'device-uri': 'dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e',
+Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f20609a9668>):
+{'cups_device_uri_scheme': 'ipp',
+ 'cups_printer_dict': {'device-uri': 'ipp://MF623Cn.local:80/ipp/print',
                        'printer-info': 'Farb-Laser A4',
                        'printer-is-shared': True,
-                       'printer-location': 'Office Markus',
+                       'printer-location': 'Büro Markus',
                        'printer-make-and-model': 'Canon MF620C Series UFRII LT',
                        'printer-state': 3,
                        'printer-state-message': '',
@@ -28,7 +28,7 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                  'copies-default': 1,
                                  'copies-supported': (1, 9999),
                                  'cups-version': '2.2.7',
-                                 'device-uri': 'dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e',
+                                 'device-uri': 'ipp://MF623Cn.local:80/ipp/print',
                                  'document-format-default': 'application/octet-stream',
                                  'document-format-supported': ['application/octet-stream',
                                                                'application/pdf',
@@ -137,13 +137,13 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                  'jpeg-k-octets-supported': (0, 46796588),
                                  'jpeg-x-dimension-supported': (0, 65535),
                                  'jpeg-y-dimension-supported': (1, 65535),
-                                 'marker-change-time': 1548953470,
+                                 'marker-change-time': 1549726969,
                                  'marker-colors': ['#000000',
                                                    '#00FFFF',
                                                    '#FF00FF',
                                                    '#FFFF00'],
                                  'marker-high-levels': [100, 100, 100, 100],
-                                 'marker-levels': [97, 95, 95, 96],
+                                 'marker-levels': [94, 90, 90, 92],
                                  'marker-low-levels': [7, 7, 7, 7],
                                  'marker-names': ['Canon CRG731 Black Toner',
                                                   'Canon CRG731 Cyan Toner',
@@ -378,13 +378,13 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                  'print-color-mode-default': 'color',
                                  'print-color-mode-supported': ['monochrome',
                                                                 'color'],
-                                 'print-quality-default': 4,
+                                 'print-quality-default': 3,
                                  'print-quality-supported': [4],
                                  'printer-commands': ['AutoConfigure',
                                                       'Clean',
                                                       'PrintSelfTestPage'],
                                  'printer-config-change-date-time': '(IPP_TAG_DATE)',
-                                 'printer-config-change-time': 1548951208,
+                                 'printer-config-change-time': 1549108992,
                                  'printer-current-time': '(IPP_TAG_DATE)',
                                  'printer-dns-sd-name': None,
                                  'printer-error-policy': 'retry-job',
@@ -400,7 +400,7 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                  'printer-is-accepting-jobs': True,
                                  'printer-is-shared': True,
                                  'printer-is-temporary': False,
-                                 'printer-location': 'Office Markus',
+                                 'printer-location': 'Büro Markus',
                                  'printer-make-and-model': 'Canon MF620C '
                                                            'Series UFRII LT',
                                  'printer-more-info': 'http://localhost/printers/MF623C-TWF19694',
@@ -422,13 +422,13 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                                                            'printer-organizational-unit'],
                                  'printer-state': 3,
                                  'printer-state-change-date-time': '(IPP_TAG_DATE)',
-                                 'printer-state-change-time': 1548953470,
+                                 'printer-state-change-time': 1549726969,
                                  'printer-state-message': '',
                                  'printer-state-reasons': ['none'],
                                  'printer-type': 8525004,
-                                 'printer-up-time': 1548953488,
+                                 'printer-up-time': 1549795605,
                                  'printer-uri-supported': ['ipp://localhost/printers/MF623C-TWF19694'],
-                                 'printer-uuid': 'urn:uuid:17e3894e-5f12-35e2-42a7-7ab9ab5600a2',
+                                 'printer-uuid': 'urn:uuid:b968e2c1-d137-37b9-52b2-6fd78d31a185',
                                  'pwg-raster-document-resolution-supported': [(600,
                                                                                600,
                                                                                3)],
@@ -450,14 +450,16 @@ Page 4 (<troubleshoot.CheckPrinterSanity.CheckPrinterSanity object at 0x7f10da78
                                                           'pending',
                                                           'pending-held',
                                                           'processing',
-                                                          'processing-stopped']}}
-Page 5 (<troubleshoot.CheckPPDSanity.CheckPPDSanity object at 0x7f10da784f28>):
+                                                          'processing-stopped']},
+ 'remote_server_name': 'MF623Cn.local',
+ 'remote_server_port': 80}
+Page 5 (<troubleshoot.CheckPPDSanity.CheckPPDSanity object at 0x7f20609a9ba8>):
 {'cups_printer_ppd_defaults': {'General': {'BindEdge': 'Left',
                                            'CNBarCodeMode': 'None',
-                                           'CNColorHalftone': 'Gradation',
+                                           'CNColorHalftone': 'Resolution',
                                            'CNColorMode': 'color',
                                            'CNDraftMode': 'False',
-                                           'CNHalftone': 'Gradation',
+                                           'CNHalftone': 'Resolution',
                                            'CNSpecialSmooth': 'Mode1',
                                            'Collate': 'Group',
                                            'InputSlot': 'Auto',
@@ -468,61 +470,22 @@ Page 5 (<troubleshoot.CheckPPDSanity.CheckPPDSanity object at 0x7f10da784f28>):
                                            'Resolution': '600'}},
  'cups_printer_ppd_valid': True,
  'missing_pkgs_and_exes': ([], [])}
-Page 6 (<troubleshoot.LocalOrRemote.LocalOrRemote object at 0x7f10db5df908>):
+Page 6 (<troubleshoot.LocalOrRemote.LocalOrRemote object at 0x7f20609a9c50>):
 {'printer_is_remote': False}
-Page 7 (<troubleshoot.DeviceListed.DeviceListed object at 0x7f10da7849e8>):
+Page 7 (<troubleshoot.DeviceListed.DeviceListed object at 0x7f20609a9630>):
 {'cups_device_dict': {'device-class': 'network',
                       'device-id': 'MFG:Canon;MDL:MF620C '
-                                   'Series;CMD:LIPSLX,CPCA;',
-                      'device-info': 'Canon MF620C Series',
+                                   'Series;CMD:PWGRaster,AppleRaster,URF,JPEG,PWG;',
+                      'device-info': 'Canon MF620C Series (driverless)',
                       'device-make-and-model': 'Canon MF620C Series'}}
-Page 8 (<troubleshoot.PrintTestPage.PrintTestPage object at 0x7f10dbfd05c0>):
-{'test_page_attempted': '31/Jan/2019:17:53:06 +0100',
- 'test_page_completions': [(15, 'Job completed.')],
- 'test_page_job_id': [15],
- 'test_page_job_status': [(True,
-                           15,
-                           'MF623C-TWF19694',
-                           'Test Page',
-                           'Completed',
-                           {'attributes-charset': 'utf-8',
-                            'attributes-natural-language': 'de-de',
-                            'date-time-at-completed': '(IPP_TAG_DATE)',
-                            'date-time-at-creation': '(IPP_TAG_DATE)',
-                            'date-time-at-processing': '(IPP_TAG_DATE)',
-                            'document-format': 'application/vnd.cups-pdf-banner',
-                            'document-format-detected': 'application/vnd.cups-pdf-banner',
-                            'job-hold-until': 'no-hold',
-                            'job-id': 15,
-                            'job-impressions-completed': 1,
-                            'job-k-octets': 1,
-                            'job-media-progress': 0,
-                            'job-media-sheets-completed': 1,
-                            'job-more-info': 'http://localhost/jobs/15',
-                            'job-preserved': True,
-                            'job-printer-state-message': 'src = bidiCommon.c, '
-                                                         'line = 1223, err = '
-                                                         '0¥nDEBUG: Connecting '
-                                                         'to MF623Cn.local:80',
-                            'job-printer-state-reasons': ['none'],
-                            'job-printer-up-time': 1548953619,
-                            'job-printer-uri': 'ipp://localhost/printers/MF623C-TWF19694',
-                            'job-priority': 50,
-                            'job-sheets': ['none', 'none'],
-                            'job-state': 9,
-                            'job-state-reasons': 'processing-to-stop-point',
-                            'job-uri': 'ipp://localhost/jobs/15',
-                            'job-uuid': 'urn:uuid:ec5c1e25-65a5-327e-591b-debe1ca3453d',
-                            'number-of-documents': 1,
-                            'printer-uri': 'ipp://localhost/printers/MF623C-TWF19694',
-                            'time-at-completed': 1548953607,
-                            'time-at-creation': 1548953586,
-                            'time-at-processing': 1548953586})],
- 'test_page_successful': True}
-Page 9 (<troubleshoot.PrinterStateReasons.PrinterStateReasons object at 0x7f10dbfd0198>):
-{'printer-state-message': 'Warte auf Auftragsabschluss.',
- 'printer-state-reasons': ['none']}
-Page 10 (<troubleshoot.Locale.Locale object at 0x7f10db5ed710>):
+Page 8 (<troubleshoot.CheckNetworkServerSanity.CheckNetworkServerSanity object at 0x7f2060989518>):
+{'remote_server_connect_ipp': True,
+ 'remote_server_cups': False,
+ 'remote_server_name_resolves': ['192.168.1.119',
+                                 '192.168.1.119',
+                                 '192.168.1.119'],
+ 'remote_server_try_connect': 'MF623Cn.local'}
+Page 9 (<troubleshoot.Locale.Locale object at 0x7f2074b48710>):
 {'printer_page_size': 'A4',
  'system_locale_lang': None,
  'user_locale_ctype': 'de_DE',
