@@ -2,12 +2,15 @@
 # -*- coding: utf-8; mode: sh -*-
 # ----------------------------------------------------------------------------
 # --                             --  File:     boinc.sh
-# -- Copyright (C) 2018 darmarIT --  Author:   Markus Heiser
+# -- Copyright (C) 2019 darmarIT --  Author:   Markus Heiser
 # --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
 # --                             --  http://www.darmarIT.de
 # ----------------------------------------------------------------------------
 # Purpose:     install boinc client
 # ----------------------------------------------------------------------------
+
+# Rosetta@home  : https://boinc.bakerlab.org/rosetta
+# Planet 3DNow! : https://boinc.bakerlab.org/rosetta/team_display.php?teamid=750
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
@@ -143,7 +146,7 @@ install_boinc_manager(){
 
     rstBlock "\
 Aufgrund der Paketabhängigkeiten wird mit dem boinc-manager auch immer gleich
-der boinc-client Dienst installiert und in B etrieb genommen.  Dieser wird nun
+der boinc-client Dienst installiert und in-Betrieb genommen.  Dieser wird nun
 deaktiviert, da ja nur der Manager installiert werden sollte."
 
     deactivate_boinc_client
@@ -187,8 +190,8 @@ EOF
 Die Installation des BOINC Dienst (boinc-client) ist etwas durcheinander. Es
 werden sowohl die System-D Unit 'boinc-client.service' als auch das System-V
 init.d-Skript (/etc/init.d/boinc-client) installiert.  Zumindest wenn ein
-/etc/init.d Ordner existiert, was auf den meisten Systemen der Fall sein
-dürfte. Lediglich das System-V init.d-Skript liest das init.d-Setup in der Datei
+/etc/init.d Ordner existiert, was auf den meisten Systemen der Fall sein dürfte.
+Lediglich das System-V init.d-Skript liest das init.d-Setup in der Datei
 /etc/default/boinc-client aus. Die System-D Unit 'boinc-client.service'
 ignoriert das init.d-Setup (in /etc/default/boinc-client) [1].
 
@@ -206,8 +209,8 @@ ${BYellow}
     $ sudo systemctl daemon-reload
 ${_color_Off}
 Wenn es keine System-D Unit für den boinc-client gibt, wird über das System-D
-mit dem 'systemd-sysv-generator' [2] das init.d-Skript automatisch als Dienst
-(System-D Unit) angeboten, dieses wertet dann auch wieder das init.d-Setup aus::
+mit dem 'systemd-sysv-generator' [2] das init.d-Skript als generischer Dienst
+(System-D Unit) angeboten, dieser wertet dann auch wieder das init.d-Setup aus::
 ${BYellow}
     $ systemctl start boinc-client.service
     $ systemctl status boinc-client.service
