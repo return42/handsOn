@@ -536,7 +536,7 @@ TODO: ``/etc/cups/cups-files.conf`` *FileDevice Yes*::
   #FileDevice No
   FileDevice Yes
 
-Kommando ``lpinfo`` listet die dem CUPS-Server bekannten verfügbaren Geräte oder
+Kommando :man:`lpinfo` listet die dem CUPS-Server bekannten verfügbaren Geräte oder
 Treiber auf::
 
   $  lpinfo -v
@@ -552,6 +552,178 @@ Treiber auf::
   network socket://192.168.1.119
   network ipp://MF623Cn.local:80/ipp/print
 
+
+Kommando :man:`pdfinfo` auf die 7. bis 8. Seite des PDF::
+
+  $ pdfinfo -f 7 -l 8 ~/Downloads/QR-Code-Test.pdf
+  Tagged:         no
+  UserProperties: no
+  Suspects:       no
+  Form:           none
+  JavaScript:     no
+  Pages:          8
+  Encrypted:      no
+  Page    7 size: 595.28 x 841.89 pts (A4)
+  Page    7 rot:  0
+  Page    8 size: 595.28 x 841.89 pts (A4)
+  Page    8 rot:  0
+  File size:      835779 bytes
+  Optimized:      no
+  PDF version:    1.4
+
+Kommando :man:`lpstat`::
+
+  $ lpstat -p
+  Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:39:23 CET
+  Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:32:23 CET
+
+
+Mit dem Kommando :man:`cupsfilter` und der Option ``--list-filters`` können die
+verwendeten Filter angezeigt werden::
+
+  $ /usr/sbin/cupsfilter --list-filters -m printer/MF623C-TWF19694 ~/Downloads/QR-Code-Test.pdf
+  pdftopdf
+  pdftops
+
+Mit der Option ``-m printer/MF623C-TWF19694`` wird als Zieldatei-Typ das
+Drucker-Setup des ``MF623C-TWF19694`` gewählt.  Der Quelldatei-Typ kann optional
+über ``-i MIME/Typ`` angegeben oder automatisch erkannt werden (hier wurde eine
+PDF Datei erkannt).
+
+Mit dem folgenden Kommando wird *Seite 8* gedruckt (die letzte Seite in dem
+PDF Beispiel)  ::
+
+  $ /usr/sbin/cupsfilter -m printer/MF623C-TWF19694 -p /etc/cups/ppd/MF623C-TWF19694.ppd \
+       -o page-ranges=8 \
+       ~/Downloads/QR-Code-Test.pdf  > ~/Downloads/QR-Code-Test-P8-URFII.ps
+  DEBUG: argv[0]="cupsfilter"
+  DEBUG: argv[1]="1"
+  DEBUG: argv[2]="markus"
+  DEBUG: argv[3]="QR-Code-Test.pdf"
+  DEBUG: argv[4]="1"
+  DEBUG: argv[5]="page-ranges=8"
+  DEBUG: argv[6]="/home/markus/Downloads/QR-Code-Test.pdf"
+  DEBUG: envp[0]="<CFProcessPath>"
+  DEBUG: envp[1]="CONTENT_TYPE=application/pdf"
+  DEBUG: envp[2]="CUPS_DATADIR=/usr/share/cups"
+  DEBUG: envp[3]="CUPS_FONTPATH=/usr/share/cups/fonts"
+  DEBUG: envp[4]="CUPS_SERVERBIN=/usr/lib/cups"
+  DEBUG: envp[5]="CUPS_SERVERROOT=/etc/cups"
+  DEBUG: envp[6]="LANG=de_DE.UTF8"
+  DEBUG: envp[7]="PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin"
+  DEBUG: envp[8]="PPD=/etc/cups/ppd/MF623C-TWF19694.ppd"
+  DEBUG: envp[9]="PRINTER_INFO=cupsfilter"
+  DEBUG: envp[10]="PRINTER_LOCATION=Unknown"
+  DEBUG: envp[11]="PRINTER=cupsfilter"
+  DEBUG: envp[12]="RIP_MAX_CACHE=128m"
+  DEBUG: envp[13]="USER=markus"
+  DEBUG: envp[14]="CHARSET=utf-8"
+  DEBUG: envp[15]="FINAL_CONTENT_TYPE=application/vnd.cups-postscript"
+  INFO: pdftopdf (PID 8688) started.
+  INFO: pdftops (PID 8689) started.
+  DEBUG: pdftops - copying to temp print file "/tmp/021f15c6a591b"
+  DEBUG: pdftopdf: No PPD file specified, could not determine whether to log pages or not, so turned off page logging.
+  INFO: pdftopdf (PID 8688) exited with no errors.
+  DEBUG: Printer make and model: 
+  DEBUG: Running command line for pstops: pstops 1 markus QR-Code-Test.pdf 1 
+  DEBUG: Using image rendering resolution 300 dpi
+  DEBUG: Running command line for gs: gs -q -dNOPAUSE -dBATCH -dSAFER -dNOMEDIAATTRS -sDEVICE=ps2write -dShowAcroForm -sOUTPUTFILE=%stdout -dLanguageLevel=3 -r300 -dCompressFonts=false -dNoT3CCITT -dNOINTERPOLATE -c 'save pop' -f /tmp/021f15c6a591b
+  DEBUG: Started filter gs (PID 8690)
+  DEBUG: Started post-processing (PID 8691)
+  DEBUG: Started filter pstops (PID 8692)
+  DEBUG: slow_collate=0, slow_duplex=0, slow_order=0
+  DEBUG: Before copy_comments - %!PS-Adobe-3.0
+  DEBUG: %!PS-Adobe-3.0
+  DEBUG: %%BoundingBox: 0 0 596 842
+  DEBUG: %%HiResBoundingBox: 0 0 596.00 842.00
+  DEBUG: %%Creator: GPL Ghostscript 926 (ps2write)
+  DEBUG: %%LanguageLevel: 2
+  DEBUG: %%CreationDate: D:20190211175450+01'00'
+  DEBUG: %%Pages: 1
+  DEBUG: %%EndComments
+  DEBUG: Before copy_prolog - %%BeginProlog
+  DEBUG: Adding Setup section for option PostScript code
+  DEBUG: Before copy_setup - %%BeginSetup
+  DEBUG: Before page loop - %%Page: 1 1
+  DEBUG: Copying page 1...
+  PAGE: 1 1
+  DEBUG: pagew = 576.0, pagel = 720.0
+  DEBUG: bboxx = 0, bboxy = 0, bboxw = 612, bboxl = 792
+  DEBUG: PageLeft = 18.0, PageRight = 594.0
+  DEBUG: PageTop = 756.0, PageBottom = 36.0
+  DEBUG: PageWidth = 612.0, PageLength = 792.0
+  DEBUG: PID 8690 (gs) exited with no errors.
+  DEBUG: Wrote 1 pages...
+  DEBUG: PID 8691 (Post-processing) exited with no errors.
+  DEBUG: PID 8692 (pstops) exited with no errors.
+  INFO: pdftops (PID 8689) exited with no errors.
+
+Hier nochmal das gleiche Kommando für den driverless Drucker::
+
+  $ /usr/sbin/cupsfilter -m printer/CNMF620C-Series -p /etc/cups/ppd/CNMF620C-Series.ppd \
+       -o page-ranges=8 \
+       ~/Downloads/QR-Code-Test.pdf  > ~/Downloads/QR-Code-Test-P8-driverles.ps
+  DEBUG: argv[0]="cupsfilter"
+  DEBUG: argv[1]="1"
+  DEBUG: argv[2]="markus"
+  DEBUG: argv[3]="QR-Code-Test.pdf"
+  DEBUG: argv[4]="1"
+  DEBUG: argv[5]="page-ranges=8"
+  DEBUG: argv[6]="/home/markus/Downloads/QR-Code-Test.pdf"
+  DEBUG: envp[0]="<CFProcessPath>"
+  DEBUG: envp[1]="CONTENT_TYPE=application/pdf"
+  DEBUG: envp[2]="CUPS_DATADIR=/usr/share/cups"
+  DEBUG: envp[3]="CUPS_FONTPATH=/usr/share/cups/fonts"
+  DEBUG: envp[4]="CUPS_SERVERBIN=/usr/lib/cups"
+  DEBUG: envp[5]="CUPS_SERVERROOT=/etc/cups"
+  DEBUG: envp[6]="LANG=de_DE.UTF8"
+  DEBUG: envp[7]="PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin"
+  DEBUG: envp[8]="PPD=/etc/cups/ppd/CNMF620C-Series.ppd"
+  DEBUG: envp[9]="PRINTER_INFO=cupsfilter"
+  DEBUG: envp[10]="PRINTER_LOCATION=Unknown"
+  DEBUG: envp[11]="PRINTER=cupsfilter"
+  DEBUG: envp[12]="RIP_MAX_CACHE=128m"
+  DEBUG: envp[13]="USER=markus"
+  DEBUG: envp[14]="CHARSET=utf-8"
+  DEBUG: envp[15]="FINAL_CONTENT_TYPE=application/vnd.cups-postscript"
+  INFO: pdftopdf (PID 8812) started.
+  INFO: pdftops (PID 8813) started.
+  DEBUG: pdftops - copying to temp print file "/tmp/0226d5c6a4932"
+  DEBUG: pdftopdf: No PPD file specified, could not determine whether to log pages or not, so turned off page logging.
+  DEBUG: Printer make and model: 
+  DEBUG: Running command line for pstops: pstops 1 markus QR-Code-Test.pdf 1 
+  DEBUG: Using image rendering resolution 300 dpi
+  DEBUG: Running command line for gs: gs -q -dNOPAUSE -dBATCH -dSAFER -dNOMEDIAATTRS -sDEVICE=ps2write -dShowAcroForm -sOUTPUTFILE=%stdout -dLanguageLevel=3 -r300 -dCompressFonts=false -dNoT3CCITT -dNOINTERPOLATE -c 'save pop' -f /tmp/0226d5c6a4932
+  INFO: pdftopdf (PID 8812) exited with no errors.
+  DEBUG: Started filter gs (PID 8814)
+  DEBUG: Started post-processing (PID 8815)
+  DEBUG: Started filter pstops (PID 8816)
+  DEBUG: slow_collate=0, slow_duplex=0, slow_order=0
+  DEBUG: Before copy_comments - %!PS-Adobe-3.0
+  DEBUG: %!PS-Adobe-3.0
+  DEBUG: %%BoundingBox: 0 0 596 842
+  DEBUG: %%HiResBoundingBox: 0 0 596.00 842.00
+  DEBUG: %%Creator: GPL Ghostscript 926 (ps2write)
+  DEBUG: %%LanguageLevel: 2
+  DEBUG: %%CreationDate: D:20190211175817+01'00'
+  DEBUG: %%Pages: 1
+  DEBUG: %%EndComments
+  DEBUG: Before copy_prolog - %%BeginProlog
+  DEBUG: Adding Setup section for option PostScript code
+  DEBUG: Before copy_setup - %%BeginSetup
+  DEBUG: Before page loop - %%Page: 1 1
+  DEBUG: Copying page 1...
+  PAGE: 1 1
+  DEBUG: pagew = 576.0, pagel = 720.0
+  DEBUG: bboxx = 0, bboxy = 0, bboxw = 612, bboxl = 792
+  DEBUG: PageLeft = 18.0, PageRight = 594.0
+  DEBUG: PageTop = 756.0, PageBottom = 36.0
+  DEBUG: PageWidth = 612.0, PageLength = 792.0
+  DEBUG: PID 8814 (gs) exited with no errors.
+  DEBUG: Wrote 1 pages...
+  DEBUG: PID 8815 (Post-processing) exited with no errors.
+  DEBUG: PID 8816 (pstops) exited with no errors.
+  INFO: pdftops (PID 8813) exited with no errors.
 
 
 CUPS Server debug
