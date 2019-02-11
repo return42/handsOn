@@ -221,10 +221,12 @@ aus Sicht der Programme voneinander unabhängige Drucker.  Man braucht also sein
 *funktionierendes* Setup erst mal nicht *anfassen*, wenn man mal was
 ausprobieren möchte.
 
+- `driverless-printing CUPS`_
 - Thread zu IPP: https://lists.debian.org/debian-printing/2016/12/msg00160.html
 - `IPP Everywhere™ Self-Certified Printers <http://www.pwg.org/dynamo/eveprinters.php>`_
 - `AirPrint Drucker <https://support.apple.com/en-us/HT201311>`_
-
+- `Writing your own CUPS printer driver in 100 lines of Python
+  <https://behind.pretix.eu/2018/01/20/cups-driver/>`_
 
 .. _canon_urf:
 
@@ -317,6 +319,38 @@ Betrachtung (nicht im Bild zu erkennen) hat man den Eindruck, dass der Druck
 Farbecht ist, jedoch scheint die Auflösung und Farbtiefe nicht ganz ausgereizt
 zu werden.
 
+Debug-LOG für den :ref:`Canon URF-II Treiber <canon_urf>` Druck (links)::
+
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] 3 filters for job:
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftopdf (application/pdf to application/vnd.cups-pdf, cost 66)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftops (application/vnd.cups-pdf to application/vnd.cups-postscript, cost 100)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pstoufr2cpca (application/vnd.cups-postscript to printer/MF623C-TWF19694, cost 0)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] job-sheets=none,none
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[0]="MF623C-TWF19694"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[1]="81"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[2]="markus"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[3]="8B653235.pdf"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[4]="1"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[5]="noCNDraftMode BindEdge=Left OutputBin=Auto number-up=1 noCollate CNBarCodeMode=None PageSize=A4 InputSlot=Auto CNSpecialSmooth=Mode1 CNColorMode=color CNColorHalftone=Resolution MediaType=Auto CNHalftone=Resolution job-uuid=urn:uuid:1fb4ea86-8cb1-380d-60a9-4f211deae89e print-quality=3 job-originating-host-name=localhost date-time-at-creation= date-time-at-processing= time-at-creation=1549891920 time-at-processing=1549891920 cupsPrintQuality=Draft"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[6]="/var/spool/cups/d00081-001"
+
+Debug-LOG für den :ref:`driverless-printing <printer_setup>` Druck (rechts)::
+
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] 4 filters for job:
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] pdftopdf (application/pdf to application/vnd.cups-pdf, cost 66)
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] gstoraster (application/vnd.cups-pdf to image/pwg-raster, cost 99)
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] - (image/pwg-raster to printer/CNMF620C-Series/image/pwg-raster, cost 0)
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] - (printer/CNMF620C-Series/image/pwg-raster to printer/CNMF620C-Series, cost 0)
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] job-sheets=none,none
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[0]="CNMF620C-Series"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[1]="82"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[2]="markus"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[3]="8B653235.pdf"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[4]="1"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[5]="InputSlot=Auto print-content-optimize=auto PageSize=A4 number-up=1 MediaType=Auto noCollate print-scaling=auto ColorModel=RGB job-uuid=urn:uuid:81164725-dc83-35d0-4be7-2588d85eefc4 media=0 job-originating-host-name=localhost date-time-at-creation= date-time-at-processing= time-at-creation=1549892340 time-at-processing=1549892340"
+  D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[6]="/var/spool/cups/d00082-001"
+
+
 
 FIXME:  Ich mache erst mal hier weiter ... print_troubleshooting_
 
@@ -368,6 +402,13 @@ Geräteadresse mit ``ipp://`` beginnt).
 .. figure:: system-config-printer-NEW.png
 
    CUPS: Drucker-Verbindung über IPP
+
+.. note::
+
+   Hier noch Verweise zu den anderen ggf. zur Verfügung stehenden Protokollen:
+   `DNS-SD aka AirPrint aka Bonjour
+   <https://wiki.debian.org/PrintingGlossaryandIndex#dnssd>`_ & `AppSocket
+   Protocol (aka JetDirect) <https://www.cups.org/doc/network.html#SOCKET>`_
 
 Nun muss man einen eindeutigen Druckernamen vergeben, diesen wird man später
 nicht mehr ändern können.  Ich verwende hierfür die genaue Typ-Bezeichnung plus
@@ -483,13 +524,61 @@ Als ein Beispiel sei Commit :commit:`e3b130` gegeben.
 
 Ansonsten kann man auch nochmal den Verweisen folgen:
 
+- `Dissecting and Debugging the CUPS Printing System`_
 - `Debugging Printer Problems (ubuntu-wiki)`_
 - `How to debug printing problems (fedora wiki)`_
 - `Drucker (archlinux wiki)`_ & `CUPS (archlinux)`_ & `CUPS Troubleshooting (archlinux wiki)`_
 
 
-Debug ``cups-browsed.service``
-------------------------------
+TODO: ``/etc/cups/cups-files.conf`` *FileDevice Yes*::
+
+  # Do we allow file: device URIs other than to /dev/null?
+  #FileDevice No
+  FileDevice Yes
+
+Kommando ``lpinfo`` listet die dem CUPS-Server bekannten verfügbaren Geräte oder
+Treiber auf::
+
+  $  lpinfo -v
+  network beh
+  file cups-brf:/
+  network ipps
+  network socket
+  network https
+  network ipp
+  network http
+  network lpd
+  network dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e
+  network socket://192.168.1.119
+  network ipp://MF623Cn.local:80/ipp/print
+
+
+
+CUPS Server debug
+-----------------
+
+Das Debug-LOG zum CUPS Dienst kann über die Kommandozeile aktiviert/de-aktiviert
+werden::
+
+  $ cupsctl -U <benutzer> --[no-]debug-logging
+
+oder über die HTML GUI des CUPS: http://localhost:631/admin/ kann mit der Option
+:guilabel:`Mehr Informationen zur Fehlersuche speichern` das Debug-LOG
+eingeschaltet werden.
+
+.. _figure-cupsd-debug-on:
+
+.. figure:: cupsd-debug-on.png
+   :alt:    Figure (cupsd-debug-on.png)
+   :target:  http://localhost:631/admin/
+
+   ``localhost:631``: CUPS Server Einstellungen
+
+Die Einstellung wird aktiv, sobald :guilabel:`Einstellung ändern` bestätigt wird.
+
+
+CUPS Browser debug
+------------------
 
 Das Debug-LOG des Dienstes ``cups-browsed.service`` kann in der Config-Datei zum
 Dienst eingestellt werden::

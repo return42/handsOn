@@ -29,6 +29,8 @@
 .. _`MF631Cn`: https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn
 .. _AirPrint: https://wiki.debian.org/AirPrint
 .. _driverless-printing CUPS: https://wiki.debian.org/DriverlessPrinting
+
+.. _`Dissecting and Debugging the CUPS Printing System`: https://wiki.debian.org/DissectingandDebuggingtheCUPSPrintingSystem
 .. _`Debugging Printer Problems (ubuntu-wiki)`: https://wiki.ubuntu.com/DebuggingPrintingProblems
 .. _`How to debug printing problems (fedora wiki)`: https://fedoraproject.org/wiki/How_to_debug_printing_problems#Printing_troubleshooter
 
