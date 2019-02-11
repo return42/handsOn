@@ -10,7 +10,7 @@ CUPS, IPP & Canon (UFR-II)
 
   Wir beschäftigen uns hier mit CUPS und Netzwer-Druckern, also solche, die über
   WLAN oder LAN im Netzwerk zur Verfügung stehen (Scan siehe :ref:`scan_linux`).
-  Es geht um generische Druckertreiber, IPP & *driverless printing* am Beispiel
+  Es geht um generische Druckertreiber, IPP & driverless-printing_ am Beispiel
   eines Canon Druckers.  Das Canon Beispiel dient (leider immer noch) als gutes
   Beispiel, um aufzuzeigen wann evtl. ein proprietärer Treiber
   (:ref:`canon_urf`) erforderlich werden kann und wie man den installiert ohne
@@ -48,11 +48,20 @@ beispielsweise ein Canon Drucker eingerichtet, der bietet zwar das IPP_,
 *spricht* aber weder `Postscript (wiki)`_ noch PDF_.  Als Druckersprache kennt
 der nur UFR-II:
 
-.. figure:: MF623Cn-printer-spec.png
+.. _figure-MF623Cn-printer-spec:
 
-Was hier in den technischen Angaben des Druckers nicht zu lesen ist: der Drucker
-beherrscht auch IPP_ und IPP fähige Drucker als Drucksprache mindestens JPEG
-verstehen müssen (s.a.  `What is IPP
+.. figure:: MF623Cn-printer-spec.png
+   :alt:     Figure (MF623Cn-printer-spec.png)
+   :target:  https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn/specification.aspx
+
+   MF623Cn_: technische Angaben
+
+IPP & IPP Everywhere
+====================
+
+Was in der Spezifikation (siehe :ref:`figure-MF623Cn-printer-spec`) nicht
+angegeben ist: der Drucker beherrscht auch IPP_ und IPP fähige Drucker als
+Drucksprache mindestens JPEG verstehen müssen (s.a.  `What is IPP
 <https://github.com/apple/cups/wiki/IPP-(Everywhere)-Mini-Tutorial>`_).
 
 .. code-block:: none
@@ -83,7 +92,7 @@ bedienen um Drucker im Netzwerk automatisch zu finden:
   .. hint::
 
      IPP ``2.x`` wurde im Jahre 2015 verabschiedet und `IPP Everywhere`_
-     resp. *driverless printing* gibt es in Ubuntu seit 17.04.
+     resp. driverless-printing_ gibt es in Ubuntu seit 17.04.
 
 Wenn der Drucker über WLAN oder LAN angeschlossen ist und eine IP erhalten hat
 (https://mf623cn/portal_top.html), dann müssten wir ihn eigentlich über IPP
@@ -162,36 +171,45 @@ einstufen kann.  Der Drucker wird als 600dpi Drucker beworben und verfügt auch
 Drucker sind auch mit ein Grund dafür, dass driverless-printing_ z.T. schlechte
 Druck-Ergebnisse liefert (oder evtl. gar nicht funktioniert).
 
-In einer Standard Installation des Ubuntu (18.04) resp. Debian Desktop Systems
-(mit CUPS) müsste einem der Drucker bereits im Setup unter "Geräte" angeboten
-werden.  Alternativ kann man dort auch auf *"Zusätzliche Druckereinstellungen"*
-drücken, womit dem das Programm ``system-config-printer`` gestartet wird.
+
+.. _driverless-printing:
+
+driverless printing
+===================
+
+Über das `driverless-printing CUPS`_ müsste in einer Standard Installation des
+Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
+Drucker bereits im Setup unter "Geräte" angeboten werden.  Alternativ kann man
+dort auch auf *"Zusätzliche Druckereinstellungen"* drücken, womit dem das
+Programm ``system-config-printer`` gestartet wird.
 
 .. _figure-cups-system-config-printer-gui:
 
 .. figure:: system-config-printer-gui.png
    :alt:     Figure (system-config-printer-gui.png)
-   :align:   center
    :target:  https://github.com/zdohnal/system-config-printer
 
-   ``system-config-printer-gui``: CUPS GUI für Drucker- Konfiguration und
+   ``system-config-printer``: CUPS GUI für Drucker- Konfiguration und
    Statusabfrage.
 
 
 In dem Fenster kann man *"Hinzufügen"* klicken und über einen geführten Dialog
-den Drucker einrichten.  Hier beim MF623Cn wurde der Drucker mit dem Treiber
-:origin:`CNMF620C Series, driverless <docs/print_scan/CNMF620C-Series.ppd>`
+den Drucker einrichten.  Eine detallierte Anleitung findet man unter:
+:ref:`printer_setup`.  Hier beim MF623Cn wurde der Drucker mit dem Treiber
+
+- Für MF623Cn_ angepasste PPD: :origin:`CNMF620C Series, driverless
+  <docs/print_scan/CNMF620C-Series.ppd>`
+
 eingerichtet.  Zu sehen im GNOME-Setup unter *Geräte/Drucker* und über einen
 Klick auf *Zahnrad / Drucker-Details*.  Den *driverless* Drucker sollte man mal
 testen.  Mit einem modernen PDF-fähigen Drucker (``application/pdf``) von einem
 Hersteller, der IPP beherrscht wird man vermutlich schon respektable Erzeugnisse
-anfertigen können.
+anfertigen können.  Beim MF623Cn gibt es allerdings noch einige
+Kinderkrankheiten.  In solchen Fällen gibt es zwei Möglichkeiten.
 
-Beim MF623Cn gibt es allerdings noch einige Kinderkrankheiten.  In solchen
-Fällen gibt es zwei Möglichkeiten.
-
- 1. man installiert sich den **proprietären** Druckertreiber des Herstellers
-    (sofern für Linux vorhanden) und schaut sich Druck-Ergebnisse damit an.
+ 1. man installiert sich den **proprietären** Druckertreiber (:ref:`canon_urf`)
+    des Herstellers -- sofern für Linux vorhanden -- und schaut sich die
+    Druck-Ergebnisse damit an (:ref:`driverless-vs-canon`).
 
  2. Man steigt etwas tiefer in die Materie `CUPS (wiki)`_ (-Filter) und
     ggf. IPP_ ein und richtet sich eine eigene `PPD (wiki)`_ ein.
@@ -203,15 +221,9 @@ aus Sicht der Programme voneinander unabhängige Drucker.  Man braucht also sein
 *funktionierendes* Setup erst mal nicht *anfassen*, wenn man mal was
 ausprobieren möchte.
 
-
-CUPS-Filter
-===========
-
-ToDo
-
-- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
-- AirPrint Drucker: https://support.apple.com/en-us/HT201311
 - Thread zu IPP: https://lists.debian.org/debian-printing/2016/12/msg00160.html
+- `IPP Everywhere™ Self-Certified Printers <http://www.pwg.org/dynamo/eveprinters.php>`_
+- `AirPrint Drucker <https://support.apple.com/en-us/HT201311>`_
 
 
 .. _canon_urf:
@@ -269,7 +281,8 @@ Bei moderneren Druckern, sollte der Drucker nun automatisch gefunden und
 eingebunden werden.  Falls das bei dem eigenen Drucker noch nicht klappt, sollte
 man mit dem :ref:`printer_setup` fortfahren.
 
-- PPD für :origin:`Canon MF620C Series UFRII LT <docs/print_scan/MF623C-TWF19694.ppd>`
+- Für MF623Cn_ angepasste PPD (URFII): :origin:`Canon MF620C Series UFRII LT
+  <docs/print_scan/MF623C-TWF19694.ppd>`
 
 
 .. _driverless-vs-canon:
@@ -318,55 +331,79 @@ Im GNOME Setup unter "Geräte" kann man den Drucker einrichten, i.d.R. wir der
 Drucker im Netz gefunden, i.d.R: wählt GNOME (resp CUPS) die **driverless** PPA,
 bei mir (Ubuntu 18.04 und MF623Cn Drucker) war das:
 
-- :origin:`CNMF620C Series, driverless <docs/print_scan/CNMF620C-Series.ppd>`
+- :origin:`CNMF620C Series, driverless, cups-filters <docs/print_scan/CNMF620C-Series.ppd>`
 
-Über den Button *"Zusätzliche Druckereinstellungen"* kann man bestehende Setups
-ändern oder auch weitere Setups einrichten.  Die GUI
-(:ref:`system-config-printer <figure-cups-system-config-printer-gui>`) ist die
-Druckerverwaltung des CUPS, alternativ kann man diese auch im WEB Browser unter
-http://localhost:631/printers über HTML Formulare vornehmen.
-
-Über die HTML GUI können nur bestimmte Benutzer die Drucker verwalten. Nur die,
-die zur Gruppe lpadmin gehören::
+Über den Button :guilabel:`Zusätzliche Druckereinstellungen` kann man bestehende
+Setups ändern oder weitere Setups einrichten.  Die GUI
+:ref:`system-config-printer <figure-cups-system-config-printer-gui>` ist die
+Druckerverwaltung des CUPS.  Alternativ kann diese auch im WEB Browser unter
+http://localhost:631/printers über HTML Formulare vorgenommen werden.  Über die
+(HTML) GUI können nur bestimmte Benutzer die Drucker verwalten. Nur die, die zur
+Gruppe lpadmin gehören::
 
    $ members lpadmin
-   cups-pk-helper <benutzername>
+   cups-pk-helper <benutzername> <benutzername> ...
 
 Die GNOME GUI's nutzen zum Teil den Benutzer ``cups-pk-helper`` aus dem
-gleichnamigen APT-Paket .. allerdings auch nicht immer, weshalb man sich selbst
-am besten noch zu der Gruppe ``lpadmin`` hinzufügt::
+gleichnamigen APT-Paket, allerdings auch nicht immer, weshalb man sich selbst am
+besten noch zu der Gruppe ``lpadmin`` hinzufügt::
 
-  $ sudo gpasswd -a <benutzername> <gruppe>
+  $ sudo gpasswd -a <benutzername> lpadmin
 
-Auch wenn es immer eine HTML-GUI gibt, am übersichtlichsten ist die GNOME GUI.
+Auch wenn es immer eine HTML-GUI gibt, am übersichtlichsten ist die GNOME GUI
+(siehe :ref:`figure-cups-system-config-printer` &
+:ref:`figure-cups-system-config-printer-gui`).
+
+.. _figure-cups-system-config-printer:
 
 .. figure:: system-config-printer.png
+   :alt:    Figure (system-config-printer.png)
 
-Über *Hinzufügen --> Netzwerkdrucker* den Drucker suchen lassen und dann als
-Verbindung ``ipp/print`` auswählen (sicherstellen, dass oben die Geräteadresse
-mit ``ipp://`` beginnt).
+   ``system-config-printer``: CUPS Drucker-Setup auf dem ``localhost``
+
+Über :menuselection:`Hinzufügen --> Netzwerkdrucker` den Drucker suchen lassen
+und dann als Verbindung ``ipp/print`` auswählen (sicherstellen, dass oben die
+Geräteadresse mit ``ipp://`` beginnt).
 
 .. figure:: system-config-printer-NEW.png
 
+   CUPS: Drucker-Verbindung über IPP
+
 Nun muss man einen eindeutigen Druckernamen vergeben, diesen wird man später
 nicht mehr ändern können.  Ich verwende hierfür die genaue Typ-Bezeichnung plus
-die Seriennummer (``MF623C-TWF19694``).  Als Beschreibung wähle ich "Farb-Laser
-A4 einseitig" und bei Ort gebe ich das Büro an (z.B. "Büro Markus").
+die Seriennummer.  Als Beschreibung wähle ich *"Farb-Laser A4 einseitig"* und
+bei Ort gebe ich das Büro an / z.B.:
 
-Danach kann man auf "Vorwärts" drücken, dann kommt ein Dialog "Treiber wird
-gesucht", das kann einen Moment dauern. Ddanach wird man gefragt, ob man eine
-Testseite drucken möchte.  Das würde auch funktionieren, aber den Dialog bricht
-man dennoch erst mal ab und schaut sich die *Eigenschaften* des soeben
-eingerichteten Druckers an.
+=================   ==========================
+Druckername (ID)    ``MF623C-TWF19694``
+Beschrebung         *Farb-Laser A4 einseitig*
+Ort                 *Büro Markus*
+=================   ==========================
 
-Hat man den **proprietären** Treiber :ref:`canon_urf` eingerichtet, so kann man
-den jetzt auch für diesen Drucker nutzen.  Unter *Marke und Model* ist bei mir
-z.B. zu sehen::
+Danach kann man auf :guilabel:`Vorwärts` drücken, dann kommt ein Dialog
+:guilabel:`Treiber wird gesucht`, das kann einen Moment dauern.  Danach wird man
+gefragt, ob man eine Test-Seite drucken möchte.  Das würde auch funktionieren,
+aber den Dialog bricht man dennoch erst mal ab und schaut sich die
+:ref:`Drucker-Eigenschaften <figure-cups-system-config-printer-props>` des
+soeben eingerichteten Druckers an.  Die :menuselection:`Eigenschaften` wählt man
+im Kontextmenü (rechte Maustaste) des Druckers, den man in der :ref:`GUI
+<figure-cups-system-config-printer-gui>` auswählt.
+
+.. _figure-cups-system-config-printer-props:
+
+.. figure:: system-config-printer-props.png
+   :alt:    Figure (system-config-printer-props.png)
+
+   ``system-config-printer``: Drucker-Eigenschaften
+
+Hat man den **proprietären** Treiber :ref:`canon_urf` im System installiert, so
+kann man den jetzt auch für diesen Drucker nutzen.  Unter *Marke und Model* ist
+bei mir z.B. zu sehen::
 
    CNMF620C Series, driverless, cups-filters 1.20.2
 
-Über den *"Ändern"* Button erscheint dann der "Treiber ändern" Dialog, da mal
-eben kurz warten, dann wird eine Auswahl angeboten:
+Über den :guilabel:`Ändern` Button erscheint dann der :guilabel:`Treiber ändern`
+Dialog, da mal eben kurz warten, dann wird eine Auswahl angeboten:
 
 .. figure:: system-config-driver-model.png
 
@@ -382,40 +419,54 @@ Da man den **proprietären** Treiber einrichtet, sollte man auch dessen `PPD
 .. hint::
 
    Bei den Canon Installationen klappt das evtl. nicht immer mit der PPD, das
-   ist daran zu erkennen, dass nach obigen Vorgehen bei "Marke und Modell""
-   immer noch ``CNMF620C Series, driverless, cups-filters 1.20.2`` (also
-   **drivless**) steht.
+   ist daran zu erkennen, dass nach obigen Vorgehen bei :guilabel:`Marke und
+   Modell` immer noch :menuselection:`CNMF620C Series, driverless, cups-filters
+   1.20.2` (also **driverless**) steht.
 
 In solchen Fällen hat man noch die Möglichkeit, die PPD direkt zuzuweisen.  Das
-geht über das GNOME Setup (wieder unter "Geräte""), dort klickt man auf das
-*Zahnrad / Drucker-Details*.
+geht über das GNOME Setup (wieder unter :menuselection:`Geräte`), dort klickt
+man auf das :menuselection:`Zahnrad / Drucker-Details` und dann erscheint der
+Dialog.
+
+.. _figure-cups-system-config-install-PPD:
 
 .. figure:: system-config-install-PPD.png
+   :alt:    Figure (system-config-install-PPD.png)
 
-Über den Button *"PPD-Datei installieren ..."* kann man direkt eine PPD Datei
-auswählen.  Bei der Installation des **proprietären** Treiber :ref:`canon_urf`
-wurden die PPD Datei unter dem Pfad::
+   Setup: Details Drucker
+
+Hier im exemplarischen Dialog :ref:`figure-cups-system-config-install-PPD` ist
+bereits der URF-II Treiber korrekt eingestellt.  Der Treiber wird in der PPD
+gesetzt, diese kann individuell über den Button :guilabel:`PPD-Datei
+installieren ...` ausgewählt werden.  Bei der Installation des **proprietären**
+Treiber :ref:`canon_urf` wurde die PPD Datei für die *MF620C-Series* unter dem
+Pfad::
 
   /usr/share/cups/model/CNCUPSMF620CZK.ppd
 
-installiert.  Da liegen auch noch ein Haufen anderer Dateien rum, was darin
-begründet ist, dass Canon mit dem Paket ``cndrvcups-ufr2-uk_{3.70}-1_amd64.deb``
-alle seine URF Modelle abdeckt (was aber auch vollkommen OK ist, man darf sich
-nur nicht den ganzen anderen Rotz über deren *Installer* installieren lassen).
-Die Dateinamen setzen sich zusammen aus::
+installiert.  In dem Ordner liegen auch noch ein Haufen anderer PPD Dateien, die
+alle aus dem Canon Paket ``cndrvcups-ufr2-uk_{3.70}-1_amd64.deb`` stammen (mit
+dem Paket deckt all Canon alle seine URF Modelle ab).  Die Dateinamen setzen
+sich zusammen aus::
 
-  CN CUPS MF620C ZK.ppd
-  -+      -----+
-   |           +--> Modell
-   +--> Canon
+  CNCUPSMF620CZK.ppd
+  -|    -----|
+   |         +--> MF620C: Modell
+   +--> CN: Canon
 
-Wenn man die richtige PPD Datei ausgewählt hat, dann steht bei dem Modell::
+Wenn man die richtige PPD Datei ausgewählt hat, dann steht im Dialog
+:ref:`figure-cups-system-config-install-PPD` bei der Angabe zum Modell irgendwas
+mit ``Canon MF620C UFRII LT``.  Falls sich dennoch Fragen ergeben, am besten
+hier schauen: `Canon UFR-II`_.
 
-  Canon MF620C UFRII LT
 
-Falls sich dennoch Fragen ergeben, am besten hier schauen:
+CUPS-Filter
+===========
 
-- https://wiki.debian.org/PrinterDriver/Canon/UFR-II
+ToDo
+
+- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
+
 
 
 .. _print_troubleshooting:
