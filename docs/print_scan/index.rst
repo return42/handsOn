@@ -12,7 +12,7 @@ Themen
 ======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    scan_linux
    cups_canon

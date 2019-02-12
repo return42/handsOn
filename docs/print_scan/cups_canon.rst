@@ -177,6 +177,7 @@ Druck-Ergebnisse liefert (oder evtl. gar nicht funktioniert).
 driverless printing
 ===================
 
+
 Über das `driverless-printing CUPS`_ müsste in einer Standard Installation des
 Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
 Drucker bereits im Setup unter "Geräte" angeboten werden.  Alternativ kann man
@@ -197,8 +198,8 @@ In dem Fenster kann man *"Hinzufügen"* klicken und über einen geführten Dialo
 den Drucker einrichten.  Eine detallierte Anleitung findet man unter:
 :ref:`printer_setup`.  Hier beim MF623Cn wurde der Drucker mit dem Treiber
 
-- Für MF623Cn_ angepasste PPD: :origin:`CNMF620C Series, driverless
-  <docs/print_scan/CNMF620C-Series.ppd>`
+- Für MF623Cn_ angepasste PPD: :origin:`CNMF620C Series, driverless (PPD
+  modified) <docs/print_scan/CNMF620C-Series.ppd>`
 
 eingerichtet.  Zu sehen im GNOME-Setup unter *Geräte/Drucker* und über einen
 Klick auf *Zahnrad / Drucker-Details*.  Den *driverless* Drucker sollte man mal
@@ -207,12 +208,19 @@ Hersteller, der IPP beherrscht wird man vermutlich schon respektable Erzeugnisse
 anfertigen können.  Beim MF623Cn gibt es allerdings noch einige
 Kinderkrankheiten.  In solchen Fällen gibt es zwei Möglichkeiten.
 
- 1. man installiert sich den **proprietären** Druckertreiber (:ref:`canon_urf`)
-    des Herstellers -- sofern für Linux vorhanden -- und schaut sich die
-    Druck-Ergebnisse damit an (:ref:`driverless-vs-canon`).
+- man installiert sich den **proprietären** Druckertreiber (:ref:`canon_urf`)
+  des Herstellers.
 
- 2. Man steigt etwas tiefer in die Materie `CUPS (wiki)`_ (-Filter) und
-    ggf. IPP_ ein und richtet sich eine eigene `PPD (wiki)`_ ein.
+  Sofern für Linux vorhanden, kann man sich auch mal die Druck-Ergebnisse mit
+  dem proprietären Treiber vom Hersteller anschauen (doch ACHTUNG:
+  :ref:`driverless-vs-canon`).
+
+- Man steigt etwas tiefer in die Materie `CUPS (wiki)`_ (-Filter) und
+  ggf. IPP_ ein und richtet sich eine eigene `PPD (wiki)`_ ein.
+
+  - :ref:`cupstestppd`
+  - :ref:`cups-driverless_HWMargins`
+  - :origin:`CNMF620C Series, driverless (PPD modified) <docs/print_scan/CNMF620C-Series.ppd>`
 
 Mit `CUPS (wiki)`_ kann man für den physikalisch gleichen Drucker mehrere
 unabhängige Drucker-Setups einrichten, so kann man beispielsweise ein
@@ -227,6 +235,67 @@ ausprobieren möchte.
 - `AirPrint Drucker <https://support.apple.com/en-us/HT201311>`_
 - `Writing your own CUPS printer driver in 100 lines of Python
   <https://behind.pretix.eu/2018/01/20/cups-driver/>`_
+
+
+.. _cupstestppd:
+
+CUPS test PPD
+-------------
+
+Die von `driverless-printing CUPS`_ angelegte PPD Datei kann Fehler enthalten
+(so zumindest bei mir).  Die Datei sollte in jedem Fall geprüft werden, mir ist
+aufgefallen, dass z.B. die Einträge wie ``*PageSize 3x5/3 x 5":`` vor dem
+Doppelpunkt noch einen überflüssigen Anführungsstrich besitzen.::
+
+  $ sudo grep --color '^*[^:]*\":'  /etc/cups/ppd/CNMF620C-Series-driverless.ppd
+  ...
+  *PageSize 3x5/3 x 5": "<</PageSize[216 360]>>setpagedevice"
+                     |
+		     +--> das "-Zeichen gehört hier nicht hin!
+
+
+Es ist auch möglich, die PDD Datei zu prüfen, hierzu gibt es das Kommando
+``cupstestppd`` was allerdings auch nicht in der Lage ist den obigen Fehler mit
+dem Anführungsstrich zu finden::
+
+  $ sudo cupstestppd  /etc/cups/ppd/CNMF620C-Series.ppd
+  /etc/cups/ppd/CNMF620C-Series.ppd: PASS
+        WARN    Size "A4" should be the Adobe standard name "A4.Fullbleed".
+	...
+
+  $ sudo cupstestppd  /etc/cups/ppd/MF623C-TWF19694.ppd
+  /etc/cups/ppd/MF623C-TWF19694.ppd: PASS
+        WARN    PCFileName longer than 8.3 in violation of PPD spec.
+                REF: Pages 61-62, section 5.3.
+	...
+
+.. _cups-driverless_HWMargins:
+
+HWMargins & ImageableArea manuell korrigieren
+---------------------------------------------
+
+Der über :ref:`driverless-printing <printer_setup>` eingerichtete Drucker
+(rechts) kalkuliert zum Teil sehr abstruse Rahmen ...
+
+.. code-block:: clean
+
+  *HWMargins: "28.346456692913 28.346456692913 28.346456692913 28.346456692913"
+  ...
+  *ImageableArea A4: "14.173228346457 14.173228346457 581.102362204724 827.716535433071"
+  *ImageableArea A5: "14.173228346457 14.173228346457 405.354330708661 581.102362204724"
+  *ImageableArea B5: "14.173228346457 14.173228346457 501.732283464567 714.330708661417"
+
+Besser ist es die Werte auf ``0 0`` zu setzen (:origin:`MF623Cn-attributes.txt
+<docs/print_scan/MF623Cn-attributes.txt>`)):
+
+.. code-block:: clean
+
+  *HWMargins: "0 0 0 0"
+  ...
+  *ImageableArea A4: "0 0 595 842"
+  *ImageableArea A5: "0 0 420 595"
+  *ImageableArea B5: "0 0 516 729"
+
 
 .. _canon_urf:
 
@@ -319,20 +388,11 @@ Betrachtung (nicht im Bild zu erkennen) hat man den Eindruck, dass der Druck
 Farbecht ist, jedoch scheint die Auflösung und Farbtiefe nicht ganz ausgereizt
 zu werden.
 
-Debug-LOG für den :ref:`Canon URF-II Treiber <canon_urf>` Druck (links)::
+.. hint::
 
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] 3 filters for job:
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftopdf (application/pdf to application/vnd.cups-pdf, cost 66)
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftops (application/vnd.cups-pdf to application/vnd.cups-postscript, cost 100)
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] pstoufr2cpca (application/vnd.cups-postscript to printer/MF623C-TWF19694, cost 0)
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] job-sheets=none,none
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[0]="MF623C-TWF19694"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[1]="81"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[2]="markus"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[3]="8B653235.pdf"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[4]="1"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[5]="noCNDraftMode BindEdge=Left OutputBin=Auto number-up=1 noCollate CNBarCodeMode=None PageSize=A4 InputSlot=Auto CNSpecialSmooth=Mode1 CNColorMode=color CNColorHalftone=Resolution MediaType=Auto CNHalftone=Resolution job-uuid=urn:uuid:1fb4ea86-8cb1-380d-60a9-4f211deae89e print-quality=3 job-originating-host-name=localhost date-time-at-creation= date-time-at-processing= time-at-creation=1549891920 time-at-processing=1549891920 cupsPrintQuality=Draft"
-  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[6]="/var/spool/cups/d00081-001"
+   Der Rand beim *driverless* Druck konnte durch setzten der Rahmen des
+   ``ImageableArea`` auf ``0 0 ...`` korrigiert werden (siehe
+   :ref:`cups-driverless_HWMargins`).
 
 Debug-LOG für den :ref:`driverless-printing <printer_setup>` Druck (rechts)::
 
@@ -351,8 +411,21 @@ Debug-LOG für den :ref:`driverless-printing <printer_setup>` Druck (rechts)::
   D [11/Feb/2019:14:39:00 +0100] [Job 82] argv[6]="/var/spool/cups/d00082-001"
 
 
+Debug-LOG für den :ref:`Canon URF-II Treiber <canon_urf>` Druck (links)::
 
-FIXME: XXXXXXXXXXXXXXXXX Ich mache erst mal hier weiter ... print_troubleshooting_ XXXXXXXXXXXXXXXXX
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] 3 filters for job:
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftopdf (application/pdf to application/vnd.cups-pdf, cost 66)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pdftops (application/vnd.cups-pdf to application/vnd.cups-postscript, cost 100)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] pstoufr2cpca (application/vnd.cups-postscript to printer/MF623C-TWF19694, cost 0)
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] job-sheets=none,none
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[0]="MF623C-TWF19694"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[1]="81"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[2]="markus"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[3]="8B653235.pdf"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[4]="1"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[5]="noCNDraftMode BindEdge=Left OutputBin=Auto number-up=1 noCollate CNBarCodeMode=None PageSize=A4 InputSlot=Auto CNSpecialSmooth=Mode1 CNColorMode=color CNColorHalftone=Resolution MediaType=Auto CNHalftone=Resolution job-uuid=urn:uuid:1fb4ea86-8cb1-380d-60a9-4f211deae89e print-quality=3 job-originating-host-name=localhost date-time-at-creation= date-time-at-processing= time-at-creation=1549891920 time-at-processing=1549891920 cupsPrintQuality=Draft"
+  D [11/Feb/2019:14:32:00 +0100] [Job 81] argv[6]="/var/spool/cups/d00081-001"
+
 
 
 .. _printer_setup:
@@ -568,7 +641,7 @@ das Drucker-Setup des (:ref:`driverless-printing <printer_setup>`)
    DEBUG: pdftops - copying to temp print file "/tmp/02aac5c6d6229"
    DEBUG: pdftopdf: No PPD file specified, could not determine whether to log pages or not, so turned off page logging.
    INFO: pdftopdf (PID 10923) exited with no errors.
-   DEBUG: Printer make and model: 
+   DEBUG: Printer make and model:
    DEBUG: Running command line for pstops: pstops 1 markus QR-Code-Test.pdf 1 printer-resolution=600
    DEBUG: Using image rendering resolution 600 dpi
    DEBUG: Running command line for gs: gs -q -dNOPAUSE -dBATCH -dSAFER -dNOMEDIAATTRS -sDEVICE=ps2write -dShowAcroForm -sOUTPUTFILE=%stdout -dLanguageLevel=3 -r600 -dCompressFonts=false -dNoT3CCITT -dNOINTERPOLATE -c 'save pop' -f /tmp/02aac5c6d6229
@@ -640,7 +713,7 @@ das Drucker-Setup des (:ref:`driverless-printing <printer_setup>`)
       DEBUG: pdftops - copying to temp print file "/tmp/02cc75c656b15"
       DEBUG: pdftopdf: No PPD file specified, could not determine whether to log pages or not, so turned off page logging.
       INFO: pdftopdf (PID 11462) exited with no errors.
-      DEBUG: Printer make and model: 
+      DEBUG: Printer make and model:
       DEBUG: Running command line for pstops: pstops 1 markus QR-Code-Test.pdf 1 printer-resolution=600
       DEBUG: Using image rendering resolution 600 dpi
       DEBUG: Running command line for gs: gs -q -dNOPAUSE -dBATCH -dSAFER -dNOMEDIAATTRS -sDEVICE=ps2write -dShowAcroForm -sOUTPUTFILE=%stdout -dLanguageLevel=3 -r600 -dCompressFonts=false -dNoT3CCITT -dNOINTERPOLATE -c 'save pop' -f /tmp/02cc75c656b15
