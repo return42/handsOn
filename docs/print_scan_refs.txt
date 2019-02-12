@@ -35,3 +35,4 @@
 .. _`How to debug printing problems (fedora wiki)`: https://fedoraproject.org/wiki/How_to_debug_printing_problems#Printing_troubleshooter
 
 .. _QR-Code (wiki): https://de.wikipedia.org/wiki/QR-Code
+.. _cups-filters: https://github.com/OpenPrinting/cups-filters
