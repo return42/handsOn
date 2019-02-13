@@ -56,6 +56,9 @@ der nur UFR-II:
 
    MF623Cn_: technische Angaben
 
+
+.. _IPP_intro:
+
 IPP & IPP Everywhere
 ====================
 
@@ -171,12 +174,201 @@ einstufen kann.  Der Drucker wird als 600dpi Drucker beworben und verfügt auch
 Drucker sind auch mit ein Grund dafür, dass driverless-printing_ z.T. schlechte
 Druck-Ergebnisse liefert (oder evtl. gar nicht funktioniert).
 
+.. _ppd_spec:
+
+Die kleine PPD Fibel
+====================
+
+Über eine `PPD (wiki)`_ wird ein CUPS-Drucker in CUPS eingerichtet.  Es ist
+möglich **einen physikalischen** Drucker über unterschiedliche CUPS-Drucker
+(also PPD Dateien) in **unterschiedlichen Setups** anzubieten.  Aus Sicht des
+Anwenders **sind die Setups die Drucker** auf denen er drucken kann.  Die über
+die :ref:`GUI <figure-cups-system-config-printer-gui>` eingerichteten Drucker
+entsprechen den ``*.ppd`` Dateien in der CUPS Konfiguration unter
+``/etc/cups``::
+
+  $ ls -la /etc/cups/ppd/*.ppd
+  ...
+  -rw-r----- 1 root lp   12641 Feb 13 12:26 CNMF620C-Series.ppd
+  -rw-r----- 1 root lp   15332 Feb 12 19:22 MF623C-TWF19694.ppd
+
+Die PPD-Dateien aus den Beispielen *hier* sind im Original folgend einzusehen:
+
+- ``CNMF620C-Series.ppd``: :origin:`CNMF620C Series, driverless (PPD modified)
+  <docs/print_scan/CNMF620C-Series.ppd>`
+- ``MF623C-TWF19694.ppd``: :origin:`Canon MF620C Series UFRII LT
+  <docs/print_scan/MF623C-TWF19694.ppd>`
+
+Die PPD-Dateien *entstehen* beim Einrichten des Druckers in der :ref:`GUI
+<figure-cups-system-config-printer-gui>`, entweder durch die Auswahl einer PPD
+Datei (des Herstellers), oder aber sie werden durch den *driverless* Treiber
+erzeugt.  Bei letzterem nutzt der *driverless* Treiber IPP-Everywhere um den
+Drucker zu finden, über IPP fragt er dann beim Drucker nach seinen Eigenschaften.
+
+Im Kapitel ":ref:`IPP_intro`" wird ein Beispiel gezeigt, wie die Eigenschaften des
+Druckers mit dem :man:`ipptool` Kommando ausgelesen werden können.  Aus der
+Antwort vom Drucker (:origin:`MF623Cn-attributes.txt
+<docs/print_scan/MF623Cn-attributes.txt>`) baut der *driverless* Treiber dann
+eine PPD Datei, die er unter ``/etc/cups/ppd/<printer-name>.ppd`` speichert.
+Der ``<printer-name>`` wird einem öfter begegnen, z.B bei Kommandos wie :man:`lpstat`::
+
+  $ lpstat -p
+  Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Di 12 Feb 2019 17:49:37 CET
+  Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mi 13 Feb 2019 11:48:19 CET
+
+PPD ist die Abkürzung für *PostScript Printer Description* und wie der Name
+schon erahnen lässt, ist die *Description (aka Beschreibung)* des Drucker an der
+*Seitenbeschreibungssprache* `PostScript (wiki)`_ orientiert.  Eine
+*Seitenbeschreibungssprache* wird im englischen auch `PDL (wiki)`_ genannt.
+
+.. hint::
+
+   Auch bei den modernen Image-Druckern (s.a :ref:`IPP_intro`), die kein
+   PostScript verstehen, erfolgt das Setup des Druckers im CUPS mit diesen PPD
+   Dateien.  Beispiele wie :ref:`cups-driverless_HWMargins` zeigen auf, dass ein
+   Blick auf die PPD Dateien z.T. unumgänglich ist.
+
+Schaut man in die PPD Dateien hinein, so sieht man dort Angaben wie z.B.::
+
+  *DefaultPageSize: A4.Fullbleed
+  *PageSize A4.Fullbleed: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+
+Die Definition zu solchen Angaben befinden sich hier: `PPD Datei CUPS PPD
+Extensions`_.  Was schon ohne genaue Kenntnisse zu erkennen ist, dass
+Längenangaben z.T. einheitenlos sind, hier das Beispiel die `Page Sizes (hp)`_
+mit der Angabe: ``/PageSize[595 842]``
+
+.. hint::
+
+   Größen-Angaben ohne Einheit sind vom Typ DTP-Punkt_ (aka *PostScript unit*).
+   Der Punkt entspricht ``0,3527mm`` / s.a. :ref:`tabelle_page_size`
+
+
+Papier Größen umrechnen
+=======================
+
+Größen-Angaben die in :ref:`PPD-Dateien <ppd_spec>` ohne Einheit angegeben
+werden sind vom Typ DTP-Punkt_ (aka *PostScript unit*)::
+
+     DIN     A4 :   210mm x 297mm  / 0,3527 mm
+     DTP-Punkte :   595   x 842
+
+Der DTP-Punkt_ entspricht ``0,3527mm``. Unten zu sehen, die
+:ref:`tabelle_page_size`
+
+
+.. _tabelle_page_size:
+
+.. flat-table:: Umrechnungstabelle gängiger PageSize Formate
+   :stub-columns: 1
+   :header-rows: 1
+
+   * - ``<format>.Fullbleed``
+     - DTP
+     - mm
+     - inch
+
+   * - A3
+     - 842 x 1190
+     - 297 x 420
+     - 11.69 x 16.53
+
+   * - A4
+     - 595 x 842
+     - 210 x 297
+     - 8.27 x 11.69
+
+   * - A5
+     - 420 x 595
+     - 148 x 210
+     - 5.83 x 8.27
+
+   * - A6
+     - 297 x 420
+     - 105 x 148
+     - 4.13 x 5.83
+
+   * - B4
+     - 729 x 1033
+     - 257 x 364
+     - 10.126 x 14.342
+
+   * - B5
+     - 516 x 729
+     - 182 x 257
+     - 7.17 x 10.126
+
+   * - Photo (10x15)
+     - 288 x 432
+     - 102 x 152
+     - 4 x 6
+
+   * - Letter
+     - 612 x 792
+     - 216 x 279
+     - 8.5 x 11
+
+   * - Legal
+     - 612 x 1008
+     - 216 x 356
+     - 8.5 x 14
+
+   * - Ledger
+     - 792 x 1224
+     - 279 x 432
+     - 11 x 17
+
+   * - Statement
+     - 396 x 612
+     - 140 x 216
+     - 5.5 x 8.5
+
+   * - Executive
+     - 522 x 756
+     - 184 x 267
+     - 7.25 x 10.5
+
+   * - EnvMonarch
+     - 279 x 540
+     - 98 x 190
+     - 3.88 x 7.5
+
+   * - Env10
+     - 297 x 684
+     - 105 x 241
+     - 4,13 x 9.5
+
+   * - EnvDL
+     - 312 x 624
+     - 110 x 220
+     - 4.33 x 8.67
+
+   * - EnvC5
+     - 459 x 649
+     - 162 x 229
+     - 6.38 x 9
+
+   * - 3x5
+     - 216 x 360
+     - 76 x 127
+     - 3 x 5
+
+   * - 202.85x267.05mm:
+     - 575 x 757
+     - 203 x 267
+     - 8 x 10.5
+
+   * - 195.09x269.88mm:
+     - 553 x 765
+     - 195 x 270
+     - 7.68 x 10.63
+
+
 
 .. _driverless-printing:
 
 driverless printing
 ===================
-
 
 Über das `driverless-printing CUPS`_ müsste in einer Standard Installation des
 Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
@@ -224,10 +416,10 @@ Kinderkrankheiten.  In solchen Fällen gibt es zwei Möglichkeiten.
 
 Mit `CUPS (wiki)`_ kann man für den physikalisch gleichen Drucker mehrere
 unabhängige Drucker-Setups einrichten, so kann man beispielsweise ein
-bestehendes Setup auch kopieren und dann verändern.  Diese Drucker-Setups sind
-aus Sicht der Programme voneinander unabhängige Drucker.  Man braucht also sein
-*funktionierendes* Setup erst mal nicht *anfassen*, wenn man mal was
-ausprobieren möchte.
+bestehendes Setup (siehe auch Kapitel :ref:`ppd_spec`) auch kopieren und dann
+verändern.  Diese Drucker-Setups sind aus Sicht der Programme voneinander
+unabhängige Drucker.  Man braucht also sein *funktionierendes* Setup erst mal
+nicht *anfassen*, wenn man mal was ausprobieren möchte.
 
 - `driverless-printing CUPS`_
 - Thread zu IPP: https://lists.debian.org/debian-printing/2016/12/msg00160.html

@@ -6,7 +6,6 @@
 .. _`Simple Scan`: http://wiki.ubuntuusers.de/Simple_Scan
 .. _`pdfsandwich`: http://www.tobias-elze.de/pdfsandwich
 .. _`PDF`: https://en.wikipedia.org/wiki/PDF
-.. _`PPD (wiki)`: https://de.wikipedia.org/wiki/PostScript_Printer_Description
 .. _`CUPS (git)`: https://github.com/apple/cups
 .. _`CUPS (wiki)`: https://de.wikipedia.org/wiki/Common_Unix_Printing_System
 .. _`CUPS (archlinux)`: https://wiki.archlinux.org/index.php/CUPS
@@ -36,3 +35,11 @@
 
 .. _QR-Code (wiki): https://de.wikipedia.org/wiki/QR-Code
 .. _cups-filters: https://github.com/OpenPrinting/cups-filters
+
+.. _`PDL (wiki)`: https://en.wikipedia.org/wiki/Page_description_language
+
+.. _`PPD (wiki)`: https://en.wikipedia.org/wiki/PostScript_Printer_Description
+.. _`PPD Datei CUPS PPD Extensions`: https://www.cups.org/doc/spec-ppd.html
+
+.. _DTP-Punkt: https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt
+.. _`Page Sizes (hp)`: https://developers.hp.com/hp-linux-imaging-and-printing/tech_docs/page_sizes

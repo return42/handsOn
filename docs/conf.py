@@ -29,6 +29,12 @@ extensions = [
     #, 'sphinx.ext.mathjax'
     , 'sphinx.ext.viewcode'
     , 'sphinx.ext.intersphinx'
+    , 'linuxdoc.rstFlatTable'    # Implementation of the 'flat-table' reST-directive.
+    , 'linuxdoc.rstKernelDoc'    # Implementation of the 'kernel-doc' reST-directive.
+    , 'linuxdoc.kernel_include'  # Implementation of the 'kernel-include' reST-directive.
+    , 'linuxdoc.manKernelDoc'    # Implementation of the 'kernel-doc-man' builder
+    , 'linuxdoc.cdomain'         # Replacement for the sphinx c-domain.
+    , 'linuxdoc.kfigure'         # Sphinx extension which implements scalable image handling.
 ]
 
 intersphinx_mapping = {}
