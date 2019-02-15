@@ -65,7 +65,7 @@ https://wiki.ubuntuusers.de/Scanner/Canon/
 
 
 .. _simple_scan_linux:
-  
+
 Simple Scan
 ===========
 
@@ -82,7 +82,7 @@ Eine einfache Methode um aus solchen PDF-SCANs *durchsuchbare* PDFs zu machen
 ist das Programm :ref:`pdfsandwich_linux`.
 
 .. _pdfsandwich_linux:
-  
+
 pdfsandwich
 ===========
 

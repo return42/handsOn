@@ -35,7 +35,8 @@ Themen
    apache_setup/index
    mozcloud/index
    radicale/index
-   print_scan/index
+   print/index
+   scan/index
    android/index
    snappy/index
    lxdlxc/index

@@ -2,11 +2,11 @@
 
 .. include:: ../print_scan_refs.txt
 
-.. _cups_canon:
+.. _print_cups_ipp:
 
-==========================
-CUPS, IPP & Canon (UFR-II)
-==========================
+======================
+Drucken mit CUPS & IPP
+======================
 
   Wir beschäftigen uns hier mit CUPS und Netzwer-Druckern, also solche, die über
   WLAN oder LAN im Netzwerk zur Verfügung stehen (Scan siehe :ref:`scan_linux`).
@@ -43,18 +43,11 @@ i.d.R. auf den gleichen Ports `80` (HTTP) und `443` (HTTPS).
 
 Vor dem Backend, also *auf dem Weg hin zu den Druckern* gibt es sogenannte
 CUPS-Filter, welche die Druck-Daten der Clients so aufbereiten, dass der Drucker
-an den sie gerichtet werden diese verstehen kann.  Hier in diesem Artikel wird
-beispielsweise ein Canon Drucker eingerichtet, der bietet zwar das IPP_,
-*spricht* aber weder `Postscript (wiki)`_ noch PDF_.  Als Druckersprache kennt
-der nur UFR-II:
+an den sie gerichtet werden diese verstehen kann.
 
-.. _figure-MF623Cn-printer-spec:
-
-.. figure:: MF623Cn-printer-spec.png
-   :alt:     Figure (MF623Cn-printer-spec.png)
-   :target:  https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn/specification.aspx
-
-   MF623Cn_: technische Angaben
+Hier in diesem Artikel wird beispielsweise ein Canon Drucker eingerichtet, der
+bietet zwar das IPP_, *spricht* aber weder `Postscript (wiki)`_ noch PDF_.  Als
+Druckersprache kennt der nur UFR-II (:ref:`figure-MF623Cn-printer-spec`).
 
 
 .. _IPP_intro:
@@ -178,6 +171,8 @@ Druck-Ergebnisse liefert (oder evtl. gar nicht funktioniert).
 
 Die kleine PPD Fibel
 ====================
+
+- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
 
 Über eine `PPD (wiki)`_ wird ein CUPS-Drucker in CUPS eingerichtet.  Es ist
 möglich **einen physikalischen** Drucker über unterschiedliche CUPS-Drucker
@@ -510,11 +505,13 @@ zu sehen, die :ref:`tabelle_page_size`
      - **< 8.5 x 14**
 
 
+Druckertreiber
+==============
 
 .. _driverless-printing:
 
 driverless printing
-===================
+-------------------
 
 Über das `driverless-printing CUPS`_ müsste in einer Standard Installation des
 Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
@@ -577,8 +574,16 @@ nicht *anfassen*, wenn man mal was ausprobieren möchte.
 
 .. _canon_urf:
 
-MF-620C Serie URF-II
-====================
+MF620C-Serie URF-II (MF623Cn)
+-----------------------------
+
+.. _figure-MF623Cn-printer-spec:
+
+.. figure:: MF623Cn-printer-spec.png
+   :alt:     Figure (MF623Cn-printer-spec.png)
+   :target:  https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn/specification.aspx
+
+   MF623Cn_: technische Angaben
 
 Die moderneren Canon Drucker unterstützen Ultra Fast Renderer (UFR) welches man
 sich über einen **proprietären** Treiber auch auf dem PC installieren kann.  Die
@@ -602,7 +607,7 @@ die man installieren muss, mehr bitte nicht:
 Die ``.tar.gz`` Datei im Download-Ordner auspacken (über rechte Maustaste *"Hier
 entpacken"*).  In dem dann angelegten Ordner muss man sich etwas nach unten
 *durchklickern*: ``64-bit_Driver/Debian``.  Dort sieht man dann auch schon die
-`Debian Pakte <https://de.wikipedia.org/wiki/Debian_Package_Manager>`_ mit der
+`Debian Pakete <https://de.wikipedia.org/wiki/Debian_Package_Manager>`_ mit der
 Dateiendung ``.deb``.  Diese kann man mit eine *Doppelklick* einfach
 installieren.
 
@@ -614,9 +619,9 @@ Betriebssystems aufbauen.  Welche aber auf dem (eigenen) 64-Bit Betriebssystem
 i.d.R. nicht zu erwarten sind.
 
 Normalerweise kann der Paket-Ersteller solche Abhängigkeiten in den ``.deb``
-beschreiben und dann würde der Paket-Manager darauf reagieren können, aber auch
-dazu ist Canon als Paket-Ersteller seit jeher dazu nicht in der Lage.  Mit dem
-Effekt, dass der Anwender mal wieder Blutdruck bekommt, weil *Drucken nicht
+Dateien beschreiben und dann würde der Paket-Manager darauf reagieren können,
+aber auch dazu ist Canon als Paket-Ersteller seit jeher nicht in der Lage.  Mit
+dem Effekt, dass der Anwender mal wieder Blutdruck bekommt, weil *Drucken nicht
 funktioniert*, es aber er auch keine hilfreichen Fehlermeldungen gibt.
 
 Diese Abhängigkeiten zu den 32-Bit Bibliotheken müssen wir manuell installieren
@@ -637,7 +642,7 @@ man mit dem :ref:`printer_setup` fortfahren.
 .. _driverless-vs-canon:
 
 Druckbild Canon VS driverless
-=============================
+-----------------------------
 
 Hier ein Vergleich des Druckbilds des All-in-One Drucker MF623Cn_, einmal mit
 dem origignal :ref:`Canon URF-II Treiber <canon_urf>` (links) und dem
@@ -883,19 +888,147 @@ mit ``Canon MF620C UFRII LT``.  Falls sich dennoch Fragen ergeben, am besten
 hier schauen: `Canon UFR-II`_.
 
 
-CUPS-Filter
-===========
+.. _print_troubleshooting:
 
-ToDo
+Troubleshooting
+===============
 
-- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
-- cups-filters_
+Eine einfache und erste, schnelle Hilfe kann der *Troubleshooting Wizard* sein.
+Den bekommt man über die ``F1`` Taste im :ref:`system-config-printer
+<figure-cups-system-config-printer-gui>`.  Mit dem Tool können
+:origin:`troubleshoot.txt <docs/print_scan/troubleshoot.txt>` Dateien erzeugt
+werden.  Deren Studium kann z.T. auch mal nützliche Informationen hervorbringen.
+Als ein Beispiel sei Commit :commit:`e3b130` gegeben.
 
+Ansonsten kann man auch nochmal den Verweisen folgen:
+
+- `Dissecting and Debugging the CUPS Printing System`_
+- `Debugging Printer Problems (ubuntu-wiki)`_
+- `How to debug printing problems (fedora wiki)`_
+- `Drucker (archlinux wiki)`_ & `CUPS (archlinux)`_ & `CUPS Troubleshooting (archlinux wiki)`_
+
+
+Kommando :man:`lpinfo` listet die dem CUPS-Server bekannten verfügbaren Geräte oder
+Treiber auf::
+
+  $  lpinfo -v
+  network beh
+  file cups-brf:/
+  network ipps
+  network socket
+  network https
+  network ipp
+  network http
+  network lpd
+  network dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e
+  network socket://192.168.1.119
+  network ipp://MF623Cn.local:80/ipp/print
+
+
+Kommando :man:`pdfinfo` auf die 7. bis 8. Seite des PDF::
+
+  $ pdfinfo -f 7 -l 8 ~/Downloads/QR-Code-Test.pdf
+  Tagged:         no
+  UserProperties: no
+  Suspects:       no
+  Form:           none
+  JavaScript:     no
+  Pages:          8
+  Encrypted:      no
+  Page    7 size: 595.28 x 841.89 pts (A4)
+  Page    7 rot:  0
+  Page    8 size: 595.28 x 841.89 pts (A4)
+  Page    8 rot:  0
+  File size:      835779 bytes
+  Optimized:      no
+  PDF version:    1.4
+
+Kommando :man:`lpstat`::
+
+  $ lpstat -p
+  Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:39:23 CET
+  Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:32:23 CET
+
+
+CUPS Server debug
+-----------------
+
+Das Debug-LOG zum CUPS Dienst kann über die Kommandozeile aktiviert/de-aktiviert
+werden::
+
+  $ cupsctl -U <benutzer> --[no-]debug-logging
+
+oder über die HTML GUI des CUPS: http://localhost:631/admin/ kann mit der Option
+:guilabel:`Mehr Informationen zur Fehlersuche speichern` das Debug-LOG
+eingeschaltet werden.
+
+.. _figure-cupsd-debug-on:
+
+.. figure:: cupsd-debug-on.png
+   :alt:    Figure (cupsd-debug-on.png)
+   :target:  http://localhost:631/admin/
+
+   ``localhost:631``: CUPS Server Einstellungen
+
+Die Einstellung wird aktiv, sobald :guilabel:`Einstellung ändern` bestätigt wird.
+
+
+CUPS Browser debug
+------------------
+
+Das Debug-LOG des Dienstes ``cups-browsed.service`` kann in der Config-Datei zum
+Dienst eingestellt werden::
+
+  /etc/cups/cups-browsed.conf
+
+Mit der folgenden Einstellung::
+
+   # Where should cups-browsed create its debug log file (if "DebugLogging file"
+   # is set)?
+
+   LogDir /var/log/cups
+
+   # How should debug logging be done? Into the file
+   # /var/log/cups/cups-browsed_log ('file'), to stderr ('stderr'), or
+   # not at all ('none')?
+
+   DebugLogging file
+   # DebugLogging stderr
+   # DebugLogging file stderr
+   # DebugLogging none
+
+wird ein Debug-LOG in der Datei ``/var/log/cups/cups-browsed_log`` angelegt,
+sobald der Dienst neu gestartet wurde::
+
+  $ sudo systemctl restart cups-browsed
+
+
+Druckausgabe in Datei
+---------------------
+
+Um die Ausgabe auf den Drucker in eine Datei umzuleiten muss in der Datei
+``/etc/cups/cups-files.conf`` die Option *FileDevice Yes* gesetzt werden::
+
+  # Do we allow file: device URIs other than to /dev/null?
+  #FileDevice No
+  FileDevice Yes
+
+Danach den CUPS Dienst neu starten: ``sudo systemctl restart cups``.  In der
+:ref:`GUI <figure-cups-system-config-printer-gui>` sollte der bestehende Drucker
+kopiert werden, hier im Beispiel wird der ``MF623C-URF-II-Dump.ppd`` durch eine
+Kopie des :ref:`canon_urf` erzeugt.  In den Einstellungen des
+``MF623C-URF-II-Dump`` wird die *Geräteadresse* auf ``file:/tmp/printout``
+gesetzt.
+
+.. figure:: tmp-printout-device.png
+
+Ein Ausdruck auf den Drucker ``MF623C-URF-II-Dump`` legt die Datei
+``/tmp/printout`` an.
 
 Test mit ``cupsfilter``
 -----------------------
 
-.. _cups-filter README: https://github.com/OpenPrinting/cups-filters/blob/master/README#L121
+- cups-filters_
 
 Mit dem Kommando :man:`cupsfilter` und der Option ``--list-filters`` können die
 verwendeten Filter angezeigt werden::
@@ -1057,147 +1190,3 @@ das Drucker-Setup des (:ref:`driverless-printing <printer_setup>`)
       DEBUG: PID 11466 (pstops) exited with no errors.
       INFO: pdftops (PID 11463) exited with no errors.
 
-
-FIXME: XXXXXXXXXXXXXXXXX hier gehts weiter ?!?! XXXXXXXXXXXXXXXXX
-
-
-Druckausgabe in Datei
----------------------
-
-Um die Ausgabe auf den Drucker in eine Datei umzuleiten muss in der Datei
-``/etc/cups/cups-files.conf`` die Option *FileDevice Yes* gesetzt werden::
-
-  # Do we allow file: device URIs other than to /dev/null?
-  #FileDevice No
-  FileDevice Yes
-
-Danach den CUPS Dienst neu starten: ``sudo systemctl restart cups``.  In der
-:ref:`GUI <figure-cups-system-config-printer-gui>` sollte der bestehende Drucker
-kopiert werden, hier im Beispiel wird der ``MF623C-URF-II-Dump.ppd`` durch eine
-Kopie des :ref:`canon_urf` erzeugt.  In den Einstellungen des
-``MF623C-URF-II-Dump`` wird die *Geräteadresse* auf ``file:/tmp/printout``
-gesetzt.
-
-.. figure:: tmp-printout-device.png
-
-Ein Ausdruck auf den Drucker ``MF623C-URF-II-Dump`` legt die Datei
-``/tmp/printout`` an.
-
-
-
-.. _print_troubleshooting:
-
-Troubleshooting
-===============
-
-Eine einfache und erste, schnelle Hilfe kann der *Troubleshooting Wizard* sein.
-Den bekommt man über die ``F1`` Taste im :ref:`system-config-printer
-<figure-cups-system-config-printer-gui>`.  Mit dem Tool können
-:origin:`troubleshoot.txt <docs/print_scan/troubleshoot.txt>` Dateien erzeugt
-werden.  Deren Studium kann z.T. auch mal nützliche Informationen hervorbringen.
-Als ein Beispiel sei Commit :commit:`e3b130` gegeben.
-
-Ansonsten kann man auch nochmal den Verweisen folgen:
-
-- `Dissecting and Debugging the CUPS Printing System`_
-- `Debugging Printer Problems (ubuntu-wiki)`_
-- `How to debug printing problems (fedora wiki)`_
-- `Drucker (archlinux wiki)`_ & `CUPS (archlinux)`_ & `CUPS Troubleshooting (archlinux wiki)`_
-
-
-Kommando :man:`lpinfo` listet die dem CUPS-Server bekannten verfügbaren Geräte oder
-Treiber auf::
-
-  $  lpinfo -v
-  network beh
-  file cups-brf:/
-  network ipps
-  network socket
-  network https
-  network ipp
-  network http
-  network lpd
-  network dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e
-  network socket://192.168.1.119
-  network ipp://MF623Cn.local:80/ipp/print
-
-
-Kommando :man:`pdfinfo` auf die 7. bis 8. Seite des PDF::
-
-  $ pdfinfo -f 7 -l 8 ~/Downloads/QR-Code-Test.pdf
-  Tagged:         no
-  UserProperties: no
-  Suspects:       no
-  Form:           none
-  JavaScript:     no
-  Pages:          8
-  Encrypted:      no
-  Page    7 size: 595.28 x 841.89 pts (A4)
-  Page    7 rot:  0
-  Page    8 size: 595.28 x 841.89 pts (A4)
-  Page    8 rot:  0
-  File size:      835779 bytes
-  Optimized:      no
-  PDF version:    1.4
-
-Kommando :man:`lpstat`::
-
-  $ lpstat -p
-  Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:39:23 CET
-  Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mo 11 Feb 2019 14:32:23 CET
-
-
-FIXME: XXXXXXXXXXXXXXXXX hier gehts weiter ?!?! XXXXXXXXXXXXXXXXX
-
-
-CUPS Server debug
------------------
-
-Das Debug-LOG zum CUPS Dienst kann über die Kommandozeile aktiviert/de-aktiviert
-werden::
-
-  $ cupsctl -U <benutzer> --[no-]debug-logging
-
-oder über die HTML GUI des CUPS: http://localhost:631/admin/ kann mit der Option
-:guilabel:`Mehr Informationen zur Fehlersuche speichern` das Debug-LOG
-eingeschaltet werden.
-
-.. _figure-cupsd-debug-on:
-
-.. figure:: cupsd-debug-on.png
-   :alt:    Figure (cupsd-debug-on.png)
-   :target:  http://localhost:631/admin/
-
-   ``localhost:631``: CUPS Server Einstellungen
-
-Die Einstellung wird aktiv, sobald :guilabel:`Einstellung ändern` bestätigt wird.
-
-
-CUPS Browser debug
-------------------
-
-Das Debug-LOG des Dienstes ``cups-browsed.service`` kann in der Config-Datei zum
-Dienst eingestellt werden::
-
-  /etc/cups/cups-browsed.conf
-
-Mit der folgenden Einstellung::
-
-   # Where should cups-browsed create its debug log file (if "DebugLogging file"
-   # is set)?
-
-   LogDir /var/log/cups
-
-   # How should debug logging be done? Into the file
-   # /var/log/cups/cups-browsed_log ('file'), to stderr ('stderr'), or
-   # not at all ('none')?
-
-   DebugLogging file
-   # DebugLogging stderr
-   # DebugLogging file stderr
-   # DebugLogging none
-
-wird ein Debug-LOG in der Datei ``/var/log/cups/cups-browsed_log`` angelegt,
-sobald der Dienst neu gestartet wurde::
-
-  $ sudo systemctl restart cups-browsed
