@@ -37,6 +37,7 @@
 .. _cups-filters: https://github.com/OpenPrinting/cups-filters
 .. _cups-filter README: https://github.com/OpenPrinting/cups-filters/blob/master/README#L121
 
+.. _PWG: https://www.pwg.org/
 .. _`PDL (wiki)`: https://en.wikipedia.org/wiki/Page_description_language
 
 .. _`PPD (wiki)`: https://en.wikipedia.org/wiki/PostScript_Printer_Description
