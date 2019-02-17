@@ -5,6 +5,14 @@
 Druckertreiber
 ==============
 
+Im Backend bietet CUPS z.T. generische Treiber für die Drucker-Hersteller an,
+die i.d.R. schon sehr gut funktionieren.  Wie bereits beschrieben, unterstützen
+alle halbwegs modernen Netzwerk-Drucker bereits das `IPP Everywhere`_.  Darüber
+ist es CUPS möglich *driverless-printing* anzubieten.  Für den MF623Cn_ gibt es
+einen proprietären Treiber von Canon als auch einen generischen Treiber für
+Canon Drucker.  Es sollen beide Treiber engerichtet und deren Druck-Ergebnisse
+miteinander verglichen werden.
+
 .. _driverless-printing:
 
 driverless printing
@@ -13,8 +21,8 @@ driverless printing
 Über das `driverless-printing CUPS`_ müsste in einer Standard Installation des
 Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
 Drucker bereits im Setup unter "Geräte" angeboten werden.  Alternativ kann man
-dort auch auf *"Zusätzliche Druckereinstellungen"* drücken, womit dem das
-Programm ``system-config-printer`` gestartet wird.
+in den Druckereinstellungen auch auf *"Zusätzliche Druckereinstellungen"*
+drücken womit das Programm ``system-config-printer`` gestartet wird.
 
 .. _figure-cups-system-config-printer-gui:
 
@@ -25,51 +33,55 @@ Programm ``system-config-printer`` gestartet wird.
    ``system-config-printer``: CUPS GUI für Drucker- Konfiguration und
    Statusabfrage.
 
-
-In dem Fenster kann man *"Hinzufügen"* klicken und über einen geführten Dialog
-den Drucker einrichten.  Eine detallierte Anleitung findet man unter:
-:ref:`printer_setup`.  Hier beim MF623Cn wurde der Drucker mit dem Treiber
+In dem Fenster kann man :guilabel:`Hinzufügen` klicken und über einen geführten
+Dialog den Drucker einrichten.  Eine detallierte Anleitung findet sich in
+Kapitel ":ref:`printer_setup`".  Hier beim MF623Cn_ musste die generisch
+erzeugte PPD Datei aus genannten Gründen angepasst werden:
 
 - Für MF623Cn_ angepasste PPD: :origin:`CNMF620C Series, driverless (PPD
   modified) <docs/print_scan/CNMF620C-Series.ppd>`
 
-eingerichtet.  Zu sehen im GNOME-Setup unter *Geräte/Drucker* und über einen
-Klick auf *Zahnrad / Drucker-Details*.  Den *driverless* Drucker sollte man mal
-testen.  Mit einem modernen PDF-fähigen Drucker (``application/pdf``) von einem
-Hersteller, der IPP beherrscht wird man vermutlich schon respektable Erzeugnisse
-anfertigen können.  Beim MF623Cn gibt es allerdings noch einige
-Kinderkrankheiten.  In solchen Fällen gibt es zwei Möglichkeiten.
+.. note::
 
-- man installiert sich den **proprietären** Druckertreiber (:ref:`canon_urf`)
-  des Herstellers.
+   Den *driverless* Drucker sollte man als erstes testen.  Mit einem modernen
+   PDF-fähigen (oder PS-fähigen) Drucker (``application/pdf``) von einem
+   Hersteller, der `IPP Everywhere`_ beherrscht wird man i.d.R. schon sehr
+   respektable Erzeugnisse anfertigen können.
 
-  Sofern für Linux vorhanden, kann man sich auch mal die Druck-Ergebnisse mit
-  dem proprietären Treiber vom Hersteller anschauen (doch ACHTUNG:
-  :ref:`driverless-vs-canon`).
+Beim MF623Cn gibt es allerdings noch einige Kinderkrankheiten, die z.T. auch
+schon beschrieben wurden.  In solchen Fällen gibt es zwei Möglichkeiten.
 
-- Man steigt etwas tiefer in die Materie `CUPS (wiki)`_ (-Filter) und
-  ggf. IPP_ ein und richtet sich eine eigene `PPD (wiki)`_ ein.
+Entweder
+  man installiert sich den proprietären Druckertreiber des Herstellers, siehe
+  Kapitel ":ref:`canon_urf`".
 
-  - :ref:`cupstestppd`
-  - :ref:`cups-driverless_HWMargins`
-  - :origin:`CNMF620C Series, driverless (PPD modified) <docs/print_scan/CNMF620C-Series.ppd>`
+oder
+  man steigt etwas tiefer in die Materie CUPS und CUPS-Filter und ggf. IPP_ ein
+  und richtet sich eine eigene PPD-Datei ein, resp. ändert die bestehende PPD.
+  Hier im Beispiel musste der Wert für :ref:`HWMargins in der PPD korrigiert
+  werden <cups-driverless_HWMargins>`.  Hier noch ein paar Verweise, die dabei
+  ggf. Information bieten können:
 
-Mit `CUPS (wiki)`_ kann man für den physikalisch gleichen Drucker mehrere
-unabhängige Drucker-Setups einrichten, so kann man beispielsweise ein
-bestehendes Setup (siehe auch Kapitel :ref:`ppd_spec`) auch kopieren und dann
-verändern.  Diese Drucker-Setups sind aus Sicht der Programme voneinander
-unabhängige Drucker.  Man braucht also sein *funktionierendes* Setup erst mal
-nicht *anfassen*, wenn man mal was ausprobieren möchte.
-
-- `driverless-printing CUPS`_
-- `Writing your own CUPS printer driver in 100 lines of Python
-  <https://behind.pretix.eu/2018/01/20/cups-driver/>`_
+  - `driverless-printing CUPS`_
+  - `Writing your own CUPS printer driver in 100 lines of Python
+    <https://behind.pretix.eu/2018/01/20/cups-driver/>`_
 
 
 .. _canon_urf:
 
 MF620C-Serie URF-II (MF623Cn)
 =============================
+
+Sofern für Linux vorhanden, kann man sich auch mal die Druck-Ergebnisse mit dem
+proprietären Treiber vom Hersteller anschauen.  Doch ACHTUNG: wie im Kapitel
+":ref:`driverless-vs-canon`" gezeigt, kann der Treiber vom Hersteller auch mal
+gewaltig schlechter sein als der generische Druckertreiber von CUPS.  Zumindest
+bei Canon noch ein weiteres Problem; die Softwarepakete von Canon für Linux
+installieren jede Menge Schrott der nicht funktioniert und bestenfalls nicht
+noch andere Problem mit sich zieht.  Es ist schon eine ziemliche
+Unverschämtheit, was Canon seinen Kunden für eine schrottige Software zur
+Installation anbietet *und das ziehen die schon seit Jahren "so" durch*.
+
 
 .. _figure-MF623Cn-printer-spec:
 
@@ -88,9 +100,8 @@ Linux Treiber für die Drucker der MF620C Serie gibt es bei Canon:
 Dort sind auch Installationsanleitungen gegeben, diesen sollte man **nicht**
 folgen: **Die Linux Pakete von Canon sind schon immer dafür bekannt, diversen
 Schrott zu installieren**.  Das gilt sowohl für die Druck- als auch für die
-SCAN- Funktionen (Bitte auch :ref:`driverless-vs-canon` lesen).  Es empfiehlt
-sich von daher nur die nötigsten Sachen (die binären Treiber und die PPDs) aus
-dem Treiber-Download zu installieren und das ist auch ganz einfach: In den
+SCAN- Funktionen.  Es empfiehlt sich von daher nur die nötigsten Sachen (die
+binären Treiber und die PPDs) aus dem Treiber-Download zu installieren.  In den
 ``linux-UFRII-drv-v{xxx}-uken.tar.gz`` Archiven gibt es zwei, max. drei Pakete
 die man installieren muss, mehr bitte nicht:
 
@@ -102,7 +113,7 @@ Die ``.tar.gz`` Datei im Download-Ordner auspacken (über rechte Maustaste *"Hie
 entpacken"*).  In dem dann angelegten Ordner muss man sich etwas nach unten
 *durchklickern*: ``64-bit_Driver/Debian``.  Dort sieht man dann auch schon die
 `Debian Pakete <https://de.wikipedia.org/wiki/Debian_Package_Manager>`_ mit der
-Dateiendung ``.deb``.  Diese kann man mit eine *Doppelklick* einfach
+Dateiendung ``.deb``.  Diese kann man mit einem *Doppelklick* einfach
 installieren.
 
 Leider ist die Installation damit nicht erledigt, da Canon seit jeher unfähig
@@ -129,6 +140,9 @@ Bei moderneren Druckern, sollte der Drucker nun automatisch gefunden und
 eingebunden werden.  Falls das bei dem eigenen Drucker noch nicht klappt, sollte
 man mit dem :ref:`printer_setup` fortfahren.
 
+Auch die PPD, die Canon mit dem Treiber ausliefert ist ziemlich lieblos
+zusammengeschustert weshalb ich eine selbst-erstellte bevorzuge:
+
 - Für MF623Cn_ angepasste PPD (URFII): :origin:`Canon MF620C Series UFRII LT
   <docs/print_scan/MF623C-TWF19694.ppd>`
 
@@ -140,7 +154,12 @@ Druckbild Canon VS driverless
 
 Hier ein Vergleich des Druckbilds des All-in-One Drucker MF623Cn_, einmal mit
 dem origignal :ref:`Canon URF-II Treiber <canon_urf>` (links) und dem
-:ref:`driverless-printing <printer_setup>` (rechts).
+:ref:`driverless-printing <printer_setup>` (rechts).  Es sind die Druckbilder,
+die man bekommt, wenn man nichts an den PPD Dateien geändert hat.
+
+Das :ref:`Bild unten<figure-MF620C-Series-driverless-vs-canon>` zeigt den
+rechten-oberen Ausschnitt eines A4-Drucks, bei dem oben in der Ecke ein `QR-Code
+(wiki)`_ gedruckt werden sollte.
 
 .. _figure-MF620C-Series-driverless-vs-canon:
 
@@ -150,22 +169,21 @@ dem origignal :ref:`Canon URF-II Treiber <canon_urf>` (links) und dem
    Druckbild MF620C Series: :ref:`Canon URF-II Treiber <canon_urf>` (links)
    :ref:`driverless-printing <printer_setup>` (rechts)
 
+Links sieht man, dass der Original Canon Treiber zwar bis in die Ecken druckt
+aber den QR-Code im PDF nur zerstört ausdruckt.  Bei genauerer Betrachtung
+(nicht im Bild zu erkennen) stellt man auch fest, dass der original Treiber
+nicht farbecht ist.  Mir erscheint der ganze Ausdruck wie ein kaputtes JPEG, die
+Farben sind nicht echt und das der QR Code auch noch zerstört wird, mag
+evtl. auch an einer (JPEG) Komprimierung liegen.
 
-Das :ref:`oben gezeigt Bild <figure-MF620C-Series-driverless-vs-canon>` ist der
-rechte-obere Ausschnitt eines A4-Drucks, bei dem oben in der Ecke ein `QR-Code
-(wiki)`_ war.  Links sieht man, dass der Original Canon Treiber zwar bis in die
-Ecken druckt aber den QR-Code im PDF nur zerstört ausdruckt.  Bei genauerer
-Betrachtung (nicht im Bild zu erkennen) stellt man auch fest, dass der original
-Treiber nicht farbecht ist.
+Der Druck über den Drucker des :ref:`driverless-printing <printer_setup>`
+(rechts im Bild) zeigt das Problem, dass er nicht bis in die Ecken drucken kann,
+dafür wird aber der QR-Code nicht zerstört, was im Fall von Fahrkarten wichtiger
+sein wird.  Bei genauerer Betrachtung (nicht im Bild zu erkennen) hat man den
+Eindruck, dass der Druck Farbecht ist, jedoch scheint die Auflösung und
+Farbtiefe nicht ganz ausgereizt zu werden.
 
-Der Druck über den Drucker des :ref:`driverless-printing <printer_setup>` zeigt
-das Problem, dass er nicht bis in die Ecken drucken kann, dafür wird aber der
-QR-Code nicht zerstört (was manchmal wichtiger sein kann).  Bei genauerer
-Betrachtung (nicht im Bild zu erkennen) hat man den Eindruck, dass der Druck
-Farbecht ist, jedoch scheint die Auflösung und Farbtiefe nicht ganz ausgereizt
-zu werden.
-
-.. hint::
+.. note::
 
    Der Rand beim *driverless* Druck konnte durch setzten der Rahmen des
    ``ImageableArea`` auf ``0 0 ...`` korrigiert werden (siehe

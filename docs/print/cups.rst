@@ -1,6 +1,8 @@
 .. -*- coding: utf-8; mode: rst -*-
 .. include:: ../print_scan_refs.txt
 
+.. _cups:
+
 ===============
 CUPS Grundlagen
 ===============

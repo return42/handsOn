@@ -8,9 +8,9 @@
 Netzwerk-Drucker Setup
 ======================
 
-Im GNOME Setup unter "Geräte" kann man den Drucker einrichten, i.d.R. wir der
-Drucker im Netz gefunden, i.d.R: wählt GNOME (resp CUPS) die **driverless** PPA,
-bei mir (Ubuntu 18.04 und MF623Cn Drucker) war das:
+Im GNOME-Setup unter :guilabel:`Geräte/Drucker` kann man den Drucker einrichten,
+i.d.R. wird der Drucker im Netz gefunden, i.d.R: wählt GNOME (resp CUPS) die
+**driverless** PPA, bei mir (Ubuntu 18.04 und MF623Cn Drucker) war das:
 
 - :origin:`CNMF620C Series, driverless, cups-filters <docs/print_scan/CNMF620C-Series.ppd>`
 

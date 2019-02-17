@@ -23,10 +23,15 @@ Dienst neu starten, damit dieser die neuen Einstellungen übernimmt::
   sudo systemctl restart cups
 
 Werden Änderungen über die :ref:`GUI <figure-cups-system-config-printer-gui>`
-vorgenommen, so ist ein Neustart des Dienstes nicht erforderlich.  Es ist
-möglich **einen physikalischen** Drucker über unterschiedliche CUPS-Drucker
-(also PPD Dateien) **in unterschiedlichen Setups** anzubieten.  Aus Sicht des
-Anwenders **sind die Setups die Drucker auf denen er drucken kann**.
+vorgenommen, so ist ein Neustart des Dienstes nicht erforderlich.
+
+Mit `CUPS (wiki)`_ kann man für **EINEN physikalischen** Drucker mehrere
+unterschiedliche CUPS-Drucker (also PPD Dateien) einrichten.  Aus Sicht des
+Anwenders **sind die CUPS-Drucker, die Drucker auf denen er drucken kann**.  Hat
+man einen funktionierenden CUPS-Drucker, so kann man davon eine Kopie anlegen
+und mit dieser dann erst mal seine Änderungen an der PPD testen.  Man braucht
+also sein *funktionierendes* Setup erst mal nicht *anfassen*, wenn man mal was
+ausprobieren möchte.
 
 .. hint::
 

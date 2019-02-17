@@ -1235,6 +1235,10 @@ aptRepositoryExist() {
 aptAddRepositoryURL(){
 # ----------------------------------------------------------------------------
 
+    # usage:
+    #
+    #     aptAddRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
+    #
     # Dem add-apt-repository fehlt (immernoch) die Option --sources-list-file,
     # mit dem man den Eintrag in eine separate Datei in sources.list.d eintragen
     # könnte (so wie bei ppa's). Deswegen mache ich das hier manuell. Typischer
@@ -1261,10 +1265,6 @@ aptAddRepositoryURL(){
     # public-keys::
     #
     #   aptRemoveRepository "$APT_SOURCE_NAME"
-    #
-    # usage:
-    #
-    #     addAptRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
 
     local URL="${1}"
     local FNAME="$(stripHostnameFromUrl ${1})".list
