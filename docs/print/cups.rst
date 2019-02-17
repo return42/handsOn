@@ -20,24 +20,24 @@ CUPS wird grundsätzlich immer als Dienst (http://localhost:631) eingerichtet,
 d.h. es läuft nicht im Kontext eines bestimmten Benutzers, sondern kann von
 allen Benutzern des Systems genutzt werden (*logisch*).
 
-  Die *Idee von CUPS* ist, dass man alle Drucker und Druck-Funktionen in einem
-  Dienst, auf einem Host vereint (der zentrale CUPS Server).  Die Clients
-  (Desktop Systeme, mobile Geräte etc.) können über diesen einen zentralen
-  Dienst ihre Anforderungen an das Drucken abwickeln, ohne das man auf jedem
-  dieser Geräte einen Druckertreiber oder eine spezielle Druckfunktion
-  installieren muss.
+  Die *Idee von CUPS* ist, dass alle Drucker (-Funktionen) in einem Dienst, auf
+  einem Host (*dem zentralen CUPS Server*) vereint werden.  Die Clients (Desktop
+  Systeme, mobile Geräte etc.) können über *den zentralen CUPS Server* ihre
+  Druck-Anforderungen abwickeln, ohne das dazu auf jedem dieser Geräte ein
+  Druckertreiber oder eine spezielle Druckfunktion installiert werden muss.
 
-Im Kapitel ":ref:`printer_setup`" wird der Umgang mit der GUI beschrieben.  Dort
-wird auch erläutert, dass nur Nutzer der Gruppe ``lpadmin`` Änderungen an den
-Druckereinstellungen vornehmen können, weshalb man sich selbst am besten noch zu
-der Gruppe ``lpadmin`` hinzufügt::
+Im Kapitel ":ref:`printer_setup`" wird der Umgang mit der GUI
+(:ref:`system-config-printer <figure-cups-system-config-printer-gui>` )
+beschrieben.  Dort wird auch erläutert, dass nur Nutzer der Gruppe ``lpadmin``
+Änderungen an den Druckereinstellungen vornehmen können, weshalb man sich selbst
+am besten noch zu der Gruppe ``lpadmin`` hinzufügt::
 
   $ sudo gpasswd -a <benutzername> lpadmin
 
 Gespeichert werden die Druckereinstellungen in den PPD Dateien, siehe Kapitel
 ":ref:`ppd_spec`".
 
-Backend
+CUPS-Backend
   Im Backend des CUPS, werden die Druckertreiber registriert.  Da bietet CUPS
   z.T. generische Treiber an, die i.d.R. schon sehr gut funktionieren.  Alle
   halbwegs modernen Netzwerk-Drucker unterstützen das IPP_, welches auch in CUPS

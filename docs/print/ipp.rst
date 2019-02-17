@@ -7,14 +7,13 @@
 IPP & IPP Everywhere
 ====================
 
-Das *Internet Printing Protocol* (`IPP (wiki)`_) ist -- wie der Name schon sagt
--- ein Internet-Protokoll.  *Genauer:* es ist eine Erweiterung des bekannten
-HTTP 1.1 Protokolls wie man es für *Internetseiten* kennt und es wird vom
-Drucker i.d.R. auf den gleichen Ports; `80` (HTTP) und `443` (HTTPS) angeboten.
-
-Der MF623Cn_ unterstützt IPP und wie alle IPP fähigen Drucker muss er als
-*Drucksprache* mindestens ``image/jpeg`` und ``image/pwg-raster`` verstehen
-(s.a.  `What is IPP <https://github.com/apple/cups/wiki/IPP-(Everywhere)-Mini-Tutorial>`_).
+`IPP (wiki)`_ ist das *Internet Printing Protocol*.  IPP_ ist -- wie der Name
+schon sagt -- ein Internet-Protokoll.  *Genauer:* es ist eine Erweiterung des
+bekannten HTTP 1.1 Protokolls wie man es von *Internetseiten* kennt und es wird
+vom Drucker i.d.R. auf den gleichen Ports `80` (HTTP) und `443` (HTTPS)
+angeboten.  Der MF623Cn_ unterstützt IPP und wie alle IPP fähigen Drucker muss
+er als *Drucksprache* mindestens ``image/jpeg`` und ``image/pwg-raster``
+verstehen (s.a. `IPP Mini Tutorial`_).
 
 .. code-block:: none
 
@@ -33,25 +32,38 @@ Damit hat man also die Möglichkeit die Eigenschaften des Druckers über IPP_ zu
 ermitteln.  Das wollen wir gleich mal machen, aber vorher wollen wir uns nochmal
 `IPP Everywhere`_ anschauen, damit können Drucker im Netzwerk *gefunden* werden.
 
+Da es die IPP-Versionen V-2.0, V-2.1 und V-2.2 gibt könnte der Eindruck
+entstehen, dass die V-1.1 veraltet ist.  Das ist aber nicht der Fall, die
+``2.x`` Versionen adressieren lediglich die Anwendungsbereiche (siehe Kapitel
+*Introduce* in `IPP Version 2.0, 2.1, and 2.2`_).  Für die typischen
+Büro-Drucker kommt **IPP V2.0** zur Anwendung.
+
+.. note::
+
+   Die Verabschiedung der IPP ``2.x`` Versionen ist aus dem Jahre 2015, also
+   noch recht *frisch*!  Es braucht auch immer etwas Zeit, bis so ein Standard
+   dann vollständig und ohne Kinderkrankheiten in die (neuen) Geräte und
+   Distributionen eingeflossen ist.  Weshalb man mit älteren Druckern und
+   älteren Systemen i.d.R. mehr Probleme haben wird.  Das ist auch Stand heute
+   (02/2019) noch deutlich *spürbar*.  `IPP Everywhere`_ resp.
+   :ref:`driverless-printing` gibt es in Ubuntu seit 17.04.
+
+
 ``ippfind``
 ===========
 
 Drucker die über IP im Netzwerk bereit stehen, können über Avahi_ gefunden
 werden.  `Avahi (git)`_ ist eine freie Implementierung von Zeroconf_, das
 Pendant auf macOS ist Bonjour_ von Apple.  Aufgabe dieser Zeroconf Werkzeuge ist
-es, Dienste welche im IP-Netz bereit stehen zu finden.  Avahi ist bereits schon
-auf allen Linux Desktops eingerichtet.  Das einzige was man evtl. noch
-festhalten kann ist, dass sowohl CUPS als auch IPP sich des Avahi bedienen um
-Drucker im Netzwerk automatisch zu finden:
-
-  .. hint::
-
-     IPP ``2.x`` wurde im Jahre 2015 verabschiedet und `IPP Everywhere`_
-     resp. :ref:`driverless-printing` gibt es in Ubuntu seit 17.04.
+es, Dienste welche im IP-Netz bereit stehen zu finden.  Avahi ist bereits auf
+allen Linux Desktops eingerichtet.  Das einzige was man evtl. noch festhalten
+kann ist, dass sowohl CUPS als auch IPP sich des Avahi bedienen um Drucker im
+Netzwerk automatisch zu finden.
 
 Wenn der Drucker über WLAN oder LAN angeschlossen ist und eine IP erhalten hat
-(https://mf623cn/portal_top.html), dann müssten wir ihn eigentlich über IPP
-finden können.  Die Implementierung dazu ist das Kommando :man:`ippfind`::
+(hier im Beispiel sei das die URL https://mf623cn/portal_top.html), dann müssten
+wir ihn eigentlich über IPP finden können.  Die Implementierung dazu ist das
+Kommando :man:`ippfind`::
 
   $ ippfind
   ipp://MF623Cn.local:80/ipp/print0
@@ -89,18 +101,6 @@ und Objekten sind bei IANA registriert, eine vollständige Liste gibt es hier:
   - `document-format-supported <https://tools.ietf.org/html/rfc8011#section-5.4.22>`_
   - `ipp-versions-supported  <https://tools.ietf.org/html/rfc8011#section-5.4.14>`_
 
-Da es die IPP-Versionen V-2.0, V-2.1 und V-2.2 gibt könnte der Eindruck
-entstehen, dass die V-1.1 veraltet ist.  Das ist aber nicht der Fall, die
-``2.x`` Versionen adressieren lediglich die Anwendungsbereiche (siehe Kapitel
-*Introduce* in `IPP Version 2.0, 2.1, and 2.2`_).  Für die typischen
-Büro-Drucker kommt IPP V2.0 zur Anwendung.
-
-.. note::
-
-   Die Verabschiedung der IPP ``2.x`` Versionen ist aus dem Jahre 2015, also
-   noch recht *frisch*!  Es braucht auch immer etwas Zeit, bis so ein Standard
-   dann vollständig und ohne Kinderkrankheiten in die (neuen) Geräte und
-   Distributionen eingeflossen ist.
 
 
 Einschätzungen zur IPP-Fähigkeit

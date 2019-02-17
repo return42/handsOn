@@ -47,3 +47,4 @@
 .. _`Page Sizes (hp)`: https://developers.hp.com/hp-linux-imaging-and-printing/tech_docs/page_sizes
 
 .. _`DTP Einheiten Umrechner`: https://print-assistant.de/tools/prepress/dtp-einheiten-mm-cm-dpt-ppt-pt-in-umrechnen/
+.. _`IPP Mini Tutorial`: https://github.com/apple/cups/wiki/IPP-(Everywhere)-Mini-Tutorial
