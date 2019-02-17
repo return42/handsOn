@@ -51,9 +51,9 @@ CUPS-Filter
 
   Hier in diesem Artikel wird beispielsweise ein Canon Drucker eingerichtet, der
   bietet zwar das IPP_, *spricht* aber weder `Postscript (wiki)`_ noch PDF_.
-  Als Druckersprache kennt der nur UFR-II (:ref:`figure-MF623Cn-printer-spec`).
-  Im Kapitel ":ref:`IPP_intro`" wird erläutert, wie mit dem ``image/pwg-raster``
-  Format (das alle IPP-fähigen Drucker anbieten müssen) dennoch auf diesem
-  Drucker mittels CUPS Filter und einem generischen Druckertreiber gedruckt
-  werden kann.
+  Als *Seitenbeschreibungssprache* `PDL (wiki)`_ kennt der nur UFR-II
+  (:ref:`figure-MF623Cn-printer-spec`).  Im Kapitel ":ref:`IPP_intro`" wird
+  erläutert, wie mit dem ``image/pwg-raster`` Format (das alle IPP-fähigen
+  Drucker anbieten müssen) dennoch auf diesem Drucker mittels CUPS Filter und
+  einem generischen Druckertreiber gedruckt werden kann.
 

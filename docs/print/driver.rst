@@ -172,33 +172,6 @@ zu werden.
    :ref:`cups-driverless_HWMargins`).
 
 
-.. _cups-driverless_HWMargins:
-
-HWMargins & ImageableArea manuell korrigieren
-=============================================
-
-Der über :ref:`driverless-printing <printer_setup>` eingerichtete Drucker
-(rechts) kalkuliert zum Teil sehr abstruse Rahmen ...
-
-.. code-block:: clean
-
-  *HWMargins: "28.346456692913 28.346456692913 28.346456692913 28.346456692913"
-  ...
-  *ImageableArea A4: "14.173228346457 14.173228346457 581.102362204724 827.716535433071"
-  *ImageableArea A5: "14.173228346457 14.173228346457 405.354330708661 581.102362204724"
-  *ImageableArea B5: "14.173228346457 14.173228346457 501.732283464567 714.330708661417"
-
-Besser ist es die Werte auf ``0 0`` zu setzen (:origin:`MF623Cn-attributes.txt
-<docs/print_scan/MF623Cn-attributes.txt>`)):
-
-.. code-block:: clean
-
-  *HWMargins: "0 0 0 0"
-  ...
-  *ImageableArea A4: "0 0 595 842"
-  *ImageableArea A5: "0 0 420 595"
-  *ImageableArea B5: "0 0 516 729"
-
 
 Debug LOG der Druckerzeugnisse
 ==============================

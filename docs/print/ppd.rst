@@ -7,20 +7,33 @@
 Die kleine PPD Fibel
 ====================
 
-- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
-
-Über eine `PPD (wiki)`_ wird ein CUPS-Drucker in CUPS eingerichtet.  Es ist
-möglich **einen physikalischen** Drucker über unterschiedliche CUPS-Drucker
-(also PPD Dateien) in **unterschiedlichen Setups** anzubieten.  Aus Sicht des
-Anwenders **sind die Setups die Drucker** auf denen er drucken kann.  Die über
-die :ref:`GUI <figure-cups-system-config-printer-gui>` eingerichteten Drucker
-entsprechen den ``*.ppd`` Dateien in der CUPS Konfiguration unter
-``/etc/cups``::
+In einer `PPD (wiki)`_ Datei werden die Einstellungen eines CUPS-Druckers
+gespeichert.  Die über die :ref:`GUI <figure-cups-system-config-printer-gui>`
+eingerichteten Drucker entsprechen den ``*.ppd`` Dateien in der CUPS
+Konfiguration unter ``/etc/cups``::
 
   $ ls -la /etc/cups/ppd/*.ppd
   ...
   -rw-r----- 1 root lp   12641 Feb 13 12:26 CNMF620C-Series.ppd
   -rw-r----- 1 root lp   15332 Feb 12 19:22 MF623C-TWF19694.ppd
+
+Nimmt man Änderungen direkt an einer PPD Datei vor, so sollte man den CUPS
+Dienst neu starten, damit dieser die neuen Einstellungen übernimmt::
+
+  sudo systemctl restart cups
+
+Werden Änderungen über die :ref:`GUI <figure-cups-system-config-printer-gui>`
+vorgenommen, so ist ein Neustart des Dienstes nicht erforderlich.  Es ist
+möglich **einen physikalischen** Drucker über unterschiedliche CUPS-Drucker
+(also PPD Dateien) **in unterschiedlichen Setups** anzubieten.  Aus Sicht des
+Anwenders **sind die Setups die Drucker auf denen er drucken kann**.
+
+.. hint::
+
+   Beispiele wie sie in Kapitel ":ref:`cups-driverless_HWMargins`" und Kapitel
+   ":ref:`cupstestppd`" gegeben sind, machen deutlich, dass es auch heute noch
+   ratsam ist, einen Blick auf die PDD Dateien zu werfen und diese ggf. zu
+   korrigieren.
 
 Die PPD-Dateien aus den Beispielen *hier* sind im Original folgend einzusehen:
 
@@ -29,95 +42,78 @@ Die PPD-Dateien aus den Beispielen *hier* sind im Original folgend einzusehen:
 - ``MF623C-TWF19694.ppd``: :origin:`Canon MF620C Series UFRII LT
   <docs/print_scan/MF623C-TWF19694.ppd>`
 
+
+Herkunft der PPD Dateien
+========================
+
 Die PPD-Dateien *entstehen* beim Einrichten des Druckers in der :ref:`GUI
 <figure-cups-system-config-printer-gui>`, entweder durch die Auswahl einer PPD
-Datei (des Herstellers), oder aber sie werden durch den *driverless* Treiber
+Datei (des Herstellers) oder aber sie werden durch den *driverless* Treiber
 erzeugt.  Bei letzterem nutzt der *driverless* Treiber IPP-Everywhere um den
-Drucker zu finden, über IPP fragt er dann beim Drucker nach seinen Eigenschaften.
-
-Im Kapitel ":ref:`IPP_intro`" wird ein Beispiel gezeigt, wie die Eigenschaften des
-Druckers mit dem :man:`ipptool` Kommando ausgelesen werden können.  Aus der
-Antwort vom Drucker (:origin:`MF623Cn-attributes.txt
+Drucker zu finden.  Ebenfalls über IPP fragt er dann beim Drucker nach seinen
+Eigenschaften.  Im Kapitel ":ref:`IPP_intro`" wird ein Beispiel gezeigt, wie die
+Eigenschaften des Druckers mit dem :man:`ipptool` Kommando ausgelesen werden
+können.  Aus der Antwort vom Drucker (:origin:`MF623Cn-attributes.txt
 <docs/print_scan/MF623Cn-attributes.txt>`) baut der *driverless* Treiber dann
 eine PPD Datei, die er unter ``/etc/cups/ppd/<printer-name>.ppd`` speichert.
-Der ``<printer-name>`` wird einem öfter begegnen, z.B bei Kommandos wie :man:`lpstat`::
+Der ``<printer-name>`` wird einem öfter begegnen, z.B bei Kommandos wie
+:man:`lpstat`::
 
   $ lpstat -p
   Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Di 12 Feb 2019 17:49:37 CET
   Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mi 13 Feb 2019 11:48:19 CET
 
-PPD ist die Abkürzung für *PostScript Printer Description* und wie der Name
-schon erahnen lässt, ist die *Description (aka Beschreibung)* des Drucker an der
-*Seitenbeschreibungssprache* `PostScript (wiki)`_ orientiert.  Eine
-*Seitenbeschreibungssprache* wird im englischen auch `PDL (wiki)`_ genannt.
 
-.. hint::
-
-   Auch bei den modernen Image-Druckern (s.a :ref:`IPP_intro`), die kein
-   PostScript verstehen, erfolgt das Setup des Druckers im CUPS mit diesen PPD
-   Dateien.  Beispiele wie :ref:`cups-driverless_HWMargins` zeigen auf, dass ein
-   Blick auf die PPD Dateien z.T. unumgänglich ist.
+Aufbau einer PPD-Datei
+======================
 
 Schaut man in die PPD Dateien hinein, so sieht man dort Angaben wie z.B.::
 
   *DefaultPageSize: A4.Fullbleed
-  *PageSize A4.Fullbleed: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+  *PageSize A4.Fullbleed/A4: "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
 
-Die Definition zu solchen Angaben befinden sich hier: `PPD Datei CUPS PPD
-Extensions`_.  Was schon ohne genaue Kenntnisse zu erkennen ist, dass
-Längenangaben z.T. einheitenlos sind, hier das Beispiel die `Page Sizes (hp)`_
-mit der Angabe: ``/PageSize[595 842]``
+PPD ist die Abkürzung für *PostScript Printer Description* und wie der Name es
+schon erahnen lässt, erfolgt die *Description* des Drucker in einer Sprache die
+stark an der PDL `PostScript (wiki)`_ angelehnt ist.  Zu erkennen ist das
+beispielsweise an dem ``setpagedevice``, einem Operator aus dem PostScript.
 
 .. hint::
 
-   Größen-Angaben ohne Einheit sind vom Typ DTP-Punkt_ (aka *PostScript unit*).
-   Der Punkt entspricht ``0,3527mm`` / s.a. :ref:`tabelle_page_size`
+   Auch bei den modernen Image-Druckern (s.a :ref:`IPP_intro`), die kein
+   PostScript verstehen, erfolgt das Setup des Druckers im CUPS mit den
+   *PostScript Printer Description* (aka PPD) -Dateien.
 
+Die Definition zu solchen Angaben befinden sich hier
 
-Druckbereich
-============
+- `PPD Spec v4.3`_
+- `PPD Datei CUPS PPD Extensions`_.
+- `CUPS-Server PPD <http://localhost:631/help/ref-ppdcfile.html>`_
 
-Im Kapitel ":ref:`IPP_intro`" wurde bereits gezeigt, wie mittels IPP die Werte
-vom Drucker ausgelesen werden können.::
+Aber auch schon ohne tiefere Kenntnisse der `PPD Spec v4.3`_ kann man im obigen
+Beispiel erahnen, dass Angaben zu Längen z.T. einheitenlos sind, hier das
+Beispiel `Page Sizes (hp)`_ mit der Angabe: ``/PageSize[595 842]``
 
-  $ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
+.. hint::
 
-Die Ausgabe für den MF623Cn_ ist in der Datei :origin:`MF623Cn-attributes.txt
-<docs/print_scan/MF623Cn-attributes.txt>` zu sehen, hier der Auschnitt zu den
-Angaben der Papiergrößen und Druckbereiche, die der Drucker kennt (siehe
-:ref:`Tabelle in Spalte MF623Cn <tabelle_page_size>`):
-
-.. code-block:: none
-
-  media-default (keyword) = iso_a4_210x297mm
-  media-supported (1setOf keyword) = \
-    custom_min_83x127mm              \
-    , custom_max_215.9x355.6mm       \
-    , iso_a4_210x297mm               \
-    , iso_a5_148x210mm               \
-  ...
-
-  orientation-requested-default (enum) = portrait
-  orientation-requested-supported (1setOf enum) = portrait,landscape
-  output-bin-default (keyword) = face-down
-  output-bin-supported (keyword) = face-down
+   Längen-Angaben ohne Einheit sind vom Typ DTP-Punkt_ aka *PostScript unit*.
+   Der Punkt entspricht ``0,3527mm`` / s.a. Kapitel ":ref:`dtp_pt_mm_inch`".
 
 .. _cupstestppd:
 
 CUPS test PPD
 =============
 
-Die von `driverless-printing CUPS`_ angelegte PPD Datei kann Fehler enthalten
-(so zumindest bei mir).  Die Datei sollte in jedem Fall geprüft werden, mir ist
-aufgefallen, dass z.B. die Einträge wie ``*PageSize 3x5/3 x 5":`` vor dem
-Doppelpunkt noch einen überflüssigen Anführungsstrich besitzen.::
+Die von den Herstellern gelieferte PPD Datei oder aber auch die von
+`driverless-printing CUPS`_ angelegte PPD Datei kann Fehler enthalten (so
+zumindest bei mir) oder auch unvollständig sein.  Die Datei sollte in jedem Fall
+geprüft werden, mir ist beispielsweise aufgefallen, dass z.B. die Einträge wie
+``*PageSize 3x5/3 x 5":`` vor dem Doppelpunkt noch einen überflüssigen
+Anführungsstrich besitzen.::
 
   $ sudo grep --color '^*[^:]*\":'  /etc/cups/ppd/CNMF620C-Series-driverless.ppd
   ...
   *PageSize 3x5/3 x 5": "<</PageSize[216 360]>>setpagedevice"
-                     |
-		     +--> das "-Zeichen gehört hier nicht hin!
-
+  !!! ~~~~~~~~~~~~~~~^~~~~ die Anführungsstriche gehören dort nicht hin !!!
 
 Es ist auch möglich, die PDD Datei zu prüfen, hierzu gibt es das Kommando
 ``cupstestppd`` was allerdings auch nicht in der Lage ist den obigen Fehler mit
@@ -134,11 +130,78 @@ dem Anführungsstrich zu finden::
                 REF: Pages 61-62, section 5.3.
 	...
 
+.. _cups-driverless_HWMargins:
 
-Papier-Größen umrechnen
-=======================
+Druckbereich korrigieren
+========================
 
-Größen-Angaben die in :ref:`PPD-Dateien <ppd_spec>` ohne Einheit angegeben
+Im Kapitel ":ref:`IPP_intro`" wurde bereits gezeigt, wie mittels IPP die
+Eigenschaften vom Drucker ausgelesen werden können.::
+
+  $ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
+
+Die Ausgabe für den MF623Cn_ ist in der Datei :origin:`MF623Cn-attributes.txt
+<docs/print_scan/MF623Cn-attributes.txt>` zu sehen, hier der Ausschnitt zu den
+Angaben der Papiergrößen und Druckbereiche, die der Drucker kennt.
+
+.. code-block:: none
+
+  media-default (keyword) = iso_a4_210x297mm
+  media-supported (1setOf keyword) =
+    custom_min_83x127mm
+    , custom_max_215.9x355.6mm
+    , iso_a4_210x297mm
+    , iso_a5_148x210mm
+  ...
+  media-size-supported (1setOf collection) =
+    {x-dimension=21000 y-dimension=29700}       <--- entspricht A4
+    , {x-dimension=14800 y-dimension=21000}     <--- entspricht A4
+    , {x-dimension=18200 y-dimension=25700}     <--- entspricht B5
+    , ...
+
+Die vollständige Liste der in ``media-supported`` aufgelisteten Werte ist in der
+:ref:`Tabelle in Spalte MF623Cn <tabelle_page_size>` eingetragen.  Aus den
+Werten der ``media-size-supported`` kalkuliert der generische Treiber
+(:ref:`driverless-printing <printer_setup>`) die PPD Datei zu dem Drucker.
+
+.. attention::
+
+   Die Werte für ``media-size-supported`` sind *hundertstel Millimeter* (also 10
+   Mikrometer als Einheit). Nicht zu verwechseln mit den einheitenlosen Angaben
+   in PPD Dateien, die den DTP-Punkt_ aka *PostScript unit* darstellen.
+
+Schaut man in eine so generierte PPD Datei, so sieht man, dass dabei für den
+Drucker z.T. sehr abstruse Rahmen kalkuliert wurden.  Bitte beachten: hier sind
+die einheitenlosen Angaben wieder der DTP-Punkt, also umgerechnet ``1pt=0,3527mm``:
+
+.. code-block:: clean
+
+  *HWMargins: "28.346456692913 28.346456692913 28.346456692913 28.346456692913"
+  ...
+  *ImageableArea A4: "14.173228346457 14.173228346457 581.102362204724 827.716535433071"
+  *ImageableArea A5: "14.173228346457 14.173228346457 405.354330708661 581.102362204724"
+  *ImageableArea B5: "14.173228346457 14.173228346457 501.732283464567 714.330708661417"
+
+Besser ist es, die Werte für Ränder ganz auf ``0 0`` zu setzen, dass sollte auch
+keine Nachteile bereiten wenn der Drucker in Wirklichkeit mit einem umlaufenden
+Rahmen von z.B. 5mm ausgestattet ist (:origin:`MF623Cn-attributes.txt
+<docs/print_scan/MF623Cn-attributes.txt>`):
+
+.. code-block:: clean
+
+  *HWMargins: "0 0 0 0"
+  ...
+  *ImageableArea A4: "0 0 595 842"
+  *ImageableArea A5: "0 0 420 595"
+  *ImageableArea B5: "0 0 516 729"
+
+
+.. _dtp_pt_mm_inch:
+
+Längen Angaben umrechnen
+========================
+
+Längen-Angaben die in :ref:`PPD-Dateien <ppd_spec>` ohne Einheit angegeben
 werden sind vom Typ DTP-Punkt_ (aka *PostScript unit*)::
 
      DIN     A4 :   210mm x 297mm  / 0,3527 mm
@@ -338,4 +401,3 @@ zu sehen, die :ref:`tabelle_page_size`
      - 195 x 270
      - 7.68 x 10.63
      - **< 8.5 x 14**
-

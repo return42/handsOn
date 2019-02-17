@@ -25,7 +25,7 @@
 .. _`Canon UFR-II`: https://wiki.debian.org/PrinterDriver/Canon/UFR-II
 .. _`Postscript (wiki)`: https://de.wikipedia.org/wiki/PostScript
 .. _MF623Cn: https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn
-.. _`MF631Cn`: https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn
+.. _MF631Cn: https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn
 .. _AirPrint: https://wiki.debian.org/AirPrint
 .. _driverless-printing CUPS: https://wiki.debian.org/DriverlessPrinting
 
@@ -38,11 +38,11 @@
 .. _cups-filter README: https://github.com/OpenPrinting/cups-filters/blob/master/README#L121
 
 .. _PWG: https://www.pwg.org/
-.. _`PDL (wiki)`: https://en.wikipedia.org/wiki/Page_description_language
+.. _`PDL (wiki)`: https://de.wikipedia.org/wiki/Seitenbeschreibungssprache
 
 .. _`PPD (wiki)`: https://en.wikipedia.org/wiki/PostScript_Printer_Description
 .. _`PPD Datei CUPS PPD Extensions`: https://www.cups.org/doc/spec-ppd.html
-
+.. _`PPD Spec v4.3`: https://wwwimages2.adobe.com/content/dam/acom/en/devnet/actionscript/articles/5003.PPD_Spec_v4.3.pdf
 .. _DTP-Punkt: https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt
 .. _`Page Sizes (hp)`: https://developers.hp.com/hp-linux-imaging-and-printing/tech_docs/page_sizes
 
