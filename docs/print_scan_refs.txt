@@ -9,6 +9,8 @@
 .. _`CUPS (git)`: https://github.com/apple/cups
 .. _`CUPS (wiki)`: https://de.wikipedia.org/wiki/Common_Unix_Printing_System
 .. _`CUPS (archlinux)`: https://wiki.archlinux.org/index.php/CUPS
+.. _cups-pk-helper: https://www.freedesktop.org/wiki/Software/cups-pk-helper
+
 .. _`IPP (wiki)`: https://en.wikipedia.org/wiki/Internet_Printing_Protocol
 .. _`IPP 3D`: https://www.pwg.org/3d/index.html
 .. _IPP: https://www.pwg.org/ipp
