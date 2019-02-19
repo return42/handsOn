@@ -1786,3 +1786,10 @@ pref("extensions.enabledScopes", 15); // [HIDDEN PREF]
 
 // Country is already given by the IP ..
 pref("intl.locale.requested", "de"); // [HIDDEN PREF]
+
+// overwrite 1212 / default of security.OCSP.require is 'false', why see
+// https://support.mozilla.org/de/questions/1148094 --> if you force the
+// security.OCSP.require (toggle to true) then probably you will have lags and
+// stuck in the browser because if the ocsp service of a site is down, then the
+// browser will hang.
+pref("security.OCSP.require", false);
