@@ -132,6 +132,7 @@ einzurichten wählt man im Kontextmenü (rechte Maustaste) des Druckers die
 im Beispiel zu sehen::
 
    CNMF620C Series, driverless, cups-filters 1.20.2
+
 .. _figure-cups-system-config-printer-props:
 
 .. figure:: system-config-printer-props.png
