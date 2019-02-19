@@ -1793,3 +1793,15 @@ pref("intl.locale.requested", "de"); // [HIDDEN PREF]
 // stuck in the browser because if the ocsp service of a site is down, then the
 // browser will hang.
 pref("security.OCSP.require", false);
+
+// see 2703
+pref("network.cookie.lifetimePolicy", 2);
+
+// see 0901: disable saving passwords
+pref("signon.rememberSignons", false);
+
+// see 2803
+pref("privacy.clearOnShutdown.history", false); // Browsing & Download History
+
+// see 0102: set START page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
+pref("browser.startup.page", 3);
