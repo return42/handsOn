@@ -1805,3 +1805,7 @@ pref("privacy.clearOnShutdown.history", false); // Browsing & Download History
 
 // see 0102: set START page (0=blank, 1=home, 2=last visited page, 3=resume previous session)
 pref("browser.startup.page", 3);
+
+// see 2422:
+// we need this for WebApps like keeweb
+pref("javascript.options.wasm", true);
