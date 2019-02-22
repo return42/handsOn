@@ -19,7 +19,7 @@ Besser finde ich aber eine Installation über alternative debian Pakete. Dieses
 Skript installiert alternative Paketquellen für Node.js. Das Verfahren resp die
 apt-sourcen stammen von *NodeSource* :
 
-  * https://github.com/nodesource/distributions#deb
+  * https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions
 
 Installiert wird die Version:
 
@@ -37,8 +37,7 @@ Installiert wird die Version:
 # Achtung, die APT_SOURCE_URL kann angepasst werden, um die Node.js Version zu
 # wechseln, jedoch sollte man vorher ein "deinstall" durchführen
 
-APT_SOURCE_URL="https://deb.nodesource.com/node_4.x"
-#APT_SOURCE_URL="https://deb.nodesource.com/node_0.12"
+APT_SOURCE_URL="https://deb.nodesource.com/node_10.x"
 
 # APT_SOURCE_KEY_URL
 # -----------
@@ -56,21 +55,22 @@ main(){
     rstHeading "Install Node.js (from NodeSource)" part
 # ----------------------------------------------------------------------------
 
-    sudoOrExit
     case $1 in
 	install)
+	    sudoOrExit
             README
             waitKEY
             addDEB
             installPackages
 	    ;;
-	deinstall)
+	remove)
+	    sudoOrExit
             deinstallPackages
             removeDEB
 	    ;;
 	*)
 	    echo
-            echo "usage $0 [install|deinstall]"
+            echo "usage $0 [install|remove]"
             echo
             ;;
     esac
@@ -128,6 +128,7 @@ installPackages(){
     echo
     waitKEY
     apt-get install -y ${PACKAGES}
+    npm install -g grunt-cli
     waitKEY
 }
 
@@ -140,6 +141,7 @@ deinstallPackages(){
     rstPkgList ${PACKAGES}
     echo
     waitKEY
+    npm remove -g grunt-cli
     apt-get remove -y --purge ${PACKAGES}
     apt-get autoremove -y
     apt-get clean
