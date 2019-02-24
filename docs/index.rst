@@ -21,7 +21,6 @@ Einleitung und Übersicht
    handson_concept
    motivation
    LICENSE
-   todo
 
 .. flat-table::
 
@@ -33,6 +32,9 @@ Einleitung und Übersicht
 
    - - Author e-mail
      - markus.heiser@darmarIT.de
+
+   - - ..
+     - :ref:`todo-list`
 
 .. flat-table:: Foliensammlungen
 
