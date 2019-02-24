@@ -11,8 +11,8 @@ gewährleisten sind in dem Ordner ``./scripts`` ausführbare Skripte hinterlegt.
 Die Basis ist eine Ubuntu/debian Distribution, das hier dokumentierte Know-how
 ist jedoch allgemeiner Natur.
 
-About handsOn
-=============
+Einleitung und Übersicht
+========================
 
 .. toctree::
    :maxdepth: 1
@@ -20,6 +20,27 @@ About handsOn
    get_started
    handson_concept
    motivation
+   LICENSE
+
+.. flat-table::
+
+   - - Dokumentation
+     - https://return42.github.io/handsOn
+
+   - - Reposetorie
+     - `github return42/handsOn <https://github.com/return42/handsOn>`_
+
+   - - Author e-mail
+     - markus.heiser@darmarIT.de
+
+.. flat-table:: Foliensammlungen
+
+   - - git Schulung
+     - `get git started <slides/git/index.html>`_ (`zip <slides/git.zip>`__)
+
+   - - CDB Komponenten & Entwicklung
+     - `CDB-Tools <https://return42.github.io/cdb-tools>`_
+
 
 Themen
 ======
@@ -44,14 +65,6 @@ Themen
    citrix/index
    gogs
    glances
-   LICENSE
-
-
-Foliensammlungen
-================
-
-* `get git started <slides/git/index.html>`_  (`zip <slides/git.zip>`__)
-* CDB Komponenten & Entwicklung, siehe `CDB-Tools <https://return42.github.io/cdb-tools>`_
 
 
 Exkursionen und Erfahrungswerte
@@ -61,15 +74,3 @@ Exkursionen und Erfahrungswerte
    :maxdepth: 2
 
    excursion/index
-
-..
-   .. toctree::
-      :maxdepth: 1
-
-      todo
-
-
-
-* Dokumentation: https://return42.github.io/handsOn
-* Reposetorie:   `github return42/handsOn <https://github.com/return42/handsOn>`_
-* Author e-mail: markus.heiser@darmarIT.de

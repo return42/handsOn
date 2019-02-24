@@ -9,7 +9,7 @@
 handsOn Copyright
 =================
 
-::
+.. code-block:: none
 
            handsOn:: eine Sammlung von Erfahrungen und Setup-Skripten
 
@@ -49,3 +49,4 @@ GPL V3.0
 ========
 
 .. literalinclude:: gpl-3.0.txt
+   :language: none
