@@ -50,6 +50,7 @@ extlinks['deb']       = ('http://packages.ubuntu.com/%s', '')
 extlinks['launchpad'] = ('https://launchpad.net/%s/trunk', 'launchpad')
 extlinks['origin']    = ('https://github.com/return42/handsOn/blob/master/%s', 'git')
 extlinks['commit']    = ('https://github.com/return42/handsOn/commit/%s', '#')
+extlinks['apache_mod']  = ('https://httpd.apache.org/docs/current/mod/%s.html', 'Apache ')
 
 html_search_language = 'de'
 html_theme           = "sphinx_rtd_theme"

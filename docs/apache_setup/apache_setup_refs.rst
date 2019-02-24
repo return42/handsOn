@@ -6,20 +6,6 @@
                                     Verweise
 ================================================================================
 
-.. todo::
-
-   Weiterführende Themen rund um den Apache WEB-Server:
-
-     * http://xmodulo.com/secure-apache-webserver-ubuntu.html
-     * https://httpd.apache.org/docs/current/mod/mod_deflate.html
-     * https://httpd.apache.org/docs/current/mod/mod_filter.html
-     * https://httpd.apache.org/docs/current/mod/mod_mime.html
-     * https://httpd.apache.org/docs/current/mod/mod_ssl.html
-     * https://httpd.apache.org/docs/current/mod/mod_status.html
-     * https://httpd.apache.org/docs/current/mod/mod_unique_id.html
-
-
-
 Apache
 ======
 
@@ -41,32 +27,25 @@ Apache Konfiguration
 .. _`Apache Server-Wide Configuration`: https://httpd.apache.org/docs/current/server-wide.html
 .. _`Apache Core Features`: https://httpd.apache.org/docs/current/mod/core.html
 .. _`Apache Access Control`: https://httpd.apache.org/docs/current/howto/access.html
-.. _`Apache mod_acces_compat`: https://httpd.apache.org/docs/current/mod/mod_access_compat.html
-.. _`Apache mod_alias`: https://httpd.apache.org/docs/current/mod/mod_alias.html
 .. _`Apache Kontexte (Sections)`: http://httpd.apache.org/docs/current/sections.html
 .. _`Apache Options Direktive`: https://httpd.apache.org/docs/current/mod/core.html#options
 .. _`Apache AllowOverride Direktive`: https://httpd.apache.org/docs/current/mod/core.html#allowoverride
 .. _`Permanent Message Header Field Names (iana)`: http://www.iana.org/assignments/message-headers/message-headers.xml#perm-headers
-.. _`Apache mod_headers`: https://httpd.apache.org/docs/current/mod/mod_headers.html
-.. _`Apache mod_rewrite`: https://httpd.apache.org/docs/current/rewrite/
-.. _`Apache mod_autoindex`: https://httpd.apache.org/docs/current/mod/mod_autoindex.html
-.. _`Apache IndexOptions Direktive`: https://httpd.apache.org/docs/current/mod/mod_autoindex.html#indexoptions
 .. _`Introduction to SSI`: http://httpd.apache.org/docs/current/howto/ssi.html
+
+- :apache_mod:`mod_alias`
+- :apache_mod:`mod_rewrite`
+- :apache_mod:`mod_autoindex`
 
 * `Apache Server-Wide Configuration`_
 * `Apache Core Features`_
-* `Apache Access Control`_ & `Apache mod_acces_compat`_
-* `Apache mod_alias`_
+* `Apache Access Control`_ & :apache_mod:`mod_acces_compat`
 * `Apache Kontexte (Sections)`_
 * `Apache Options Direktive`_
 * `Apache AllowOverride Direktive`_
-* `Permanent Message Header Field Names (iana)`_ & `Apache mod_headers`_
-* `Apache mod_rewrite`_
-* `Apache mod_autoindex`_
-* `Apache IndexOptions Direktive`_
+* `Permanent Message Header Field Names (iana)`_ & :apache_mod:`mod_headers`
 * `Introduction to SSI`_
 
-.. _`Apache mod_wsgi`: https://github.com/GrahamDumpleton/mod_wsgi
 .. _`mod_wsgi RTD`: http://modwsgi.readthedocs.org/en/develop/index.html
 .. _`mod_wsgi RTD Konfiguration`: http://modwsgi.readthedocs.org/en/develop/configuration.html
 .. _`WSGIApplicationGroup`:  http://modwsgi.readthedocs.org/en/develop/configuration-directives/WSGIApplicationGroup.html
@@ -74,44 +53,51 @@ Apache Konfiguration
 .. _`Python Simplified GIL State API`: https://code.google.com/p/modwsgi/wiki/ApplicationIssues#Python_Simplified_GIL_State_API
 .. _`Apache-MPM prefork`: https://httpd.apache.org/docs/current/de/mod/prefork.html
 
-* `Apache mod_wsgi`_
-* `mod_wsgi RTD`_
-* `mod_wsgi RTD Konfiguration`_
-* `WSGIApplicationGroup`_
-* `WSGIPassAuthorization`_
-* `Python Simplified GIL State API`_
-* `Apache-MPM prefork`_
+- :apache_mod:`mod_wsgi`
+- `mod_wsgi RTD`_
+- `mod_wsgi RTD Konfiguration`_
+- `WSGIApplicationGroup`_
+- `WSGIPassAuthorization`_
+- `Python Simplified GIL State API`_
+- `Apache-MPM prefork`_
 
 .. _`WebDAV (wiki)`: https://de.wikipedia.org/wiki/WebDAV
 .. _`CalDAV (wiki)`: https://de.wikipedia.org/wiki/CalDAV
-.. _`Apache mod_dav`: https://httpd.apache.org/docs/current/mod/mod_dav.html
-.. _`Apache mod_dav_fs`: https://httpd.apache.org/docs/current/mod/mod_dav_fs.html
 
-* `WebDAV (wiki)`_
-* `Apache mod_dav`_ und `Apache mod_dav_fs`_
+- `WebDAV (wiki)`_
+- :apache_mod:`mod_dav`
+- :apache_mod:`mod_dav_fs`
+
+- :apache_mod:`mod_deflate`
+- :apache_mod:`mod_filter`
+- :apache_mod:`mod_mime`
+- :apache_mod:`mod_sll`
+- :apache_mod:`mod_status`
+- :apache_mod:`mod_unique`
+
+
 
 Autorisierung & Authentifizierung
 =================================
 
 .. _`Authentication and Authorization`: https://httpd.apache.org/docs/current/howto/auth.html
 
-* `Authentication and Authorization`_
+- `Authentication and Authorization`_
 
 .. _`Autorisierung (wiki)`: https://de.wikipedia.org/wiki/Autorisierung
 
-* `Autorisierung (wiki)`_
+- `Autorisierung (wiki)`_
 
-.. _`Apache mod_authz_host`:  https://httpd.apache.org/docs/current/mod/mod_authz_host.html
 .. _`Apache Require Direktive`: https://httpd.apache.org/docs/current/mod/mod_authz_core.html#require
 .. _`Apache AuthName Direktive`: https://httpd.apache.org/docs/current/mod/mod_authn_core.html#authname
 .. _`Authentifizierung (wiki)`: https://de.wikipedia.org/wiki/Authentifizierung
 .. _`HTTP-Authentifizierung (wiki)`: https://de.wikipedia.org/wiki/HTTP-Authentifizierung
 
-* Autorisierung auf Basis *Herkunft* einer Anfrage: `Apache mod_authz_host`_
-* Autorisierung auf Basis einer Authentifizierung `Apache Require Direktive`_
-* `Apache AuthName Direktive`_
-* `Authentifizierung (wiki)`_
-* `HTTP-Authentifizierung (wiki)`_
+- Autorisierung auf Basis *Herkunft* einer Anfrage: :apache_mod:`mod_authz_host`
+- Autorisierung auf Basis einer Authentifizierung `Apache Require Direktive`_
+- `Apache AuthName Direktive`_
+- `Authentifizierung (wiki)`_
+- `HTTP-Authentifizierung (wiki)`_
 
 .. _`Apache mod_authnz_external`: https://github.com/phokz/mod-auth-external/tree/master/mod_authnz_external
 .. _`pwauth (github)`: https://github.com/phokz/pwauth/tree/master/pwauth
