@@ -35,6 +35,7 @@ beschrieben.  Dort wird auch erläutert, dass nur Nutzer der Gruppe ``lpadmin``
 am besten noch zu der Gruppe ``lpadmin`` hinzufügt::
 
   $ sudo gpasswd -a <benutzername> lpadmin
+  $ sudo gpasswd -a <benutzername> lp
 
 Gespeichert werden die Druckereinstellungen in den PPD Dateien, siehe Kapitel
 ":ref:`ppd_spec`".
@@ -59,3 +60,16 @@ CUPS-Filter
   Drucker anbieten müssen) dennoch auf diesem Drucker mittels CUPS Filter und
   einem generischen Druckertreiber gedruckt werden kann.
 
+.. note::
+
+   `CUPS (git)`_ wird von Apple entwickelt, mit der Version 1.6. hat sich Apple
+   entschieden einige der Funktionen (CUPS-Filter) zu entfernen, die in auf
+   macOS nicht genutzt werden.  Die Weiterentwicklung dieser Komponenten findet
+   nun im `cups-filters`_ Projekt statt.  Auf einem Linux Desktop ist das Paket
+   :deb:`cups-filters` i.d.R. bereits installiert::
+
+	  sudo apt install cups-filters
+
+   Das Kommando :man:`cupsfilter` mit dem auch Tests vorgenommen werden können
+   :ref:`[ref] <cupsfilter-command>` gehört zu den Basis-Kommandos und ist nach
+   wie vor im `CUPS (git)`_ resp im Paket :deb:`cups` enthalten .

@@ -50,3 +50,7 @@
 
 .. _`DTP Einheiten Umrechner`: https://print-assistant.de/tools/prepress/dtp-einheiten-mm-cm-dpt-ppt-pt-in-umrechnen/
 .. _`IPP Mini Tutorial`: https://github.com/apple/cups/wiki/IPP-(Everywhere)-Mini-Tutorial
+
+.. _Ghostscript: https://www.ghostscript.com
+.. _gstoraster.c: https://github.com/OpenPrinting/cups-filters/blob/master/filter/gstoraster.c
+.. _RasterView: https://github.com/michaelrsweet/rasterview
