@@ -45,12 +45,34 @@
 *cupsPrintQuality 4/Normal: "<</HWResolution[600 600]>>setpagedevice"
 *CloseUI: *cupsPrintQuality
 
-*cupsFilter: "application/vnd.cups-pdf 0 -"
-*% *cupsFilter2: "application/pdf application/vnd.cups-pdf 0 pdftopdf"
-*cupsFilter2: "image/pwg-raster image/pwg-raster 0 -"
-*cupsFilter2: "image/urf image/urf 0 -"
-*cupsFilter2: "image/jpeg image/jpeg 0 -"
+*cupsFilter: "image/pwg-raster 0 -"
+*cupsFilter: "image/jpeg 0 -"
 
+*OpenUI *CenterOfPixel/Center Of Pixel: PickOne
+*OrderDependency: 30 AnySetup *CenterOfPixel
+*DefaultCenterOfPixel: true
+*CenterOfPixel true/true: ""
+*CenterOfPixel false/false: ""
+*CloseUI: *CenterOfPixel
+
+
+*% TEST -------------------------------
+
+*% The selection is done by the "pdftops-renderer" option, setting it
+*% to "gs", "pdftops", "pdftocairo", "acroread", "mupdf", or "hybrid":
+
+*OpenUI *pdftops-renderer/Print Scaling: PickOne
+*OrderDependency: 50 AnySetup *pdftops-renderer
+*Defaultpdftops-renderer: mupdf
+*pdftops-renderer gs/Ghostscript: ""
+*pdftops-renderer pdftops/pdftops: ""
+*pdftops-renderer pdftocairo/pdftocairo: ""
+*pdftops-renderer acroread/acroread: ""
+*pdftops-renderer hybrid/hybrid: ""
+*pdftops-renderer mupdf/mupdf: ""
+*CloseUI: *pdftops-renderer
+
+*% TEST -------------------------------
 
 *OpenUI *Resolution/Resolution : PickOne
 *DefaultResolution: 600x600dpi
@@ -223,11 +245,9 @@
 *%
 *OpenUI *ColorModel/Print Color Mode: PickOne
 *OrderDependency: 10 AnySetup *ColorModel
-*% *ColorModel Gray/Monochrome: "<</cupsColorSpace 18/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
-*% *ColorModel RGB/Color: "<</cupsColorSpace 19/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
-*ColorModel Gray/Monochrome: "<</cupsColorSpace 18/cupsBitsPerColor 16/cupsBitsPerPixel 32/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
-*ColorModel RGB/Color: "<</cupsColorSpace 19/cupsBitsPerColor 16/cupsBitsPerPixel 240/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
-*DefaultColorModel: RGB
+*ColorModel Gray/Monochrome: "<</cupsColorSpace 18/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
+*ColorModel sRGB/Color: "<</cupsColorSpace 19/cupsBitsPerColor 8/cupsColorOrder 0/cupsCompression 0>>setpagedevice"
+*DefaultColorModel: sRGB
 *CloseUI: *ColorModel
 
 *OpenUI *print-content-optimize/Print Optimization: PickOne

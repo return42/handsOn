@@ -100,12 +100,8 @@ in die PDL des Druckers hin zu bekommen.::
   ...
   D [20/Feb/2019:15:38:20 +0100] [Job 140] PID 25582 (/usr/lib/cups/filter/gstoraster) exited with no errors.
 
-
-.. todo::
-
-   Nochmal was zu folgendem schreiben: Der hier aktive CUPS-Filter
-   (gstoraster.c_) nutzt Ghostscript_
-
+Hier zu sehen; es wird der ``gstoraster`` Filter verwendet (s.a. Absatz
+":ref:`cupsfilter-command`").
 
 .. _cups-debug-browse-service:
 
@@ -256,12 +252,14 @@ Format gewählt, das auch von dem Drucker (MF620) unterstützt wird.  Der
 Quelldatei-Typ kann optional über ``-i MIME/Typ`` angegeben oder automatisch
 erkannt werden.
 
-.. hint::
+.. admonition::  Achtung BUG
 
-   Laut :man:`manual <cupsfilter>` soll es möglich, sein mit der Option ``-m
-   printer/<druckername>`` zu dem Druckerformat zu konvertieren, wie es von den
-   Filtern in der PPD-Datei definiert ist.  Das scheint aber nicht zu
-   funktionieren (vergleiche mit ``gstoratser`` obiger Ausgabe)::
+   Laut :man:`man-cupsfilter <cupsfilter>` soll es möglich sein, mit der Option
+   ``-m printer/<druckername>`` zu dem Druckerformat zu konvertieren, wie es von
+   den Filtern in der PPD-Datei definiert ist.  Das scheint aber nicht zu
+   funktionieren (vergleiche mit ``gstoratser`` obiger Ausgabe).  Schaut man in
+   das LOG für einen solchen Auftrag, dann ermittelt :man:`cupsfilter` immer als
+   Zieldatei-Typ ``application/vnd.cups-postscript`` (keine Ahnung, warum)::
 
      $ sudo cupsfilter --list-filters \
          -m printer/CNMF620C-Series \
@@ -269,99 +267,136 @@ erkannt werden.
 	 Test-Dateien/PDF-test.pdf
      pdftopdf
      pdftops
+     ...
+     DEBUG: envp[15]="FINAL_CONTENT_TYPE=application/vnd.cups-postscript"
 
-Mit der Option ``-o name=value`` können Optionen an die CUPS-Filter
-durchgereicht werden::
 
+Lässt man die Option ``--list-filters`` weg, so bekommt man auf ``stdout`` die
+Daten, de an den Drucker gesendet werden, auf ``stderr`` bekommt man ein
+ausführliches LOG dazu::
 
-  $ sudo cupsfilter --list-filters \
+  $ sudo cupsfilter \
       -m image/pwg-raster \
-      -o pdftops-renderer=mupdf \
-      -p /etc/cups/ppd/CNMF620C-Series.ppd \
-      Test-Dateien/PDF-test.pdf
+      -p CNMF620C-Series.ppd \
+      Test-Dateien/PDF-test.pdf  > Test-Dateien/PDF-test.pwg
 
-- `cups-filter README`_
+  DEBUG: argv[0]="cupsfilter"
+  DEBUG: argv[1]="1"
+  DEBUG: argv[2]="root"
+  DEBUG: argv[3]="PDF-test.pdf"
+  DEBUG: argv[4]="1"
+  DEBUG: argv[5]=""
+  DEBUG: argv[6]="Test-Dateien/PDF-test.pdf"
+  DEBUG: envp[0]="<CFProcessPath>"
+  DEBUG: envp[1]="CONTENT_TYPE=application/pdf"
+  DEBUG: envp[2]="CUPS_DATADIR=/usr/share/cups"
+  DEBUG: envp[3]="CUPS_FONTPATH=/usr/share/cups/fonts"
+  DEBUG: envp[4]="CUPS_SERVERBIN=/usr/lib/cups"
+  DEBUG: envp[5]="CUPS_SERVERROOT=/etc/cups"
+  DEBUG: envp[6]="LANG=de_DE.UTF8"
+  DEBUG: envp[7]="PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin"
+  DEBUG: envp[8]="PPD=/etc/cups/ppd/CNMF620C-Series.ppd"
+  DEBUG: envp[9]="PRINTER_INFO=cupsfilter"
+  DEBUG: envp[10]="PRINTER_LOCATION=Unknown"
+  DEBUG: envp[11]="PRINTER=cupsfilter"
+  DEBUG: envp[12]="RIP_MAX_CACHE=128m"
+  DEBUG: envp[13]="USER=root"
+  DEBUG: envp[14]="CHARSET=utf-8"
+  DEBUG: envp[15]="FINAL_CONTENT_TYPE=image/pwg-raster"
 
-Mit dem folgenden Kommando wird *Seite 8* gedruckt (die letzte Seite in dem PDF
-Beispiel).  Mit der Option ``-m printer/CNMF620C-Series`` wird als Zieldatei-Typ
-das Drucker-Setup des (:ref:`driverless-printing <printer_setup>`)
-``CNMF620C-Series`` gewählt .
+  INFO: pdftopdf (PID 26759) started.
+  INFO: gstoraster (PID 26760) started.
 
+  DEBUG: OUTFORMAT="(null)", so output format will be CUPS/PWG Raster
+  DEBUG: pdftopdf: Last filter determined by the PPD: -; FINAL_CONTENT_TYPE:\
+    image/pwg-raster => pdftopdf will log pages in page_log.
+  PAGE: 1 1
+  DEBUG: Color Manager: Calibration Mode/Off
+  INFO: pdftopdf (PID 26759) exited with no errors.
+  DEBUG: Calling FindDeviceById(cups-cupsfilter)
+  DEBUG: Failed to send: org.freedesktop.ColorManager.NotFound:device id 'cups-cupsfilter' does not exist
+  DEBUG: Failed to get find device cups-cupsfilter
+  DEBUG: Calling FindDeviceById(cups-cupsfilter)
+  DEBUG: Failed to send: org.freedesktop.ColorManager.NotFound:device id 'cups-cupsfilter' does not exist
+  DEBUG: Failed to get device cups-cupsfilter
+  INFO: Color Manager: no profiles specified in PPD
+  DEBUG: Color Manager: ICC Profile: None
 
-.. code-block:: bash
-   :linenos:
+  DEBUG: Ghostscript using Center-of-Pixel method to fill paths.
+  DEBUG: Ghostscript command line: \
+    gs -dQUIET -dPARANOIDSAFER -dNOPAUSE -dBATCH -dNOINTERPOLATE -dNOMEDIAATTRS \
+  	-dShowAcroForm -sstdout=%stderr -sOutputFile=%stdout -sDEVICE=cups \
+  	-sMediaClass=PwgRaster -sMediaType=Auto -r600x600 \
+  	-dDEVICEWIDTHPOINTS=595 -dDEVICEHEIGHTPOINTS=842 -dcupsBitsPerColor=8 -dcupsColorOrder=0 \
+  	-dcupsColorSpace=19 -dcupsBorderlessScalingFactor=0.0000 -dcupsInteger1=1 -dcupsInteger2=1\
+  	-scupsPageSizeName=A4.Fullbleed -I/usr/share/cups/fonts -c '0 .setfilladjust' -f -_
 
-   $ cupsfilter --list-filters \
-      -m image/pwg-raster \
-      -p /etc/cups/ppd/CNMF620C-Series.ppd \
-      Test-Dateien/PDF-test.pdf
+  DEBUG: envp[0]="<CFProcessPath>"
+  DEBUG: envp[1]="CONTENT_TYPE=application/pdf"
+  DEBUG: envp[2]="CUPS_DATADIR=/usr/share/cups"
+  DEBUG: envp[3]="CUPS_FONTPATH=/usr/share/cups/fonts"
+  DEBUG: envp[4]="CUPS_SERVERBIN=/usr/lib/cups"
+  DEBUG: envp[5]="CUPS_SERVERROOT=/etc/cups"
+  DEBUG: envp[6]="LANG=de_DE.UTF8"
+  DEBUG: envp[7]="PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin"
+  DEBUG: envp[8]="PPD=/etc/cups/ppd/CNMF620C-Series.ppd"
+  DEBUG: envp[9]="PRINTER_INFO=cupsfilter"
+  DEBUG: envp[10]="PRINTER_LOCATION=Unknown"
+  DEBUG: envp[11]="PRINTER=cupsfilter"
+  DEBUG: envp[12]="RIP_MAX_CACHE=128m"
+  DEBUG: envp[13]="USER=root"
+  DEBUG: envp[14]="CHARSET=utf-8"
+  DEBUG: envp[15]="FINAL_CONTENT_TYPE=image/pwg-raster"
+  INFO: Start rendering...
+  INFO: Processing page 1...
+  INFO: Processing page 2...
+  INFO: Rendering completed
+  INFO: gstoraster (PID 26760) exited with no errors.
 
-      
-   $ /usr/sbin/cupsfilter -m printer/CNMF620C-Series -p /etc/cups/ppd/CNMF620C-Series.ppd \
-        -o page-ranges=8 -o printer-resolution=600 \
-        ~/Downloads/QR-Code-Test.pdf  > ~/Downloads/QR-Code-Test-P8-driverles.ps
-   DEBUG: argv[0]="cupsfilter"
-   DEBUG: argv[1]="1"
-   DEBUG: argv[2]="markus"
-   DEBUG: argv[3]="QR-Code-Test.pdf"
-   DEBUG: argv[4]="1"
-   DEBUG: argv[5]="page-ranges=8 printer-resolution=600"
-   DEBUG: argv[6]="/home/markus/Downloads/QR-Code-Test.pdf"
-   DEBUG: envp[0]="<CFProcessPath>"
-   DEBUG: envp[1]="CONTENT_TYPE=application/pdf"
-   DEBUG: envp[2]="CUPS_DATADIR=/usr/share/cups"
-   DEBUG: envp[3]="CUPS_FONTPATH=/usr/share/cups/fonts"
-   DEBUG: envp[4]="CUPS_SERVERBIN=/usr/lib/cups"
-   DEBUG: envp[5]="CUPS_SERVERROOT=/etc/cups"
-   DEBUG: envp[6]="LANG=de_DE.UTF8"
-   DEBUG: envp[7]="PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin"
-   DEBUG: envp[8]="PPD=/etc/cups/ppd/CNMF620C-Series.ppd"
-   DEBUG: envp[9]="PRINTER_INFO=cupsfilter"
-   DEBUG: envp[10]="PRINTER_LOCATION=Unknown"
-   DEBUG: envp[11]="PRINTER=cupsfilter"
-   DEBUG: envp[12]="RIP_MAX_CACHE=128m"
-   DEBUG: envp[13]="USER=markus"
-   DEBUG: envp[14]="CHARSET=utf-8"
-   DEBUG: envp[15]="FINAL_CONTENT_TYPE=application/vnd.cups-postscript"
-   INFO: pdftopdf (PID 10923) started.
-   INFO: pdftops (PID 10924) started.
-   DEBUG: pdftops - copying to temp print file "/tmp/02aac5c6d6229"
-   DEBUG: pdftopdf: No PPD file specified, could not determine whether to log pages or not, so turned off page logging.
-   INFO: pdftopdf (PID 10923) exited with no errors.
-   DEBUG: Printer make and model:
-   DEBUG: Running command line for pstops: pstops 1 markus QR-Code-Test.pdf 1 printer-resolution=600
-   DEBUG: Using image rendering resolution 600 dpi
-   DEBUG: Running command line for gs: gs -q -dNOPAUSE -dBATCH -dSAFER -dNOMEDIAATTRS -sDEVICE=ps2write -dShowAcroForm -sOUTPUTFILE=%stdout -dLanguageLevel=3 -r600 -dCompressFonts=false -dNoT3CCITT -dNOINTERPOLATE -c 'save pop' -f /tmp/02aac5c6d6229
-   DEBUG: Started filter gs (PID 10925)
-   DEBUG: Started post-processing (PID 10926)
-   DEBUG: Started filter pstops (PID 10927)
-   DEBUG: slow_collate=0, slow_duplex=0, slow_order=0
-   DEBUG: Before copy_comments - %!PS-Adobe-3.0
-   DEBUG: %!PS-Adobe-3.0
-   DEBUG: %%BoundingBox: 0 0 596 842
-   DEBUG: %%HiResBoundingBox: 0 0 596.00 842.00
-   DEBUG: %%Creator: GPL Ghostscript 926 (ps2write)
-   DEBUG: %%LanguageLevel: 2
-   DEBUG: %%CreationDate: D:20190212122545+01'00'
-   DEBUG: %%Pages: 1
-   DEBUG: %%EndComments
-   DEBUG: Before copy_prolog - %%BeginProlog
-   DEBUG: Adding Setup section for option PostScript code
-   DEBUG: Before copy_setup - %%BeginSetup
-   DEBUG: Before page loop - %%Page: 1 1
-   DEBUG: Copying page 1...
-   PAGE: 1 1
-   DEBUG: pagew = 576.0, pagel = 720.0
-   DEBUG: bboxx = 0, bboxy = 0, bboxw = 612, bboxl = 792
-   DEBUG: PageLeft = 18.0, PageRight = 594.0
-   DEBUG: PageTop = 756.0, PageBottom = 36.0
-   DEBUG: PageWidth = 612.0, PageLength = 792.0
-   DEBUG: PID 10925 (gs) exited with no errors.
-   DEBUG: Wrote 1 pages...
-   DEBUG: PID 10926 (Post-processing) exited with no errors.
-   DEBUG: PID 10927 (pstops) exited with no errors.
-   INFO: pdftops (PID 10924) exited with no errors.
+In dem LOG ist zu erkennen mit welchen Optionen Ghostscript_ vom gstoraster.c_
+Filter aufgerufen wird.  Schaut man mit dem Rasterview_ in die erzeugte
+PWG-Datei, dann sieht man dort auch die PWG Attribute (vergleiche `PWG-Spec
+<https://ftp.pwg.org/pub/pwg/candidates/cs-ippraster10-20120420-5102.4.pdf>`_)::
 
+  PWG Raster Page Attributes:
+
+  MediaColor = ""
+  MediaType = "Auto"
+  PrintContentOptimize = ""
+  CutMedia = 0
+  Duplex = 0
+  HWResolution = [ 600 600 ]
+  InsertSheet = 0
+  Jog = 0
+  LeadingEdge = 0
+  MediaPosition = 0
+  MediaWeightMetric = 0
+  NumCopies = 1
+  Orientation = 0
+  PageSize = [ 595 842 ]
+  Tumble = 0
+  Width = 4958
+  Height = 7017
+  BitsPerColor = 16
+  BitsPerPixel = 48
+  BytesPerLine = 29748
+  ColorOrder = CUPS_ORDER_CHUNKED
+  ColorSpace = CUPS_CSPACE_SRGB
+  NumColors = 3
+  TotalPageCount = 0
+  CrossFeedTransform = 1
+  FeedTransform = 1
+  ImageBoxLeft = 0
+  ImageBoxTop = 0
+  ImageBoxRight = 0
+  ImageBoxBottom = 0
+  AlternatePrimary = ffffff (255, 255, 255)
+  PrintQuality = 0
+  VendorIdentifier = 0
+  VendorLength = 0
+  VendorData =
+  RenderingIntent = ""
+  PageSizeName = "A4.Fullbleed"
 
 
 Verweise
