@@ -14,16 +14,9 @@ WSGI_APPS="${WWW_FOLDER}/pyApps"
 PYENV=pyenv
 
 RADICALE_LOG_FOLDER=/var/log/radicale
-RADICALE_GIT_URL="https://github.com/return42/Radicale.git"
+RADICALE_GIT_URL="https://github.com/Kozea/Radicale.git"
 RADICALE_DATA_FOLDER="$WSGI_APPS/Radicale.data"
 RADICALE_REPO_FOLDER="$WSGI_APPS/Radicale"
-
-RADICALE_WEB_GIT_URL="https://github.com/return42/RadicaleInfCloud.git"
-RADICALE_WEB_REPO_FOLDER="$WSGI_APPS/RadicaleInfCloud"
-
-RADICALE_REQUIRE=(
-  vobject
-)
 
 DATA_BACKUP=(
     "$RADICALE_DATA_FOLDER"
@@ -43,7 +36,7 @@ main(){
             sudoOrExit
             install_radicale
 	    ;;
-	deinstall)
+	remove)
             sudoOrExit
             deinstall_radicale
 	    ;;
@@ -55,7 +48,7 @@ main(){
             ;;
 	*)
             echo
-	    echo "usage $0 [(de)install|README]"
+	    echo "usage $0 [install|remove|README]"
             echo
             ;;
     esac
@@ -77,31 +70,29 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
         return 42
     fi
 
-    # shellcheck disable=SC1007
-    SUDO_USER= cloneGitRepository "${RADICALE_GIT_URL}" "${RADICALE_REPO_FOLDER}"
-    # shellcheck disable=SC1007
-    SUDO_USER= cloneGitRepository "${RADICALE_WEB_GIT_URL}" "${RADICALE_WEB_REPO_FOLDER}"
-    mkdir -p "/etc/radicale/"
+    mkdir -p "${WSGI_APPS}"
     TEMPLATES_InstallOrMerge /var/www/pyApps/radicale.wsgi root root 644
-    TEMPLATES_InstallOrMerge /etc/radicale/config root root 644
-    TEMPLATES_InstallOrMerge /etc/radicale/logging root root 644
-    TEMPLATES_InstallOrMerge /etc/radicale/rights root root 644
+    SUDO_USER= cloneGitRepository "${RADICALE_GIT_URL}"     "${RADICALE_REPO_FOLDER}"
+
+    mkdir -p "/etc/radicale/"
+    TEMPLATES_InstallOrMerge /etc/radicale/config   root root 644
+    TEMPLATES_InstallOrMerge /etc/radicale/logging  root root 644
+    TEMPLATES_InstallOrMerge /etc/radicale/rights   root root 644
+
     mkdir -p "${RADICALE_LOG_FOLDER}"
     chown -R www-data:nogroup "${RADICALE_LOG_FOLDER}"
     mkdir -p "${RADICALE_DATA_FOLDER}"
     chown -R www-data:nogroup "${RADICALE_DATA_FOLDER}"
 
     source "${WSGI_APPS}/${PYENV}/bin/activate"
-    pip install "${RADICALE_REQUIRE[@]}"
-    cd ${RADICALE_WEB_REPO_FOLDER}
+
+    pushd "${RADICALE_REPO_FOLDER}" > /dev/null
     pip install -e .
+    popd > /dev/null
 
     APACHE_install_site radicale
 
-    rstBlock "
-
-  https://$HOSTNAME/radicale/<username>
-"
+    rstBlock "https://$HOSTNAME/radicale"
 
 }
 
@@ -126,7 +117,8 @@ systemctl force-reload apache2
 EOF
 
     source "${WSGI_APPS}/${PYENV}/bin/activate"
-    pip uninstall radicale_infcloud
+
+    pip uninstall radicale
 
     rstHeading "Aufräumen" section
 
@@ -134,8 +126,7 @@ EOF
 Folgende Dateien bzw. Ordner wurden nicht gelöscht:
 
 * Anwendungsdaten: ${BYellow}${RADICALE_DATA_FOLDER}${_color_Off}
-* Reposetorie:     ${BYellow}${RADICALE_REPO_FOLDER}
-                   ${RADICALE_WEB_REPO_FOLDER}${_color_Off}
+* Reposetorie:     ${BYellow}${RADICALE_REPO_FOLDER}${_color_Off}
 * Log-Dateien:     ${RADICALE_LOG_FOLDER}
 Diese müssen ggf. gesichert und anschließend gelöscht werden."
 

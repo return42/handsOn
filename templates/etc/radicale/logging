@@ -35,13 +35,14 @@ handlers = console,file
 
 [handler_console]
 # Console handler
-class = StreamHandler
 level = INFO
-args = (sys.stderr,)
+class = StreamHandler
 formatter = simple
+args = (sys.stderr,)
 
 [handler_file]
 # File handler
+level = INFO
 class = logging.handlers.RotatingFileHandler
 formatter = full
 maxBytes = 1024
