@@ -139,15 +139,32 @@ Der Link /usr/lib/firefox/browser/defaults/preferences/ zeigt auf
 
 * https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/A_brief_guide_to_Mozilla_preferences#Modifying_preferences"
     rstHeading "System Einstellungen" section
-    echo
-    TEMPLATES_InstallOrMerge /etc/firefox/syspref.js root root 644
-    waitKEY
+
+    rstBlock "Über eine globale /etc/firefox/syspref.js können (kritische?)
+Funktionen des FFox abgeschaltet werden.  Einfach alles abschalten ist aber auch
+keine brauchbare Lösung, da dann die meisten (pseudo) moderenen WEB-Seiten nicht
+mehr funktionieren würden.  In den handsOn ist eine vorkonfektionierte
+sysprefs.js enthalten, die sich aber noch in der Erprobungsphase befindet.  Wenn
+man sich die installiert und später Probleme bemerkt, kann man diese einfach
+löschen::
+
+  sudo rm /etc/firefox/syspref.js"
+    if askNy "Soll die /etc/firefox/syspref.js installiert werden?"; then
+	TEMPLATES_InstallOrMerge /etc/firefox/syspref.js root root 644
+    elif [ -f /etc/firefox/syspref.js ]; then
+	if askNy "Soll die bestehende /etc/firefox/syspref.js entfernt werden?"; then
+	    rm /etc/firefox/syspref.js
+	fi
+    fi
 
     rstHeading "Handling der apt-URLs" section
-    err_msg "FIXME: Datei /etc/firefox/pref/apturl.js wird scheinbar gar nicht mehr vom FFox gelesen"
-    err_msg "FIXME: ... funktioniert deshalb nicht mehr !!! ..."
-    waitKEY
-    TEMPLATES_InstallOrMerge /etc/firefox/pref/apturl.js root root 644
+
+    rstBlock "Die Behandlung der APT URLs (apt://PAKETNAME) wird über die
+URL-Handler Konfigration im FFox eingestellt (siehe about:preferences).  Früher
+wurde das über eine Datei /etc/firefox/pref/apturl.js konfiguriert.  Diese Datei
+wird auch nach wie vor (ubu1904) von dem Paket 'apturl-common' installiert,
+allerdings schon seit längerem (2016?) nicht mehr vom FFox ausgewertet."
+    # TEMPLATES_InstallOrMerge /etc/firefox/pref/apturl.js root root 644
     waitKEY
 }
 

@@ -1704,9 +1704,12 @@ pref("browser.aboutHomeSnippets.updateUrl", "nonexistent://test");
 //
 // * https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Mozilla_preferences_for_uber-geeks#Security_preferences
 //
-// 20190218
-pref("browser.xul.error_pages.expert_bad_cert", true);
+
+// see 1271 (20190218)
 pref("browser.ssl_override_behavior", 2);
+
+// see 1272 (20190218)
+pref("browser.xul.error_pages.expert_bad_cert", true);
 
 
 // Safebrowsing
