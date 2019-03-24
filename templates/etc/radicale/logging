@@ -1,55 +1,51 @@
 # -*- mode: conf -*-
 # vim:ft=cfg
-
+#
 # Logging config file for Radicale - A simple calendar server
 #
-# The default path for this kind of files is /etc/radicale/logging
-# This can be changed in the configuration file
+# For more information, see:
 #
-# Other handlers are available. For more information, see:
-# http://docs.python.org/library/logging.config.html
+#   https://docs.python.org/library/logging.config.html#configuration-file-format
+#
 
-
-# Loggers, handlers and formatters keys
+# Loggers
+# -------
 
 [loggers]
 # Loggers names, main configuration slots
 keys = root
 
-[handlers]
-# Logging handlers, defining logging output methods
-keys = console,file
-
-[formatters]
-# Logging formatters
-keys = simple,full
-
-# Loggers
-
 [logger_root]
 # Root logger
-level = INFO
-handlers = console,file
+#handlers = console,file
+handlers = file
 
 # Handlers
+# --------
+
+[handlers]
+# Logging handlers, defining logging output methods
+#keys = console,file
+keys = file
 
 [handler_console]
 # Console handler
-level = INFO
 class = StreamHandler
 formatter = simple
 args = (sys.stderr,)
 
 [handler_file]
 # File handler
-level = INFO
 class = logging.handlers.RotatingFileHandler
+args = ('/var/log/radicale/radicale.log', 'a', 100000, 10)
 formatter = full
-maxBytes = 1024
-backupCount=3
-args = ('/var/log/radicale/radicale.log', )
 
 # Formatters
+# ----------
+
+[formatters]
+# Logging formatters
+keys = simple,full
 
 [formatter_simple]
 # Simple output format
