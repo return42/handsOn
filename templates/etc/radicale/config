@@ -87,7 +87,7 @@ type = remote_user
 
 # Rights backend
 # Value: none | authenticated | owner_only | owner_write | from_file
-type = owner_only
+type = from_file
 
 # File for rights management from_file
 file = /etc/radicale/rights
