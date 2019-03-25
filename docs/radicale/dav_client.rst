@@ -2,10 +2,11 @@
 
 .. _xref_dav_client:
 
+==========================
 CalDAV und CardDAV Clients
-===========================
+==========================
 
-Radicale unterstützt eine ganze Reihe von DAV-Client Anwendungen. Man sollte
+Radicale unterstützt eine ganze Reihe von DAV-Client Anwendungen.  Man sollte
 sich in jedem Fall die Doku der Clients anschauen:
 
 * https://radicale.org/clients
@@ -16,8 +17,9 @@ einige z.B. mit Kalendern arbeiten aber keine neuen Kalender anlegen. Das
 Gleiche gilt für Adressbücher, manche Clients können keine Adressbücher neu
 anlegen, mit bestehenden aber gut arbeiten."
 
+
 Android Clients
----------------
+===============
 
 Auf den Androids empfiehlt es sich DAVdroid zu installieren:
 
@@ -47,28 +49,35 @@ Account einzurichten. Dann auswählen:
         Passwort:      <passwd>
 
 Falls der Server ``<hostname>`` über ein selbst-signiertes Zertifikat verfügt,
-muss man dieses mittels Prüfsumme im nächsten Dialog bestätigen. Danach prüft
+muss man dieses mittels Prüfsumme im nächsten Dialog bestätigen.  Danach prüft
 DAVdroid was alles auf dem Server zur Verfügung steht, am Ende quittiert man
-nochmal mit *Account anlegen*. Klickt man in das so eingerichtete Konto, so
-bekommt man alle Kalender und Adressbücher auf dem Server angezeigt. Soll eines
-oder mehrere dieser Objekte synchronisiert werden, so muss es noch aktivieren
-(einmal anklicken).
+nochmal mit :guilabel:`Account anlegen`.  Klickt man in das so eingerichtete
+Konto, so bekommt man alle Kalender und Adressbücher auf dem Server angezeigt.
+Soll eines oder mehrere dieser Objekte synchronisiert werden, so muss es noch
+aktivieren (einmal anklicken).
 
 .. note::
 
   Bei mir kam mit der ersten Synchronisierung eine Info Box, in der ich nochmal
   bestätigen musste, dass DAVdroid Zugriff auf Kalender, Adressbuch und OpenTask
-  bekommen soll. Erst nachdem das alles quittiert war wurde die Synchronisierung
-  erfolgreich durchgeführt, bei der ich abermals bestätigen musste, dass
-  DAVdroid die erforderlichen Berechtigungen bekommt. Es kann sein, dass das mit
-  den Berechtigungen bei mir so ausartet, weil mein Android Setup ziemlich
-  paranoid ist. Die erste Synchronisierung kann dann schon ein paar Minuten
-  dauern, je nachdem wie viele Kalender- und Adressbucheinträge so synchronisiert
-  werden müssen.
+  bekommen soll.  Erst nachdem das alles quittiert war wurde die
+  Synchronisierung erfolgreich durchgeführt, bei der ich abermals bestätigen
+  musste, dass DAVdroid die erforderlichen Berechtigungen bekommt.  Es kann
+  sein, dass das mit den Berechtigungen bei mir so ausartet, weil mein Android
+  Setup ziemlich paranoid ist.  Noch ein Hinweis: die erste Synchronisierung
+  kann schon ein paar Minuten dauern, je nachdem wie viele Kalender- und
+  Adressbuch- Einträge so synchronisiert werden müssen.
 
 Nach Abschluss der Synchronisierung sollte man nun die synchronisierten Adressen
 in der *Adressbuch-App* des Androids finden und die synchronisierten Kalender in
-der *Kalender-App* des Androids.
+der *Kalender-App*.  In manchen *Kalender-Apps* kann resp. muss noch eingestellt
+werden welche Kalender synchronisiert werden, der Menüpunkt in der
+*Kalender-App* könnte in etwa lauten :menuselection:`Synchronisierte Kalender
+verwalten`.
+
+
+Apple & iOS
+===========
 
 Apple Kontakte
 --------------
@@ -136,6 +145,9 @@ muss, anschließend::
 Nach dem Anlegen ist der Account bereits aktiviert und wird synchronisiert, was
 aber u.U. einige Minuten in Anspruch nehmen kann.
 
+Thunderbird
+===========
+
 Thunderbird mit Lightning
 -------------------------
 
@@ -175,7 +187,6 @@ Lightning_ AddOn für den Thunderbird.
 
   - Versionen: https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions
   - Builds: https://ftp.mozilla.org/pub/calendar/lightning/candidates/
-
 
 
 Thunderbird mit CardBook

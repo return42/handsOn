@@ -305,7 +305,7 @@ In der ``authnz_external.conf`` werden die folgenden Direktiven gesetzt.
    AddExternalAuth pwauth /usr/sbin/pwauth
    SetExternalAuthMethod pwauth pipe
 
-Das Tool ``pwauth`` verwendet zur Autorisierung die Benutzer Logins und
+Das Tool `pwauth (github)`_ verwendet zur Autorisierung die Benutzer Logins und
 Passwörter des Systems (PAM). Zu dem pwauth gehört noch ein PAM Setup
 ``/etc/pam.d/pwauth``::
 
@@ -335,10 +335,10 @@ richtige Passwort eingeben kann.
 
 .. todo::
 
-   Die Authentifizierung über ``pwauth`` und ``authnz_external`` ist zwar ganz
-   praktisch, aber damit ist nur eine *Basic* `HTTP-Authentifizierung (wiki)`_
-   möglich. Es sollte nochmal ein alternative Konzept vorgestellt werden
-   (Schlagworte LDAP, mod_authn_file or mod_authn_dbm).
+   Die Authentifizierung über `pwauth (github)`_ und ``authnz_external`` ist
+   zwar ganz praktisch, aber damit ist nur eine *Basic* `HTTP-Authentifizierung
+   (wiki)`_ möglich.  Es sollte nochmal ein alternative Konzept vorgestellt
+   werden (Schlagworte LDAP, mod_authn_file or mod_authn_dbm).
 
 .. _xref_start_your_engines:
 
