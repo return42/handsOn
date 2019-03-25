@@ -15,24 +15,48 @@
 #
 # .. hint::
 #
-#    The first rule matching both user and collection patterns will be returned.
+#    1. The first rule matching both user and collection patterns
+#       will be returned.
+#    2. I needed to setup some 'R' & 'W' to get radicale's internal
+#       WEB interface running
 #
+# About 'R' & 'W' see https://github.com/Kozea/Radicale/commit/0a492a ::
+#
+#   R: read collections without tag
+#   r: read collections with tag and included objects
+#   W: write and delete collections without tag
+#   w: write and delete collection with tag and included objects
 
-# The user "admin" can read and write any collection.
+# 1. The user "admin" can read and write any collection.
 [admin]
-user: markus
+user: admin
 collection: .*
-permissions: rw
+permissions: RWrw
 
-# Authenticated users can read and write their own collections.
+# 2. Example: dedicated sharing with 3 users
+[user001]
+user: user001
+collection: user002(/.*)?
+permissions: r
+
+[user002]
+user: user002
+collection: user001(/.*)?|user003(/.*)?
+permissions: r
+
+[user003]
+user: user003
+collection: user002(/.*)?
+permissions: r
+
+# 3. Authenticated users can read and write their own collections.
 [owner-write]
 user: .+
 collection: %(login)s(/.*)?
-permissions: rw
+permissions: RWrw
 
-# Everyone can read the root collection
+# 4. Added 'R' to get WEB interface running
 [read]
-user: .*
-collection:
-permission: r
-
+user: .+
+collection: .*
+permissions: R
