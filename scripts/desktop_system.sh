@@ -13,6 +13,15 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 GNOME3_PPA="ppa:gnome3-team/gnome3"
 GNOME_SHELL_EXTENSIONS="/usr/share/gnome-shell/extensions"
 
+# gnome-shell extension: dash-to-dock
+#
+# HINT: https://github.com/micheleg/dash-to-dock/issues/902 Current master
+#       dropped support for Gnome shell <3.32 [26feddb], so this is
+#       expected. The current updated branch for previous versions (down to
+#       3.18) is https://github.com/micheleg/dash-to-dock/tree/gnome-3.30.
+
+DASH_TO_DOCK_BRANCH="${DASH_TO_DOCK_BRANCH:-gnome-3.30}"
+
 # dconf-editor gconf-editor
 # -------------------------
 #
@@ -273,10 +282,27 @@ install_gnome_extensions(){
     _origin="https://github.com/micheleg/dash-to-dock.git"
     _name="dash-to-dock@micxgx.gmail.com"
     _ws="${CACHE}/${_name}"
-    cloneGitRepository "$_origin" "$_name"
+
+    if [[ -d "${_ws}" ]] ; then
+	info_msg "${Green}already cloned:${_color_Off} $1"
+        info_msg "  -->${Green} ${target_folder} ${_color_Off}"
+	pushd "${_ws}" > /dev/null
+        if [[ ! -z ${SUDO_USER} ]]; then
+            sudo -u ${SUDO_USER} git fetch --all
+        else
+            git fetch --all
+        fi
+	popd > /dev/null
+    else
+	cloneGitRepository "$_origin" "$_name"
+    fi
+
+    rstBlock "checkout ${DASH_TO_DOCK_BRANCH} ..."
+    pushd "$_ws" > /dev/null
+    git checkout ${DASH_TO_DOCK_BRANCH}
 
     rstBlock "run make ..."
-    pushd "$_ws" > /dev/null
+
     if [[ ! -z ${SUDO_USER} ]]; then
         sudo -u ${SUDO_USER} make | prefix_stdout
     else
@@ -338,6 +364,14 @@ EOF
 remove_gnome_extensions(){
     rstHeading "De-Installation der Gnome-Shell Extensions"
 # ----------------------------------------------------------------------------
+
+    rstHeading "gnome-shell: dash to dock" section
+    _name="dash-to-dock@micxgx.gmail.com"
+    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+    TEE_stderr <<EOF | bash | prefix_stdout
+rm -rf "$_dst"
+EOF
+    waitKEY
 
     rstHeading "gnome-shell: system-monitor" section
     _name="system-monitor@paradoxxx.zero.gmail.com"
