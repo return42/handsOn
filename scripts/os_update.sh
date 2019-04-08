@@ -19,7 +19,6 @@ case "$(lsb_release -si)" in
     Ubuntu|Debian)
 
 	apt-get update -y
-        echo "xxx"
 	if ! apt-get dist-upgrade -y;  then
 
             rstBlock "${BRed}Es gab ein Problem beim Update des Systems${_color_Off}
