@@ -55,10 +55,8 @@ MPV_PACKAGES="\
  mpv \
 "
 
-# https://launchpad.net/~djcj/+archive/ubuntu/vapoursynth
-MPV_PPA="ppa:djcj/vapoursynth"
 # https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests
-#MPV_PPA="ppa:mc3man/mpv-tests"
+MPV_PPA="ppa:mc3man/mpv-tests"
 
 VDR_PACKAGES="\
  vdr\
@@ -244,11 +242,6 @@ Die MPV Instanz aus den LTE Distributionen ist hoffnungslos veraltet
 und sollte -- falls bereits installiert -- zuerst deinstalliert werden.
 Eine aktuelle Version des MPV kann dann aus dem PPA ($MPV_PPA)
 installiert werden.
-
-Es wird empfohlen die VapourSynth version zu installieren, damit haben auch
-Python Skripte Zugriff auf die Funktionen des MPV:
-
-  https://github.com/vapoursynth/vapoursynth
 "
 }
 
