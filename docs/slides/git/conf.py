@@ -78,8 +78,8 @@ html_theme_options = {
     # Opens links in an iframe preview overlay
     'preview_links': False,
 
-    # Theme (black/white/league/beige/sky/night/serif/simple/solarized)
-    'theme': 'league',
+    # Theme (black/white/league/beige/sky/night/serif/simple/solarized/dejavu)
+    'theme': 'dejavu',
 
     # Transition style (default(=convex)/none/fade/slide/concave/zoom)
     'transition': 'slide',

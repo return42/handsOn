@@ -550,8 +550,8 @@ get git started
       .. rv_small::
 
          Für die Branches eignen sich Graphen, aber auch das ist recht
-         ausführlich. Man hätte da gerne was kompakteres (*two-liner als
-         alias*).
+         ausführlich. Man hätte da gerne was kompakteres (siehe Alias 'git
+         graph' als *two-liner*).
 
       .. rv_code::
          :class: shell
