@@ -1818,3 +1818,8 @@ pref("javascript.options.wasm", true);
 // means these symbols will never shown (blank pdf or missing sections where non
 // available fonts are used).
 pref("browser.display.use_document_fonts", 1);
+
+// see 1405:
+// modern browsers are using WOFF2 fonts
+pref("gfx.downloadable_fonts.woff2.enabled", true);
+
