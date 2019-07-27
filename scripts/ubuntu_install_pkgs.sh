@@ -112,6 +112,7 @@ MONITORING_PACKAGES="\
  htop \
  lm-sensors \
  iotop \
+ fatrace \
 "
 
 #* dhcpcd(8) :  DHCP and DHCPv6 client. It's also an IPv4LL (aka ZeroConf) client

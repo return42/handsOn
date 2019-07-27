@@ -13,6 +13,7 @@ Zu den System *Monitoring-Tools* zählen:
 - :deb:`htop`: das *schönere* ``top`` http://hisham.hm/htop/
 - :deb:`lm-sensors`
 - :deb:`iotop`
+- :deb:`fatrace` report system wide file access events (:man:`fatrace`)
 
 Installation
 ============
