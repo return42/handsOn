@@ -253,9 +253,6 @@ systemctl list-units 'vbox*' --all
 EOF
     waitKEY
 
-    if ! askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
-	return 42
-    fi
     installExtensionPack
 }
 
@@ -267,9 +264,7 @@ update_vbox_desktop(){
     local FORCE_TIMEOUT=1
     echo
     apt-get install -y ${ORACLE_VBOX_PACKAGE} dkms
-    if askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
-	installExtensionPack
-    fi
+    installExtensionPack
 }
 
 
