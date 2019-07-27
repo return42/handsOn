@@ -91,6 +91,14 @@ main(){
 	install-desktop)
 	    install_vbox_desktop
 	    ;;
+	update-desktop)
+	    update_vbox_desktop
+	    ;;
+	deinstall-desktop)
+            sudoOrExit
+            deinstall_vbox
+	    ;;
+
 	install-service)
             sudoOrExit
             install_vbox_service
@@ -100,16 +108,13 @@ main(){
             sudoOrExit
             update_vbox
 	    ;;
-	macOS)
-	    macOS
-	    ;;
-	deinstall-desktop)
-            sudoOrExit
-            deinstall_vbox
-	    ;;
 	deinstall-service)
             sudoOrExit
             deinstall_vbox
+	    ;;
+
+	macOS)
+	    macOS
 	    ;;
         README)
             rstHeading "README"
@@ -122,7 +127,9 @@ man installiert hierfür die Dienste mit denen GAST Systeme *headless*
 (ohne VBox auf einem Desktop) betrieben werden können.  Als Desktop
 Anwender wird man i.d.R. die Desktop-Variante bevorzugen."
             echo
-	    echo "usage $0 [[de]install[-service|-desktop]|update|macOS|README]"
+	    echo "usage $0 [de]install[-service|-desktop]"
+	    echo "usage $0 update[-desktop]"
+	    echo "usage $0 [macOS|README]"
             echo
             ;;
     esac
@@ -247,9 +254,22 @@ EOF
     waitKEY
 
     if ! askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
-	return42
+	return 42
     fi
     installExtensionPack
+}
+
+# ----------------------------------------------------------------------------
+update_vbox_desktop(){
+    rstHeading "Update VirtualBox (Desktop)"
+# ----------------------------------------------------------------------------
+
+    local FORCE_TIMEOUT=1
+    echo
+    apt-get install -y ${ORACLE_VBOX_PACKAGE} dkms
+    if askYn "Soll das VBox Extension Pack installiert werden (PUEL)?"; then
+	installExtensionPack
+    fi
 }
 
 
