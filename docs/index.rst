@@ -68,8 +68,9 @@ Themen
    citrix/index
    gogs
    glances
+   pihole/index
 
-
+ 
 Exkursionen und Erfahrungswerte
 ===============================
 
