@@ -28,11 +28,10 @@ Router sind so eingerichtet, dass die Clients ihr Netzwerk-Setup via `DHCP
 (wiki)`_ vom Router beziehen.  In dem `Kuketz pi-hole Artikel`_ werden im
 Kapitel *"Einrichtung als DNS-Server"* drei alternative Varianten vorgestellt.
 
-
 Bei **Variante 2 -- per DHCP** wird die pi-hole (also die IP des lokalen DNS) im
 Rahmen des DHCP an die Clients weiter gereicht.  In der Fritz-Box unter:
 
-- :menuselection:`Heimnetz -> Heimnetzübersicht -> Netzwerkeinstellungen ->
+- :menuselection:`Heimnetz -> Netzwerk -> Netzwerkeinstellungen ->
   IPv4-Adressen`
 
 muss der DHCP-Server der Fritz-Box aktiviert sein und unter **Lokaler
@@ -46,9 +45,30 @@ DNS-Server** setzt man die IP der pi-hole.  Hier im Beispiel ist das die
 Nach bestätigen mit :guilabel:`OK` werden alle zukünftigen (DHCP) Verbindungen
 als DNS die pi-hole verwenden.  Will man das sofort mal testen, muss man die
 Netzwerkverbindung auf dem Client-Rechner kurz ab- und wieder anschalten (oder
-neu booten).  Danach sollte im *NetworkManager* (s.a. Netzwerk-Einstellungen)
-die IP des DNS angezeigt werden.  Auf der Linux Kommandozeile kann man dazu
-z.B. :man:`nmcli` nachschauen::
+neu booten).  Danach sollte im *NetworkManager* die IP des DNS angezeigt werden
+(s.a.: :ref:`check_which_dns`).
+
+Damit die FritzBox selbst auch die pi-hole als *bevorzugten DNSv4-Server* nutzt,
+kann noch die folgende Einstellung vorgenommen werden.
+
+- :menuselection:`Internet -> Zugangsdaten -> DNS-Server`
+
+.. figure:: pihole-FB-DNS-Server.png
+   :alt:     Figure (pihole-FB-DNS-Server.png)
+   :class:   rst-figure
+
+Die IP der pi-hole hier im Beispiel ist ``192.168.1.118``.  Falls die mal ausfällt
+wurde noch der `Chaos Computer Club (DNS)`_ als Alternative eingetragen
+(s.a. `Upstream DNS Server`_)
+
+
+.. _check_which_dns:
+
+DNS überprüfen
+--------------
+
+Auf der Linux Kommandozeile kann man dazu
+z.B. :man:`nmcli` verwenden::
 
   $ nmcli
   ...
@@ -66,18 +86,13 @@ z.B. :man:`nmcli` nachschauen::
   IP4.DNS[1]:                             192.168.1.118
   IP4.DOMAIN[1]:                          fritz.box
 
-Damit die FritzBox auch die pi-hole als *bevorzugten DNSv4-Server* nutzt, muss
-noch die Folgende Einstellung vorgenommen werden.
 
-- :menuselection:`Internet -> Zugangsdaten -> DNS-Server`
+Auf Windows kann man das Kommando ``nslookup`` aufrufen.  Bereits beim Start
+zeigt es den DNS an, den es zur Namensauflösung nutzt.
 
-.. figure:: pihole-FB-DNS-Server.png
-   :alt:     Figure (pihole-FB-DNS-Server.png)
+.. figure:: pihole-win-nslookup.png
+   :alt:     Figure (pihole-win-nslookup.png)
    :class:   rst-figure
-
-Die IP der pi-hole hier im Beispiel ist ``192.168.1.1``.  Falls die mal ausfällt
-wurde noch der `Chaos Computer Club (DNS)`_ als Alternative eingetragen
-(s.a. `Upstream DNS Server`_)
 
 
 Upstream DNS Server
