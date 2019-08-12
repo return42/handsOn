@@ -332,23 +332,23 @@ cp -r system-monitor@paradoxxx.zero.gmail.com "$_dst"
 EOF
     waitKEY
 
-    rstHeading "gnome-shell: tracker-search-provider" section
-    echo
-    _origin="https://github.com/hamiller/tracker-search-provider.git"
-    _name="tracker-search-provider@sinnix.de"
-    _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
-    _ws="${CACHE}/${_name}"
-    cloneGitRepository "$_origin" "$_name"
-    rstBlock "Aus dem Repo (branch gnome_16) werden die zwei Dateien in Ordner
-$_name installiert"
-    TEE_stderr 1 <<EOF | bash | prefix_stdout
-rm -rf "$_dst"
-mkdir -p "$_dst"
-cd "${_ws}"
-git checkout -f gnome_16
-cp -r extension.js metadata.json "$_dst"
-EOF
-    waitKEY
+#     rstHeading "gnome-shell: tracker-search-provider" section
+#     echo
+#     _origin="https://github.com/hamiller/tracker-search-provider.git"
+#     _name="tracker-search-provider@sinnix.de"
+#     _dst="${GNOME_SHELL_EXTENSIONS}/$_name"
+#     _ws="${CACHE}/${_name}"
+#     cloneGitRepository "$_origin" "$_name"
+#     rstBlock "Aus dem Repo (branch gnome_16) werden die zwei Dateien in Ordner
+# $_name installiert"
+#     TEE_stderr 1 <<EOF | bash | prefix_stdout
+# rm -rf "$_dst"
+# mkdir -p "$_dst"
+# cd "${_ws}"
+# git checkout -f gnome_16
+# cp -r extension.js metadata.json "$_dst"
+# EOF
+#     waitKEY
 
     rstHeading "Liste installierter Extensions" section
     TEE_stderr 1 <<EOF | bash | prefix_stdout
