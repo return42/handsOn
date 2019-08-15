@@ -13,6 +13,7 @@ PYTHON   ?= python$(PY)
 PIP      ?= pip$(PY)
 PIP_INST ?= --user
 PYDEBUG  ?= --pdb
+PYLINT_RC ?= utils/pylintrc
 
 TEST_FOLDER  ?= ./tests
 TEST         ?= .
@@ -119,15 +120,23 @@ endif
 # ------------------------------------------------------------------------------
 
 # $2 path to folder with setup.py, this uses pip from the OS
-quiet_cmd_pyinstall   = INSTALL   $@
-      cmd_pyinstall   = $(PIP) $(PIP_VERBOSE) install $(PIP_INST) -e $2
+quiet_cmd_pyinstall = INSTALL   $2
+      cmd_pyinstall = $(PIP) $(PIP_VERBOSE) install $(PIP_INST) -e $2
+
+# $2 path to folder with setup.py, this uses pip from pyenv (not OS!)
+quiet_cmd_pyenvinstall = PYENV     install $2
+      cmd_pyenvinstall = $(PY_ENV_BIN)/pip $(PIP_VERBOSE) install -e $2
 
 # Uninstall the package. Since pip does not uninstall the no longer needed
 # depencies (something like autoremove) the depencies remain.
 
 # $2 package name to uninstall, this uses pip from the OS.
-quiet_cmd_pyuninstall = UNINSTALL $@
+quiet_cmd_pyuninstall = UNINSTALL $2
       cmd_pyuninstall = $(PIP) $(PIP_VERBOSE) uninstall --yes $2
+
+# $2 path to folder with setup.py, this uses pip from pyenv (not OS!)
+quiet_cmd_pyenvuninstall = PYENV     uninstall   $2
+      cmd_pyenvuninstall = $(PY_ENV_BIN)/pip $(PIP_VERBOSE) uninstall --yes $2
 
 # $2 path to folder where virtualenv take place
 quiet_cmd_virtualenv  = PYENV     $@
@@ -140,7 +149,7 @@ quiet_cmd_virtualenv  = PYENV     $@
 
 # $2 path to lint
 quiet_cmd_pylint      = LINT      $@
-      cmd_pylint      = $(PY_ENV_BIN)/pylint --rcfile utils/pylintrc $2
+      cmd_pylint      = $(PY_ENV_BIN)/pylint --rcfile $(PYLINT_RC) $2
 
 quiet_cmd_pytest      = TEST      $@
       cmd_pytest      = $(PY_ENV_BIN)/tox -vv
@@ -175,6 +184,15 @@ pyinstall: pip-exe
 PHONY += pyuninstall
 pyuninstall: pip-exe
 	$(call cmd,pyuninstall,$(PYOBJECTS))
+
+# for installation use the pip from PY_ENV (not the OS)!
+PHONY += pyenvinstall
+pyenvinstall: $(PY_ENV)
+	$(call cmd,pyenvinstall,.)
+
+PHONY += pyenvuninstall
+pyenvuninstall: $(PY_ENV)
+	$(call cmd,pyenvuninstall,$(PYOBJECTS))
 
 PHONY += pyclean
 pyclean:
