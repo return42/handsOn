@@ -76,7 +76,7 @@ MOZILLA_XPI_URL=(
     # zuletzt verifiziert: 20190129
     # Homepage: https://github.com/gorhill/uBlock
     #           https://addons.mozilla.org/de/firefox/addon/ublock-origin/
-    "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/addon-607454-latest.xpi"
+    "https://addons.mozilla.org/firefox/downloads/latest/607454/ublock-origin/addon-607454-latest.xpi"
 
     # SQLite Manager
     # zuletzt verifiziert: 20190129
