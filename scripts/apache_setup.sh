@@ -167,13 +167,13 @@ usage(){
     cat <<EOF
 
 usage:
-  $(basename $0) install    [server|PHP|WSGI|ACME]
+  $(basename $0) install    [server|sites|PHP|WSGI|ACME]
   $(basename $0) remove     [all|PHP|WSGI|ACME]
   $(basename $0) update     [WSGI]
   $(basename $0) activate   [WAF]
   $(basename $0) deactivate [WAF]
 
-common:
+server:
   geführte Installation aller wichtigen Apache Komponenten
 sites: ${APACHE_ADD_SITES:-<aktuell keine zusätzlichen Sites konfiguriert>}
   zusätzliche Sites installieren

@@ -417,7 +417,7 @@ deshalb wird Remmina aus dem PPA $REMMINA_PPA installiert."
         return 42
     fi
 
-    add-apt-repository "$REMMINA_PPA"
+    add-apt-repository -y "$REMMINA_PPA"
 
     rstHeading "Katalog aktualisieren" section
     echo
@@ -440,7 +440,7 @@ deshalb wird Timeshift aus dem PPA $TIMESHIFT_PPA installiert."
         return 42
     fi
 
-    add-apt-repository "$TIMESHIFT_PPA"
+    add-apt-repository -y "$TIMESHIFT_PPA"
 
     rstHeading "Katalog aktualisieren" section
     echo
@@ -494,7 +494,7 @@ install_flatpak(){
         return 42
     fi
 
-    add-apt-repository "$PPA"
+    add-apt-repository -y "$PPA"
 
     rstHeading "Katalog aktualisieren" section
     echo
