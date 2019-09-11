@@ -8,9 +8,7 @@
                                Versionsverwaltung
 ================================================================================
 
-comming soon ...
-
-* :deb:`git`
+* :deb:`git` siehe auch `get git started <../slides/git/index.html>`_
 * :deb:`subversion`
 * :deb:`mercurial`
 * :deb:`bzr`
