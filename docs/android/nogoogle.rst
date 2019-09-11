@@ -188,6 +188,12 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   Live-TV der deutschen öffentlich-rechtlichen Fernsehsender, einfach zu
   bedienen und schön übersichtlich.
 
+- `RadioDroid <https://github.com/segler-alex/RadioDroid>`_ / (`F-Droid
+  <https://f-droid.org/en/packages/net.programmierecke.radiodroid2>`__)
+
+  Damit hat man Zugriff auf die Senderliste von `Radio Browser
+  <http://www.radio-browser.info>`_
+
 Wofür ich grad selber noch Alternativen suche:
 
 - `VLC Audio & Video player <http://www.videolan.org/>`_
