@@ -1,3 +1,4 @@
+# -*- coding: utf-8; mode: conf -*-
 # --------
 # requires
 # --------
@@ -12,6 +13,7 @@
 
 Sphinx
 sphinx_rtd_theme
+sphinxcontrib-programoutput
 pip
 
 git+https://github.com/return42/sphinxjp.themes.revealjs

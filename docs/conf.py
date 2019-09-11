@@ -35,6 +35,7 @@ extensions = [
     , 'linuxdoc.manKernelDoc'    # Implementation of the 'kernel-doc-man' builder
     , 'linuxdoc.cdomain'         # Replacement for the sphinx c-domain.
     , 'linuxdoc.kfigure'         # Sphinx extension which implements scalable image handling.
+    , 'sphinxcontrib.programoutput'
 ]
 
 intersphinx_mapping = {}

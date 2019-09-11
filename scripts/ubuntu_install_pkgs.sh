@@ -5,7 +5,6 @@
 # ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
-sudoOrExit
 
 # ----------------------------------------------------------------------------
 # Config
@@ -131,7 +130,13 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
-        usage|-h|--help) usage;;
+        usage|-h|--help)
+	    usage
+	    exit 0
+	    ;;
+    esac
+    sudoOrExit
+    case $1 in
         bootstrap)    install_bootstrap;;
 
         all)

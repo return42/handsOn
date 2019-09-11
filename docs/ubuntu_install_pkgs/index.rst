@@ -30,35 +30,11 @@ installieren wollen. Zum *Ausprobieren* der Anwendungen eines Themengebiets
 können mit dem Skript ``ubuntu_install_pkgs.sh`` die hier vorgestellten Pakete
 zu einem Themengebiet installiert werden.
 
-.. code-block:: bash
-
-   $ sudo ./scripts/ubuntu_install_pkgs.sh --help
-
-   usage:
-     ubuntu_install_pkgs.sh [all|<install-bundle>]
-
-    Alias 'all' umfasst folgende <install-bundle>
-
-    - base:       Basispakete zum Betrieb eines Servers
-    - develop:    Basispakete zum Kompilieren & Installieren
-    - office:     Pakete für Desktop & Office
-    - multimedia: MultiMedia Pakete, Video, Audio
-    - codecs:     Codec Pakete; Audio & Video Tools
-    - imgTools:   Tools zur Bildbearbeitung / -Betrachtung
-    - archTools:  Tools zur Archivierung und Komprimierung
-    - hwTools:    Hardware-Tools
-    - monitoring: System-Monitoring-Tools
-    - netTools:   Network-Tools
-    - remmina:    RDP-Client
-
-    Ansonsten stehen noch zur Verfügung:
-
-    - timeshift:  Timeshift (backup)
-    - ukuu:       Ubuntu Kernel Upgrade Utility
-
+.. program-output:: ../scripts/ubuntu_install_pkgs.sh --help
 
 .. hint::
 
    Das hier ein Softwarepaket vorgestellt wird, ist nicht in jedem Fall mit
    einer Empfehlung gleichzusetzen.  Je nach Anforderungen kann eine Empfehlung
    ganz unterschiedlich ausfallen (selber ausprobieren und sehen ob es passt).
+
