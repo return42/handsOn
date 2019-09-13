@@ -43,9 +43,9 @@ ausprobieren möchte.
 Die PPD-Dateien aus den Beispielen *hier* sind im Original folgend einzusehen:
 
 - ``CNMF620C-Series.ppd``: :origin:`CNMF620C Series, driverless (PPD modified)
-  <docs/print_scan/CNMF620C-Series.ppd>`
+  <docs/print/CNMF620C-Series.ppd>`
 - ``MF623C-TWF19694.ppd``: :origin:`Canon MF620C Series UFRII LT
-  <docs/print_scan/MF623C-TWF19694.ppd>`
+  <docs/print/MF623C-TWF19694.ppd>`
 
 
 Herkunft der PPD Dateien
@@ -59,7 +59,7 @@ Drucker zu finden.  Ebenfalls über IPP fragt er dann beim Drucker nach seinen
 Eigenschaften.  Im Kapitel ":ref:`IPP_intro`" wird ein Beispiel gezeigt, wie die
 Eigenschaften des Druckers mit dem :man:`ipptool` Kommando ausgelesen werden
 können.  Aus der Antwort vom Drucker (:origin:`MF623Cn-attributes.txt
-<docs/print_scan/MF623Cn-attributes.txt>`) baut der *driverless* Treiber dann
+<docs/print/MF623Cn-attributes.txt>`) baut der *driverless* Treiber dann
 eine PPD Datei, die er unter ``/etc/cups/ppd/<printer-name>.ppd`` speichert.
 Der ``<printer-name>`` wird einem öfter begegnen, z.B bei Kommandos wie
 :man:`lpstat`::
@@ -146,7 +146,7 @@ Eigenschaften vom Drucker ausgelesen werden können.::
   $ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
 
 Die Ausgabe für den MF623Cn_ ist in der Datei :origin:`MF623Cn-attributes.txt
-<docs/print_scan/MF623Cn-attributes.txt>` zu sehen, hier der Ausschnitt zu den
+<docs/print/MF623Cn-attributes.txt>` zu sehen, hier der Ausschnitt zu den
 Angaben der Papiergrößen und Druckbereiche, die der Drucker kennt.
 
 .. code-block:: none
@@ -190,7 +190,7 @@ die einheitenlosen Angaben wieder der DTP-Punkt, also umgerechnet ``1pt=0,3527mm
 Besser ist es, die Werte für Ränder ganz auf ``0 0`` zu setzen, dass sollte auch
 keine Nachteile bereiten wenn der Drucker in Wirklichkeit mit einem umlaufenden
 Rahmen von z.B. 5mm ausgestattet ist (:origin:`MF623Cn-attributes.txt
-<docs/print_scan/MF623Cn-attributes.txt>`):
+<docs/print/MF623Cn-attributes.txt>`):
 
 .. code-block:: clean
 

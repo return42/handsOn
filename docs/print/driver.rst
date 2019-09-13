@@ -39,7 +39,7 @@ Kapitel ":ref:`printer_setup`".  Hier beim MF623Cn_ musste die generisch
 erzeugte PPD Datei aus genannten Gründen angepasst werden:
 
 - Für MF623Cn_ angepasste PPD: :origin:`CNMF620C Series, driverless (PPD
-  modified) <docs/print_scan/CNMF620C-Series.ppd>`
+  modified) <docs/print/CNMF620C-Series.ppd>`
 
 .. note::
 
@@ -144,7 +144,7 @@ Auch die PPD, die Canon mit dem Treiber ausliefert ist ziemlich lieblos
 zusammengeschustert weshalb ich eine selbst-erstellte bevorzuge:
 
 - Für MF623Cn_ angepasste PPD (URFII): :origin:`Canon MF620C Series UFRII LT
-  <docs/print_scan/MF623C-TWF19694.ppd>`
+  <docs/print/MF623C-TWF19694.ppd>`
 
 
 .. _driverless-vs-canon:

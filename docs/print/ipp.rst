@@ -104,7 +104,7 @@ IPP Kinderkrankheiten
 =====================
 
 Schaut man sich mal die gesamte Ausgabe des :ref:`get-printer-attributes` an
-(:origin:`MF623Cn-attributes.txt <docs/print_scan/MF623Cn-attributes.txt>`),
+(:origin:`MF623Cn-attributes.txt <docs/print/MF623Cn-attributes.txt>`),
 dann erkennt man schon die ersten *Kinderkrankheiten*::
 
   $ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test

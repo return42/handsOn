@@ -103,7 +103,7 @@ angepasst werden.  Ein anständiges Druckbild ergab sich am Ende mit folgender
 PPD Datei (s.a. Kapitel ":ref:`driverless-printing`"):
 
 - ``CNMF620C-Series.ppd``: :origin:`CNMF620C Series, driverless (PPD modified)
-  <docs/print_scan/CNMF620C-Series.ppd>`
+  <docs/print/CNMF620C-Series.ppd>`
 
 
 Drucker Treiber ändern
@@ -225,7 +225,7 @@ die PPD mal anzuschauen.  Hier meine angepasste Version für die Canon MF620C
 Serie:
 
 - ``MF623C-TWF19694.ppd``: :origin:`Canon MF620C Series UFRII LT
-  <docs/print_scan/MF623C-TWF19694.ppd>`
+  <docs/print/MF623C-TWF19694.ppd>`
 
 Falls sich noch Fragen ergeben kann man auch nochmal den Artikel im Debian Wiki
 lesen: `Canon UFR-II`_.
