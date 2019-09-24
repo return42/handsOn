@@ -140,7 +140,7 @@ main(){
         bootstrap)    install_bootstrap;;
 
         all)
-            FORCE_TIMEOUT=2
+            FORCE_TIMEOUT=1
             install_base
             install_develop
             install_office
@@ -201,6 +201,7 @@ Alias 'all' umfasst folgende <install-bundle>
 
 Ansonsten stehen noch zur Verfügung:
 
+- flatpak:    https://flatpak.org/
 - timeshift:  Timeshift (backup)
 - ukuu:       Ubuntu Kernel Upgrade Utility
 
@@ -294,15 +295,20 @@ installEmacsStable() {
     rstHeading "Emacs" section
 # ----------------------------------------------------------------------------
 
-    local PPA="ppa:kelleyk/emacs"
-    rstBlock "Alte Emacs Installationen werden deinstalliert"
-    apt purge -y "emacs*"
-    apt autoremove -y
-    rstBlock "Aktuelle Emacs Version (${EMACS_VERSION}) wird aus $PPA bezogen .."
-    add-apt-repository -y $PPA
-    apt-get update
-    apt-get install ${EMACS_VERSION} ${EMACS_VERSION}-el aspell-de aspell-en
-    update-alternatives --set emacs /usr/bin/${EMACS_VERSION}
+    if dpkg --compare-versions "18.10" "lt" "$DISTRIB_RELEASE"; then
+	rstBlock "Standard Emacs reicht aus, wird installiert .."
+	apt-get install emacs
+    else
+	local PPA="ppa:kelleyk/emacs"
+	rstBlock "Alte Emacs Installationen werden deinstalliert"
+	apt purge -y "emacs*"
+	apt autoremove -y
+	rstBlock "Aktuelle Emacs Version (${EMACS_VERSION}) wird aus $PPA bezogen .."
+	add-apt-repository -y $PPA
+	apt-get update
+	apt-get install ${EMACS_VERSION} ${EMACS_VERSION}-el aspell-de aspell-en
+	update-alternatives --set emacs /usr/bin/${EMACS_VERSION}
+    fi
     waitKEY 30
 }
 

@@ -20,7 +20,11 @@ GNOME_SHELL_EXTENSIONS="/usr/share/gnome-shell/extensions"
 #       expected. The current updated branch for previous versions (down to
 #       3.18) is https://github.com/micheleg/dash-to-dock/tree/gnome-3.30.
 
-DASH_TO_DOCK_BRANCH="${DASH_TO_DOCK_BRANCH:-gnome-3.30}"
+if dpkg --compare-versions "18.10" "lt" "$DISTRIB_RELEASE"; then
+    DASH_TO_DOCK_BRANCH="${DASH_TO_DOCK_BRANCH:-gnome-3.32}"
+else
+    DASH_TO_DOCK_BRANCH="${DASH_TO_DOCK_BRANCH:-gnome-3.30}"
+fi
 
 # dconf-editor gconf-editor
 # -------------------------
@@ -45,7 +49,6 @@ GNOME3_PACKAGES="\
 
 DISPLAY_MANAGER_PACKAGES="\
   gdm3 \
-  lightdm lightdm-webkit-greeter \
 "
 #  sddm \
 #  kdm \
@@ -317,6 +320,8 @@ EOF
 
     rstHeading "gnome-shell: system-monitor" section
     echo
+    apt install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
+    echo
     # FIXME: interim solution as long as #469 is open
     # [#469] https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet/issues/496
     _origin="https://github.com/return42/gnome-shell-system-monitor-applet.git"
@@ -326,9 +331,9 @@ EOF
     cloneGitRepository "$_origin" "$_name"
     rstBlock "Aus dem Repo wird der Unter-Ordner $_name installiert"
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-rm -rf "$_dst"
 cd "${_ws}"
-cp -r system-monitor@paradoxxx.zero.gmail.com "$_dst"
+sudo -u ${SUDO_USER} make build
+DESTDIR= make install
 EOF
     waitKEY
 
