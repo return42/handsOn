@@ -122,10 +122,10 @@ main(){
             ;;
 	*)
 
-	    rstBlock "VBox kann auf dem Desktop genutzt werden, oder
-man installiert hierfür die Dienste mit denen GAST Systeme *headless*
-(ohne VBox auf einem Desktop) betrieben werden können.  Als Desktop
-Anwender wird man i.d.R. die Desktop-Variante bevorzugen."
+	    rstBlock "VBox kann auf dem Desktop genutzt werden, oder man
+installiert sich hierfür die Dienste, mit denen GAST Systeme *headless* (ohne
+VBox auf einem Desktop) betrieben werden können.  Als Desktop Anwender wird man
+i.d.R. die Desktop-Variante bevorzugen."
             echo
 	    echo "usage $0 [de]install[-service|-desktop]"
 	    echo "usage $0 update[-desktop]"
