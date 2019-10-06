@@ -333,7 +333,7 @@ EOF
     TEE_stderr 1 <<EOF | bash | prefix_stdout
 cd "${_ws}"
 sudo -u ${SUDO_USER} make build
-DESTDIR= make install
+DESTDIR=/ make install
 EOF
     waitKEY
 
