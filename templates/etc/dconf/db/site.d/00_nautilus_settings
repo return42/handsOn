@@ -8,7 +8,6 @@
 [org/gnome/nautilus/preferences]
 default-folder-viewer='list-view'
 executable-text-activation='ask'
-fts-default=true
 search-filter-time-type='last_modified'
 show-delete-permanently=true
 show-directory-item-counts='always'
