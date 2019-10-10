@@ -148,30 +148,6 @@ chooseDM() {
 # ----------------------------------------------------------------------------
     echo
     apt-get install -y ${DISPLAY_MANAGER_PACKAGES}
-    dpkg-reconfigure lightdm
-
-    # FIXME: in 1510 funktioniert das lightdm-webkit-greeter Paket nicht. Man
-    # muss es mit *irgendwelchen* anderen Paketen installieren. Welche Pakete
-    # das sind weiß ich nicht. Ich merke nur, dass es mal funktioniert mal nicht
-    # und ich sehe in den LOGs (/var/log/lightdm/), dass da noch was ziemlich
-    # buggy zu sein scheint. Z.B. wird ein LOG-Ordner unter
-    # /var/log/lightdm/<user-name> angelegt. Der *Greeter* selber versucht dann
-    # aber unter /var/lib/lightdm/ seine Daten abzulegen, was am Ende scheitert.
-
-    mkdir -p /var/lib/lightdm
-    chown lightdm:lightdm /var/lib/lightdm
-
-    # Diese kleine Workaround reicht allerdings noch nicht. Ich gebe das an
-    # dieser Stelle auf, mit scheint das Paket einfach nur Buggy zu sein.  Siehe
-    # https://launchpad.net/lightdm-webkit-greeter/trunk In Ubuntu 1504 wird
-    # Version 0.1.2 genutzt, das ist von 2012. Inzwischen gibt es *volle*
-    # Versionsnummern, z.B 1.0.0 vom Oktober 2015 und 2.0.0 vom Jan. 2016. Beide
-    # haben es aber in noch keine Distro geschafft, selbst in 1604 ist momentan
-    # noch
-    #
-    # * https://launchpad.net/lightdm-webkit-greeter/trunk
-    # * https://launchpad.net/ubuntu/xenial/+source/lightdm-webkit-greeter
-
     waitKEY
 }
 
