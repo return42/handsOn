@@ -14,6 +14,7 @@
 Sphinx
 sphinx_rtd_theme
 sphinxcontrib-programoutput
+sphinx-autobuild
 pip
 
 git+https://github.com/return42/sphinxjp.themes.revealjs
