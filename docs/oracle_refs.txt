@@ -1,0 +1,19 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _Oracle Linux: https://en.wikipedia.org/wiki/Oracle_Linux
+.. _Red Hat Enterprise Linux: https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux
+.. _RPM: https://de.wikipedia.org/wiki/RPM_Package_Manager
+.. _RHEL: https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux
+.. _RHEL-distros: https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux#Auf_RHEL_basierende_Linux-Distributionen
+.. _Oracle Software Delivery: https://edelivery.oracle.com/osdc/faces/SoftwareDelivery
+.. _OL: https://www.oracle.com/linux/
+.. _OL7: https://docs.oracle.com/en/operating-systems/oracle-linux/7/
+.. _OL8: https://docs.oracle.com/en/operating-systems/oracle-linux/8/
+
+.. _Oracle Datenbanksystem: https://en.wikipedia.org/wiki/Oracle_Database
+.. _XE: https://www.oracle.com/database/technologies/appdev/xe.html
+.. _XE downloads: https://www.oracle.com/database/technologies/xe-downloads.html
+
+.. _SUSE Linux Enterprise Server: https://de.wikipedia.org/wiki/SUSE_Linux_Enterprise_Server
+.. _VirtualBox: https://www.virtualbox.org/
+.. _19c: https://docs.oracle.com/en/database/oracle/oracle-database/19/

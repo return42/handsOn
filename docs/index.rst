@@ -66,11 +66,11 @@ Themen
    lxdlxc/index
    docker/index
    citrix/index
+   oracle/index
    gogs
    glances
    pihole/index
 
- 
 Exkursionen und Erfahrungswerte
 ===============================
 
