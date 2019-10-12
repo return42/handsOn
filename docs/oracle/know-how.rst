@@ -19,3 +19,7 @@ Aus welcher Oracle Version wurde mein DUMP erzeugt?
     AL32UTF8
     11.02.00.00.00
 
+SQL-Developer
+-------------
+
+TODO

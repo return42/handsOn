@@ -98,6 +98,12 @@ body {
     widows: 3;
 }
 
+/* add clear-both to section headers */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+    clear: both;
+}
 
 /* title (sans-serif) */
 

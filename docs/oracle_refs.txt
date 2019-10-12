@@ -17,3 +17,5 @@
 .. _SUSE Linux Enterprise Server: https://de.wikipedia.org/wiki/SUSE_Linux_Enterprise_Server
 .. _VirtualBox: https://www.virtualbox.org/
 .. _19c: https://docs.oracle.com/en/database/oracle/oracle-database/19/
+
+.. _systemd-sysv-generator: https://www.freedesktop.org/software/systemd/man/systemd-sysv-generator.html

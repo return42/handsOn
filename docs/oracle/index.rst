@@ -7,20 +7,12 @@
 Oracle (developer)
 ==================
 
-
-.. admonition:: Entwickler Szenarien
-
-   Die hier vorgestellten Installationen und Hinweise sind ausschließlich für
-   *Entwickler - Zwecke* geeignet.  Backups, Updates und andere Anforderungen
-   werden nicht berücksichtigt.  Für die Nutzung in *produktiven* Umgebungen
-   werden die entsprechenden Lizenzen benötigt.
-
 .. sidebar:: Info
 
-   Die (im Okt. 2019) aktuelle Oracle DB Version ist 19c die XE gibt es aktuell
-   nur in 18c und deren Limit liegt bei 2CPU, 2GB RAM und 12GB *User Data*
-   (XE_).  Andere Installationen (ohne Limitierungen) basieren i.d.R. auf einer
-   der RHEL-distros_ wozu auch das `Oracle Linux`_ gehört.
+   Die (im Okt. 2019) aktuelle Oracle DB Version ist 19c.  Die XE gibt es
+   aktuell nur in 18c und deren Limit liegt bei 2CPU, 2GB RAM und 12GB *User
+   Data* (XE_).  Andere Installationen (ohne Limitierungen) basieren i.d.R. auf
+   einer der RHEL-distros_ wozu auch das `Oracle Linux`_ gehört.
 
 Das `Oracle Datenbanksystem`_ gibt es u.A. in der frei verfügbare Express
 Edition (XE_).  Letztere eignet sich aufgrund ihrer Limitierungen nur für

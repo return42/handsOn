@@ -10,6 +10,13 @@ Oracle Linux einrichten
 .. _ORA-19c-PRE:
    https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/overview-of-oracle-linux-configuration-with-oracle-rpms.html#GUID-693599D4-BD32-4E6A-9689-FA7D1CD75653
 
+.. sidebar:: Entwickler Szenarien
+
+   Die hier beschriebene Oracle Installation ist lediglich für *Entwickler -
+   Zwecke* geeignet.  Backups, Updates und andere Anforderungen werden nicht
+   berücksichtigt.  Für die Nutzung in *produktiven* Umgebungen werden die
+   entsprechenden Lizenzen von Oracle benötigt.
+
 In dieser Anleitung wird eine `Oracle Linux`_ Distribution in einer VirtualBox_
 installiert.  Aufgrund der Virtualisierung werden noch ein paar zusätzliche
 Schritte erforderlich, die in einer *normalen* Installation nicht erforderlich
@@ -17,25 +24,19 @@ wären.
 
 Die Boot Medien für die OL_ Versionen werden über die `Oracle Software
 Delivery`_ bezogen, dort in der Suche einfach *linux* eintippen und folgendes
-für den Download auswählen:
+für den Download auswählen: Aktuell ist OL8_ (siehe `Announcing
+<https://blogs.oracle.com/linux/announcing-the-release-of-oracle-linux-8>`_)
+aber selbst Oracle empfiehlt aktuell (im Okt. 2019) noch ein OL7_ für die 19c
+Installation [ORA-19c-PRE_]
 
-----
+- **aktuelles OL7** ISO: ``V983339-01.iso``
 
-.. sidebar:: Info
+  Oracle Linux Release 7 Update 7 for x86 (64 bit), 4.4 GB (oder eine aktueller
+  Version nehmen dann ist der Name des ISO anders).
 
-   Aktuell ist OL8_ (siehe `Announcing
-   <https://blogs.oracle.com/linux/announcing-the-release-of-oracle-linux-8>`_)
-   aber selbst Oracle empfiehlt aktuell (im Okt. 2019) noch ein OL7_ für die 19c
-   Installation [ORA-19c-PRE_]
+- **aktuelles OL8** ISO: ``V983280-01.iso``
 
-OL7: Oracle Linux 7.7.0.0.0 for x86 64 bit
-  - ``V983339-01.iso`` Oracle Linux Release 7 Update 7 for x86 (64 bit), 4.4 GB
-    oder eine aktueller Version nehmen (dann ist der Name des ISO anders).
-
-OL8: Oracle Linux 8.0.0 for x86 64 bit
-   - ``V983280-01.iso`` Oracle Linux Release 8 Update 0 for x86 (64 bit), 6.6 GB
-
-----
+  Oracle Linux Release 8 Update 0 for x86 (64 bit), 6.6 GB
 
 
 Oracle Database Setup Wizard
@@ -90,17 +91,6 @@ hergestellt wird.
    :scale: 50%
    :align: center
 
-Das so installierte System sollte als erstes aktualisiert werden und danach
-nochmal ein Reboot, ggf. installiert man sich bei der Gelegenheit auch gleich
-noch ein paar Entwickler Tools::
-
-  $ sudo yum update
-  ...
-  # nur exemplarisch ..
-  $ sudo yum install emacs git
-  ...
-  $ sudo reboot
-
 Hostname ändern
 ===============
 
@@ -123,6 +113,20 @@ werden (`Update the System Hostname`_)::
             Kernel: Linux 4.14.35-1902.5.2.2.el7uek.x86_64
       Architecture: x86-64
 
+
+OS update
+=========
+
+Das *so* installierte System sollte erst mal aktualisiert werden, danach nochmal
+ein Reboot.  Ggf. installiert man sich bei der Gelegenheit auch gleich noch ein
+paar Entwickler Tools::
+
+  $ sudo yum update
+  ...
+  # Entwickler Tools / nur exemplarisch ..
+  $ sudo yum install emacs git
+  ...
+  $ sudo reboot
 
 
 VirtualBox Additions
@@ -149,22 +153,21 @@ können erst nach einem Reboot genutzt werden::
   ...
   reboot
 
-.. hint::
+.. admonition::  GRUB Menü
 
-   Beim Boot stellt GRUB eine Auswahl von Kernel zu Verfügung mit denen man booten
-   kann.  Die hier gezeigte Installation hat die Guest-Addition (resp. die Kernel
-   Module) lediglich für den *aktiven* Kernel installiert.  Hier im Beispiel wäre
-   das::
+   Beim Boot wird über GRUB eine Auswahl an Kernel angeboten.  Die hier
+   vorgestellte Installation hat die Guest-Addition (resp. die Kernel
+   Module) lediglich für den *aktiven* Kernel installiert::
 
      $ sudo awk -F\' '/menuentry / {print $2}' /etc/grub2.cfg | grep $(uname -r)
      Oracle Linux Server (4.14.35-1902.5.2.2.el7uek.x86_64 with Unbreakable Enterprise Kernel) 7.7
 
-
 Nach dem Reboot sollte der oben eingerichtete Benutzer noch der Gruppe
-``vboxsf`` hinzugefügt werden, danach muss der Benutzer nochmal ab- und
-wieder angemeldet werden damit die neue Gruppa auch *greift*::
+``vboxsf`` hinzugefügt werden. ::
 
   sudo usermod -aG vboxsf $(whoami)
 
-Damit hat der Benutzer Zugriff auf die *gemeinsamen Ordner* des Wirt-Systems,
-diese können nun eingerichtet werden.
+Danach muss der Benutzer nochmal ab- und wieder angemeldet werden, damit die
+neue Gruppe auch *greift*.  Damit hat der Benutzer die Berechtigung auf die
+*gemeinsamen Ordner* des Wirt-Systems zugreifen zu dürfen.  Diese können nun
+eingerichtet werden.
