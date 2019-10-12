@@ -19,6 +19,22 @@ div[class^="highlight"] pre {
     line-height: normal;
 }
 
+/* https://github.com/readthedocs/sphinx_rtd_theme/issues/803
+   --> Sidebars have extra spacing on the bottom margin in Sphinx 2.1
+*/
+
+.rst-content .sidebar {
+    padding: 24px 24px 0px 24px;
+}
+
+/* https://github.com/readthedocs/sphinx_rtd_theme/pull/723
+   Do not float elements next to admonition blocks
+*/
+
+.note, .attention, .caution, .danger, .error, .hint, .important, .tip, .warning, .seealso, .admonition-todo, .admonition {
+    clear: both;
+}
+
 /* There is an invisible div around code-block's div. It is a workaround to add
  * a margin on the bottom of the code-block, which only helpful on screen
  * medias. This div has also a invisible (white on white) border.  When printing
@@ -92,7 +108,6 @@ li.toctree-l1, li.toctree-l2, li.toctree-l3, li.toctree-l4,
     font-family: sans-serif;
 }
 
-
 /* content column: RTD theme's default is 800px as max width for the content,
  * but we have tables with tons of columns, which need the full width of the
  * (right-open) view-port.  For a comfortable soft look, a small (1px width)
@@ -104,6 +119,13 @@ li.toctree-l1, li.toctree-l2, li.toctree-l3, li.toctree-l4,
     background-color: white;
     background-image: url("../_static/background.png");
     background-repeat: repeat-x;
+}
+
+/* add class clear-both
+*/
+
+.clear-both {
+    clear: both;
 }
 
 /* paragraph: continuous text is wrapped as block by involving hyphenation

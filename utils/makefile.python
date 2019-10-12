@@ -4,14 +4,19 @@
 PYOBJECTS ?=
 
 # folder where the python distribution takes place
-PYDIST   ?= py_dist
+PYDIST   ?= ./py_dist
 # folder where the python intermediate build files take place
-PYBUILD  ?= py_build
+PYBUILD  ?= ./py_build
 # python version to use
 PY       ?=3
 PYTHON   ?= python$(PY)
 PIP      ?= pip$(PY)
 PIP_INST ?= --user
+
+# https://www.python.org/dev/peps/pep-0508/#extras
+#PY_SETUP_EXTRAS ?= \[develop,test\]
+PY_SETUP_EXTRAS ?=
+
 PYDEBUG  ?= --pdb
 PYLINT_RC ?= utils/pylintrc
 
@@ -45,18 +50,23 @@ endif
 
 python-help::
 	@echo  'makefile.python:'
-	@echo  '  pylint        - run pylint *linting*'
-	@echo  '  pytest	- run *tox* test on python objects'
-	@echo  '  pydebug       - run tests within a PDB debug session'
-	@echo  '  pybuild       - build python packages'
-	@echo  '  pyclean       - clean intermediate python objects'
-	@echo  '  py[un]install - [un]install python objects in editable mode'
-	@echo  '  upload-pypi   - upload $(PYDIST)/* files to PyPi'
+	@echo  '  pyenv | pyenv[un]install'
+	@echo  '     build $(PY_ENV) & [un]install python objects'
+	@echo  '  targts using pyenv $(PY_ENV):'
+	@echo  '    pylint    - run pylint *linting*'
+	@echo  '    pytest    - run *tox* test on python objects'
+	@echo  '    pydebug   - run tests within a PDB debug session'
+	@echo  '    pybuild   - build python packages'
+	@echo  '    pyclean   - clean intermediate python objects'
+	@echo  '  targets using system users environment:'
+	@echo  '    py[un]install - [un]install python objects in editable mode'
+	@echo  '    upload-pypi   - upload $(PYDIST)/* files to PyPi'
 	@echo  'options:'
 	@echo  '  make PY=2  [targets] => to eval targets with python 2 ($(PY))'
 	@echo  '  make PIP_INST=       => to set/unset pip install options ($(PIP_INST))'
 	@echo  '  make TEST=.          => choose test from $(TEST_FOLDER) (default "." runs all)'
 	@echo  '  make DEBUG=          => target "debug": do not invoke PDB on errors'
+	@echo  '  make PY_SETUP_EXTRAS => also install extras_require from setup.py \[develop,test\]'
 	@echo  'when using target "pydebug", set breakpoints within py-source by adding::'
 	@echo  '    ...'
 	@echo  '    DEBUG()'
@@ -69,7 +79,7 @@ python-help::
 PHONY += msg-python-exe python-exe
 msg-python-exe:
 	@echo "\n  $(PYTHON) is required\n\n\
-  Make sure you have an $(PYTHON) installed, grab it from\n\
+  Make sure you have $(PYTHON) installed, grab it from\n\
   https://www.python.org or install it from your package\n\
   manager. On debian based OS these requirements are\n\
   installed by::\n\n\
@@ -85,7 +95,7 @@ endif
 
 msg-pip-exe:
 	@echo "\n  $(PIP) is required\n\n\
-  Make sure you have an updated pip installed, grab it from\n\
+  Make sure you have updated pip installed, grab it from\n\
   https://pip.pypa.io or install it from your package\n\
   manager. On debian based OS these requirements are\n\
   installed by::\n\n\
@@ -105,7 +115,7 @@ msg-virtualenv-exe:
   Make sure you have an updated virtualenv installed, grab it from\n\
   https://virtualenv.pypa.io/en/stable/installation/ or install it\n\
   via pip by::\n\n\
-    pip install --user virtualenv\n" | $(FMT)
+    pip install --user https://github.com/pypa/virtualenv/tarball/master\n" | $(FMT)
 
 ifeq ($(shell which virtualenv >/dev/null 2>&1; echo $$?), 1)
 virtualenv-exe: msg-virtualenv-exe
@@ -121,11 +131,11 @@ endif
 
 # $2 path to folder with setup.py, this uses pip from the OS
 quiet_cmd_pyinstall = INSTALL   $2
-      cmd_pyinstall = $(PIP) $(PIP_VERBOSE) install $(PIP_INST) -e $2
+      cmd_pyinstall = $(PIP) $(PIP_VERBOSE) install $(PIP_INST) -e $2$(PY_SETUP_EXTRAS)
 
 # $2 path to folder with setup.py, this uses pip from pyenv (not OS!)
 quiet_cmd_pyenvinstall = PYENV     install $2
-      cmd_pyenvinstall = $(PY_ENV_BIN)/pip $(PIP_VERBOSE) install -e $2
+      cmd_pyenvinstall = $(PY_ENV_BIN)/pip $(PIP_VERBOSE) install -e $2$(PY_SETUP_EXTRAS)
 
 # Uninstall the package. Since pip does not uninstall the no longer needed
 # depencies (something like autoremove) the depencies remain.
@@ -139,7 +149,7 @@ quiet_cmd_pyenvuninstall = PYENV     uninstall   $2
       cmd_pyenvuninstall = $(PY_ENV_BIN)/pip $(PIP_VERBOSE) uninstall --yes $2
 
 # $2 path to folder where virtualenv take place
-quiet_cmd_virtualenv  = PYENV     $@
+quiet_cmd_virtualenv  = PYENV     usage: $ source ./$@/bin/activate
       cmd_virtualenv  = \
 	if [ ! -d "./$(PY_ENV)" ];then                                  \
 		$(VIRTUALENV) $(VIRTUALENV_VERBOSE) $(VTENV_OPTS) $2;   \
@@ -156,9 +166,30 @@ quiet_cmd_pytest      = TEST      $@
 
 # setuptools, pip, easy_install its a mess full of cracks, a documentation hell
 # and broken by design ... all sucks, I really, really hate all this ... aaargh!
-
-# sdist: https://packaging.python.org/distributing/#source-distributions
-# bdist_wheel: https://packaging.python.org/distributing/#pure-python-wheels
+#
+# About python packaging see `Python Packaging Authority`_.  Most of the names
+# here are mapped to ``setup(<name1>=..., <name2>=...)`` arguments in
+# ``setup.py``.  See `Packaging and distributing projects`_ about ``setup(...)``
+# arguments. If this is all new for you, start with `PyPI Quick and Dirty`_.
+#
+# Further read:
+#
+# - pythonwheels_
+# - setuptools_
+# - packaging_
+# - sdist_
+# - installing_
+#
+# .. _`Python Packaging Authority`: https://www.pypa.io
+# .. _`Packaging and distributing projects`: https://packaging.python.org/guides/distributing-packages-using-setuptools/
+# .. _`PyPI Quick and Dirty`: https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+# .. _pythonwheels: https://pythonwheels.com/
+# .. _setuptools: https://setuptools.readthedocs.io/en/latest/setuptools.html
+# .. _packaging: https://packaging.python.org/guides/distributing-packages-using-setuptools/#packaging-and-distributing-projects
+# .. _sdist: https://packaging.python.org/guides/distributing-packages-using-setuptools/#source-distributions
+# .. _bdist_wheel: https://packaging.python.org/guides/distributing-packages-using-setuptools/#pure-python-wheels
+# .. _installing: https://packaging.python.org/tutorials/installing-packages/
+#
 quiet_cmd_pybuild     = BUILD     $@
       cmd_pybuild     = $(PY_ENV_BIN)/$(PYTHON) setup.py \
 			sdist -d $(PYDIST)  \
@@ -199,13 +230,14 @@ pyclean:
 	$(call cmd,pyclean)
 
 # to build *local* environment, python and virtualenv from the OS is needed!
+pyenv: $(PY_ENV)
 $(PY_ENV): virtualenv-exe python-exe
 	$(call cmd,virtualenv,$(PY_ENV))
 	@$(PY_ENV_BIN)/pip install $(PIP_VERBOSE) -r requirements.txt
 
 PHONY += pylint-exe
 pylint-exe: $(PY_ENV)
-	$(PY_ENV_BIN)/pip $(PIP_VERBOSE) install pylint
+	@$(PY_ENV_BIN)/pip $(PIP_VERBOSE) install pylint
 
 PHONY += pylint
 pylint: pylint-exe
