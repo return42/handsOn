@@ -69,7 +69,8 @@ Datenbank ``ORCLCDB``
 .. _Creating and Configuring an Oracle Database:
    https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/running-rpm-packages-to-install-oracle-database.html
 
-Einrichten der exemplarischen DB Instanz **ORCLCDB** (`Creating and Configuring an Oracle Database`_)::
+Einrichten der exemplarischen DB Instanz **ORCLCDB** (`Creating and Configuring
+an Oracle Database`_)::
 
   [user@localhost ~]$ sudo /etc/init.d/oracledb_ORCLCDB-19c configure
   ... dauert etwas länger
@@ -95,6 +96,11 @@ dann die Passwörter wie folgt ändern.  Die im Beispiel verwendeten Passwörter
   SQL> alter user sys identified by "sys";
   ...
   SQL> alter user system identified by "system";
+
+Die 'so' eingerichtete DB Instanz *lauscht* auf ``localhost`` nach Verbindungen.
+Will man sich remote von einem anderen Host aus gegen die DB verbinden, so muss
+die IP oder Host-Name in der `listener.ora`_ eintragen.
+
 
 .. _oracle_os_login:
 
@@ -176,3 +182,50 @@ Oder man meldet sich mit dem ``sqlplus`` als ``sysdba`` an::
   Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
   Version 19.3.0.0.0
   SQL>
+
+.. _listener.ora:
+
+``listener.ora``
+================
+
+Damit der Listener Verbindungen von den Remotes annimmt, muss in der ``listener.ora``
+der ``localhost`` gegen den HOST-Namen ausgetauscht werden (s.a. tnsnames.ora_):
+
+.. code-block:: none
+
+  LISTENER =
+    (DESCRIPTION_LIST =
+      (DESCRIPTION =
+        (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+        (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+      )
+
+Um den Listner (die ganze DB) neu zu starten zu können müssen erst alle noch
+offenen DB Verbindungen geschlossenen werden.
+
+.. code-block:: sh
+
+   $ sudo systemctl restart oracledb_XX
+
+
+.. _tnsnames.ora:
+
+``tnsnames.ora``
+================
+
+Siehe auch listener.ora_.
+
+.. code-block:: none
+
+   ORCLCDB =
+     (DESCRIPTION =
+        (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+        (CONNECT_DATA =
+          (SERVER = DEDICATED)
+          (SERVICE_NAME = ORCLCDB)
+        )
+     )
+
+   LISTENER_ORCLCDB =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+

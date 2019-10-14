@@ -91,8 +91,17 @@ hergestellt wird.
    :scale: 50%
    :align: center
 
+
 Hostname ändern
 ===============
+
+.. sidebar:: iptables
+
+   Auf einer Standard Installation des OL7 ist :man:`iptables` aktiv.  Will man
+   sich von Remote verbinden, müsste man diese noch (für den Listner auf TCP
+   Port 1521) einrichten.  Oder man deinstalliert die :man:`iptables` ganz::
+
+     $ sudo yum remove iptables
 
 .. _Update the System Hostname: https://docs.oracle.com/en/operating-systems/oracle-linux/8/obe-hostname-cli/index.html
 
@@ -124,7 +133,7 @@ paar Entwickler Tools::
   $ sudo yum update
   ...
   # Entwickler Tools / nur exemplarisch ..
-  $ sudo yum install emacs git
+  $ sudo yum install java-1.8.0-openjdk-devel emacs git
   ...
   $ sudo reboot
 
@@ -163,9 +172,12 @@ können erst nach einem Reboot genutzt werden::
      Oracle Linux Server (4.14.35-1902.5.2.2.el7uek.x86_64 with Unbreakable Enterprise Kernel) 7.7
 
 Nach dem Reboot sollte der oben eingerichtete Benutzer noch der Gruppe
-``vboxsf`` hinzugefügt werden. ::
+``vboxsf`` hinzugefügt werden, soll der ``oracle`` Benutzer auch Zugriff auf die
+Shares haben, kann man ihn auch gleich der Gruppe hinzufügen::
 
-  sudo usermod -aG vboxsf $(whoami)
+  $ sudo usermod -aG vboxsf $(whoami)
+  ...
+  $ sudo usermod -aG vboxsf oracle
 
 Danach muss der Benutzer nochmal ab- und wieder angemeldet werden, damit die
 neue Gruppe auch *greift*.  Damit hat der Benutzer die Berechtigung auf die
