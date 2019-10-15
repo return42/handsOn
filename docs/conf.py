@@ -7,7 +7,7 @@ import sphinx_rtd_theme
 
 language  = 'de'
 project   = u'handsOn'
-copyright = u'2018 Markus Heiser'
+copyright = u'2019 Markus Heiser'
 author    = u'Markus Heiser'
 
 source_suffix       = '.rst'

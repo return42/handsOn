@@ -15,10 +15,12 @@ Oracle (developer)
    einer der RHEL-distros_ wozu auch das `Oracle Linux`_ gehört.
 
    Die hier beschriebenen Oracle Installationen sind lediglich für *Entwickler -
-   Zwecke* geeignet.  Sofern nicht anders erwähnt wird eine CDB_ verwendet
-   (:ref:`CDB & PDB`).  Backups, Updates und andere Anforderungen werden nicht
-   berücksichtigt.  Für die Nutzung in *produktiven* Umgebungen werden die
-   entsprechenden Lizenzen von Oracle benötigt.
+   Zwecke* geeignet.  Die hier gegebenen Beispiele basieren auf der exemplarisch
+   angelegten :ref:`ORCLCDB <ORCLCDB>` Instanz.  Sofern nicht anders erwähnt
+   wird eine CDB_ verwendet (:ref:`CDB & PDB`).  Backups, Updates und andere
+   Anforderungen werden nicht berücksichtigt.  Für die Nutzung in *produktiven*
+   Umgebungen werden die entsprechenden Lizenzen von Oracle benötigt.
+
 
 
 Das `Oracle Datenbanksystem`_ gibt es u.A. in der frei verfügbare Express
@@ -39,4 +41,5 @@ als Entwickler eine der RHEL-distros_ wählen.
 
    linux
    dbms
+   datapump
    know-how
