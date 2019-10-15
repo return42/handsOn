@@ -1,6 +1,9 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. _19c: https://docs.oracle.com/en/database/oracle/oracle-database/19/
+.. _CDB: https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-a-cdb-with-sql-plus.html#GUID-2E5025EE-BED3-45A4-9EAA-B05C8DA66F97
+.. _PDB: https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-pdbs-with-sql-plus.html#GUID-702231AB-ABDA-42F4-918C-4539BF8135D6
+
 .. _SQL Developer Downloads: https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html
 
 .. _Oracle Linux: https://en.wikipedia.org/wiki/Oracle_Linux

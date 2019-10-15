@@ -10,13 +10,6 @@ Oracle Linux einrichten
 .. _ORA-19c-PRE:
    https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/overview-of-oracle-linux-configuration-with-oracle-rpms.html#GUID-693599D4-BD32-4E6A-9689-FA7D1CD75653
 
-.. sidebar:: Entwickler Szenarien
-
-   Die hier beschriebene Oracle Installation ist lediglich für *Entwickler -
-   Zwecke* geeignet.  Backups, Updates und andere Anforderungen werden nicht
-   berücksichtigt.  Für die Nutzung in *produktiven* Umgebungen werden die
-   entsprechenden Lizenzen von Oracle benötigt.
-
 In dieser Anleitung wird eine `Oracle Linux`_ Distribution in einer VirtualBox_
 installiert.  Aufgrund der Virtualisierung werden noch ein paar zusätzliche
 Schritte erforderlich, die in einer *normalen* Installation nicht erforderlich

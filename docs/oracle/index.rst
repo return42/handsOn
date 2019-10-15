@@ -14,6 +14,13 @@ Oracle (developer)
    Data* (XE_).  Andere Installationen (ohne Limitierungen) basieren i.d.R. auf
    einer der RHEL-distros_ wozu auch das `Oracle Linux`_ gehört.
 
+   Die hier beschriebenen Oracle Installationen sind lediglich für *Entwickler -
+   Zwecke* geeignet.  Sofern nicht anders erwähnt wird eine CDB_ verwendet
+   (:ref:`CDB & PDB`).  Backups, Updates und andere Anforderungen werden nicht
+   berücksichtigt.  Für die Nutzung in *produktiven* Umgebungen werden die
+   entsprechenden Lizenzen von Oracle benötigt.
+
+
 Das `Oracle Datenbanksystem`_ gibt es u.A. in der frei verfügbare Express
 Edition (XE_).  Letztere eignet sich aufgrund ihrer Limitierungen nur für
 kleinste Entwickler Instanzen und zum experimentieren.  Die XE_ gibt es

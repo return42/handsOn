@@ -33,6 +33,14 @@ auch keine ersetzt).::
    ol7_latest/x86_64 Oracle Linux 7Server Latest (x86_64)                            15.441
    repolist: 29.025
 
+.. _CDB & PDB:
+
+CDB & PDB
+=========
+
+Seit Oracle 12 sind die Oracle DB Instanzen Mandantenfähig.  In einer
+Container-Datenbank (CDB_) können keine, eine oder mehrere Plugin-Database
+(PDB_) angelegt werden.
 
 SQL-Developer installieren
 ==========================
@@ -119,9 +127,9 @@ Das ZIP muss nur ausgepackt werden, darin ist dann ein Executable.
 Oracle Benutzer anlegen
 =======================
 
-Bei den CDBs muss das Präfix ``c##`` im Namen verwendet werden, bei den PDBs ist
-das nicht erforderlich.  Die CDBs sind seit Oracle 12 in der *Standard
-Installation*. Benutzer (Schema) ``foo`` mit Passwort ``bar``.
+Bei einer CDB_ muss das Präfix ``c##`` im Namen verwendet werden, bei einer PDB_
+ist das nicht erforderlich.  Die CDBs sind seit Oracle 12 in der *Standard
+Installation*.  Benutzer (Schema) ``foo`` mit Passwort ``bar``.
 
 .. code-block:: sql
 
