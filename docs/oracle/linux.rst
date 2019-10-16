@@ -90,6 +90,8 @@ Hostname ändern
 
 .. sidebar:: iptables
 
+   .. _oracle_linux_iptables:
+
    Auf einer Standard Installation des OL7 ist :man:`iptables` aktiv.  Will man
    sich von Remote verbinden, müsste man diese noch (für den Listner auf TCP
    Port 1521) einrichten.  Oder man deinstalliert die :man:`iptables` ganz::
@@ -104,7 +106,8 @@ werden (`Update the System Hostname`_)::
   $ sudo hostnamectl set-hostname dbhost.mydomain.de
   ...
   $ $ hostnamectl
-   Static hostname: dbhost.mydomain.de
+   Static hostname: dbhost.mydomain.
+   de
          Icon name: computer-vm
            Chassis: vm
         Machine ID: e533f125fc31419f9323fae48fe0b91e
@@ -121,7 +124,9 @@ OS update
 
 Das *so* installierte System sollte erst mal aktualisiert werden, danach nochmal
 ein Reboot.  Ggf. installiert man sich bei der Gelegenheit auch gleich noch ein
-paar Entwickler Tools::
+paar Entwickler Tools:
+
+.. code-block:: sh
 
   $ sudo yum update
   ...
@@ -159,14 +164,26 @@ können erst nach einem Reboot genutzt werden::
 
    Beim Boot wird über GRUB eine Auswahl an Kernel angeboten.  Die hier
    vorgestellte Installation hat die Guest-Addition (resp. die Kernel
-   Module) lediglich für den *aktiven* Kernel installiert::
+   Module) lediglich für den *aktiven* Kernel installiert:
+
+   .. code-block:: sh
 
      $ sudo awk -F\' '/menuentry / {print $2}' /etc/grub2.cfg | grep $(uname -r)
      Oracle Linux Server (4.14.35-1902.5.2.2.el7uek.x86_64 with Unbreakable Enterprise Kernel) 7.7
 
+Gemeinsame Ordner
+-----------------
+
+.. sidebar:: Info
+
+   Hier in den Beispielen wird z.B. für die :ref:`dba_directories` ein Share
+   verwendet: ``/HOST/share``
+
 Nach dem Reboot sollte der oben eingerichtete Benutzer noch der Gruppe
-``vboxsf`` hinzugefügt werden, soll der ``oracle`` Benutzer auch Zugriff auf die
-Shares haben, kann man ihn auch gleich der Gruppe hinzufügen::
+``vboxsf`` hinzugefügt werden.  Soll der ``oracle`` Benutzer auch Zugriff auf
+die Shares haben, kann man ihn ebenfalls der Gruppe hinzufügen:
+
+.. code-block:: sh
 
   $ sudo usermod -aG vboxsf $(whoami)
   ...

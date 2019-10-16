@@ -130,6 +130,8 @@ Tools wie ``dbca`` genutzt werden können. ::
   [user@localhost ~]$ ssh -X oracle@localhost
 
 
+.. _source oraenv:
+
 Auswahl einer Umgebung
 ======================
 
@@ -141,14 +143,14 @@ Auswahl einer Umgebung
    Damit die DB beim Systemstart auch gestartet wird muss in der ``/etc/oratab``
    der Buchstaben ``N`` in ``Y`` gändernt werden::
 
-       ORCLCDB:<..>/19c/dbhome_1:Y
+     ORCLCDB:<..>/19c/dbhome_1:Y
 
    Die Beschreibung (`Automating Database Startup and Shutdown`_) von Oracle ist
-   veraltet.  Die ``/etc/init.d/oracledb_ORCLCDB-19c`` wurde bereits im Kapitel
+   veraltet.  Die ``/etc/init.d/oracledb_XX`` wurde bereits im Kapitel
    ORCLCDB_ vom RPM eingerichtet.  Mit `systemd-sysv-generator`_ braucht man den
    Dienst nur zu aktivieren::
 
-     sudo systemctl enable oracledb_ORCLCDB-19c
+     systemctl enable oracledb_XX
 
 Die zur Verfügung stehen Umgebungen sind in der Datei ``/etc/oratab``
 konfiguriert::
@@ -156,11 +158,9 @@ konfiguriert::
   grep -o '^[^#]*' /etc/oratab
   ORCLCDB:/opt/oracle/product/19c/dbhome_1:N
 
-.. hlist::
-
-   - ``ORCLCDB`` ist die SID
-   - ``/opt/oracle/product/19c/dbhome_1`` ist der Ordner der DB Instanz
-   - ``N`` oder ``Y``: *autostart* der DB bei Systemstart
+- ``ORCLCDB`` ist die SID
+- ``/opt/oracle/product/19c/dbhome_1`` ist der Ordner der DB Instanz
+- ``N`` oder ``Y``: *autostart* der DB bei Systemstart
 
 Nach dem Login muss mittels ``oraenv`` erst die DB Umgebung ausgewählt werden::
 
@@ -188,8 +188,18 @@ Oder man meldet sich mit dem ``sqlplus`` als ``sysdba`` an::
 ``listener.ora``
 ================
 
+.. sidebar:: Tipp
+
+   Auf dem `Oracle Linux`_ sind im default die :man:`iptables` aktiv
+   (s.a. :ref:`remove iptables <oracle_linux_iptables>`).  Verwenden sie auf dem
+   DB Server *feste* IPs um etwaige Probleme bei der Namensauflösung (DNS)
+   auszuschließen.
+
+
 Damit der Listener Verbindungen von den Remotes annimmt, muss in der ``listener.ora``
-der ``localhost`` gegen den HOST-Namen ausgetauscht werden (s.a. tnsnames.ora_):
+der ``localhost`` gegen den HOST-Namen ausgetauscht werden (s.a. tnsnames.ora_)::
+
+  $ORACLE_HOME/network/admin/listener.ora
 
 .. code-block:: none
 
@@ -213,7 +223,11 @@ offenen DB Verbindungen geschlossenen werden.
 ``tnsnames.ora``
 ================
 
-Siehe auch listener.ora_.
+Siehe auch listener.ora_.  Muss i.d.R. auf den Clients gesetzt werden.  Auf dem
+Oracle Server gibt es die auch, dort in der Umgebung die mit :ref:`source
+oraenv <source oraenv>` *angezogen* wurde::
+
+  $ORACLE_HOME/network/admin/tnsnames.ora
 
 .. code-block:: none
 

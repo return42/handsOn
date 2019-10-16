@@ -92,6 +92,11 @@ Debian
 .. _sqldeveloper-19.2.1.247.2212-no-jre.zip:
    https://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-19.2.1.247.2212-no-jre.zip
 
+.. sidebar:: Tipp
+
+   Der SQL-Developer muss nicht zwingend installiert werden, es reicht der
+   Aufruf ``sqldeveloper.sh`` aus dem ZIP.
+
 Für Debian gibt es das Tool :man:`make-sqldeveloper-package` mit dem man Debian
 Pakete für die Installation bauen kann.  Das Tool benötigt dazu das ZIP des
 SQL-Developers.  Über `SQL Developer Downloads`_ das ZIP Paket **Other
