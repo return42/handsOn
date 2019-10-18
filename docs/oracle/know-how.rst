@@ -38,9 +38,108 @@ auch keine ersetzt).::
 CDB & PDB
 =========
 
-Seit Oracle 12 sind die Oracle DB Instanzen Mandantenfähig.  In einer
+.. sidebar:: Info
+
+   Siehe auch `Common Tasks when Managing CDB and Pluggable PDB
+   <https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_oracle_database_12c_release_2_on_red_hat_enterprise_linux_7/common_tasks_when_managing_container_database_cdb_and_pluggable_databases_pdb>`__.
+
+Seit Oracle 12 sind die DB-Instanzen mandantenfähig.  In einer
 Container-Datenbank (CDB_) können keine, eine oder mehrere Plugin-Database
 (PDB_) angelegt werden.
+
+.. code-block:: none
+
+   SQL> show pdbs0
+
+   CON_ID     CON_NAME                       OPEN MODE  RESTRICTED
+   ---------- ------------------------------ ---------- ----------
+            2 PDB$SEED                       READ ONLY  NO
+            3 ORCLPDB1                       MOUNTED
+            4 ORCLPDB                        MOUNTED
+
+tnsnames.ora
+------------
+
+.. sidebar:: Info
+
+   Sofern in der ``tnsnames.ora`` kein Eintrag für die PDB existiert kann man
+   folgenden Connector verwenden::
+
+     foo@dbhost:1521/orclpdb
+
+Für die PDBs sollten entsprechen Einträge in der tnsnames.ora vorgenommen
+werden:
+
+.. code-block::
+
+   ORCLPDB =
+     (DESCRIPTION =
+        (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.110)(PORT = 1521))
+        (CONNECT_DATA =
+          (SERVER = DEDICATED)
+          (SERVICE_NAME = ORCLPDB)
+        )
+      )
+
+Manage PDBs
+-----------
+
+.. sidebar:: Info
+
+   Für Änderungen an dem Setup der PDB sollte man sich mit sqlplus als sysdba
+   anmelden.
+
+Öffnen einer PDB (sysdba):
+
+.. code-block:: none
+
+   SQL> alter pluggable database ORCLPDB open;
+
+   SQL> show pdbs
+
+   CON_ID CON_NAME        OPEN MODE  RESTRICTED
+   ------ --------------- ---------- ----------
+        2 PDB$SEED        READ ONLY  NO
+        3 ORCLPDB1        MOUNTED
+        4 ORCLPDB         READ WRITE NO
+
+Status des PDB für nächsten Reboot sichern (sysdba):
+
+.. code-block:: none
+
+   SQL> alter pluggable database ORCLPDB save state;
+   SQL> select con_name, state from dba_pdb_saved_states;
+
+   CON_NAME   CON_NAME
+   ---------- ----------
+   ORCLPDB    ORCLPDB
+
+Und einmal testen:
+
+.. code-block:: none
+
+   SQL> shutdown immediate;
+   Datenbank geschlossen.
+   Datenbank dismounted.
+   ORACLE-Instanz heruntergefahren.
+
+   SQL> startup
+   ORACLE-Instanz hochgefahren.
+
+   Total System Global Area 1543500872 bytes
+   Fixed Size                  9135176 bytes
+   Variable Size            1073741824 bytes
+   Database Buffers          452984832 bytes
+   Redo Buffers                7639040 bytes
+   Datenbank mounted.
+   Datenbank geoffnet.
+
+   SQL> select con_name, state from dba_pdb_saved_states;
+
+   CON_NAME   CON_NAME
+   ---------- ----------
+   ORCLPDB    ORCLPDB
+
 
 SQL-Developer installieren
 ==========================
@@ -192,7 +291,7 @@ Welches Schema ist im DUMP?
 Es gibt keine *direkte* Lösung, aber der **sysdba** kann sich das Schema im DUMP
 mit der Option SHOW_ in eine SQL Datei ausgeben lassen:
 
-.. code-block:: sql
+.. code-block:: sh
 
    impdp \"/ as sysdba\" \
     directory = DATA_PUMP_DIR \

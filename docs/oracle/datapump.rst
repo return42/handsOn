@@ -63,15 +63,18 @@ Host::
   oracle@dbhost $ sudo mkdir -p /HOST/share/oracle_impexp
   oracle@dbhost $ sudo chown -R oracle:oinstall /HOST/share/oracle_impexp
 
-Als (z.B.) sysdba anmelden und den Ordner in der Oracle Instanz einrichten.
+Als (z.B.) sysdba anmelden und den Ordner in der Oracle Instanz einrichten.  Bei
+PDBs muss man noch in den Container wechseln.
 
 .. code-block:: sql
+
+   ALTER SESSION SET container=ORCLPDB;
 
    -- create directory object
    CREATE OR REPLACE DIRECTORY oracle_impexp AS '/HOST/share/oracle_impexp';
 
    -- grant read / write rights to schema
-   GRANT read, write ON DIRECTORY  oracle_impexp TO c##foo;
+   GRANT read, write, exp_full_database ON DIRECTORY oracle_impexp TO foo;
 
 Damit der Benutzer ``c##foo`` auf den Ordner zugreifen kann wurden ihm noch die
 dazu erforderlichen Rechte eingeräumt.  Auf welche Ordner ein DB User Zugriff

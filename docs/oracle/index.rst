@@ -17,9 +17,10 @@ Oracle (developer)
    Die hier beschriebenen Oracle Installationen sind lediglich für *Entwickler -
    Zwecke* geeignet.  Die hier gegebenen Beispiele basieren auf der exemplarisch
    angelegten :ref:`ORCLCDB <ORCLCDB>` Instanz.  Sofern nicht anders erwähnt
-   wird eine CDB_ verwendet (:ref:`CDB & PDB`).  Backups, Updates und andere
-   Anforderungen werden nicht berücksichtigt.  Für die Nutzung in *produktiven*
-   Umgebungen werden die entsprechenden Lizenzen von Oracle benötigt.
+   wird eine CDB_ verwendet (bitte :ref:`CDB & PDB` lesen).  Backups, Updates
+   und andere Anforderungen werden nicht berücksichtigt.  Für die Nutzung in
+   *produktiven* Umgebungen werden die entsprechenden Lizenzen von Oracle
+   benötigt.
 
 
 
