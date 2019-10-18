@@ -36,13 +36,12 @@ Einleitung und Übersicht
    - - ..
      - :ref:`todo-list`
 
-.. flat-table:: Foliensammlungen
+Foliensammlungen
+================
 
-   - - git Schulung
-     - `get git started <slides/git/index.html>`_ (`zip <slides/git.zip>`__)
+- git Schulung: `get git started <slides/git/index.html>`_ (`zip <slides/git.zip>`__)
 
-   - - CDB Komponenten & Entwicklung
-     - `CDB-Tools <https://return42.github.io/cdb-tools>`_
+- CDB Komponenten & Entwicklung `CDB-Tools <https://return42.github.io/cdb-tools>`_
 
 
 Themen

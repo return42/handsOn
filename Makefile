@@ -22,7 +22,7 @@ help:
 	@$(MAKE) -s -f utils/makefile.sphinx docs-help
 
 PHONY += docs
-docs: pyrequirements sphinx-doc
+docs: pyrequirements sphinx-doc slides
 	$(call cmd,sphinx,html,docs,docs)
 
 PHONY += docs-live
