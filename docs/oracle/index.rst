@@ -43,4 +43,5 @@ als Entwickler eine der RHEL-distros_ wählen.
    linux
    dbms
    datapump
+   cdbpdb
    know-how

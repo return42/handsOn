@@ -33,113 +33,6 @@ auch keine ersetzt).::
    ol7_latest/x86_64 Oracle Linux 7Server Latest (x86_64)                            15.441
    repolist: 29.025
 
-.. _CDB & PDB:
-
-CDB & PDB
-=========
-
-.. sidebar:: Info
-
-   Siehe auch `Common Tasks when Managing CDB and Pluggable PDB
-   <https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_oracle_database_12c_release_2_on_red_hat_enterprise_linux_7/common_tasks_when_managing_container_database_cdb_and_pluggable_databases_pdb>`__.
-
-Seit Oracle 12 sind die DB-Instanzen mandantenfähig.  In einer
-Container-Datenbank (CDB_) können keine, eine oder mehrere Plugin-Database
-(PDB_) angelegt werden.
-
-.. code-block:: none
-
-   SQL> show pdbs0
-
-   CON_ID     CON_NAME                       OPEN MODE  RESTRICTED
-   ---------- ------------------------------ ---------- ----------
-            2 PDB$SEED                       READ ONLY  NO
-            3 ORCLPDB1                       MOUNTED
-            4 ORCLPDB                        MOUNTED
-
-tnsnames.ora
-------------
-
-.. sidebar:: Info
-
-   Sofern in der ``tnsnames.ora`` kein Eintrag für die PDB existiert kann man
-   folgenden Connector verwenden::
-
-     foo@dbhost:1521/orclpdb
-
-Für die PDBs sollten entsprechen Einträge in der tnsnames.ora vorgenommen
-werden:
-
-.. code-block::
-
-   ORCLPDB =
-     (DESCRIPTION =
-        (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.110)(PORT = 1521))
-        (CONNECT_DATA =
-          (SERVER = DEDICATED)
-          (SERVICE_NAME = ORCLPDB)
-        )
-      )
-
-Manage PDBs
------------
-
-.. sidebar:: Info
-
-   Für Änderungen an dem Setup der PDB sollte man sich mit sqlplus als sysdba
-   anmelden.
-
-Öffnen einer PDB (sysdba):
-
-.. code-block:: none
-
-   SQL> alter pluggable database ORCLPDB open;
-
-   SQL> show pdbs
-
-   CON_ID CON_NAME        OPEN MODE  RESTRICTED
-   ------ --------------- ---------- ----------
-        2 PDB$SEED        READ ONLY  NO
-        3 ORCLPDB1        MOUNTED
-        4 ORCLPDB         READ WRITE NO
-
-Status des PDB für nächsten Reboot sichern (sysdba):
-
-.. code-block:: none
-
-   SQL> alter pluggable database ORCLPDB save state;
-   SQL> select con_name, state from dba_pdb_saved_states;
-
-   CON_NAME   CON_NAME
-   ---------- ----------
-   ORCLPDB    ORCLPDB
-
-Und einmal testen:
-
-.. code-block:: none
-
-   SQL> shutdown immediate;
-   Datenbank geschlossen.
-   Datenbank dismounted.
-   ORACLE-Instanz heruntergefahren.
-
-   SQL> startup
-   ORACLE-Instanz hochgefahren.
-
-   Total System Global Area 1543500872 bytes
-   Fixed Size                  9135176 bytes
-   Variable Size            1073741824 bytes
-   Database Buffers          452984832 bytes
-   Redo Buffers                7639040 bytes
-   Datenbank mounted.
-   Datenbank geoffnet.
-
-   SQL> select con_name, state from dba_pdb_saved_states;
-
-   CON_NAME   CON_NAME
-   ---------- ----------
-   ORCLPDB    ORCLPDB
-
 
 SQL-Developer installieren
 ==========================
@@ -234,7 +127,7 @@ Schema anlegen (``CREATE USER``)
 
 Bei einer CDB_ muss das Präfix ``c##`` im Namen des DB-Users (des Schemas)
 verwendet werden, bei einer PDB_ ist das nicht erforderlich.  Die CDBs sind seit
-Oracle 12 in einer *Standard Installation* (`CDB & PDB`_).  Im folgenden
+Oracle 12 in einer *Standard Installation* (:ref:`CDB & PDB`).  Im folgenden
 Beispiel wird ein DB-Benutzer (ein Schema) mit dem Namen ``foo`` und mit
 Passwort ``bar`` eingerichtet (Anmeldung als sysdba).
 
@@ -247,7 +140,7 @@ Passwort ``bar`` eingerichtet (Anmeldung als sysdba).
      CONTAINER = ALL
      PROFILE default;
 
-Gewähren von Rechten auf dem Schema ``foo``.
+Gewähren von Rechten auf dem Schema ``c##foo``.
 
 .. code-block:: sql
 
@@ -257,6 +150,27 @@ Gewähren von Rechten auf dem Schema ``foo``.
      , ALTER SESSION, CREATE TRIGGER, CREATE PROCEDURE
        TO c##foo;
 
+Anlegen eines Schemas in einer PDB:
+
+.. code-block:: sql
+
+   ALTER SESSION SET container=ORCLPDB;
+
+   CREATE USER foo IDENTIFIED BY bar
+     DEFAULT TABLESPACE users
+     TEMPORARY TABLESPACE temp
+     QUOTA UNLIMITED ON users
+     PROFILE default;
+
+   GRANT CONNECT
+     , CREATE TABLE, CREATE VIEW, CREATE SEQUENCE
+     , CREATE SYNONYM, CREATE CLUSTER, CREATE DATABASE LINK
+     , ALTER SESSION, CREATE TRIGGER, CREATE PROCEDURE
+     TO foo;
+
+   GRANT read, write
+        ON DIRECTORY oracle_impexp
+	TO foo;
 
 Schema löschen
 ==============
@@ -264,6 +178,13 @@ Schema löschen
 .. code-block:: sql
 
    DROP USER c##foo CASCADE;
+
+Löschen eines Schemas in einer PDB:
+
+.. code-block:: sql
+
+   ALTER SESSION SET container=ORCLPDB;
+   DROP USER foo CASCADE;
 
 
 .. _determin_version_from_dump:

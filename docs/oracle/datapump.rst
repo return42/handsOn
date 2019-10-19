@@ -43,83 +43,25 @@ SYS    DATA_PUMP_DIR       /opt/oracle/admin/ORCLCDB/dpdump/      1
 ...    ...                 ...                                    ...
 =====  =================== ====================================== =============
 
-.. _dba_directories:
-
-``dba_directories``
-===================
-
-.. _CREATE DIRECTORY:
-   https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-DIRECTORY.html#GUID-8E9C569A-1B06-42C4-9586-0EF83437001A
-
-.. _Understanding Dump, Log, and SQL File Default Locations:
-   https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump-overview.html#GUID-EEB32B50-8A00-40B0-8787-CC2C8BA05DC5
-
-
-Die Ordner des Data-Pump_ werden (wie alle) in der Tabelle ``dba_directories``
-verwaltet und mit `CREATE DIRECTORY`_ angelegt (siehe auch `Understanding Dump,
-Log, and SQL File Default Locations`_).  Einrichten eines Ordners auf dem DB
-Host::
-
-  oracle@dbhost $ sudo mkdir -p /HOST/share/oracle_impexp
-  oracle@dbhost $ sudo chown -R oracle:oinstall /HOST/share/oracle_impexp
-
-Als (z.B.) sysdba anmelden und den Ordner in der Oracle Instanz einrichten.  Bei
-PDBs muss man noch in den Container wechseln.
-
-.. code-block:: sql
-
-   ALTER SESSION SET container=ORCLPDB;
-
-   -- create directory object
-   CREATE OR REPLACE DIRECTORY oracle_impexp AS '/HOST/share/oracle_impexp';
-
-   -- grant read / write rights to schema
-   GRANT read, write, exp_full_database ON DIRECTORY oracle_impexp TO foo;
-
-Damit der Benutzer ``c##foo`` auf den Ordner zugreifen kann wurden ihm noch die
-dazu erforderlichen Rechte eingeräumt.  Auf welche Ordner ein DB User Zugriff
-hat kann er über ermitteln:
-
-.. code-block:: sql
-
-   SELECT * FROM ALL_DIRECTORIES;
-
 Simpler Export
 ==============
 
-Ein einfacher Aufruf von ``expdp``, bei dem der Benutzer ``c##foo`` seine Daten
+.. sidebar:: Berechtigung in PDB
+
+   In jeder PDB aus der ein DB-User einen Export machen soll, muss dem User das
+   Zugriffsrecht auf das Directory für den Export gegeben werden, siehe
+   *"GRANT .. ON DIRECTORY .. TO ..;"* in :ref:`dba_directories`.
+
+Ein einfacher Aufruf von ``expdp``, bei dem der Benutzer ``foo`` seine Daten
 in dem Ordner ``DATA_PUMP_DIR`` sichert:
 
 .. code-block:: sh
 
-   expdp c##foo@ORCLCDB directory=DATA_PUMP_DIR \
-       schemas = c##foo \
-       dumpfile = "foo_$(date +%Y.%m.%d-%H.%M.%S).dmp" \
-       logfile  = "foo_$(date +%Y.%m.%d-%H.%M.%S).log"
-
-.. code-block:: none
-
-   ...
-   Objekttyp SCHEMA_EXPORT/TABLE/TABLE_DATA wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/TABLE/STATISTICS/TABLE_STATISTICS wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/PRE_SCHEMA/PROCACT_SCHEMA wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/TABLE/TABLE wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/TABLE/COMMENT wird verarbeitet
-   Objekttyp SCHEMA_EXPORT/TABLE/INDEX/INDEX wird verarbeitet
-   Mastertabelle "C##FOO"."SYS_EXPORT_SCHEMA_01" erfolgreich geladen/entladen
-   ******************************************************************************
-   Fur C##FOO.SYS_EXPORT_SCHEMA_01 festgelegte Dumpdatei ist:
-     /opt/oracle/admin/ORCLCDB/dpdump/foo_2019.10.15-11.41.34.dmp
-   Job "C##FOO"."SYS_EXPORT_SCHEMA_01" erfolgreich um Di Okt 15 11:42:13 2019 elapsed 0 00:00:33 abgeschlossen
-
-
-.. code-block:: none
-
-   $ ll /opt/oracle/admin/ORCLCDB/dpdump/
-   ...
-   -rw-r-----. 1 oracle oinstall 303104 Oct 15 11:35 foo_2019.10.15-11.41.34.dmp
-   -rw-r--r--. 1 oracle oinstall   1303 Oct 15 11:35 foo_2019.10.15-11.41.34.log
+   expdp foo@ORCLPDB \
+       directory = DATA_PUMP_DIR \
+       schemas   = foo \
+       dumpfile  = "foo.dmp" \
+       logfile   = "foo.log"
 
 
 Export mit Flashback-Time
@@ -151,16 +93,17 @@ ganze DB hinweg konsistent.  Jede Änderung an der DB erhöht die SCN_
    -----------
        3518491
 
-Diese Nummer kann dem `Export Parameter`_ FLASHBACK_SCN_ übergeben werden.
-Einfacher ist es jedoch wenn das Oracle das SCN_ zu einem bestimmten Zeitpunkt
-selber bestimmt und wir nur den *Zeitpunkt* angeben müssen (das nennt sich dann
-*Flashback-Time*).  Die *aktuelle* Zeit lässt sich mit dem SYSTIMESTAMP_
-angeben:
+Diese Nummer kann einem `Export Parameter`_ namens FLASHBACK_SCN_ übergeben
+werden.  Einfacher ist es jedoch wenn Oracle die SCN_ zu einem bestimmten
+Zeitpunkt selber ermittelt und wir nur den *Zeitpunkt* angeben müssen (das nennt
+sich dann *Flashback-Time*).  Die *aktuelle* Zeit lässt sich mit dem
+SYSTIMESTAMP_ angeben:
 
 .. code-block:: sh
 
-   expdp c##foo@ORCLCDB directory=DATA_PUMP_DIR \
-       schemas = c##foo \
+   expdp foo@ORCLPDB \
+       directory=DATA_PUMP_DIR \
+       schemas = foo \
        flashback_time = SYSTIMESTAMP \
        dumpfile = "foo_$(date +%Y.%m.%d-%H.%M.%S).dmp" \
        logfile  = "foo_$(date +%Y.%m.%d-%H.%M.%S).log"
@@ -181,33 +124,12 @@ Import
 .. _EXCLUDE:
    https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/datapump-import-utility.html#GUID-DC7668E1-C846-48C5-A0D5-F4659EC119BB
 
-Der Import des Data-Pump_ erfolgt mit dem Kommando ``impdp``.  Mit den `Import
-Parameter`_ FROMUSER_ und TOUSER_ kann der Import in eines Schemas aus dem DUMP
-einem Schema in der DB zugeordnet werden.  Alternativ kann auch die Option
-REMAP_SCHEMA_ verwendet werden.
-
-Sofern das Schema (der DB User) in der DB Instanz noch nicht existiert muss er
+Der Import des Data-Pump_ erfolgt mit dem Kommando ``impdp``.  Die `Import
+Parameter`_ namens FROMUSER_ und TOUSER_ ordnen dem Schema aus dem DUMP einen
+DB-User zu.  Alternativ kann auch die Option REMAP_SCHEMA_ verwendet werden.
+Sofern der DB-User (das Schema) in der DB Instanz noch nicht existiert muss er
 angelegt werden, siehe ":ref:`SQL_CREATE_USER`".  Folgend ein Beispiel für einen
-Import, bei dem das ``source_schema`` in den DB-User ``c##foo`` importiert
-wird.
-
-.. code-block:: sh
-
-   impdp \"/ as sysdba\" \
-       directory=DATA_PUMP_DIR \
-       REMAP_SCHEMA=source_schema:c##foo \
-       dumpfile="foo.dmp" \
-       logfile="foo_IMPORT.log" \
-
-Bei einem solchen Import kann es zu Fehlern mit den Statistiken kommen:
-
-.. code-block:: none
-
-  ...
-  Objekttyp SCHEMA_EXPORT/TABLE/INDEX/STATISTICS/INDEX_STATISTICS wird verarbeitet
-  ...
-  ORA-39083: Objekttyp INDEX_STATISTICS konnte nicht erstellt werden, Fehler:
-  ...
+Import, bei dem das Schema ``bar`` in den DB-User ``foo`` importiert wird.
 
 .. sidebar:: Verweise
 
@@ -215,27 +137,75 @@ Bei einem solchen Import kann es zu Fehlern mit den Statistiken kommen:
    - :ref:`determin_schema_from_dump`
    - :ref:`DBMS_STATS`
 
-Sofern man sich den Export in eine neue DB einspielt, kann man die Statistiken
-(und andere Metadaten) beim Export, oder hier beim Import auch ausschließen
-(EXCLUDE_):
 
 .. code-block:: sh
 
-   impdp \"/ as sysdba\" \
-       directory=DATA_PUMP_DIR \
-       REMAP_SCHEMA=source_schema:c##foo
-       dumpfile="foo.dmp" \
-       logfile="foo_IMPORT.log" \
-       exclude=statistics
+   impdp foo@ORCLPDB \
+       directory    = ORACLE_IMPEXP \
+       remap_schema = bar:foo \
+       dumpfile     = "bar.dmp" \
+       logfile      = "bar2foo-import.log" \
+       exclude      = statistics
 
-Nach dem Import können die Statistiken neu erzeugen, siehe DBMS_STAT Prozeduren:
-:ref:`GATHET_xxx_STATS <DBMS_STATS>`.
+Sofern man sich den Export in eine neue DB einspielt, kann man die Statistiken
+(und ggf. andere Metadaten) beim Export, oder hier beim Import auch ausschließen
+(EXCLUDE_): Würde man den Parameter weglassen, so könnte es zu Fehlermeldungen
+beim Import der Statistiken kommen: *Objekttyp INDEX_STATISTICS konnte nicht
+erstellt werden ...*
 
-Falls beim Import Probleme mit dem Festplattenplatz auf der Datenbank
-auftauchen kann man u.U. auch erst mal das Archivlog aufräumen:
+.. note::
+
+  Nach dem Import können die Statistiken neu erzeugt werden, siehe DBMS_STAT
+  Prozeduren: :ref:`GATHET_xxx_STATS <DBMS_STATS>`.
+
+Falls beim Import Probleme mit dem Festplattenplatz auf der Datenbank auftauchen
+kann man u.U. auch erst mal das Archivlog aufräumen:
 
   .. code-block:: bash
 
     rman target /
     backup archivelog all;
     delete archivelog all;
+
+
+.. _dba_directories:
+
+``dba_directories``
+===================
+
+.. _CREATE DIRECTORY:
+   https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-DIRECTORY.html#GUID-8E9C569A-1B06-42C4-9586-0EF83437001A
+
+.. _Understanding Dump, Log, and SQL File Default Locations:
+   https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump-overview.html#GUID-EEB32B50-8A00-40B0-8787-CC2C8BA05DC5
+
+Die Ordner des Data-Pump_ werden (wie alle) in der Tabelle ``dba_directories``
+verwaltet und mit `CREATE DIRECTORY`_ angelegt (siehe auch `Understanding Dump,
+Log, and SQL File Default Locations`_).  Einrichten eines Ordners auf dem DB
+Host::
+
+  oracle@dbhost $ sudo mkdir -p /HOST/share/oracle_impexp
+  oracle@dbhost $ sudo chown -R oracle:oinstall /HOST/share/oracle_impexp
+
+Als ``sysdba`` anmelden und den Ordner in der Oracle Instanz einrichten.  Bei
+PDBs muss man noch in den Container wechseln und die Zugriffsrechte explizit
+für jeden DB-Usern in jedem Container vergeben.
+
+.. code-block:: sql
+
+   ALTER SESSION SET container=ORCLPDB;
+
+   -- create directory object
+   CREATE OR REPLACE DIRECTORY oracle_impexp AS '/HOST/share/oracle_impexp';
+
+   -- grant read / write rights to schema
+   GRANT read, write ON DIRECTORY oracle_impexp TO foo;
+
+Damit der Benutzer ``c##foo`` auf den Ordner zugreifen kann wurden ihm noch die
+dazu erforderlichen Rechte eingeräumt.  Auf welche Ordner ein DB User Zugriff
+hat kann er über ermitteln:
+
+.. code-block:: sql
+
+   SELECT * FROM ALL_DIRECTORIES;
+
