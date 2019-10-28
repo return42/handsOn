@@ -56,13 +56,15 @@ vertrauen? Den zum Teil intransparenten CAs oder kann man gleich dem
 selbstsignierten Zertifikat trauen?  Fefe beschreibt das Dilema von Vertrauen
 recht gut in seinem Blog `Fefe's Blog / Sun Oct 3 2010`_.
 
-Um es kurz zu machen, Sicherheit ist eine Frage von Vertrauen. Ob man allen CAs
-in den Browsern vertrauen kann ist zumindest hinterfragbar solange die Prozesse
-eines CAs und seine Motivation nicht transparent sind. Die `letsencrypt.org`_
-mag auch umstritten sein, sie ist aber zumindest transparent und wird offen im
-Netzt diskutiert.  Wer einen (kleinen) WEB-Server im Netz betreibt und gerne
-zertiffiziert werden möchte, der möge sich mit der `letsencrypt.org`_ Campange
-auseinander setzen.
+.. note::
+
+   Um es kurz zu machen, Sicherheit ist eine Frage von Vertrauen. Ob man allen
+   CAs in den Browsern vertrauen kann ist zumindest hinterfragbar solange die
+   Prozesse eines CAs und seine Motivation nicht transparent sind. Die
+   `letsencrypt.org`_ mag auch umstritten sein, sie ist aber zumindest
+   transparent und wird offen im Netzt diskutiert.  Wer einen (kleinen)
+   WEB-Server im Netz betreibt und gerne zertiffiziert werden möchte, der möge
+   sich mit der `letsencrypt.org`_ Campange auseinander setzen.
 
 .. _install_certs:
 
@@ -71,14 +73,16 @@ Hinzufügen des Zertifikats eines Remote-Host
 
 Es empfiehlt sich die selbst-signierten Zertifikate der Server im **Intranet**
 auch auf den Client-Hosts zu registrieren.  Hierzu kann das beiliegende Script
-verwendet werden::
+verwendet werden:
 
-  ./scripts/certs install
+.. code-block:: bash
+
+  $ ./scripts/certs install
 
 Im allgemeinen akzeptieren die Programme auf dem Client die so installierten
 Zertifikate, aber wie immer gibt es auch hierbei Ausnahmen.
 
-.. hint::
+.. note::
 
    Webbrowser wie Firefox, Chrome etc., als auch der Mailclient Mozilla
    Thunderbird haben ihre eigenen Trust-Center.
