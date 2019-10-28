@@ -23,7 +23,6 @@ Oracle (developer)
    benötigt.
 
 
-
 Das `Oracle Datenbanksystem`_ gibt es u.A. in der frei verfügbare Express
 Edition (XE_).  Letztere eignet sich aufgrund ihrer Limitierungen nur für
 kleinste Entwickler Instanzen und zum experimentieren.  Die XE_ gibt es
@@ -44,4 +43,5 @@ als Entwickler eine der RHEL-distros_ wählen.
    dbms
    datapump
    cdbpdb
+   sqldeveloper
    know-how
