@@ -48,4 +48,7 @@ pyrequirements: $(PY_ENV)
 PHONY += rqmts
 rqmts: msg-python-exe msg-virtualenv-exe
 
+PHONY += deploy
+deploy: docs-clean gh-pages
+
 .PHONY: $(PHONY)

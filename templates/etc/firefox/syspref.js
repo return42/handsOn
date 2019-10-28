@@ -1686,7 +1686,7 @@ pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
 // Firefox Sync-1.5 Server
 // -----------------------
 
-pref("identity.sync.tokenserver.uri", "https://storage/fxSyncServer/token/1.0/sync/1.5");
+// pref("identity.sync.tokenserver.uri", "https://storage/fxSyncServer/token/1.0/sync/1.5");
 
 // Homepage vs about:home
 // ----------------------
@@ -1731,6 +1731,8 @@ pref("browser.ssl_override_behavior", 2);
 // see 1272 (20190218)
 pref("browser.xul.error_pages.expert_bad_cert", true);
 
+// 20181028: -- see 4504: enable RFP letterboxing [FF67+]
+pref("privacy.resistFingerprinting.letterboxing", false);
 
 // Safebrowsing
 // ------------
