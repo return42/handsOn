@@ -109,16 +109,31 @@ main(){
             apt-get clean
 	    ;;
         update)
+            installFFSysPrefs
             installFFAddOns
             ;;
 	*)
-            echo
-	    echo "usage $0 [install|deinstall|update]"
-            echo
+	    usage
             ;;
     esac
 }
 
+
+# ----------------------------------------------------------------------------
+usage(){
+# ----------------------------------------------------------------------------
+
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
+
+usage:  $(basename $0) [install|deinstall|update]
+
+ install:   install (all) FFox packages, addons, sysprefs.js
+ deinstall: deinstall (all) FFox packages, addons, sysprefs.js
+ update:    update addons and sysprefs.js
+
+EOF
+}
 
 # ----------------------------------------------------------------------------
 installFFSysPrefs(){
