@@ -9,12 +9,17 @@
                      Anmerkungen zu SSL und Zertifikaten
 ================================================================================
 
+.. sidebar:: https://badssl.com/
+
+  Eine WEB-Seite, auf der man das Verhalten seines WEB-Browsers auf *schlechte*
+  SSL Verbindungen testen kann
+
 Die hier vorgestellten Setups benutzen als Transportschicht SSL. Mit SSL wird
 dann meist auch ein Zertifikat erforderlich. Meiner Ansicht nach sind
 *selbstsignierte* Zertifikate, wie sie die Debian/Ubuntu Distribution (snakeoil)
-mit dem Paket :deb:`ssl-cert` einrichten, an sich vollkommend ausreichend.
+mit dem Paket :deb:`ssl-cert` einrichten, an sich vollkommend ausreichend.::
 
-   * /etc/ssl/certs/ssl-cert-snakeoil.pem
+   /etc/ssl/certs/ssl-cert-snakeoil.pem
 
 Will man sich sein (snakeoil) Zertifikat mal genauer anschauen, dann kann man
 das z.B. mit dem folgenden Kommando.
@@ -27,6 +32,14 @@ Im WEB-Browser führen diese selbstsignierten Zertifakte zu einer Warnmeldung
 weil sie über keine (der im WEB-Browser vorinstallierten) Zertifizierungstellen
 signiert wurden. Im WEB-Browser muss/kann man auf diese Warnung hin das
 Zertifakt aktzeptieren, was im Allgemeinen kein Problem darstellen sollte.
+
+.. sidebar:: FFox UPDATE
+
+   Inzwischen ist es im default nicht mehr möglich Ausnahmen zu akzeptieren.  Um
+   Ausnahmen weiterhin akzeptieren zu können, muss unter ``crome:config`` (URL)
+   folgende Einstellung vorgenommen werden::
+
+     browser.xul.error_pages.expert_bad_cert = false
 
 Betreibt man die WEB-Seite im Internet, dann verunsichern die *Terrorpanik -
 Warndialoge* aus dem WEB-Broswer den unbedarften Besucher jedoch schnell. FFox
