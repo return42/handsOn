@@ -25,3 +25,6 @@ background-fade=true
 home-icon-visibl=true
 trash-icon-visible=true
 volumes-visible=true
+
+[org/gnome/desktop/background]
+show-desktop-icons=true

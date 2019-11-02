@@ -1,0 +1,25 @@
+# -*- coding: utf-8; mode: conf -*-
+
+# File manager nemo
+# -----------------
+
+# disable GNOME desktop icons extension
+[org.gnome.desktop.background]
+show-desktop-icons=false
+
+# nemo's desktop icons
+[org.nemo.desktop]
+use-desktop-grid=false
+desktop-layout='true::true'
+home-icon-visible=false
+show-desktop-icons=true
+trash-icon-visible=false
+
+[org.nemo.preferences]
+quick-renames-with-pause-in-between=true
+
+[org.nemo.list-view]
+default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'mime_type', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency']
+default-visible-columns=['name', 'size', 'date_modified']
+default-zoom-level='small'
+

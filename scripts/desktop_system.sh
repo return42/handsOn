@@ -99,6 +99,7 @@ usage:
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
 - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
 - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
+- nemo: Installation des Dateibrowsers Nemo
 - mate: Mate-Desktop https://mate-desktop.org/
 EOF
 }
@@ -121,6 +122,7 @@ main(){
                 GNOME)        install_gnomeShell   ;;
                 GNOME-ext)    install_gnome_extensions ;;
 		GNOME-dconf)  install_dconf_defaults ;;
+		nemo)         install_nemo ;;
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
@@ -133,6 +135,7 @@ main(){
                 GNOME-ext)    remove_gnome_extensions ;;
                 elementary)   remove_elementary   ;;
                 unity)        remove_unity ;;
+		nemo)         remove_nemo ;;
                 cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
                 mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
@@ -151,6 +154,69 @@ chooseDM() {
     waitKEY
 }
 
+
+# ----------------------------------------------------------------------------
+install_nemo() {
+    rstHeading "Installation des Dateibrowsers Nemo"
+# ----------------------------------------------------------------------------
+
+    local PPA='add-apt-repository ppa:embrosyn/cinnamon'
+
+    rstBlock "Installation des Nemo Dateibrowsers aus dem ($PPA).
+
+Nemo wird als default Dateibrowser eingerichtet.  Die Desktop Icons werden über
+nemo-desktop realisiert und die GNOME Erweiterung für Desktop Icons wird
+deaktiviert."
+
+    if dpkg --compare-versions "18.04" ">=" "$DISTRIB_RELEASE"; then
+	rstBlock "Diese Installation ist erst ab 18.04 möglich."
+	return
+    fi
+
+    if askYn "Soll die Installation durchgeführt werden?"; then
+
+	apt-get -y purge nemo
+	apt-get -y autoremove
+	add-apt-repository -u $PPA
+	apt-get -y install nemo
+
+	xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
+	TEMPLATES_InstallOrMerge "/etc/xdg/autostart/nemo-desktop.desktop" root root 644
+
+	TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_nautilus_settings" root root 644
+	TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/10_nemo_settings" root root 644
+	dconf update
+	info_msg "Alle Änderungen werden erst mit einer Neuanmeldung aktiv."
+    fi
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+remove_nemo() {
+    rstHeading "De-Installation des Dateibrowsers Nemo"
+# ----------------------------------------------------------------------------
+
+    local PPA='add-apt-repository ppa:embrosyn/cinnamon'
+
+    rstBlock "Es wird Nemo und das PPA ($PPA) deinstalliert."
+    if askYn "Soll die Installation durchgeführt werden?"; then
+
+	apt-get -y purge nemo
+	apt-get -y autoremove
+	add-apt-repository -u -r $PPA
+
+	xdg-mime default org.gnome.Nautilus.desktop inode/directory application/x-gnome-saved-search
+
+	rm -f "/etc/xdg/autostart/nemo-desktop.desktop"
+
+	TEMPLATES_InstallOrMerge "/etc/dconf/db/site.d/00_nautilus_settings" root root 644
+	rm -f "/etc/dconf/db/site.d/10_nemo_settings"
+	dconf update
+	info_msg "Alle Änderungen werden erst mit einer Neuanmeldung aktiv."
+    fi
+    waitKEY
+}
 
 # ----------------------------------------------------------------------------
 install_elementary() {
@@ -256,6 +322,10 @@ install_gnome_extensions(){
     local _dst=
     local _ws=
 
+    rstHeading "gnome-shell: Desktop Icons NG" section
+
+    waitKEY "TODO: https://gitlab.com/rastersoft/desktop-icons-ng.git"
+
     rstHeading "gnome-shell: dash to dock" section
     echo
     _origin="https://github.com/micheleg/dash-to-dock.git"
@@ -309,7 +379,7 @@ EOF
     TEE_stderr 1 <<EOF | bash | prefix_stdout
 cd "${_ws}"
 sudo -u ${SUDO_USER} make build
-DESTDIR=/ make install
+DESTDIR= make install
 EOF
     waitKEY
 
