@@ -44,8 +44,10 @@ GNOME3_PACKAGES="\
  elementary-icon-theme \
  gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-gconf-2.0 gir1.2-clutter-1.0 \
  tracker tracker-extract tracker-miner-fs \
+ gnome-clocks \
 "
 # ubuntu-gnome-default-settings \
+# flameshot: läuft aktuell (19.04) wohl nur mit xorg (kein Wayland support)
 
 DISPLAY_MANAGER_PACKAGES="\
   gdm3 \
