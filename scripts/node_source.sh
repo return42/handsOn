@@ -5,29 +5,6 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
 
 # ----------------------------------------------------------------------------
-README(){
-# ----------------------------------------------------------------------------
-
-    rstBlock "Die Node.js Pakete des Ubuntu (bzw. debian) scheinen mir ziemlich
-veraltet zu sein. Neuere Entwicklungen funktionieren damit i.d.R. nicht.
-Alternativ kann man sich die *binaries* auch auf der Download-Seite von Node.js
-runter laden:
-
-  * https://nodejs.org/en/download/
-
-Besser finde ich aber eine Installation über alternative debian Pakete. Dieses
-Skript installiert alternative Paketquellen für Node.js. Das Verfahren resp die
-apt-sourcen stammen von *NodeSource* :
-
-  * https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions
-
-Installiert wird die Version:
-
-  * $APT_SOURCE_URL
-"
-}
-
-# ----------------------------------------------------------------------------
 # Config
 # ----------------------------------------------------------------------------
 
@@ -37,7 +14,7 @@ Installiert wird die Version:
 # Achtung, die APT_SOURCE_URL kann angepasst werden, um die Node.js Version zu
 # wechseln, jedoch sollte man vorher ein "deinstall" durchführen
 
-APT_SOURCE_URL="https://deb.nodesource.com/node_10.x"
+APT_SOURCE_URL="https://deb.nodesource.com/node_12.x"
 
 # APT_SOURCE_KEY_URL
 # -----------
@@ -50,6 +27,25 @@ APT_SOURCE_NAME="nodesource"
 PACKAGES="\
   nodejs"
 
+NPM_PACKAGES="\
+  grunt-cli"
+
+# ----------------------------------------------------------------------------
+README(){
+# ----------------------------------------------------------------------------
+
+    rstBlock "Installation aus der 'NodeSource Node.js Binary Distribution'
+
+https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions
+
+- Repository hinzufügen $APT_SOURCE_URL
+
+- Hinzufügen des Public-Key von https://deb.nodesource.com
+
+APT-Katalog aktualisieren und Installation des debian Pakets 'nodejs' aus den
+neuen Paketquellen."
+}
+
 # ----------------------------------------------------------------------------
 main(){
     rstHeading "Install Node.js (from NodeSource)" part
@@ -59,6 +55,9 @@ main(){
 	install)
 	    sudoOrExit
             README
+	    info_msg "Ggf. konfligierende Pakete werden deinstalliert ..."
+            waitKEY
+	    apt-get remove -f -y --purge nodejs npm
             waitKEY
             addDEB
             installPackages
@@ -68,9 +67,11 @@ main(){
             deinstallPackages
             removeDEB
 	    ;;
+	README)
+	    README ;;
 	*)
 	    echo
-            echo "usage $0 [install|remove]"
+            echo "usage $0 [install|remove|README]"
             echo
             ;;
     esac
@@ -123,12 +124,11 @@ installPackages(){
 # ----------------------------------------------------------------------------
 
     rstHeading "Installation der debian Pakete"
-
     rstPkgList ${PACKAGES}
     echo
     waitKEY
     apt-get install -y ${PACKAGES}
-    npm install -g grunt-cli
+    npm install -g ${NPM_PACKAGES}
     waitKEY
 }
 
@@ -141,7 +141,7 @@ deinstallPackages(){
     rstPkgList ${PACKAGES}
     echo
     waitKEY
-    npm remove -g grunt-cli
+    npm remove -g ${NPM_PACKAGES}
     apt-get remove -y --purge ${PACKAGES}
     apt-get autoremove -y
     apt-get clean
