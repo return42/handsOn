@@ -36,7 +36,10 @@ DEVELOP_PACKAGES="\
  autoconf autotools-dev automake libtool-bin gettext \
  shellcheck devscripts \
  dkms \
- python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
+ gir1.2-gtk-3.0 gir1.2-webkit2-4.0 \
+ libgirepository1.0-dev libcairo2-dev \
+ python3-venv python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
+ python3-gi python3-gi-cairo \
  git git-email git-svn \
  subversion mercurial bzr \
  diffutils colordiff patch grep \
