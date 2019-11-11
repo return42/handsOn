@@ -451,7 +451,7 @@ ${ORACLE_VBOX_VERS}${_color_Off} installiert."
 
     rstHeading "Repository einrichten" section
     echo
-    aptAddRepositoryURL $ORACLE_VBOX_APT_DEB $ORACLE_VBOX_APT
+    aptAddRepositoryURL "[arch=amd64] ${ORACLE_VBOX_APT_DEB}" $ORACLE_VBOX_APT
 
     rstHeading "Public-Key für das Repository einrichten" section
     echo
