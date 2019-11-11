@@ -12,7 +12,8 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # ------
 #
 # Achtung, die APT_SOURCE_URL kann angepasst werden, um die Node.js Version zu
-# wechseln, jedoch sollte man vorher ein "deinstall" durchführen
+# wechseln, jedoch sollte man vorher ein "deinstall" durchführen.  Ggf. auch das
+# Replacement |VER| in der Datei ./docs/nodejs/install.rst anpassen!
 
 APT_SOURCE_URL="https://deb.nodesource.com/node_12.x"
 
@@ -24,13 +25,10 @@ APT_SOURCE_URL="https://deb.nodesource.com/node_12.x"
 APT_SOURCE_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
 APT_SOURCE_NAME="nodesource"
 
-PACKAGES="\
+NODEJS_PACKAGES="\
   nodejs"
 
-NPM_PACKAGES="\
-  grunt-cli"
-
-NPM_GLOBAL_PACKAGES="grunt-cli @vue/cli"
+NPM_GLOBAL_PACKAGES="grunt-cli webpack webpack-cli lodash eslint @vue/cli"
 
 VSCODE_PACKAGES="code"
 VSCODE_APT_DEB="https://packages.microsoft.com/repos/vscode"
@@ -62,12 +60,17 @@ usage(){
 
 usage:
 
-  $(basename $0) install    nodejs|vscode
-  $(basename $0) remove     nodejs|vscode
+  $(basename $0) install    all|nodejs|npm-global|vscode
+  $(basename $0) remove     nodejs|npm-global|vscode
+  $(basename $0) update     nodejs|npm-global|vscode
 
-nodejs:
-vscode:     install Visual-Studio Code from M$
-
+all:         Installation nodejs, npm-global und vscode
+nodejs:      Aus der 'NodeSource Node.js Binary Distribution'
+             ${APT_SOURCE_URL}
+vscode:      Visual-Studio Code von Microsoft
+             ${VSCODE_APT_DEB}
+npm-global:  Installation der globalen NodeJS Pakete
+             ${NPM_GLOBAL_PACKAGES}
 EOF
 }
 
@@ -80,11 +83,20 @@ main(){
         install)
             sudoOrExit
             case $2 in
+		all)
+		    nodesource_add_deb
+		    install_nodejs_packages
+		    install_npm_global_packages
+		    install_vscode
+		    ;;
                 nodejs)
 		    README
 		    waitKEY
-		    addDEB
-		    installPackages
+		    nodesource_add_deb
+		    install_nodejs_packages
+		    ;;
+		npm-global)
+		    install_npm_global_packages
 		    ;;
 		vscode)
 		    install_vscode
@@ -94,11 +106,28 @@ main(){
 		    exit 42
 		    ;;
             esac ;;
+	update)
+            case $2 in
+                nodejs|npm-global)
+		    update_npm_global_packages
+		    ;;
+		vscode)
+		    update_vscode
+		    ;;
+                *)
+		    usage $_usage
+		    exit 42
+		    ;;
+            esac ;;
 	remove)
             case $2 in
                 nodejs)
-		    deinstallPackages
-		    removeDEB
+		    deinstall_npm_global_packages
+		    deinstall_nodejs_packages
+		    nodesource_remove_deb
+		    ;;
+                npm-global)
+		    deinstall_npm_global_packages
 		    ;;
 		vscode)
 		    remove_vscode
@@ -114,9 +143,10 @@ main(){
 }
 
 # ----------------------------------------------------------------------------
-addDEB(){
+# deb.nodesource.com
 # ----------------------------------------------------------------------------
 
+nodesource_add_deb(){
     rstHeading "Einrichten der Paketquellen von *$APT_SOURCE_NAME*"
 
     rstHeading "Binaries $APT_SOURCE_NAME (deb)" section
@@ -137,13 +167,9 @@ addDEB(){
     echo
     apt-get update
     waitKEY
-
 }
 
-# ----------------------------------------------------------------------------
-removeDEB(){
-# ----------------------------------------------------------------------------
-
+nodesource_remove_deb(){
     rstHeading "Entfernen der Paketquellen von *$APT_SOURCE_NAME*"
     echo
     aptRemoveRepository "$APT_SOURCE_NAME"
@@ -156,38 +182,58 @@ removeDEB(){
 }
 
 # ----------------------------------------------------------------------------
-installPackages(){
+# nodejs_packages
 # ----------------------------------------------------------------------------
 
+install_nodejs_packages(){
     rstHeading "Installation der debian Pakete"
-    rstPkgList ${PACKAGES}
+    aptInstallPackages ${NODEJS_PACKAGES}
+}
+
+update_nodejs_packages(){
+    rstHeading "Update debian Pakete für NodeJS"
     echo
-    waitKEY
-    apt-get install -y ${PACKAGES}
-    npm install -g ${NPM_GLOBAL_PACKAGES}
-    waitKEY
+    info_msg "Ein Update erfolgt auch automatisch bei jedem OS Update"
+    apt-get update
+    TITLE="Update deb-packages" aptInstallPackages ${NODEJS_PACKAGES}
+}
+
+deinstall_nodejs_packages(){
+    rstHeading "Deinstallation der debian Pakete"
+    aptPurgePackages ${NODEJS_PACKAGES}
 }
 
 # ----------------------------------------------------------------------------
-deinstallPackages(){
+# npm_global_packages
 # ----------------------------------------------------------------------------
 
-    rstHeading "Deinstallation der debian Pakete"
+install_npm_global_packages(){
+    rstHeading "Installation der globalen NodeJS Pakete"
+    rstPkgList ${NPM_GLOBAL_PACKAGES}
+    waitKEY
+    npm install -g ${NPM_GLOBAL_PACKAGES}
+}
 
-    rstPkgList ${PACKAGES}
-    echo
+update_npm_global_packages(){
+    rstHeading "Update der global installierten NodeJS Pakete"
+    rstPkgList npm ${NPM_GLOBAL_PACKAGES}
+    waitKEY
+    npm update -g npm ${NPM_GLOBAL_PACKAGES}
+}
+
+deinstall_npm_global_packages(){
+    rstHeading "De-Installation der globalen NodeJS Pakete"
+    rstPkgList ${NPM_GLOBAL_PACKAGES}
     waitKEY
     npm remove -g ${NPM_GLOBAL_PACKAGES}
-    apt-get remove -y --purge ${PACKAGES}
-    apt-get autoremove -y
-    apt-get clean
-    waitKEY
 }
 
 # ----------------------------------------------------------------------------
+# VSCode
+# ----------------------------------------------------------------------------
+
 install_vscode() {
     rstHeading "Installation VSCode" section
-# ----------------------------------------------------------------------------
 
     local FNAME="/etc/apt/sources.list.d/${VSCODE_APT_NAME}.list"
     local DEB="deb [arch=amd64] ${VSCODE_APT_DEB} stable main"
@@ -225,13 +271,16 @@ Reposetory von Microsoft später dann einzubinden .."
     aptInstallPackages ${VSCODE_PACKAGES}
 }
 
-# ----------------------------------------------------------------------------
+update_vscode(){
+    rstHeading "Update der VSCode installation"
+    echo
+    info_msg "Ein Update erfolgt auch automatisch bei jedem OS Update"
+    apt-get update
+    TITLE="Update deb-packages" aptInstallPackages ${VSCODE_PACKAGES}
+}
+
 remove_vscode() {
     rstHeading "De-Installation VSCode" section
-# ----------------------------------------------------------------------------
-
-    rstHeading "Deinstallation der debian Pakete"
-
     aptPurgePackages ${VSCODE_PACKAGES}
 
     rstHeading "Entfernen der Paketquellen von $VSCODE_APT_NAME"
@@ -243,10 +292,8 @@ remove_vscode() {
     echo
     apt-get update
     waitKEY
-
 }
 
 # ----------------------------------------------------------------------------
 main "$@"
 # ----------------------------------------------------------------------------
-

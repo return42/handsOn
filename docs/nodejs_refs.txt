@@ -1,0 +1,59 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _Node.js:
+   https://nodejs.org/
+.. _NodeSource:
+    https://nodesource.com
+.. _Debian and Ubuntu based distributions:
+   https://github.com/nodesource/distributions#deb
+.. _gruntjs:
+   https://gruntjs.com/
+
+.. _VSCode:
+   https://code.visualstudio.com
+.. _ElectronJS:
+   https://electronjs.org/
+.. _VSCode Paketquellen:
+   https://packages.microsoft.com/repos/vscode
+
+
+.. _playground/nodejs-hello:
+   https://storage/gitlab/playground/nodejs-hello
+.. _The Hitchhiker's guide to the modern front end development workflow:
+   https://marcobotto.com/blog/the-hitchhikers-guide-to-the-modern-front-end-development-workflow/
+.. _webpack:
+   https://webpack.github.io/
+.. _createapp.dev:
+   https://createapp.dev/webpack
+.. _babeljs:
+   https://babeljs.io/
+.. _less:
+   http://lesscss.org/
+.. _eslint:
+   https://github.com/eslint/eslint
+.. _`ESLint Rules`:
+   https://eslint.org/docs/rules/
+.. _`emacs flycheck (javascript-eslint)`:
+   http://www.flycheck.org/en/latest/languages.html#syntax-checker-javascript-eslint
+.. _AVA:
+   https://github.com/avajs/ava
+.. _MochaJS:
+   https://mochajs.org/
+.. _Tape:
+   https://github.com/substack/tape
+.. _Analysis paralysis:
+   https://en.wikipedia.org/wiki/Analysis_paralysis
+.. _Awesome CSS Frameworks:
+   https://github.com/gabrielizalo/Awesome-CSS-Frameworks
+.. _Bootstrap:
+   https://getbootstrap.com/
+.. _Vue.js:
+   https://vuejs.org/
+.. _Vue JS Crash Course - 2019:
+   https://youtu.be/Wy9q22isx3U
+.. _Vuex Crash Course | State Management:
+   https://www.youtube.com/watch?v=5lVQgZzLMHc
+.. _Vue-CLI:
+   https://cli.vuejs.org/
+.. _Vetur:
+   https://vuejs.github.io/vetur/

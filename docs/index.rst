@@ -54,7 +54,7 @@ Themen
    ubuntu_remove_pkgs/index
    ubuntu_install_pkgs/index
    devTools/index
-   install_nodejs/index
+   nodejs/index
    apache_setup/index
    mozcloud/index
    radicale/index
