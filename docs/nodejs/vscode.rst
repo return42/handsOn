@@ -8,18 +8,28 @@
 Visual Studio Code
 ==================
 
-.. sidebar:: install vscode
+.. sidebar:: install: vscode
 
    .. code-block:: bash
 
       $ sudo ./nodejs-dev.sh install vscode
 
-Visual Studio Code (VSCode_) ist ein freier Queltexteditor von Mikrosoft
+Visual Studio Code (VSCode_) ist ein freier Quelltext-Editor von Microsoft
 (basierend auf ElectronJS_).  Er kann über die `Dowload-Seite
 <https://code.visualstudio.com/Download>`_ für die gängigen Plattformen bezogen
-werden.  Auf den Ubuntu Systemen ist u.A. ein Version über Snap verfügbar, es
-empfiehlt sich aber die `Installation VSCode Paketquellen`_ vorzunehmen, so hat
-man Updates des VSCode_ gleich schon mit dem OS-Update.
+werden.  Auf den Ubuntu Systemen ist u.A. ein Version über :ref:`Snap <snap>`
+verfügbar, es empfiehlt sich aber die unten beschriebene Installation der VSCode
+Paketquellen vorzunehmen, so hat man die Updates des VSCode_ gleich schon mit
+dem OS-Update erledigt.
+
+.. admonition:: Telemetry
+
+   Sowohl VSCode_ als auch GitLense_ versenden *Telemetry* Daten
+   (z.B. chrash-reports).  Unter :menuselection:`File > Preferences > Settings`
+   kann man nach *telemetry* suchen und die entsprechenden Einstellungen
+   `deaktivieren
+   <https://code.visualstudio.com/docs/supporting/FAQ#_how-to-disable-crash-reporting>`__.
+   Damit die Änderungen aktiv werden muss VSCode einmal neu gestartet werden.
 
 .. _install_vscode:
 
@@ -51,4 +61,7 @@ Mit dem ``./scripts/nodejs-dev.sh`` geht es wesentlich einfacher:
 Plugins
 =======
 
-- Vetur_: Vue tooling for VS Code
+- Vetur_: Vue tooling for VSCode
+- vscode-Python_: Python extension for VSCode
+- GitLense_: supercharges the Git capabilities built into VSCode
+- vscode-reStructuredText_: reStructuredText Language Support for VSCode

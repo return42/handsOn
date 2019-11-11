@@ -8,7 +8,7 @@
 Node.js (development)
 =====================
 
-.. sidebar:: install: Node.js und VSCode
+.. sidebar:: install: Node.js / VSCode
 
    .. code-block:: bash
 
@@ -18,10 +18,9 @@ Für die Entwicklung mit Node.js_ wird eine *globale* Installation benötigt,
 dabei empfiehlt sich die in Kapitel :ref:`nodesource.com` beschriebene
 Installation.  Die *lokale* Installation meint immer die Installation in ein
 Node.js Projekt.  Die *globale* Installation erfolgt immer in das OS (oder
-alternativ in den ``$HOME`` Ordner).
-
-Als Editor für die Node.js Projekte eignet sich VSCode_, dessen empfohlene
-Installation im Kapitel :ref:`install_vscode` beschrieben ist.
+alternativ in den ``$HOME`` Ordner).  Als Editor für die Node.js Projekte eignet
+sich VSCode_, dessen empfohlene Installation im Kapitel :ref:`install_vscode`
+beschrieben ist.
 
 .. toctree::
    :maxdepth: 2

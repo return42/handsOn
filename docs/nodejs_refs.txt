@@ -15,7 +15,14 @@
    https://electronjs.org/
 .. _VSCode Paketquellen:
    https://packages.microsoft.com/repos/vscode
-
+.. _GitLense:
+   https://gitlens.amod.io/
+.. _Vetur:
+   https://vuejs.github.io/vetur/
+.. _vscode-Python:
+   https://github.com/Microsoft/vscode-python
+.. _vscode-reStructuredText:
+   https://github.com/vscode-restructuredtext/vscode-restructuredtext
 
 .. _playground/nodejs-hello:
    https://storage/gitlab/playground/nodejs-hello
@@ -55,5 +62,3 @@
    https://www.youtube.com/watch?v=5lVQgZzLMHc
 .. _Vue-CLI:
    https://cli.vuejs.org/
-.. _Vetur:
-   https://vuejs.github.io/vetur/

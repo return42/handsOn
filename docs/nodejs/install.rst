@@ -14,34 +14,31 @@
 Installation Node.js
 ====================
 
-Die *binaries* des Node.js_ stehen auf der `Download-Seite
-<https://nodejs.org/en/download/>`_ von Node.js_ zur Verfügung.
+.. sidebar:: install: nodejs
 
-Paket Quellen des Ubuntu/Debian
-===============================
+   .. code-block:: bash
+
+      sudo ./nodejs-dev.sh install nodejs
+
+Die *binaries* des Node.js_ stehen auf der `Download-Seite
+<https://nodejs.org/en/download/>`_ von Node.js_ zur Verfügung.  Vor der
+erneuten Installation aus einer anderen Quelle empfiehlt es sich die Pakete
+``nodejs`` und ``npm`` zu deinstallieren, falls sie aus den normalen Ubuntu
+Quellen oder anderweitig schon mal installiert wurden.
+
+Paketquellen des Ubuntu/Debian
+==============================
 
 Über die Paket Quellen des Ubuntu/Debian kann das Paket :deb:`nodejs`
 installiert werden.  In Ubuntu 18.04 ist das beispielsweise Node.js v8.10 und in
 Ubuntu 19.04 ist es Node.js v10.15.  Neuere (oder ältere) Versionen können über
-alternative Paket-Repositories installiert werden (siehe `NodeSource: Node.js
+alternative Paket-Repositorien installiert werden (siehe `NodeSource: Node.js
 Binary Distributions`_).
 
 .. _nodesource.com:
 
 NodeSource: Node.js Binary Distributions
 ========================================
-
-.. sidebar:: ./scripts/nodejs-dev.sh 
-
-   Ein Skript, das die globale NodeJS Installation vornimmt:
-
-   .. code-block:: bash
-
-      sudo ./nodejs-dev.sh install nodejs
-
-   Vor der Installation aus der *NodeSource Node.js Binary Distribution*
-   empfiehlt es sich die Pakete ``nodejs`` und ``npm`` zu deinstallieren (falls
-   sie aus den normalen Ubuntu Quellen schon mal installiert wurden).
 
 NodeSource_ bietet Binary-Pakete für die gängigen Linux Distributionen an, so
 z.B. für die `Debian and Ubuntu based distributions`_, deren dep-Repository für

@@ -8,9 +8,7 @@
 npm Pakete im OS
 ================
 
-.. sidebar:: ./scripts/nodejs-dev.sh 
-
-   Ein Skript, das die globale NodeJS Instalation komplett aktualisiert:
+.. sidebar:: install: global npm Pakete
 
    .. code-block:: bash
 
