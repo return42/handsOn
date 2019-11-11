@@ -53,7 +53,7 @@ Schritte durchführt:
 
 .. code-block:: bash
 
-   $ sudo ./scripts/node_source.sh install
+   $ sudo ./scripts/nodejs-dev.sh install nodejs
 
 1. Deinstallation ggf. konfligierender Pakete
 2. Repository hinzufügen |VER URL|
@@ -68,7 +68,7 @@ möglich:
 
 .. code-block:: bash
 
-   $ sudo ./scripts/install_nodejs.sh deinstall
+   $ sudo ./scripts/nodejs-dev.sh remove nodejs
 
 .. _npm_os_install:
 

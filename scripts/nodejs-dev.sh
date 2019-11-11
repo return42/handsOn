@@ -30,6 +30,13 @@ PACKAGES="\
 NPM_PACKAGES="\
   grunt-cli"
 
+NPM_GLOBAL_PACKAGES="grunt-cli @vue/cli"
+
+VSCODE_PACKAGES="code"
+VSCODE_APT_DEB="https://packages.microsoft.com/repos/vscode"
+VSCODE_APT_NAME="vscode"
+VSCODE_PKEY_URL="https://packages.microsoft.com/keys/microsoft.asc"
+
 # ----------------------------------------------------------------------------
 README(){
 # ----------------------------------------------------------------------------
@@ -44,6 +51,24 @@ https://github.com/nodesource/distributions#debian-and-ubuntu-based-distribution
 
 APT-Katalog aktualisieren und Installation des debian Pakets 'nodejs' aus den
 neuen Paketquellen."
+
+}
+# ----------------------------------------------------------------------------
+usage(){
+# ----------------------------------------------------------------------------
+
+    [[ ! -z ${1+x} ]] &&  echo -e "\n$1"
+    cat <<EOF
+
+usage:
+
+  $(basename $0) install    nodejs|vscode
+  $(basename $0) remove     nodejs|vscode
+
+nodejs:
+vscode:     install Visual-Studio Code from M$
+
+EOF
 }
 
 # ----------------------------------------------------------------------------
@@ -52,28 +77,39 @@ main(){
 # ----------------------------------------------------------------------------
 
     case $1 in
-	install)
-	    sudoOrExit
-            README
-	    info_msg "Ggf. konfligierende Pakete werden deinstalliert ..."
-            waitKEY
-	    apt-get remove -f -y --purge nodejs npm
-            waitKEY
-            addDEB
-            installPackages
-	    ;;
+        install)
+            sudoOrExit
+            case $2 in
+                nodejs)
+		    README
+		    waitKEY
+		    addDEB
+		    installPackages
+		    ;;
+		vscode)
+		    install_vscode
+		    ;;
+                *)
+		    usage $_usage
+		    exit 42
+		    ;;
+            esac ;;
 	remove)
-	    sudoOrExit
-            deinstallPackages
-            removeDEB
-	    ;;
-	README)
-	    README ;;
-	*)
-	    echo
-            echo "usage $0 [install|remove|README]"
-            echo
-            ;;
+            case $2 in
+                nodejs)
+		    deinstallPackages
+		    removeDEB
+		    ;;
+		vscode)
+		    remove_vscode
+		    ;;
+                *)
+		    usage $_usage
+		    exit 42
+		    ;;
+            esac ;;
+	*) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
+           ;;
     esac
 }
 
@@ -128,7 +164,7 @@ installPackages(){
     echo
     waitKEY
     apt-get install -y ${PACKAGES}
-    npm install -g ${NPM_PACKAGES}
+    npm install -g ${NPM_GLOBAL_PACKAGES}
     waitKEY
 }
 
@@ -141,11 +177,73 @@ deinstallPackages(){
     rstPkgList ${PACKAGES}
     echo
     waitKEY
-    npm remove -g ${NPM_PACKAGES}
+    npm remove -g ${NPM_GLOBAL_PACKAGES}
     apt-get remove -y --purge ${PACKAGES}
     apt-get autoremove -y
     apt-get clean
     waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_vscode() {
+    rstHeading "Installation VSCode" section
+# ----------------------------------------------------------------------------
+
+    local FNAME="/etc/apt/sources.list.d/${VSCODE_APT_NAME}.list"
+    local DEB="deb [arch=amd64] ${VSCODE_APT_DEB} stable main"
+
+    rstBlock "Die Installation aus den VSCode Paketquellen ist unter:
+
+https://linuxize.com/post/how-to-install-visual-studio-code-on-debian-9
+
+beschrieben.  Zuerst erfolgt die Installation erforderlicher Pakete um das
+Reposetory von Microsoft später dann einzubinden .."
+
+    aptInstallPackages software-properties-common apt-transport-https curl
+
+    rstHeading "Repository einrichten" section
+    # add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+    # aptAddRepositoryURL "$VSCODE_APT_DEB" "$VSCODE_APT_NAME" main
+
+    echo -e "add: ${Yellow}${DEB}${_color_Off}"
+    echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
+    echo "" > "${FNAME}"
+    echo "# added $(date)" >> "${FNAME}"
+    echo "${DEB}" >> "${FNAME}"
+
+
+    rstHeading "Public-Key für das Repository einrichten" section
+    echo
+    aptAddPkeyFromURL "$VSCODE_PKEY_URL" "${VSCODE_APT_NAME}"
+    waitKEY
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+
+    rstHeading "Installation der Pakete" section
+    aptInstallPackages ${VSCODE_PACKAGES}
+}
+
+# ----------------------------------------------------------------------------
+remove_vscode() {
+    rstHeading "De-Installation VSCode" section
+# ----------------------------------------------------------------------------
+
+    rstHeading "Deinstallation der debian Pakete"
+
+    aptPurgePackages ${VSCODE_PACKAGES}
+
+    rstHeading "Entfernen der Paketquellen von $VSCODE_APT_NAME"
+    echo
+    aptRemoveRepository "$VSCODE_APT_NAME"
+    waitKEY
+
+    rstHeading "Katalog aktualisieren" section
+    echo
+    apt-get update
+    waitKEY
+
 }
 
 # ----------------------------------------------------------------------------
