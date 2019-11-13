@@ -3,6 +3,9 @@
 # list of python packages (folders) or modules (files) of this build
 PYOBJECTS ?=
 
+SITE_PYTHON ?=$(dir $(abspath $(lastword $(MAKEFILE_LIST))))site-python
+export PYTHONPATH := $(SITE_PYTHON):$$PYTHONPATH
+
 # folder where the python distribution takes place
 PYDIST   ?= ./py_dist
 # folder where the python intermediate build files take place
@@ -67,10 +70,8 @@ python-help::
 	@echo  '  make TEST=.          => choose test from $(TEST_FOLDER) (default "." runs all)'
 	@echo  '  make DEBUG=          => target "debug": do not invoke PDB on errors'
 	@echo  '  make PY_SETUP_EXTRAS => also install extras_require from setup.py \[develop,test\]'
-	@echo  'when using target "pydebug", set breakpoints within py-source by adding::'
-	@echo  '    ...'
+	@echo  '  when using target "pydebug", set breakpoints within py-source by adding::'
 	@echo  '    DEBUG()'
-	@echo  '    ...'
 
 # ------------------------------------------------------------------------------
 # OS requirements
