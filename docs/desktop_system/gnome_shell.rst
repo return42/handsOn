@@ -17,7 +17,7 @@ Bedürfnissen weiter angepasst werden.
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem die GNOME
 Shell installiert werden kann::
 
-  $ sudo ./scripts/desktop_system.sh install GNOME
+  $ sudo -H ./scripts/desktop_system.sh install GNOME
 
 Das Skript installiert die, für eine GNOME Shell *empfohlenen Pakete* und *Shell
 Erweiterungen*.  Nachdem die GNOME SHELL installiert ist, kann der `Unity`_
@@ -73,7 +73,7 @@ empfohlene Pakete
   Als Ersatz habe ich mir die Shell Extension tracker-search-provider_
   installiert::
 
-    $ sudo ./scripts/desktop_system.sh install GNOME-ext
+    $ sudo -H ./scripts/desktop_system.sh install GNOME-ext
 
   `GNOME Tracker`_ wird im Allgemeinen über die Desktop-Einstellungen verwaltet,
   dort kann man z.B. einstellen "was" indiziert werden soll. Für weitergehende

@@ -49,7 +49,7 @@ Installation
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem die
 Cinnamon Desktop Umgebung installiert werden kann::
 
-  $ sudo ./scripts/desktop_system.sh install cinnamon
+  $ sudo -H ./scripts/desktop_system.sh install cinnamon
 
 Mit dem oben stehenden Skript wird das Paket :deb:`cinnamon-desktop-environment`
 installiert. Das Paket umfasst den Cinnamon Desktop der recht *schlank* ist. Der
@@ -61,4 +61,4 @@ De-Installation
 
 Zur De-Installation eignet sich::
 
-  $ sudo ./scripts/desktop_system.sh remove cinnamon
+  $ sudo -H ./scripts/desktop_system.sh remove cinnamon

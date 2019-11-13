@@ -16,7 +16,7 @@ Betrieb einer Site oder aber auch Ordnerstrukturen, wie z.B. HTML Dokumente.
 
 .. code-block:: bash
 
-   sudo a2ensite static-content
+   sudo -H a2ensite static-content
 
 Die Installation dieser *Static-Site* wird empfohlen, da auch noch weitere
 Setups (z.B. :ref:`xref_site_expimp` oder :ref:`xref_site_webshare`) von diesem
@@ -198,9 +198,9 @@ Konfiguration ersetzt wird.
 
 .. code-block:: bash
 
-   sudo mv autoindex.conf autoindex.conf-disabled
-   sudo a2enconf autoindex
-   sudo a2enmod autoindex
+   sudo -H mv autoindex.conf autoindex.conf-disabled
+   sudo -H a2enconf autoindex
+   sudo -H a2enmod autoindex
 
 In der ``autoindex.conf`` wird das Setup für die Anzeige der Ordnerinhalte
 konfiguriert. Hier ein Auszug:

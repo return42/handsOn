@@ -23,7 +23,7 @@ erforderlichen Schritte für eine Installation durchführen.
 
 .. code-block:: bash
 
-   $ sudo ./scripts/mozcloud_setup.sh installMozCloudEnv
+   $ sudo -H ./scripts/mozcloud_setup.sh installMozCloudEnv
    $ sudo -i -u mozcloud
    mozcloud$ ${SCRIPT_FOLDER}/mozcloud_fxsync.sh installSyncServer
 
@@ -35,7 +35,7 @@ Die oben durchgeführte Installation besteht aus folgenden Schritten:
 
 .. code-block:: bash
 
-   sudo apt-get install python-dev git-core python-virtualenv g++
+   sudo -H apt-get install python-dev git-core python-virtualenv g++
 
 2. Es muss ein System-Benutzer (``mozcloud``) für die Cloud Dienste angelegt
    werden (siehe :ref:`xref_mozcloud_setup`). Es wird in den Account dieses
@@ -265,7 +265,7 @@ Installation durchgeführt werden kann.
 
 .. code-block:: bash
 
-   $ sudo ./scripts/mozcloud.sh installApacheSite
+   $ sudo -H ./scripts/mozcloud.sh installApacheSite
 
 Die oben durchgeführte Installation besteht aus einer *Site*, die in der Datei
 

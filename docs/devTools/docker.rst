@@ -18,7 +18,7 @@ Eine Beschreibung befindet sich im Kapitel :ref:`xref_docker`.  APT Paket(e):
 Mit dem APT Paket :deb:`docker.io` wird die Gruppe `docker` eingerichtet. Damit
 ein Benutzer Docker verwenden kann, muss er zu dieser Gruppe hinzgefügt werden::
 
-  $ sudo adduser <user-login> docker
+  $ sudo -H adduser <user-login> docker
 
 Docker selbst läuft als Dienst und wird beim booten automatisch gestartet
 (s.a. dockerd_).  Die *Arbeitsdaten* wie z.B. die Images werden unter

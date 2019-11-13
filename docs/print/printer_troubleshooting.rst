@@ -61,8 +61,8 @@ CUPS Server debug
 Der CUPS Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
 werden.::
 
-   sudo systemctl restart cups
-   sudo journalctl --no-pager -u cups
+   sudo -H systemctl restart cups
+   sudo -H journalctl --no-pager -u cups
 
 Das Debug-LOG zum CUPS Dienst kann über die Kommandozeile aktiviert/de-aktiviert
 werden::
@@ -113,8 +113,8 @@ Druck-Diensten (andere CUPS-Server) und stellt diese dem Client zur Verfügung.
 Der CUPS Browser Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
 werden.::
 
-   sudo systemctl restart cups-browsed
-   sudo journalctl --no-pager -u cups-browsed
+   sudo -H systemctl restart cups-browsed
+   sudo -H journalctl --no-pager -u cups-browsed
 
 Wird der IPP-fähige Drucker (oder der *zentrale CUPS Server*) im Netzwerk nicht
 automatisch erkannt, so kann es bei der Fehlersuche hilfreich sein, das
@@ -142,7 +142,7 @@ Mit der folgenden Einstellung::
 wird ein Debug-LOG in der Datei ``/var/log/cups/cups-browsed_log`` angelegt,
 sobald der Dienst neu gestartet wurde::
 
-  $ sudo systemctl restart cups-browsed
+  $ sudo -H systemctl restart cups-browsed
 
 
 .. _debug_dump_to_file:
@@ -159,7 +159,7 @@ Um die Ausgabe auf den Drucker in eine Datei umzuleiten muss in der Datei
 
 Danach den CUPS Dienst neu starten::
 
-  sudo systemctl restart cups
+  sudo -H systemctl restart cups
 
 In der :ref:`GUI <figure-cups-system-config-printer-gui>` sollte der bestehende
 Drucker kopiert werden.  Hier im Beispiel wird der ``CNM620C-Series-DUMP`` durch
@@ -240,7 +240,7 @@ Kommando ``cupsfilter``
 Mit dem Kommando :man:`cupsfilter` (aus dem Pakte :deb:`cups`) und der Option
 ``--list-filters`` können die verwendeten Filter angezeigt werden::
 
-  $ sudo cupsfilter --list-filters \
+  $ sudo -H cupsfilter --list-filters \
       -m image/pwg-raster \
       -p CNMF620C-Series.ppd \
       Test-Dateien/PDF-test.pdf
@@ -261,7 +261,7 @@ erkannt werden.
    das LOG für einen solchen Auftrag, dann ermittelt :man:`cupsfilter` immer als
    Zieldatei-Typ ``application/vnd.cups-postscript`` (keine Ahnung, warum)::
 
-     $ sudo cupsfilter --list-filters \
+     $ sudo -H cupsfilter --list-filters \
          -m printer/CNMF620C-Series \
 	 -p /etc/cups/ppd/CNMF620C-Series.ppd \
 	 Test-Dateien/PDF-test.pdf
@@ -275,7 +275,7 @@ Lässt man die Option ``--list-filters`` weg, so bekommt man auf ``stdout`` die
 Daten, de an den Drucker gesendet werden, auf ``stderr`` bekommt man ein
 ausführliches LOG dazu::
 
-  $ sudo cupsfilter \
+  $ sudo -H cupsfilter \
       -m image/pwg-raster \
       -p CNMF620C-Series.ppd \
       Test-Dateien/PDF-test.pdf  > Test-Dateien/PDF-test.pwg

@@ -145,7 +145,7 @@ pi-hole direkt einzutragen.  Dazu meldet man sich an der pi-hole via ssh an
   ssh pi@192.168.1.118
   pi@192.168.1.118's password: ....
 
-  $ sudo nano /etc/hosts
+  $ sudo -H nano /etc/hosts
 
 Meist steht am Anfang der ``/etc/hosts`` so was wie::
 

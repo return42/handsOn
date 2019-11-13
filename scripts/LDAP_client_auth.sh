@@ -732,7 +732,7 @@ main(){
             # probe client config
             probe_LDAP_server
             info_msg "Erst mal einen Reboot machen, danach noch ein Test::"
-            info_msg "   sudo $0 probe"
+            info_msg "   sudo -H $0 probe"
             ;;
         deinstall)
 	    sudoOrExit

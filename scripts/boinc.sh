@@ -204,9 +204,9 @@ ${_color_Off}
 Ich empfehle deshalb die System-D Unit 'boinc-client.service' ganz zu
 deinstallieren::
 ${BYellow}
-    $ sudo systemctl disable boinc-client.service
-    $ sudo mv -f /lib/systemd/system/boinc-client.service /lib/systemd/system/boinc-client.service.bak
-    $ sudo systemctl daemon-reload
+    $ sudo -H systemctl disable boinc-client.service
+    $ sudo -H mv -f /lib/systemd/system/boinc-client.service /lib/systemd/system/boinc-client.service.bak
+    $ sudo -H systemctl daemon-reload
 ${_color_Off}
 Wenn es keine System-D Unit für den boinc-client gibt, wird über das System-D
 mit dem 'systemd-sysv-generator' [2] das init.d-Skript als generischer Dienst

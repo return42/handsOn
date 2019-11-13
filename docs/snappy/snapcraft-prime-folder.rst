@@ -32,7 +32,7 @@ Nachdem das snap erzeugt ist kann man es wieder installieren::
     [...]
     Snapped hello_2.10_amd64.snap
 
-    ~/hello$ sudo snap install --devmode hello_2.10_amd64.snap
+    ~/hello$ sudo -H snap install --devmode hello_2.10_amd64.snap
 
     hello 2.10 installed
 
@@ -47,7 +47,7 @@ besonders für Entwickler-Szenarien eigent. Der Build kürzt sich damit zu
   Skipping build gnu-hello (already ran)
   Skipping stage gnu-hello (already ran)
 
-  ~/hello$ sudo snap try --devmode prime/
+  ~/hello$ sudo -H snap try --devmode prime/
   hello 2.10 mounted from ~/hello/prime
 
 An der letzten Ausgabe ist zu erkennen, dass das snap-Paket ``hello`` aus dem
@@ -60,5 +60,5 @@ immer nur noch den ``./prime/`` Ordner bauen und installieren:
 
     ~/hello$ snapcraft prime
     [...]
-    ~/hello$ sudo snap try --devmode prime/
+    ~/hello$ sudo -H snap try --devmode prime/
 

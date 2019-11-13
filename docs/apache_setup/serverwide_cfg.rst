@@ -352,12 +352,12 @@ vorgenommen wurden, sollte man satt nur den *Reload* zu machen besser einen
 
 .. code-block:: bash
 
-  sudo a2ensite 000-default.conf default-ssl.conf
-  sudo a2enconf security authnz_external
-  sudo service apache2 restart
+  sudo -H a2ensite 000-default.conf default-ssl.conf
+  sudo -H a2enconf security authnz_external
+  sudo -H service apache2 restart
 
   # bei kleineren Änderungen reicht ein Reload
-  sudo service apache2 reload
+  sudo -H service apache2 reload
 
 Zum Testen des Redirects kann auf der Komandozeile das :man:`curl` Kommando
 genutzt werden. Das ``curl`` Kommando eignet sich eigentlich zum Download von

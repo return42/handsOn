@@ -13,7 +13,7 @@ durchführt.
 
 .. code-block:: bash
 
-   $ sudo ./scripts/ubuntu_remove_pkgs.sh
+   $ sudo -H ./scripts/ubuntu_remove_pkgs.sh
 
 Ubuntu typische Pakete
 ======================

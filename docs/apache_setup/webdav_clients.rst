@@ -242,5 +242,5 @@ Folgend ein paar Erfahrungswerte.
    ein und löscht überflüssige Dateien aus dem Ordner
    ``/share/WEBSHARE/Calendar/``::
 
-     $ sudo rm /share/WEBSHARE/Calendar/xyz.ics
+     $ sudo -H rm /share/WEBSHARE/Calendar/xyz.ics
 

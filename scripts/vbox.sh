@@ -493,7 +493,7 @@ check_vboxuser_grp(){
 eingerichtet. Damit ein Benutzer VirtualBox nutzen kann, muss er zu dieser
 Gruppe gehören::
 
-  sudo usermod -a -G ${VBOXUSERS_GROUP} username
+  sudo -H usermod -a -G ${VBOXUSERS_GROUP} username
 
 Siehe Kapitel 'The vboxusers group' https://www.virtualbox.org/manual/ch02.html
 "

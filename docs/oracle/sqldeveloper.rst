@@ -54,13 +54,13 @@ Der SQL-Developer benötigt ein JDK, ich habe mich für `OpenJDK
 <https://openjdk.java.net/>`_ entschieden, weil das bereits in den Paketquellen
 des `Oracle Linux`_ mit drin ist::
 
-  sudo yum install java-1.8.0-openjdk-devel
+  sudo -H yum install java-1.8.0-openjdk-devel
 
 Für den SQL-Developer das RPM Paket runter laden: `SQL Developer Downloads`_ und
 installieren::
 
   $ cd Download
-  $ sudo yum localinstall sqldeveloper-*.noarch.rpm
+  $ sudo -H yum localinstall sqldeveloper-*.noarch.rpm
 
 Danach einmal auf der Kommandozeile starten::
 
@@ -111,9 +111,9 @@ und danach die Pakete bauen::
 Diese selbst-gebauten Pakete kann man sich dann installieren.  Bei der
 Installation wird vom SQL-Developer noch ein JDK erwartet::
 
-   $ sudo apt install default-jdk
-   $ sudo dpkg -i libjnidispatch-19.2.1.247.2212_4.2.2+0.5.4-1_amd64.deb
-   $ sudo dpkg -i sqldeveloper-19.2.1.247.2212_19.2.1.247.2212+0.5.4-1_all.deb
+   $ sudo -H apt install default-jdk
+   $ sudo -H dpkg -i libjnidispatch-19.2.1.247.2212_4.2.2+0.5.4-1_amd64.deb
+   $ sudo -H dpkg -i sqldeveloper-19.2.1.247.2212_19.2.1.247.2212+0.5.4-1_all.deb
 
 Initial empfiehlt es sich, den SQL-Developer einmal auf der Kommandozeile zu
 starten und falls erforderlich einmal den Pfad zum JDK eingeben.  Bei obiger

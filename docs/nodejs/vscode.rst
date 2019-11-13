@@ -12,7 +12,7 @@ Visual Studio Code
 
    .. code-block:: bash
 
-      $ sudo ./nodejs-dev.sh install vscode
+      $ sudo -H ./nodejs-dev.sh install vscode
 
 Visual Studio Code (VSCode_) ist ein freier Quelltext-Editor von Microsoft
 (basierend auf ElectronJS_).  Er kann über die `Dowload-Seite
@@ -54,7 +54,7 @@ Mit dem ``./scripts/nodejs-dev.sh`` geht es wesentlich einfacher:
 
 .. code-block:: bash
 
-   $ sudo ./scripts/nodejs-dev.sh [install|update|remove] vscode
+   $ sudo -H ./scripts/nodejs-dev.sh [install|update|remove] vscode
 
 .. _vscode_plugins:
 

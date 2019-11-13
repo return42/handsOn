@@ -54,7 +54,7 @@ CONFIG_BACKUP_ENCRYPTED=(
 # Ich würde die Reposetories sichern, indem ich Clone davon anlege. Den Rest
 # kann man dann z.B. wie folgt machen::
 #
-#     sudo gitlab-rake gitlab:backup:create SKIP=repositories
+#     sudo -H gitlab-rake gitlab:backup:create SKIP=repositories
 #
 # Oder man macht ein rsync der gesammten Installationsdaten unter
 # /var/opt/gitlab/ was vermutlich am einfachsten ist (und mit Hardlinks
@@ -206,7 +206,7 @@ GitLab benötigt den SMTP Server postfix, der derzeit noch nicht installiert ist
 Die postfix Installation kann über das Script 'postfix.sh' vorgenommen werden
 (siehe auch 'dovecot.sh'). Alternativ kann jetzt eine einfache Installation via
 
-  sudo apt-get install postfix
+  sudo -H apt-get install postfix
 
 vorgenommen werden, bei der 'Nur lokal' ausgewählt werden sollte."
 

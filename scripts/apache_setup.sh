@@ -599,7 +599,7 @@ i.A. kein Sicherheitsrisiko dar und sollte am besten einfach installiert
 bleiben.  Wenn die hello-Seite später nicht mehr gewünscht ist und unbedingt weg
 soll, kann sie auch wieder deaktiviert werden::
 
-  sudo a2dissite ${APACHE_HELLO_SITE}
+  sudo -H a2dissite ${APACHE_HELLO_SITE}
 "
 
     waitKEY
@@ -716,7 +716,7 @@ Verfügung, die mit diesem Skript installiert werden. Die Installation erfolgt
 nach 'DocumentRoot' (siehe apache.conf).  Die Startseite ist nur *exemplarisch*
 und kann bei Bedarf auch wieder deaktiviert werden::
 
-  sudo a2dissite ${HTML_INTRO_SITE}"
+  sudo -H a2dissite ${HTML_INTRO_SITE}"
 
     if askYn "Soll die HTML Startseite installiert werden?"; then
 
@@ -742,7 +742,7 @@ site_sysdoc(){
 Entwickler-Umgebung installiert werden. Die sysdoc-Site kann bei Bedarf auch
 wieder deaktiviert werden::
 
-  sudo a2dissite ${SYSDOC_SITE}
+  sudo -H a2dissite ${SYSDOC_SITE}
 
 ${BRed}Nicht im Internet freigeben!${_color_Off}."
 
@@ -772,8 +772,8 @@ WEB-Browser zu navigieren.  Die Installation wird empfohlen, da auch noch
 weitere Setups die ${SITE} benötigen. Autoindex als auch ${SITE} können
 abgeschaltet werden::
 
-  sudo a2dismod autoindex
-  sudo a2dissite ${SITE}"
+  sudo -H a2dismod autoindex
+  sudo -H a2dissite ${SITE}"
 
     if ! askYn "Soll die *Site* ${SITE} eingerichtet werden?"; then
         return 42
@@ -812,7 +812,7 @@ ExpImp-Konfiguration nicht ohne weiteres ins Internet stellen.
 Man kann die Konfiguration später aber auch wieder zurück nehmen, indem man die
 Site deaktiviert.::
 
-  sudo a2dissite ${SITE}
+  sudo -H a2dissite ${SITE}
 
 ${BRed}Nicht im Internet freigeben!${_color_Off}."
 
@@ -842,11 +842,11 @@ site_webshare() {
 Internet betreiben! Man kann die Konfiguration später aber auch wieder zurück
 nehmen, indem man die Site deaktiviert::
 
-  sudo a2dissite ${SITE}
+  sudo -H a2dissite ${SITE}
 
-  sudo a2dismod dav
+  sudo -H a2dismod dav
 
-  sudo a2dismod dav_fs
+  sudo -H a2dismod dav_fs
 
 ${BRed}Nicht im Internet freigeben!${_color_Off}."
 
@@ -890,7 +890,7 @@ PHP-Anwendungen installiert werden.  Das Setup des ${PHP_APPS} Ordners ist
 exemplarisch und sollte nicht ohne weiteres ins Internet gestellt werden. Das
 Setup kann deinstalliert werden::
 
-  sudo ${0} remove PHP"
+  sudo -H ${0} remove PHP"
 
     if ! askYn "Soll PHP für Apache installiert werden?"; then
         return 42
@@ -955,8 +955,8 @@ werden!${_color_Off}
 
 Zur DEINSTALLATION folgendes verwenden::
 
-  sudo a2dissite ${PHP_TEST_SITE}
-  sudo rm -rf ${PHP_TEST_TEMPLATE}
+  sudo -H a2dissite ${PHP_TEST_SITE}
+  sudo -H rm -rf ${PHP_TEST_TEMPLATE}
 "
 
     if askNy "Soll die php-Test Site installiert werden?"; then
@@ -986,7 +986,7 @@ dieser Umgebung werden eine Reihe von Python Modulen vorinstalliert.
 Das Setup des ${WSGI_APPS} Ordners ist exemplarisch und sollte nicht ohne
 weiteres ins Internet gestellt werden. Das Setup kann deinstalliert werden::
 
-  sudo ${0} remove WSGI"
+  sudo -H ${0} remove WSGI"
 
     if ! askYn "Soll WSGI für Apache installiert werden?"; then
         return 42
@@ -1039,7 +1039,7 @@ install_pyenv(){
 
     if [[ ! -x /etc/bash_completion.d/pip ]] ; then
         rstBlock "Richte shell completion für pip ein."
-        pip3 completion --bash | sudo tee /etc/bash_completion.d/pip > /dev/null
+        pip3 completion --bash | sudo -H tee /etc/bash_completion.d/pip > /dev/null
     fi
 
     rstBlock "Es werden die gängigen pip-Pakete installiert, mit denen
@@ -1076,8 +1076,8 @@ werden!${_color_Off}
 
 Zur DEINSTALLATION folgendes verwenden::
 
-  sudo a2dissite ${WSGI_TEST_SITE}
-  sudo rm -rf ${WSGI_TEST_TEMPLATE}
+  sudo -H a2dissite ${WSGI_TEST_SITE}
+  sudo -H rm -rf ${WSGI_TEST_TEMPLATE}
 "
 
     if askNy "Soll die WSGI-Test Site installiert werden?"; then

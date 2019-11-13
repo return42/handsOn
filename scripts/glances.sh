@@ -184,7 +184,7 @@ assert_user(){
     rstHeading "Benutzer $GLANCES_USER" section
     echo
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-sudo adduser --shell /usr/sbin/nologin --disabled-password --home $GLANCES_HOME --gecos 'Glances' $GLANCES_USER
+sudo -H adduser --shell /usr/sbin/nologin --disabled-password --home $GLANCES_HOME --gecos 'Glances' $GLANCES_USER
 groups $GLANCES_USER
 EOF
     export GGLANCES_HOME="$(sudo -i -u $GLANCES_USER echo \$HOME)"

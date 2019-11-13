@@ -20,7 +20,7 @@ Konfiguration unter ``/etc/cups``::
 Nimmt man Änderungen direkt an einer PPD Datei vor, so sollte man den CUPS
 Dienst neu starten, damit dieser die neuen Einstellungen übernimmt::
 
-  sudo systemctl restart cups
+  sudo -H systemctl restart cups
 
 Werden Änderungen über die :ref:`GUI <figure-cups-system-config-printer-gui>`
 vorgenommen, so ist ein Neustart des Dienstes nicht erforderlich.
@@ -115,7 +115,7 @@ geprüft werden, mir ist beispielsweise aufgefallen, dass z.B. die Einträge wie
 ``*PageSize 3x5/3 x 5":`` vor dem Doppelpunkt noch einen überflüssigen
 Anführungsstrich besitzen.::
 
-  $ sudo grep --color '^*[^:]*\":'  /etc/cups/ppd/CNMF620C-Series-driverless.ppd
+  $ sudo -H grep --color '^*[^:]*\":'  /etc/cups/ppd/CNMF620C-Series-driverless.ppd
   ...
   *PageSize 3x5/3 x 5": "<</PageSize[216 360]>>setpagedevice"
   !!! ~~~~~~~~~~~~~~~^~~~~ die Anführungsstriche gehören dort nicht hin !!!
@@ -124,12 +124,12 @@ Es ist auch möglich, die PDD Datei zu prüfen, hierzu gibt es das Kommando
 ``cupstestppd`` was allerdings auch nicht in der Lage ist den obigen Fehler mit
 dem Anführungsstrich zu finden::
 
-  $ sudo cupstestppd  /etc/cups/ppd/CNMF620C-Series.ppd
+  $ sudo -H cupstestppd  /etc/cups/ppd/CNMF620C-Series.ppd
   /etc/cups/ppd/CNMF620C-Series.ppd: PASS
         WARN    Size "A4" should be the Adobe standard name "A4.Fullbleed".
 	...
 
-  $ sudo cupstestppd  /etc/cups/ppd/MF623C-TWF19694.ppd
+  $ sudo -H cupstestppd  /etc/cups/ppd/MF623C-TWF19694.ppd
   /etc/cups/ppd/MF623C-TWF19694.ppd: PASS
         WARN    PCFileName longer than 8.3 in violation of PPD spec.
                 REF: Pages 61-62, section 5.3.

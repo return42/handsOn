@@ -32,7 +32,7 @@ muss man sich die Pakete installieren, die für den Build erforderlich sind:
 
 .. code-block:: bash
 
-   sudo apt-get install build-essential cmake zlib1g-dev \
+   sudo -H apt-get install build-essential cmake zlib1g-dev \
                 qt5-default libusb-1.0-0-dev libgl1-mesa-glx \
                 libgl1-mesa-dev git
 
@@ -104,7 +104,7 @@ Abfrage des  Partition Information Table (kurz PIT):
 
 .. code-block:: bash
 
-   $ sudo ./bin/heimdall print-pit --no-reboot > my_samsung_device_PIT.txt
+   $ sudo -H ./bin/heimdall print-pit --no-reboot > my_samsung_device_PIT.txt
 
 Die Option ``--no-reboot`` verhindert, dass das Gerät neu gebootet wird. Will
 man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.

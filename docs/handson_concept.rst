@@ -140,7 +140,7 @@ Beim Einrichten der Anwendungen werden i.d.R. Konfigurationsdateien z.B. unter
 ``/etc`` angepasst.  Diese Config-Dateien können mit dem Backup-Script gesichert
 werden::
 
-  $ sudo ./scripts/backup_config.sh
+  $ sudo -H ./scripts/backup_config.sh
 
 .. _CONFIG_BACKUP_ENCRYPTED:
 .. _CONFIG_BACKUP:

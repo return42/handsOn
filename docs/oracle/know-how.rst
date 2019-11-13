@@ -19,12 +19,12 @@ EPEL-Pakete basieren in der Regel auf ihren Fedora-Pendants konfligieren aber
 nicht mit den Paketen in den Basis-Enterprise Linux-Distributionen (es werden
 auch keine ersetzt).::
 
-   sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-   sudo yum update
+   sudo -H yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+   sudo -H yum update
 
 .. code-block:: none
 
-   $ sudo yum repolist
+   $ sudo -H yum repolist
 
    Geladene Plugins: langpacks, ulninfo
    Repo-ID           Repo-Name:                                                      Status

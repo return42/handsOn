@@ -46,7 +46,7 @@ aus:
 
 1. Es werden die minimal erforderlichen Systempakete (APT) installiert::
 
-     sudo apt install virtualenv python3 python3-dev
+     sudo -H apt install virtualenv python3 python3-dev
 
 2. Es wird der Benutzer ``$GLANCES_USER`` (``glances``) angelegt. Sein ``$HOME``
    ist ``/home/glances`` und in diesen Ordner wird alles weitere installiert.
@@ -57,8 +57,8 @@ aus:
    :origin:`/lib/systemd/system/glances.service <templates/lib/systemd/system/glances.service>`
    im systemd_ eingerichtet::
 
-     sudo systemctl enable glances.service
-     sudo systemctl restart glances.service
+     sudo -H systemctl enable glances.service
+     sudo -H systemctl restart glances.service
 
    Die Ersetzungen sind::
 
@@ -82,10 +82,10 @@ aus:
 
    Proxy und glances.conf aktivieren::
 
-     sudo a2enmod proxy_http
-     sudo a2ensite -q glances
-     sudo apachectl configtest
-     sudo service apache2 force-reload
+     sudo -H a2enmod proxy_http
+     sudo -H a2ensite -q glances
+     sudo -H apachectl configtest
+     sudo -H service apache2 force-reload
 
 Damit ist der Dienst (Glances WEB-UI) eingerichtet, er kann über die URL
 https://myhostname/glances erreicht werden.  Die Refresh-Rate kann in Sekunden
@@ -102,7 +102,7 @@ klicken um es zu aktivieren).
 Für die Installation der Sensoren empfiehlt sich die Installation der Hardware
 Tools (aber nicht auf einem V-Server)::
 
-  sudo ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh hwTools
+  sudo -H ${SCRIPT_FOLDER}/ubuntu_install_pkgs.sh hwTools
 
 
 

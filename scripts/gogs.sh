@@ -230,9 +230,9 @@ assert_user(){
     rstHeading "Benutzer $GOGS_USER" section
     echo
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-sudo adduser --shell /bin/bash --system --home $GOGS_HOME --group --gecos 'Gogs' $GOGS_USER
+sudo -H adduser --shell /bin/bash --system --home $GOGS_HOME --group --gecos 'Gogs' $GOGS_USER
 ls -la /etc/shadow
-sudo usermod -a -G shadow $GOGS_USER
+sudo -H usermod -a -G shadow $GOGS_USER
 groups $GOGS_USER
 EOF
     export GOGS_HOME="$(sudo -i -u $GOGS_USER echo \$HOME)"

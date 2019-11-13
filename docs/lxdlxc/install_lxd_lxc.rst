@@ -14,7 +14,7 @@ Eine Installation mit dem Paketmanager APT wäre z.B:
 
 .. code-block:: bash
 
-  $ sudo apt install lxd lxd-client
+  $ sudo -H apt install lxd lxd-client
 
 Alternativ besteht die Möglichkeit über die Paketverwaltung :ref:`snap <snap>`
 die erforderlichen Pakete zu installieren:
@@ -29,7 +29,7 @@ werden.
 
 .. code-block:: bash
 
-   $ sudo lxd init
+   $ sudo -H lxd init
 
 Weitere Hinweise siehe: `LXD 2.0: Installing and configuring LXD
 <https://insights.ubuntu.com/2016/03/16/lxd-2-0-installing-and-configuring-lxd-212/>`_

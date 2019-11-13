@@ -8,7 +8,7 @@ snapcraft Intro
 
 Installation der snap Infrastruktur (s.a `install snapd`_)::
 
-  sudo apt install snapd snapcraft build-essential
+  sudo -H apt install snapd snapcraft build-essential
 
 Für den Build Prozess der Pakete wird ``snapcraft`` benötigt, die Tools aus dem
 apt-Paket ``build-essential`` werden i.d.R. auch gebraucht, wenn man snap-Pakete
@@ -67,7 +67,7 @@ Snap Installieren:
 
 .. code-block:: bash
 
-    ~/hello$ sudo snap install --devmode hello_2.10_amd64.snap
+    ~/hello$ sudo -H snap install --devmode hello_2.10_amd64.snap
 
     hello 2.10 installed
 

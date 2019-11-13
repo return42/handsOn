@@ -91,4 +91,4 @@ chooseDM
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem ein
 Display-Manager ausgewählt werden kann::
 
-  $ sudo ./scripts/desktop_system.sh chooseDM
+  $ sudo -H ./scripts/desktop_system.sh chooseDM

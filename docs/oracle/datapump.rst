@@ -184,8 +184,8 @@ verwaltet und mit `CREATE DIRECTORY`_ angelegt (siehe auch `Understanding Dump,
 Log, and SQL File Default Locations`_).  Einrichten eines Ordners auf dem DB
 Host::
 
-  oracle@dbhost $ sudo mkdir -p /HOST/share/oracle_impexp
-  oracle@dbhost $ sudo chown -R oracle:oinstall /HOST/share/oracle_impexp
+  oracle@dbhost $ sudo -H mkdir -p /HOST/share/oracle_impexp
+  oracle@dbhost $ sudo -H chown -R oracle:oinstall /HOST/share/oracle_impexp
 
 Als ``sysdba`` anmelden und den Ordner in der Oracle Instanz einrichten.  Bei
 PDBs muss man noch in den Container wechseln und die Zugriffsrechte explizit

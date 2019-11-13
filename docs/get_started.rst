@@ -22,7 +22,7 @@ die Installation auch manuell vorgenommen werden, auch hierbei ist git_
 erforderlich.::
 
    git clone https://github.com/return42/handsOn.git
-   sudo handsOn/scripts/ubuntu_install_pkgs.sh base
+   sudo -H handsOn/scripts/ubuntu_install_pkgs.sh base
 
 Bei dem ersten Aufruf eines der Skripte wird eine :term:`.config` Datei sowie ein
 Ordner eingerichtet.  In dem Ordner werden die Konfigurationen gesichert (siehe

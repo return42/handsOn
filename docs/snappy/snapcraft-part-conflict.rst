@@ -69,5 +69,5 @@ Um nur den Build abzuräumen:
   Staging gnu-hello 
   Priming gnu-bash 
   Priming gnu-hello 
-  ~/hello$ sudo snap try --devmode prime/
+  ~/hello$ sudo -H snap try --devmode prime/
 

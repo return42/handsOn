@@ -12,7 +12,7 @@ Node.js (development)
 
    .. code-block:: bash
 
-      $ sudo ./nodejs-dev.sh install all
+      $ sudo -H ./nodejs-dev.sh install all
 
 Für die Entwicklung mit Node.js_ wird eine *globale* Installation benötigt,
 dabei empfiehlt sich die in Kapitel :ref:`nodesource.com` beschriebene

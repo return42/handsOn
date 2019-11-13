@@ -37,4 +37,4 @@ Die in den einzelnen Abschnitten vorgestellten Pakete können mit dem Skript
 
 .. code-block:: bash
 
-   $ sudo ./scripts/ubuntu_install_pkgs.sh devTools
+   $ sudo -H ./scripts/ubuntu_install_pkgs.sh devTools

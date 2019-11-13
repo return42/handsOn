@@ -73,7 +73,7 @@ MARIADB_PACKAGES="\
 "
 MARIADB_DATA_FOLDER=/var/lib/mysql
 
-# sudo mariadb -u root
+# sudo -H mariadb -u root
 # https://mariadb.com/kb/en/library/authentication-plugin-unix-socket/
 
 
@@ -125,7 +125,7 @@ root-Anmeldung an der DB erfolgt als root Benutzer des localhost ohne weitere
 Passwort-Abfrage.  So kann man sich dann mittels sudo an der DB als root (User
 der DB) anmelden, ohne dass man dafür ein Passwort eingeben muss::
 
-  sudo mariadb
+  sudo -H mariadb
 "
 
     rstHeading "DB-Server mariaDB" section
@@ -373,7 +373,7 @@ entfernt werden ..."
 
 
 sql_SELECT_EXISTS_FROM(){
-    local retVal=$(sudo mariadb -sse "SELECT EXISTS( SELECT 1 FROM ${1})" )
+    local retVal=$(sudo -H mariadb -sse "SELECT EXISTS( SELECT 1 FROM ${1})" )
     [[ $retVal == "1" ]]
 }
 
@@ -408,7 +408,7 @@ setup_nextCloud_DB(){
 Es wird später noch benötigt / ${BRed}merken!${_color_Off}"
 	askPassphrase "  password"
 	NEXTCLOUD_DB_PWD="$passphrase"
-	TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+	TEE_stderr <<EOF | sudo -H mariadb --table | prefix_stdout
 CREATE USER '${NEXTCLOUD_DB_USER}'@'${NEXTCLOUD_DB_HOST}' IDENTIFIED BY '${NEXTCLOUD_DB_PWD}';
 quit
 EOF
@@ -424,7 +424,7 @@ EOF
 	#
 	# Die Doku ist z.T. nicht ganz aktuell: man sollte bei neuen Datenbanken
 	# immer 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci' wählen!
-	TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+	TEE_stderr <<EOF | sudo -H mariadb --table | prefix_stdout
 CREATE DATABASE IF NOT EXISTS ${NEXTCLOUD_DB_NAME} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 quit
 EOF
@@ -432,7 +432,7 @@ EOF
     waitKEY
 
     info_msg "Zugriffsrechte DB-Benutzers (${NEXTCLOUD_DB_USER}) auf DB (${NEXTCLOUD_DB_NAME}) "
-    TEE_stderr <<EOF | sudo mariadb --table | prefix_stdout
+    TEE_stderr <<EOF | sudo -H mariadb --table | prefix_stdout
 GRANT ALL PRIVILEGES ON ${NEXTCLOUD_DB_NAME}.* TO '${NEXTCLOUD_DB_USER}'@'${NEXTCLOUD_DB_HOST}';
 quit
 EOF

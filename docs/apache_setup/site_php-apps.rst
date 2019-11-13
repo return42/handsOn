@@ -30,18 +30,18 @@ Mit dem Kommando ``installPHP`` werden die folgenden Schritte ausgeführt.
 .. code-block:: bash
 
    $ apt-get install php php-sqlite libapache2-mod-php
-   $ sudo mkdir /var/www/phpApps
+   $ sudo -H mkdir /var/www/phpApps
 
-   $ sudo a2ensite php-apps
-   $ sudo service apache2 reload
+   $ sudo -H a2ensite php-apps
+   $ sudo -H service apache2 reload
 
 * Es wird eine Test-Seite ( https://localhost/hello.php ) eingrichtet
   (:ref:`xref_php_apps_hello_php`).
 
 .. code-block:: bash
 
-   $ sudo ap2ensite hello_php
-   $ sudo service apache2 reload
+   $ sudo -H ap2ensite hello_php
+   $ sudo -H service apache2 reload
 
 De-Installation
 ===============

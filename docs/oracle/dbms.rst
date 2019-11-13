@@ -17,7 +17,7 @@ Oracle DBMS Setup
 Folgend wird die (im Okt. 2019) aktuelle Oracle DB Version 19c_ installiert.
 Zuvor muss das `Oracle Preinstallation RPM (19c)`_ installiert werden::
 
-  sudo yum install oracle-database-preinstall-19c.x86_64
+  sudo -H yum install oracle-database-preinstall-19c.x86_64
   ...
   reboot
 
@@ -53,9 +53,9 @@ werden.
    :class: clear-both
 
    [user@localhost ~]$ cd ~/Downloads
-   [user@localhost ~]$ sudo yum -y localinstall oracle-database-ee-19c-1.0-1.x86_64.rpm
+   [user@localhost ~]$ sudo -H yum -y localinstall oracle-database-ee-19c-1.0-1.x86_64.rpm
    ...
-   [user@localhost ~]$ sudo passwd oracle
+   [user@localhost ~]$ sudo -H passwd oracle
 
 Bei der Installation des RPM wurde auch der Systembenutzer ``oracle`` angelegt,
 mit dem man die Oracle Administration vornimmt.  Für diesen Benutzer wird noch
@@ -72,7 +72,7 @@ Datenbank ``ORCLCDB``
 Einrichten der exemplarischen DB Instanz **ORCLCDB** (`Creating and Configuring
 an Oracle Database`_)::
 
-  [user@localhost ~]$ sudo /etc/init.d/oracledb_ORCLCDB-19c configure
+  [user@localhost ~]$ sudo -H /etc/init.d/oracledb_ORCLCDB-19c configure
   ... dauert etwas länger
   Erstellen der Datenbank abgeschlossen ...
   Datenbankinformationen:
@@ -215,7 +215,7 @@ offenen DB Verbindungen geschlossenen werden.
 
 .. code-block:: sh
 
-   $ sudo systemctl restart oracledb_XX
+   $ sudo -H systemctl restart oracledb_XX
 
 
 .. _tnsnames.ora:

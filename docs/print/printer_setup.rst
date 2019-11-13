@@ -63,7 +63,7 @@ können auch alle Einstellungen vornehmen::
 Weshalb man sich am besten noch zu der Gruppe Drucker-Admins (``lpadmin``)
 hinzufügt::
 
-  $ sudo gpasswd -a <benutzername> lpadmin
+  $ sudo -H gpasswd -a <benutzername> lpadmin
 
 Über :menuselection:`Hinzufügen --> Netzwerkdrucker` den Drucker suchen lassen
 und dann als Verbindung ``ipp/print`` auswählen (sicherstellen, dass oben die

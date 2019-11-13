@@ -96,14 +96,14 @@ Hostname ändern
    sich von Remote verbinden, müsste man diese noch (für den Listner auf TCP
    Port 1521) einrichten.  Oder man deinstalliert die :man:`iptables` ganz::
 
-     $ sudo yum remove iptables
+     $ sudo -H yum remove iptables
 
 .. _Update the System Hostname: https://docs.oracle.com/en/operating-systems/oracle-linux/8/obe-hostname-cli/index.html
 
 Der Hostname des Rechners kann mit dem Befehl :man:`hostnamectl` angepasst
 werden (`Update the System Hostname`_)::
 
-  $ sudo hostnamectl set-hostname dbhost.mydomain.de
+  $ sudo -H hostnamectl set-hostname dbhost.mydomain.de
   ...
   $ $ hostnamectl
    Static hostname: dbhost.mydomain.
@@ -128,12 +128,12 @@ paar Entwickler Tools:
 
 .. code-block:: sh
 
-  $ sudo yum update
+  $ sudo -H yum update
   ...
   # Entwickler Tools / nur exemplarisch ..
-  $ sudo yum install java-1.8.0-openjdk-devel emacs git
+  $ sudo -H yum install java-1.8.0-openjdk-devel emacs git
   ...
-  $ sudo reboot
+  $ sudo -H reboot
 
 
 VirtualBox Additions
@@ -145,7 +145,7 @@ Wurde die Installation in einem VirtualBox_ Gast System vorgenommen, so sollte
 man sich gleich noch die `VirtualBoxAdditions`_ installieren.  Dafür müssen
 mindestens folgende Pakete im System installiert sein ::
 
-  $ sudo yum install gcc kernel-devel kernel-headers dkms make bzip2 perl
+  $ sudo -H yum install gcc kernel-devel kernel-headers dkms make bzip2 perl
 
 In dem *so* vorbereiteten System kann nun das ``VirtualBoxAdditions.iso`` in das
 CD Laufwerk *eingelegt* werden.  Sofern man danach nicht eh schon in einem
@@ -153,7 +153,7 @@ Dialog gefragt wird, ob man das *ISO starten will*, muss man die Installation
 über folgende Kommandos durchführen.  Die damit installierten Kernel Module
 können erst nach einem Reboot genutzt werden::
 
-  $ sudo -i
+  $ sudo -H -i
   $ export KERN_DIR=/usr/src/kernels/`uname -r`
   $ cd /run/media/$(whoami)/VBox_GAs_<version>
   ./VBoxLinuxAdditions.run
@@ -168,7 +168,7 @@ können erst nach einem Reboot genutzt werden::
 
    .. code-block:: sh
 
-     $ sudo awk -F\' '/menuentry / {print $2}' /etc/grub2.cfg | grep $(uname -r)
+     $ sudo -H awk -F\' '/menuentry / {print $2}' /etc/grub2.cfg | grep $(uname -r)
      Oracle Linux Server (4.14.35-1902.5.2.2.el7uek.x86_64 with Unbreakable Enterprise Kernel) 7.7
 
 Gemeinsame Ordner
@@ -185,9 +185,9 @@ die Shares haben, kann man ihn ebenfalls der Gruppe hinzufügen:
 
 .. code-block:: sh
 
-  $ sudo usermod -aG vboxsf $(whoami)
+  $ sudo -H usermod -aG vboxsf $(whoami)
   ...
-  $ sudo usermod -aG vboxsf oracle
+  $ sudo -H usermod -aG vboxsf oracle
 
 Danach muss der Benutzer nochmal ab- und wieder angemeldet werden, damit die
 neue Gruppe auch *greift*.  Damit hat der Benutzer die Berechtigung auf die

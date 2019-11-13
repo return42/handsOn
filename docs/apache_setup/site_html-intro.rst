@@ -18,8 +18,8 @@ werden. Die Installation erfolgt nach ``DocumentRoot``.
 
 .. code-block:: bash
 
-   sudo cp -R TEMPLATE/var/www/html /var/www
-   sudo a2ensite html-intro
+   sudo -H cp -R TEMPLATE/var/www/html /var/www
+   sudo -H a2ensite html-intro
 
 Die Site ``html-intro.conf`` definiert die Directory Resource
 ``/var/www/html``. Für die Site ist keine :ref:`xref_apache-auth` erforderlich,
@@ -56,4 +56,4 @@ deaktiviert werden:
 
 .. code-block:: bash
 
-  sudo a2dissite html-intro
+  sudo -H a2dissite html-intro

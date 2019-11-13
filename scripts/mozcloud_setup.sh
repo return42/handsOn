@@ -87,7 +87,7 @@ addMozCloudUser(){
 
     if [[ ! $(id ${MOZCLOUD_USER}) ]] 2>/dev/null ; then
         echo
-        sudo adduser --system --disabled-password --disabled-login \
+        sudo -H adduser --system --disabled-password --disabled-login \
              --shell /bin/bash \
              --gecos "$MOZCLOUD_USER_GECOS" \
              ${MOZCLOUD_USER}

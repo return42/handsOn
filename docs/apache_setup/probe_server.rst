@@ -14,14 +14,14 @@ wenn man eine neue WEB-Anwendung testet:
 
 .. code-block:: bash
 
-   sudo tail -f  /var/log/apache2/error.log
+   sudo -H tail -f  /var/log/apache2/error.log
 
 Hat man :ref:`xref_mod_security2` aktiviert, sollte man das Audit-Log des
 ModSecurity Moduls beobachten:
 
 .. code-block:: bash
 
-   sudo tail -f  /var/log/apache2/modsec_audit.log
+   sudo -H tail -f  /var/log/apache2/modsec_audit.log
 
 ``curl``
 ========

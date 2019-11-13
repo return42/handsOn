@@ -55,4 +55,4 @@ sysdoc-Site kann bei Bedarf auch wieder deaktiviert werden:
 
 .. code-block:: bash
 
-  sudo a2dissite sysdoc
+  sudo -H a2dissite sysdoc

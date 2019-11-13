@@ -30,7 +30,7 @@ Ich nutze/installiere lediglich das *Web Receiver only* deb-Paket, aktuell z.B.:
 Das Paket kann man via Doppelklick oder eben auch via Kommandozeile
 installieren::
 
-  $ sudo dpkg -i icaclientWeb_13.10.0.20_amd64.deb
+  $ sudo -H dpkg -i icaclientWeb_13.10.0.20_amd64.deb
 
 Im Web-Browser baut man dann initial die Verbindung auf und meldet sich an der
 XenDesktop Infrastruktur an.  Nach der Anmeldung kann man dann die zur Verfügung
@@ -54,8 +54,8 @@ Das eigentliche Problem ist aber, dass dem Citrix-Client die gängigen
 Zertifikate fehlen.  Diese kann man mit folgenden Zeilen einfach aus der FFox
 Installation verlinken.::
 
-  sudo ln -s /usr/share/ca-certificates/mozilla/ /opt/Citrix/ICAClient/keystore/cacerts/
-  sudo c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
+  sudo -H ln -s /usr/share/ca-certificates/mozilla/ /opt/Citrix/ICAClient/keystore/cacerts/
+  sudo -H c_rehash /opt/Citrix/ICAClient/keystore/cacerts/
 
 Es gibt dazu auch einen Thread im `ubuntu-users
 <https://forum.ubuntuusers.de/topic/citrix-receiver-2>`__ Forum.

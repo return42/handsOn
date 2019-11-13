@@ -12,7 +12,7 @@ npm Pakete im OS
 
    .. code-block:: bash
 
-      sudo ./nodejs-dev.sh update nodejs
+      sudo -H ./nodejs-dev.sh update nodejs
 
 Hat man eine Installation des Node.js über den Paketmanager (z.B. Ubuntu Quellen
 oder :ref:`nodesource.com`), so kann man sich die Node.js Pakete (Werkzeuge und
@@ -22,7 +22,7 @@ Paketquellen:
 
 .. code-block:: bash
 
-   $ sudo npm -g install @vue/cli
+   $ sudo -H npm -g install @vue/cli
 
 Hier ein Beispiel zum Anzeigen der im System installierten Node.js Pakete::
 
@@ -52,7 +52,7 @@ Anzeigen der Pakete mit aktuelleren Versionen::
 
 Update der global installierten Pakete::
 
-  $ sudo npm update -g
+  $ sudo -H npm update -g
   /usr/bin/npm -> /usr/lib/node_modules/npm/bin/npm-cli.js
   /usr/bin/npx -> /usr/lib/node_modules/npm/bin/npx-cli.js
   + npm@6.12.1

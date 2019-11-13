@@ -16,7 +16,7 @@ um ein *Druck-System*, das Dienste rund um das Thema "Drucken" im Netzwerk
 bereit stellt.  Auf Server Systemen ist CUPS ggf. noch nicht installiert, kann
 aber recht einfach installiert werden::
 
-   sudo apt-get install cups cups-client cups-bsd
+   sudo -H apt-get install cups cups-client cups-bsd
 
 CUPS wird grundsätzlich immer als Dienst (http://localhost:631) eingerichtet,
 d.h. es läuft nicht im Kontext eines bestimmten Benutzers, sondern kann von
@@ -34,8 +34,8 @@ beschrieben.  Dort wird auch erläutert, dass nur Nutzer der Gruppe ``lpadmin``
 Änderungen an den Druckereinstellungen vornehmen können, weshalb man sich selbst
 am besten noch zu der Gruppe ``lpadmin`` hinzufügt::
 
-  $ sudo gpasswd -a <benutzername> lpadmin
-  $ sudo gpasswd -a <benutzername> lp
+  $ sudo -H gpasswd -a <benutzername> lpadmin
+  $ sudo -H gpasswd -a <benutzername> lp
 
 Gespeichert werden die Druckereinstellungen in den PPD Dateien, siehe Kapitel
 ":ref:`ppd_spec`".
@@ -68,7 +68,7 @@ CUPS-Filter
    nun im `cups-filters`_ Projekt statt.  Auf einem Linux Desktop ist das Paket
    :deb:`cups-filters` i.d.R. bereits installiert::
 
-	  sudo apt install cups-filters
+	  sudo -H apt install cups-filters
 
    Das Kommando :man:`cupsfilter` mit dem auch Tests vorgenommen werden können
    :ref:`[ref] <cupsfilter-command>` gehört zu den Basis-Kommandos und ist nach

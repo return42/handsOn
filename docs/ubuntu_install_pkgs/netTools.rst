@@ -19,4 +19,4 @@ Installation
 
 .. code-block:: bash
 
-   $ sudo ./scripts/ubuntu_install_pkgs.sh netTools
+   $ sudo -H ./scripts/ubuntu_install_pkgs.sh netTools

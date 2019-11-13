@@ -30,11 +30,11 @@ Modul und das `Apache mod_dav_fs`_ Modul aktiviert.
 
 .. code-block:: bash
 
-   sudo mkdir -p /share/WEBSHARE
-   sudo chown -R www-data:www-data /share/WEBSHARE
-   sudo a2enmod dav dav_fs
-   sudo a2ensite webShare
-   sudo service apache2 reload
+   sudo -H mkdir -p /share/WEBSHARE
+   sudo -H chown -R www-data:www-data /share/WEBSHARE
+   sudo -H a2enmod dav dav_fs
+   sudo -H a2ensite webShare
+   sudo -H service apache2 reload
 
 Site webShare
 =============
@@ -135,9 +135,9 @@ werden:
 
 .. code-block:: bash
 
-   sudo a2dissite webShare
-   sudo a2dismod dav dav_fs
-   sudo service apache2 reload
+   sudo -H a2dissite webShare
+   sudo -H a2dismod dav dav_fs
+   sudo -H service apache2 reload
 
 
 

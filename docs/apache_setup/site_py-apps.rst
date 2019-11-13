@@ -30,8 +30,8 @@ Mit dem Kommando ``installWSGI`` werden die folgenden Schritte ausgeführt.
 
    $ apt-get install libapache2-mod-wsgi-py3 python-imaging virtualenv
    $ cd /etc/apache2/mods-available/
-   $ sudo mv wsgi.conf     wsgi.conf-disabled
-   $ sudo mkdir /var/www/pyApps
+   $ sudo -H mv wsgi.conf     wsgi.conf-disabled
+   $ sudo -H mkdir /var/www/pyApps
 
 * Es wird eine virtuelle Python Umgebung (``pyenv``) in dem Ordner
   ``/var/www/pyApps`` eingerichtet.
@@ -42,22 +42,22 @@ Mit dem Kommando ``installWSGI`` werden die folgenden Schritte ausgeführt.
 .. code-block:: bash
 
    $ cd /var/www/pyApps
-   $ sudo virtualenv "pyenv" --prompt="pyenv"
+   $ sudo -H virtualenv "pyenv" --prompt="pyenv"
    $ cd /var/www/pyApps/pyenv
    $ source bin/activate
-   $ pip completion --bash | sudo tee /etc/bash_completion.d/pip > /dev/null
+   $ pip completion --bash | sudo -H tee /etc/bash_completion.d/pip > /dev/null
    $ pip install docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint \
                  pyratemp pyudev psutil sqlalchemy babel simplejson
 
-   $ sudo a2ensite py-apps
-   $ sudo service apache2 reload
+   $ sudo -H a2ensite py-apps
+   $ sudo -H service apache2 reload
 
 * Es wird eine Test-Seite ( https://localhost/hello.py ) eingrichtet.
 
 .. code-block:: bash
 
-   $ sudo ap2ensite hello_py
-   $ sudo service apache2 reload
+   $ sudo -H ap2ensite hello_py
+   $ sudo -H service apache2 reload
 
 De-Installation
 ===============

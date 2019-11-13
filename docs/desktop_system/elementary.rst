@@ -30,7 +30,7 @@ Installation
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem die das PPA
 und der elementary Desktop Umgebung installiert werden kann::
 
-  $ sudo ./scripts/desktop_system.sh install elementary
+  $ sudo -H ./scripts/desktop_system.sh install elementary
 
 Mit dem Skript wird auch ein PPA eingerichtet (:man:`add-apt-repository`). Das
 PPA sollte nicht gelöscht werden, solange noch Pakete aus dem PPA installiert
@@ -42,7 +42,7 @@ De-Installation
 
 Zur vollständigen De-Installation eignet sich::
 
-  $ sudo ./scripts/desktop_system.sh remove elementary
+  $ sudo -H ./scripts/desktop_system.sh remove elementary
 
 Das Kommando deinstalliert zuerst die elementary OS Desktop-Umgebung und löscht
 dann das PPA.

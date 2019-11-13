@@ -19,7 +19,7 @@ Anwendungsprogramme selbst ein SANE-Frontend zur Verfügung. Z.B. LibreOffice::
 
 Installation des SANE::
 
-  sudo apt-get install sane sane-utils libsane-extras
+  sudo -H apt-get install sane sane-utils libsane-extras
 
 Wenn SANE als Dienst laufen soll, muss in der ``/etc/default/saned``
 Konfiguration der Schalter ``RUN=yes`` gesetzt werden. Das wird aber nur

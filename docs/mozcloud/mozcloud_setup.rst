@@ -33,7 +33,7 @@ Einrichten des System-Benutzers (``mozcloud``):
 
 .. code-block:: bash
 
-   $ sudo adduser --system --disabled-password --disabled-login \
+   $ sudo -H adduser --system --disabled-password --disabled-login \
                   --shell /bin/bash \
                   --gecos "Mozilla Cloud" \
                   mozcloud

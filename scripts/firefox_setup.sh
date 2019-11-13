@@ -83,7 +83,7 @@ MOZILLA_XPI_URL=(
     # Homepage: https://github.com/lunu-bounir/sqlite-manager/
     #           https://addons.mozilla.org/de/firefox/addon/sqlite-manager-webext/
     # Als Alternative zu einem PlugIn bietet sich auch das Paket ... an::
-    #           sudo apt-get install sqlitebrowser"
+    #           sudo -H apt-get install sqlitebrowser"
     "https://addons.mozilla.org/firefox/downloads/latest/1157859/sqlite_manager/addon-1157859-latest.xpi"
 )
 
@@ -163,7 +163,7 @@ sysprefs.js enthalten, die sich aber noch in der Erprobungsphase befindet.  Wenn
 man sich die installiert und später Probleme bemerkt, kann man diese einfach
 löschen::
 
-  sudo rm /etc/firefox/syspref.js"
+  sudo -H rm /etc/firefox/syspref.js"
     if askNy "Soll die /etc/firefox/syspref.js installiert werden?"; then
 	TEMPLATES_InstallOrMerge /etc/firefox/syspref.js root root 644
     elif [ -f /etc/firefox/syspref.js ]; then

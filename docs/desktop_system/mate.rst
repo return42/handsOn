@@ -22,7 +22,7 @@ Installation
 In dem ``${SCRIPT_FOLDER}`` Ordner befindet sich ein Skript, mit dem die Mate
 Desktop Umgebung installiert werden kann::
 
-  $ sudo ./scripts/desktop_system.sh install mate
+  $ sudo -H ./scripts/desktop_system.sh install mate
 
 Mit dem oben stehenden Skript wird das Paket :deb:`mate-desktop-environment`
 installiert. Das Paket umfasst den Mate Desktop und noch einiges mehr, so
@@ -35,4 +35,4 @@ De-Installation
 
 Zur De-Installation eignet sich::
 
-  $ sudo ./scripts/desktop_system.sh remove mate
+  $ sudo -H ./scripts/desktop_system.sh remove mate

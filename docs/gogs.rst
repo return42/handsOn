@@ -63,13 +63,13 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
 1. Es werden die erforderlichen Systempakete installiert. Für PAM
    ``libpam0g-dev`` und für SQLite ``libsqlite3-0``::
 
-     sudo apt install libpam0g-dev libsqlite3-0
+     sudo -H apt install libpam0g-dev libsqlite3-0
 
 2. Es wird der Benutzer ``$GOGS_USER`` (``gogs``) angelegt. Sein ``$HOME`` ist
    ``/home/gogs`` und in diesen Ordner wird alles weitere installiert.::
 
      GOGS_HOME=/home/gogs
-     sudo adduser --shell /bin/bash --system --home $GOGS_HOME \
+     sudo -H adduser --shell /bin/bash --system --home $GOGS_HOME \
                   --group --gecos 'Gogs' $GOGS_USER
 
    Für die Go & Gogs Umgebung wird eine ``$GOGS_HOME/.env_gogs`` Datei angelegt,
@@ -85,7 +85,7 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
 
      ls -la /etc/shadow
      -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
-     sudo usermod -a -G shadow $GOGS_USER
+     sudo -H usermod -a -G shadow $GOGS_USER
 
 3. Die Go Installation (s.a. go-linux_ && goX.YY.linux-amd64.tar.gz_) erfolgt
    nach nach ``$HOME/local``::
@@ -156,8 +156,8 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
    :origin:`/lib/systemd/system/gogs.service <templates/lib/systemd/system/gogs.service>`
    im systemd_ eingerichtet::
 
-     sudo systemctl enable gogs.service
-     sudo systemctl restart gogs.service
+     sudo -H systemctl enable gogs.service
+     sudo -H systemctl restart gogs.service
 
 9. Apache Site :origin:`/etc/apache2/sites-available/gogs.conf
    <templates/etc/apache2/sites-available/gogs.conf>` mit ProxyPass_
@@ -169,10 +169,10 @@ Im Einzelnen führt das Skript in etwa folgende Schritte aus:
 
    Proxy und gogs.conf aktivieren::
 
-     sudo a2enmod proxy_http
-     sudo a2ensite -q gogs
-     sudo apachectl configtest
-     sudo service apache2 force-reload
+     sudo -H a2enmod proxy_http
+     sudo -H a2ensite -q gogs
+     sudo -H apachectl configtest
+     sudo -H service apache2 force-reload
 
 .. hint::
 
@@ -235,7 +235,7 @@ true setzen::
 Um die Änderung zur Wirkung zu bringen muss der Gogs Server einmal neu gestartet
 werden::
 
-  sudo systemctl restart gogs.service
+  sudo -H systemctl restart gogs.service
 
 Im `Gogs Configuration Cheat Sheet`_ sind alle Schalter aufgeführt, ggf. setzt
 man in der ``app.ini`` auch gleich noch die anderen Schalter seinen
@@ -285,7 +285,7 @@ hinzugefügt (s.o.)::
   ls -la /etc/shadow
   -rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
 
-  sudo usermod -a -G shadow $GOGS_USER
+  sudo -H usermod -a -G shadow $GOGS_USER
 
 
 LDAP

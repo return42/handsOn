@@ -133,7 +133,7 @@ Debian/Ubuntu kann man diese mit dem apt Paketmanager installieren:
 
 .. code-block:: sh
 
-   $ sudo apt-get install android-tools-adb android-tools-fastboot
+   $ sudo -H apt-get install android-tools-adb android-tools-fastboot
 
 .. Das fastboot ist nicht unbedingt notwendig, wer aber ein *recovery* Image auf
 .. seinem Smartphone installieren will wird es früher oder später auch benötigen

@@ -44,7 +44,7 @@ Installation der Pakete:
 
 .. code-block:: bash
 
-   sudo apt-get install \
+   sudo -H apt-get install \
                 apache2 apache2-doc apache2-utils \
                 ssl-cert openssl-blacklist \
                 libapache2-mod-authnz-external pwauth \
@@ -57,19 +57,19 @@ Konfigurationen nicht gewollt sind, werden sie nun abgeschaltet.
 
 .. code-block:: bash
 
-   sudo a2dismod  cgi cgid
-   sudo a2disconf apache2-doc serve-cgi-bin
+   sudo -H a2dismod  cgi cgid
+   sudo -H a2disconf apache2-doc serve-cgi-bin
 
    cd /etc/apache2/mods-available/
 
-   sudo mv alias.conf     alias.conf-disabled
-   sudo mv dir.conf       dir.conf-disabled
-   sudo mv wsgi.conf      wsgi.conf-disabled
+   sudo -H mv alias.conf     alias.conf-disabled
+   sudo -H mv dir.conf       dir.conf-disabled
+   sudo -H mv wsgi.conf      wsgi.conf-disabled
 
 Nun werden noch die Module aktiviert, die in diesem Setup benötigt werden.
 
 .. code-block:: bash
 
-   sudo a2enmod alias authz_host ssl rewrite \
+   sudo -H a2enmod alias authz_host ssl rewrite \
                 headers env security2 auth_digest \
                 authn_core authnz_external

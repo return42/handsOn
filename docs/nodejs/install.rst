@@ -18,7 +18,7 @@ Installation Node.js
 
    .. code-block:: bash
 
-      sudo ./nodejs-dev.sh install nodejs
+      sudo -H ./nodejs-dev.sh install nodejs
 
 Die *binaries* des Node.js_ stehen auf der `Node.js Download-Seite
 <https://nodejs.org/en/download/>`_ zur Verfügung.  Besser eignet sich aber die
@@ -61,7 +61,7 @@ Schritte durchführt:
 
 .. code-block:: bash
 
-   $ sudo ./scripts/nodejs-dev.sh install nodejs
+   $ sudo -H ./scripts/nodejs-dev.sh install nodejs
 
 1. Deinstallation ggf. konfligierender Pakete
 2. Repository hinzufügen |VER URL|
@@ -76,5 +76,5 @@ möglich:
 
 .. code-block:: bash
 
-   $ sudo ./scripts/nodejs-dev.sh remove nodejs
+   $ sudo -H ./scripts/nodejs-dev.sh remove nodejs
 

@@ -57,17 +57,17 @@ Die LDAP Benutzer werden mit den ldapscripts verwaltet.::
     # wird der Benutzer angelegt, wobei er gleich fest seiner primären Gruppe
     # zugeordnet werden muss (daraus wird die gidNumber ermittelt)
 
-    $ sudo ldapaddgroup myuser
-    $ sudo ldapadduser myuser myuser
+    $ sudo -H ldapaddgroup myuser
+    $ sudo -H ldapadduser myuser myuser
 
 Um einen LDAP-User einer LDA-Gruppe hinzuzufügen verwendet man i.d.R. auch die
 ldapscripts::
 
-    $ sudo ldapaddusertogroup myuser othergroup
+    $ sudo -H ldapaddusertogroup myuser othergroup
 
 Um das Passwort eines Users im LDAP zu ändern verwendet man die ldapscripts::
 
-    $ sudo ldapsetpasswd myuser
+    $ sudo -H ldapsetpasswd myuser
 
 Der User selber ändert sein Passwort (wie gehabt) mit dem Kommando 'passwd' (das
 zeigt einem auch, ob es sich um ein UNIX oder LDAP Passwort handelt)::

@@ -76,7 +76,7 @@ auch nach wie vor an dem Paket.  Dennoch, wenn man die *Standard* Codecs und
 Tools haben will, kann das Paket hilfreich sein. Man muss hald' auch nur die
 EULA oder was auch immer akzeptieren::
 
-  sudo apt install ubuntu-restricted-extras
+  sudo -H apt install ubuntu-restricted-extras
 
 
 Zusammenfassung
@@ -103,4 +103,4 @@ Installation
 
 .. code-block:: bash
 
-   $ sudo ./scripts/ubuntu_install_pkgs.sh codecs
+   $ sudo -H ./scripts/ubuntu_install_pkgs.sh codecs

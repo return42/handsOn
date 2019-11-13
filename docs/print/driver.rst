@@ -134,7 +134,7 @@ Diese Abhängigkeiten zu den 32-Bit Bibliotheken müssen wir manuell installiere
 befolgen würde).  Man installiert daher zuerst die benötigten 32-Bit
 Bibliotheken::
 
-  sudo apt-get install lib32stdc++6 libxml2:i386
+  sudo -H apt-get install lib32stdc++6 libxml2:i386
 
 Bei moderneren Druckern, sollte der Drucker nun automatisch gefunden und
 eingebunden werden.  Falls das bei dem eigenen Drucker noch nicht klappt, sollte

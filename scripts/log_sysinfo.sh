@@ -36,7 +36,7 @@ rstHeading "Festplatten Infos" chapter
 # ----------------------------------------------------------------------------
 
 rstBlock "Auflistung der Block Devices siehe: disks.txt"
-sudo lsblk -o NAME,FSTYPE,UUID,RO,RM,SIZE,STATE,OWNER,GROUP,MODE,TYPE,MOUNTPOINT,LABEL,MODEL > disks.txt
+sudo -H lsblk -o NAME,FSTYPE,UUID,RO,RM,SIZE,STATE,OWNER,GROUP,MODE,TYPE,MOUNTPOINT,LABEL,MODEL > disks.txt
 
 # DEVICES=($($PYTHON  <<EOF
 # from sdkTools.sysfs import sysfs
@@ -58,16 +58,16 @@ for DEV in "${ATA_DEVICES[@]}"  ; do
 
     rstHeading "Performance" chapter-nc        >> $LOG
     rstHeading "Test 1 mit Cache" section-nc   >> $LOG
-    sudo hdparm -tT $DEV                       >> $LOG
+    sudo -H hdparm -tT $DEV                    >> $LOG
     echo                                       >> $LOG
     rstHeading "Test 2 mit Cache" section-nc   >> $LOG
-    sudo hdparm -tT $DEV                       >> $LOG
+    sudo -H hdparm -tT $DEV                    >> $LOG
     echo                                       >> $LOG
     rstHeading "S.M.A.R.T." chapter-nc         >> $LOG
-    sudo smartctl -H $DEV                      >> $LOG
+    sudo -H smartctl -H $DEV                      >> $LOG
 
-    sudo smartctl -s on $DEV > /dev/null # enable SMART if it is not already enabled
-    sudo smartctl -o on $DEV > /dev/null # automatic offline test on (zyklus 4h)
+    sudo -H smartctl -s on $DEV > /dev/null # enable SMART if it is not already enabled
+    sudo -H smartctl -o on $DEV > /dev/null # automatic offline test on (zyklus 4h)
 
     _T=""
 
@@ -80,7 +80,7 @@ for DEV in "${ATA_DEVICES[@]}"  ; do
     fi
     echo
     if [[ ! -z $_T ]]; then
-	sudo smartctl -t $_T $DEV
+	sudo -H smartctl -t $_T $DEV
 
 	rstBlock "Der Test wird (im Hintergrund) durchgeführt, er kann sehr
 lange dauern (Endzeit steht oben). Nach Abschluss des Tests sollte dieses Skript
@@ -95,40 +95,39 @@ ACHTUNG:
   Test."
 EOF
     waitKEY 5
-    sudo smartctl -a $DEV >> $LOG
+    sudo -H smartctl -a $DEV >> $LOG
     rstHeading "HD Info (hdparm -I)" chapter-nc >> $LOG
-    sudo hdparm -I $DEV          >> $LOG
+    sudo -H hdparm -I $DEV          >> $LOG
     echo
 done
 
 rstHeading "Hardware Infos (lshw)"
 echo "  --> hardware.txt"
-sudo lshw > hardware.txt
+sudo -H lshw > hardware.txt
 waitKEY 5
 
 rstHeading "BIOS Infos (dmidecode)"
 echo "  --> BIOS.txt"
-sudo dmidecode > BIOS.txt
+sudo -H dmidecode > BIOS.txt
 waitKEY 5
 
 rstHeading "PCI Infos"
 echo " --> pci.txt"
-sudo lspci -vvvnn > pci.txt
+sudo -H lspci -vvvnn > pci.txt
 waitKEY 5
 
 rstHeading "usb Infos"
 echo " --> usb.txt"
-sudo lsusb --verbose > usb.txt
+sudo -H lsusb --verbose > usb.txt
 waitKEY 5
 
 rstHeading "Devices"
 echo "  --> ubuntu-drivers-devices.txt"
-sudo ubuntu-drivers devices > ubuntu-drivers-devices.txt
+sudo -H ubuntu-drivers devices > ubuntu-drivers-devices.txt
 echo
 
 # Das funktioniert natürlich nur wenn man das DISPLAY geöffnet hat ..
 rstHeading "Display infos"
 echo "  --> xrandr.txt"
-sudo xrandr --verbose > xrandr.txt
+sudo -H xrandr --verbose > xrandr.txt
 echo
-

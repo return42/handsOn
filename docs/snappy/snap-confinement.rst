@@ -13,7 +13,7 @@ installiert:
 
 .. code-block:: shell
 
-  ~/hello$ sudo snap try --devmode prime/
+  ~/hello$ sudo -H snap try --devmode prime/
 
 Der Schalter ``--devmode`` war bisher erforderlich, da bisher immer
 ``confinement: devmode`` als Policy in der ``snapcraft.yaml`` stand:
@@ -41,7 +41,7 @@ installiert werden:
 
 .. code-block:: shell
 
-   $ sudo snap try prime/
+   $ sudo -H snap try prime/
 
 Will man jedoch das lokale snap-Paket *richtig* installieren erhält man eine
 Fehlermeldung, dass die Signatur des Pakets nicht verifiziert werden
@@ -50,7 +50,7 @@ ein lokales snap-Paket nicht gleichzeitig als *Vertrauenswürdig*:
 
 .. code-block:: shell
 
-   $ sudo snap install hello_2.10_amd64.snap 
+   $ sudo -H snap install hello_2.10_amd64.snap 
    error: cannot find signatures with metadata for snap "hello_2.10_amd64.snap"
 
 Um lokale (nicht signierte) Pakete zu installieren muss die Option
@@ -58,4 +58,4 @@ Um lokale (nicht signierte) Pakete zu installieren muss die Option
 
 .. code-block:: shell
 
-   $ sudo snap install hello_2.10_amd64.snap --dangerous
+   $ sudo -H snap install hello_2.10_amd64.snap --dangerous
