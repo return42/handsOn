@@ -1,6 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../get_started_refs.txt
+.. include:: ../desktop_system_refs.txt
 
 .. _xref_desktop_system_refs:
 
