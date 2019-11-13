@@ -31,15 +31,20 @@ vorgestellten Setups installiert oder auch deinstalliert werden können.
    ==============
 
    usage:
-     desktop_system.sh [chooseDM]
-     desktop_system.sh install [GNOME|GNOME3-PPA|elementary|cinnamon|mate]
-     desktop_system.sh remove  [unity|GNOME3-PPA|elementary|cinnamon|mate]
 
-   - GNOME: GNOME3 shell https://wiki.gnome.org/Projects/GnomeShell
+   desktop_system.sh [chooseDM]
+   desktop_system.sh install [GNOME[-ext|-dconf]]|GNOME3-PPA|elementary|cinnamon|mate|solaar]
+   desktop_system.sh remove  [GNOME-ext]]|[unity|GNOME3-PPA|elementary|cinnamon|mate|solaar]
+
+   - GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
+   - GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
+   - GNOME-dconf: Anpassungen GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
    - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
    - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
    - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
+   - nemo: Installation des Dateibrowsers Nemo
    - mate: Mate-Desktop https://mate-desktop.org/
+   - solaar: Linux-Gerätemanager für eine Vielzahl von Logitech-Geräten.
 
 
 .. hint::

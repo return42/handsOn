@@ -92,17 +92,21 @@ usage(){
 
 usage:
   $(basename $0) [chooseDM]
-  $(basename $0) install [GNOME[-ext|-dconf]]|GNOME3-PPA|elementary|cinnamon|mate]
-  $(basename $0) remove  [GNOME-ext]]|[unity|GNOME3-PPA|elementary|cinnamon|mate]
+  $(basename $0) install [GNOME[-ext|-dconf]]|GNOME3-PPA|elementary|cinnamon|mate|solaar]
+  $(basename $0) remove  [GNOME-ext]]|[unity|GNOME3-PPA|elementary|cinnamon|mate|solaar]
 
 - GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
 - GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
 - GNOME-dconf: Anpassungen GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
 - GNOME3-PPA: PPA für GNOME3, ab ubuntu 18.04 nicht mehr erforderlich
+- nemo: Installation des Dateibrowsers Nemo
+- solaar: Linux-Gerätemanager für eine Vielzahl von Logitech-Geräten.
+
+Für ältere Ubuntu Versionen (<18.04):
 - elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
 - cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
-- nemo: Installation des Dateibrowsers Nemo
 - mate: Mate-Desktop https://mate-desktop.org/
+
 EOF
 }
 
@@ -128,6 +132,7 @@ main(){
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
+		solar)        TITLE="Installation Solaar"  aptInstallPackages solaar
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac  ;;
         remove)
@@ -140,6 +145,7 @@ main(){
 		nemo)         remove_nemo ;;
                 cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
                 mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
+		solar)        TITLE="De-Installation Solaar"  aptPurgePackages solaar
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac  ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42

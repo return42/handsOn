@@ -115,3 +115,9 @@ GTK & GObject
 
 * `GObject`_
 * `GObject Introspection`_
+
+
+Verschiedenes
+=============
+
+* solaar_: Linux-Gerätemanager für eine Vielzahl von Logitech-Geräten.

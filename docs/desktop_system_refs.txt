@@ -44,3 +44,5 @@
 .. _`GObject`: https://developer.gnome.org/gobject/stable
 .. _`GObject Introspection`: https://wiki.gnome.org/Projects/GObjectIntrospection>
 .. _tracker-search-provider: https://github.com/hamiller/tracker-search-provider.git
+
+.. _solaar: https://github.com/pwr-Solaar/Solaar
