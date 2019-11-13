@@ -83,7 +83,7 @@ msg-python-exe:
   https://www.python.org or install it from your package\n\
   manager. On debian based OS these requirements are\n\
   installed by::\n\n\
-    sudo apt-get install $(PYTHON)\n" | $(FMT)
+    sudo -H apt-get install $(PYTHON)\n" | $(FMT)
 
 ifeq ($(shell which $(PYTHON) >/dev/null 2>&1; echo $$?), 1)
 python-exe: msg-python-exe
@@ -99,7 +99,7 @@ msg-pip-exe:
   https://pip.pypa.io or install it from your package\n\
   manager. On debian based OS these requirements are\n\
   installed by::\n\n\
-    sudo apt-get install python$(PY)-pip\n" | $(FMT)
+    sudo -H apt-get install python$(PY)-pip\n" | $(FMT)
 
 ifeq ($(shell which $(PIP) >/dev/null 2>&1; echo $$?), 1)
 pip-exe: msg-pip-exe

@@ -648,7 +648,7 @@ askReboot() {
 
     rstHeading "== Es wird ein Reboot des Hosts $HOSTNAME empfohlen ==" part
     if askYesNo "Soll **$HOSTNAME** neu gebootet werden?" ${1:-Ny} $2; then
-        sudo reboot
+        sudo -H reboot
     fi
 }
 
@@ -1321,7 +1321,7 @@ aptAddPkeyFromURL(){
     echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
 
     TEE_stderr <<EOF | bash | prefix_stdout
-    wget -q "$URL" -O- | sudo apt-key --keyring "$FNAME" add -
+    wget -q "$URL" -O- | sudo -H apt-key --keyring "$FNAME" add -
 EOF
 }
 
@@ -1623,20 +1623,20 @@ TEMPLATES_InstallOrMerge() {
             fi
 
         done
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
 
     elif [[ ! -f "${dst}" && -f "${template_file}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt ein TEMPLATE aber es gibt KEINE
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
 
     elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt KEIN TEMPLATE aber es gibt eine
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
     else
         err_msg "Dieser Fall ist nicht kausal / nicht implementiert :-o"
@@ -1801,7 +1801,7 @@ APACHE_install_site() {
         CONF=${CONF%.conf}.conf
         TEMPLATES_InstallOrMerge $do_eval "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
     done
-    sudo a2ensite -q "$@"
+    sudo -H a2ensite -q "$@"
     APACHE_reload
 }
 
@@ -1825,7 +1825,7 @@ APACHE_install_conf(){
         CONF=${CONF%.conf}.conf
         TEMPLATES_InstallOrMerge "${APACHE_CONF_AVAILABE}/${CONF}" root root 644
     done
-    sudo a2enconf -q "$@"
+    sudo -H a2enconf -q "$@"
     APACHE_reload
 }
 
@@ -1869,8 +1869,8 @@ APACHE_reload() {
 # ----------------------------------------------------------------------------
     rstBlock "${BGreen}Reload der Apache Konfiguration ...${_color_Off}"
     echo
-    sudo apachectl configtest
-    sudo service apache2 force-reload
+    sudo -H apachectl configtest
+    sudo -H service apache2 force-reload
 }
 
 # ----------------------------------------------------------------------------
@@ -1888,8 +1888,8 @@ APACHE_dissable_site() {
     #
     #   APACHE_disable_site fxSyncServer
 
-    sudo a2dissite -q "$@"
-    sudo service apache2 force-reload
+    sudo -H a2dissite -q "$@"
+    sudo -H service apache2 force-reload
 }
 
 # Firefox
@@ -1939,12 +1939,12 @@ FFOX_globalAddOn() {
         case $1 in
             install)
                 info_msg "installing: ${UID_ADDON}.xpi --> ${FFOX_GLOBAL_EXTENSIONS}"
-                sudo cp $2 "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
+                sudo -H cp $2 "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
                 ;;
             deinstall)
                 if [[ -f "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi" ]] ; then
                    rstBlock "remove AddOn ${BGreen}${UID_ADDON}.xpi${_color_Off} from ${FFOX_GLOBAL_EXTENSIONS}"
-                   sudo rm -v "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
+                   sudo -H rm -v "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
                 else
                    rstBlock "AddOn ${BGreen}${UID_ADDON}.xpi${_color_Off} does not exists in ${FFOX_GLOBAL_EXTENSIONS}"
                 fi
@@ -1974,7 +1974,7 @@ GNOME_SHELL_installLauncher () {
 
     echo
     echo "$1 --> $GNOME_APPL_FOLDER"
-    echo "$2" | sudo tee "$GNOME_APPL_FOLDER/$1" > /dev/null
+    echo "$2" | sudo -H tee "$GNOME_APPL_FOLDER/$1" > /dev/null
 }
 
 # ----------------------------------------------------------------------------

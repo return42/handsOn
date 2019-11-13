@@ -11,7 +11,7 @@ appl="handsOn"
 download_url="https://github.com/return42/${appl}/raw/master/bootstrap.sh"
 git_clone_url="https://github.com/return42/${appl}.git"
 BASE_PACKAGES="git"
-INSTALL_CMD="sudo ./scripts/ubuntu_install_pkgs.sh bootstrap"
+INSTALL_CMD="sudo -H ./scripts/ubuntu_install_pkgs.sh bootstrap"
 
 # ----------------------------------------------------------------------------
 main(){
@@ -47,7 +47,7 @@ bootstrap() {
     rstHeading "Install bootstrap requirements" chapter
     rstPkgList ${BASE_PACKAGES}
     waitKEY
-    sudo apt-get install -y ${BASE_PACKAGES}
+    sudo -H apt-get install -y ${BASE_PACKAGES}
 
     rstHeading "cloning $appl --> $PWD/$appl" chapter
     waitKEY

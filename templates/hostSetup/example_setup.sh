@@ -170,7 +170,7 @@ CONFIG_BACKUP=(
     "/etc/sane.d/pixma.conf"
     "/etc/cups"
 
-    # grub Einstellungen (Änderungen müssen mit sudo update-grup eingerichtet
+    # grub Einstellungen (Änderungen müssen mit sudo -H update-grup eingerichtet
     # werden)
     "/etc/default/grub"
 
