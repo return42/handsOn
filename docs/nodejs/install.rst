@@ -20,11 +20,14 @@ Installation Node.js
 
       sudo ./nodejs-dev.sh install nodejs
 
-Die *binaries* des Node.js_ stehen auf der `Download-Seite
-<https://nodejs.org/en/download/>`_ von Node.js_ zur Verfügung.  Vor der
-erneuten Installation aus einer anderen Quelle empfiehlt es sich die Pakete
-``nodejs`` und ``npm`` zu deinstallieren, falls sie aus den normalen Ubuntu
-Quellen oder anderweitig schon mal installiert wurden.
+Die *binaries* des Node.js_ stehen auf der `Node.js Download-Seite
+<https://nodejs.org/en/download/>`_ zur Verfügung.  Besser eignet sich aber die
+in Kapitel `NodeSource: Node.js Binary Distributions`_ beschriebene
+Installationsmethode.
+
+Wurden die Pakete ``nodejs`` und ``npm`` aus den normalen Ubuntu Quellen oder
+anderweitig bereits installiert, so müssen diese vor einer erneuten Installation
+aus einer anderen Quelle zuvor deinstalliert werden.
 
 Paketquellen des Ubuntu/Debian
 ==============================
@@ -42,7 +45,7 @@ NodeSource: Node.js Binary Distributions
 
 NodeSource_ bietet Binary-Pakete für die gängigen Linux Distributionen an, so
 z.B. für die `Debian and Ubuntu based distributions`_, deren dep-Repository für
-Node.js (beispielsweise) |VER| hier zu finden ist:
+Node.js (beispielsweise) v\ |VER| hier zu finden ist:
 
   |VER URL|
 

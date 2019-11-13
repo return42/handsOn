@@ -62,3 +62,8 @@
    https://www.youtube.com/watch?v=5lVQgZzLMHc
 .. _Vue-CLI:
    https://cli.vuejs.org/
+.. _Vue.js devtools:
+   https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/
+
+.. _jsonplaceholder.typicode.com:
+   https://jsonplaceholder.typicode.com/

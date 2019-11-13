@@ -3,7 +3,7 @@
 .. include:: ../nodejs_refs.txt
 
 .. _nodejs_refs:
-	     
+
 =======================
 Weiterführende Verweise
 =======================
@@ -22,5 +22,6 @@ Weiterführende Verweise
 - gruntjs_
 - Bootstrap_
 - Vue.js_ / `Vue JS Crash Course - 2019`_ / `Vuex Crash Course | State Management`_
-- Vue-CLI_
+- Vue-CLI_, `Vue.js devtools`_
 - VSCode_
+- jsonplaceholder.typicode.com_
