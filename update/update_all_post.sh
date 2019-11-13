@@ -11,7 +11,7 @@ if [ -f /var/run/reboot-required ]; then
     rstHeading "== Es wird ein Reboot des Computers ($HOSTNAME) empfohlen ==" part
     rstBlock "Vor dem Reboot sollten alle Programme geschlossen werden!!"
     if askYesNo "Soll **$HOSTNAME** neu gebootet werden?" Ny 30; then
-        sudo reboot
+        sudo -H reboot
     fi
 else
     rstBlock "Neustart des Computers nach diesem Update nicht erforderlich"
