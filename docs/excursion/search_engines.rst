@@ -7,11 +7,33 @@
 .. _pi-hole: https://pi-hole.net/
 .. _DNS: https://de.wikipedia.org/wiki/Domain_Name_System
 .. _Domain: https://de.wikipedia.org/wiki/Domain_(Internet)
+
 .. _search_engines:
 
 ========================
 Suchmaschinen & Tracking
 ========================
+
+.. sidebar:: Warnung -- Startpage
+
+   .. _warnung_startpage:
+
+   Bisher wurde hier `Startpage` als "*die bessere google Suchmaschine!*"
+   tituliert.  Inzwischen wurde das Unternehmen geschluckt und befindet sich
+   jetzt in den Händen von ... naja man weiß es nicht so genau.  Was man weiß
+   steht in der `Presseerklärung
+   <https://www.startpage.com/blog/company-updates/startpage-and-privacy-one-group/>`_:
+   *Privacy One Group Ltd and Startpage’s relationship started in January 2019*.
+   Die Presseerklärung kam allerdings erst im Oktober 2019.  Soviel zur
+   Transparenz von Startpage.  Privacy One Group Ltd `gehört zu System1 LLC
+   <https://support.startpage.com/index.php?/Knowledgebase/Article/View/1260/17/who-are-the-owners-of-startpage>`_:
+   *privacy-focused division that is a separate operating unit of System1 LLC*.
+   Weiteres kann man über diese Abteilung (das Unternehmen?) nicht in Erfahrung
+   bringen.  Fragt man sich also, wer ist der Eigentümer System1 LLC?  Ein
+   Werbe- und Marketinganbieter, der mit dem Auswerten und Verarbeiten von Daten
+   Umsatz generiert (s.a. `Kuketz
+   <https://www.kuketz-blog.de/ist-die-suchmaschine-startpage-noch-empfehlenswert/>`__).
+
 
 Für die ganz Ungeduldigen unter uns:
 
@@ -19,8 +41,6 @@ Für die ganz Ungeduldigen unter uns:
 
 - Zu viel Text, intressiert mich alles nicht, was muss ich in meinen FireFox
   installieren?
-
-  0.  `Startpage`_ *die bessere google Suchmaschine!*
 
   1. `uBlock-origin`_ **!!must have!!**
   2. `Google search link fix`_ **!!must have!!**
@@ -116,6 +136,11 @@ empfohlen.
 Anonyme Suchmaschinen
 ---------------------
 
+.. warning::
+
+   Dieser Absatz muss noch überarbeitet werden (siehe :ref:`Warnung -- Startpage
+   <warnung_startpage>`)
+
 Anonyme Suchmaschinen setzen kein Tracking ein. Jedoch blenden sie zwecks
 Finanzierung gekennzeichnete Werbung ein (s.a. :ref:`add_blocker`). Als anonyme
 Suchmaschine kann z.B. Startpage.com_ oder DuckDuckGo (DDG_) empfohlen werden:
@@ -145,30 +170,29 @@ Beispiel aus der Programmierung (Suchbegriff: "python 3 string to bytes"):
 - https://duckduckgo.com/?q=python+3+string+to+bytes
 
 Unter dem Reiter "Q/A" wird direkt eine mögliche Lösung zur Fragestellung
-eingeblendet. Ein weiteres nettes Feature ist es, WEB-Seiten direkt zu
+eingeblendet.  Ein weiteres nettes Feature ist es, WEB-Seiten direkt zu
 durchsuchen indem ein Losungswort mit vorangestelltem Ausrufungszeichen
-eingegeben wird (nennt sich `!bang <https://duckduckgo.com/bang>`_) . Um
-Beispielsweise direkt in der Wikipedia zu suchen kann man "!wiki" dem
-Suchbegriff voranstellen. Will man schnell mal ein Wort übersetzen so verwendet
-man "!leo" oder will man bei OpenStreetMap was nachschauen reicht "!osm".
+eingegeben wird (nennt sich `!bang <https://duckduckgo.com/bang>`_).  Um
+Beispielsweise direkt in der Wikipedia zu suchen kann man ``!wiki`` dem
+Suchbegriff voranstellen.  Will man schnell mal ein Wort übersetzen so verwendet
+man ``!leo`` oder will man bei OpenStreetMap was nachschauen reicht ``!osm``.
 
 So *nett* DDG auch ist, leider muss ich auch beobachten, dass DDG z.T. nicht
-*alles* findet. Da scheint man dann wohl in der DDG Blase zu hängen ;) Ist man
-mit der Trefferliste nicht ganz zufrieden und denkt, da muss es doch noch mehr
-zu dem Thema geben, dann kann man seine Suche mit vorangestelltem "!startpage"
-wiederholen. Man bekommt dann die Trefferliste einer weiteren (empfehlenswerten)
-anonymen Suchmaschine:
-
-- https://startpage
+*alles* findet.  Da scheint man dann wohl in der DDG Blase zu hängen ;)
 
 Manchmal will man aber auch wirklich mit Google suchen, dafür stellt man dann
-der Suche ein "!g" voran.  Bei Google ist man dann aber wieder im Tracking, doch
+der Suche ein ``!g`` voran.  Bei Google ist man dann aber wieder im Tracking, doch
 auch das kann man einschränken, im Firefox z.B. mit dem folgenden AddOn:
 
 - `Google search link fix`_
 
 Startpage.com
 ~~~~~~~~~~~~~
+
+.. warning::
+
+   Dieser Absatz muss noch überarbeitet werden (siehe :ref:`Warnung -- Startpage
+   <warnung_startpage>`)
 
 Startpage.com_ ist werbefinanziert.  Oben die ersten Treffer sind immer
 Anzeigen, es sei denn man hat sich `uBlock-origin`_ installiert.  Das AddOn
