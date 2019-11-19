@@ -18,6 +18,8 @@
 .. _`Apache mod_autoindex`: https://httpd.apache.org/docs/current/mod/mod_autoindex.html
 .. _`Apache IndexOptions Direktive`: https://httpd.apache.org/docs/current/mod/mod_autoindex.html#indexoptions
 .. _`Introduction to SSI`: http://httpd.apache.org/docs/current/howto/ssi.html
+.. _`uWSGI`: https://uwsgi-docs.readthedocs.io
+.. _`uWSGI-github`: https://github.com/unbit/uwsgi
 .. _`Apache mod_wsgi`: https://github.com/GrahamDumpleton/mod_wsgi
 .. _`mod_wsgi RTD`: http://modwsgi.readthedocs.org/en/develop/index.html
 .. _`mod_wsgi RTD Konfiguration`: http://modwsgi.readthedocs.org/en/develop/configuration.html

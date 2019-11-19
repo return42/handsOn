@@ -1,0 +1,4 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _Searx: https://asciimoo.github.io/searx/
+.. _searx-github: https://github.com/asciimoo/searx
