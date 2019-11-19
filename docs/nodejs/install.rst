@@ -7,7 +7,7 @@
 .. |PACKAGES| replace::  ``nodejs``
 .. |NPM_PACKAGES| replace:: ``grunt-cli``  ``webpack``  ``webpack-cli``
 			    ``lodash``     ``babel``    ``eslint``
-			    ``@vue/cli``
+			    ``@vue/cli``  ``@quasar/cli``
 .. _install_nodejs:
 
 ====================
@@ -78,3 +78,8 @@ möglich:
 
    $ sudo -H ./scripts/nodejs-dev.sh remove nodejs
 
+Update der globalen Node.js Installation:
+
+.. code-block:: bash
+
+   $ sudo -H ./scripts/nodejs-dev.sh update nodejs

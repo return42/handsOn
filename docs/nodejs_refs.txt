@@ -1,69 +1,76 @@
 .. -*- coding: utf-8; mode: rst -*-
 
-.. _Node.js:
-   https://nodejs.org/
-.. _NodeSource:
-    https://nodesource.com
-.. _Debian and Ubuntu based distributions:
-   https://github.com/nodesource/distributions#deb
-.. _gruntjs:
-   https://gruntjs.com/
+.. _Node.js: https://nodejs.org/
+.. _NodeSource:  https://nodesource.com
+.. _Debian and Ubuntu based distributions: https://github.com/nodesource/distributions#deb
+.. _ElectronJS: https://electronjs.org/
+.. _GitLense: https://gitlens.amod.io/
+.. _Vetur: https://vuejs.github.io/vetur/
 
-.. _VSCode:
-   https://code.visualstudio.com
-.. _ElectronJS:
-   https://electronjs.org/
-.. _VSCode Paketquellen:
-   https://packages.microsoft.com/repos/vscode
-.. _GitLense:
-   https://gitlens.amod.io/
-.. _Vetur:
-   https://vuejs.github.io/vetur/
-.. _vscode-Python:
-   https://github.com/Microsoft/vscode-python
-.. _vscode-reStructuredText:
-   https://github.com/vscode-restructuredtext/vscode-restructuredtext
-
-.. _playground/nodejs-hello:
-   https://storage/gitlab/playground/nodejs-hello
-.. _The Hitchhiker's guide to the modern front end development workflow:
-   https://marcobotto.com/blog/the-hitchhikers-guide-to-the-modern-front-end-development-workflow/
-.. _webpack:
-   https://webpack.github.io/
-.. _createapp.dev:
-   https://createapp.dev/webpack
-.. _babeljs:
-   https://babeljs.io/
-.. _less:
-   http://lesscss.org/
-.. _eslint:
-   https://github.com/eslint/eslint
-.. _`ESLint Rules`:
-   https://eslint.org/docs/rules/
+.. _playground/nodejs-hello: https://storage/gitlab/playground/nodejs-hello
+.. _babeljs: https://babeljs.io/
+.. _eslint: https://github.com/eslint/eslint
+.. _`ESLint Rules`: https://eslint.org/docs/rules/
 .. _`emacs flycheck (javascript-eslint)`:
    http://www.flycheck.org/en/latest/languages.html#syntax-checker-javascript-eslint
-.. _AVA:
-   https://github.com/avajs/ava
-.. _MochaJS:
-   https://mochajs.org/
-.. _Tape:
-   https://github.com/substack/tape
-.. _Analysis paralysis:
-   https://en.wikipedia.org/wiki/Analysis_paralysis
-.. _Awesome CSS Frameworks:
-   https://github.com/gabrielizalo/Awesome-CSS-Frameworks
-.. _Bootstrap:
-   https://getbootstrap.com/
-.. _Vue.js:
-   https://vuejs.org/
-.. _Vue JS Crash Course - 2019:
-   https://youtu.be/Wy9q22isx3U
-.. _Vuex Crash Course | State Management:
-   https://www.youtube.com/watch?v=5lVQgZzLMHc
-.. _Vue-CLI:
-   https://cli.vuejs.org/
-.. _Vue.js devtools:
-   https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/
+.. _AVA: https://github.com/avajs/ava
+.. _MochaJS: https://mochajs.org/
+.. _Tape: https://github.com/substack/tape
+.. _Analysis paralysis: https://en.wikipedia.org/wiki/Analysis_paralysis
 
-.. _jsonplaceholder.typicode.com:
-   https://jsonplaceholder.typicode.com/
+.. _NativeScript: https://www.nativescript.org/
+.. _Ionic framework: https://ionicframework.com/docs/intro
+.. _GrapQL: https://graphql.org/
+.. _Graphene: https://graphene-python.org/
+
+.. _jsonplaceholder.typicode.com: https://jsonplaceholder.typicode.com/
+
+
+.. build
+.. -----
+
+.. _gruntjs: https://gruntjs.com/
+.. _webpack: https://webpack.github.io/
+.. _createapp.dev: https://createapp.dev/webpack
+
+
+.. Artikel
+.. -------
+
+.. _The Hitchhiker's guide to the modern front end development workflow:
+   https://marcobotto.com/blog/the-hitchhikers-guide-to-the-modern-front-end-development-workflow/
+
+
+.. Editoren
+.. --------
+
+.. _VSCode: https://code.visualstudio.com/
+.. _VSCode Paketquellen: https://packages.microsoft.com/repos/vscode
+.. _vscode-Python: https://github.com/Microsoft/vscode-python
+.. _vscode-reStructuredText:
+    https://github.com/vscode-restructuredtext/vscode-restructuredtext
+.. _ATOM: https://atom.io/
+
+.. Vue.js
+.. ------
+
+.. _Vue.js: https://vuejs.org/
+.. _Vue JS Crash Course - 2019:  https://youtu.be/Wy9q22isx3U
+.. _Vue-CLI: https://cli.vuejs.org/
+.. _Vue.js devtools: https://addons.mozilla.org/de/firefox/addon/vue-js-devtools/
+.. _Vuex: https://vuex.vuejs.org/
+.. _Vuex Crash Course | State Management: https://www.youtube.com/watch?v=5lVQgZzLMHc
+.. _Vue-Router: https://router.vuejs.org/
+.. _Vue-Components: https://vuejs.org/v2/guide/#Composing-with-Components
+.. _Vue Cli Plugin Component: https://github.com/David-Desmaisons/vue-cli-plugin-component
+.. _Awesome Vue.js: https://github.com/vuejs/awesome-vue
+
+..  UI & CSS
+.. --------
+
+.. _Awesome CSS Frameworks: https://github.com/gabrielizalo/Awesome-CSS-Frameworks
+.. _less: http://lesscss.org/
+.. _Bootstrap: https://getbootstrap.com/
+.. _Quasar: https://quasar.dev/video-tutorials
+.. _Awesome Quasar: https://github.com/quasarframework/quasar-awesome
+.. _Element UI: https://element.eleme.io/

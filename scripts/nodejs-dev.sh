@@ -28,7 +28,7 @@ APT_SOURCE_NAME="nodesource"
 NODEJS_PACKAGES="\
   nodejs"
 
-NPM_GLOBAL_PACKAGES="grunt-cli webpack webpack-cli lodash eslint @vue/cli"
+NPM_GLOBAL_PACKAGES="grunt-cli webpack webpack-cli lodash eslint @vue/cli @quasar/cli"
 
 VSCODE_PACKAGES="code"
 VSCODE_APT_DEB="https://packages.microsoft.com/repos/vscode"

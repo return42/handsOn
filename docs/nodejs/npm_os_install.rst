@@ -12,7 +12,7 @@ npm Pakete im OS
 
    .. code-block:: bash
 
-      sudo -H ./nodejs-dev.sh update nodejs
+      sudo -H ./nodejs-dev.sh install npm-global
 
 Hat man eine Installation des Node.js über den Paketmanager (z.B. Ubuntu Quellen
 oder :ref:`nodesource.com`), so kann man sich die Node.js Pakete (Werkzeuge und
@@ -28,21 +28,27 @@ Hier ein Beispiel zum Anzeigen der im System installierten Node.js Pakete::
 
   $ npm -g --depth=0 ls
   /usr/lib
+  ├── @quasar/cli@1.0.2
+  ├── @vue/cli@4.0.5
+  ├── eslint@6.6.0
+  ├── gradle@1.0.9
   ├── grunt-cli@1.3.2
-  └── npm@6.12.0
+  ├── npm@6.13.0
+  ├── webpack@4.41.2
+  └── webpack-cli@3.3.10
 
 Will man wissen, welche Versionen eines Pakets zur Verfügung stehen
 (``versions`` plural)::
 
-  $ npm view grunt-cli versions 
+  $ npm view eslint versions
   [ ...
-    '1.3.0',  '1.3.1',  '1.3.2'
+    '6.4.0', '6.5.0', '6.5.1', '6.6.0'
   ]
 
 Anzeigen der aktuellsten Version (``version`` singular)::
 
-  $ npm view grunt-cli version
-  1.3.2
+  $ npm view eslint version
+  6.6.0
 
 Anzeigen der Pakete mit aktuelleren Versionen::
 
