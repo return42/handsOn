@@ -705,7 +705,7 @@ cloneGitRepository() {
     fi
 
     if [[ ! -z ${SUDO_USER} ]]; then
-        sudo -u ${SUDO_USER} mkdir -p ${CACHE}
+        sudo -H -u ${SUDO_USER} mkdir -p ${CACHE}
     else
         mkdir -p ${CACHE}
     fi
@@ -715,7 +715,7 @@ cloneGitRepository() {
         info_msg "  -->${Green} ${target_folder} ${_color_Off}"
 	pushd "${target_folder}" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
-            sudo -u ${SUDO_USER} git pull --all
+            sudo -H -u ${SUDO_USER} git pull --all
         else
             git pull --all
         fi
@@ -725,7 +725,7 @@ cloneGitRepository() {
         info_msg "  -->${Green} ${target_folder} ${_color_Off}"
 	pushd "$(dirname ${target_folder})" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
-            sudo -u ${SUDO_USER} git clone "$1" "$2"
+            sudo -H -u ${SUDO_USER} git clone "$1" "$2"
         else
             git clone "$1" "$2"
         fi
