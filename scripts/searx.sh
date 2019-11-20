@@ -16,12 +16,14 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
+SEARX_GIT_URL="https://github.com/asciimoo/searx.git"
+
 SEARX_APT_PACKAGES="\
 libapache2-mod-uwsgi uwsgi uwsgi-plugin-python3 \
   git build-essential libxslt-dev python3-dev python3-babel zlib1g-dev \
   libffi-dev libssl-dev"
 
-# SEARX_DESCRIPTION="Searx (self hosted)"
+# SEARX_DESCRIPTION="searX (self hosted)"
 SEARX_USER=searx
 SEARX_HOME="/home/$SEARX_USER"
 SEARX_VENV="${SEARX_HOME}/searx-venv"
@@ -29,23 +31,22 @@ SEARX_VENV="${SEARX_HOME}/searx-venv"
 SEARX_REPO_FOLDER="${SEARX_HOME}/searx-src"
 SEARX_SETTINGS="${SEARX_REPO_FOLDER}/searx/settings.yml"
 
-# Apache Redirect URL
+# Apache Settings
 SEARX_APACHE_DOMAIN="$(uname -n)"
 SEARX_APACHE_URL="/searx"
 SEARX_APACHE_SITE=searx
 
-SEARX_GIT_URL="https://github.com/asciimoo/searx.git"
-
-# SEARX_LOG_FOLDER="/var/log/$SEARX_APACHE_URL"
+# uWSGI Settings
+SEARX_UWSGI_APP=searx.ini
 
 CONFIG_BACKUP=(
     "${APACHE_SITES_AVAILABE}/${SEARX_APACHE_SITE}.conf"
+    "/etc/uwsgi/apps-available/${SEARX_UWSGI_APP}"
 )
 
 CONFIG_BACKUP_ENCRYPTED=(
     "${SEARX_SETTINGS}"
 )
-
 
 # ----------------------------------------------------------------------------
 usage(){
@@ -67,7 +68,7 @@ EOF
 
 # ----------------------------------------------------------------------------
 main(){
-    rstHeading "Gogs / Go Git Service" part
+    rstHeading "searX" part
 # ----------------------------------------------------------------------------
 
     case $1 in
@@ -105,17 +106,16 @@ main(){
 
 # ----------------------------------------------------------------------------
 install_server(){
-     rstHeading "Installation Searx"
+     rstHeading "Installation searX"
 # ----------------------------------------------------------------------------
 
-    if ! askYn "Soll eine Searx Instanz installiert werden?"; then
+    if ! askYn "Soll eine searX Instanz installiert werden?"; then
         return 42
     fi
 
-    if ! aptPackageInstalled apache2; then
-
-        rstBlock "Apache is noch nicht installiert, die Installation sollte mit
-dem Skript 'apache_setup.sh' durchgeführt werden."
+    if ! print_URL_status https://localhost > /dev/null ; then
+        rstBlock "Apache ist nicht installiert.  Die Installation sollte mit
+dem Skript ./apache_setup.sh durchgeführt werden."
         return 42
     fi
 
@@ -130,19 +130,33 @@ dem Skript 'apache_setup.sh' durchgeführt werden."
     create_venv
     configure_searx
     test_local_searx
+    install_apache_site
 
-    err_msg "TODO ..."
+    rstHeading "Installation der uWSGI Konfiguration (searx.ini)" section
+    echo
+    uWSGI_install_app --eval $SEARX_UWSGI_APP
+
+    test_public_searx
 }
 
 # ----------------------------------------------------------------------------
 remove_server() {
-    rstHeading "De-Installation Searx"
+    rstHeading "De-Installation searX"
 # ----------------------------------------------------------------------------
 
-    if ! askYn "Soll die Searx Instanz deinstalliert werden?"; then
+    if ! askYn "Soll die searX Instanz deinstalliert werden?"; then
         return
     fi
+
     deactivate_server
+
+    rstBlock "Die Konfiguration der searX App im uWSGI kann entfernt wuerden,
+sofern keine indiviuellen Anpassungen vorgenommen wurden, die noch nicht
+gesichert wurden."
+
+    if askNy "Soll die searX App aus dem uWSGI entfernt werden?"; then
+        uWSGI_remove_app $SEARX_UWSGI_APP
+    fi
 
     rstHeading "Benutzer $SEARX_USER" section
     if askNy "Soll der Benutzer wirklich ganz gelöscht werden? Alle Daten gehen verloren!!!"; then
@@ -158,7 +172,9 @@ assert_user(){
 # ----------------------------------------------------------------------------
     echo
     TEE_stderr 1 <<EOF | bash | prefix_stdout
-useradd $SEARX_USER -d $SEARX_HOME
+sudo -H adduser \
+  --disabled-password --gecos 'searX' \
+  --home $SEARX_HOME $SEARX_USER
 groups $SEARX_USER
 EOF
 
@@ -172,7 +188,7 @@ EOF
 
 # ----------------------------------------------------------------------------
 clone_repo(){
-    rstHeading "Download/Clone der Searx Sourcen" section
+    rstHeading "Download/Clone der searX Sourcen" section
 # ----------------------------------------------------------------------------
 
     rstBlock "Repository in ${SEARX_REPO_FOLDER}"
@@ -185,6 +201,7 @@ clone_repo(){
     popd > /dev/null
     waitKEY
 }
+
 
 # ----------------------------------------------------------------------------
 create_venv(){
@@ -204,12 +221,13 @@ EOF
 
 # ----------------------------------------------------------------------------
 configure_searx(){
-    rstHeading "Konfiguration Searx" section
+    rstHeading "Konfiguration searX" section
 # ----------------------------------------------------------------------------
 
     rstBlock "Virtuelle Python Umgebung in ${SEARX_VENV}"
     echo
 
+    # ToDo ..
     # TEMPLATES_InstallOrMerge --eval $SEARX_SETTINGS searx searx 6
 
     TEE_stderr 1 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
@@ -224,42 +242,58 @@ EOF
 test_local_searx(){
 # ----------------------------------------------------------------------------
 
-    rstHeading "Test der Searx Installation" section
+    rstHeading "Test der searX Installation" section
     echo
     TEE_stderr <<EOF | sudo -i -u $SEARX_USER | prefix_stdout
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
 sed -i -e "s/debug : False/debug : True/g" $SEARX_SETTINGS
-timeout 20 python3 searx/webapp.py &
-sleep 5
+timeout 5 python3 searx/webapp.py &
+sleep 1
 curl --location --verbose --head --insecure http://127.0.0.1:8888/  2>&1
 sed -i -e "s/debug : True/debug : False/g" $SEARX_SETTINGS
 EOF
     waitKEY
 }
 
-#     rstHeading "Apache Site mit ProxyPass einrichten" section
-#     echo
-#     a2enmod proxy_http
-#     APACHE_install_site --eval ${GOGS_APACHE_SITE}
-#     rstBlock "Dienst: https://${GOGS_APACHE_DOMAIN}${GOGS_APACHE_URL}"
-#     waitKEY
 
-#     rstHeading "Test des Gogs Dienstes im WWW" section
-#     echo
-#     TEE_stderr <<EOF | bash | prefix_stdout
-# curl --location --verbose --head --insecure https://${GOGS_APACHE_DOMAIN}${GOGS_APACHE_URL}
-# EOF
-#     waitKEY
+# ----------------------------------------------------------------------------
+test_public_searx(){
+# ----------------------------------------------------------------------------
 
+    rstHeading "Test des searX Dienst im WWW (public)" section
+    waitKEY
+
+    TEE_stderr <<EOF | bash | prefix_stdout
+curl --location --head --insecure https://${SEARX_APACHE_DOMAIN}${SEARX_APACHE_URL}
+EOF
+    waitKEY
+}
+
+# ----------------------------------------------------------------------------
+install_apache_site(){
+# ----------------------------------------------------------------------------
+
+    rstHeading "Apache Site einrichten: ${SEARX_APACHE_SITE}" section
+    echo
+    a2enmod uwsgi
+    APACHE_install_site --eval ${SEARX_APACHE_SITE}
+    rstBlock "Dienst: https://${SEARX_APACHE_DOMAIN}${SEARX_APACHE_URL}"
+    waitKEY
+
+}
 
 # ----------------------------------------------------------------------------
 activate_server(){
-    rstHeading "Aktivieren des Searx (service)" section
+    rstHeading "Aktivieren des searX (service)" section
 # ----------------------------------------------------------------------------
     echo ""
+
+    uWSGI_enable_app $SEARX_UWSGI_APP
+    uWSGI_restart
+
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
-a2ensite gogs
+a2ensite searx
 systemctl force-reload apache2
 EOF
     waitKEY 10
@@ -267,9 +301,12 @@ EOF
 
 # ----------------------------------------------------------------------------
 deactivate_server(){
-    rstHeading "De-Aktivieren des Searx (service)" section
+    rstHeading "De-Aktivieren des searX (service)" section
 # ----------------------------------------------------------------------------
     echo ""
+
+    uWSGI_disable_app $SEARX_UWSGI_APP
+    uWSGI_restart
 
     TEE_stderr <<EOF | bash 2>&1 | prefix_stdout
 a2dissite searx
@@ -277,7 +314,6 @@ systemctl force-reload apache2
 EOF
     waitKEY 10
 }
-
 
 # ----------------------------------------------------------------------------
 main "$@"
