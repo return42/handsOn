@@ -721,6 +721,8 @@ und kann bei Bedarf auch wieder deaktiviert werden::
     if askYn "Soll die HTML Startseite installiert werden?"; then
 
         TEMPLATES_installFolder ${HTML_INTRO_TEMPLATE} root ${WWW_USER}
+	HOSTNAME=$(hostname -s) \
+		sed -i "s/{hostname}/$HOSTNAME/g" ${HTML_INTRO_TEMPLATE}/index.html
         waitKEY
         APACHE_install_site ${HTML_INTRO_SITE}
         echo
