@@ -1,6 +1,6 @@
 general:
     debug : False # Debug mode, only for development
-    instance_name : "searx" # displayed name
+    instance_name : "{instance_name}" # displayed name
 
 search:
     safe_search : 0 # Filter results. 0: None, 1: Moderate, 2: Strict
@@ -20,10 +20,10 @@ server:
 ui:
     static_path : "" # Custom static path - leave it blank if you didn't change
     templates_path : "" # Custom templates path - leave it blank if you didn't change
+    default_locale : "de" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
     default_theme : oscar # ui theme
-    default_locale : "" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
     theme_args :
-        oscar_style : logicodev # default style of oscar
+        oscar_style : pointhi # default style of oscar
 
 # searx supports result proxification using an external service: https://github.com/asciimoo/morty
 # uncomment below section if you have running morty proxy
@@ -763,6 +763,7 @@ engines:
 #    base_url : 'http://doc.ubuntu-fr.org'
 
 locales:
+    de : Deutsch (German)
     en : English
     ar : العَرَبِيَّة (Arabic)
     bg : Български (Bulgarian)
@@ -770,7 +771,6 @@ locales:
     cs : Čeština (Czech)
     cy : Cymraeg (Welsh)
     da : Dansk (Danish)
-    de : Deutsch (German)
     el_GR : Ελληνικά (Greek_Greece)
     eo : Esperanto (Esperanto)
     es : Español (Spanish)

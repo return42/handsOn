@@ -295,6 +295,8 @@ configure_searx(){
     rstBlock "Virtuelle Python Umgebung in ${SEARX_VENV}"
     echo
 
+    TEMPLATES_InstallOrMerge /home/searx/searx-src/searx/templates/oscar/index.html searx searx 644
+
     TEMPLATES_InstallOrMerge $SEARX_SETTINGS searx searx 644
 
     TEE_stderr 0 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
