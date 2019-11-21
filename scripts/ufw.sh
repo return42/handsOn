@@ -93,13 +93,13 @@ ufw_install(){
 	ufw logging off
     fi
 
-
-    TEE_stderr 1 <<EOF | bash | prefix_stdout
+    TEE_stderr 0 <<EOF | bash | prefix_stdout
 ufw allow ssh
 ufw allow https
 ufw allow http
+ufw allow from fe80::/10
+ufw allow from 127.0.0.0/8 ::1
 ufw enable
-ufw status verbose
 EOF
 
     rstBlock "Die Firewall ist nun aktiv.  Es kann sein, dass einige Dienste nun
@@ -109,14 +109,27 @@ z.B. die folgenden. die aber i.d.R. nur auf Severn im Intranet freischaltet
 werden sollten(!)::
 
    sudo -H ufw allow CUPS
+
    sudo -H ufw allow ldaps
+
    sudo -H ufw allow Samba
 
 Beispiele für weitere Dienste:"
-    TEE_stderr 1 <<EOF | bash | prefix_stdout
+    TEE_stderr 0 <<EOF | bash | prefix_stdout
 ufw app list
 ufw app info CUPS
 EOF
+
+    if askNy "Soll die Firewall für Zugriffe aus dem Intranet inaktiv sein?"; then
+	local subnetz
+	chooseOneMenu subnetz "IPv4 Subnetz-Mask?" "16" "24"
+	TEE_stderr 1 <<EOF | bash | prefix_stdout
+ufw allow from fd00::/8
+ufw allow from 192.168.0.0/$subnetz
+EOF
+    fi
+
+    ufw status verbose
     rstBlock "Die Firewall kann auch über eine GUI 'gufw' Verwaltet werden."
     waitKEY
 }
