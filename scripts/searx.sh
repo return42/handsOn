@@ -28,6 +28,7 @@ SEARX_HOME="/home/$SEARX_USER"
 SEARX_VENV="${SEARX_HOME}/searx-venv"
 SEARX_REPO_FOLDER="${SEARX_HOME}/searx-src"
 SEARX_SETTINGS="${SEARX_REPO_FOLDER}/searx/settings.yml"
+SEARX_INSTANCE_NAME="${SEARX_INSTANCE_NAME:-searX@$(uname -n)}"
 
 # Apache Settings
 SEARX_APACHE_DOMAIN="$(uname -n)"
@@ -57,6 +58,7 @@ usage:
 
   $(basename $0) info
   $(basename $0) install    [server]
+  $(basename $0) config     [server|diff]
   $(basename $0) udpate     [server]
   $(basename $0) remove     [server]
   $(basename $0) activate   [server]
@@ -65,9 +67,20 @@ usage:
 EOF
 }
 
+arg2_unknown(){
+    if [[ -z ${2} ]] ; then
+	usage "${BRed}ERROR:${_color_Off} missing $1's argument"
+    else
+	usage "${BRed}ERROR:${_color_Off} unknown $1 argument: $2"
+    fi
+}
+
+intro(){
+    rstHeading "searX (${SEARX_INSTANCE_NAME})" part
+}
+intro
 # ----------------------------------------------------------------------------
 main(){
-    rstHeading "searX" part
 # ----------------------------------------------------------------------------
 
     case $1 in
@@ -76,35 +89,49 @@ main(){
         info) less "${REPO_ROOT}/docs/searx.rst" ;;
 
         install)
-            sudoOrExit
+            intro; sudoOrExit
             case $2 in
                 server)  install_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
         remove)
-            sudoOrExit
+            intro; sudoOrExit
             case $2 in
                 server)  remove_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
         update)
-            sudoOrExit
+            intro; sudoOrExit
             case $2 in
                 server)  update_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
         activate)
-            sudoOrExit
+            intro; sudoOrExit
             case $2 in
                 server)  activate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
         deactivate)
-            sudoOrExit
+            intro; sudoOrExit
             case $2 in
                 server)  deactivate_server ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
+
+        config)
+            sudoOrExit
+            case $2 in
+                server)
+		    intro
+		    configure_searx
+		    git_diff
+		    uWSGI_restart
+		    ;;
+		diff)    git_diff ;;
+                *)       arg2_unknown "$1" "$2"; exit 42;;
+            esac ;;
+
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
 }
@@ -159,11 +186,18 @@ git stash
 git pull origin master
 git stash apply
 ${SEARX_REPO_FOLDER}/manage.sh update_packages
-git diff
 EOF
+    git_diff
     waitKEY
 }
 
+git_diff(){
+    sudo -H -u ${SEARX_USER} -i <<EOF
+. ${SEARX_VENV}/bin/activate
+cd ${SEARX_REPO_FOLDER}
+git diff
+EOF
+}
 
 # ----------------------------------------------------------------------------
 remove_server() {
@@ -263,10 +297,11 @@ configure_searx(){
 
     TEMPLATES_InstallOrMerge $SEARX_SETTINGS searx searx 644
 
-    TEE_stderr 1 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+    TEE_stderr 0 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
 sed -i -e "s/ultrasecretkey/`openssl rand -hex 16`/g" $SEARX_SETTINGS
+sed -i -e "s/{instance_name}/${SEARX_INSTANCE_NAME}/g" $SEARX_SETTINGS
 EOF
     waitKEY
 }

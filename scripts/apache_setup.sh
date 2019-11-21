@@ -169,7 +169,7 @@ usage(){
 usage:
   $(basename $0) install    [server|sites|PHP|WSGI|ACME]
   $(basename $0) remove     [all|PHP|WSGI|ACME]
-  $(basename $0) update     [WSGI]
+  $(basename $0) update     [WSGI|intro]
   $(basename $0) activate   [WAF]
   $(basename $0) deactivate [WAF]
 
@@ -177,6 +177,8 @@ server:
   geführte Installation aller wichtigen Apache Komponenten
 sites: ${APACHE_ADD_SITES:-<aktuell keine zusätzlichen Sites konfiguriert>}
   zusätzliche Sites installieren
+intro:
+  installiert (erneut) die HTML intro Seite aus den Vorlagen
 PHP:
   installiert PHP und Apache Modul
 WSGI:
@@ -189,6 +191,13 @@ ACME:
 EOF
 }
 
+arg2_unknown(){
+    if [[ -z ${2} ]] ; then
+	usage "${BRed}ERROR:${_color_Off} missing $1's argument"
+    else
+	usage "${BRed}ERROR:${_color_Off} unknown $1 argument: $2"
+    fi
+}
 
 # ----------------------------------------------------------------------------
 main(){
@@ -203,7 +212,7 @@ main(){
         install)
             sudoOrExit
             case $2 in
-                server)  install_server           ;;
+                server)  install_server ;;
                 PHP)
 		    installPHP
 		    installPHPTestApp
@@ -212,14 +221,14 @@ main(){
 		    installWSGI
 		    installWSGITestApp
 		    ;;
-                sites)   installAddSites          ;;
-                ACME)    installACME              ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                sites)   installAddSites ;;
+                ACME)    installACME ;;
+                *)       arg2_unknown "$1" "$2"; exit 42 ;;
             esac ;;
         remove)
             sudoOrExit
             case $2 in
-                all)  API_apache_remove_all;;
+                all)  API_apache_remove_all ;;
                 PHP)
                     deinstallPHP
                     APACHE_reload
@@ -228,28 +237,29 @@ main(){
                     deinstallWSGI
                     APACHE_reload
                     ;;
-                ACME)    deinstallACME              ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                ACME)    deinstallACME ;;
+                *)       arg2_unknown "$1" "$2"; exit 42 ;;
             esac ;;
 
 
         update)
             sudoOrExit
             case $2 in
-                WSGI)    updateWSGI               ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                WSGI)    updateWSGI ;;
+		intro)   site_html-intro ;;
+                *)       arg2_unknown "$1" "$2"; exit 42 ;;
             esac ;;
         activate)
             sudoOrExit
             case $2 in
-                WAF)     mod_security2_activate   ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                WAF)     mod_security2_activate ;;
+                *)       arg2_unknown "$1" "$2"; exit 42 ;;
             esac ;;
         deactivate)
             sudoOrExit
             case $2 in
-                WAF)     mod_security2_deactivate   ;;
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+                WAF)     mod_security2_deactivate ;;
+                *)       arg2_unknown "$1" "$2"; exit 42 ;;
             esac ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
     esac
@@ -712,7 +722,7 @@ site_html-intro(){
 # ----------------------------------------------------------------------------
 
     rstBlock "Die HTML-Startseite stellt Verweise auf die Anwendungen zur
-Verfügung, die mit diesem Skript installiert werden. Die Installation erfolgt
+Verfügung, die mit diesem Skript installiert werden.  Die Installation erfolgt
 nach 'DocumentRoot' (siehe apache.conf).  Die Startseite ist nur *exemplarisch*
 und kann bei Bedarf auch wieder deaktiviert werden::
 
