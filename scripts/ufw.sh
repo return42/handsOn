@@ -87,46 +87,55 @@ ufw_install(){
 
     rstHeading "Konfiguration und Aktivierung" section
 
+    TEE_stderr 0 <<EOF | bash | prefix_stdout
+ufw limit ssh
+ufw limit http
+ufw limit https
+ufw allow from fe80::/10
+ufw allow from 127.0.0.0/8 ::1
+ufw enable
+EOF
+
     if askYn "Soll das Logging der Firewall aktiviert werden"; then
 	ufw logging on
     else
 	ufw logging off
     fi
 
-    TEE_stderr 0 <<EOF | bash | prefix_stdout
-ufw allow ssh
-ufw allow https
-ufw allow http
-ufw allow from fe80::/10
-ufw allow from 127.0.0.0/8 ::1
-ufw enable
-EOF
+    info_msg "\n  Die Firewall ist nun aktiv."
 
-    rstBlock "Die Firewall ist nun aktiv.  Es kann sein, dass einige Dienste nun
-nicht mehr oder nur eingeschränkt funktionieren, weil sie durch die Firewall
-geblockt werden.  Ggf. müssen weitere UFW Regeln freigeschaltet werden, wie
-z.B. die folgenden. die aber i.d.R. nur auf Severn im Intranet freischaltet
-werden sollten(!)::
+    echo -e "\nEs kann sein, dass einige Dienste nun nicht mehr oder nur
+eingeschränkt funktionieren, weil sie durch die Firewall geblockt werden.
+Ggf. müssen weitere UFW Regeln freigeschaltet werden, wie z.B. die
+folgenden. die aber i.d.R. nur auf Severn im Intranet freischaltet werden
+sollten(!)::
 
    sudo -H ufw allow CUPS
-
    sudo -H ufw allow ldaps
 
-   sudo -H ufw allow Samba
+Um expliziet Samba für IPv4 im Intranet frei zu schalten könnte man
+konfigurieren:
 
-Beispiele für weitere Dienste:"
-    TEE_stderr 0 <<EOF | bash | prefix_stdout
+   sudo -H ufw allow from 192.168.0.0/16 port '137,138' proto 'udp'
+   sudo -H ufw allow from 192.168.0.0/16 port '139,445' proto 'tcp'
+
+Alternati kann man auch alle Zugriffe in/aus dem Intranet frei schalten (siehe
+unten).  Beispiele für weitere Dienste die auf diesem Host installiert sind:"
+
+    TEE_stderr 1 <<EOF | bash | prefix_stdout
 ufw app list
 ufw app info CUPS
 EOF
 
     if askNy "Soll die Firewall für Zugriffe aus dem Intranet inaktiv sein?"; then
 	local subnetz
-	chooseOneMenu subnetz "IPv4 Subnetz-Mask?" "16" "24"
-	TEE_stderr 1 <<EOF | bash | prefix_stdout
+	ask subnetz "IPv4 Subnetz-Mask, z.B. 192.168.1.0/16 oder - um abzubrechen" "-"
+	if [[ ! $subnetz == "-" ]]; then
+	    TEE_stderr 1 <<EOF | bash | prefix_stdout
 ufw allow from fd00::/8
-ufw allow from 192.168.0.0/$subnetz
+ufw allow from $subnetz
 EOF
+	fi
     fi
 
     ufw status verbose
@@ -142,7 +151,7 @@ ufw_remove() {
     TEE_stderr 1 <<EOF | bash | prefix_stdout
 sudo -H ufw disable
 EOF
-    if ! askYn "Firewall wurde deaktiviert.  Soll wirklich noch deinstalliert werden?"; then
+    if ! askNy "Firewall wurde deaktiviert.  Soll wirklich noch deinstalliert werden?"; then
         return
     fi
     aptPurgePackages $UFW_APT_PACKAGES
