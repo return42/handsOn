@@ -116,6 +116,10 @@ CONFIG_BACKUP_ENCRYPTED=(
 CONFIG_BACKUP=(
 # ==============================================================================
 
+    # ufw firewall
+    "/etc/default/ufw"
+    "/etc/ufw"
+
     # LDAP-Client
     "/etc/ldap.conf"
     "/etc/ldap/ldap.conf"
