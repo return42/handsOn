@@ -110,6 +110,7 @@ div.content_section_text a:hover {
     </style>
   </head>
   <body>
+
     <div class="main_page">
       <div class="content_section">
 
@@ -120,6 +121,15 @@ div.content_section_text a:hover {
 
         <div class="content_section_text">
           <ul>
+	    <li>
+	      <form method="post" action="/searx"><a href="/searx">searX@{hostname}</a>
+		<!-- search query --> <input type="text" name="q" />
+		<!-- categories   --> <input type="hidden" name="categories" value="" / -->
+		<!-- language     --> <input type="hidden" name="lang" value="all" />
+		<!-- locale       --> <input type="hidden" name="locale" value="de" />
+		<!-- date filter  --> <input type="hidden" name="time_range" value="" />
+	      </form>
+	    </li>
             <li> EXPIMP Ordner <a href="/EXPIMP">(HTTP)</a>
               oder <a href="smb://storage">(smb://{hostname})</a> oder im Explorer
               "\\{hostname}\EXPIMP"
@@ -132,7 +142,6 @@ div.content_section_text a:hover {
             <li><a href="/glances">glances</a></li>
             <li><a href="/radicale">Radicale</a></li>
             <li><a href="/iCal">iCal shares</a></li>
-            <li><a href="/searx">searX</a></li>
             <li><a href="/keeweb?config=config.json">KeeWeb (static page)</a></li>
 
             <li><a href="/chrome">/chrome : autoindex</a></li>

@@ -8,6 +8,12 @@
 # ORGANIZATION="myorg"
 
 # =====================
+# searX
+# =====================
+
+# SEARX_INSTANCE_NAME=searX@myhost.de
+
+# =====================
 # Debian's Apache Setup
 # =====================
 
@@ -204,6 +210,12 @@ CONFIG_BACKUP=(
 
     # Apache: PHP
     # "/var/www/phpApps/helloWorld"
+
+    # uWSGI
+    "/etc/uwsgi/apps-available/searx.ini"
+
+    # searX
+    "/home/searx/searx-src/searx/settings.yml"
 
     # dovecot Mail Server
     "/etc/dovecot/dovecot.conf"
