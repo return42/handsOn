@@ -28,6 +28,7 @@ BASE_PACKAGES="\
  git curl colordiff meld \
  gparted exfat-fuse exfat-utils smartmontools \
  ncdu poppler-utils \
+ net-tools \
 "
 
 DEVELOP_PACKAGES_TITLE="Basispakete zum Kompilieren & Installieren"
@@ -126,6 +127,7 @@ NETWORK_PACKAGES="\
  wireshark libwireshark-data wireshark-doc \
  iptraf \
  nmap \
+ net-tools \
 "
 
 # ----------------------------------------------------------------------------
