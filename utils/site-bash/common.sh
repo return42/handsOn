@@ -526,6 +526,51 @@ askPassphrase(){
 }
 
 # ----------------------------------------------------------------------------
+askIPv4Netmask(){
+# ----------------------------------------------------------------------------
+
+    # Fragt den Anwender nach einer IP und der Netzwerkmaske (class A, B oder
+    # C).  Die Auswahl wird in der Umgebungsvariablen <name> HINTERLEGT.
+
+    # usage:
+    #
+    #     askIPv4Netmask <name>
+    #     echo $<name>
+
+    if [[ -z $1 ]] ; then
+        err_msg "askIPv4Netmask() - missing argument"
+        exit
+    fi
+
+    local env_name=$1
+    local REPLY
+    local ipv4class
+    local menu=$(hostname -I)
+    local ipv4
+
+    if (( $(echo $menu | wc -w  ) > 1 )) ; then
+        chooseOneMenu ipv4 "Bitte die IP wählen" ${menu}
+    else
+        ipv4=adresses
+    fi
+    chooseOneMenu ipv4class \
+                  "Welche Netzwerkmaske wird im Subnetz verwendet?"\
+                  "Class-C /24" \
+                  "Class-B /16" \
+                  "Class-A /8"
+
+    case $ipv4class in
+        "Class-C /24")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 "." $2 "." $3 ".0/24"}');;
+        "Class-B /16")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 "." $2 ".0.0/16"}');;
+        "Class-A /8")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 ".0.0.0/8"}');;
+    esac
+    eval "$env_name='${REPLY}'"
+}
+
+# ----------------------------------------------------------------------------
 ask_rm(){
 # ----------------------------------------------------------------------------
 
