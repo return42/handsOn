@@ -1,12 +1,14 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../ffox_refs.txt
+.. include:: ../searx_refs.txt
 
 .. _Filterblase: https://de.wikipedia.org/wiki/Filterblase
 .. _WEB-Tracking: https://de.wikipedia.org/wiki/Web_Analytics
 .. _pi-hole: https://pi-hole.net/
 .. _DNS: https://de.wikipedia.org/wiki/Domain_Name_System
 .. _Domain: https://de.wikipedia.org/wiki/Domain_(Internet)
+
 
 .. _search_engines:
 
@@ -16,24 +18,10 @@ Suchmaschinen & Tracking
 
 .. sidebar:: Warnung -- Startpage
 
-   .. _warnung_startpage:
-
    Bisher wurde hier `Startpage` als "*die bessere google Suchmaschine!*"
-   tituliert.  Inzwischen wurde das Unternehmen geschluckt und befindet sich
-   jetzt in den Händen von ... naja man weiß es nicht so genau.  Was man weiß
-   steht in der `Presseerklärung
-   <https://www.startpage.com/blog/company-updates/startpage-and-privacy-one-group/>`_:
-   *Privacy One Group Ltd and Startpage’s relationship started in January 2019*.
-   Die Presseerklärung kam allerdings erst im Oktober 2019.  Soviel zur
-   Transparenz von Startpage.  Privacy One Group Ltd `gehört zu System1 LLC
-   <https://support.startpage.com/index.php?/Knowledgebase/Article/View/1260/17/who-are-the-owners-of-startpage>`_:
-   *privacy-focused division that is a separate operating unit of System1 LLC*.
-   Weiteres kann man über diese Abteilung (das Unternehmen?) nicht in Erfahrung
-   bringen.  Fragt man sich also, wer ist der Eigentümer System1 LLC?  Ein
-   Werbe- und Marketinganbieter, der mit dem Auswerten und Verarbeiten von Daten
-   Umsatz generiert (s.a. `Kuketz
-   <https://www.kuketz-blog.de/ist-die-suchmaschine-startpage-noch-empfehlenswert/>`__).
-
+   tituliert, inzwischen kann von der Verwendung nur abgeraten werden
+   (s.u. Startpage_).  Alternativ empfiehlt es sich eine der :ref:`searX Engines
+   <xref_searx>` zur Internetsuche zu verwenden z.B.: `searX@darmarIT`_
 
 Für die ganz Ungeduldigen unter uns:
 
@@ -133,70 +121,51 @@ eher schwach ist. Im Folgenden werden *härtere/aktive* Methoden zum Schutz
 empfohlen.
 
 
-Anonyme Suchmaschinen
----------------------
+Anonyme Suche
+-------------
 
-.. warning::
+.. sidebar:: `Google search link fix`_
 
-   Dieser Absatz muss noch überarbeitet werden (siehe :ref:`Warnung -- Startpage
-   <warnung_startpage>`)
+   Will man unbedingt über Google suchen, dann ist man zwar im Tracking, doch
+   auch das kann man (etwas) einschränken, im Firefox z.B. mit dem AddOn:
+   `Google search link fix`_.
 
-Anonyme Suchmaschinen setzen kein Tracking ein. Jedoch blenden sie zwecks
-Finanzierung gekennzeichnete Werbung ein (s.a. :ref:`add_blocker`). Als anonyme
-Suchmaschine kann z.B. Startpage.com_ oder DuckDuckGo (DDG_) empfohlen werden:
+Anonyme Suchmaschinen setzen kein Tracking ein.  Jedoch blenden sie zwecks
+Finanzierung gekennzeichnete Werbung ein (s.a. :ref:`add_blocker`).  Die Nähe
+solcher Unternehmen zur Werbebranche ist nicht immer unproblematisch.  Genau
+genommen weiß man nicht, ob sich das Geschäftsmodel solcher Unternehemen im
+Laufe der Jahre nicht doch irgendwann verschiebt.  Der aktuelle Fall von
+Startpage (s.u.) zeigt wie sich die Geschäftsmodelle *still und leise ändern*
+können.
 
-- https://www.startpage.com
-- https://duckduckgo.com
+.. admonition:: searX (aka goggle++)
 
-DDG
-~~~
+   Ich empfehle die Verwendung einer :ref:`searX Engine <xref_searx>`, davon
+   gibt es reichlich im Netz:
 
-Wenn man die DDG_ Seite aufruft, wird einem (rechts) angeboten DDG als
-voreingestellte Suchmaschine im WEB-Browser einzurichten.  Man kann für den
-Firefox auch ein AddOn installieren, das braucht man aber meiner Ansicht nach
-nicht, die Suchmaschine im WEB-Broweser sollte genug sein.
+   - `searX@darmarIT`_
+   - searX-Instances_
 
-- `DDG FFox AddOn`_
 
-DDG bereitet die Treffer recht komfortabel auf und hat z.T. nette Features in
-der Trefferliste, so z.B. einen Taschenrechner, wenn man Suchbegriffe wie "1+1"
-oder ähnlich sucht:
+.. _Startpage:
 
-- https://duckduckgo.com/?q=1%2B1
+Startpage.com ist dubios
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Zum Teil liefert DDG auch gleich die Lösung bei speziellen Fragen, hier ein
-Beispiel aus der Programmierung (Suchbegriff: "python 3 string to bytes"):
-
-- https://duckduckgo.com/?q=python+3+string+to+bytes
-
-Unter dem Reiter "Q/A" wird direkt eine mögliche Lösung zur Fragestellung
-eingeblendet.  Ein weiteres nettes Feature ist es, WEB-Seiten direkt zu
-durchsuchen indem ein Losungswort mit vorangestelltem Ausrufungszeichen
-eingegeben wird (nennt sich `!bang <https://duckduckgo.com/bang>`_).  Um
-Beispielsweise direkt in der Wikipedia zu suchen kann man ``!wiki`` dem
-Suchbegriff voranstellen.  Will man schnell mal ein Wort übersetzen so verwendet
-man ``!leo`` oder will man bei OpenStreetMap was nachschauen reicht ``!osm``.
-
-So *nett* DDG auch ist, leider muss ich auch beobachten, dass DDG z.T. nicht
-*alles* findet.  Da scheint man dann wohl in der DDG Blase zu hängen ;)
-
-Manchmal will man aber auch wirklich mit Google suchen, dafür stellt man dann
-der Suche ein ``!g`` voran.  Bei Google ist man dann aber wieder im Tracking, doch
-auch das kann man einschränken, im Firefox z.B. mit dem folgenden AddOn:
-
-- `Google search link fix`_
-
-Startpage.com
-~~~~~~~~~~~~~
-
-.. warning::
-
-   Dieser Absatz muss noch überarbeitet werden (siehe :ref:`Warnung -- Startpage
-   <warnung_startpage>`)
-
-Startpage.com_ ist werbefinanziert.  Oben die ersten Treffer sind immer
-Anzeigen, es sei denn man hat sich `uBlock-origin`_ installiert.  Das AddOn
-blockiert die Einbelndung von Werbung (Anzeigen).
+Inzwischen wurde das Unternehmen geschluckt und befindet sich jetzt in den
+Händen von ... naja man weiß es nicht so genau.  Was man weiß steht in der
+`Presseerklärung
+<https://www.startpage.com/blog/company-updates/startpage-and-privacy-one-group/>`_:
+*Privacy One Group Ltd and Startpage’s relationship started in January 2019*.
+Die Presseerklärung kam allerdings erst im Oktober 2019.  Soviel zur Transparenz
+von Startpage.  Privacy One Group Ltd `gehört zu System1 LLC
+<https://support.startpage.com/index.php?/Knowledgebase/Article/View/1260/17/who-are-the-owners-of-startpage>`_:
+*privacy-focused division that is a separate operating unit of System1 LLC*.
+Weiteres kann man über diese Abteilung (das Unternehmen?) nicht in Erfahrung
+bringen.  Fragt man sich also, wer ist der Eigentümer System1 LLC?  Ein Werbe-
+und Marketinganbieter, der mit dem Auswerten und Verarbeiten von Daten Umsatz
+generiert (s.a. `Kuketz
+<https://www.kuketz-blog.de/ist-die-suchmaschine-startpage-noch-empfehlenswert/>`__).
 
 
 .. _add_blocker:

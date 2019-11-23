@@ -6,4 +6,4 @@
 .. _searx-github: https://github.com/asciimoo/searx
 
 .. _kuketz-suche.de: https://www.kuketz-suche.de
-.. _searX@darmarIT: https://darmarit.cloud/searx/
+.. _searX@darmarIT: https://darmarit.cloud/searx
