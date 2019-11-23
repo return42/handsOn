@@ -1,3 +1,5 @@
+# https://github.com/asciimoo/searx/wiki/settings.yml
+
 general:
     debug : False # Debug mode, only for development
     instance_name : "{instance_name}" # displayed name
@@ -20,7 +22,7 @@ server:
 ui:
     static_path : "" # Custom static path - leave it blank if you didn't change
     templates_path : "" # Custom templates path - leave it blank if you didn't change
-    default_locale : "de" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
+    default_locale : "" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
     default_theme : oscar # ui theme
     theme_args :
         oscar_style : pointhi # default style of oscar
@@ -159,7 +161,7 @@ engines:
     engine : duckduckgo_definitions
     shortcut : ddd
     weight : 2
-    disabled : True
+    disabled : False
 
 # cloudflare protected
 #  - name : digbt
@@ -194,13 +196,13 @@ engines:
   - name : duckduckgo
     engine : duckduckgo
     shortcut : ddg
-    disabled : True
+    disabled : False
 
   - name : duckduckgo images
     engine : duckduckgo_images
     shortcut : ddi
     timeout: 3.0
-    disabled : True
+    disabled : False
 
   - name : etymonline
     engine : xpath
@@ -268,6 +270,7 @@ engines:
   - name : gentoo
     engine : gentoo
     shortcut : ge
+    disabled: True
 
   - name : gitlab
     engine : json_engine
@@ -289,18 +292,22 @@ engines:
   - name : google
     engine : google
     shortcut : go
+    disabled: True
 
   - name : google images
     engine : google_images
     shortcut : goi
+    disabled: True
 
   - name : google news
     engine : google_news
     shortcut : gon
+    disabled: True
 
   - name : google videos
     engine : google_videos
     shortcut : gov
+    disabled: True
 
   - name : google scholar
     engine : xpath
@@ -315,6 +322,7 @@ engines:
     first_page_num : 0
     categories : science
     shortcut : gos
+    disabled: True
 
   - name : google play apps
     engine : xpath
@@ -550,7 +558,7 @@ engines:
     shortcut : re
     page_size : 25
     timeout : 10.0
-    disabled : True
+    disabled : False
 
   - name : scanr structures
     shortcut: scs
