@@ -140,12 +140,8 @@ können.
 
 .. admonition:: searX (aka goggle++)
 
-   Ich empfehle die Verwendung einer :ref:`searX Engine <xref_searx>`, davon
-   gibt es reichlich im Netz:
-
-   - `searX@darmarIT`_
-   - searX-Instances_
-
+   Am besten ist immernoch eine :ref:`searX Engine <xref_searx>`, davon gibt es
+   reichlich im Netz (searX-Instances_) oder man nimmt diese: `searX@darmarIT`_
 
 .. _Startpage:
 
