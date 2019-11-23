@@ -22,7 +22,7 @@ server:
 ui:
     static_path : "" # Custom static path - leave it blank if you didn't change
     templates_path : "" # Custom templates path - leave it blank if you didn't change
-    default_locale : "" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
+    default_locale : "de" # Default interface locale - leave blank to detect from browser information or use codes from the 'locales' config section
     default_theme : oscar # ui theme
     theme_args :
         oscar_style : pointhi # default style of oscar
@@ -292,22 +292,22 @@ engines:
   - name : google
     engine : google
     shortcut : go
-    disabled: True
+    disabled: False
 
   - name : google images
     engine : google_images
     shortcut : goi
-    disabled: True
+    disabled: False
 
   - name : google news
     engine : google_news
     shortcut : gon
-    disabled: True
+    disabled: False
 
   - name : google videos
     engine : google_videos
     shortcut : gov
-    disabled: True
+    disabled: False
 
   - name : google scholar
     engine : xpath
