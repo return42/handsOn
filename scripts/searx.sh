@@ -186,7 +186,7 @@ update_server(){
 cd ${SEARX_REPO_FOLDER}
 git stash
 git checkout "$SEARX_GIT_BRANCH"
-git pull "$SEARX_GIT_BRANCH"
+git pull origin "$SEARX_GIT_BRANCH"
 git stash apply
 ${SEARX_REPO_FOLDER}/manage.sh update_packages
 EOF
@@ -198,7 +198,7 @@ git_diff(){
     sudo -H -u ${SEARX_USER} -i <<EOF
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
-git diff
+git --no-pager diff
 EOF
 }
 
@@ -298,10 +298,6 @@ configure_searx(){
 
     rstBlock "Virtuelle Python Umgebung in ${SEARX_VENV}"
     echo
-
-    TEMPLATES_InstallOrMerge /home/searx/searx-src/searx/templates/oscar/index.html searx searx 644
-
-    TEMPLATES_InstallOrMerge $SEARX_SETTINGS searx searx 644
 
     TEE_stderr 0 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 . ${SEARX_VENV}/bin/activate
