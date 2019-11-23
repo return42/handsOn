@@ -16,7 +16,8 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
-SEARX_GIT_URL="https://github.com/asciimoo/searx.git"
+SEARX_GIT_URL="https://github.com/return42/searx.git"
+SEARX_GIT_BRANCH="dm-cloud"
 
 SEARX_APT_PACKAGES="\
 libapache2-mod-uwsgi uwsgi uwsgi-plugin-python3 \
@@ -153,6 +154,7 @@ dem Skript ./apache_setup.sh durchgeführt werden."
 
     rstBlock "Eine ggf. vorhandene Installation wird nun runter gefahren."
     deactivate_server
+    waitKEY
 
     TITLE='Installation erforderlicher Pakete' \
 	 aptInstallPackages $SEARX_APT_PACKAGES
@@ -183,7 +185,8 @@ update_server(){
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
 git stash
-git pull origin master
+git checkout "$SEARX_GIT_BRANCH"
+git pull "$SEARX_GIT_BRANCH"
 git stash apply
 ${SEARX_REPO_FOLDER}/manage.sh update_packages
 EOF
@@ -266,6 +269,7 @@ clone_repo(){
 cd ${SEARX_REPO_FOLDER}
 git config user.email "${SEARX_USER}@${SEARX_APACHE_DOMAIN}"
 git config user.name "searX on ${SEARX_APACHE_DOMAIN}"
+git checkout "$SEARX_GIT_BRANCH"
 EOF
     popd > /dev/null
     waitKEY
@@ -367,7 +371,6 @@ activate_server(){
 a2ensite searx
 systemctl force-reload apache2
 EOF
-    waitKEY 10
 }
 
 # ----------------------------------------------------------------------------
@@ -383,7 +386,6 @@ deactivate_server(){
 a2dissite searx
 systemctl force-reload apache2
 EOF
-    waitKEY 10
 }
 
 # ----------------------------------------------------------------------------
