@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Suchmaschinen &amp; Tracking &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Anmerkungen zu SSL und Zertifikaten" href="ssl_ca_remarks.html" />
+    <link rel="prev" title="Exkursionen und Erfahrungswerte" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Exkursionen und Erfahrungswerte</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Suchmaschinen &amp; Tracking</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#einleitung">Einleitung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#do-not-track">Do-not-track</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#anonyme-suche">Anonyme Suche</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#werbeblocker-co-im-web-browser">Werbeblocker &amp; Co. im WEB-Browser</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dns-blocker">DNS Blocker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tracking">Tracking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ssl_ca_remarks.html">Anmerkungen zu SSL und Zertifikaten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excursion_IPv4_6.html">Exkursion: Netzmaske / IPv4 und IPv6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excursion_NAT.html">Exkursion: NAT</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Exkursionen und Erfahrungswerte</a> &raquo;</li>
+        
+      <li>Suchmaschinen &amp; Tracking</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/excursion/search_engines.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="suchmaschinen-tracking">
+<span id="search-engines"></span><h1>Suchmaschinen &amp; Tracking<a class="headerlink" href="#suchmaschinen-tracking" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="sidebar">
+<p class="sidebar-title">Warnung – Startpage</p>
+<p>Bisher wurde hier <cite>Startpage</cite> als „<em>die bessere google Suchmaschine!</em>“
+tituliert, inzwischen kann von der Verwendung nur abgeraten werden
+(s.u. <a class="reference internal" href="#startpage">Startpage</a>).  Alternativ empfiehlt es sich eine der <a class="reference internal" href="../searx.html#xref-searx"><span class="std std-ref">searX Engines</span></a> zur Internetsuche zu verwenden z.B.: <a class="reference external" href="https://darmarit.cloud/searx">searX&#64;darmarIT</a></p>
+</div>
+<p>Für die ganz Ungeduldigen unter uns:</p>
+<ul class="simple">
+<li><p>Einleitung überspringen und hier starten mit: <a class="reference internal" href="#do-not-track"><span class="std std-ref">Do-not-track</span></a>.</p></li>
+<li><p>Zu viel Text, intressiert mich alles nicht, was muss ich in meinen FireFox
+installieren?</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/ublock-origin">uBlock-origin</a> <strong>!!must have!!</strong></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a> <strong>!!must have!!</strong></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/">Privacy Possum</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/canvasblocker">CanvasBlocker</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/decentraleyes">Decentraleyes</a></p></li>
+</ol>
+</li>
+<li><p>und was kann ich auf dem Android Gerät machen? .. schau <a class="reference internal" href="../android/nogoogle.html#nogoogle-intro"><span class="std std-ref">hier</span></a></p></li>
+</ul>
+<div class="section" id="einleitung">
+<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der erste Schritt ins Internet beginnt i.d.R. mit einer Suchmaschine, dort gibt
+man seinen Suchbegriff in ein Formular ein und klickt dann auf ein Ergebniss in
+der Trefferliste. Oftmals wird das Formular schon durch die URL Leiste (oben) im
+Browser ersetzt, das was man dort eintippt wird an die <strong>voreingestellte</strong>
+Suchmaschine geschickt und dann wird gleich die Trefferliste angezeit.</p>
+<p>Das ist soweit recht komfortabel, aber was macht eigentlich die voreingestellte
+Suchmaschine? Der naive Nutzer wird davon ausgehen, dass alle Anwender die den
+gleichen Begriff eingeben auch die gleiche Trefferliste erhalten, dem ist aber
+nicht so, zumindest nicht solange man Suchmaschinen wie beispielsweise Google
+(z.B. voreingestellt in Android, Chrome, Firefox und vielen Apple-Produkten)
+oder Bing (voreingestellt in Microsoft Produkten wie dem Internet-Explorer oder
+der Kachelansicht) und ähnliche nutzt.</p>
+<p>Diese Suchmaschinen versuchen möglichst <em>gute</em> Trefferlisten für ihre Anwender
+zusammenzustellen, doch was ist <em>gut</em>? Die Eigenschaft <em>gut</em> kann man durch
+<em>personalisiert</em> ersetzen, was meint; in der Trefferliste werden solche oder
+ähnliche Verweise bevorzugt, auf die der Nutzer der Suchmaschine schon mal
+geklickt hat. Wenn man z.B. über mehrere Wochen auf Google zu einem Thema was
+gesucht hat, dann weiß Google bei der nächsten Suche schon recht genau in
+welcher thematischen Ecke <em>gute</em> Treffer zu finden sind kurz:</p>
+<blockquote>
+<div><p><em>Das hat der Nutzer gestern gesucht und dann angelickt, dann wird es wohl
+heute ähnlich sein müssen.</em></p>
+</div></blockquote>
+<p>Prinzipell ist das ja erst mal nicht <em>schlecht</em> und evtl. genau das, was man
+auch will. Doch was passiert eigentlich wenn man so was <em>dauerhaft</em> macht?  Die
+personalisierte Trefferliste zu einer Suche bricht schon mal mit unserer ersten
+Annahme, dass <em>alle</em> Nutzer die gleiche Trefferliste zum gleichen Begriff
+erhalten.</p>
+<p>Nimmt man beispielsweise gesellschaftlich relevante Themen (z.B. aktuelle Themen
+aus der Politik) und möchte mehr über die pro und contra Standpunkte
+recherchieren, so wird die angebotene Trefferliste nicht mehr neutral sein, da
+sie sich an dem orientiert, was wir evtl. schon in der Verganheit mal angelickt
+haben. Dabei ist der eigentlich Suchbegriff immer weniger relevant; wenn wir
+z.B. in der Vergangenheit – bei ganz anderen Fragestellungen – bevorzugt in
+das politisch linke oder rechte Lager gecklickt haben, so werden wir bei dieser
+neuen Sucher bevorzugt Treffer erhalten, die in eben das gleiche Lager
+verweisen. Diese auf Personalierung basierende und damt <em>eingeschränkte</em> bzw.
+<em>gelenkte</em> Sicht auf Informationen wird i.d.R. auch als <a class="reference external" href="https://de.wikipedia.org/wiki/Filterblase">Filterblase</a> bezeichnet.</p>
+<p>Erste Voraussetzung für eine Personalisierug ist das Sammel von Bewegungsdaten
+zu einem individuellem Nutzer, was auch als Tracking (<a class="reference external" href="https://de.wikipedia.org/wiki/Web_Analytics">WEB-Tracking</a>) bezeichnet
+wird. Tracking beschränkt sich nicht auf die Suchmaschine, es gibt eine vielzahl
+von Trackern die auch auf den WEB-Seiten installiert sind, die man besucht
+(siehe <a class="reference internal" href="#tracking"><span class="std std-ref">Tracking</span></a>).</p>
+<p>Wer profitiert davon .. wirklich nur der Nutzer? Analytics &amp; WEB-Tracking sind
+eine Wissenschaft für sich und ein stark umkämpfter Markt auf dem jeden Tag neue
+<em>kreative</em> Lösungen gefunden werden. Herrscharen von Entwicklern und Forschern
+werden seitens der werbenden Industrie engagiert um diese Verfahren weiter zu
+optimieren. Das wir als Benutzer diesen <em>Zuschnitt</em> an Angeboten teilweise als
+komfortabel empfinden ist eher ein Seiteneffekt um den Nutzer <em>bei der Stange zu
+halten</em>.  Für den Nutzer selbst wird es immer schwerer hier zu unterscheiden,
+welche Inhalte für ihn zugeschnitten wurden und welche Inhalte neutral sind. Der
+<em>Zuschnitt</em> kann um so schärfer erfolgen, je mehr Informationen über den Nutzer
+bekannt sind und jeder Like oder Klick auf Facebook &amp; Co schärft das Profiel des
+Nutzers weiter (s. z.B. <a class="reference external" href="http://gfx.sueddeutsche.de/apps/e502288/www/">Der Facebook-Faktor</a>).</p>
+</div>
+<div class="section" id="do-not-track">
+<span id="id1"></span><h2>Do-not-track<a class="headerlink" href="#do-not-track" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Als Benutzer von Smart-Phone, -TV, WEB-Browser &amp; Co. wird man dem Tracking
+niemals ganz entgehen können, man kann ihn aber auf verscheidenen Ebenen stark
+einschränken und der Aufwand dafür ist nicht besonders groß.</p>
+<p>Meist bieten die WEB-Browser eine Einstellung „Do not Track“ oder ähnlich, das
+ist aber nur ein sehr schwacher Schutz, da dieser „Schutz“ passiv ist und auf
+die Mitwirkung der besuchten WEB-Seiten vertraut. Bei Einigen Anbietern im Netz,
+wie dem BSI und dem Online Zugang der Bank mag man darauf noch vertrauen können,
+meist darf man aber davon ausgehen, das die Mitwirkung der WEB-Seiten Betreiber
+eher schwach ist. Im Folgenden werden <em>härtere/aktive</em> Methoden zum Schutz
+empfohlen.</p>
+<div class="section" id="anonyme-suche">
+<h3>Anonyme Suche<a class="headerlink" href="#anonyme-suche" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="sidebar">
+<p class="sidebar-title"><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a></p>
+<p>Will man unbedingt über Google suchen, dann ist man zwar im Tracking, doch
+auch das kann man (etwas) einschränken, im Firefox z.B. mit dem AddOn:
+<a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a>.</p>
+</div>
+<p>Anonyme Suchmaschinen setzen kein Tracking ein.  Jedoch blenden sie zwecks
+Finanzierung gekennzeichnete Werbung ein (s.a. <a class="reference internal" href="#add-blocker"><span class="std std-ref">Werbeblocker &amp; Co. im WEB-Browser</span></a>).  Die Nähe
+solcher Unternehmen zur Werbebranche ist nicht immer unproblematisch.  Genau
+genommen weiß man nicht, ob sich das Geschäftsmodel solcher Unternehemen im
+Laufe der Jahre nicht doch irgendwann verschiebt.  Der aktuelle Fall von
+Startpage (s.u.) zeigt wie sich die Geschäftsmodelle <em>still und leise ändern</em>
+können.</p>
+<div class="admonition-searx-aka-goggle admonition">
+<p class="admonition-title">searX (aka goggle++)</p>
+<p>Ich empfehle die Verwendung einer <a class="reference internal" href="../searx.html#xref-searx"><span class="std std-ref">searX Engine</span></a>, davon
+gibt es reichlich im Netz:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://darmarit.cloud/searx">searX&#64;darmarIT</a></p></li>
+<li><p><a class="reference external" href="https://github.com/asciimoo/searx/wiki/Searx-instances">searX-Instances</a></p></li>
+</ul>
+</div>
+<div class="section" id="startpage-com-ist-dubios">
+<span id="startpage"></span><h4>Startpage.com ist dubios<a class="headerlink" href="#startpage-com-ist-dubios" title="Link zu dieser Überschrift">¶</a></h4>
+<p>Inzwischen wurde das Unternehmen geschluckt und befindet sich jetzt in den
+Händen von … naja man weiß es nicht so genau.  Was man weiß steht in der
+<a class="reference external" href="https://www.startpage.com/blog/company-updates/startpage-and-privacy-one-group/">Presseerklärung</a>:
+<em>Privacy One Group Ltd and Startpage’s relationship started in January 2019</em>.
+Die Presseerklärung kam allerdings erst im Oktober 2019.  Soviel zur Transparenz
+von Startpage.  Privacy One Group Ltd <a class="reference external" href="https://support.startpage.com/index.php?/Knowledgebase/Article/View/1260/17/who-are-the-owners-of-startpage">gehört zu System1 LLC</a>:
+<em>privacy-focused division that is a separate operating unit of System1 LLC</em>.
+Weiteres kann man über diese Abteilung (das Unternehmen?) nicht in Erfahrung
+bringen.  Fragt man sich also, wer ist der Eigentümer System1 LLC?  Ein Werbe-
+und Marketinganbieter, der mit dem Auswerten und Verarbeiten von Daten Umsatz
+generiert (s.a. <a class="reference external" href="https://www.kuketz-blog.de/ist-die-suchmaschine-startpage-noch-empfehlenswert/">Kuketz</a>).</p>
+</div>
+</div>
+<div class="section" id="werbeblocker-co-im-web-browser">
+<span id="add-blocker"></span><h3>Werbeblocker &amp; Co. im WEB-Browser<a class="headerlink" href="#werbeblocker-co-im-web-browser" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Gute Werbeblocker blockieren nicht nur die Werbung sondern gleich den ganzen
+Tracking Kram und WEB-Seiten die als Virenschleuder bekannt sind. Das gelingt
+nicht immer zu 100% aber annähernd. Empfehlenswert ist:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/ublock-origin">uBlock-origin</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/">Privacy Possum</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/canvasblocker">CanvasBlocker</a></p></li>
+</ul>
+<p>Eine in den letzten Jahren modern gewordene Methode des Trackings besteht darin,
+dass Anbieter wie z.B. Google oder Amazon oder .. den Betreibern von WEB-Seiten
+gratis anbieten bestimmte Inhalte wie z.B. die Schriftsätze die in der WEB-Seite
+verwendet werden zentral zu lagern. Für WEB-Seiten Betreiber hat das den
+Vorteil, dass der Trafic auf der eigenen Leitung z.T. erheblich reduziert werden
+kann. Das spart dem WEB-Seiten Betreiber Kosten hat für den Nutzer aber den
+Nachteil, dass diese Inhalte nun immer bei Google &amp; Co abgeholt werden müssen.
+uBlock-origin blockiert das zum Teil, hier kann aber auch das folende AddOn
+etwas mehr als uBlock:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/decentraleyes">Decentraleyes</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="dns-blocker">
+<h2>DNS Blocker<a class="headerlink" href="#dns-blocker" title="Link zu dieser Überschrift">¶</a></h2>
+<p><a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS</a> ist quasi das <em>Telefonbuch</em> des Internets. Immer wenn man eine <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> wie
+google.de aufrufen will, muss dieser Name der <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> (google.de) in eine IP
+Adresse (sozusagen die Telefonnummer) der WEB-Seite aufgelöst werden. Ist das
+nicht möglich, kann der Inhalt der Adresse nicht geladen werden.  DNS Blocker
+machen sich das zu nutze, sie filtern Domain-Adressen von Trackern raus und
+vermitteln dafür keine IP. Der Tracker läuft dann ins <em>leere</em> bzw. die Tracker
+Software kann erst gar nicht geladen werden. Da Tracker i.d.R. nur an die
+WEB-Seiten <em>geklebt</em> sind, schränkt das den Betrieb der WEB-Seite i.d.R. nicht
+ein.</p>
+<p>Für kleinere Heimnetze kann die <a class="reference external" href="https://pi-hole.net/">pi-hole</a> als DNS Blocker empfohlen werden, ein
+DNS der im eigenen Netz läuft und anhand von regelmäßig aktualisierten
+Filterlisten alles rausfiltert was Tracking oder Schadsoftware vermittelt. Dabei
+ist es egal, ob Smart-TV oder Smart-Phone oder andere IoT Geräte ins Internet
+gehen wollen. DNS Blocking funktioniert für alle Komponenten im eigenen Netz.</p>
+<p>Wenn man mit dem Smart-Phone unterwegs ist kann das nicht funktionieren, weil
+man dann ja nicht mehr im eigenen Netz ist, sondern über die SIM Karte oder ein
+anderes WLAN ins Internet gelangt. Für Smart-Phones empfiehlt sich deshalb die
+Installation des:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/julian-klode/dns66">DNS66</a> (s.a. <a class="reference internal" href="../android/nogoogle.html#nogoogle-intro"><span class="std std-ref">Ein Leben ohne Google Konto</span></a>)</p></li>
+</ul>
+<p>Der DNS Blocker blockiert Anfragen an Internet-Adressen die Werbung oder
+Schadsoftware verbreiten. Dabei ist es egal ob diese Anfrage aus dem WEB-Browser
+kommt oder versteckt in einer Anwendung (App) erfolgt. Das blockieren solcher
+Adressen sollte die Grundlage eines jeden Sicherheitskonzepts sein und eignet
+sich auch als erster <em>Kinderschutz</em>.</p>
+</div>
+<div class="section" id="tracking">
+<span id="id2"></span><h2>Tracking<a class="headerlink" href="#tracking" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Tracking ist nicht per se <em>böse</em>. Wenn man beispielsweise bei seiner Bank eine
+Online Überweisung macht, dann ist das schon sehr wichtig, dass die WEB-Seite
+der Bank weiß, wer da grad versucht eine Überweisung durchzuführen. Um nicht
+jeden Klick mit einem Login-Passwort bestätigen zu müssen, meldet man sich
+einmal an und die WEB-Seite setzt ein Cookie (oder eine andere technische
+<em>Tracking-Lösung</em>) an dem sie erkennen kann, dass die Überweisung von dem
+Anwender kommt, der sich grad zu diesem Konto eingelogt hat (vereinfacht
+dargestellt). Wird die Sitzung geschlossen, so sollte die WEB-Seite den Cookie
+vergessen (löschen), das ist es was wir erwarten und was bei Banken aus
+Sicherheitsgründen auch noch ganz gut funktioniert.</p>
+<p>Bewegt man sich im Internet, sei es aktiv in einem WEB-Browser oder weniger
+aktiv in einer Anwendung (z.B. App aus dem Smart-Phone, -TV oder ..), die im
+Hintergrund Daten mit dem Internet austauscht, so ist das meist nicht der
+Fall. Insbesondere nicht, wenn man Inhalte und Anwendungen der großen Anbieter
+nutzt. Diese setzen i.d.R. masiv Tracker ein, einer <a class="reference external" href="https://www.sit.fraunhofer.de/de/track-your-tracker/worum-gehts/in-welchem-umfang-findet-web-tracking-statt/">Studie des Frauenhofer SIT
+aus 2014</a>
+zu Folge werden nicht selten auf einer WEB-Seite bis zu 50 Tracker eingesetzt.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Auf der verlinkten Seite des Frauenhofer SIT werden auch ‚Schutzmaßnahmen‘
+vorgeschlagen, diese sind veraltet und boten schon immer einen nur sehr
+eingeschränkten Tracking-Schutz.</p>
+</div>
+<p>In der Abbildung <a class="reference internal" href="#vernetzung-besuchter-seiten-und-deren-tracker">Vernetzung besuchter Seiten und deren Tracker</a> sieht man eine
+ca. 10 minütige Sitzung von mir, bei der ich wild diverse populäre Seiten nur
+kurz angeklickt hab (wurde mit <a class="reference external" href="https://www.mozilla.org/en-US/lightbeam/">lightbeam</a> erstellt). Die runden Punkte sind die
+WEB-Seiten, die man eigentlich besucht hat und die dreieckigen Knoten sind
+Tracker. Wenn mehrere WEB-Seiten Anbieter die gleichen Tracker verwenden, dann
+weiß dieser Tracker was man auf welcher der Seiten besucht hat und wie man sich
+dort im einzelnen bewegt hat. Die Graphik ist dabei nicht unbedingt vollständig,
+da es zu aufwendig war alle Tracker-Schutzmaßnahmen in unserem Netzwerk
+abzuschalten. Sie soll auch nur verdeutlichen, wie schnell (nach 10Min) so ein
+Trackernetzwerk aufgebaut ist.</p>
+<div class="figure align-center" id="id3">
+<span id="xref-figure-search-engines-tracker-mash-up"></span><img alt="Figure (tracker_mash_up.png)" class="rst-figure" src="../_images/tracker_mash_up.png" />
+<p class="caption"><span class="caption-text"><span class="target" id="vernetzung-besuchter-seiten-und-deren-tracker">Vernetzung besuchter Seiten und deren Tracker</span></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Um so mehr Tracker eine Seite verwendet, um so schneller und dichter wird das
+Netz gespannt. Die Graphik des <a class="reference external" href="https://www.mozilla.org/en-US/lightbeam/">lightbeam</a> ist zwar ganz nett, aber um einen
+ersten Eindruck von einer WEB-Seite zu bekommen kann man die <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> auch kurz
+hier eintippen.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://webbkoll.dataskydd.net">https://webbkoll.dataskydd.net</a></p></li>
+</ul>
+<p>Man erschrickt doch manchmal, wie schlecht teilweise WEB-Seiten gemacht sind,
+hier z.B. die Auswertung der WEB-Seite der Computer-Zeitschrift CHIP:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://webbkoll.dataskydd.net/en/results?url=http%3A%2F%2Fchip.de%2F">https://webbkoll.dataskydd.net/en/results?url=http%3A%2F%2Fchip.de%2F</a></p></li>
+</ul>
+<p>Doch es geht noch schlimmer, andere schlechte Beispiele sind <a class="reference external" href="https://webbkoll.dataskydd.net/en/results?url=http%3A%2F%2Fauto.de%2F">auto.de</a> oder
+<a class="reference external" href="https://webbkoll.dataskydd.net/en/results?url=http%3A%2F%2Fwww.autobild.de%2F">autobild.de</a>.</p>
+<p>Ist das noch seriös? .. die Frage mag sich jeder selber beantworten: Stecken Sie
+mal die Adressen Ihrer Bank (müsste immer OK sein) und ihrer Lieblingsseite da
+rein um sich enen eigenen Eindruck zu verschaffen.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ssl_ca_remarks.html" class="btn btn-neutral float-right" title="Anmerkungen zu SSL und Zertifikaten" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Exkursionen und Erfahrungswerte" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

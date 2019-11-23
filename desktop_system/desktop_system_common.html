@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Allgemeines zu Desktop Umgebungen &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Display-Manager" href="display_manager.html" />
+    <link rel="prev" title="Desktop Umgebungen" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Desktop Umgebungen</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Allgemeines zu Desktop Umgebungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_manager.html">Display-Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnome_shell.html">Gnome Shell &amp; GDM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cinnamon.html">Cinnamon Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mate.html">Mate Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elementary.html">Elementary OS Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop_system_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Desktop Umgebungen</a> &raquo;</li>
+        
+      <li>Allgemeines zu Desktop Umgebungen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/desktop_system/desktop_system_common.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="allgemeines-zu-desktop-umgebungen">
+<span id="xref-desktop-system-common"></span><h1>Allgemeines zu Desktop Umgebungen<a class="headerlink" href="#allgemeines-zu-desktop-umgebungen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Desktop-Umgebung eines Linux Systems besteht i.d.R. aus zwei Komponenten,
+zum einen der Anmeldebildschirm (<strong>Display-Manager</strong>) in dem das Login der
+Anwender erfolgt und zum anderen der Desktop (<strong>Window-Manager</strong>) des Anwenders
+nach der Anmeldung. Während der <a class="reference external" href="https://en.wikipedia.org/wiki/X_display_manager_%28program_type%29">X Display Manager (wiki)</a> – der
+Anmeldebildschirm – für alle Logins der selbe ist, können die Anwender sich für
+einen von ihnen favorisierten <a class="reference external" href="https://en.wikipedia.org/wiki/Window_manager">Window Manager (wiki)</a> entscheiden. Die Wahl des
+Window-Manager erfolgt durch den Anwender bei der Anmeldung und ist nur durch
+die Anzahl der auf dem System installierten Window-Manager begrenzt, es gibt
+keine Abhängigkeit zum Display-Manager.</p>
+<p>Die <a class="reference external" href="https://wiki.gnome.org/Projects/GnomeShell">GNOME Shell</a> ist seit Ubuntu 17.10 wieder Standard-Desktop. Dem Voran ging
+ein langer Irrweg, hier ein paar Worte und Überlegungen aus der Historie:</p>
+<blockquote>
+<div><p>Die Ubuntu Distribution hatte in der Vergangenheit im Standard den
+Window-Manager <a class="reference external" href="https://de.wikipedia.org/wiki/Unity_%28Benutzeroberfl%C3%A4che%29">Unity (wiki)</a> mit und als Display-Manager wurde <a class="reference external" href="https://de.wikipedia.org/wiki/LightDM">LightDM
+(wiki)</a> eingesetzt.  Die Wahl des Standard-Desktop bei Ubuntu war heiß
+umstritten, einen Rückblick gibt der Blog <a class="reference external" href="http://privatstrand.dirkschmidtke.de/2015/10/29/fuenf-jahre-spaeter-unity-vs-gnome-shell-revisited">Fünf Jahre später: Unity vs. Gnome
+Shell revisited</a> von Dirk Schmidtke. In dem Blog ist auch zu lesen, dass die
+Entwicklung von <a class="reference external" href="http://unity.ubuntu.com/">Unity</a> eher etwas eingeschlafen ist. Auch die, in dem Blog
+erwähnten Mankos des Unity empfinde ich ähnlich. Ähnlich wie der Blog komme
+ich auch zu der Überzeugung, dass Unity nur was für Benutzer ist, die schon
+immer mit Unity arbeiten. Neue Linux Anwender oder Anwender die ihren
+Window-Manager wechseln möchten werden keinen wirklichen Grund finden, sich
+zugunsten Unity zu entscheiden.</p>
+<p><a class="reference external" href="http://unity.ubuntu.com/">Unity</a> gehört zu den modernen Bedienoberflächen, die auf 3D Animierung
+basieren und zum Ziel haben, die Desktop- mit der Tablet- Bedienung zu
+vereinheitlichen. Ob es gelingen wird, die Bedienung von Desktop und Tablet
+vollkommen zu harmonisieren, kann angezweifelt werden. Der Umgang mit Maus &amp;
+Tastatur (im Sitzen vor einem Schreibtisch) auf der einen Seite und der Umgang
+mit einem Touch-Device (auf dem Sofa liegend und wischend) auf der anderen
+Seite ist <em>von der haptischen Erfahrung her</em> einfach schon zu unterschiedlich.</p>
+<p>Das die Bedienung nicht so einfach zu harmonisieren ist, wird von einigen
+Anwendern auch so empfunden. Nicht jeder freundet sich gleich mit jeder neuen
+Desktop-Umgebung und ihrer geänderten Benutzerführung an. Dementsprechend
+haben die neuen Bedienkonzepte auch sehr viel Kritik erfahren müssen. Auch wenn
+man – wie ich – der Vereinheitlichung von Desktop und Tablet kritisch
+gegenübersteht, so muss man doch auch anerkennen, dass das Bestreben den Content
+von der Präsentationsschicht besser zu abstrahieren richtig und erforderlich
+ist.</p>
+</div></blockquote>
+<p>Das Projekt <a class="reference external" href="https://www.freedesktop.org/wiki/">freedesktop.org</a> versucht die Basis für einheitliche Desktop
+Umgebungen zu legen, ist dabei aber auch nicht ganz unumstritten. Die Umstellung
+von <a class="reference external" href="https://de.wikipedia.org/wiki/Devfs">devfs (wiki)</a> auf <a class="reference external" href="https://de.wikipedia.org/wiki/Udev">udev (wiki)</a> und dann der Merge des udev nach <a class="reference external" href="https://de.wikipedia.org/wiki/Systemd">systemd
+(wiki)</a> hinterlassen bei einigen Benutzern auch Zweifel. Ich kann es in der
+Tiefe nicht beurteilen, aber die „Nähe“ von der Desktop-Umgebung zum Init-System
+(systemd) fühlt sich für mich nicht gut an. Hierin liegt vermutlich auch ein
+Hauptkritikpunkt an systemd, dass es sich nicht auf den Init-Prozess beschränkt
+sondern alle Funktionen, die irgendwie mal in einem Init-Prozess erforderlich
+sein könnten in sich vereinen will.</p>
+<p>Ob ein Funktions-Modul besser im Kernel oder im systemd aufgehoben ist, sollte
+eine Designfrage sein und mein Eindruck ist, dass systemd auf die Designfragen
+zu schnell die immer gleichen Antworten findet (<em>„forken/mergen“ oder „nochmal
+neu und irgendwie besser machen“</em>). Irgendwie auch nachvollziehbar: die Sourcen
+in seinem Projekt zu hosten ist aus Entwickler-Sicht manchmal einfacher als
+gegen eine versionierte Abstraktion zu implementieren.</p>
+<blockquote>
+<div><p>Was mich stört ist schon der Umstand, dass ich anfange über ein Init-System zu
+schreiben, obwohl es hier eigentlich um Desktop-Umgebungen geht.  Evtl. liegt es
+ja auch einfach nur an mir … Vorangegangene Kritik entspringt meinem
+Eindruck, der sicherlich sehr subjektiv und eingeschränkt ist ;-)</p>
+</div></blockquote>
+<p>Läßt man sich erst mal auf eine der moderneren Desktop-Umgebungen ein, so wird
+man schon nach kurzer Zeit feststellen, dass man sich an die geänderte
+Benutzerführung gewöhnt hat und auch schneller auf dem Desktop unterwegs
+ist. Die 3D Unterstützung, welche diese Desktops mehr oder weniger benötigen ist
+jedoch nicht für jedes Szenario geeignet. Auf einem entfernten Server möchte man
+evtl. auch einen (Remote-) Desktop haben, der sich besser durch <a class="reference external" href="https://www.teamviewer.com/de/">Teamviewer</a>
+oder <a class="reference external" href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">VNC (wiki)</a> <em>tunneln</em> lässt.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die <em>Remote</em> Szenarien können auch mit einfachen Mitteln wie <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-X</span></code>
+bedient werden, es braucht hierfür kein <em>Remote-Display</em> im Sinne von
+<a class="reference external" href="https://www.teamviewer.com/de/">Teamviewer</a> oder <a class="reference external" href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">VNC (wiki)</a>. Spätestens bei echten <em>Display-Sharing</em>
+Anwendungen, wie z.B. bei der Remote-Unterstützung der Anwender an ihrem
+Bildschirm, wird man aber wieder auf <a class="reference external" href="https://www.teamviewer.com/de/">Teamviewer</a>, <a class="reference external" href="https://de.wikipedia.org/wiki/Virtual_Network_Computing">VNC (wiki)</a> und Co.
+zurückgreifen wollen.</p>
+</div>
+<p>Im Ubuntu/Debian Derivat tummeln sich viele Distributionen, die auf andere
+Desktop-Umgebungen zurückgreifen. Zwei Beispiele sind:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://linuxmint.com/">LinuxMint</a> nutzt den <a class="reference external" href="http://cinnamon.linuxmint.com/">Cinnamon</a> Desktop-Umgebung</p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Xubuntu">Xubuntu (wiki)</a> nutz den schlanken Fenstermanager <a class="reference external" href="http://www.xfce.org/">Xfce</a>.</p></li>
+</ul>
+<p>Jedoch ist es nicht erforderlich die Distribution zu wechseln, wenn man eine
+dieser Desktop-Umgebungen nutzen möchte. Da sich alle Distributionen <em>mehr oder
+minder</em> aus den gleichen oder ähnlich aufgebauten Repositorien bedienen, können
+die Desktops in jeder Distribution <em>mehr oder minder</em> beliebig ausgetauscht
+werden.</p>
+<p>Als optisch schlicht, aber dennoch komfortabler und erweiterbare 3D Desktop
+Umgebung empfiehlt sich die Kombination von <a class="reference internal" href="gnome_shell.html#xref-gnome-shell"><span class="std std-ref">Gnome Shell &amp; GDM</span></a>. Für
+schlankere Systeme und Szenarien ohne 3D Beschleunigung empfiehlt sich die
+Kombination von <a class="reference external" href="https://wiki.ubuntu.com/LightDM">LightDM (ubuntu)</a> und dem 2D <a class="reference internal" href="cinnamon.html#xref-cinnamon"><span class="std std-ref">Cinnamon Desktop</span></a>. Sowohl die
+GNOME Shell, als auch der Cinnamon-Desktop sind sehr gut mit der Maus, aber auch
+nur über Tastatur bedienbar.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="display_manager.html" class="btn btn-neutral float-right" title="Display-Manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Desktop Umgebungen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exkursion: Netzmaske / IPv4 und IPv6 &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Exkursion: NAT" href="excursion_NAT.html" />
+    <link rel="prev" title="Anmerkungen zu SSL und Zertifikaten" href="ssl_ca_remarks.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Exkursionen und Erfahrungswerte</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="search_engines.html">Suchmaschinen &amp; Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssl_ca_remarks.html">Anmerkungen zu SSL und Zertifikaten</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exkursion: Netzmaske / IPv4 und IPv6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ipv4-netze-und-masken">IPv4 Netze und Masken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipv6-netze-und-masken">IPv6 Netze und Masken</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loopback-adresse-1">Loopback Adresse <code class="docutils literal notranslate"><span class="pre">::1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#link-local-adressen-fe80-10">Link Local Adressen <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unique-local-fc00-7-faktisch-fd00-8">Unique Local <code class="docutils literal notranslate"><span class="pre">fc00::/7</span></code> faktisch <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prefix-delegation">Prefix Delegation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-address-selection">Source Address Selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#privacy-extensions-fur-slaac-im-ipv6-global-scope">Privacy Extensions für SLAAC im IPv6 Global-Scope</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="excursion_NAT.html">Exkursion: NAT</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Exkursionen und Erfahrungswerte</a> &raquo;</li>
+        
+      <li>Exkursion: Netzmaske / IPv4 und IPv6</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/excursion/excursion_IPv4_6.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="exkursion-netzmaske-ipv4-und-ipv6">
+<span id="xref-excursion-ipv4-6"></span><h1>Exkursion: Netzmaske / IPv4 und IPv6<a class="headerlink" href="#exkursion-netzmaske-ipv4-und-ipv6" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Im IPv4 und IPv6 Adressraum wird im Grunde nur zw. zwei Netzen unterschieden,
+dem globalen und dem lokalem Netz. Das gloabale Netz (auch als <strong>global scope</strong>
+bezeichnet) ist das <em>Internet</em>, das von einem <a class="reference external" href="https://de.wikipedia.org/wiki/Internetdienstanbieter">ISP (wiki)</a> administriert und
+geroutet wird. Das lokale Netz (auch als <strong>link-local</strong> Netz bezeichnet) ist das
+Netz, das vom <em>eigenem Netz-Admin</em> administriert und geroutet wird. Im
+einfachsten Fall ist der <em>eigene Netz-Admin</em> die Plaste-Box, die an dem
+DSL-Anschluss an der Wand hängt.</p>
+<p>Will man nun den Zugriff auf eine Web-Site des Apache
+(<a class="reference internal" href="../apache_setup/site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a>) oder das Routing in einem Netzwerk konfigurieren,
+so nimmt man eine <a class="reference external" href="https://de.wikipedia.org/wiki/Netzmaske">Netzmaske (wiki)</a> zur Hand um Teilbereiche des Netzes in
+eine <em>Klammer</em> zu fassen, anderen Falls müsste man jede IP-Adresse des Netzes
+einzeln betrachten. Eine Klammerung in Teilbereiche setzt voraus, dass die
+Adressen in einem Netz in irgendeiner Form strukturiert sind. Die gröbste
+Strukturierung ist die Unterscheidung des <em>global scope</em> zum <em>link-lokal</em> Netz.
+Das ist im IPv6 so, wie es schon im IPv4 war, nur mit dem Unterschied, dass IPv6
+differenziertere Unterscheidungen zulässt, über einen größeren Adressraum
+verfügt und besondere Features hat, die es im IPv4 nicht gibt.</p>
+<div class="section" id="ipv4-netze-und-masken">
+<span id="xref-excursion-ipv4-mask"></span><h2>IPv4 Netze und Masken<a class="headerlink" href="#ipv4-netze-und-masken" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die <em>link-lokal</em> Adressen sind nicht irgendwelche zufällig gewählten Adressen,
+hierfür verwendt man dafür vorgesehene <em>Nummernbereiche</em>.  Im IPv4 werden
+<a class="reference external" href="https://de.wikipedia.org/wiki/Private_IP-Adresse#Adressbereiche">private Adressbereiche (wiki)</a> in der <a class="reference external" href="https://tools.ietf.org/html/rfc1918#section-3">RFC 1918: IPv4 Private Address Space</a>
+definiert, hier ein Auszug:</p>
+<ul class="simple">
+<li><p>IPv4 <em>privates</em> Class-A Subnetz: <code class="docutils literal notranslate"><span class="pre">10.0.0.0/8</span></code> (<code class="docutils literal notranslate"><span class="pre">255.0.0.0</span></code>)</p></li>
+<li><p>IPv4 <em>privates</em> Class-B Subnetz: <code class="docutils literal notranslate"><span class="pre">192.168.0.0/16</span></code> (<code class="docutils literal notranslate"><span class="pre">255.255.0.0</span></code>)</p></li>
+<li><p>IPv4 <em>privates</em> Class-C Subnetz: <code class="docutils literal notranslate"><span class="pre">192.168.0.0/24</span></code> (<code class="docutils literal notranslate"><span class="pre">255.255.255.0</span></code>)</p></li>
+<li><p>IPv4 localhost:                  <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code> (<code class="docutils literal notranslate"><span class="pre">255.0.0.0</span></code>)</p></li>
+</ul>
+<p>Klassisch wird eine Netzwerkmaske mit ihren dezimalen Werten notiert,
+z.B. <code class="docutils literal notranslate"><span class="pre">255.255.255.0</span></code>. Die Notation der Netzmaske mit Kürzeln wie <code class="docutils literal notranslate"><span class="pre">/8</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/16</span></code> oder <code class="docutils literal notranslate"><span class="pre">24</span></code> erweist sich aber als praktischer, sie stammt aus dem
+<a class="reference external" href="https://de.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a>. Eine Netzmaske identifiziert das IP-<em>Präfix</em> (also den Adressbereich)
+eines <em>Netzes</em>. In der <a class="reference external" href="https://de.wikipedia.org/wiki/Netzmaske">Netzmaske (wiki)</a> <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code> aus dem obigen
+Beispiel ist <code class="docutils literal notranslate"><span class="pre">127.</span></code> der Adressbereich des <a class="reference external" href="https://de.wikipedia.org/wiki/Localhost">localhost (wiki)</a>.</p>
+<p>Die Netzmaske <code class="docutils literal notranslate"><span class="pre">192.168.0.0/16</span></code> entspricht dem historischen <em>private Class-B
+Netz</em> des IPv4, das aus max. 256 privaten (<em>Class-C</em>) Netzen mit jeweils 256
+Adressen bestehen kann (total 65536 Adressen).  Die Netzmaske in den einzelnen
+<em>Class-C</em> Netzen wäre <code class="docutils literal notranslate"><span class="pre">/24</span></code> und reicht von <code class="docutils literal notranslate"><span class="pre">192.168.0.0/24</span></code> bis
+<code class="docutils literal notranslate"><span class="pre">192.168.255.0/24</span></code>. Ein solches <em>Class-B</em> Netz würde für Unternehmen mittlerer
+Größe mit nicht mehr als ca. 65.000 Devices noch passen. Es mag sich auch noch
+für den Verbund (z.B. via VPN) von weniger als 256 kleinen Büros mit nicht mehr
+als 253 Devices <em>in dem größten der kleinen Büros</em> eignen. Für größere
+Unternehmen mit mehreren Standorten müsste man schon ein <em>Class-A</em> Verbund
+wählen in dem (bis zu 256) <em>Class-B</em> Netze (mit je max. 65.000 Devices)
+angeordnet sein könnten / siehe hierzu <a class="reference internal" href="excursion_NAT.html#xref-excursion-nat"><span class="std std-ref">Exkursion: NAT</span></a>.</p>
+<p>Die IP-Adresse des Hosts und die Netzmaske des Subnetz in dem er sich befindet
+kann mit dem Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ifconfig">ifconfig</a> ermittelt werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eth0      Link encap:Ethernet  HWaddr bc:5f:f4:ea:0e:7e
+          inet addr:192.168.1.124  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fd00::be5f:f4ff:feea:e7e/64 Scope:Global
+          inet6 addr: fd00::6d38:6276:ea39:39de/64 Scope:Global
+          inet6 addr: fe80::be5f:f4ff:feea:e7e/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+~~~~
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+</pre></div>
+</div>
+<p>Das <em>Loppback-Device</em> wird mit <code class="docutils literal notranslate"><span class="pre">lo</span></code> bezeichnet, die IPv4 Adresse ist
+<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> und die Netzmaske ist <code class="docutils literal notranslate"><span class="pre">255.0.0.0</span></code>, was <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code>
+entspricht.</p>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">eth0</span></code> wird die <em>erste</em> Ethernet-Netzwerkarte gekennzeichnet (<em>Ethernet
+Divice 0</em> mit <a class="reference external" href="https://de.wikipedia.org/wiki/MAC-Adresse">Mac Adresse (wiki)</a> <code class="docutils literal notranslate"><span class="pre">bc:5f:f4:ea:0e:7e</span></code>) und der <em>erste</em> WLAN Adaper
+trägt die Bezeichnung <code class="docutils literal notranslate"><span class="pre">wlan0</span></code> (oben nicht zu sehen).</p>
+<p>Die IPv4 Adresse des <code class="docutils literal notranslate"><span class="pre">eth0</span></code> ist <code class="docutils literal notranslate"><span class="pre">192.168.1.124</span></code> die Netzmaske ist mit
+<code class="docutils literal notranslate"><span class="pre">255.255.255.0</span></code> angegeben, was <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code> entspricht. Der Host steht
+also in einem (kleinen) Subnetz in dem max. 256 IPs zur Verfügung stehen
+(0-255). In dem Bereich sind jedoch folgende Nummern schon reserviert:</p>
+<ul class="simple">
+<li><p>Die <code class="docutils literal notranslate"><span class="pre">.0</span></code> ist immer die <em>Subnetzadresse</em></p></li>
+<li><p>Die <code class="docutils literal notranslate"><span class="pre">.255</span></code> ist immer die <a class="reference external" href="https://de.wikipedia.org/wiki/Broadcast">Broadcast (wiki)</a> Adresse.</p></li>
+<li><p>Auf der Adresse <code class="docutils literal notranslate"><span class="pre">.1</span></code> ist meist der Router / das Gateway zu finden mit dem
+dieses Subnetz an ein <em>höheres</em> Netz gebunden ist (bei der Plaste-Box zu Hause
+ist das schon das Internet).</p></li>
+</ul>
+<p>In dem historischen IPv4 <em>Class-C</em> (Subnetz) wird man <em>real</em> also nicht mehr als
+253 <em>Devices</em> vorfinden resp. unterbringen können.</p>
+</div>
+<div class="section" id="ipv6-netze-und-masken">
+<span id="xref-excursion-ipv6-mask"></span><h2>IPv6 Netze und Masken<a class="headerlink" href="#ipv6-netze-und-masken" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im IPv4 werden die Adressbereiche in der RFC-1918 definiert, im IPv6 gibt es
+dafür die <a class="reference external" href="https://tools.ietf.org/html/rfc4291">RFC 4291: IPv6 Addressing Architecture</a>. Für die <em>unicast
+link-local</em> Adressen im IPv6 sind folgende Adressbereiche vorgesehen:</p>
+<ul class="simple">
+<li><p>IPv6 localhost:                  <code class="docutils literal notranslate"><span class="pre">::1/128</span></code></p></li>
+<li><p>IPv6 Link-Lokal Netz:            <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code></p></li>
+<li><p>IPv6 Unique-Local Subnetz:       <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code></p></li>
+</ul>
+<p>Bezüglich dem Aufbau einer IPv6-Adresse sei kurz aus einem Artikel des
+heise-Verlags zitiert – <a class="reference external" href="http://www.heise.de/netze/IPv6-Adressen-1386242.html">Reservierte und spezielle Adressbereiche im
+Internet-Protokoll Version 6 (heise Verlag)</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Die</span> <span class="n">gesamte</span> <span class="n">Adresse</span> <span class="n">umfasst</span> <span class="mi">128</span> <span class="n">Bit</span><span class="o">.</span>  <span class="n">Die</span> <span class="n">ersten</span> <span class="mi">64</span> <span class="n">sind</span> <span class="n">für</span> <span class="n">den</span>
+<span class="n">Subnetz</span><span class="o">-</span><span class="n">Präfix</span> <span class="n">reserviert</span><span class="p">,</span> <span class="n">die</span> <span class="n">verbleibenden</span> <span class="mi">64</span> <span class="n">Bit</span> <span class="n">bezeichnen</span> <span class="n">den</span> <span class="n">Host</span><span class="o">.</span>
+
+<span class="n">Die</span> <span class="n">vollständige</span> <span class="n">Adresse</span> <span class="n">schreibt</span> <span class="n">man</span> <span class="n">hexadezimal</span> <span class="n">und</span> <span class="n">unterteilt</span> <span class="n">die</span>
+<span class="n">Zahlenfolge</span> <span class="n">mit</span> <span class="n">Doppelpunkten</span> <span class="ow">in</span> <span class="n">Blöcke</span> <span class="n">je</span> <span class="mi">16</span> <span class="n">Bit</span><span class="o">.</span>
+
+<span class="n">Innerhalb</span> <span class="n">von</span> <span class="n">IPv6</span><span class="o">-</span><span class="n">Adressen</span> <span class="n">lässt</span> <span class="n">sich</span> <span class="n">eine</span> <span class="n">Folge</span> <span class="n">von</span> <span class="n">Nullen</span> <span class="n">kürzen</span> <span class="n">und</span>
+<span class="n">durch</span> <span class="n">zwei</span> <span class="n">Doppelpunkte</span> <span class="n">ersetzen</span><span class="o">.</span> <span class="n">Die</span> <span class="n">Adresse</span>
+
+<span class="o">*</span> <span class="mi">2001</span><span class="p">:</span><span class="mi">0</span><span class="n">DB8</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0001</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0010</span><span class="p">:</span><span class="mi">01</span><span class="n">FF</span> <span class="n">verkürzt</span> <span class="n">sich</span> <span class="n">damit</span> <span class="n">zu</span>
+<span class="o">*</span> <span class="mi">2001</span><span class="p">:</span><span class="mi">0</span><span class="n">DB8</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0001</span><span class="p">::</span><span class="mi">0010</span><span class="p">:</span><span class="mi">01</span><span class="n">FF</span><span class="o">.</span>
+
+<span class="n">Führende</span> <span class="n">Nullen</span> <span class="ow">in</span> <span class="n">den</span> <span class="mi">16</span><span class="o">-</span><span class="n">Bit</span><span class="o">-</span><span class="n">Blöcken</span> <span class="n">können</span> <span class="n">ersatzlos</span> <span class="n">wegfallen</span><span class="p">,</span> <span class="n">sodass</span> <span class="n">die</span>
+<span class="n">oben</span> <span class="n">genannte</span> <span class="n">Adresse</span> <span class="n">auf</span>
+
+<span class="o">*</span> <span class="mi">2001</span><span class="p">:</span><span class="n">DB8</span><span class="p">:</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">::</span><span class="mi">10</span><span class="p">:</span><span class="mi">1</span><span class="n">FF</span> <span class="n">schrumpft</span><span class="o">.</span>
+<span class="o">~~~</span>
+</pre></div>
+</div>
+<div class="section" id="loopback-adresse-1">
+<h3>Loopback Adresse <code class="docutils literal notranslate"><span class="pre">::1</span></code><a class="headerlink" href="#loopback-adresse-1" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die Loopback Adresse im IPv6 ist die <code class="docutils literal notranslate"><span class="pre">0:0:0:0:0:0:0:1:</span></code> oder etwas kürzer
+notiert <code class="docutils literal notranslate"><span class="pre">::1</span></code> (siehe <a class="reference external" href="https://tools.ietf.org/html/rfc4291#section-2.5.3">RFC 4291: The Loopback Addresses</a>). Anders als im IPv4
+ist im IPv6 für das loopback-Device keine ganzes Class-A Netzwerk reserviert
+(<code class="docutils literal notranslate"><span class="pre">127.0.0.8/8</span></code>) sondern nur diese <em>eine</em> Adresse (<code class="docutils literal notranslate"><span class="pre">::1/128</span></code>).</p>
+<p>Apache: Die <code class="docutils literal notranslate"><span class="pre">::1</span></code> in einer Apache- <a class="reference internal" href="../apache_setup/site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a> wie <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">::1</span></code>
+ist also das IPv6 Pendant zu der IPv4 <em>Allow localhost</em> Direktive <code class="docutils literal notranslate"><span class="pre">Allow</span>
+<span class="pre">127.0.0.0/8</span></code>.</p>
+</div>
+<div class="section" id="link-local-adressen-fe80-10">
+<h3>Link Local Adressen <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code><a class="headerlink" href="#link-local-adressen-fe80-10" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Anders als im IPv4 üblich, vergibt im IPv6 nicht mehr der Router (der <a class="reference external" href="https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP
+(wiki)</a> - Server) die IP-Adresse an die Hosts. Im IPv6 gibt es die <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6
+Autokonfiguration (wiki)</a>, die auch als <strong>Stateless Address Autoconfiguration
+(SLAAC)</strong> bezeichnet wird. Das Verfahren der SLAAC wird in <a class="reference external" href="https://tools.ietf.org/html/rfc4862">RFC 4862: IPv6
+SLAAC</a> definiert.</p>
+<p>Mit der SLAAC generieren sich die Hosts eine <em>link-local</em> Adresse – die im
+Range <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code> liegen muss – selber.</p>
+<blockquote>
+<div><p>Die <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Link-Local-Adressen">Link Local Adressen (wiki)</a> werden von dem <a class="reference external" href="https://de.wikipedia.org/wiki/Internetdienstanbieter">ISP (wiki)</a> nicht geroutet,
+<strong>sie sind im Internet nicht verfügbar</strong> (daher auch der Namensbestandteil
+<em>Local</em>).</p>
+</div></blockquote>
+<p>Am Beispiel einer Apache Konfiguration: Die <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code> in einer Apache-
+<a class="reference internal" href="../apache_setup/site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a> wie <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">fe80::/10</span></code> ist in etwa das IPv6
+Pendant zu einer <em>private Class-C</em> Direktive wie <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">192.168.0.0/24</span></code>.</p>
+<p>Der Aufbau der <a class="reference external" href="https://tools.ietf.org/html/rfc4291#section-2.5.6">RFC 4291: Link-Local IPv6 Unicast Addresses</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="mi">10</span> <span class="n">bits</span>  <span class="o">|</span>         <span class="mi">54</span> <span class="n">bits</span>         <span class="o">|</span>          <span class="mi">64</span> <span class="n">bits</span>           <span class="o">|</span>
+<span class="o">+----------+-------------------------+----------------------------+</span>
+<span class="o">|</span><span class="mi">1111111010</span><span class="o">|</span>           <span class="mi">0</span>             <span class="o">|</span>       <span class="n">interface</span> <span class="n">ID</span>         <span class="o">|</span>
+<span class="o">+----------+-------------------------+----------------------------+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unique-local-fc00-7-faktisch-fd00-8">
+<span id="xref-ipv6-unique-local"></span><h3>Unique Local <code class="docutils literal notranslate"><span class="pre">fc00::/7</span></code> faktisch <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code><a class="headerlink" href="#unique-local-fc00-7-faktisch-fd00-8" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im IPv4 konnte man <em>Class-C</em> Netze <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code> zu einem <em>Class-D</em> Verbund
+<code class="docutils literal notranslate"><span class="pre">192.168.1.0/16</span></code> maskieren (vergleiche <a class="reference internal" href="#xref-excursion-ipv4-mask"><span class="std std-ref">IPv4 Netze und Masken</span></a>). Das
+geht mit den <em>link-local</em> Adressen nicht, den jedes Subnetz steht für sich und
+trägt den selben Präfix <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code>.  Das Pendant zu den privaten
+Adressbereichen des IPv4 sind im IPv6 die Adressbereiche des <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Unique_Local_Unicast">Unique Local
+Unicast (wiki)</a>.</p>
+<blockquote>
+<div><p>Eine Unique-Local Adresse – kurz <strong>ULA</strong> – wird von den ISPs nicht geroutet,
+<strong>sie ist im Internet nicht verfügbar</strong> (daher auch der Namensbestandteil
+<em>Local</em>).</p>
+</div></blockquote>
+<p>Für ULA steht der Adressbereich <code class="docutils literal notranslate"><span class="pre">fc00::/7</span></code> zur Verfügung wovon die Null im
+achten Bit (<em>von links gezählt</em>) jedoch reserviert ist, siehe Format der ULA:
+<a class="reference external" href="https://tools.ietf.org/html/rfc4193#section-3">RFC 4193: Local IPv6 Unicast Addresses</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="mi">7</span> <span class="n">bits</span> <span class="o">|</span><span class="mi">1</span><span class="o">|</span>  <span class="mi">40</span> <span class="n">bits</span>   <span class="o">|</span>  <span class="mi">16</span> <span class="n">bits</span>  <span class="o">|</span>          <span class="mi">64</span> <span class="n">bits</span>           <span class="o">|</span>
+<span class="o">+--------+-+------------+-----------+----------------------------+</span>
+<span class="o">|</span> <span class="n">Prefix</span> <span class="o">|</span><span class="n">L</span><span class="o">|</span> <span class="n">Global</span><span class="o">-</span><span class="n">ID</span>  <span class="o">|</span> <span class="n">Subnet</span><span class="o">-</span><span class="n">ID</span> <span class="o">|</span>        <span class="n">Interface</span><span class="o">-</span><span class="n">ID</span>        <span class="o">|</span>
+
+<span class="n">Prefix</span>            <span class="n">FC00</span><span class="p">::</span><span class="o">/</span><span class="mi">7</span> <span class="n">prefix</span> <span class="n">to</span> <span class="n">identify</span> <span class="n">Local</span> <span class="n">IPv6</span> <span class="n">unicast</span>
+                  <span class="n">addresses</span><span class="o">.</span>
+
+<span class="n">L</span>                 <span class="n">Set</span> <span class="n">to</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">the</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="n">locally</span> <span class="n">assigned</span><span class="o">.</span>
+                  <span class="n">Set</span> <span class="n">to</span> <span class="mi">0</span> <span class="n">may</span> <span class="n">be</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">future</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Faktisch ist das Präfix einer lokalen (<em>selbstvergebenen</em>) ULA also immer
+<code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die <em>Denke</em> im IPv6 ist anders als im IPv4. Man wird IPv6 nur schwer
+verstehen, wenn man sich nicht kurz mit dem Prinzip der <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6
+Autokonfiguration (wiki)</a> – auch <em>Stateless Address Autoconfiguration</em>
+(<a class="reference external" href="https://tools.ietf.org/html/rfc4862">RFC 4862: IPv6 SLAAC</a>) genannt – vertraut macht.</p>
+</div>
+</div>
+<div class="section" id="prefix-delegation">
+<h3>Prefix Delegation<a class="headerlink" href="#prefix-delegation" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die <em>Stateless Address Autoconfiguration</em> (SLAAC) hat den Vorteil, daß man keine
+IP-Adressen mehr konfigurieren muss und mit der Link-Lokal Adresse die bis zum
+nächsten Router reicht hat man auch immer das Subnetz maskiert (<code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code>).</p>
+<p>Aber man kann diese Subnetze noch nicht als Verbund maskieren. An dieser Stelle
+soll nun die <em>Unique Local</em> <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code> helfen. Dies ist aber nicht mehr nur
+mit SLAAC alleine möglich. Um einen Verbund zu bilden, müssen Präfixe für das
+<em>Unique Lokal Subnetz</em> vergeben werden, wofür es – wie schon im IPv4 – eine
+Instanz geben muss. Die Vergabe der Präfixe kann man entweder manuell durch
+Vergabe eines festen Präfix auf allen Hosts erreichen oder besser, man hat einen
+Router mit einem DHCPv6 Server und Hosts, die <a class="reference external" href="https://en.wikipedia.org/wiki/Prefix_delegation">DHCPv6 prefix delegation</a>
+unterstützen. Bei dem Verfahren vergibt der Router (DHCP-Server) das Präfix mit
+den 40Bit für die Global-ID und den 16-Bit für die Subnet-ID (vergleiche
+Schaubild <a class="reference internal" href="#xref-ipv6-unique-local"><span class="std std-ref">Unique Local fc00::/7 faktisch fd00::/8</span></a>).  Z.B.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ULA</span> <span class="n">des</span> <span class="n">Routers</span> <span class="o">--&gt;</span> <span class="mi">2001</span><span class="p">::</span><span class="n">c225</span><span class="p">:</span><span class="mi">6</span><span class="n">ff</span><span class="p">:</span><span class="n">fea2</span><span class="p">:</span><span class="n">c35c</span><span class="o">/</span><span class="mi">64</span> <span class="n">Subnetz</span>
+<span class="n">Präfix</span> <span class="o">--&gt;</span> <span class="mi">2001</span><span class="p">::</span><span class="n">c225</span><span class="p">:</span><span class="mi">6</span><span class="n">ff</span><span class="o">/</span><span class="mi">64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="source-address-selection">
+<h3>Source Address Selection<a class="headerlink" href="#source-address-selection" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im IPv6 hat ein Netz-Device wie das <code class="docutils literal notranslate"><span class="pre">eth0</span></code> im obigen Beispiel immer mehrere
+IP-Adressen. Es gibt immer mindestens eine im <em>Local-Scope</em> und eine im
+<em>Global-Scope</em>. Wenn nun ein IP-Paket über das Device versendet wird, muss eine
+Enstcheidung getroffen werden, welche dieser Adressen als <em>Absender</em> verwendet
+wird. Die Entscheidungsfindung wird als <em>Source Address Selection</em> bezeichnet.
+Das Verfahren wird in <a class="reference external" href="https://tools.ietf.org/html/rfc3484#section-5">RFC 3484: Source Address Selection</a> beschrieben, oder
+etwas abgekürzt formuliert: der Algorythmus versucht zu ermitteln, was zur
+IP-Zieladresse am besten passt. Wenn die Zieladresse ein <em>Name</em> und keine
+IP-Adresse ist, dann wird die zum Namen gehörende IP-Zieladresse vom DNS
+vorgegeben.</p>
+</div>
+<div class="section" id="privacy-extensions-fur-slaac-im-ipv6-global-scope">
+<h3>Privacy Extensions für SLAAC im IPv6 Global-Scope<a class="headerlink" href="#privacy-extensions-fur-slaac-im-ipv6-global-scope" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Die <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6 Autokonfiguration (wiki)</a> erzeugt eine IPv6-Adresse auf Basis der
+MAC-Adresse des Devices. Man kann das auch schon fast mit <em>bloßem Auge
+sehen</em>. Hier ein kleines Beispiel.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ifconfig
+eth0      Link encap:Ethernet  Hardware Adresse 00:0c:29:3f:de:f9
+          ...
+          inet6-Adresse: 2a02:8109:183f:b2cc:20c:29ff:fe3f:def9/64 Scope:Global
+</pre></div>
+</div>
+<p>In der obigen <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ifconfig">ifconfig</a> Ausgabe ist zu sehen, dass der <code class="docutils literal notranslate"><span class="pre">eth0</span></code> eine 64
+Bit Maske auf dem <em>Scope:Global</em> hat:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inet6</span><span class="o">-</span><span class="n">Adresse</span><span class="p">:</span> <span class="mi">2</span><span class="n">a02</span><span class="p">:</span><span class="mi">8109</span><span class="p">:</span><span class="mi">183</span><span class="n">f</span><span class="p">:</span><span class="n">b2cc</span><span class="p">:</span><span class="mi">20</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="n">ff</span><span class="p">:</span><span class="n">fe3f</span><span class="p">:</span><span class="n">def9</span><span class="o">/</span><span class="mi">64</span> <span class="n">Scope</span><span class="p">:</span><span class="n">Global</span>
+</pre></div>
+</div>
+<p>Schreibt man das mal anders auf, dann sieht man, was für den Interface
+Identifier übrig bleibt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="n">a02</span><span class="p">:</span><span class="mi">8109</span><span class="p">:</span><span class="mi">183</span><span class="n">f</span><span class="p">:</span><span class="n">b2cc</span>  <span class="p">:</span>  <span class="mi">020</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="n">ff</span><span class="p">:</span><span class="n">fe3f</span><span class="p">:</span><span class="mi">0</span><span class="n">def9</span>   <span class="o">/</span><span class="mi">64</span>
+          <span class="o">----+----</span>     <span class="o">---------+---------</span>
+              <span class="o">|</span>                  <span class="o">+--&gt;</span> <span class="n">Interface</span> <span class="n">Identifier</span>
+              <span class="o">+--&gt;</span> <span class="mi">2</span><span class="n">a02</span><span class="p">:</span><span class="mi">8109</span><span class="p">:</span><span class="mi">183</span><span class="n">f</span><span class="p">:</span><span class="n">b2cc</span><span class="p">::</span><span class="o">/</span><span class="mi">62</span> <span class="n">ist</span> <span class="n">das</span> <span class="n">IPv6</span> <span class="n">Präfix</span> <span class="n">des</span> <span class="n">Routers</span>
+</pre></div>
+</div>
+<p>Betrachtet man nur den Interface-Identifier und die MAC-Adresse:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MAC</span><span class="p">:</span>  <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">3</span><span class="n">f</span><span class="p">:</span><span class="n">de</span><span class="p">:</span><span class="n">f9</span>          <span class="o">---&gt;</span>         <span class="mi">000</span><span class="n">c</span><span class="p">:</span><span class="mi">293</span><span class="n">f</span><span class="p">:</span><span class="n">def9</span>
+<span class="n">auseinander</span> <span class="n">ziehen</span><span class="p">:</span>                    <span class="mi">000</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="n">__</span> <span class="p">:</span> <span class="n">__3f</span><span class="p">:</span><span class="n">def9</span>
+<span class="n">was</span> <span class="n">drauf</span> <span class="n">addieren</span><span class="p">:</span>                  <span class="o">+</span>      <span class="mi">00</span><span class="n">ff</span> <span class="p">:</span> <span class="n">fe00</span><span class="p">:</span><span class="mi">0000</span>
+<span class="n">Das</span> <span class="mf">7.</span> <span class="n">Bit</span> <span class="n">invertieren</span><span class="p">:</span>              <span class="o">+</span>  <span class="mi">2</span>
+                                      <span class="o">----------------------</span>
+                                       <span class="mi">020</span><span class="n">c</span><span class="p">:</span><span class="mi">29</span><span class="n">ff</span> <span class="p">:</span> <span class="n">fe3f</span><span class="p">:</span><span class="n">def9</span>
+</pre></div>
+</div>
+<p>Es gibt dafür auch IP-Rechner, mit denen man so was leicht ausrechnen kann (z.B
+<a class="reference external" href="http://ben.akrin.com/?p=1347">MAC address to IPv6 link-local address online converter</a>).</p>
+<p>Der <strong>Interface-Identifier</strong> in der Global-Scope Adresse ist beim SLAAC also
+immer konstant der gleiche (eine Kollision der MAC Adresse im Subnetz ist sehr
+unwahrscheinlich und hätte dann auch andere Problem zur Folge).</p>
+<p>Mit diesem <strong>Interface-Identifier</strong> und dem IPv6 Präfix des ISP, wird nun jedes
+Device durchs Internet geroutet. Anders als beim IPv4, bei dem es noch NAT gab
+wird hier im IPv6 keine manipulation an der Absender Adresse vorgenommen. Der
+IPv6 Router reicht das Datenpaket mit der IPv6-Absenderadresse 1:1 durch. Auch
+wenn der IPv6 Präfix des ISP evtl. alle 24h Stunden wechselt, kann die Hardware
+von der die IP Pakete kommen recht gut identifiziert werden.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Nachdem die MAC Adresse in der IPv6 Adresse abgebildet ist, lässt sie sich
+auch zurückrechnen. Mittels der <a class="reference external" href="https://de.wikipedia.org/wiki/MAC-Adresse#Herstellerkennungen">OUI Herstellerkennungen (wiki)</a> und
+ggf. noch weiterer Erfahrungswerte in der Vergabe von Nummernbereichen an
+bestimmte Device-Typen, lässt sich die Hardware:</p>
+<ul class="simple">
+<li><p>immer eindeutig identifizieren und</p></li>
+<li><p>vom Typ her zumindest grob zuordnen.</p></li>
+</ul>
+</div>
+<p>Da es sich hierbei immer um eine Identifikation auf der IP-Ebene handelt, ist
+sie immer möglich. Unabhängig davon, ob verschlüsselte oder unverschlüsselte
+Datenpakete ausgetauscht werden. Diese Art der Identifikation ist beim IPv4 mit
+NAT nicht möglich, da ist der Blick ins Subnetz (zumindets auf IP Ebene)
+verschleiert.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die Identifizierung von Nutzern ist auf IP Ebene nur indirekt möglich und
+weniger intressant. Die Nutzer können einfacher an ihrem Verhalten auf der
+Anwendungsebene identifiziert werden.</p>
+<p>Intressanter sind evtl. die <em>Dinger</em> aus dem <em>Internet der Dinge</em>
+(schrecklicher Begriff). Die über Steuerungen oder Produktionslagen in immer
+mehr Haushalte und Unternehmen Einzug halten.</p>
+</div>
+<p>Diese <em>Dinge</em> holen sich nicht selten Inforamtionen wie z.B. die aktuelle
+Uhrzeit von einem Uhren-Server aus dem Internet. Wie gesprächig sie darüber
+hinaus sind ist immer schwer einzuschätzen und ist wohl nur in den wenigsten
+technischen Angaben einer Steuerung zu finden.</p>
+<p>Kommunizieren diese <em>Dinge</em> mit dem Internet (z.B. Uhr synchronisieren) und
+machen sie das mit IPv6 und einer SLAAC-IP, dann hat man vermutlich schon nach
+einem Tag ein recht vollständiges Bild von dem was hinter dem Router an Hardware
+steht. Einzelne Steuerungen lassen sich ggf. schon Identifizieren, damit ist
+dann auch die Liste der bekannten Schwachstellen zu der Hardware/Software
+bekannt (z.B. ein exploit in dem Admin Interface eines Devices).</p>
+<p>Um dem zu entgehen kann man – zumindest bei den meisten Betreibsystemen – die
+<a class="reference external" href="http://www.heise.de/netze/artikel/IPv6-Privacy-Extensions-einschalten-1204783.html">IPv6 Privacy Extensions (heise)</a> einschalten. Für die <em>Dinger</em> des <em>Internets
+der Dinge</em> wird man vermutlich weniger Möglichkeiten haben, die MAC Adresse zu
+verschleiern (am besten die <em>Dinger</em> können erst gar kein IPv6).</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="excursion_NAT.html" class="btn btn-neutral float-right" title="Exkursion: NAT" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ssl_ca_remarks.html" class="btn btn-neutral float-left" title="Anmerkungen zu SSL und Zertifikaten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

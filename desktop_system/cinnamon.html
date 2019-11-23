@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cinnamon Desktop &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Mate Desktop" href="mate.html" />
+    <link rel="prev" title="Gnome Shell &amp; GDM" href="gnome_shell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Desktop Umgebungen</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="desktop_system_common.html">Allgemeines zu Desktop Umgebungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="display_manager.html">Display-Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gnome_shell.html">Gnome Shell &amp; GDM</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cinnamon Desktop</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#de-installation">De-Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mate.html">Mate Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="elementary.html">Elementary OS Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="desktop_system_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Desktop Umgebungen</a> &raquo;</li>
+        
+      <li>Cinnamon Desktop</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/desktop_system/cinnamon.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cinnamon-desktop">
+<span id="xref-cinnamon"></span><h1>Cinnamon Desktop<a class="headerlink" href="#cinnamon-desktop" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Zu tun</p>
+<p>Dieser Artikel wurde noch nicht mit Ubuntu 18.04 getestet.</p>
+</div>
+<p>Das Layout des <a class="reference external" href="http://cinnamon.linuxmint.com/">Cinnamon</a> Desktop ist mit dem GNOME 2 verwandt, bzw. eine
+Weiterentwicklung des Layouts von GNOME 2. Die Code-Basis <a class="reference external" href="https://github.com/linuxmint/Cinnamon/">Cinnamon (github)</a>
+ist ein Fork der GNOME-Shell. Es bestehen 4 Arten von <em>Erweiterungen</em>:</p>
+<ul class="simple">
+<li><p>Desktop-Themes: Es gibt vorkonfektionierte Desktop <em>Themen</em>, die z.T. schon
+installiert sind, andere können aus dem Internet bezogen werden. So z.B. das
+<a class="reference external" href="http://cinnamon-spices.linuxmint.com/themes/view/104">Void Thema</a>, dass
+auch gut mit dem <a class="reference external" href="http://packages.ubuntu.com/elementary-icon-theme">elementary-icon-theme</a> kombiniert werden kann.</p></li>
+<li><p>Applets: sind kleine Anwendungen, die in die Fensterleiste(en) installiert
+werden können. Es gibt vorkonfektionierte Applets, die z.T. schon installiert
+sind. So sind z.B. das <em>Menü</em> und anderer Bedienelemente in der
+Fensterleiste. Weitere Applets können aus dem Internet bezogen werden. Für das
+Systemmonitoring kann <a class="reference external" href="http://cinnamon-spices.linuxmint.com/applets/view/79">Multi-Core System Monitor</a> empfohlen werden.</p></li>
+<li><p>Desklets: sind kleine Anwendungen die auf den Desktop Hintergund gelegt werden
+können. Auch hier gibt es wieder vorkonfektioniertes im Internet.</p></li>
+<li><p>Extensions: sind Erweiterungen der Desktop Umgebung. Auch hier können
+vorkonfektionierte Erweiterungen aus dem Internet bezogen werden. Für eine
+differnzierte Fenster-Platzierung empfiehlt sich die Erweiterung <a class="reference external" href="http://cinnamon-spices.linuxmint.com/extensions/view/21">gTile</a>.</p></li>
+</ul>
+<p>Alle diese Erweiterungen, Themes, Applets und Desklets können über die
+gleichnamigen Tools in den <em>System-Einstellungen</em> verwaltet werden. Alle
+vorkonfektionierten Erweiterungen werden aus dem Internet von <a class="reference external" href="http://cinnamon-spices.linuxmint.com/">Cinnamon Spices</a>
+bezogen.  Man wird jedoch feststellen, dass die Auswahl an <a class="reference external" href="https://extensions.gnome.org/">GNOME Shell
+Extensions</a> wesentlich größer ist. Dennoch, das <em>Meiste</em> was man so braucht,
+findet sich auch in den <a class="reference external" href="http://cinnamon-spices.linuxmint.com/">Cinnamon Spices</a>.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befindet sich ein Skript, mit dem die
+Cinnamon Desktop Umgebung installiert werden kann:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/desktop_system.sh install cinnamon
+</pre></div>
+</div>
+<p>Mit dem oben stehenden Skript wird das Paket <a class="reference external" href="http://packages.ubuntu.com/cinnamon-desktop-environment">cinnamon-desktop-environment</a>
+installiert. Das Paket umfasst den Cinnamon Desktop der recht <em>schlank</em> ist. Der
+Desktop ist eine gute Alternative zur GNOME-Shell, eine Installation neben der
+GNOME-Shell kann ich nur empfehlen.</p>
+</div>
+<div class="section" id="de-installation">
+<h2>De-Installation<a class="headerlink" href="#de-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zur De-Installation eignet sich:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/desktop_system.sh remove cinnamon
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mate.html" class="btn btn-neutral float-right" title="Mate Desktop" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gnome_shell.html" class="btn btn-neutral float-left" title="Gnome Shell &amp; GDM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

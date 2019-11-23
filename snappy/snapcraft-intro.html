@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snapcraft Intro &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="konfligierende Parts" href="snapcraft-part-conflict.html" />
+    <link rel="prev" title="snap Intro" href="snappy-intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux snap-Pakete</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#themen">Themen</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snappy-intro.html">snap Intro</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">snapcraft Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapcraft-part-conflict.html">konfligierende Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapcraft-prime-folder.html">snapcraft <code class="docutils literal notranslate"><span class="pre">prime</span></code> Ordner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snap-confinement.html">Vertrauenswürdige Pakete</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">ToDo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux snap-Pakete</a> &raquo;</li>
+        
+      <li>snapcraft Intro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/snappy/snapcraft-intro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="snapcraft-intro">
+<h1>snapcraft Intro<a class="headerlink" href="#snapcraft-intro" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Installation der snap Infrastruktur (s.a <a class="reference external" href="https://snapcraft.io/docs/core/install">install snapd</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">snapd</span> <span class="n">snapcraft</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
+</pre></div>
+</div>
+<p>Für den Build Prozess der Pakete wird <code class="docutils literal notranslate"><span class="pre">snapcraft</span></code> benötigt, die Tools aus dem
+apt-Paket <code class="docutils literal notranslate"><span class="pre">build-essential</span></code> werden i.d.R. auch gebraucht, wenn man snap-Pakete
+bauen will.</p>
+<p>Snap erstellen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir hello
+$ <span class="nb">cd</span> hello
+~/hello$ snapcraft init
+Created snap/snapcraft.yaml.
+Edit the file to your liking or run <span class="sb">`</span>snapcraft<span class="sb">`</span> to get started
+</pre></div>
+</div>
+<p>Laut Doku muss der Snap-Ordner (hier im Beispiel <code class="docutils literal notranslate"><span class="pre">hello</span></code>) im HOME-Ordner
+liegen (warum?).</p>
+<p>Beispiel für eine <code class="docutils literal notranslate"><span class="pre">snapcraft.yaml</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>name: hello
+version: <span class="s1">&#39;2.10&#39;</span>
+summary: GNU Hello, the <span class="s2">&quot;hello world&quot;</span> snap
+description: <span class="p">|</span>
+  GNU hello prints a friendly greeting.
+grade: devel
+confinement: devmode
+</pre></div>
+</div>
+<p>Snap Buid:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> hello
+~/hello$ snapcraft
+<span class="o">[</span>...<span class="o">]</span>
+Staging gnu-hello
+Priming gnu-hello
+Snapping <span class="s1">&#39;hello&#39;</span> <span class="p">|</span>
+Snapped hello_2.10_amd64.snap
+
+~/hello$ ls -la
+insgesamt <span class="m">88</span>
+drwxrwxr-x  <span class="m">6</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 .
+drwxr-xr-x <span class="m">39</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:18 ..
+-rw-r--r--  <span class="m">1</span> user user <span class="m">65536</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 hello_2.10_amd64.snap
+drwxrwxr-x  <span class="m">3</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 parts
+drwxrwxr-x  <span class="m">6</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 prime
+drwxrwxr-x  <span class="m">3</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 snap
+drwxrwxr-x  <span class="m">4</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 stage
+</pre></div>
+</div>
+<p>Snap Installieren:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$ sudo -H snap install --devmode hello_2.10_amd64.snap
+
+hello <span class="m">2</span>.10 installed
+</pre></div>
+</div>
+<p>Snaps auflisten:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ snap list
+Name   Version    Rev   Developer  Notes
+core   <span class="m">16</span>-2.27.5  <span class="m">2774</span>  canonical  core
+hello  <span class="m">2</span>.10       x1               devmode
+</pre></div>
+</div>
+<p>Das snap <code class="docutils literal notranslate"><span class="pre">hello</span></code> (Programm) ist installiert, kann aber ‚so‘ noch nicht vom
+Benutzer aufgerufen werden. Die Anwendungen aus den <em>Snaps</em> sind über
+<code class="docutils literal notranslate"><span class="pre">/snap/bin</span></code> zu erreichen, sofern sie <em>freigeschaltet</em> wurden.</p>
+<p>Hier ein Beispiel für eine <code class="docutils literal notranslate"><span class="pre">apps</span></code> Sektion (<code class="docutils literal notranslate"><span class="pre">snap/snapcraft.yaml</span></code>):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.10&#39;</span>
+<span class="nt">summary</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GNU Hello, the &quot;hello world&quot; snap</span>
+<span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">GNU hello prints a friendly greeting.</span>
+<span class="nt">grade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devel</span>
+<span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devmode</span>
+
+<span class="nt">apps</span><span class="p">:</span>
+  <span class="nt">hello</span><span class="p">:</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bin/hello</span>
+
+<span class="nt">parts</span><span class="p">:</span>
+  <span class="nt">gnu-hello</span><span class="p">:</span>
+    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz</span>
+    <span class="nt">plugin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">autotools</span>
+</pre></div>
+</div>
+<p>Es soll die App <code class="docutils literal notranslate"><span class="pre">hello</span></code> mit dem Kommando <code class="docutils literal notranslate"><span class="pre">bin/hello</span></code> installiert werden.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snapcraft-part-conflict.html" class="btn btn-neutral float-right" title="konfligierende Parts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snappy-intro.html" class="btn btn-neutral float-left" title="snap Intro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

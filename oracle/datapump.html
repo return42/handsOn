@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Oracle Data-Pump &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="CDB &amp; PDB" href="cdbpdb.html" />
+    <link rel="prev" title="Oracle DBMS Setup" href="dbms.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Oracle (developer)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html">Oracle DBMS Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Oracle Data-Pump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simpler-export">Simpler Export</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-mit-flashback-time">Export mit Flashback-Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import">Import</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dba-directories"><code class="docutils literal notranslate"><span class="pre">dba_directories</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html">SQL-Developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html">Oracle Know-how</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Oracle (developer)</a> &raquo;</li>
+        
+      <li>Oracle Data-Pump</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/oracle/datapump.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oracle-data-pump">
+<span id="oracle-datapump"></span><h1>Oracle Data-Pump<a class="headerlink" href="#oracle-data-pump" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="sidebar">
+<p class="sidebar-title">Tipp</p>
+<p>Die einfachste Art einen konsistenten Export einer Datenbank <em>(eines Oracle
+Benutzers)</em> herzustellen ist der <a class="reference internal" href="#export-mit-flashback-time">Export mit Flashback-Time</a>.</p>
+</div>
+<p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump.html">Data-Pump</a> ist eine Infrastruktur von Oracle zum <em>bewegen</em> von Daten aus und in
+eine Datenbank.  Es ersetzt die <code class="docutils literal notranslate"><span class="pre">exp</span></code> und <code class="docutils literal notranslate"><span class="pre">imp</span></code> Kommandos durch ihre
+Pendants <code class="docutils literal notranslate"><span class="pre">expdp</span></code> und <code class="docutils literal notranslate"><span class="pre">impdp</span></code>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-export-utility.html#GUID-125385E7-A32B-4B52-B1E3-3E3878E0C7B3">Export Parameter</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-D3F9B4B1-F107-4499-B529-544D233811B5">Import Parameter</a></p></li>
+</ul>
+<p>Der Import resp. Export erfolgt in einem Ordner der zuvor in Oracle definiert
+wird (<a class="reference internal" href="#dba-directories">dba_directories</a>).  In einer Standard Installation ist bereits ein Ordner
+vorgesehen (<code class="docutils literal notranslate"><span class="pre">DATA_PUMP_DIR</span></code>).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">dba_directories</span><span class="p">;</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 25%" />
+<col style="width: 51%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>owner</p></th>
+<th class="head"><p>directory_name</p></th>
+<th class="head"><p>directory_path</p></th>
+<th class="head"><p>origin_con_id</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>SYS</p></td>
+<td><p>DATA_PUMP_DIR</p></td>
+<td><p>/opt/oracle/admin/ORCLCDB/dpdump/</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="simpler-export">
+<h2>Simpler Export<a class="headerlink" href="#simpler-export" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Berechtigung in PDB</p>
+<p>In jeder PDB aus der ein DB-User einen Export machen soll, muss dem User das
+Zugriffsrecht auf das Directory für den Export gegeben werden, siehe
+<em>„GRANT .. ON DIRECTORY .. TO ..;“</em> in <a class="reference internal" href="#dba-directories"><span class="std std-ref">dba_directories</span></a>.</p>
+</div>
+<p>Ein einfacher Aufruf von <code class="docutils literal notranslate"><span class="pre">expdp</span></code>, bei dem der Benutzer <code class="docutils literal notranslate"><span class="pre">foo</span></code> seine Daten
+in dem Ordner <code class="docutils literal notranslate"><span class="pre">DATA_PUMP_DIR</span></code> sichert:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>expdp foo@ORCLPDB <span class="se">\</span>
+    <span class="nv">directory</span> <span class="o">=</span> DATA_PUMP_DIR <span class="se">\</span>
+    <span class="nv">schemas</span>   <span class="o">=</span> foo <span class="se">\</span>
+    <span class="nv">dumpfile</span>  <span class="o">=</span> <span class="s2">&quot;foo.dmp&quot;</span> <span class="se">\</span>
+    <span class="nv">logfile</span>   <span class="o">=</span> <span class="s2">&quot;foo.log&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="export-mit-flashback-time">
+<h2>Export mit Flashback-Time<a class="headerlink" href="#export-mit-flashback-time" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Über <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-export-utility.html#GUID-B5B5FAA8-4E07-4818-9798-9913869D907F">FLASHBACK_SCN</a> und <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-export-utility.html#GUID-168AD92D-F31C-43AF-A7A8-DE74732988C5">FLASHBACK_TIME</a> kann ein bestimmter Zeitpunk der DB
+exportiert werden.  Die System-Change-Number (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/glossary.html#GUID-44B5A820-D859-47F5-99CC-56A95AF4BB3E">SCN</a>) ist eindeutig und über die
+ganze DB hinweg konsistent.  Jede Änderung an der DB erhöht die <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/glossary.html#GUID-44B5A820-D859-47F5-99CC-56A95AF4BB3E">SCN</a></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">dbms_flashback</span><span class="p">.</span><span class="n">get_system_change_number</span> <span class="k">as</span> <span class="n">SCN</span> <span class="k">FROM</span> <span class="n">dual</span><span class="p">;</span>
+
+        <span class="n">SCN</span>
+<span class="c1">-----------</span>
+    <span class="mi">3518491</span>
+</pre></div>
+</div>
+<p>Diese Nummer kann einem <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-export-utility.html#GUID-125385E7-A32B-4B52-B1E3-3E3878E0C7B3">Export Parameter</a> namens <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-export-utility.html#GUID-B5B5FAA8-4E07-4818-9798-9913869D907F">FLASHBACK_SCN</a> übergeben
+werden.  Einfacher ist es jedoch wenn Oracle die <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/glossary.html#GUID-44B5A820-D859-47F5-99CC-56A95AF4BB3E">SCN</a> zu einem bestimmten
+Zeitpunkt selber ermittelt und wir nur den <em>Zeitpunkt</em> angeben müssen (das nennt
+sich dann <em>Flashback-Time</em>).  Die <em>aktuelle</em> Zeit lässt sich mit dem
+<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SYSTIMESTAMP.html#GUID-FCED18CE-A875-4D5D-9178-3DE4FA956516">SYSTIMESTAMP</a> angeben:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>expdp foo@ORCLPDB <span class="se">\</span>
+    <span class="nv">directory</span><span class="o">=</span>DATA_PUMP_DIR <span class="se">\</span>
+    <span class="nv">schemas</span> <span class="o">=</span> foo <span class="se">\</span>
+    <span class="nv">flashback_time</span> <span class="o">=</span> SYSTIMESTAMP <span class="se">\</span>
+    <span class="nv">dumpfile</span> <span class="o">=</span> <span class="s2">&quot;foo_</span><span class="k">$(</span>date +%Y.%m.%d-%H.%M.%S<span class="k">)</span><span class="s2">.dmp&quot;</span> <span class="se">\</span>
+    <span class="nv">logfile</span>  <span class="o">=</span> <span class="s2">&quot;foo_</span><span class="k">$(</span>date +%Y.%m.%d-%H.%M.%S<span class="k">)</span><span class="s2">.log&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="import">
+<h2>Import<a class="headerlink" href="#import" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der Import des <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump.html">Data-Pump</a> erfolgt mit dem Kommando <code class="docutils literal notranslate"><span class="pre">impdp</span></code>.  Die <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-D3F9B4B1-F107-4499-B529-544D233811B5">Import
+Parameter</a> namens <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-01F8E58D-760A-4E8C-A300-23B6AE651639">FROMUSER</a> und <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-98BA8BD2-DBA4-4201-B93B-4AC0AE91A107">TOUSER</a> ordnen dem Schema aus dem DUMP einen
+DB-User zu.  Alternativ kann auch die Option <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/datapump-import-utility.html#GUID-619809A6-1966-42D6-9ACC-A3E0ADC36523">REMAP_SCHEMA</a> verwendet werden.
+Sofern der DB-User (das Schema) in der DB Instanz noch nicht existiert muss er
+angelegt werden, siehe „<a class="reference internal" href="know-how.html#sql-create-user"><span class="std std-ref">Schema anlegen (CREATE USER)</span></a>“.  Folgend ein Beispiel für einen
+Import, bei dem das Schema <code class="docutils literal notranslate"><span class="pre">bar</span></code> in den DB-User <code class="docutils literal notranslate"><span class="pre">foo</span></code> importiert wird.</p>
+<div class="sidebar">
+<p class="sidebar-title">Verweise</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="know-how.html#determin-version-from-dump"><span class="std std-ref">Aus welcher Oracle Version wurde der DUMP erzeugt?</span></a></p></li>
+<li><p><a class="reference internal" href="know-how.html#determin-schema-from-dump"><span class="std std-ref">Welches Schema ist im DUMP?</span></a></p></li>
+<li><p><a class="reference internal" href="know-how.html#dbms-stats"><span class="std std-ref">Statistiken und Optimierung</span></a></p></li>
+</ul>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>impdp foo@ORCLPDB <span class="se">\</span>
+    <span class="nv">directory</span>    <span class="o">=</span> ORACLE_IMPEXP <span class="se">\</span>
+    <span class="nv">remap_schema</span> <span class="o">=</span> bar:foo <span class="se">\</span>
+    <span class="nv">dumpfile</span>     <span class="o">=</span> <span class="s2">&quot;bar.dmp&quot;</span> <span class="se">\</span>
+    <span class="nv">logfile</span>      <span class="o">=</span> <span class="s2">&quot;bar2foo-import.log&quot;</span> <span class="se">\</span>
+    <span class="nv">exclude</span>      <span class="o">=</span> statistics
+</pre></div>
+</div>
+<p>Sofern man sich den Export in eine neue DB einspielt, kann man die Statistiken
+(und ggf. andere Metadaten) beim Export, oder hier beim Import auch ausschließen
+(<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/datapump-import-utility.html#GUID-DC7668E1-C846-48C5-A0D5-F4659EC119BB">EXCLUDE</a>): Würde man den Parameter weglassen, so könnte es zu Fehlermeldungen
+beim Import der Statistiken kommen: <em>Objekttyp INDEX_STATISTICS konnte nicht
+erstellt werden …</em></p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Nach dem Import können die Statistiken neu erzeugt werden, siehe DBMS_STAT
+Prozeduren: <a class="reference internal" href="know-how.html#dbms-stats"><span class="std std-ref">GATHET_xxx_STATS</span></a>.</p>
+</div>
+<p>Falls beim Import Probleme mit dem Festplattenplatz auf der Datenbank auftauchen
+kann man u.U. auch erst mal das Archivlog aufräumen:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rman target /
+backup archivelog all<span class="p">;</span>
+delete archivelog all<span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="dba-directories">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">dba_directories</span></code><a class="headerlink" href="#dba-directories" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Ordner des <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump.html">Data-Pump</a> werden (wie alle) in der Tabelle <code class="docutils literal notranslate"><span class="pre">dba_directories</span></code>
+verwaltet und mit <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-DIRECTORY.html#GUID-8E9C569A-1B06-42C4-9586-0EF83437001A">CREATE DIRECTORY</a> angelegt (siehe auch <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump-overview.html#GUID-EEB32B50-8A00-40B0-8787-CC2C8BA05DC5">Understanding Dump,
+Log, and SQL File Default Locations</a>).  Einrichten eines Ordners auf dem DB
+Host:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>oracle@dbhost $ sudo -H mkdir -p /HOST/share/oracle_impexp
+oracle@dbhost $ sudo -H chown -R oracle:oinstall /HOST/share/oracle_impexp
+</pre></div>
+</div>
+<p>Als <code class="docutils literal notranslate"><span class="pre">sysdba</span></code> anmelden und den Ordner in der Oracle Instanz einrichten.  Bei
+PDBs muss man noch in den Container wechseln und die Zugriffsrechte explizit
+für jeden DB-Usern in jedem Container vergeben.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+
+<span class="c1">-- create directory object</span>
+<span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="n">DIRECTORY</span> <span class="n">oracle_impexp</span> <span class="k">AS</span> <span class="s1">&#39;/HOST/share/oracle_impexp&#39;</span><span class="p">;</span>
+
+<span class="c1">-- grant read / write rights to schema</span>
+<span class="k">GRANT</span> <span class="k">read</span><span class="p">,</span> <span class="k">write</span> <span class="k">ON</span> <span class="n">DIRECTORY</span> <span class="n">oracle_impexp</span> <span class="k">TO</span> <span class="n">foo</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Damit der Benutzer <code class="docutils literal notranslate"><span class="pre">c##foo</span></code> auf den Ordner zugreifen kann wurden ihm noch die
+dazu erforderlichen Rechte eingeräumt.  Auf welche Ordner ein DB User Zugriff
+hat kann er über ermitteln:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">ALL_DIRECTORIES</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cdbpdb.html" class="btn btn-neutral float-right" title="CDB &amp; PDB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dbms.html" class="btn btn-neutral float-left" title="Oracle DBMS Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software Build (GNU) &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="python" href="python.html" />
+    <link rel="prev" title="Debian" href="debian.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Entwickler Pakete</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian.html">Debian</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Software Build (GNU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit.html">Edit, Diff, Merge &amp; Co.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scm.html">Versionsverwaltung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relationalDB.html">Relationale Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devTools_refs.html">Verweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Entwickler Pakete</a> &raquo;</li>
+        
+      <li>Software Build (GNU)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devTools/build.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-build-gnu">
+<span id="xref-ubuntu-devtools-build"></span><h1>Software Build (GNU)<a class="headerlink" href="#software-build-gnu" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Es gibt eine Vielzahl von Buildtools die <em>hier</em> nicht installiert werden und auf
+die nicht eingegangen werden soll.  In Linux/Unix Software-Projekten wird jedoch
+häufig die Tool-Chain des <a class="reference external" href="https://de.wikipedia.org/wiki/GNU_Build_System">GNU Build System (wiki)</a> genutzt, weshalb diese
+<em>hier</em> installiert wird und mit ein paar Sätzen unten stehend kurz erläutert
+werden soll.</p>
+<p>In den angesprochenen Linux/Unix Software-Projekten sind für den Build-Prozess
+neben der Toolchain noch (Standard-) Bibliotheken (z.B. <a class="reference external" href="http://www.gnu.org/software/libc/">glibc</a>) und deren
+<a class="reference external" href="https://de.wikipedia.org/wiki/Header-Datei">Header Dateien (wiki)</a> erforderlich.  In den Software-Projekten können diese
+Abhängigkeiten ganz individuell sein.  Es lässt sich aber auch ein <strong>Subset von
+Abhängigkeiten</strong> identifizieren, der häufig benötigt wird.  Neben diesen Subset
+an Abhängigkeiten sind die hier vorgestellten Entwickler Pakete eine
+willkürliche Auswahl.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/build-essential">build-essential</a></p></li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/linux-headers-generic">linux-headers-generic</a></p></li>
+</ul>
+<p>Das <a class="reference external" href="http://packages.ubuntu.com/build-essential">build-essential</a> Paket installiert einen minimalen Satz von Tools und
+Bibliotheken, der benötigt wird um Software zu kompilieren (s.o.).  Zu diesem
+minimalen Satz gehören beispielsweise die</p>
+<ul class="simple">
+<li><p>GNU Compiler Collection (<a class="reference external" href="http://gcc.gnu.org/">GCC</a>) und die</p></li>
+<li><p>GNU C Library (<a class="reference external" href="http://www.gnu.org/software/libc/">glibc</a>), die Implemntierung der <a class="reference external" href="https://en.wikipedia.org/wiki/C_standard_library">C standard library (wiki)</a>
+von GNU.</p></li>
+</ul>
+<p>In dem <a class="reference external" href="http://packages.ubuntu.com/linux-headers-generic">linux-headers-generic</a> Paket sind die Linux <a class="reference external" href="https://de.wikipedia.org/wiki/Header-Datei">Header Dateien
+(wiki)</a>, auch diese werden des öfteren benötigt und sollten installiert werden.
+Viele Linux/Unix Software-Projekte bauen auf dem <a class="reference external" href="https://de.wikipedia.org/wiki/GNU_Build_System">GNU Build System (wiki)</a> auf,
+das unter Debian/Ubuntu mit den folgenden Paketen installiert werden kann.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/autoconf">autoconf</a> / <a class="reference external" href="http://packages.ubuntu.com/autotools-dev">autotools-dev</a></p></li>
+</ul>
+<p>Installiert (u.a.) die Tools <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=autoscan">autoscan</a>, <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=autoconf">autoconf</a> und
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=autoheader">autoheader</a>.  Diese Tools gehören zur <a class="reference external" href="https://www.gnu.org/software/autoconf">GNU autoconf</a> Suite mit der
+Konfiguratinen erzeugt werden, die es Entwicklern erlauben ihre
+Implementierungen <em>portabel</em> zu halten, so dass diese auf unterschiedlichen
+(z.B. Unix/Linux) Platformen kompiliert werden können.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/automake">automake</a></p></li>
+</ul>
+<p><a class="reference external" href="http://www.gnu.org/software/automake">GNU automake</a> ergänzt das Autotool Suite und ermöglicht es, die für den
+Build-Prozess zuständigen <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> Dateien ebenfalls <em>portabel</em> zu halten.
+Das Zusammenspiel von Automake und Autoconf wird in dem Prozessbild von
+Wikimedia Commons anschaulich dargestellt.</p>
+<div class="figure align-center" id="id1">
+<span id="xref-figure-build-256px-autoconf-automake-process-svg"></span><a class="reference external image-reference" href="https://de.wikipedia.org/wiki/GNU_Build_System#/media/File:Autoconf-automake-process.svg"><img alt="Figure (256px-Autoconf-automake-process.svg.png)" src="../_images/256px-Autoconf-automake-process.svg.png" /></a>
+<p class="caption"><span class="caption-text">Autoconf / Automake Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Eine kurze, pragmatisches Einführung zu den Autotools gibt das <a class="reference external" href="http://markuskimius.wikidot.com/programming:tut:autotools">Autotools
+Tutorial for Beginners (markuskimius)</a> oder das Kapitel „Build-Systeme Teil 5:
+GNU Autotools“ im <a class="reference external" href="https://magazin.c-plusplus.net/inhaltsverzeichnis">magazin.c-plusplus.net</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/libtool-bin">libtool-bin</a></p></li>
+</ul>
+<p>Das Paket <a class="reference external" href="http://packages.ubuntu.com/libtool-bin">libtool-bin</a> installiert (u.a.) das Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=libtools">libtools</a> das
+zu dem GNU Portable Library Tool (kurz: <a class="reference external" href="http://www.gnu.org/software/libtool/">GNU libtool</a>) gehört.  Libtool
+unterstützt bei der Erzeugung einer <em>portablen</em> (nicht auf eine Platform
+begrenzten) <a class="reference external" href="https://en.wikipedia.org/wiki/Library_%28computing%29">Shared Library (wiki)</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/gettext">gettext</a></p></li>
+</ul>
+<p>Das Paket <a class="reference external" href="http://packages.ubuntu.com/gettext">gettext</a> installiert die <a class="reference external" href="http://www.gnu.org/software/gettext/">GNU gettext</a> Toolchain.  Das
+Zusammenspiel der gettext-Tools wird in dem Prozessbild von Wikimedia Commons
+anschaulich dargestellt.</p>
+<div class="figure align-center" id="id2">
+<span id="xref-figure-build-206px-gettext-svg"></span><a class="reference external image-reference" href="https://de.wikipedia.org/wiki/GNU_gettext#/media/File:Gettext.svg"><img alt="Figure (206px-Gettext.svg.png)" src="../_images/206px-Gettext.svg.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/GNU_gettext">GNU gettext (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="python.html" class="btn btn-neutral float-right" title="python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="debian.html" class="btn btn-neutral float-left" title="Debian" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

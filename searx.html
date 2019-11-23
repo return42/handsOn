@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>searx Suchmaschine &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Gogs / Go Git Service" href="gogs.html" />
+    <link rel="prev" title="Oracle Know-how" href="oracle/know-how.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>searx Suchmaschine</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/searx.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="searx-suchmaschine">
+<span id="xref-searx"></span><h1>searx Suchmaschine<a class="headerlink" href="#searx-suchmaschine" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="sidebar">
+<p class="sidebar-title">searX nutzen oder installieren?</p>
+<p>Wer keine Instanz selber aufbauen will kann sich aus den <a class="reference external" href="https://github.com/asciimoo/searx/wiki/Searx-instances">Searx-Instances</a>
+welche aussuchen, die von Kuketz (<a class="reference external" href="https://www.kuketz-suche.de">kuketz-suche.de</a>) oder eben unsere
+(<a class="reference external" href="https://darmarit.cloud/searx">searX&#64;darmarIT</a>) nutzen.  Für eine einfache Installation eigent sich das
+folgende Skript.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./searx.sh install server
+</pre></div>
+</div>
+</div>
+<p><a class="reference external" href="https://asciimoo.github.io/searx/">searX</a> ist eine kostenlose Internet-Metasuchmaschine, die Ergebnisse von mehr
+als 70 Suchdiensten zusammenfasst.  Die Benutzer werden weder verfolgt noch wird
+ein Profil von ihnen erstellt.  Es gibt Instanzen im internet (<a class="reference external" href="https://github.com/asciimoo/searx/wiki/Searx-instances">Public searX
+instances</a>),
+Alternativ kann man sich auch eine eigene (<em>self hosted</em>) Instanz aufsetzen.
+Die hier gezeigte Installation erfolgt unter der URL:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">host</span><span class="o">&gt;/</span><span class="n">searx</span>
+</pre></div>
+</div>
+<p>auf einem Apache Server und wird u.A. im Kaptitel ‚with apache‘ in der
+<a class="reference external" href="https://asciimoo.github.io/searx/dev/install/installation.html#with-apache">searX-Doku</a> beschrieben.  Zur Installation existiert das Skript <code class="docutils literal notranslate"><span class="pre">searx.sh</span></code>,
+das alle Setups vornimmt.  Statt dem Original <a class="reference external" href="https://github.com/asciimoo/searx.git">searX-git</a> installiert es den
+konsolidierten Branch <code class="docutils literal notranslate"><span class="pre">dm-cloud</span></code> aus dem Fork <a class="reference external" href="https://github.com/return42/searx/tree/dm-cloud">return42/searx</a>.  Das Skript legt folgende
+Umgebungen fest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">SEARX_GIT_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/return42/searx.git&quot;</span>
+<span class="nv">SEARX_GIT_BRANCH</span><span class="o">=</span><span class="s2">&quot;dm-cloud&quot;</span>
+
+<span class="nv">SEARX_USER</span><span class="o">=</span>searx
+<span class="nv">SEARX_HOME</span><span class="o">=</span><span class="s2">&quot;/home/</span><span class="nv">$SEARX_USER</span><span class="s2">&quot;</span>
+<span class="nv">SEARX_VENV</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SEARX_HOME</span><span class="si">}</span><span class="s2">/searx-venv&quot;</span>
+<span class="nv">SEARX_REPO_FOLDER</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SEARX_HOME</span><span class="si">}</span><span class="s2">/searx-src&quot;</span>
+<span class="nv">SEARX_SETTINGS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SEARX_REPO_FOLDER</span><span class="si">}</span><span class="s2">/searx/settings.yml&quot;</span>
+
+<span class="c1"># Apache Settings</span>
+<span class="nv">SEARX_APACHE_DOMAIN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>uname -n<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">SEARX_APACHE_URL</span><span class="o">=</span><span class="s2">&quot;/searx&quot;</span>
+<span class="nv">SEARX_APACHE_SITE</span><span class="o">=</span>searx
+
+<span class="c1"># uWSGI Settings</span>
+<span class="nv">SEARX_UWSGI_APP</span><span class="o">=</span>searx.ini
+</pre></div>
+</div>
+<p>Für eine Installation führt das Skript (in etwa) folgende Schritte aus:</p>
+<ol class="arabic">
+<li><p>Es werden die erforderlichen Ubuntu/Debian Pakete für Apache und Python3
+installiert.  Das Paket <a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-uwsgi">libapache2-mod-uwsgi</a> installiert <a class="reference external" href="https://uwsgi-docs.readthedocs.io">uWSGI</a> für
+Apache (s.a.  <a class="reference external" href="https://github.com/unbit/uwsgi">uWSGI-github</a>, <a class="reference external" href="http://packages.ubuntu.com/uwsgi">uwsgi</a> und <a class="reference external" href="http://packages.ubuntu.com/uwsgi-plugin-python3">uwsgi-plugin-python3</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H apt install <span class="se">\</span>
+     libapache2-mod-uwsgi uwsgi uwsgi-plugin-python3 <span class="se">\</span>
+     git build-essential libxslt-dev python3-dev python3-babel zlib1g-dev <span class="se">\</span>
+     libffi-dev libssl-dev
+</pre></div>
+</div>
+</li>
+<li><p>Es wird der Benutzer <code class="docutils literal notranslate"><span class="pre">searx</span></code> angelegt.  Sein <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> ist <code class="docutils literal notranslate"><span class="pre">/home/searx</span></code>
+und in diesen Ordner wird alles weitere installiert:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H adduser <span class="se">\</span>
+     --disabled-password --gecos <span class="s1">&#39;searX&#39;</span> <span class="se">\</span>
+     --home <span class="nv">$SEARX_HOME</span> <span class="nv">$SEARX_USER</span>
+</pre></div>
+</div>
+</li>
+<li><p>Es wird ein Clone der Sourcen erstellt (Benutzer ist <code class="docutils literal notranslate"><span class="pre">searx</span></code> in
+<code class="docutils literal notranslate"><span class="pre">/home/searx</span></code> auf Host <code class="docutils literal notranslate"><span class="pre">searx-server</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -u searx -i   <span class="c1"># searx@searx-server</span>
+$ <span class="nb">cd</span> <span class="si">${</span><span class="nv">SEARX_HOME</span><span class="si">}</span>
+$ git clone https://github.com/asciimoo/searx.git searx-src
+</pre></div>
+</div>
+</li>
+<li><p>Es wird eine virtuelle Python Umgebung eingerichtet:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -u searx -i   <span class="c1"># searx@searx-server</span>
+$ python3 -m venv <span class="si">${</span><span class="nv">SEARX_VENV</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>In der Umgebung werden die für searX erforderlichen Python Pakete
+installiert:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -u searx -i   <span class="c1"># searx@searx-server</span>
+$ <span class="nb">source</span> <span class="si">${</span><span class="nv">SEARX_VENV</span><span class="si">}</span>/bin/activate
+<span class="o">(</span>searx-venv<span class="o">)</span> $ <span class="nb">cd</span> <span class="nv">$HOME</span>/searx-src
+<span class="o">(</span>searx-venv<span class="o">)</span> $ ./manage.sh update_packages
+</pre></div>
+</div>
+</li>
+<li><p>searX Konfiguration:</p>
+<ol class="loweralpha simple">
+<li><p>Es wird die searX Konfiguration
+<a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/home/searx/searx-src/searx/settings.yml">/home/searx/searx-src/searx/settings.yml</a> eingespielt.</p></li>
+<li><p>Anlegen eines Schlüssels. :</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>searx-venv<span class="o">)</span> $ <span class="nb">cd</span> <span class="nv">$HOME</span>/searx-src
+<span class="o">(</span>searx-venv<span class="o">)</span> $ sed -i -e <span class="s2">&quot;s/ultrasecretkey/`openssl rand -hex 16`/g&quot;</span> searx/settings.yml
+</pre></div>
+</div>
+</li>
+<li><p>Es wird ein rudimentärer Test der searX-Installation durchgeführt.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>searx-venv<span class="o">)</span> $ timeout <span class="m">300</span> python3 searx/webapp.py <span class="p">&amp;</span>
+<span class="o">(</span>searx-venv<span class="o">)</span> $ xgd-open http://127.0.0.1:8888/
+</pre></div>
+</div>
+</li>
+<li><p>Es wird die uWSGI Konfiguration für die <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/etc/uwsgi/apps-available/searx.ini">searx App</a> installiert und aktiviert:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /etc/uwsgi/apps-enabled
+sudo -H ln -s ../apps-available/searx.ini
+</pre></div>
+</div>
+</li>
+<li><p>Es wird die Apache Site <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/etc/apache2/sites-available/searx.conf">/etc/apache2/sites-available/searx.conf</a> eingerichtet:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2ensite -q searx
+sudo -H apachectl configtest
+sudo -H service apache2 force-reload
+</pre></div>
+</div>
+</li>
+<li><p>Es wird die Verfügbarkeit über den Apache Server geprüft:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --location --head --insecure https://<span class="si">${</span><span class="nv">SEARX_APACHE_DOMAIN</span><span class="si">}${</span><span class="nv">SEARX_APACHE_URL</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gogs.html" class="btn btn-neutral float-right" title="Gogs / Go Git Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="oracle/know-how.html" class="btn btn-neutral float-left" title="Oracle Know-how" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,616 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Wartung &amp; Diagnose &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Scannen mit SANE" href="../scan/index.html" />
+    <link rel="prev" title="Netzwerk-Drucker Setup" href="printer_setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drucken mit CUPS &amp; IPP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cups.html">CUPS Grundlagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipp.html">IPP &amp; IPP Everywhere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ppd.html">Die kleine PPD Fibel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html">Druckertreiber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printer_setup.html">Netzwerk-Drucker Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Wartung &amp; Diagnose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fehlersuche-uber-f1">Fehlersuche über F1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cups-server-debug">CUPS Server debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cups-browser-debug">CUPS Browser (debug)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#druckausgabe-in-datei">Druckausgabe in Datei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kommandos">Kommandos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kommando-cupsfilter">Kommando <code class="docutils literal notranslate"><span class="pre">cupsfilter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verweise">Verweise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Drucken mit CUPS &amp; IPP</a> &raquo;</li>
+        
+      <li>Wartung &amp; Diagnose</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/print/printer_troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="wartung-diagnose">
+<span id="print-troubleshooting"></span><h1>Wartung &amp; Diagnose<a class="headerlink" href="#wartung-diagnose" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="fehlersuche-uber-f1">
+<span id="cups-troubleshooter"></span><h2>Fehlersuche über F1<a class="headerlink" href="#fehlersuche-uber-f1" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Eine einfache und erste, schnelle Hilfe kann der <em>Troubleshooting Wizard</em> sein.
+Den bekommt man über die <code class="docutils literal notranslate"><span class="pre">F1</span></code> Taste im <a class="reference internal" href="#figure-cups-system-config-troubleshooting"><span class="std std-ref">system-config-printer</span></a>.</p>
+<div class="figure align-default" id="id1">
+<span id="figure-cups-system-config-troubleshooting"></span><img alt="Figure (system-config-troubleshooting.png)" src="../_images/system-config-troubleshooting.png" />
+<p class="caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code>: Fehlersuche <span class="guilabel">F1</span></span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Das Tool zur Fehlersuche überprüft erst mal die Einstellungen und falls es dabei
+Anhaltspunkte für Probleme findet, macht dazu ein entsprechende Vorschläge.
+Wenn die nicht helfen kann ein Test-Druck angestoßen werden.  Hat man nur Probleme
+mit einem bestimmten Dokument, dann kann man das jetzt ganz normal drucken und
+den Job im Dialog mit einem Häkchen markieren.</p>
+<div class="figure align-default" id="id2">
+<span id="figure-cups-troubleshooter-test-page"></span><img alt="Figure (cups-troubleshooter-test-page.png)" src="../_images/cups-troubleshooter-test-page.png" />
+<p class="caption"><span class="caption-text">Troubleshooter: Testdruck eines <em>problematischen</em> Dokuments</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Wenn alle Tests abgeschlossen sind, besteht am Ende die Möglichkeit die Diagnose
+Daten (<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/troubleshoot.txt">troubleshoot.txt</a>) zu speichern.
+Deren Studium kann z.T. nützliche Informationen hervorbringen.</p>
+<div class="figure align-default" id="id3">
+<span id="figure-cups-troubleshooter-diagnostic"></span><img alt="Figure (cups-troubleshooter-diagnostic.png)" src="../_images/cups-troubleshooter-diagnostic.png" />
+<p class="caption"><span class="caption-text">Troubleshooter: Speichern der Diagnose Daten <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/troubleshoot.txt">troubleshoot.txt</a></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Es kann auch mal helfen die Diagnose Daten verschiedener Druckaufträge
+miteinander zu vergleichen.  Als ein Beispiel sei Commit <a class="reference external" href="https://github.com/return42/handsOn/commit/56b89eb">#56b89eb</a>
+gegeben. Bei dem Commit sieht man den Unterschied zwischen einem Druck über den
+<code class="docutils literal notranslate"><span class="pre">MF623C-TWF19694</span></code> Drucker und über den mit <code class="docutils literal notranslate"><span class="pre">CNMF620C-Series</span></code> eingerichteten
+Drucker.</p>
+</div>
+<div class="section" id="cups-server-debug">
+<span id="cups-debug-cups-service"></span><h2>CUPS Server debug<a class="headerlink" href="#cups-server-debug" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der CUPS Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
+werden.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">cups</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">journalctl</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">pager</span> <span class="o">-</span><span class="n">u</span> <span class="n">cups</span>
+</pre></div>
+</div>
+<p>Das Debug-LOG zum CUPS Dienst kann über die Kommandozeile aktiviert/de-aktiviert
+werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cupsctl -U &lt;benutzer&gt; --[no-]debug-logging
+</pre></div>
+</div>
+<p>oder über die HTML GUI des CUPS: <a class="reference external" href="http://localhost:631/admin/">http://localhost:631/admin/</a> kann mit der Option
+<span class="guilabel">Mehr Informationen zur Fehlersuche speichern</span> das Debug-LOG
+eingeschaltet werden.</p>
+<div class="figure align-default" id="id4">
+<span id="figure-cupsd-debug-on"></span><a class="reference external image-reference" href="http://localhost:631/admin/"><img alt="Figure (cupsd-debug-on.png)" src="../_images/cupsd-debug-on.png" style="width: 513.8px; height: 312.2px;" /></a>
+<p class="caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">localhost:631</span></code>: CUPS Server Einstellungen</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Die Einstellung wird aktiv, sobald <span class="guilabel">Einstellung ändern</span> bestätigt
+wird.  Hier das LOG zu dem Print-Job 140 aus der obige
+<a class="reference internal" href="#cups-troubleshooter"><span class="std std-ref">Fehlersuche über F1</span></a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/return42/handsOn/blob/master/cups_debug_log_test_job140.txt">gitcups_debug_log_test_job140.txt</a></p></li>
+</ul>
+<p>Dort kann man z.B. sehen, was die CUPS-Filter machen um die Umwandlung des PDFs
+in die PDL des Druckers hin zu bekommen.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="p">[</span><span class="mi">20</span><span class="o">/</span><span class="n">Feb</span><span class="o">/</span><span class="mi">2019</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">20</span> <span class="o">+</span><span class="mi">0100</span><span class="p">]</span> <span class="p">[</span><span class="n">Job</span> <span class="mi">140</span><span class="p">]</span> <span class="n">Ghostscript</span> <span class="n">command</span> <span class="n">line</span><span class="p">:</span> \
+     <span class="n">gs</span> <span class="o">-</span><span class="n">dQUIET</span> <span class="o">-</span><span class="n">dPARANOIDSAFER</span> <span class="o">-</span><span class="n">dNOPAUSE</span> \
+    <span class="o">-</span><span class="n">dBATCH</span> <span class="o">-</span><span class="n">dNOINTERPOLATE</span> <span class="o">-</span><span class="n">dNOMEDIAATTRS</span> <span class="o">-</span><span class="n">dShowAcroForm</span> <span class="o">-</span><span class="n">sstdout</span><span class="o">=%</span><span class="n">stderr</span> <span class="o">-</span><span class="n">sOutputFile</span><span class="o">=%</span><span class="n">stdout</span> \
+    <span class="o">-</span><span class="n">sDEVICE</span><span class="o">=</span><span class="n">cups</span> <span class="o">-</span><span class="n">sMediaClass</span><span class="o">=</span><span class="n">PwgRaster</span> <span class="o">-</span><span class="n">sMediaType</span><span class="o">=</span><span class="n">Auto</span> <span class="o">-</span><span class="n">r600x600</span> <span class="o">-</span><span class="n">dDEVICEWIDTHPOINTS</span><span class="o">=</span><span class="mi">595</span> <span class="o">-</span><span class="n">dDEVICEHEIGHTPOINTS</span><span class="o">=</span><span class="mi">841</span> \
+    <span class="o">-</span><span class="n">dcupsBitsPerColor</span><span class="o">=</span><span class="mi">8</span> <span class="o">-</span><span class="n">dcupsColorOrder</span><span class="o">=</span><span class="mi">0</span> <span class="o">-</span><span class="n">dcupsColorSpace</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">dcupsBorderlessScalingFactor</span><span class="o">=</span><span class="mf">0.0000</span> \
+    <span class="o">-</span><span class="n">dcupsInteger1</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">dcupsInteger2</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="n">scupsPageSizeName</span><span class="o">=</span><span class="n">iso_a4_210x297mm</span> <span class="o">-</span><span class="n">I</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">cups</span><span class="o">/</span><span class="n">fonts</span> <span class="o">-</span><span class="n">c</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">_</span>
+<span class="o">...</span>
+<span class="n">D</span> <span class="p">[</span><span class="mi">20</span><span class="o">/</span><span class="n">Feb</span><span class="o">/</span><span class="mi">2019</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">38</span><span class="p">:</span><span class="mi">20</span> <span class="o">+</span><span class="mi">0100</span><span class="p">]</span> <span class="p">[</span><span class="n">Job</span> <span class="mi">140</span><span class="p">]</span> <span class="n">PID</span> <span class="mi">25582</span> <span class="p">(</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">cups</span><span class="o">/</span><span class="nb">filter</span><span class="o">/</span><span class="n">gstoraster</span><span class="p">)</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">no</span> <span class="n">errors</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Hier zu sehen; es wird der <code class="docutils literal notranslate"><span class="pre">gstoraster</span></code> Filter verwendet (s.a. Absatz
+„<a class="reference internal" href="#cupsfilter-command"><span class="std std-ref">Kommando cupsfilter</span></a>“).</p>
+</div>
+<div class="section" id="cups-browser-debug">
+<span id="cups-debug-browse-service"></span><h2>CUPS Browser (debug)<a class="headerlink" href="#cups-browser-debug" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der CUPS Browser Dienst sucht permanent nach (neu) verfügbaren Druckern und
+Druck-Diensten (andere CUPS-Server) und stellt diese dem Client zur Verfügung.
+Der CUPS Browser Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
+werden.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">cups</span><span class="o">-</span><span class="n">browsed</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">journalctl</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">pager</span> <span class="o">-</span><span class="n">u</span> <span class="n">cups</span><span class="o">-</span><span class="n">browsed</span>
+</pre></div>
+</div>
+<p>Wird der IPP-fähige Drucker (oder der <em>zentrale CUPS Server</em>) im Netzwerk nicht
+automatisch erkannt, so kann es bei der Fehlersuche hilfreich sein, das
+Debug-LOG des Dienstes <code class="docutils literal notranslate"><span class="pre">cups-browsed</span></code> zu analysieren.  Das Debug-LOG kann in
+der Config-Datei zum Dienst eingestellt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">cups</span><span class="o">/</span><span class="n">cups</span><span class="o">-</span><span class="n">browsed</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Mit der folgenden Einstellung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Where should cups-browsed create its debug log file (if &quot;DebugLogging file&quot;</span>
+<span class="c1"># is set)?</span>
+
+<span class="n">LogDir</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">cups</span>
+
+<span class="c1"># How should debug logging be done? Into the file</span>
+<span class="c1"># /var/log/cups/cups-browsed_log (&#39;file&#39;), to stderr (&#39;stderr&#39;), or</span>
+<span class="c1"># not at all (&#39;none&#39;)?</span>
+
+<span class="n">DebugLogging</span> <span class="n">file</span>
+<span class="c1"># DebugLogging stderr</span>
+<span class="c1"># DebugLogging file stderr</span>
+<span class="c1"># DebugLogging none</span>
+</pre></div>
+</div>
+<p>wird ein Debug-LOG in der Datei <code class="docutils literal notranslate"><span class="pre">/var/log/cups/cups-browsed_log</span></code> angelegt,
+sobald der Dienst neu gestartet wurde:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H systemctl restart cups-browsed
+</pre></div>
+</div>
+</div>
+<div class="section" id="druckausgabe-in-datei">
+<span id="debug-dump-to-file"></span><h2>Druckausgabe in Datei<a class="headerlink" href="#druckausgabe-in-datei" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um die Ausgabe auf den Drucker in eine Datei umzuleiten muss in der Datei
+<code class="docutils literal notranslate"><span class="pre">/etc/cups/cups-files.conf</span></code> die Option <em>FileDevice Yes</em> gesetzt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do we allow file: device URIs other than to /dev/null?</span>
+<span class="c1">#FileDevice No</span>
+<span class="n">FileDevice</span> <span class="n">Yes</span>
+</pre></div>
+</div>
+<p>Danach den CUPS Dienst neu starten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">cups</span>
+</pre></div>
+</div>
+<p>In der <a class="reference internal" href="driver.html#figure-cups-system-config-printer-gui"><span class="std std-ref">GUI</span></a> sollte der bestehende
+Drucker kopiert werden.  Hier im Beispiel wird der <code class="docutils literal notranslate"><span class="pre">CNM620C-Series-DUMP</span></code> durch
+eine Kopie des <a class="reference internal" href="driver.html#driverless-printing"><span class="std std-ref">CNM620C-Series</span></a> erzeugt.  In den
+Einstellungen des <code class="docutils literal notranslate"><span class="pre">CNM620C-Series-DUMP</span></code> wird die <em>Geräteadresse</em> auf
+<code class="docutils literal notranslate"><span class="pre">file:/tmp/printout.pwg</span></code> gesetzt.</p>
+<div class="figure align-default" id="id5">
+<span id="tmp-printout-device"></span><img alt="Figure (tmp-printout-device.png)" src="../_images/tmp-printout-device.png" />
+<p class="caption"><span class="caption-text">Druckausgabe in Datei umlenken</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Ein Ausdruck auf den Drucker <code class="docutils literal notranslate"><span class="pre">CNM620C-Series-Dump</span></code> legt die Datei
+<code class="docutils literal notranslate"><span class="pre">/tmp/printout.pwg</span></code> an.</p>
+<p>Wäre der Drucker PostScript-fähig, so würde man eine PS Datei erhalten.  Hier im
+Beispiel handelt es sich aber um einen Drucker der kein PS unterstützt, die
+Druckausgabe ist dann typischer Weise <code class="docutils literal notranslate"><span class="pre">image/pwg-raster</span></code> (deshalb auch die
+Dateiendung <code class="docutils literal notranslate"><span class="pre">printout.pwg</span></code>).  Mit dem <a class="reference external" href="https://github.com/michaelrsweet/rasterview">RasterView</a> kann dieses Format auch auf
+dem Desktop angezeigt werden.</p>
+</div>
+<div class="section" id="kommandos">
+<h2>Kommandos<a class="headerlink" href="#kommandos" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cups.org/doc/options.html">CUPS Command-Line Printing and Options</a></p></li>
+<li><p><a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lp">lp</a></p></li>
+<li><p><a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lpadmin">lpadmin</a></p></li>
+</ul>
+<p>Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lpinfo">lpinfo</a> listet die dem CUPS-Server bekannten verfügbaren Geräte oder
+Treiber auf:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  lpinfo -v
+network beh
+file cups-brf:/
+network ipps
+network socket
+network https
+network ipp
+network http
+network lpd
+network dnssd://Canon%20MF620C%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-f48139e3ba8e
+network socket://192.168.1.119
+network ipp://MF623Cn.local:80/ipp/print
+</pre></div>
+</div>
+<p>Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=pdfinfo">pdfinfo</a> für die 7. bis 8. Seite des PDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pdfinfo -f 7 -l 8 Test-Dateien/QR-Code-Test.pdf
+Tagged:         no
+UserProperties: no
+Suspects:       no
+Form:           none
+JavaScript:     no
+Pages:          8
+Encrypted:      no
+Page    7 size: 595.28 x 841.89 pts (A4)
+Page    7 rot:  0
+Page    8 size: 595.28 x 841.89 pts (A4)
+Page    8 rot:  0
+File size:      835779 bytes
+Optimized:      no
+PDF version:    1.4
+</pre></div>
+</div>
+<p>Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lpstat">lpstat</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lpstat -p
+Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Do 21 Feb 2019 18:08:52 CET
+Drucker CNMF620C-Series-DUMP ist im Leerlauf.  Aktiviert seit So 24 Feb 2019 16:47:51 CET
+Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Di 19 Feb 2019 19:42:58 CET
+</pre></div>
+</div>
+</div>
+<div class="section" id="kommando-cupsfilter">
+<span id="cupsfilter-command"></span><h2>Kommando <code class="docutils literal notranslate"><span class="pre">cupsfilter</span></code><a class="headerlink" href="#kommando-cupsfilter" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dem Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cupsfilter">cupsfilter</a> (aus dem Pakte <a class="reference external" href="http://packages.ubuntu.com/cups">cups</a>) und der Option
+<code class="docutils literal notranslate"><span class="pre">--list-filters</span></code> können die verwendeten Filter angezeigt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H cupsfilter --list-filters \
+    -m image/pwg-raster \
+    -p CNMF620C-Series.ppd \
+    Test-Dateien/PDF-test.pdf
+pdftopdf
+gstoraster
+</pre></div>
+</div>
+<p>Mit der Option <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">image/pwg-raster</span></code> wird als <em>Zieldatei-Typ</em> das PWG-Raster
+Format gewählt, das auch von dem Drucker (MF620) unterstützt wird.  Der
+Quelldatei-Typ kann optional über <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">MIME/Typ</span></code> angegeben oder automatisch
+erkannt werden.</p>
+<div class="admonition-achtung-bug admonition">
+<p class="admonition-title">Achtung BUG</p>
+<p>Laut <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cupsfilter">man-cupsfilter</a> soll es möglich sein, mit der Option
+<code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">printer/&lt;druckername&gt;</span></code> zu dem Druckerformat zu konvertieren, wie es von
+den Filtern in der PPD-Datei definiert ist.  Das scheint aber nicht zu
+funktionieren (vergleiche mit <code class="docutils literal notranslate"><span class="pre">gstoratser</span></code> obiger Ausgabe).  Schaut man in
+das LOG für einen solchen Auftrag, dann ermittelt <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cupsfilter">cupsfilter</a> immer als
+Zieldatei-Typ <code class="docutils literal notranslate"><span class="pre">application/vnd.cups-postscript</span></code> (keine Ahnung, warum):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H cupsfilter --list-filters \
+    -m printer/CNMF620C-Series \
+    -p /etc/cups/ppd/CNMF620C-Series.ppd \
+    Test-Dateien/PDF-test.pdf
+pdftopdf
+pdftops
+...
+DEBUG: envp[15]=&quot;FINAL_CONTENT_TYPE=application/vnd.cups-postscript&quot;
+</pre></div>
+</div>
+</div>
+<p>Lässt man die Option <code class="docutils literal notranslate"><span class="pre">--list-filters</span></code> weg, so bekommt man auf <code class="docutils literal notranslate"><span class="pre">stdout</span></code> die
+Daten, de an den Drucker gesendet werden, auf <code class="docutils literal notranslate"><span class="pre">stderr</span></code> bekommt man ein
+ausführliches LOG dazu:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H cupsfilter \
+    -m image/pwg-raster \
+    -p CNMF620C-Series.ppd \
+    Test-Dateien/PDF-test.pdf  &gt; Test-Dateien/PDF-test.pwg
+
+DEBUG: argv[0]=&quot;cupsfilter&quot;
+DEBUG: argv[1]=&quot;1&quot;
+DEBUG: argv[2]=&quot;root&quot;
+DEBUG: argv[3]=&quot;PDF-test.pdf&quot;
+DEBUG: argv[4]=&quot;1&quot;
+DEBUG: argv[5]=&quot;&quot;
+DEBUG: argv[6]=&quot;Test-Dateien/PDF-test.pdf&quot;
+DEBUG: envp[0]=&quot;&lt;CFProcessPath&gt;&quot;
+DEBUG: envp[1]=&quot;CONTENT_TYPE=application/pdf&quot;
+DEBUG: envp[2]=&quot;CUPS_DATADIR=/usr/share/cups&quot;
+DEBUG: envp[3]=&quot;CUPS_FONTPATH=/usr/share/cups/fonts&quot;
+DEBUG: envp[4]=&quot;CUPS_SERVERBIN=/usr/lib/cups&quot;
+DEBUG: envp[5]=&quot;CUPS_SERVERROOT=/etc/cups&quot;
+DEBUG: envp[6]=&quot;LANG=de_DE.UTF8&quot;
+DEBUG: envp[7]=&quot;PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin&quot;
+DEBUG: envp[8]=&quot;PPD=/etc/cups/ppd/CNMF620C-Series.ppd&quot;
+DEBUG: envp[9]=&quot;PRINTER_INFO=cupsfilter&quot;
+DEBUG: envp[10]=&quot;PRINTER_LOCATION=Unknown&quot;
+DEBUG: envp[11]=&quot;PRINTER=cupsfilter&quot;
+DEBUG: envp[12]=&quot;RIP_MAX_CACHE=128m&quot;
+DEBUG: envp[13]=&quot;USER=root&quot;
+DEBUG: envp[14]=&quot;CHARSET=utf-8&quot;
+DEBUG: envp[15]=&quot;FINAL_CONTENT_TYPE=image/pwg-raster&quot;
+
+INFO: pdftopdf (PID 26759) started.
+INFO: gstoraster (PID 26760) started.
+
+DEBUG: OUTFORMAT=&quot;(null)&quot;, so output format will be CUPS/PWG Raster
+DEBUG: pdftopdf: Last filter determined by the PPD: -; FINAL_CONTENT_TYPE:\
+  image/pwg-raster =&gt; pdftopdf will log pages in page_log.
+PAGE: 1 1
+DEBUG: Color Manager: Calibration Mode/Off
+INFO: pdftopdf (PID 26759) exited with no errors.
+DEBUG: Calling FindDeviceById(cups-cupsfilter)
+DEBUG: Failed to send: org.freedesktop.ColorManager.NotFound:device id &#39;cups-cupsfilter&#39; does not exist
+DEBUG: Failed to get find device cups-cupsfilter
+DEBUG: Calling FindDeviceById(cups-cupsfilter)
+DEBUG: Failed to send: org.freedesktop.ColorManager.NotFound:device id &#39;cups-cupsfilter&#39; does not exist
+DEBUG: Failed to get device cups-cupsfilter
+INFO: Color Manager: no profiles specified in PPD
+DEBUG: Color Manager: ICC Profile: None
+
+DEBUG: Ghostscript using Center-of-Pixel method to fill paths.
+DEBUG: Ghostscript command line: \
+  gs -dQUIET -dPARANOIDSAFER -dNOPAUSE -dBATCH -dNOINTERPOLATE -dNOMEDIAATTRS \
+      -dShowAcroForm -sstdout=%stderr -sOutputFile=%stdout -sDEVICE=cups \
+      -sMediaClass=PwgRaster -sMediaType=Auto -r600x600 \
+      -dDEVICEWIDTHPOINTS=595 -dDEVICEHEIGHTPOINTS=842 -dcupsBitsPerColor=8 -dcupsColorOrder=0 \
+      -dcupsColorSpace=19 -dcupsBorderlessScalingFactor=0.0000 -dcupsInteger1=1 -dcupsInteger2=1\
+      -scupsPageSizeName=A4.Fullbleed -I/usr/share/cups/fonts -c &#39;0 .setfilladjust&#39; -f -_
+
+DEBUG: envp[0]=&quot;&lt;CFProcessPath&gt;&quot;
+DEBUG: envp[1]=&quot;CONTENT_TYPE=application/pdf&quot;
+DEBUG: envp[2]=&quot;CUPS_DATADIR=/usr/share/cups&quot;
+DEBUG: envp[3]=&quot;CUPS_FONTPATH=/usr/share/cups/fonts&quot;
+DEBUG: envp[4]=&quot;CUPS_SERVERBIN=/usr/lib/cups&quot;
+DEBUG: envp[5]=&quot;CUPS_SERVERROOT=/etc/cups&quot;
+DEBUG: envp[6]=&quot;LANG=de_DE.UTF8&quot;
+DEBUG: envp[7]=&quot;PATH=/usr/lib/cups/filter:/usr/bin:/usr/sbin:/bin:/usr/bin&quot;
+DEBUG: envp[8]=&quot;PPD=/etc/cups/ppd/CNMF620C-Series.ppd&quot;
+DEBUG: envp[9]=&quot;PRINTER_INFO=cupsfilter&quot;
+DEBUG: envp[10]=&quot;PRINTER_LOCATION=Unknown&quot;
+DEBUG: envp[11]=&quot;PRINTER=cupsfilter&quot;
+DEBUG: envp[12]=&quot;RIP_MAX_CACHE=128m&quot;
+DEBUG: envp[13]=&quot;USER=root&quot;
+DEBUG: envp[14]=&quot;CHARSET=utf-8&quot;
+DEBUG: envp[15]=&quot;FINAL_CONTENT_TYPE=image/pwg-raster&quot;
+INFO: Start rendering...
+INFO: Processing page 1...
+INFO: Processing page 2...
+INFO: Rendering completed
+INFO: gstoraster (PID 26760) exited with no errors.
+</pre></div>
+</div>
+<p>In dem LOG ist zu erkennen mit welchen Optionen <a class="reference external" href="https://www.ghostscript.com">Ghostscript</a> vom <a class="reference external" href="https://github.com/OpenPrinting/cups-filters/blob/master/filter/gstoraster.c">gstoraster.c</a>
+Filter aufgerufen wird.  Schaut man mit dem <a class="reference external" href="https://github.com/michaelrsweet/rasterview">Rasterview</a> in die erzeugte
+PWG-Datei, dann sieht man dort auch die PWG Attribute (vergleiche <a class="reference external" href="https://ftp.pwg.org/pub/pwg/candidates/cs-ippraster10-20120420-5102.4.pdf">PWG-Spec</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PWG</span> <span class="n">Raster</span> <span class="n">Page</span> <span class="n">Attributes</span><span class="p">:</span>
+
+<span class="n">MediaColor</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">MediaType</span> <span class="o">=</span> <span class="s2">&quot;Auto&quot;</span>
+<span class="n">PrintContentOptimize</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">CutMedia</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Duplex</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">HWResolution</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">600</span> <span class="mi">600</span> <span class="p">]</span>
+<span class="n">InsertSheet</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Jog</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">LeadingEdge</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">MediaPosition</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">MediaWeightMetric</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">NumCopies</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Orientation</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">PageSize</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">595</span> <span class="mi">842</span> <span class="p">]</span>
+<span class="n">Tumble</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">Width</span> <span class="o">=</span> <span class="mi">4958</span>
+<span class="n">Height</span> <span class="o">=</span> <span class="mi">7017</span>
+<span class="n">BitsPerColor</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">BitsPerPixel</span> <span class="o">=</span> <span class="mi">48</span>
+<span class="n">BytesPerLine</span> <span class="o">=</span> <span class="mi">29748</span>
+<span class="n">ColorOrder</span> <span class="o">=</span> <span class="n">CUPS_ORDER_CHUNKED</span>
+<span class="n">ColorSpace</span> <span class="o">=</span> <span class="n">CUPS_CSPACE_SRGB</span>
+<span class="n">NumColors</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">TotalPageCount</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">CrossFeedTransform</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">FeedTransform</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ImageBoxLeft</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ImageBoxTop</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ImageBoxRight</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ImageBoxBottom</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">AlternatePrimary</span> <span class="o">=</span> <span class="n">ffffff</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>
+<span class="n">PrintQuality</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">VendorIdentifier</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">VendorLength</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">VendorData</span> <span class="o">=</span>
+<span class="n">RenderingIntent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">PageSizeName</span> <span class="o">=</span> <span class="s2">&quot;A4.Fullbleed&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verweise">
+<h2>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Hier ein paar Verweise auf WEB Seiten, die bei der Fehlersuche ggf. auch
+hilfreich sein können:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.debian.org/DissectingandDebuggingtheCUPSPrintingSystem">Dissecting and Debugging the CUPS Printing System</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ubuntu.com/DebuggingPrintingProblems">Debugging Printer Problems (ubuntu-wiki)</a></p></li>
+<li><p><a class="reference external" href="https://fedoraproject.org/wiki/How_to_debug_printing_problems#Printing_troubleshooter">How to debug printing problems (fedora wiki)</a></p></li>
+<li><p><a class="reference external" href="https://wiki.archlinux.de/title/Drucker">Drucker (archlinux wiki)</a> &amp; <a class="reference external" href="https://wiki.archlinux.org/index.php/CUPS">CUPS (archlinux)</a> &amp; <a class="reference external" href="https://wiki.archlinux.org/index.php/CUPS/Troubleshooting">CUPS Troubleshooting (archlinux wiki)</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scan/index.html" class="btn btn-neutral float-right" title="Scannen mit SANE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="printer_setup.html" class="btn btn-neutral float-left" title="Netzwerk-Drucker Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

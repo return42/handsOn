@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SQL-Developer &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Oracle Know-how" href="know-how.html" />
+    <link rel="prev" title="CDB &amp; PDB" href="cdbpdb.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Oracle (developer)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html">Oracle DBMS Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html">Oracle Data-Pump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SQL-Developer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gui-setup">GUI Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#schriftart-im-editor">Schriftart im Editor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rhel-rpm-installation">RHEL (RPM) Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-installation">Debian Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows-installation">Windows Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html">Oracle Know-how</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Oracle (developer)</a> &raquo;</li>
+        
+      <li>SQL-Developer</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/oracle/sqldeveloper.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sql-developer">
+<span id="sqldeveloper"></span><h1>SQL-Developer<a class="headerlink" href="#sql-developer" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="gui-setup">
+<h2>GUI Setup<a class="headerlink" href="#gui-setup" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die GUI Schrift kann auf High-DPI Bildschirmen etwas klein und fisselig
+aussehen, folgende Einstellungen können helfen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.sqldeveloper/19.2.1/product.conf</span></code></p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># awt.useSystemAAFontSettings:
+# https://docs.oracle.com/javase/6/docs/technotes/guides/2d/flags.html#aaFonts
+#
+AddVMOption -Dawt.useSystemAAFontSettings=on
+
+# https://batsov.com/articles/2010/02/26/enable-aa-in-swing/
+AddVMOption -Dswing.aatext=true
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">~/.sqldeveloper/system19.2.1.247.2212/o.sqldeveloper/ide.properties</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%APPDATA%\SQL</span> <span class="pre">Developer\system19.2.1.247.2212\o.sqldeveloper.\ide.properties</span></code></p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># To modify the font size for all look-and-feels in all locales, set
+# the Ide.FontSize property.  For example:
+#
+Ide.FontSize=14
+</pre></div>
+</div>
+<div class="section" id="schriftart-im-editor">
+<h3>Schriftart im Editor<a class="headerlink" href="#schriftart-im-editor" title="Link zu dieser Überschrift">¶</a></h3>
+<p><span class="menuselection">Extras ‣ Voreinstellungen</span></p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/sqldeveloper-code-editor-setup.png"><img alt="Figure (sqldeveloper-code-editor-setup.png)" src="../_images/sqldeveloper-code-editor-setup.png" style="width: 836.0px; height: 545.6px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="rhel-rpm-installation">
+<h2>RHEL (RPM) Installation<a class="headerlink" href="#rhel-rpm-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der SQL-Developer benötigt ein JDK, ich habe mich für <a class="reference external" href="https://openjdk.java.net/">OpenJDK</a> entschieden, weil das bereits in den Paketquellen
+des <a class="reference external" href="https://en.wikipedia.org/wiki/Oracle_Linux">Oracle Linux</a> mit drin ist:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">java</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">devel</span>
+</pre></div>
+</div>
+<p>Für den SQL-Developer das RPM Paket runter laden: <a class="reference external" href="https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html">SQL Developer Downloads</a> und
+installieren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd Download
+$ sudo -H yum localinstall sqldeveloper-*.noarch.rpm
+</pre></div>
+</div>
+<p>Danach einmal auf der Kommandozeile starten:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqldeveloper
+
+Oracle SQL Developer
+Copyright (c) 2005, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Default JDK not found
+
+Type the full pathname of a JDK installation (or Ctrl-C to quit), the path
+will be stored in /home/user/.sqldeveloper/19.2.1/product.conf
+</pre></div>
+</div>
+<p>Hier muss man einmal den Pfad zum JDK eingeben, bei obiger Installation des
+OpenJDK wäre das dann:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">openjdk</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Beim Starten bekommt man die Meldung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Problem</span> <span class="n">initializing</span> <span class="n">the</span> <span class="n">JavaFX</span> <span class="n">runtime</span><span class="o">.</span> <span class="n">This</span> <span class="n">feature</span>
+<span class="n">requires</span> <span class="n">JavaFX</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Die JavaFX Runtime wird eigentlich nur für den Begrüßungsbildschirm benötigt,
+deshalb muss das JavaFX nicht unbedingt installiert werden.</p>
+</div>
+<div class="section" id="debian-installation">
+<h2>Debian Installation<a class="headerlink" href="#debian-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Tipp</p>
+<p>Der SQL-Developer muss nicht zwingend installiert werden, es reicht der
+Aufruf <code class="docutils literal notranslate"><span class="pre">sqldeveloper.sh</span></code> aus dem ZIP.</p>
+</div>
+<p>Für Debian gibt es das Tool <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=make-sqldeveloper-package">make-sqldeveloper-package</a> mit dem man Debian
+Pakete für die Installation bauen kann.  Das Tool benötigt dazu das ZIP des
+SQL-Developers.  Über <a class="reference external" href="https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html">SQL Developer Downloads</a> das ZIP Paket <strong>Other
+Platforms</strong> runter laden (<a class="reference external" href="https://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-19.2.1.247.2212-no-jre.zip">sqldeveloper-19.2.1.247.2212-no-jre.zip</a>)
+und danach die Pakete bauen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Downloads
+$ LANG=C make-sqldeveloper-package -i ../sqldeveloper-19.2.1.247.2212-no-jre.zip
+</pre></div>
+</div>
+<p>Diese selbst-gebauten Pakete kann man sich dann installieren.  Bei der
+Installation wird vom SQL-Developer noch ein JDK erwartet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt install default-jdk
+$ sudo -H dpkg -i libjnidispatch-19.2.1.247.2212_4.2.2+0.5.4-1_amd64.deb
+$ sudo -H dpkg -i sqldeveloper-19.2.1.247.2212_19.2.1.247.2212+0.5.4-1_all.deb
+</pre></div>
+</div>
+<p>Initial empfiehlt es sich, den SQL-Developer einmal auf der Kommandozeile zu
+starten und falls erforderlich einmal den Pfad zum JDK eingeben.  Bei obiger
+Installation des <code class="docutils literal notranslate"><span class="pre">default-jdk</span></code> wäre das dann:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">jvm</span><span class="o">/</span><span class="n">java</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="n">openjdk</span><span class="o">-</span><span class="n">amd64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="windows-installation">
+<h2>Windows Installation<a class="headerlink" href="#windows-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Über <a class="reference external" href="https://www.oracle.com/tools/downloads/sqldev-v192-downloads.html">SQL Developer Downloads</a> das ZIP Paket <strong>Windows 64-bit with JDK 8
+included</strong> runter laden: <a class="reference external" href="https://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-19.2.1.247.2212-x64.zip">sqldeveloper-19.2.1.247.2212-x64.zip</a>.
+Das ZIP muss nur ausgepackt werden, darin ist dann ein Executable.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="know-how.html" class="btn btn-neutral float-right" title="Oracle Know-how" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cdbpdb.html" class="btn btn-neutral float-left" title="CDB &amp; PDB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

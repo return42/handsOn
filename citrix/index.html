@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Citrix-Receiver &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Oracle (developer)" href="../oracle/index.html" />
+    <link rel="prev" title="Docker" href="../docker/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Citrix-Receiver</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/citrix/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xref-citrix">
+<span id="id1"></span><h1>Citrix-Receiver<a class="headerlink" href="#xref-citrix" title="Link zu dieser Überschrift">¶</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Citrix_Receiver">Citrix Receiver (wiki)</a> – aka. ICA Client – ist der Client zu XenDesktop und
+XenApp. Der Client wird für diverse Plattformen bereit gestellt, unter anderem
+Windows, Linux und Android.</p>
+<ul class="simple">
+<li><p>Download siehe <a class="reference external" href="https://www.citrix.com/products/receiver/">Citrix Receiver</a></p></li>
+</ul>
+<p>Der Windows Installer scheint soweit OK, bei Linux gibt es seit gefühlten 100
+Jahren immer wieder irgendwelche Probleme, siehe auch <a class="reference external" href="https://wiki.ubuntu.com/Enterprise/Remote/CitrixReceiver">Citrix Receiver
+(ubuntu)</a>.  Grundsätzlich kann man den Client aber auch unter Linux
+installieren und nutzen.  In alten Versionen musste man noch mit den i386 und
+amd64 Bibliotheken jonglieren (<a class="reference external" href="https://help.ubuntu.com/community/CitrixICAClientHowTo">Citrix ICA Client HowTo</a>), das ist heute nicht
+mehr erforderlich.  Inzwischen – aktuell Ubuntu-18.04 und Citrix-Receiver 13.10
+– scheinen nur ein paar Zertifikate zu fehlen um eine Verbindung aufzubauen.</p>
+<p>Ich nutze/installiere lediglich das <em>Web Receiver only</em> deb-Paket, aktuell z.B.:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.citrix.com/downloads/citrix-receiver/linux/receiver-for-linux-latest.html">icaclientWeb_13.10.0.20_amd64.deb</a></p></li>
+</ul>
+<p>Das Paket kann man via Doppelklick oder eben auch via Kommandozeile
+installieren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H dpkg -i icaclientWeb_13.10.0.20_amd64.deb
+</pre></div>
+</div>
+<p>Im Web-Browser baut man dann initial die Verbindung auf und meldet sich an der
+XenDesktop Infrastruktur an.  Nach der Anmeldung kann man dann die zur Verfügung
+stehenden Apps und Desktops im WEB-Browser anklicken.  Dabei wird eine <code class="docutils literal notranslate"><span class="pre">.ica</span></code>
+Datei runter geladen und im Citrix Receiver geöffnet.  Bei der Installation
+wurde der Mime-Type registriert:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ xdg-mime query filetype UkFHLlhlbkRlc2t0b3AgSVQtRGV2ZWxvcGVyICRQNDM5.ica
+application/x-ica
+$ xdg-mime query default application/x-ica
+wfica.desktop
+</pre></div>
+</div>
+<p>Öffnet man eine solche <code class="docutils literal notranslate"><span class="pre">.ica</span></code> Datei, dann bekommt man (linux) eine ziemlich
+irreführende Fehlermeldung:</p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/citrix-receiver-error-dialog.png" src="../_images/citrix-receiver-error-dialog.png" />
+<p class="caption"><span class="caption-text">Irreführende Fehlermeldung bei fehlenden Zertifikaten</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p>Das eigentliche Problem ist aber, dass dem Citrix-Client die gängigen
+Zertifikate fehlen.  Diese kann man mit folgenden Zeilen einfach aus der FFox
+Installation verlinken.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="o">/</span><span class="n">mozilla</span><span class="o">/</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">keystore</span><span class="o">/</span><span class="n">cacerts</span><span class="o">/</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">c_rehash</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">keystore</span><span class="o">/</span><span class="n">cacerts</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Es gibt dazu auch einen Thread im <a class="reference external" href="https://forum.ubuntuusers.de/topic/citrix-receiver-2">ubuntu-users</a> Forum.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Es kann im ungünstigen Fall sein, dass man obigen Schritt wiederholen muss,
+wenn der FFox aktualisiert wird.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../oracle/index.html" class="btn btn-neutral float-right" title="Oracle (developer)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../docker/index.html" class="btn btn-neutral float-left" title="Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

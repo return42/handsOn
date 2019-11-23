@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PHP Anwendungen &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Test des WEB-Servers" href="probe_server.html" />
+    <link rel="prev" title="WSGI Anwendungen" href="site_py-apps.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PHP Anwendungen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#de-installation">De-Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anmerkungen">Anmerkungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#php-apps-conf">php-apps.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#php-test-anwendung">PHP-Test Anwendung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>PHP Anwendungen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/site_php-apps.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="php-anwendungen">
+<span id="xref-site-phpapps"></span><h1>PHP Anwendungen<a class="headerlink" href="#php-anwendungen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Es wird eine Konfiguration eingerichtet, über welche es möglich ist PHP
+Anwendungen zu betreiben. Eine kleines <em>HelloWorld</em> Beispiel wird ebenfalls mit
+installiert.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh installPHP
+</pre></div>
+</div>
+<p>Mit dem Kommando <code class="docutils literal notranslate"><span class="pre">installPHP</span></code> werden die folgenden Schritte ausgeführt.</p>
+<ul class="simple">
+<li><p>Es werden die erforderlichen Pakete für PHP (<a class="reference external" href="http://packages.ubuntu.com/php">php</a>,
+<a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-php">libapache2-mod-php</a>) und PHP-sqlite (<a class="reference external" href="http://packages.ubuntu.com/php-sqlite3">php-sqlite3</a>) installiert.</p></li>
+<li><p>Es wird der Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/phpApps</span></code> eingerichtet, in dem PHP Anwendungen
+abgelegt werden können (<a class="reference internal" href="#xref-php-apps-conf"><span class="std std-ref">php-apps.conf</span></a>).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apt-get install php php-sqlite libapache2-mod-php
+$ sudo -H mkdir /var/www/phpApps
+
+$ sudo -H a2ensite php-apps
+$ sudo -H service apache2 reload
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Es wird eine Test-Seite ( <a class="reference external" href="https://localhost/hello.php">https://localhost/hello.php</a> ) eingrichtet
+(<a class="reference internal" href="#xref-php-apps-hello-php"><span class="std std-ref">PHP-Test Anwendung</span></a>).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ap2ensite hello_php
+$ sudo -H service apache2 reload
+</pre></div>
+</div>
+</div>
+<div class="section" id="de-installation">
+<h2>De-Installation<a class="headerlink" href="#de-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deinstallPHP
+</pre></div>
+</div>
+</div>
+<div class="section" id="anmerkungen">
+<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://php.net/manual/en/security.php">PHP Sicherheitshinweise</a></p></li>
+<li><p><a class="reference external" href="http://php.net/manual/de/configuration.file.php">PHP Laufzeiteinstellungen</a></p></li>
+</ul>
+<p>Mit dem Paket <a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-php">libapache2-mod-php</a> wird das <code class="docutils literal notranslate"><span class="pre">php</span></code> Modul installiert,
+siehe dazu auch: <a class="reference external" href="http://php.net/manual/de/install.unix.debian.php">PHP Debian GNU/Linux-Installationshinweise</a>. Zu der Installation
+gehören die INI-Dateien:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/etc/php/7.0
+├── apache2
+│   ├── conf.d
+...............
+│   │   └── 20-sqlite3.ini -&gt; ../../mods-available/sqlite3.ini
+│   └── php.ini
+├── cli
+│   ├── conf.d
+...............
+│   │   └── 20-sqlite3.ini -&gt; ../../mods-available/sqlite3.ini
+│   └── php.ini
+└── mods-available
+    ...........
+    └── sqlite3.ini
+</pre></div>
+</div>
+<p>In der Datei <code class="docutils literal notranslate"><span class="pre">/etc/php/7.0/apache2/php.ini</span></code> kann die PHP Laufzeitumgebung der
+Apache Prozesse eingestellt werden (<a class="reference external" href="http://php.net/manual/de/configuration.file.php">PHP Laufzeiteinstellungen</a>).</p>
+<p>In der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/php7.0.conf</span></code> ist die default
+Konfiguration des PHP-Moduls zu finden:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;FilesMatch</span> <span class="s">&quot;.+\.ph(p[345]?|t|tml)$&quot;</span><span class="nt">&gt;</span>
+    <span class="nb">SetHandler</span> application/x-httpd-php
+<span class="nt">&lt;/FilesMatch&gt;</span>
+<span class="nt">&lt;FilesMatch</span> <span class="s">&quot;.+\.phps$&quot;</span><span class="nt">&gt;</span>
+    <span class="nb">SetHandler</span> application/x-httpd-php-source
+    <span class="c"># Deny access to raw php sources by default</span>
+    <span class="c"># To re-enable it&#39;s recommended to enable access to the files</span>
+    <span class="c"># only in specific virtual host or directory</span>
+    <span class="nb">Require</span> <span class="k">all</span> denied
+<span class="nt">&lt;/FilesMatch&gt;</span>
+<span class="c"># Deny access to files without filename (e.g. &#39;.php&#39;)</span>
+<span class="nt">&lt;FilesMatch</span> <span class="s">&quot;^\.ph(p[345]?|t|tml|ps)$&quot;</span><span class="nt">&gt;</span>
+    <span class="nb">Require</span> <span class="k">all</span> denied
+<span class="nt">&lt;/FilesMatch&gt;</span>
+
+<span class="nt">&lt;IfModule</span> <span class="s">mod_userdir.c</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/home/*/public_html</span><span class="nt">&gt;</span>
+        <span class="nb">php_admin_flag</span> engine <span class="k">Off</span>
+    <span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="php-apps-conf">
+<span id="xref-php-apps-conf"></span><h2>php-apps.conf<a class="headerlink" href="#php-apps-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die folgende <code class="docutils literal notranslate"><span class="pre">php-apps.conf</span></code> Site, richtet eine Umgebung ein, in der
+PHP-Anwendungen betrieben werden können.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_php7.c</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/var/www/phpApps/</span><span class="nt">&gt;</span>
+        ...
+        <span class="nb">php_value</span> open_basedir <span class="sx">/var/www/phpApps/</span>
+        ...
+    <span class="nt">&lt;/Directory&gt;</span>
+ <span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">php_value</span></code> können die INI-Werte gesetzt werden, z.B. das <a class="reference external" href="http://php.net/manual/de/ini.core.php#ini.open-basedir">open_basedir</a>. Eine Auflistung
+aller Optionen findet sich in der <a class="reference external" href="http://php.net/manual/de/ini.list.php">Liste der php.ini-Direktiven</a>.</p>
+</div>
+<div class="section" id="php-test-anwendung">
+<span id="xref-php-apps-hello-php"></span><h2>PHP-Test Anwendung<a class="headerlink" href="#php-test-anwendung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Test-Site sollte nur in einer Entwickler-Umgebung installiert werden. Sie
+besteht aus nur einer Datei <code class="docutils literal notranslate"><span class="pre">/var/www/phpApps/helloWorld/index.php</span></code>.</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>
+</div>
+<p>Das <code class="docutils literal notranslate"><span class="pre">hello.php</span></code> Skript sollte in keinem Fall im Internet aktiviert werden, da
+es mit dem darin enthaltenen <code class="docutils literal notranslate"><span class="pre">phpinfo()</span></code> zu viel über den Server <em>verrät</em> und
+einem potentiellen Angreifer evtl. schon erste Hinweise für ein geeignetes
+Angriffszenario gibt.</p>
+<p>Die Installation erfolgte in den <code class="docutils literal notranslate"><span class="pre">/var/www/phpApps</span></code> Ordner. Für den bereits
+oben in der <a class="reference internal" href="#xref-php-apps-conf"><span class="std std-ref">php-apps.conf</span></a> die allgemeinen PHP Direktiven gesetzt
+wurden. Die <code class="docutils literal notranslate"><span class="pre">hello_php</span></code> Site definiert nur noch den Alias, damit die Site
+unter der URL <a class="reference external" href="https://localhost/hello.php">https://localhost/hello.php</a> angeboten wird.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_php7.c</span><span class="nt">&gt;</span>
+    <span class="nb">Alias</span> <span class="sx">/hello.php</span> <span class="sx">/var/www/phpApps/helloWorld/index.php</span>
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="probe_server.html" class="btn btn-neutral float-right" title="Test des WEB-Servers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="site_py-apps.html" class="btn btn-neutral float-left" title="WSGI Anwendungen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

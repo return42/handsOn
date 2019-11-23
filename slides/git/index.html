@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>get git started</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    
+<link rel="stylesheet" href="_static/css/reset.css">
+<link rel="stylesheet" href="_static/css/reveal.min.css">
+<link rel="stylesheet" href="_static/css/theme/dejavu.css" id="theme">
+<!-- Theme used for syntax highlighting of code -->
+<link rel="stylesheet" href="_static/lib/css/zenburn.css">
+
+<link rel="stylesheet" href="_static/mysettings.css" type="text/css" />
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '_static/css/print/pdf.css' : '_static/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+
+    <!--[if lt IE 9]>
+    <script src="_static/lib/js/html5shiv.js"></script>
+    <![endif]-->
+      <script type="text/javascript" src="_static/language_data.js"></script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+  <div class="section" id="get-git-started">
+<h1>get git started<a class="headerlink" href="#get-git-started" title="Permalink to this headline">¶</a></h1>
+<aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
+  <a href="http://www.darmarit.de">
+    <img src="_static/darmarIT_logo_512.png">
+  </a>
+</aside><section data-transition="linear">
+<h2>get git started</h2>
+<p class="first">Aufaben des Source-Code-Managments (SCM)</p>
+<p>mit <a class="reference external" href="https://git-scm.com">git</a> bewältigen</p>
+<p>Eine pragmatische Einarbeitung in git.</p>
+<small>
+<p class="first">contributed by <a class="reference external" href="https://github.com/return42">return42</a></p>
+<p class="last"><em>Hit ‘?’ to see keyboard shortcuts / ‘s’ to view speaker notes</em></p>
+</small>
+<aside class="last notes">
+<p class="first">Dieses kleine Tutorial richtet sich an Entwickler und Administratoren, die
+bisher nicht viel mit Source-Code-Management (SCM) zu tun hatten und sich
+nun mit git vertraut machen wollen.</p>
+<p class="last">Die Aufgaben des SCM sind immer gleich egal ob man git, SVN oder <em>was auch
+immer</em> als SCM-System nutzt. Git ist <em>state-of-the-art</em> und bietet
+vielseitige Möglichkeiten, die andere Systeme z.T. vermissen lassen.</p>
+</aside>
+</section>
+<section>
+<h3>Aufgaben des SCM?</h3>
+<p class="fragment roll-in first">Kollaboration –&gt; <em>Konflikterkennung erforderlich</em></p>
+<p class="fragment roll-in">Qualitätsicherung –&gt;  <em>seit wann gibt’s den Fehler</em></p>
+<p class="fragment roll-in">parallele Weiterentwicklung–&gt;  <em>feature branch</em></p>
+<p class="fragment roll-in">Produktivität –&gt; Änderungen <em>jonglieren statt editieren</em></p>
+<div class="fragment roll-in figure align-default">
+<a class="reference external image-reference" href="https://commons.wikimedia.org/wiki/File:Passing_2jugglers_6balls_Ultimate-Valse_side.gif"><img alt="_images/Passing_2jugglers_6balls_Ultimate-Valse_side.gif" src="_images/Passing_2jugglers_6balls_Ultimate-Valse_side.gif" /></a>
+</div>
+<aside class="last notes">
+<p class="first last">Einige werden evtl. schon SVN (subversion) kennen. Meine Erfahrung ist
+aber, dass es oftmals nur als <em>Ablage</em> genutzt wird / echtes SCM ist was
+anderes. Die Bereitschaft sich mit den Problemen der <em>parallelen</em>
+Entwicklung (branch) und dem Lösen von Konflikten (merge)
+auseinanderzusetzen wird beim Auditorium vorausgesetzt, sonst macht das
+alles keinen Sinn und man lässt es besser gleich ganz.</p>
+</aside>
+</section>
+<section>
+<h3>SCM Systeme</h3>
+<p class="fragment roll-in first"><strong>zentral</strong></p>
+<div class="fragment roll-in figure align-default">
+<a class="reference external image-reference" href="https://subversion.apache.org/"><img alt="_images/svn-logo.png" src="_images/svn-logo.png" style="width: 222.0px; height: 130.2px;" /></a>
+</div>
+<p class="fragment roll-in"><strong>verteilt</strong></p>
+<div class="fragment roll-in figure align-default">
+<a class="reference external image-reference" href="https:/git-scm.com/"><img alt="_images/git-logo.png" src="_images/git-logo.png" style="width: 240.0px; height: 120.0px;" /></a>
+</div>
+<aside class="last notes">
+<p class="first last">SVN ist von seiner Architektur her für ein verteiltes Arbeiten
+insbesondere in remote-Szenarien (offline) nicht geeigent.</p>
+</aside>
+</section>
+<section class="fragment">
+<h3>Zentrales SCM</h3>
+<p class="first">Entwickler haben lokale <strong>Workspaces</strong></p>
+<p>Historie liegt auf dem SCM-Server</p>
+<div class="figure align-default">
+<a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows"><img alt="_images/zentralisiert-wf.png" src="_images/zentralisiert-wf.png" style="width: 500.0px; height: 250.0px;" /></a>
+</div>
+<p>Patches gehen immer in das zentrale Repo</p>
+<p>SCM-System limitiert den Workflow</p>
+<aside class="last notes">
+<p class="first last">Am Ende werden zwar bei jeder Entwicklung alle Änderungen in den <em>master</em>
+Zweig auf dem <em>origin</em> Repository eingepflegt. Der Nachteil bei zentralem
+SCM wie SVN ist aber, dass auch die Branches nur auf dem Server liegen
+können. Alles muss gegen diesen EINEN Server laufen.</p>
+</aside>
+</section>
+<section class="fragment">
+<h3>Verteiltes SCM mit Remotes</h3>
+<p class="first">Entwickler haben lokal einen <strong>Klon</strong></p>
+<p>Historie liegt auf jedem Klon vor</p>
+<div class="figure align-default">
+<a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows"><img alt="_images/verteilter-wf.png" src="_images/verteilter-wf.png" style="width: 500.0px; height: 202.0px;" /></a>
+</div>
+<p>Anstelle EINES SCM-Servers gibt es N <code class="docutils literal notranslate"><span class="pre">remote</span></code></p>
+<p>Workflow frei wählbar</p>
+<aside class="last notes">
+<p class="first last">Anders als bei SVN, bei dem man nur den EINEN <em>remote</em> hat, der
+gleichzeitig <em>origin</em> ist, kann man bei git mehrere <em>remotes</em> haben. Aber
+auch bei git wird man nur einen <em>remote</em> als <em>origin</em> haben. Auf dem
+<em>origin</em> laufen am Ende alle Entwicklungen zusammen.</p>
+</aside>
+</section>
+<section>
+<h2>Installation -- git</h2>
+<p class="first"><a class="reference external" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<ul class="last simple">
+<li><p>MS-Win: <a class="reference external" href="https://git-for-windows.github.io">https://git-for-windows.github.io</a></p></li>
+<li><p>GUIs: <a class="reference external" href="https://git-scm.com/downloads/guis">https://git-scm.com/downloads/guis</a></p></li>
+<li><p>Git Extensions: <a class="reference external" href="https://gitextensions.github.io/">https://gitextensions.github.io/</a></p></li>
+</ul>
+</section>
+<section>
+<h2>Einrichten -- git-config</h2>
+<p class="first">git identifiziert den Benutzer (Committer) über seine eMail-Adresse und
+seinen Namen:</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git config --global user.name &quot;Max Mustermann&quot;
+$ git config --global user.email &quot;max.mustermann@muster.org&quot;</code></pre>
+<p>pedantisch ..</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git config --global --unset credential.helper
+$ git config --global core.autocrlf false
+$ git config --global core.symlinks true</code></pre>
+<aside class="last notes">
+<ul class="first last simple">
+<li><p>Der ‘Git Credential Manager for Windows’ speichert die Passwörter
+in der ‘Anmeldeinformationsverwaltung’ des Windows Benutzer.</p></li>
+<li><p>Ich bevorzuge ‘Checkout/Checkin as is’ .. sprich git soll keine
+Änderungen an den CR/LF machen, wenn es aus-/eincheckt.  Das ist (wenn
+überhaupt) sinnvoll in gemischten Projekten</p></li>
+</ul>
+</aside>
+</section>
+<section>
+<h2>Einrichten -- git-config (optional)</h2>
+<p class="first">aufrüschen ..</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git config --global color.ui true</code></pre>
+<p>anpassen ..</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git config --global push.default simple
+$ git config --global core.editor emacsclient</code></pre>
+<p>nachlesen ..</p>
+<p><a class="reference external" href="git-config">git help config</a></p>
+<aside class="last notes">
+<p class="first last">Die Hilfe zu git ist sehr ausführlich und immer lesenswert. Man muss auch
+nicht lange suchen sonder gibt einfach nur <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">help</span> <span class="pre">...</span></code> ein. Auf Linux
+kommt dann die man-Page auf Windows wird die HTML Version angezeigt.</p>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- Dateien & Änderungen</h3>
+<ul class="first simple">
+<li><p>im Workspace (WS)</p></li>
+<li><p>im Stage (gibts beim SVN z.B. nicht)</p></li>
+<li><p>im lokalem Repository (beim SVN nur remote)</p></li>
+</ul>
+<div class="figure align-default">
+<a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"><img alt="_images/lifecycle.png" src="_images/lifecycle.png" style="width: 800.0px; height: 330.0px;" /></a>
+</div>
+<aside class="last notes">
+<p class="first">Dateien werden am Ende im Repository committet .. vorher bewegen sie sich
+aber im lokalen WS und im Stage (auch Index genannt). Der <em>Stage</em> ist
+sozusagen die Vorstufe auf dem Weg ins Repository.</p>
+<p class="last">Wir brauchen uns das Schaubild jetzt noch nicht so genau anschauen, wir
+werden da aber später wieder drauf zurück kommen.</p>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- Grundlagen</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ git init
+$ git add ...
+$ git status ...
+$ git add ...
+$ git rm ...
+$ git commit ...
+$ git checkout ...
+$ git log ...
+$ git branch ...
+$ git merge ...</code></pre>
+<aside class="last notes">
+<p class="first last">Es gibt bei weitem mehr Komandos, aber dies sind die wichtigsten wenn man
+lokal mit seinem git arbeitet. Die <em>remotes</em> sind am Ende nur <em>andere</em>
+Repositories aus denen man sich die Patches holen kann (fetch nennt sich
+das dann).</p>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- git init</h3>
+<p class="first">Am Anfang war nichts … (<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">Getting a Git Repository</a>, <a class="reference external" href="https://git-scm.com/docs/git-init">git init</a>)</p>
+<pre class="shell">
+<code data-trim contenteditable>$ mkdir git-teaching
+$ cd git-teaching
+$ git init
+Initialized empty Git repository in git-teaching/.git/</code></pre>
+<p>Die erste Datei: README.txt</p>
+<pre class="rst">
+<code data-trim contenteditable>.. -*- coding: utf-8; mode: rst -*-
+
+======
+README
+======
+
+Nothing special here, only intended for teaching purposes.</code></pre>
+<aside class="last notes">
+<p class="first last">Meist bekommt man sein Repo via <code class="docutils literal notranslate"><span class="pre">clone</span></code> aber auch das wurde mal mit
+<code class="docutils literal notranslate"><span class="pre">init</span></code> angelegt.</p>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- git status</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ git status
+Auf branch master
+
+Initialaler Commit
+
+Unversionierte Dateien:
+  (benutzen Sie &quot;git add &lt;Datei&gt;...&quot;, um die Änderungen\
+   zum Commit vorzumerken)
+
+        README.txt
+        README.txt~
+
+nichts zum Commit vorgemerkt, aber es gibt unversionierte
+Dateien (benutzen Sie &quot;git add&quot; zum Versionieren)</code></pre>
+<p><a class="reference external" href="https://git-scm.com/docs/git-init">git status</a>: aktueller Branch ist <code class="docutils literal notranslate"><span class="pre">master</span></code>, Stage ist gerade leer,
+vergleiche mit dem <a class="reference external" href="#/8">Diagramm</a></p>
+<small>
+<p class="first last">besser wir ignorieren <code class="docutils literal notranslate"><span class="pre">README.txt~</span></code></p>
+</small>
+<aside class="last notes">
+<p class="first last">Git macht Annahmen darüber, was man wohl als nächstes machen will und gibt
+dazu Hilfestellung hier z.B. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code></p>
+</aside>
+</section>
+<section>
+<h3>Einrichten -- .gitignore</h3>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>: Pattern die ignoriert werden <a class="reference external" href=".gitignore">(nachlesen)</a></p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>*~
+*/#*#
+.#*
+*.pyc
+*.pyo</code></pre>
+<p class="fragment roll-in"><a class="reference external" href="https://github.com/github/gitignore">.gitignore Vorlagen</a></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git status
+...
+Untracked files:
+  ...
+        .gitignore
+        README.txt</code></pre>
+<p class="fragment roll-in last">sieht schon besser aus :)</p>
+</section>
+<section>
+<h3>lokales Arbeiten -- git add</h3>
+<p class="fragment roll-in first">initial fügen wir einfach mal <strong>alles</strong> hinzu <a class="reference external" href="https://git-scm.com/docs/git-add">git add</a></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git add --all ./</code></pre>
+<p class="fragment roll-in">mal schauen wie der Status ist …</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>Auf branch master
+
+Initialaler Commit
+
+zum Commit vorgemerkte Änderungen:
+  (benutzen Sie &quot;git rm --cached &lt;Datei&gt;...&quot;
+   zum Entfernen aus der Staging-Area)
+
+        neue Datei:   .gitignore
+        neue Datei:   README.txt</code></pre>
+<p class="fragment roll-in">schon im Repo? .. nein, nur im Stage <a class="reference external" href="#/8">Diagramm</a>.</p>
+<aside class="last notes">
+<p class="first last">Angenommen wir wollen die README.txt noch nicht im initalen commit drin
+haben, dann gibt git uns hier gleich den richtigen Hinweis, wie wir die
+Datei wieder rausbekommen … mit ‘git rm –cached’</p>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- git rm</h3>
+<p class="fragment roll-in first">zuviel hinzugefügt? .. nimm es wieder aus dem Stage <a class="reference external" href="https://git-scm.com/docs/git-rm">git rm</a></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git rm --cached README.txt
+rm &#x27;README.txt&#x27;</code></pre>
+<p class="fragment roll-in">Ups, hat er die jetzt etwa gelöscht?!?!</p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git status
+...
+zum Commit vorgemerkte Änderungen:
+        neue Datei:   .gitignore
+
+Unversionierte Dateien:
+        README.txt</code></pre>
+<p class="fragment roll-in last">nein, wurde nur aus dem Stage genommen <a class="reference external" href="#/8">Diagramm</a></p>
+</section>
+<section>
+<h3>lokales Arbeiten -- git commit</h3>
+<p class="fragment roll-in first">So, jetzt ist der Patch aber fertig!</p>
+<p class="fragment roll-in">Alles was zum Patch gehört liegt im Stage, <a class="reference external" href="https://git-scm.com/docs/git-commit">git commit</a></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git commit -m &quot;inital boilerplate&quot;
+[master (Basis-Commit) 849c175] inital boilerplate
+ 1 file changed, 5 insertions(+)
+ create mode 100644 .gitignore</code></pre>
+<pre class="shell fragment roll-in last">
+<code data-trim contenteditable>$ git status
+Auf Branch master
+Unversionierte Dateien:
+  (benutzen Sie &quot;git add &lt;Datei&gt;...&quot;, um die Änderungen
+   zum Commit vorzumerken)
+
+       README.txt</code></pre>
+</section>
+<section>
+<h3>lokales Arbeiten -- git show</h3>
+<small class="first">
+<p class="first last">Wie sieht so ein Patch im Repo eigentlich aus? <a class="reference external" href="https://git-scm.com/docs/git-show">git show</a></p>
+</small>
+<pre class="diff fragment roll-in">
+<code data-trim contenteditable>$ git show
+commit 849c17589476d9451bc55659008cda5ac2aa68cb
+Author: Max Mustermann &lt;max.mustermann@muster.org&gt;
+Date:   Mon Jul 31 14:59:40 2017 +0200
+
+    inital boilerplate
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..68c190d
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,5 @@
++*~
++*/#*#
++.#*
++*.pyc
++*.pyo</code></pre>
+<aside class="last notes">
+<p class="first">Anders als bei SVN &amp; Co. gibt es keine fortlaufende Nummer. Ein commit
+wird an seinem SHA-1 Hash Value identifiziert. Üblicherweise braucht man
+davon aber nur die ersten 6 oder 10 Stellen um ihn eindeutig zu
+referenzieren.</p>
+<blockquote class="last">
+<div><p>commit 849c17</p>
+</div></blockquote>
+</aside>
+</section>
+<section>
+<h3>lokales Arbeiten -- git log</h3>
+<p class="fragment roll-in first">jetzt mal die README.txt einchecken</p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git add README.txt
+$ git commit -m &quot;add README&quot;
+[master 9af1a51] add README
+ 1 file changed, 7 insertions(+)
+ create mode 100644 README.txt</code></pre>
+<p class="fragment roll-in last">und mal das Log anschauen <a class="reference external" href="https://git-scm.com/docs/git-log">git log</a></p>
+</section>
+<section>
+<h3>lokales Arbeiten -- git log</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ git log
+commit 9af1a518a77bc56dc697bee6ba1c356bb0c1b2f8
+Author: Max Mustermann &lt;max.mustermann@muster.org&gt;
+Date:   Mon Jul 31 15:03:40 2017 +0200
+
+    add README
+
+commit 849c17589476d9451bc55659008cda5ac2aa68cb
+Author: Max Mustermann &lt;max.mustermann@muster.org&gt;
+Date:   Mon Jul 31 14:59:40 2017 +0200
+
+    inital boilerplate</code></pre>
+<small class="fragment roll-in">
+<p class="first last">Für die Branches eignen sich Graphen, aber auch das ist recht
+ausführlich. Man hätte da gerne was kompakteres (siehe Alias ‘git
+graph’ als <em>two-liner</em>).</p>
+</small>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git log --graph</code></pre>
+<aside class="last notes">
+<p class="first last">Jetzt bitte mal <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span> <span class="pre">--graph</span></code> auf der Komandozeile ausprobieren.</p>
+</aside>
+</section>
+<section>
+<h3>Einrichten -- git config / alias</h3>
+<p class="fragment roll-in first"><a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases">Git Aliases</a></p>
+<p class="fragment roll-in">Für faule Leute wie mich <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">st</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">unadd</span></code></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git config --global alias.st &quot;status&quot;
+$ git config --global alias.unadd &quot;reset HEAD&quot;</code></pre>
+<p class="fragment roll-in">Alias ‘git graph’ als <em>two-liner</em>:</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>git config --global alias.graph &quot;log --graph --abbrev-commit\
+ --decorate --format=format:&#x27;%C(bold blue)%h%C(reset)\
+ - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)\
+%C(bold yellow)%d%C(reset)%n&#x27;&#x27;\
+          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)&#x27;\
+ --all&quot;</code></pre>
+<small class="fragment roll-in">
+<p class="first last">Bitte nicht genauer hinschauen, es gibt auch GUIs die so was
+visualisiern können. ;)</p>
+</small>
+<aside class="last notes">
+<p class="first">Wer das aber gerne auf der Kommandozeile haben möchte, der findet im Netz
+genügend C&amp;P Beispiele.</p>
+<p class="last">Mit <code class="docutils literal notranslate"><span class="pre">--global</span></code> wir die Einstellung im HOME Ordner hinterlegt. Mit
+<code class="docutils literal notranslate"><span class="pre">--local</span></code> würde man die Kofiguration im Projekt ablegen.</p>
+</aside>
+</section>
+<section>
+<h3>So könnte es im Terminal aussehen</h3>
+<div class="first last figure align-default">
+<a class="reference internal image-reference" href="_images/cmdline-git-graph.png"><img alt="_images/cmdline-git-graph.png" src="_images/cmdline-git-graph.png" style="width: 1057.0px; height: 466.0px;" /></a>
+</div>
+</section>
+<section>
+<h3>lokales Arbeiten -- git branch</h3>
+<p class="fragment roll-in first">Initial gibt es den master branch</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>$ git branch -v
+* master 9af1a51 add README</code></pre>
+<p class="fragment roll-in">feature branch ‘hello-world’ anlegen <a class="reference external" href="https://git-scm.com/docs/git-branch">git branch</a></p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>$ git branch hello-world
+$ git branch -v
+  hello-world 9af1a51 add README
+* master      9af1a51 add README</code></pre>
+<p class="fragment roll-in"><a class="reference external" href="https://git-scm.com/docs/git-branch">git checkout</a> um den branch auszuchecken</p>
+<pre class="fragment roll-in last">
+<code data-trim contenteditable>$ git checkout hello-world
+Zu Branch &#x27;hello-world&#x27; gewechselt</code></pre>
+</section>
+<section>
+<h3>branch: hello-world</h3>
+<pre class="python fragment roll-in first">
+<code data-trim contenteditable>#!/usr/bin/env python
+# -*- coding: utf-8; mode: python -*-
+
+print(&quot;hello world&quot;)</code></pre>
+<p class="fragment roll-in">Implementierung <code class="docutils literal notranslate"><span class="pre">hello-world.py</span></code> testen</p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ python hello-world.py
+hello world</code></pre>
+<p class="fragment roll-in">und einchecken</p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git add hello-world.py
+$ git commit -m &quot;add hello-world script&quot;
+[hello-world 0dd2abe] add hello-world script
+ 1 file changed, 4 insertions(+)
+ create mode 100755 hello-world.py</code></pre>
+<aside class="last notes">
+<p class="first last">Es ist gute Praxis in den ersten beiden Zeilen einen <em>maschienenlsbaren</em>
+Kommentar zu hinterlegen. Bei Skripten steht in der ersten Zeile oft noch
+ein <em>Shebang</em> Kommentar. Da eine Datei immer nur eine Folge von Bytes ist
+und man eigentlich nicht wissen kann, wie diese Datei kodiert ist (utf-8,
+iso-88591, cp1252 ..) muss man dem Editor ein paar Metadaten an die Hand
+geben. Diese Metadaten stehen dann meist in der zweiten Zeile (falls in
+der ersten ein shebang steht). Gute Editoren werten das ‘coding:xyz’ aus
+und sehr gute Editoren werten dann auch noch den ‘mode: …’ aus und
+schalten in einen Bearbeitungsmodus, der zur Programmiersprache passt.</p>
+</aside>
+</section>
+<section>
+<h3>branch: master</h3>
+<pre class="fragment roll-in first">
+<code data-trim contenteditable>$ git checkout master
+Zu Branch &#x27;master&#x27; gewechselt</code></pre>
+<p class="fragment roll-in">Änderungen an der README.txt vornehmen ..</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>We created a &#x27;hello-world&#x27; branch where one of our
+provider implements an amazing &#x27;hello world&#x27; program.</code></pre>
+<p class="fragment roll-in">und einchecken</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>$ git add README.txt
+$ git commit -m &quot;add remark about &#x27;hello world&#x27; order&quot;
+[master c1ce07c] add remark about &#x27;hello world&#x27; order
+ 1 file changed, 3 insertions(+)</code></pre>
+<aside class="last notes">
+<p class="first last">Wir wechseln in den <em>master</em> Branch und arbeiten da auch weiter.  Am Ende
+müssen Feature-Branch und master wieder zusammengführt werden. Dabei kann
+es Konflikte geben und einen solchen Konflikt wollen wir jetzt mal
+vorbereiten.</p>
+</aside>
+</section>
+<section>
+<h2>git graph</h2>
+<div class="first last figure align-default">
+<img alt="_images/git-graph-001.svg" src="_images/git-graph-001.svg" /></div>
+</section>
+<section>
+<h3>branch: hello-world</h3>
+<pre class="fragment roll-in first">
+<code data-trim contenteditable>$ git checkout hello-world
+Zu Branch &#x27;hello-world&#x27; gewechselt</code></pre>
+<p class="fragment roll-in">Die README ist noch die <em>alte</em> (logisch)</p>
+<pre class="rst fragment roll-in last">
+<code data-trim contenteditable>$ cat README.txt
+.. -*- coding: utf-8; mode: rst -*-
+
+======
+README
+======
+
+Nothing special here, only intended for teaching purposes.</code></pre>
+</section>
+<section>
+<h3>branch: hello-world</h3>
+<p class="first">Wir fügen ChangeLog Eintrag zur README hinzu:</p>
+<pre>
+<code data-trim contenteditable>ChangeLog:
+
+2017-07-31  Max Mustermann &lt;max.mustermann@muster.org&gt;
+
+* hello-world.py: inital implemented &amp; tested</code></pre>
+<p class="fragment roll-in">und im branch (hello-world) einchecken</p>
+<pre class="fragment roll-in">
+<code data-trim contenteditable>$ git add README.txt
+$ git commit -m &quot;hello-world: add changelog&quot;
+[hello-world 8e448cd] hello-world: add changelog
+ 1 file changed, 6 insertions(+)</code></pre>
+<aside class="last notes">
+<p class="first last">Wir sind wieder zurück im <em>hello-world</em> branch und arbeiten da auch
+weiter. Die Änderung an der README aus dem <em>master</em> branch ist hier
+natürlich noch nicht drin. Jetzt editieren wir auch mal die README in
+diesem branch. Wenn das nacher im <em>master</em> zusammengführt wird, müssten
+wir einen Konflikt bekommen.</p>
+</aside>
+</section>
+<section>
+<h3>git graph</h3>
+<div class="first figure align-default">
+<img alt="_images/git-graph-002.svg" src="_images/git-graph-002.svg" /></div>
+<aside class="last notes">
+<p class="first">An diesem Bild können wir mal kurz <em>inne halten</em>. Wir sehen, dass der
+master sich weiter entwickelt hat und der feature-branch (hello-world)
+seine eigenen vortschritt hat.</p>
+<p>Ziel ist es ja, das ‘feature’ jetzt in den ‘master’ zu bekommen (mergen).</p>
+<p class="last">Dabei wird es u.U. Konflikte geben. In der Grafik nicht zu sehen, aber
+oben bereits erwähnt, erwarten wir ja so einen Konflikt in der README.txt.</p>
+</aside>
+</section>
+<section id="git-merge-hello-world">
+<h3>git merge</h3>
+<p class="first">Der <em>feature</em> branch <code class="docutils literal notranslate"><span class="pre">hello-world</span></code> wird mit dem <code class="docutils literal notranslate"><span class="pre">master</span></code> zusammengeführt.</p>
+<pre>
+<code data-trim contenteditable>$ git checkout master
+Zu Branch &#x27;master&#x27; gewechselt</code></pre>
+<p>Im <code class="docutils literal notranslate"><span class="pre">master</span></code> wird jetzt der Merge durchgeführt <a class="reference external" href="https://git-scm.com/docs/git-merge">git merge</a></p>
+<pre>
+<code data-trim contenteditable>$ git merge hello-world
+automatischer Merge von README.txt
+KONFLIKT (Inhalt): Merge-Konflikt in README.txt
+Automatischer Merge fehlgeschlagen; beheben Sie die Konflikte
+und committen Sie dann das Ergebnis.</code></pre>
+<p class="last">Konflikte liegen in der Natur paralleler Entwicklung. Das SCM System hilft
+uns diese zu erkennen!</p>
+</section>
+<section>
+<h3>git merge</h3>
+<pre class="first">
+<code data-trim contenteditable>$ git status
+Auf Branch master
+Sie haben nicht zusammengeführte Pfade.
+  (beheben Sie die Konflikte und führen Sie &quot;git commit&quot; aus)
+
+zum Commit vorgemerkte Änderungen:
+
+        neue Datei:     hello-world.py
+
+Nicht zusammengeführte Pfade:
+  (benutzen Sie &quot;git add/rm &lt;Datei&gt;...&quot;,
+   um die Auflösung zu markieren)
+
+        von beiden geändert:    README.txt</code></pre>
+<p class="last">Mit <code class="docutils literal notranslate"><span class="pre">hello-world.py</span></code> gab es keine Konflikte, wurde bereits <em>ge-added</em>.
+Die <code class="docutils literal notranslate"><span class="pre">README.txt</span></code> hatte einen Konflikt.</p>
+</section>
+<section>
+<h3>git merge conflict</h3>
+<pre class="diff first">
+<code data-trim contenteditable>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+We created a &#x27;hello-world&#x27; branch where one of our
+provider implements an amazing &#x27;hello world&#x27; program.
+=======
+ChangeLog:
+
+2017-07-31  Max Mustermann &lt;max.mustermann@muster.org&gt;
+
+* hello-world.py: inital implemented &amp; tested
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; hello-world</code></pre>
+<p class="last">git hat die <code class="docutils literal notranslate"><span class="pre">README.txt</span></code> zusammengeführt. Passagen die nicht automatisch
+zusammengeführt werden können sind mit <code class="docutils literal notranslate"><span class="pre">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">=======</span></code> und
+<code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span></code> gekennzeichnet.</p>
+</section>
+<section>
+<h3>git merge conflict</h3>
+<p class="first">semantische Zusammenführung!</p>
+<p>der alte Kommentar hat keine Gültigkeit mehr</p>
+<pre class="diff">
+<code data-trim contenteditable>Features:
+
+* amazing &#x27;hello world&#x27; program
+
+ChangeLog:
+
+2017-07-31  Max Mustermann &lt;max.mustermann@muster.org&gt;
+
+* hello-world.py: inital implemented &amp; tested</code></pre>
+<p class="last">er wird durch einen komplett neuen Kommentar ersetzt.</p>
+</section>
+<section>
+<h3>git merge conflict</h3>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code></p>
+<pre class="diff last">
+<code data-trim contenteditable>@@@ -6,5 -6,8 +6,12 @@@ READM
+
+  Nothing special here, only intended for teaching purposes.
+
+- We created a &#x27;hello-world&#x27; branch where one of our
+- provider implements an amazing &#x27;hello world&#x27; program.
+++Features:
+++
+++* amazing &#x27;hello world&#x27; program
+++
++ ChangeLog:
++
++ 2017-07-31  Max Mustermann &lt;max.mustermann@muster.org&gt;
++
++ * hello-world.py: inital implemented &amp; tested</code></pre>
+</section>
+<section>
+<h3>git merge conflict</h3>
+<p class="first">Implementierung testen …</p>
+<pre class="shell">
+<code data-trim contenteditable>$ python hello-world.py
+hello world</code></pre>
+<p>und einchecken</p>
+<pre class="shell last">
+<code data-trim contenteditable>$ git add README.txt
+$ git commit -m &quot;merge hello-world branch&quot;
+[master f5f3b62] merge hello-world branch</code></pre>
+</section>
+<section id="git-graph">
+<h3>git graph</h3>
+<div class="first last figure align-default">
+<a class="reference internal image-reference" href="_images/git-graph-003.svg"><img alt="_images/git-graph-003.svg" src="_images/git-graph-003.svg" /></a>
+</div>
+</section>
+<section>
+<h3>remotes -- Grundlagen</h3>
+<p class="first">Mit <a class="reference external" href="https://git-scm.com">git</a> können Remotes verfolgt werden (<em>track</em>).</p>
+<p class="fragment roll-in"><a class="reference external" href="https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches">remote Branches</a> (u. Tags) werden in das lokale Repository geklont.</p>
+<p class="fragment roll-in">Arbeiten mit remote Branches ist analog den lokalen Branches.</p>
+<p class="fragment roll-in">Es sind nur wenige zusätzliche Komandos erforderlich.</p>
+<pre class="shell fragment roll-in last">
+<code data-trim contenteditable>$ git clone  ..
+$ git remote ..
+$ git fetch  ..
+$ git pull   ..
+$ git push   ..</code></pre>
+</section>
+<section>
+<h3>remotes -- git clone</h3>
+<p class="first">Meist beginnt es mit dem ersten Klonen <a class="reference external" href="https://git-scm.com/docs/git-clone">git clone</a></p>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>$ git clone https://github.com/return42/git-teaching.git</code></pre>
+<pre class="shell fragment roll-in">
+<code data-trim contenteditable>Klone nach &#x27;git-teaching&#x27; ...
+remote: Counting objects: 18, done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 18 (delta 4), reused 18 (delta 4), pack-reused 0
+Entpacke Objekte: 100% (18/18), Fertig.
+Prüfe Konnektivität ... Fertig.</code></pre>
+<p class="fragment roll-in last">was hat <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> alles gemacht?</p>
+</section>
+<section>
+<h3>remotes -- Grundlagen</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ tree -L 1 -at git-teaching/
+git-teaching/           # working tree
+   ├── .git             # repository
+   ├── .gitignore
+   ├── hello-world.py
+   └── README.txt</code></pre>
+<ul class="last simple">
+<li><p>Repo wurde nach <code class="docutils literal notranslate"><span class="pre">./git-teaching/.git</span></code> geklont und</p></li>
+<li><p>es wurde der Working-Tree <code class="docutils literal notranslate"><span class="pre">git-teaching</span></code> ausgecheckt</p></li>
+</ul>
+</section>
+<section>
+<h3>remotes -- Grundlagen</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ git branch -vva
+* master                f5f3b62 [origin/master] merge hello-world
+  remotes/origin/HEAD   -&gt; origin/master
+  remotes/origin/master f5f3b62 merge hello-world branch</code></pre>
+<ul class="simple">
+<li><p>lokaler Branch <code class="docutils literal notranslate"><span class="pre">master</span></code> wurde angelegt, er ist</p></li>
+<li><p>ein Klon des Remote Branch <code class="docutils literal notranslate"><span class="pre">origin/master</span></code></p></li>
+<li><p>der lokale <code class="docutils literal notranslate"><span class="pre">master</span></code> folgt (tracking) dem <code class="docutils literal notranslate"><span class="pre">[origin/master]</span></code></p></li>
+</ul>
+<pre class="shell last">
+<code data-trim contenteditable>$ git status
+Auf Branch master
+Ihr Branch ist auf dem selben Stand wie &#x27;origin/master&#x27;.
+nichts zu committen, Arbeitsverzeichnis unverändert</code></pre>
+</section>
+<section>
+<h3>remotes -- Grundlagen</h3>
+<p class="first">Der Alias-Name für das Original der Klon-Kopie ist <code class="docutils literal notranslate"><span class="pre">origin</span></code></p>
+<pre class="shell">
+<code data-trim contenteditable>$ git remote -v
+origin    https://github.com/return42/git-teaching.git (fetch)
+origin    https://github.com/return42/git-teaching.git (push)</code></pre>
+<p>Die URL des <code class="docutils literal notranslate"><span class="pre">origin</span></code> ist <a class="reference external" href="https://github.com/return42/git-teaching.git">https://github.com/return42/git-teaching.git</a></p>
+<p class="last">Sie wird zum <em>hochladen</em> (<code class="docutils literal notranslate"><span class="pre">push</span></code>) und zum <em>runterladen</em> (<code class="docutils literal notranslate"><span class="pre">fetch</span></code>)
+verwendet.</p>
+</section>
+<section>
+<h3>remotes -- Grundlagen</h3>
+<p class="first">Zuvor Beschriebenes ist kompakt in der <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> zu finden, die <code class="docutils literal notranslate"><span class="pre">git</span>
+<span class="pre">clone</span></code> automatisch angelegt hat.</p>
+<pre class="shell last">
+<code data-trim contenteditable>$ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote &quot;origin&quot;]
+        url = https://github.com/return42/git-teaching.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch &quot;master&quot;]
+        remote = origin
+        merge = refs/heads/master</code></pre>
+</section>
+<section>
+<h3>remotes -- git push</h3>
+<pre class="shell first">
+<code data-trim contenteditable>$ git status
+Auf Branch master
+Ihr Branch ist vor &#x27;origin/master&#x27; um 1 Commit.
+(benutzen Sie &quot;git push&quot;, um lokale Commits zu publizieren)</code></pre>
+<small>
+<p class="first last">Änderungen müssen im lokalem Branch (Repository) <em>commited</em> werden. Erst
+danach kann man sie mit <a class="reference external" href="https://git-scm.com/docs/git-push">git push</a> zum Remote <em>schieben</em>. Der Alias
+<code class="docutils literal notranslate"><span class="pre">origin</span></code> wählt dabei den Remote.</p>
+</small>
+<pre class="shell">
+<code data-trim contenteditable>$ git push origin master:master</code></pre>
+<small>
+<p class="first last"><a class="reference external" href="https://git-scm.com/book/tr/v2/Git-Internals-The-Refspec">refspec</a> <code class="docutils literal notranslate"><span class="pre">master:master</span></code> sagt: lokaler <code class="docutils literal notranslate"><span class="pre">master</span></code> (links) auf Remote
+<code class="docutils literal notranslate"><span class="pre">master</span></code> (rechts) <em>schieben</em>.  Lokaler <code class="docutils literal notranslate"><span class="pre">master</span></code> folgt (tracking)
+ohnehin schon dem <code class="docutils literal notranslate"><span class="pre">[origin/master]</span></code>. Einfacher:</p>
+</small>
+<pre class="last">
+<code data-trim contenteditable>$ git push</code></pre>
+</section>
+<section>
+<h3>remotes -- git fetch & pull</h3>
+<p class="first">Mit <a class="reference external" href="https://git-scm.com/docs/git-fetch">git fetch</a> werden die remote Branches aktualisiert.</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git fetch -v origin master
+Von https://github.com/return42/git-teaching
+* branch            master     -&gt; FETCH_HEAD
+= [aktuell]         master     -&gt; origin/master</code></pre>
+<p>Der Remote ist wieder <code class="docutils literal notranslate"><span class="pre">origin</span></code>. Die <a class="reference external" href="https://git-scm.com/book/tr/v2/Git-Internals-The-Refspec">refspec</a> <code class="docutils literal notranslate"><span class="pre">master</span></code> gibt an,
+dass der Fetch vom remote <code class="docutils literal notranslate"><span class="pre">master</span></code> erfolgt.</p>
+<p>Mit <a class="reference external" href="https://git-scm.com/docs/git-pull">git pull</a> kann man in einem Schritt <em>fetchen</em> und den <code class="docutils literal notranslate"><span class="pre">FETCH_HEAD</span></code>
+gleich in den aktullen (lokalen) Branch <em>mergen</em>:</p>
+<pre class="shell last">
+<code data-trim contenteditable>$ git pull</code></pre>
+</section>
+<section>
+<h3>remotes -- git remote</h3>
+<p class="first">Mit <a class="reference external" href="https://git-scm.com/docs/git-remote">git remote</a> werden die Remotes verwaltet.</p>
+<p>Alias <code class="docutils literal notranslate"><span class="pre">origin</span></code> in <code class="docutils literal notranslate"><span class="pre">upstream</span></code> umbenennen</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git remote rename origin upstream</code></pre>
+<p>Einbinden eines Forks als <code class="docutils literal notranslate"><span class="pre">origin</span></code></p>
+<pre class="shell last">
+<code data-trim contenteditable>$ git remote add origin https://githost.intranet/git-teaching.git</code></pre>
+</section>
+<section>
+<h3>remotes -- git remote</h3>
+<p class="first">Anzeigen der eingetragenen Remotes</p>
+<pre class="shell">
+<code data-trim contenteditable>$ git remote -v
+origin    https://githost.intranet/git-teaching.git (fetch)
+origin    https://githost.intranet/git-teaching.git (push)
+upstream  https://github.com/return42/git-teaching.git (fetch)
+upstream  https://github.com/return42/git-teaching.git (push)</code></pre>
+<p>Es können beliebig viele Remotes eingebunden werden, über den Alias kann man
+steuern mit welchem Remote man was machen will.</p>
+<small class="last">
+<p class="first last">Obiges Beispiel ist typisch für ein Szenario bei dem der Fork eines
+Projekts im Intranet <code class="docutils literal notranslate"><span class="pre">origin</span></code> liegt und das Original des Forks im
+Internet <code class="docutils literal notranslate"><span class="pre">upstream</span></code> liegt.  Mit <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span></code> können die lokalen
+Branches im Intranet abgelegt werden. Mit <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">upstream</span></code> können die
+Branches im Internet public gestellt werden.</p>
+</small>
+</section>
+<section>
+<h3>online server</h3>
+<a class="first reference external image-reference" href="https://github.com"><img alt="_images/github-octocat.png" src="_images/github-octocat.png" style="width: 228.0px; height: 119.7px;" /></a>
+<a class="reference external image-reference" href="https://about.gitlab.com"><img alt="_images/gitlab-logo.png" src="_images/gitlab-logo.png" style="width: 234.0px; height: 122.39999999999999px;" /></a>
+<a class="reference external image-reference" href="https://bitbucket.org/account/signup"><img alt="_images/bitbucket-logo.png" src="_images/bitbucket-logo.png" style="width: 240.0px; height: 120.0px;" /></a>
+<p></p><p class="last"><a class="reference external" href="https://gitlab.com/explore">GitLab.com</a>  – <a class="reference external" href="https://github.com">GitHub</a>  – <a class="reference external" href="https://bitbucket.org/account/signup">Bitbucket</a></p>
+</section>
+<section>
+<h3>self hosted</h3>
+<a class="first reference external image-reference" href="https://gogs.io"><img alt="_images/gogs-logo.jpg" src="_images/gogs-logo.jpg" style="width: 178.08px; height: 161.65px;" /></a>
+<a class="reference external image-reference" href="https://about.gitlab.com"><img alt="_images/gitlab-logo.png" src="_images/gitlab-logo.png" style="width: 312.0px; height: 163.20000000000002px;" /></a>
+<p></p><p class="last"><a class="reference external" href="https://gogs.io">gogs</a> <em>leichtgewicht</em> – <a class="reference external" href="https://about.gitlab.com">GitLab CE</a> <em>Team &amp; CI</em></p>
+</section>
+<section id="git-format-git-am">
+<h2>offline Szenarien</h2>
+<p class="first">Patches mit <a class="reference external" href="https://git-scm.com/docs/git-format-patch">git format-patch</a> und <a class="reference external" href="https://git-scm.com/docs/git-am">git am</a> transportieren.</p>
+<pre class="shell">
+<code data-trim contenteditable>host_a$ git format-patch 9af1a51..hello-world \
+            -M -C --output-directory=patches</code></pre>
+<small>
+<p class="first last">Patches von Commit <code class="docutils literal notranslate"><span class="pre">9af1a51</span></code> an (Abzweig <code class="docutils literal notranslate"><span class="pre">hello-world</span></code> / s.a.
+<a class="reference internal" href="#git-graph"><span class="std std-ref">git-graph</span></a>), bis zum aktuellen Stand des <code class="docutils literal notranslate"><span class="pre">hello-world</span></code>
+Branch werden im Ordner <code class="docutils literal notranslate"><span class="pre">./patches</span></code> angelegt.</p>
+</small>
+<pre class="shell">
+<code data-trim contenteditable>host_b$ git checkout master
+host_b$ git am --keep-cr ./patches/*</code></pre>
+<small class="last">
+<p class="first last">Merge der Patches aus Ordner <code class="docutils literal notranslate"><span class="pre">./patches</span></code> in den <code class="docutils literal notranslate"><span class="pre">master</span></code>.  Schalter
+<code class="docutils literal notranslate"><span class="pre">--keep-cr</span></code> erhält die CR (<a class="reference external" href="https://serverfault.com/a/197574">erforderlich bei Windows</a>). Bei Konflikten muss man diese
+auflösen (wie bereits bei <a class="reference external" href="git-merge-hello-world">git-merge</a>
+erläutert). Manchmal kann auch der Schalter <code class="docutils literal notranslate"><span class="pre">--reject</span></code> <a class="reference external" href="https://git-scm.com/docs/git-apply#git-apply---reject">hilfreich sein</a>.</p>
+</small>
+</section>
+<section>
+<h2>Danke</h2>
+</section>
+<section>
+</section>
+<section>
+<h5>Verweise</h5>
+<ul class="first last simple">
+<li><p><a class="reference external" href="https://git-scm.com">git</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book/en/v2/">Pro Git</a></p></li>
+<li><p><a class="reference external" href="https://github.com/return42/sphinxjp.themes.revealjs">sphinxjp.themes.revealjs</a></p></li>
+<li><p><a class="reference external" href="https://lab.hakim.se/reveal-js">REVEAL.JS</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org">Sphinx-doc</a></p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org/en/stable/rest.html">reST</a></p></li>
+<li><p><a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a></p></li>
+</ul>
+</section>
+</div>
+
+
+      </div>
+    </div>
+    
+<script src="_static/jquery.js"></script>
+<script src="_static/js/reveal.min.js"></script>
+    <script>
+
+      // change DOM for reveal.js
+      $("div.section h1").remove();
+      var content = $("div.section").html();
+      $("div.section").remove();
+      $("div.slides").html(content);
+
+      Reveal.initialize({
+        width: 960,
+        height: 700,
+
+        margin: 0.1,
+
+        minScale: 0.2,
+        maxScale: 1.0,
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        keyboard : true,
+        overview: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        fragments: true,
+
+        autoSlide: 0,
+        mouseWheel: false,
+        rollingLinks: true,
+        previewLinks: false,
+
+        transitionSpeed: "default",
+        backgroundTransition: "slide",
+
+        slideNumber: true,
+        embedded: false,
+        autoSlideStoppable: true,
+        hideAddressBar: true,
+
+        parallaxBackgroundImage: "",
+        parallaxBackgroundSize: "",
+
+        focusBodyOnPageVisiblityChange: true,
+
+        viewDistance: 3,
+
+        transition: Reveal.getQueryHash().transition || "slide",
+
+        
+
+        dependencies: [
+          { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/highlight/highlight.js', async: true },
+          { src: '_static/plugin/search/search.js', async: true },
+          { src: '_static/plugin/zoom-js/zoom.js', async: true },
+          { src: '_static/plugin/notes/notes.js', async: true},
+        ]
+      });
+    </script>
+    <script src="_static/mysettings.js"></script>
+    
+  </body>
+</html>

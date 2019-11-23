@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IPP &amp; IPP Everywhere &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Die kleine PPD Fibel" href="ppd.html" />
+    <link rel="prev" title="CUPS Grundlagen" href="cups.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drucken mit CUPS &amp; IPP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cups.html">CUPS Grundlagen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IPP &amp; IPP Everywhere</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ippfind"><code class="docutils literal notranslate"><span class="pre">ippfind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipptool-get-printer-attributes"><code class="docutils literal notranslate"><span class="pre">ipptool</span> <span class="pre">get-printer-attributes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ipp-kinderkrankheiten">IPP Kinderkrankheiten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#einschatzungen-zur-ipp-fahigkeit">Einschätzungen zur IPP-Fähigkeit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#einschatzungen-zur-pdl-fahigkeit">Einschätzungen zur PDL-Fähigkeit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ppd.html">Die kleine PPD Fibel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html">Druckertreiber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printer_setup.html">Netzwerk-Drucker Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printer_troubleshooting.html">Wartung &amp; Diagnose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Drucken mit CUPS &amp; IPP</a> &raquo;</li>
+        
+      <li>IPP &amp; IPP Everywhere</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/print/ipp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ipp-ipp-everywhere">
+<span id="ipp-intro"></span><h1>IPP &amp; IPP Everywhere<a class="headerlink" href="#ipp-ipp-everywhere" title="Link zu dieser Überschrift">¶</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Internet_Printing_Protocol">IPP (wiki)</a> ist das <em>Internet Printing Protocol</em>.  <a class="reference external" href="https://www.pwg.org/ipp">IPP</a> ist – wie der Name
+schon sagt – ein Internet-Protokoll.  <em>Genauer:</em> es ist eine Erweiterung des
+bekannten HTTP 1.1 Protokolls wie man es von <em>Internetseiten</em> kennt und es wird
+vom Drucker i.d.R. auf den gleichen Ports <cite>80</cite> (HTTP) und <cite>443</cite> (HTTPS)
+angeboten.  Der <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> unterstützt IPP und wie alle IPP fähigen Drucker muss
+er als <em>Drucksprache</em> mindestens <code class="docutils literal notranslate"><span class="pre">image/jpeg</span></code> und <code class="docutils literal notranslate"><span class="pre">image/pwg-raster</span></code>
+verstehen (s.a. <a class="reference external" href="https://github.com/apple/cups/wiki/IPP-(Everywhere)-Mini-Tutorial">IPP Mini Tutorial</a>).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. There are no longer any &quot;proprietary&quot; printer languages exclusive for a
+   printer. IPP-enabled printers MUST support PWG Raster and JPEG as print
+   job spooling formats and MUST support PDF as a print job spooling format
+   when the printer uses IPP/2.1 and IPP/2.2. (PDF support is optional for a
+   printer using IPP/2.0).
+
+2. IPP-enabled printers are able to respond to queries investigating about
+   their capabilities. (Can they print duplex? Can they print in color? Do
+   they support stapling? Have they paper with A3 dimensions loaded? How much
+   ink do they have left? etc.pp.)
+</pre></div>
+</div>
+<p>Damit hat man also die Möglichkeit die Eigenschaften des Druckers über <a class="reference external" href="https://www.pwg.org/ipp">IPP</a> zu
+ermitteln.  Das wollen wir gleich mal machen, aber vorher wollen wir uns nochmal
+<a class="reference external" href="https://www.pwg.org/ipp/everywhere.html">IPP Everywhere</a> anschauen, damit können Drucker im Netzwerk <em>gefunden</em> werden.</p>
+<p>IPP gibt es schon sehr lange, den ersten Entwurf (Proposal) gab es 1996 von
+Novell und Xerorx und 1999 wurde IPP 1.0 verabschiedet.  Alle bekannten
+Drucker-Protokolle wie sie von HP, Microsoft oder Apple (<a class="reference external" href="https://wiki.debian.org/AirPrint">Airprint</a>) erdacht
+wurden basieren mehr oder minder auf dem (alten) IPP.  Inzwischen wird IPP von
+der <a class="reference external" href="https://www.pwg.org/">PWG</a> voran getrieben.  Die 2.x Versionen des IPP gibt es (erst) seit 2015.</p>
+<p>Da es die IPP-Versionen V-2.0, V-2.1 und V-2.2 gibt könnte der Eindruck
+entstehen, dass die V-1.1 veraltet ist.  Das ist aber nicht der Fall, die
+<code class="docutils literal notranslate"><span class="pre">2.x</span></code> Versionen adressieren lediglich die Anwendungsbereiche (siehe Kapitel
+<em>Introduce</em> in <a class="reference external" href="https://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf">IPP Version 2.0, 2.1, and 2.2</a>).  Für die typischen
+Büro-Drucker kommt <strong>IPP V2.0</strong> zur Anwendung.</p>
+<div class="section" id="ippfind">
+<h2><code class="docutils literal notranslate"><span class="pre">ippfind</span></code><a class="headerlink" href="#ippfind" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Drucker die über IP im Netzwerk bereit stehen, können über <a class="reference external" href="https://wiki.archlinux.org/index.php/Avahi">Avahi</a> gefunden
+werden.  <a class="reference external" href="https://github.com/lathiat/avahi">Avahi (git)</a> ist eine freie Implementierung von <a class="reference external" href="https://de.wikipedia.org/wiki/Zeroconf">Zeroconf</a>, das
+Pendant auf macOS ist <a class="reference external" href="https://de.wikipedia.org/wiki/Bonjour_(Apple)">Bonjour</a> von Apple.  Aufgabe dieser Zeroconf Werkzeuge ist
+es, Dienste welche im IP-Netz bereit stehen zu finden.  Avahi ist bereits auf
+allen Linux Desktops eingerichtet.  Das einzige was man evtl. noch festhalten
+kann ist, dass sowohl CUPS als auch IPP sich des Avahi bedienen um Drucker im
+Netzwerk automatisch zu finden.</p>
+<p>Wenn der Drucker über WLAN oder LAN angeschlossen ist und eine IP erhalten hat
+(z.B. Hostname <a class="reference external" href="https://mf623cn/portal_top.html">mf623cn</a>), dann müssten wir
+ihn eigentlich über IPP finden können.  Die Implementierung dazu ist das
+Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ippfind">ippfind</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ippfind
+ipp://MF623Cn.local:80/ipp/print
+</pre></div>
+</div>
+<p>Cool, einfacher geht es ja wirklich nicht mehr!</p>
+</div>
+<div class="section" id="ipptool-get-printer-attributes">
+<span id="get-printer-attributes"></span><h2><code class="docutils literal notranslate"><span class="pre">ipptool</span> <span class="pre">get-printer-attributes</span></code><a class="headerlink" href="#ipptool-get-printer-attributes" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Nun wollen wir mal schauen welche Eigenschaften der Drucker über das <code class="docutils literal notranslate"><span class="pre">ipp://</span></code>
+Protokoll anbietet.  Dazu gibt es das Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ipptool">ipptool</a>, dem man ein
+<em>printer testfile</em> übergibt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipptool -t -v \
+      ipp://MF623Cn.local:80 \
+      | /usr/share/cups/ipptool/get-printer-attributes.test \
+      | grep &#39;document-format-supported\|ipp-versions-supported&#39;
+</pre></div>
+</div>
+<p>Die Ausgabe für den All-in-One Drucker <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> :</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ipp-versions-supported (1setOf keyword) = 2.0,1.1,1.0
+document-format-supported (1setOf mimeMediaType) = image/urf,application/octet-stream,image/jpeg,image/pwg-raster
+</pre></div>
+</div>
+<p>Der hat also IPP V-2.0 und dazu hieß es ja schon oben im Zitat: <em>PDF support is
+optional for a printer using IPP/2.0</em>.  Das deckt sich also mit den Annahmen zu
+dem Drucker.  Auch die Formate <code class="docutils literal notranslate"><span class="pre">image/jpeg</span></code> und <code class="docutils literal notranslate"><span class="pre">image/pwg-raster</span></code>, wie sie
+von IPP 2.0 erwartet werden, bietet der Drucker an.  Mit <code class="docutils literal notranslate"><span class="pre">image/urf</span></code> bietet er
+noch das Raster-Format von <a class="reference external" href="https://wiki.debian.org/AirPrint">AirPrint</a> an.  Die Definitionen zu den IPP Attributen
+und Objekten sind bei IANA registriert, eine vollständige Liste gibt es hier:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.iana.org/assignments/ipp-registrations">IANA IIP Registration</a> z.B. <a class="reference external" href="https://tools.ietf.org/html/rfc8011">RFC8011</a>
+mit dem IPP V-1.1.</p>
+<ul>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc8011#section-5.4.22">document-format-supported</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc8011#section-5.4.14">ipp-versions-supported</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="ipp-kinderkrankheiten">
+<h2>IPP Kinderkrankheiten<a class="headerlink" href="#ipp-kinderkrankheiten" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Schaut man sich mal die gesamte Ausgabe des <a class="reference internal" href="#get-printer-attributes"><span class="std std-ref">ipptool get-printer-attributes</span></a> an
+(<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623Cn-attributes.txt">MF623Cn-attributes.txt</a>),
+dann erkennt man schon die ersten <em>Kinderkrankheiten</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
+..
+printer-resolution-default (resolution) = 300dpi
+printer-resolution-supported (resolution) = 300dpi
+</pre></div>
+</div>
+<p>Der Drucker behauptet also, dass er lediglich eine Auflösung von 300dpi hat:
+<a class="reference external" href="https://www.youtube.com/watch?v=1IDF-8khS3w">You are fake news!</a>.  Der
+Drucker wird als 600dpi Drucker beworben und verfügt auch über diese Auflösung.
+Diese und diverse andere fehlerhafte IPP-Angaben zu dem Drucker sind auch mit
+ein Grund dafür, dass <a class="reference internal" href="driver.html#driverless-printing"><span class="std std-ref">driverless printing</span></a> z.T. schlechte Druck-Ergebnisse
+liefert (oder evtl. gar nicht funktioniert).</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Die Verabschiedung der IPP <code class="docutils literal notranslate"><span class="pre">2.x</span></code> Versionen ist aus dem Jahre 2015, also
+noch recht <em>frisch</em>!  Es braucht auch immer etwas Zeit, bis so ein Standard
+dann vollständig und ohne Kinderkrankheiten in die (neuen) Geräte und
+Distributionen eingeflossen ist.  Weshalb man mit älteren Druckern und
+älteren Systemen i.d.R. mehr Probleme haben wird.  Das ist auch Stand heute
+(02/2019) noch deutlich <em>spürbar</em>.  <a class="reference external" href="https://www.pwg.org/ipp/everywhere.html">IPP Everywhere</a> resp.
+<a class="reference internal" href="driver.html#driverless-printing"><span class="std std-ref">driverless printing</span></a> gibt es in Ubuntu seit 17.04.</p>
+</div>
+</div>
+<div class="section" id="einschatzungen-zur-ipp-fahigkeit">
+<h2>Einschätzungen zur IPP-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-ipp-fahigkeit" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die modernen netzwerkfähigen Drucker sollten i.d.R. alle IPP unterstützen (laut
+PWG 98% der aktuell verkauften Drucker).  Auch wenn das, wie bei dem Canon
+<a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> in den <a class="reference internal" href="driver.html#figure-mf623cn-printer-spec"><span class="std std-ref">technischen Angaben</span></a> nicht
+explizit angegeben wird.  I.d.R. kann man davon ausgehen, dass Beispielsweise
+alle moderneren <a class="reference external" href="https://support.apple.com/en-us/HT201311">AirPrint Drucker</a>
+IPP 2.0 unterstützen (moderne HP i.d.R. auch).  So lange der Hersteller aber
+keine genauen Angaben macht und der Drucker auch nicht bei den:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.pwg.org/dynamo/eveprinters.php">IPP Everywhere™ Self-Certified Printers</a></p></li>
+</ul>
+<p>zu finden ist, kann man über dessen IPP Unterstützung nichts genaueres sagen.
+Zumindest nicht, solange man es nicht wenigstens mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ippfind">ippfind</a> mal gestetet
+hat.  Es ist schon ein kleines Dilemma, dass so wenige (eigentlich IPP fähige
+Drucker) bisher zertifiziert sind (s.a.  <a class="reference external" href="https://lists.debian.org/debian-printing/2016/12/msg00160.html">Mail Thread</a>).  Der
+Drucker <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> ist aus Mitte 2016, damit gehört er (vermute ich mal) zu der
+ersten Generation, die (offiziell) IPP V2.0 unterstützt.  D.h. aber nicht, das
+mit IPP V2.0 Canon nun auch seine Drucker neu erfunden hätte.  Wenn man die
+diversen Macken dieser Canon-Implementierungen sieht, dann kann man eigentlich
+nur zu dem Urteil kommen, dass die Netzwerk-Drucker – die eh schon IPP 1.0
+konnten – etwas lieblos um IPP V2.0 erweitert wurden.  Das hat man dann in eine
+Firmware gegossen, die dann auf jedem Drucker-Modell mehr oder minder gleich
+(schlecht) betrieben wird.  Nachfolger des <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> wäre der <a class="reference external" href="https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn">MF631Cn</a> aus 2018,
+der hat aktuell allerdings auch die gleiche Firmware 3.05:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span><span class="o">-</span><span class="n">firmware</span><span class="o">-</span><span class="n">name</span> <span class="p">(</span><span class="n">nameWithoutLanguage</span><span class="p">)</span> <span class="o">=</span> <span class="n">IPP</span>
+<span class="n">printer</span><span class="o">-</span><span class="n">firmware</span><span class="o">-</span><span class="n">string</span><span class="o">-</span><span class="n">version</span> <span class="p">(</span><span class="n">textWithoutLanguage</span><span class="p">)</span> <span class="o">=</span> <span class="mf">03.05</span>
+<span class="n">printer</span><span class="o">-</span><span class="n">firmware</span><span class="o">-</span><span class="n">version</span> <span class="p">(</span><span class="n">octetString</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0305</span>
+</pre></div>
+</div>
+<p>Das ist alles nur ein einziger liebloser Klumpen Software, den Canon da auf die
+Drucker und Betriebssysteme ballert.  Es ist ein Trauerspiel zu sehen, wie unter
+dem eigentlich <em>großen und beliebten</em> Namen „Canon“ gearbeitet wird.  Aber es
+scheint ein Trend der Labels und Marken zu sein, der gute Name wird runter
+gewirtschaftet (<em>Kärcher taugt heute auch nichts mehr</em>).</p>
+</div>
+<div class="section" id="einschatzungen-zur-pdl-fahigkeit">
+<h2>Einschätzungen zur PDL-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-pdl-fahigkeit" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Früher war das Drucken mit PostScript (PDL) fähigen Druckern unter Linux
+immer möglich.  Diese sind aber i.d.R. in der untersten Preisklasse der
+Laserdrucker kaum <em>zu haben</em>.  Inzwischen (mit IPP) werden aber Raster-Formate
+und PDF bevorzugt und die Bedeutung von PostScript wird durch die Bedeutung von
+PDF als <a class="reference external" href="https://de.wikipedia.org/wiki/Seitenbeschreibungssprache">PDL (wiki)</a> ersetzt.</p>
+<p>In der Spezifikation des <a class="reference external" href="https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn">MF631Cn</a> ist u.A. zu lesen: <em>Drucken von USB
+Speicherstick (JPEG, TIFF, PDF)</em>.  Wenn ein Drucker diese Formate <em>direkt</em>
+drucken kann, dann unterstützt er diese Formate i.d.R. auch als <a class="reference external" href="https://de.wikipedia.org/wiki/Seitenbeschreibungssprache">PDL (wiki)</a>.
+So konnte der Vorläufer <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> noch kein PDF direkt drucken, unterstützt es
+also auch nicht als PDL.  Der <a class="reference external" href="https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn">MF631Cn</a> hingegen kann PDF direkt drucken, dann
+wird er es auch als PDL unterstützen.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ppd.html" class="btn btn-neutral float-right" title="Die kleine PPD Fibel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cups.html" class="btn btn-neutral float-left" title="CUPS Grundlagen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

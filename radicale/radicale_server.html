@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Radicale Server &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="CalDAV und CardDAV Clients" href="dav_client.html" />
+    <link rel="prev" title="CalDAV &amp; CardDAV" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CalDAV &amp; CardDAV</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Radicale Server</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sharing">Sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radicale-wsgi">radicale.wsgi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentifizierung">Authentifizierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-radicale-config">/etc/radicale/config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-radicale-rights">/etc/radicale/rights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-radicale-logging">/etc/radicale/logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alternativen">Alternativen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dav_client.html">CalDAV und CardDAV Clients</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CalDAV &amp; CardDAV</a> &raquo;</li>
+        
+      <li>Radicale Server</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/radicale/radicale_server.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="radicale-server">
+<span id="xref-radicale-server"></span><h1>Radicale Server<a class="headerlink" href="#radicale-server" title="Link zu dieser Überschrift">¶</a></h1>
+<ul class="simple">
+<li><p>Radicale: <a class="reference external" href="http://radicale.org">http://radicale.org</a></p></li>
+</ul>
+<p>Ich habe mich für Radicale entschieden, da es sich auf CalDAV und CardDAV
+beschränkt und keine Groupware ist, die mehr Lösungen anbietet als ich brauche.
+Weiter lies sich Radicale gut <em>hinter</em> dem Apache unter einer Präfix URL
+(<code class="docutils literal notranslate"><span class="pre">radicale</span></code>) platzieren (<a class="reference external" href="https://hostname/radicale">https://hostname/radicale</a>).  Andere Lösungen siehe
+<a class="reference internal" href="#alternativen">Alternativen</a>.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Letztes Release ist v2.x (<a class="reference external" href="https://github.com/Kozea/Radicale/releases">https://github.com/Kozea/Radicale/releases</a>), der
+<strong>master</strong> Branch wurde inzwischen jedoch stark überarbeitet.  Im Zuge dieser
+Überarbeitung werden z.T. andere Settings benötigt, als sie noch in der
+offiziellen Dokumentation beschrieben werden.  Die hier vorgestellte
+Installation basiert auf dem <strong>master</strong> Branch und verwendet immer die
+<em>aktuellen</em> Settings.</p>
+</div>
+<p>Die CalDAV und CardDAV Server Installation (Radicale) erfolgt in eine bestehende
+Apache Instanz (siehe <a class="reference internal" href="../apache_setup/index.html#xref-apache-setup"><span class="std std-ref">Setup Apache2 HTTP Server</span></a>).  Die hier vorgestellt
+Installation verwendet das interne WEB-Frontend von Radicale.  Als Alternative
+bietet sich eine vollwertige WEB-Anwendung für Adressbuch und Kalender an.  So
+gibt es z.B. für <a class="reference external" href="https://www.inf-it.com/open-source/clients/infcloud/">InfCloud</a> eine Integration
+<a class="reference external" href="https://github.com/Unrud/RadicaleInfCloud">RadicaleInfCloud</a>), die jedoch
+nicht zu den aktuellen Änderungen im <strong>master</strong> Branch passt.</p>
+<div class="section" id="sharing">
+<h2>Sharing<a class="headerlink" href="#sharing" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Radicale ist ein leichtgewichitiger CalDAV &amp; CardDAV Server, der allerdings kein
+echtes Sharing von (z.B.) Kalendern über CalDAV vorsieht.  Die sogenannten
+<em>Vertreter-</em> Regelungen, die es auch für CalDAV gibt sind im Radicale nicht
+vorgesehen (wäre zu ausufernd und nicht alle Clients <em>sprechen</em> exakt das
+gleiche Protokoll).</p>
+<p>Es ist jedoch möglich über Plugins die Zugriffsrechte auf die <em>Collection</em> zu
+steuern.  In <a class="reference internal" href="#etc-radicale-rights">/etc/radicale/rights</a> ist eine Konfiguration zu sehen, bei der
+dezidierte Lese-Berechtigungen vergeben werden. Die URL zu einem seiner Kalender
+kann man über sein Login ermitteln.  Bei <a class="reference external" href="https://hostname/raidcale">https://hostname/raidcale</a> anmelden,
+dort kann man die URLs bestehender Kalender sehen oder auch neue Kalender
+anlegen.  Will man seinem Kollegen den Kalender bereit stellen, muss man ihm nur
+diese URL geben, die er als <em>Abo</em> in seinen Kalender mit aufnimmt.</p>
+</div>
+<div class="section" id="radicale-wsgi">
+<h2>radicale.wsgi<a class="headerlink" href="#radicale-wsgi" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Seit commit <a class="reference external" href="https://github.com/Kozea/Radicale/commit/54b9995e2">54b999</a> gibt
+es den Schlüssel <code class="docutils literal notranslate"><span class="pre">[logging]--&gt;config</span></code> nicht mehr:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">logging</span><span class="p">]</span>
+<span class="c1"># config=/etc/radicale/logging  ... no longer exists</span>
+</pre></div>
+</div>
+<p>Um das Logging Setup aus <a class="reference internal" href="#etc-radicale-logging">/etc/radicale/logging</a> dennoch zu aktivieren, muss
+die Konfiguration (z.B. in der WSGI Datei) geladen werden:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Radicale WSGI file (mod_wsgi and uWSGI compliant).&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging.config</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">fileConfig</span><span class="p">(</span><span class="s1">&#39;/etc/radicale/logging&#39;</span><span class="p">,</span> <span class="n">disable_existing_loggers</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">radicale</span> <span class="kn">import</span> <span class="n">application</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="authentifizierung">
+<h2>Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Authentifizierung wird in diesem Setup vom Apache übernommen.  In der
+<a class="reference internal" href="#etc-radicale-config">/etc/radicale/config</a> wird dazu als Authentifizierung <code class="docutils literal notranslate"><span class="pre">remote_user</span></code> gewählt:</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[auth]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">remote_user</span>
+</pre></div>
+</div>
+<p>Die Apache Konfiguration sieht dann in etwa wie folgt aus.  Hier im Beispiel
+wird eine Basic-Authentifizierung mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=pwauth">pwauth</a> verwendet:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">WSGIScriptAlias</span> <span class="sx">/radicale</span> <span class="sx">/var/www/pyApps/radicale.wsgi</span>
+
+<span class="nt">&lt;Location</span> <span class="s">/radicale</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;IfModule</span> <span class="s">mod_security2.c</span><span class="nt">&gt;</span>
+        <span class="nb">SecRuleEngine</span> <span class="k">Off</span>
+    <span class="nt">&lt;/IfModule&gt;</span>
+
+    <span class="nb">Require</span> valid-user
+
+    <span class="nb">Order</span> deny,allow
+    <span class="nb">Deny</span> from <span class="k">all</span>
+    <span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
+
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthBasicProvider</span> external
+    <span class="nb">AuthName</span> <span class="s2">&quot;radicale&quot;</span>
+    <span class="nb">AuthExternal</span> pwauth
+
+<span class="nt">&lt;/Location&gt;</span>
+</pre></div>
+</div>
+<p>Zusammengefasst ergibt sich:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Basis</span><span class="o">-</span><span class="n">URL</span><span class="p">:</span>     <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span>
+<span class="n">Benutzername</span><span class="p">:</span>  <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Passwort</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Der <code class="docutils literal notranslate"><span class="pre">&lt;user&gt;</span></code> ist der Benutzername des Logins (<code class="docutils literal notranslate"><span class="pre">pwauth</span></code>).  Benutzername und
+Passwort ergeben sich aus den LDAP- und System Benutzern (posix).“</p>
+</div>
+<div class="section" id="etc-radicale-config">
+<h2>/etc/radicale/config<a class="headerlink" href="#etc-radicale-config" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der exemplarischen Konfiguration unten wird für das Rechte Management das
+Plugin <code class="docutils literal notranslate"><span class="pre">from_file</span></code> gesetzt, als Konfiguration wird die Datei
+<a class="reference internal" href="#etc-radicale-rights">/etc/radicale/rights</a> verwendet.  Damit ist ein detaillierteres
+Rechte-Management möglich, wer das nicht braucht, sollte das Plugin
+<code class="docutils literal notranslate"><span class="pre">owner_only</span></code> für das Rechte-Management nutzen.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: conf -*-</span>
+
+<span class="k">[server]</span>
+
+<span class="c1"># !!! We use WSGI behind apache, so nothing to configure here in the &#39;server&#39;</span>
+<span class="c1"># !!! section</span>
+
+<span class="k">[auth]</span>
+
+<span class="c1"># Authentication method</span>
+<span class="c1"># Value:       none | htpasswd | remote_user | http_x_remote_user</span>
+<span class="c1"># remote_user: plugin, that gets the login from the ``REMOTE_USER``</span>
+<span class="c1">#              environment variable (for WSGI server)</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">remote_user</span>
+
+<span class="k">[rights]</span>
+
+<span class="c1"># Rights backend</span>
+<span class="c1"># Value: none | authenticated | owner_only | owner_write | from_file</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">from_file</span>
+
+<span class="c1"># File for rights management from_file</span>
+<span class="na">file</span> <span class="o">=</span> <span class="s">/etc/radicale/rights</span>
+
+<span class="k">[storage]</span>
+
+<span class="c1"># Storage backend</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">multifilesystem</span>
+
+<span class="c1"># Folder for storing local collections, created if not present</span>
+<span class="na">filesystem_folder</span> <span class="o">=</span> <span class="s">/var/www/pyApps/Radicale.data/collections</span>
+
+<span class="k">[web]</span>
+
+<span class="c1"># Web interface backend</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">internal</span>
+
+<span class="k">[logging]</span>
+
+<span class="c1"># Threshold for the logger</span>
+<span class="c1"># Value: debug | info | warning | error | critical</span>
+<span class="na">level</span> <span class="o">=</span> <span class="s">info</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-radicale-rights">
+<h2>/etc/radicale/rights<a class="headerlink" href="#etc-radicale-rights" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Der Pfad wird in der <a class="reference internal" href="#etc-radicale-config">/etc/radicale/config</a> gesetzt:</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[rights]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">from_file</span>
+<span class="na">file</span> <span class="o">=</span> <span class="s">/etc/radicale/rights</span>
+</pre></div>
+</div>
+<p>Unten ist ein exemplarisches Setup, bei dem dezidierte Lese-Berechtigungen
+vergeben werden.  Die Vergabe der <strong>W</strong> und <strong>R</strong> Berechtigungen war
+erforderlich um die interne WEB-Seite zum laufen zu bekommen (<strong>master</strong>
+Branch).</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: conf -*-</span>
+
+<span class="c1"># 1. The user &quot;admin&quot; can read and write any collection.</span>
+<span class="k">[admin]</span>
+<span class="na">user: admin</span>
+<span class="na">collection: .*</span>
+<span class="na">permissions: RWrw</span>
+
+<span class="c1"># 2. Example: dedicated sharing with 3 users</span>
+<span class="k">[user001]</span>
+<span class="na">user: user001</span>
+<span class="na">collection: user002(/.*)?</span>
+<span class="na">permissions: r</span>
+
+<span class="k">[user002]</span>
+<span class="na">user: user002</span>
+<span class="na">collection: user001(/.*)?|user003(/.*)?</span>
+<span class="na">permissions: r</span>
+
+<span class="k">[user003]</span>
+<span class="na">user: user003</span>
+<span class="na">collection: user002(/.*)?</span>
+<span class="na">permissions: r</span>
+
+<span class="c1"># 3. Authenticated users can read and write their own collections.</span>
+<span class="k">[owner-write]</span>
+<span class="na">user: .+</span>
+<span class="na">collection: %(login)s(/.*)?</span>
+<span class="na">permissions: RWrw</span>
+
+<span class="c1"># 4. Added &#39;R&#39; to get WEB interface running</span>
+<span class="k">[read]</span>
+<span class="na">user: .+</span>
+<span class="na">collection: .*</span>
+<span class="na">permissions: R</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-radicale-logging">
+<h2>/etc/radicale/logging<a class="headerlink" href="#etc-radicale-logging" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das Logging entspricht dem <a class="reference external" href="https://docs.python.org/library/logging.config.html#configuration-file-format">Configuration file format</a>
+des Python Logging.  Hier im Beispiel wird ein <em>Rotating-Log</em> in der Datei
+<code class="docutils literal notranslate"><span class="pre">/var/log/radicale/radicale.log</span></code> angelegt.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- mode: conf -*-</span>
+
+<span class="k">[loggers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">root</span>
+
+<span class="k">[logger_root]</span>
+<span class="na">handlers</span> <span class="o">=</span> <span class="s">file</span>
+
+<span class="k">[handlers]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">file</span>
+
+<span class="k">[handler_file]</span>
+<span class="na">class</span> <span class="o">=</span> <span class="s">logging.handlers.RotatingFileHandler</span>
+<span class="na">args</span> <span class="o">=</span> <span class="s">(&#39;/var/log/radicale/radicale.log&#39;, &#39;a&#39;, 100000, 10)</span>
+<span class="na">formatter</span> <span class="o">=</span> <span class="s">full</span>
+
+<span class="k">[formatters]</span>
+<span class="na">keys</span> <span class="o">=</span> <span class="s">full</span>
+
+<span class="k">[formatter_full]</span>
+<span class="na">format</span> <span class="o">=</span> <span class="s">%(asctime)s - [%(thread)x] %(levelname)s: %(message)s</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alternativen">
+<h2>Alternativen<a class="headerlink" href="#alternativen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Baikal (<a class="reference external" href="http://sabre.io/baikal">http://sabre.io/baikal</a>) ist ein ebenfalls oft genutzter Cal- und CardDAV
+Server.  Er basiert auf ‚sabre/dav‘ (<a class="reference external" href="http://sabre.io">http://sabre.io</a>) was eine PHP
+Implementierung des CardDAV, CalDAV und WebDAV ist (das wird auch von OwnCloud
+genutzt).  Ich hatte Baikal auch schon mal vor vielen Jahren installiert, dann
+wurde das aber zwischenzeitlich <em>kaputt-gebastelt</em>.  Die Arbeit an der Version 2
+wurde wohl ganz eingestellt.  Das alles und der Umstand, dass es sich um eine
+PHP Implementierung handelt, läßt mich von Baikal abstand nehmen.</p>
+<p>Wer eine Groupware sucht, der sollte sich evtl. folgende Projekte anschauen.</p>
+<ul>
+<li><p>SOgo: <a class="reference external" href="https://sogo.nu">https://sogo.nu</a></p>
+<p>Es gibt drei <em>main</em> Versionen SOgo2, Sogo3 und SOgo4.  Ab Version 3 gibt es
+ein WEB-Interface.  Alle Versionen nutzen die gleiche Implementierung der SOGo
+und SOPE Protokolle: LDAP, IMAP, SQL, CardDAV, CalDAV und Microsoft Enterprise
+ActiveSync.  Mit letzterem bietet SOgo ein Sync-Protokoll (Microsoft
+ActiveSync) an, dass auch vom Outlook <em>verstanden</em> wird (ich hab es aber noch
+nicht gestet).</p>
+</li>
+<li><p>Cozy: <a class="reference external" href="https://cozy.io">https://cozy.io</a> (<a class="reference external" href="https://github.com/cozy/cozy-stack">https://github.com/cozy/cozy-stack</a> )</p>
+<p>Das Cozy hat sich inzwischen stark weiter entwickelt, Erfahrungen hab ich damit
+noch keine, man könnte sich aber bei Gelegenheit mal die <a class="reference external" href="https://docs.cozy.io/en/tutorials/selfhost-debian/">Self-hosted Lösung</a> anschauen.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dav_client.html" class="btn btn-neutral float-right" title="CalDAV und CardDAV Clients" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="CalDAV &amp; CardDAV" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

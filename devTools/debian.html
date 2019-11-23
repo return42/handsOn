@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Debian &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Software Build (GNU)" href="build.html" />
+    <link rel="prev" title="Entwickler Pakete" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Entwickler Pakete</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Software Build (GNU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit.html">Edit, Diff, Merge &amp; Co.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scm.html">Versionsverwaltung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relationalDB.html">Relationale Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devTools_refs.html">Verweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Entwickler Pakete</a> &raquo;</li>
+        
+      <li>Debian</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devTools/debian.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debian">
+<span id="xref-ubuntu-devtools-debian"></span><h1>Debian<a class="headerlink" href="#debian" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Alle <a class="reference external" href="https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Debian-Derivate">Debian-Derivate (wiki)</a> benutzen die Debian Toolchain der
+Paketverwaltung, bei der Software mittels deb-Pakete (<code class="docutils literal notranslate"><span class="pre">.deb</span></code>) installiert
+wird, siehe <a class="reference external" href="https://de.wikipedia.org/wiki/Debian-Paket">Debian Paket (wiki)</a>.  Dabei gibt es zum einen deb-Pakete in denen
+die <em>Binaries</em> sind und zum anderen deb-Pakete in denen die <em>Sourcen</em> zu einer
+Software enthalten sind.  Die <em>Binary</em> Pakete sind für jede Hardware speziefisch
+kompilierte <em>Sourcen</em> (meist 32Bit und 64Bit Varianten).  Die <em>Source</em> Pakete
+sind immer die gleichen.</p>
+<p>Mit einen deb-Paket kann <em>ein</em> Programmpaket installiert werden (<a class="reference external" href="https://wiki.debian.org/DebianPackage">Debian
+Package</a>).  Um <em>mehrere</em> Pakete zu verwalten und ein Update-Verfahren
+anzubieten wird ein Paketmanager benötigt, siehe auch <a class="reference external" href="https://de.wikipedia.org/wiki/Paketverwaltung">Paketverwaltung (wiki)</a>.
+Als Paketmanager kommt bei den Debian-Derivaten <a class="reference external" href="https://de.wikipedia.org/wiki/Advanced_Packaging_Tool">APT (wiki)</a> zur Anwendung.
+Eine Übersicht über die Paketverwaltung von Debian ist in dem <a class="reference external" href="https://wiki.debian.org/PackageManagement">Debian Package
+Managment</a> Artikel zu finden.</p>
+<p>Ein Paketmanager bezieht seine Pakete aus einem Reposetory.  Bei APT werden die
+Reposetories beispielsweise in den Dateien unter <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list[.d/*]</span></code>
+registriert.  Zu einer vollständigen Paketverwaltung gehören aber noch weitere
+Bestandteile, so bedarf es z.B. einer Konfigurationsverwaltung mit der die
+Konfiguration einer Installation gemanaged werden kann.  Bei Debian übernimt
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=debconf-devel">debconf-devel</a> die Konfigurationsverwaltung.</p>
+<p>Pakete wie <a class="reference external" href="http://packages.ubuntu.com/debconf">debconf</a> oder aber <a class="reference external" href="http://packages.ubuntu.com/apt">apt</a> brauchen nicht installiert
+werden. Da sie Teil des Debian Ökosystems sind, sind sie bereits auf jeder
+OS-Installation enthalten.  Ergänzend können noch die folgenden Pakete empfohlen
+werden.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/devscripts">devscripts</a></p></li>
+</ul>
+<p>Mit dem <a class="reference external" href="http://packages.ubuntu.com/devscripts">devscripts</a> werden eine Reihe von Tools installiert, die bei der
+Paketerzeugung und Introspektion hilfreich sind.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/dkms">dkms</a></p></li>
+</ul>
+<p>Mit dem <a class="reference external" href="http://packages.ubuntu.com/dkms">dkms</a> werden die Tools für einen dynamischen Support von
+Kernelmodulen installiert.  Kernelmodule wie z.B. Treiber die nicht über das
+APT-Reposetory bezogen wurden, müssen mit jedem Update des Kernels neu
+kompiliert werden. Mit dem <em>Dynamic Kernel Module Support</em> <a class="reference external" href="https://wiki.archlinux.org/index.php/Dynamic_Kernel_Module_Support">DKMS (archlinux)</a>
+kann dieser Vorgang automatisiert werden, so dass mit jedem Kernel Update auch
+diese Treiber aktualisiert werden. Insbesondere bei Graphik-Treibern, die man
+evtl. vom Hersteller installiert hat, wird man es schnell zu schätzen wissen,
+dass man auch nach einem Kernel Update (mit Reboot) nicht vor einer <em>dunklen</em>
+Scheibe sitzten muss ;-)</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="build.html" class="btn btn-neutral float-right" title="Software Build (GNU)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Entwickler Pakete" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

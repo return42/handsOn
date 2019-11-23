@@ -1,0 +1,463 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WebDAV-Clients &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Verweise" href="apache_setup_refs.html" />
+    <link rel="prev" title="Test des WEB-Servers" href="probe_server.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WebDAV-Clients</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cadaver-webdav-client">cadaver webDAV-Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ms-windows-datei-explorer">MS-Windows Datei Explorer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#outlook">Outlook</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#veroffentlichung-eines-kalenders">Veröffentlichung eines Kalenders</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abonieren-eines-offentlichen-kalenders">Abonieren eines öffentlichen Kalenders</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>WebDAV-Clients</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/webdav_clients.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="webdav-clients">
+<span id="xref-webdav-clients"></span><h1>WebDAV-Clients<a class="headerlink" href="#webdav-clients" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Hier ein paar Beispiele für Client Anwendungen des <a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> Servers, wie
+er in <a class="reference internal" href="site_webshare.html#xref-site-webshare"><span class="std std-ref">Apache WebDAV</span></a> eingerichtet wird.</p>
+<div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Auch wenn in den folgenden Abschnitten unter Umständen über das Sharen von
+Kalendern gesprochen wird, so ist dies NOCH KEINE <a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> Anwendung!
+<a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> und <a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> dürfen an dieser Stelle nicht
+verwechselt werden.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> ist eine <em>Calendaring Extensions to WebDAV</em> siehe <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4791.html"><strong>RFC 4791</strong></a>.</p></li>
+</ul>
+</div>
+<div class="section" id="cadaver-webdav-client">
+<h2>cadaver webDAV-Client<a class="headerlink" href="#cadaver-webdav-client" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dem Debian-Paket <a class="reference external" href="http://packages.ubuntu.com/cadaver">cadaver</a> steht der gleichnamige webDAV Client
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cadaver">cadaver</a> zur Verfügung:</p>
+<ul class="simple">
+<li><p>cadaver - A command-line WebDAV client for Unix.</p></li>
+</ul>
+<p>Hier ein Beispiel für einen Test auf der Kommandozeile mittels <code class="docutils literal notranslate"><span class="pre">cadaver</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cadaver https://localhost/WEBSHARE
+
+WARNING: Untrusted server certificate presented for `kaveri&#39;:
+Issued to: kaveri
+Issued by: kaveri
+Certificate is valid from Wed, 27 Jan 2016 00:32:35 GMT to Sat, 24 Jan 2026 00:32:35 GMT
+Do you wish to accept the certificate? (y/n) y
+Authentication required for webShare on server `kaveri&#39;:
+Username: user
+Password:
+</pre></div>
+</div>
+<p>Ist man eingelogt, kann man z.B. das <code class="docutils literal notranslate"><span class="pre">ls</span></code> Kommando im webDAV Client absenden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dav:/WEBSHARE/&gt; ls
+Listing collection `/WEBSHARE/&#39;: succeeded.
+        .DS_Store                           6148  Apr 13  2015
+        ._.DS_Store                         4096  Apr 13  2015
+        README                               138  Jan 27 15:39
+</pre></div>
+</div>
+<p>Andere Beispiele für Kommandos:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dav:/WEBSHARE/&gt; cat README
+Displaying `/WEBSHARE/README&#39;:
+
+========================
+webShare / webDAV Ordner
+========================
+
+Die Dateien in diesem Ordner werden über Apache exportiert.
+dav:/WEBSHARE/&gt; exit
+</pre></div>
+</div>
+</div>
+<div class="section" id="ms-windows-datei-explorer">
+<h2>MS-Windows Datei Explorer<a class="headerlink" href="#ms-windows-datei-explorer" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In dem Windows-Datei-Explorer können WebDAV Freigaben eingebunden werden, dies
+kann man über die Kommandozeile machen:</p>
+<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt;y:</span>
+Das System kann das angegebene Laufwerk nicht finden.
+
+C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt;net use y: /delete 2&gt;nul</span>
+
+C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt;net use y: https://storage/WEBSHARE /user:test_user</span>
+Geben Sie das Kennwort für <span class="s2">&quot;test_user&quot;</span> ein, um eine Verbindung mit <span class="s2">&quot;storage&quot;</span> herzustellen:
+Der Befehl wurde erfolgreich ausgeführt.
+
+C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt;dir y:</span>
+ Volume in Laufwerk Y: hat keine Bezeichnung.
+
+ Verzeichnis von Y:\
+
+16.02.2016  15:04    <span class="p">&lt;</span>DIR<span class="p">&gt;</span>          .
+16.02.2016  15:04    <span class="p">&lt;</span>DIR<span class="p">&gt;</span>          ..
+12.02.2016  13:32               138 README
+16.02.2016  14:57                 0 Kalender_von_Test-Cal_Outlook_2013.ics
+...
+</pre></div>
+</div>
+<p>Alternativ kann man im Kontext-Menü des Datei-Explorers den Menüpunkt
+„Netzlaufwerk Verbinden“ auswählen.</p>
+<ol class="arabic simple">
+<li><p>„Netzlaufwerk Verbinden“ aufrufen:</p></li>
+</ol>
+<div class="figure align-center" id="id1">
+<span id="xref-figure-webdav-clients-webdav-explorer-connect-net-drive"></span><img alt="Figure (WebDAV_explorer_connect_net_drive.png)" src="../_images/WebDAV_explorer_connect_net_drive.png" />
+<p class="caption"><span class="caption-text">MS-Datei Explorer: Netzlaufwerk Verbinden</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>WebDav <a class="reference external" href="https://">https://</a> Adresse angeben und Laufwerksbuchstaben zuordnen:</p></li>
+</ol>
+<div class="figure align-center" id="id2">
+<span id="xref-figure-webdav-clients-webdav-explorer-mount-https"></span><img alt="Figure (WebDAV_explorer_mount_https.png)" src="../_images/WebDAV_explorer_mount_https.png" />
+<p class="caption"><span class="caption-text">Netzlaufwerk <a class="reference external" href="https:/">https:/</a>/&lt;hostname&gt;/WEBSHARE</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Anmeldung durchführen.</p></li>
+</ol>
+<div class="figure align-center" id="id3">
+<span id="xref-figure-webdav-clients-webdav-explorer-mount-https-login-dialog"></span><img alt="Figure (WebDAV_explorer_mount_https_login_dialog.png)" src="../_images/WebDAV_explorer_mount_https_login_dialog.png" />
+<p class="caption"><span class="caption-text">Benutzer-Name und -Kennwort eingeben</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Netzlaufwerk wurde eingehängt:</p></li>
+</ol>
+<div class="figure align-center" id="id4">
+<span id="xref-figure-webdav-clients-webdav-explorer-webshare-mount"></span><img alt="Figure (WebDAV_explorer_WEBSHARE_mount.png)" src="../_images/WebDAV_explorer_WEBSHARE_mount.png" />
+<p class="caption"><span class="caption-text">Der eingehängte <code class="docutils literal notranslate"><span class="pre">WEBSHARE</span></code> Ordner</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="outlook">
+<h2>Outlook<a class="headerlink" href="#outlook" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="veroffentlichung-eines-kalenders">
+<h3>Veröffentlichung eines Kalenders<a class="headerlink" href="#veroffentlichung-eines-kalenders" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Einrichten der Veröffentlichung eines Kalenders, der in Outlook gepflegt wird
+und regelmäßig auf einem WebDAV-Share veröffentlicht wird.</p>
+<ol class="arabic simple">
+<li><p>Outlook 2013 // Kalender // Start (Reiter)</p></li>
+<li><p><em>Online Veröffentlichen</em> (Freigeben)</p></li>
+<li><p><em>Auf WebDAV Server veröffentlichen</em></p></li>
+</ol>
+<div class="figure align-center" id="id5">
+<span id="xref-figure-webdav-clients-webdav-outlook-share-cal"></span><img alt="Figure (WebDAV_Outlook_share_cal.png)" src="../_images/WebDAV_Outlook_share_cal.png" />
+<p class="caption"><span class="caption-text">Kalender auf senutzerdefinierten Server veröffentlichen.</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic" start="4">
+<li><p><em>Ort</em> <code class="docutils literal notranslate"><span class="pre">https://storage/WEBSHARE/Calendar</span></code></p>
+<p>Für den Ort zum veröffentlichen von Kalendern sollte sinnvollerweise ein
+eigener Ordner eingerichtet werden. Im einfachsten Fall ist das der
+Unterordner <code class="docutils literal notranslate"><span class="pre">Calendar</span></code> in dem Ordner <code class="docutils literal notranslate"><span class="pre">/share/WEBSHARE</span></code> (s.o.).</p>
+</li>
+<li><p><em>Zeitspanne</em> : nach Möglichkeit <strong>Vollständiger Kalender</strong> anwählen.</p>
+<p>Merkwürdiger Weise kann man das aber nicht bei jedem Kalender auswählen
+(???keine Ahnung was der Quatsch soll, ist aber manchmal so in Windows???) ,
+dann wählt man hald „+/- 90 Tage“ … was besseres fällt mir da auch nicht
+ein.</p>
+</li>
+<li><p><em>Detail</em> : <strong>Alle Details</strong> veröffentlichen</p></li>
+</ol>
+<div class="figure align-center" id="id6">
+<span id="xref-figure-webdav-clients-webdav-outlook-share-cal-settings"></span><img alt="Figure (WebDAV_Outlook_share_cal_settings.png)" src="../_images/WebDAV_Outlook_share_cal_settings.png" />
+<p class="caption"><span class="caption-text">Automatische Uploads aktivieren.</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+</div>
+</div>
+<div class="section" id="abonieren-eines-offentlichen-kalenders">
+<h3>Abonieren eines öffentlichen Kalenders<a class="headerlink" href="#abonieren-eines-offentlichen-kalenders" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Einrichten eines Abonnements in Outlook:</p>
+<ol class="arabic simple">
+<li><p>Outlook 2013 // Kalender // Start (Reiter)</p></li>
+<li><p><em>Kalender Öffnen</em> (Kalender verwalten)</p></li>
+<li><p><em>Aus dem Internet</em></p></li>
+</ol>
+<div class="figure align-center" id="id7">
+<span id="xref-figure-webdav-clients-webdav-outlook-add-cal-from-internet"></span><img alt="Figure (WebDAV_Outlook_add_cal_from_internet.png)" src="../_images/WebDAV_Outlook_add_cal_from_internet.png" />
+<p class="caption"><span class="caption-text">Kalender aus dem Internet abonieren.</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><em>Speicherort</em>  <code class="docutils literal notranslate"><span class="pre">https://storage/WEBSHARE/Kalender_von_Test-Cal_Outlook_2013.ics</span></code></p></li>
+</ol>
+<div class="figure align-center" id="id8">
+<span id="xref-figure-webdav-clients-webdav-outlook-add-cal-from-internet-url"></span><img alt="Figure (WebDAV_Outlook_add_cal_from_internet_url.png)" src="../_images/WebDAV_Outlook_add_cal_from_internet_url.png" />
+<p class="caption"><span class="caption-text">URL eingeben</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><em>„Möchten Sie … hinzufügen und abonnieren?“</em>  JA</p></li>
+</ol>
+<blockquote>
+<div><p>Für das Login und Passwort verwendet man sein Systemlogin (z.B. „test_user“).</p>
+</div></blockquote>
+<div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Outlook ist immer etwas <em>bockig</em>, mal funktioniert was in der einen Version,
+mal was in der anderen Version oder auch mal gar nicht, manchmal hat es mit
+den Internetoptionen zu tun, manchmal muss man es „so“ machen, das andere mal
+„so“ usw. usw. … das alles nervt einfach nur, man kann da keine brauchbare
+Hilfestellung geben, man muss sich da jedesmal bekloppt klickern bis man
+einen Weg gefunden hat.</p>
+</div>
+<p>Folgend ein paar Erfahrungswerte.</p>
+<blockquote>
+<div><p>Outlook verwendet statt <em>https://</em> als Protokoll für den <em>Speicherort</em> auch
+<em>webcals://</em>. So soll man beispielsweise über <em>webcals://…</em> den Kalender
+abonnieren. Ich musste <em>https://</em> angeben, dann hat es meistens funktioniert.</p>
+<p>In den Einstellungen des veröffentlichten Kalenders kann man zwar den
+Dateinamen in der URL ändern, aber das führt nur dazu, dass Outlook bei mir
+rumspinnt und am Ende nichts veröffentlicht.</p>
+<p>Wenn man den Namen eines (lokalen) Kalenders ändert (unter
+Eigenschaften/Allgemein) dann verliert Outlook den Bezug zu der
+veröffentlichten Kalenderdatei. Die alte Datei bleibt im webDAV gespeichert
+und es taucht eine neue Datei gleichen Inhalts nur mit dem neuen Namen
+auf. Das nervt alles furchtbar, weil Outlook dann auch noch anfängt über die
+selbstgemachten Probleme zu stolpern. Am besten ist, man logt sich via ssh
+ein und löscht überflüssige Dateien aus dem Ordner
+<code class="docutils literal notranslate"><span class="pre">/share/WEBSHARE/Calendar/</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H rm /share/WEBSHARE/Calendar/xyz.ics
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apache_setup_refs.html" class="btn btn-neutral float-right" title="Verweise" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="probe_server.html" class="btn btn-neutral float-left" title="Test des WEB-Servers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

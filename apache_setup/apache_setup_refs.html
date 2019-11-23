@@ -1,0 +1,428 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Verweise &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Setup Mozilla Dienste" href="../mozcloud/index.html" />
+    <link rel="prev" title="WebDAV-Clients" href="webdav_clients.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Verweise</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apache">Apache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apache-konfiguration">Apache Konfiguration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autorisierung-authentifizierung">Autorisierung &amp; Authentifizierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardening-test">Hardening &amp; Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modsecurity-owasp">ModSecurity &amp; OWASP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security-layer-zertifikate">Security Layer &amp; Zertifikate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netzwerk-infrastruktur">Netzwerk Infrastruktur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#php">PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datenbanken">Datenbanken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dateisysteme">Dateisysteme</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>Verweise</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/apache_setup_refs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="verweise">
+<span id="xref-apache-setup-refs"></span><h1>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="apache">
+<h2>Apache<a class="headerlink" href="#apache" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Apache_Software_Foundation">Apache Software Foundation</a></p></li>
+<li><p><a class="reference external" href="http://svn.apache.org/viewvc/httpd/">Apache httpd SVN</a></p></li>
+<li><p>Qualitativ sehr hochwertige <a class="reference external" href="https://www.netnea.com/cms/apache-tutorials/">Apache Tutorials (netnea.com)</a></p></li>
+</ul>
+</div>
+<div class="section" id="apache-konfiguration">
+<h2>Apache Konfiguration<a class="headerlink" href="#apache-konfiguration" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/dcmorton/apache24-ubuntu/blob/master/debian/apache2.README.Debian">/usr/share/doc/apache2/README.Debian.gz</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_alias.html">Apache mod_alias</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_rewrite.html">Apache mod_rewrite</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_autoindex.html">Apache mod_autoindex</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/server-wide.html">Apache Server-Wide Configuration</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html">Apache Core Features</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/howto/access.html">Apache Access Control</a> &amp; <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_acces_compat.html">Apache mod_acces_compat</a></p></li>
+<li><p><a class="reference external" href="http://httpd.apache.org/docs/current/sections.html">Apache Kontexte (Sections)</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache AllowOverride Direktive</a></p></li>
+<li><p><a class="reference external" href="http://www.iana.org/assignments/message-headers/message-headers.xml#perm-headers">Permanent Message Header Field Names (iana)</a> &amp; <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_headers.html">Apache mod_headers</a></p></li>
+<li><p><a class="reference external" href="http://httpd.apache.org/docs/current/howto/ssi.html">Introduction to SSI</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_wsgi.html">Apache mod_wsgi</a></p></li>
+<li><p><a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/index.html">mod_wsgi RTD</a></p></li>
+<li><p><a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration.html">mod_wsgi RTD Konfiguration</a></p></li>
+<li><p><a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration-directives/WSGIApplicationGroup.html">WSGIApplicationGroup</a></p></li>
+<li><p><a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration-directives/WSGIPassAuthorization.html">WSGIPassAuthorization</a></p></li>
+<li><p><a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ApplicationIssues#Python_Simplified_GIL_State_API">Python Simplified GIL State API</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/de/mod/prefork.html">Apache-MPM prefork</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_dav.html">Apache mod_dav</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_dav_fs.html">Apache mod_dav_fs</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_deflate.html">Apache mod_deflate</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_filter.html">Apache mod_filter</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_mime.html">Apache mod_mime</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_sll.html">Apache mod_sll</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_status.html">Apache mod_status</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_unique.html">Apache mod_unique</a></p></li>
+</ul>
+</div>
+<div class="section" id="autorisierung-authentifizierung">
+<h2>Autorisierung &amp; Authentifizierung<a class="headerlink" href="#autorisierung-authentifizierung" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/howto/auth.html">Authentication and Authorization</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Autorisierung">Autorisierung (wiki)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p>Autorisierung auf Basis <em>Herkunft</em> einer Anfrage: <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_authz_host.html">Apache mod_authz_host</a></p></li>
+<li><p>Autorisierung auf Basis einer Authentifizierung <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_authz_core.html#require">Apache Require Direktive</a></p></li>
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_authn_core.html#authname">Apache AuthName Direktive</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Authentifizierung">Authentifizierung (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung">HTTP-Authentifizierung (wiki)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p>Authentifizierung über <a class="reference external" href="https://github.com/phokz/mod-auth-external/tree/master/mod_authnz_external">Apache mod_authnz_external</a> und <a class="reference external" href="https://github.com/phokz/pwauth/tree/master/pwauth">pwauth (github)</a>.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM (wiki)</a></p></li>
+<li><p><a class="reference external" href="http://arthurdejong.org/nss-pam-ldapd">NSS PAM LDAP</a></p></li>
+</ul>
+</div>
+<div class="section" id="hardening-test">
+<h2>Hardening &amp; Test<a class="headerlink" href="#hardening-test" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://httpd.apache.org/docs/current/misc/security_tips.html">Apache Security Tips</a></p></li>
+<li><p><a class="reference external" href="http://modsecurity.org/about.html">ModSecurity</a></p></li>
+<li><p><a class="reference external" href="https://doc.owncloud.org/server/8.0/admin_manual/configuration_server/harden_server.html#serve-security-related-headers-by-the-web-server">OwnCloud: Serve security related Headers by the web server</a></p></li>
+<li><p>HTTP Filter: <a class="reference external" href="https://de.wikipedia.org/wiki/Web_Application_Firewall">WAF (wiki)</a></p></li>
+<li><p>IP Firewall: <a class="reference external" href="http://www.netfilter.org">netfiltering.org</a></p></li>
+<li><p><a class="reference external" href="https://nmap.org/">Nmap</a> / „Network Mapper“ is a … utility for network discovery and security auditing.</p></li>
+</ul>
+</div>
+<div class="section" id="modsecurity-owasp">
+<h2>ModSecurity &amp; OWASP<a class="headerlink" href="#modsecurity-owasp" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.owasp.org/index.php/Main_Page">The Open Web Application Security Project (OWASP)</a></p></li>
+<li><p><a class="reference external" href="http://spiderlabs.github.io/owasp-modsecurity-crs/">OWASP ModSecurity Core Rule Set (CRS)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP ModSecurity CRS (github)</a></p></li>
+<li><p><a class="reference external" href="https://www.netnea.com/cms/2015/12/20/modsec-crs-2-2-x-vs-3-0-0-dev/">OWASP ModSecurity Core Rules: Comparing 2.2.x and 3.0.0-dev</a></p></li>
+<li><p><a class="reference external" href="https://www.netnea.com/cms/2016/01/17/most-frequent-false-positives-triggered-by-owasp-modsecurity-core-rules-2-2-x/">Most Frequent False Positives Triggered by OWASP ModSecurity Core Rules 2.2.X</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SpiderLabs/ModSecurity">ModSecurity (github)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#Configuration_Directives">ModSecurity Direktiven</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ubuntuusers.de/Apache/Sicherheit/">Apache Sicherheit (ubuntu)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sbilly/awesome-security#web">awesome-security.web</a></p></li>
+</ul>
+</div>
+<div class="section" id="security-layer-zertifikate">
+<h2>Security Layer &amp; Zertifikate<a class="headerlink" href="#security-layer-zertifikate" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.mozilla.org/CA:IncludedCAs">Mozilla Included CA Certificate List</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Zertifizierungsstelle">CA (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://blog.fefe.de/?ts=b25933c5">Fefe’s Blog / Sun Oct 3 2010</a></p></li>
+<li><p><a class="reference external" href="https://letsencrypt.org/">letsencrypt.org</a></p></li>
+<li><p><a class="reference external" href="https://wiki.debian.org/SSLkeys#Scope_of_the_blacklists">Scope of Blacklists</a></p></li>
+<li><p><a class="reference external" href="http://www.heise.de/security/artikel/Der-kleine-OpenSSL-Wegweiser-270076.html">Der kleine OpenSSL-Wegweiser (heise)</a></p></li>
+</ul>
+</div>
+<div class="section" id="netzwerk-infrastruktur">
+<h2>Netzwerk Infrastruktur<a class="headerlink" href="#netzwerk-infrastruktur" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/MAC-Adresse">Mac Adresse (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/MAC-Adresse#Herstellerkennungen">OUI Herstellerkennungen (wiki)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Internetdienstanbieter">ISP (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Network_address_translation">NAT (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Netzmaske">Netzmaske (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Private_IP-Adresse#Adressbereiche">private Adressbereiche (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc1918#section-3">RFC 1918: IPv4 Private Address Space</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Localhost">localhost (wiki)</a></p></li>
+<li><p><em>Classless Inter Domain Routing</em> <a class="reference external" href="https://de.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Broadcast">Broadcast (wiki)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6 Autokonfiguration (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4862">RFC 4862: IPv6 SLAAC</a></p></li>
+<li><p><a class="reference external" href="http://ben.akrin.com/?p=1347">MAC address to IPv6 link-local address online converter</a></p></li>
+<li><p><a class="reference external" href="http://www.heise.de/netze/IPv6-Adressen-1386242.html">Reservierte und spezielle Adressbereiche im Internet-Protokoll Version 6 (heise Verlag)</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4291">RFC 4291: IPv6 Addressing Architecture</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4291#section-2.5.3">RFC 4291: The Loopback Addresses</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc4291#section-2.5.6">RFC 4291: Link-Local IPv6 Unicast Addresses</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Link-Local-Adressen">Link Local Adressen (wiki)</a></p></li>
+<li><p>ULA: <a class="reference external" href="https://tools.ietf.org/html/rfc4193">RFC 4193: Unique Local IPv6 Unicast Addresses</a></p></li>
+<li><p>Format der ULA: <a class="reference external" href="https://tools.ietf.org/html/rfc4193#section-3">RFC 4193: Local IPv6 Unicast Addresses</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Unique_Local_Unicast">Unique Local Unicast (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Prefix_delegation">DHCPv6 prefix delegation</a></p></li>
+<li><p><a class="reference external" href="https://tools.ietf.org/html/rfc3484#section-5">RFC 3484: Source Address Selection</a></p></li>
+<li><p><a class="reference external" href="http://www.heise.de/netze/artikel/IPv6-Privacy-Extensions-einschalten-1204783.html">IPv6 Privacy Extensions (heise)</a></p></li>
+</ul>
+</div>
+<div class="section" id="php">
+<h2>PHP<a class="headerlink" href="#php" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://php.net/manual/en/security.php">PHP Sicherheitshinweise</a></p></li>
+<li><p><a class="reference external" href="http://php.net/manual/de/configuration.file.php">PHP Laufzeiteinstellungen</a></p></li>
+</ul>
+</div>
+<div class="section" id="datenbanken">
+<h2>Datenbanken<a class="headerlink" href="#datenbanken" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/sqlitebrowser/sqlitebrowser">DB Browser for SQLite</a></p></li>
+<li><p><a class="reference external" href="https://www.sqlite.org">SQLite</a></p></li>
+</ul>
+</div>
+<div class="section" id="dateisysteme">
+<h2>Dateisysteme<a class="headerlink" href="#dateisysteme" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://linuxgazette.net/109/chirico.html">Building A Linux Filesystem From An Ordinary File</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../mozcloud/index.html" class="btn btn-neutral float-right" title="Setup Mozilla Dienste" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="webdav_clients.html" class="btn btn-neutral float-left" title="WebDAV-Clients" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

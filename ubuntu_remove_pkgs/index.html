@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Zweifelhafte Ubuntu Pakete &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Anwendungspakete" href="../ubuntu_install_pkgs/index.html" />
+    <link rel="prev" title="Verweise" href="../desktop_system/desktop_system_refs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Zweifelhafte Ubuntu Pakete</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-typische-pakete">Ubuntu typische Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kommerzielle-pakete">Kommerzielle Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#online-konten-verwaltung-gnome">Online-Konten-Verwaltung (gnome)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Zweifelhafte Ubuntu Pakete</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ubuntu_remove_pkgs/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="zweifelhafte-ubuntu-pakete">
+<span id="xref-ubuntu-remove-pkgs"></span><h1>Zweifelhafte Ubuntu Pakete<a class="headerlink" href="#zweifelhafte-ubuntu-pakete" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Ubuntu Distribution bringt im Default so einiges an Paketen mit, die man
+u.U. nicht auf seinen Hosts installiert haben möchte. In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code>
+Ordner befindet sich ein Skript, das alle hier vorgestellten Schritte
+durchführt.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/ubuntu_remove_pkgs.sh
+</pre></div>
+</div>
+<div class="section" id="ubuntu-typische-pakete">
+<h2>Ubuntu typische Pakete<a class="headerlink" href="#ubuntu-typische-pakete" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es werden die folgenden Pakete entfernt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>unity-webapps-common
+$(dpkg-query -f &#39;${binary:Package} &#39; -W &#39;xul-ext*&#39;)
+ureadahead
+whoopsie
+flashplugin-installer
+evolution-data-server-online-accounts
+</pre></div>
+</div>
+<p><a class="reference external" href="http://packages.ubuntu.com/unity-webapps-common">unity-webapps-common</a> / xul-ext*:</p>
+<blockquote>
+<div><p>Dieser ganze Unity Kram ist nur buggy. Z.B. die xul-Erweiterungen für den
+Firefox, Die sind schon seit seit 2012 fehlerhaft und man hat auch nur bis
+2015 gebraucht um den Bug zu fixen (3 Jahre hat mich das genervt).</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/unity-firefox-extension/+bug/1069793">https://bugs.launchpad.net/ubuntu/+source/unity-firefox-extension/+bug/1069793</a></p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="http://packages.ubuntu.com/ureadahead">ureadahead</a>:</p>
+<blockquote>
+<div><p>Scheint seit 12.04 buggy und müllt das syslog voll. Wird seit 2010 nicht mehr
+gepflegt und aktuell 27 offene Bugs … wieso hat man so einen Schrott in
+seiner Distro?</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/ureadahead">https://bugs.launchpad.net/ubuntu/+source/ureadahead</a></p></li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="http://packages.ubuntu.com/whoopsie">whoopsie</a>:</p>
+<blockquote>
+<div><p>Der Crash Reporter von Ubuntu <a class="reference external" href="http://packages.ubuntu.com/whoopsie">whoopsie</a> kann deinstalliert werden. Den
+Ereignissdienst <a class="reference external" href="http://packages.ubuntu.com/zeitgeist">zeitgeist</a> kann man auch ohne den Crash Reporter
+betreiben.</p>
+</div></blockquote>
+<p><a class="reference external" href="http://packages.ubuntu.com/flashplugin-installer">flashplugin-installer</a>:</p>
+<blockquote>
+<div><p>Flash ist einfach nur eine Seuche.</p>
+</div></blockquote>
+<p><a class="reference external" href="http://packages.ubuntu.com/evolution-data-server-online-accounts">evolution-data-server-online-accounts</a></p>
+<blockquote>
+<div><p>Das sind die Bibliotheken und Tools um Google/Microsoft und Yahoo Mail-
+bzw. Kalenderkonten einzrichten. Wer <a class="reference external" href="https://wiki.gnome.org/Apps/Evolution">Evolution</a> nicht nutzt oder keine Onlinekonten
+verwalten muss, der kann dieses Paket deinstallieren.</p>
+</div></blockquote>
+</div>
+<div class="section" id="kommerzielle-pakete">
+<h2>Kommerzielle Pakete<a class="headerlink" href="#kommerzielle-pakete" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es werden die folgenden Pakete entfernt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">software</span><span class="o">-</span><span class="n">center</span> <span class="n">app</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="n">data</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://packages.ubuntu.com/software-center">software-center</a></p>
+<blockquote>
+<div><p>Der <a class="reference external" href="https://apps.ubuntu.com/">Ubuntu Software Center</a>. Auf einem Server
+oder einem Desktop in einem Unternehmensumfeld ist ein Shop-System eher
+störend. Wer nicht die Absicht hat Produkte über den Shop zu kaufen, kann
+sich auch auf dem Desktop mit der <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=synaptic">synaptic</a> GUI Programme aus den
+Reposetories installieren. Für die Freunde des Terminals gibt es
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=aptitude">aptitude</a>.</p>
+</div></blockquote>
+<p><a class="reference external" href="http://packages.ubuntu.com/app-install-data">app-install-data</a></p>
+<blockquote>
+<div><p>Wozu man das braucht ist mir nicht ganz klar. Ich hab den Eindruck, das Paket
+wird in einer <em>normalen</em> Ubunut Instanz nur vom <a class="reference external" href="http://packages.ubuntu.com/software-center">software-center</a>
+genutzt.  Mit 45MB ist die Installation auch nicht eben klein, weshalb ich
+besser drauf verzichte.</p>
+</div></blockquote>
+</div>
+<div class="section" id="online-konten-verwaltung-gnome">
+<h2>Online-Konten-Verwaltung (gnome)<a class="headerlink" href="#online-konten-verwaltung-gnome" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es werden die folgenden Pakete entfernt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$(dpkg-query -f &#39;${binary:Package} &#39; -W &#39;account-plugin*&#39;)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">account-plugin*</span></code></p>
+<blockquote>
+<div><p>Die Pakete mit dem Prefix <code class="docutils literal notranslate"><span class="pre">account-plugin*</span></code> werden benötigt, wenn man in
+seinem Gnome die Online-Konten von Facebook, Google und Co. verwalten will.</p>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ubuntu_install_pkgs/index.html" class="btn btn-neutral float-right" title="Anwendungspakete" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../desktop_system/desktop_system_refs.html" class="btn btn-neutral float-left" title="Verweise" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

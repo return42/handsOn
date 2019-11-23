@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Heimdall &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" href="SM-T580.html" />
+    <link rel="prev" title="Team Win Recovery Project" href="TWRP.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Android</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#themen">Themen</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nogoogle.html">Ein Leben ohne Google Konto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev_options.html">Entwickler-Optionen &amp; Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recovery.html">Recovery &amp; Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TWRP.html">Team Win Recovery Project</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Heimdall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#samsung-gerate">Samsung Geräte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prozessoren-socs">Prozessoren / SoCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Android</a> &raquo;</li>
+        
+      <li>Heimdall</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/android/heimdall.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="heimdall-intro">
+<span id="id1"></span><h1>Heimdall<a class="headerlink" href="#heimdall-intro" title="Link zu dieser Überschrift">¶</a></h1>
+<p><a class="reference external" href="http://glassechidna.com.au/heimdall/">Heimdall</a> ist eine Open-Source cross-Platform Suite zum flashen der Firmware
+(aka ROMs) auf Samsung <em>mobile</em> Geräten. Zum Flashen werden PC (auf dem Heimdall
+installiert wird) und <em>mobile</em> Gerät via USB verbunden.</p>
+<p>Die Android Geräte verwenden zum Flashen via USB i.d.R. das Fastboot
+Protokoll. Samsung verwendet in seinen Geräten jedoch ein proprietäres von
+Samsung entwickeltes Protokoll, das auch als <em>Odin Protokoll</em> bekannt ist.
+<a class="reference external" href="https://samsungodin.com/">Odin</a> selbst ist ein Programm zum Flashen der Samsung Geräte. <a class="reference external" href="https://samsungodin.com/">Odin</a> gibt es
+allerdings nur für Windows, es soll (laut Heimdall) wohl sehr langsam und
+unzuverlässig laufen, außerdem ist es kein offizielles Programm von Samsung und
+wird nicht von Samsung <em>suported</em>.  Heimdall spricht das gleiche Protokoll hat
+aber den Vorteil, dass es für macOS, Win und Linux verfügbar ist.</p>
+<p>GitHub: <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall">https://github.com/Benjamin-Dobell/Heimdall</a></p>
+<p>Man kann die fertig gebaute Heimdall Software auch runterladen, jedoch ist der
+zur Verfügung stehende Build nicht immer aktuell, deswegen macht es Sinn sich
+die Software selber zu übersetzen. Zumindest auf Linux ist das recht einfach
+möglich (s.a <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux">Appendix B - Installing Heimdall Suite from Source</a>). Als erstes
+muss man sich die Pakete installieren, die für den Build erforderlich sind:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H apt-get install build-essential cmake zlib1g-dev <span class="se">\</span>
+             qt5-default libusb-1.0-0-dev libgl1-mesa-glx <span class="se">\</span>
+             libgl1-mesa-dev git
+</pre></div>
+</div>
+<p>Dann kann man sich das Reposetory klonen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/Downloads
+$ git clone https://github.com/Benjamin-Dobell/Heimdall.git
+Klone nach <span class="s1">&#39;Heimdall&#39;</span> ...
+...
+$ <span class="nb">cd</span> Heimdall/
+</pre></div>
+</div>
+<p>Danach kann der Build konfiguriert werden:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build
+$ <span class="nb">cd</span> build
+$ cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
+-- The C compiler identification is GNU <span class="m">5</span>.4.0
+-- The CXX compiler identification is GNU <span class="m">5</span>.4.0
+-- Check <span class="k">for</span> working C compiler: /usr/bin/cc
+-- Check <span class="k">for</span> working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - <span class="k">done</span>
+-- Detecting C compile features
+-- Detecting C compile features - <span class="k">done</span>
+-- Check <span class="k">for</span> working CXX compiler: /usr/bin/c++
+-- Check <span class="k">for</span> working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - <span class="k">done</span>
+-- Detecting CXX compile features
+-- Detecting CXX compile features - <span class="k">done</span>
+-- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so
+-- Checking <span class="k">if</span> large <span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span> file support is available...
+-- Checking <span class="k">if</span> large <span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span> file support is available - yes
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so <span class="o">(</span>found version <span class="s2">&quot;1.2.8&quot;</span><span class="o">)</span>
+-- Configuring <span class="k">done</span>
+-- Generating <span class="k">done</span>
+-- Build files have been written to: /share/Heimdall/build
+</pre></div>
+</div>
+<p>Die Ausgaben des <code class="docutils literal notranslate"><span class="pre">cmake</span></code> solten in etwa wie oben aussehen, wenn da Fehler
+gemeldet werden, hat man vermutlich eine Bibliothek (eines der oben zuvor
+installierten Pakete) noch nicht installiert.</p>
+<p>Mit ‚make‘ wird dann der Build erstellt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+<p>Sofern das ‚make‘ ohne Fehler durchläuft sollte man nun einen <code class="docutils literal notranslate"><span class="pre">./bin</span></code> Ordner
+haben in dem die ausführbaren Binaries liegen:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls bin
+heimdall  heimdall-frontend
+
+$ ./bin/heimdall version
+v1.4.2
+</pre></div>
+</div>
+<p>Um mit Heimdall auf das Android Gerät zugreifen zu können, muss man das Gerät im
+Download Mode (s.a. <a class="reference internal" href="dev_options.html#samsung-download-mode"><span class="std std-ref">Samsung Download- &amp; Recovery-Mode</span></a>) booten und dann noch das USB
+Kabel anschließen.</p>
+<p>Abfrage des  Partition Information Table (kurz PIT):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./bin/heimdall print-pit --no-reboot &gt; my_samsung_device_PIT.txt
+</pre></div>
+</div>
+<p>Die Option <code class="docutils literal notranslate"><span class="pre">--no-reboot</span></code> verhindert, dass das Gerät neu gebootet wird. Will
+man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.</p>
+<p>Ausgabebeispiel siehe <a class="reference internal" href="SM-T580.html#sm-t580-pit"><span class="std std-ref">SM-T580 PIT</span></a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SM-T580.html" class="btn btn-neutral float-right" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="TWRP.html" class="btn btn-neutral float-left" title="Team Win Recovery Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

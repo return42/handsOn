@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WSGI Anwendungen &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="PHP Anwendungen" href="site_php-apps.html" />
+    <link rel="prev" title="Apache WebDAV" href="site_webshare.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WSGI Anwendungen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#de-installation">De-Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anmerkungen">Anmerkungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#py-apps-conf">py-apps.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wsgi-test-anwendung">WSGI-Test Anwendung</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>WSGI Anwendungen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/site_py-apps.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="wsgi-anwendungen">
+<span id="xref-site-pyapps"></span><h1>WSGI Anwendungen<a class="headerlink" href="#wsgi-anwendungen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Es wird eine Konfiguration eingerichtet, über welche es möglich ist WSGI
+(Python) Anwendungen zu betreiben. Eine kleines <em>HelloWorld</em> Beispiel wird
+ebenfalls mit installiert.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh installWSGI
+</pre></div>
+</div>
+<p>Mit dem Kommando <code class="docutils literal notranslate"><span class="pre">installWSGI</span></code> werden die folgenden Schritte ausgeführt.</p>
+<ul class="simple">
+<li><p>Es wird <a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi">Apache mod_wsgi</a> installiert (<a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/index.html">mod_wsgi RTD</a>)</p></li>
+<li><p>Es wird der Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> eingerichtet, in dem Python WSGI
+Anwendungen abgelegt werden können.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apt-get install libapache2-mod-wsgi-py3 python-imaging virtualenv
+$ <span class="nb">cd</span> /etc/apache2/mods-available/
+$ sudo -H mv wsgi.conf     wsgi.conf-disabled
+$ sudo -H mkdir /var/www/pyApps
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Es wird eine virtuelle Python Umgebung (<code class="docutils literal notranslate"><span class="pre">pyenv</span></code>) in dem Ordner
+<code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> eingerichtet.</p></li>
+<li><p>In die virtuelle Python Umgebung werden (via pip) verschiedene Python Module
+vorinstalliert (sollte nicht ohne weiteres ins Internet gestellt werden).</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /var/www/pyApps
+$ sudo -H virtualenv <span class="s2">&quot;pyenv&quot;</span> --prompt<span class="o">=</span><span class="s2">&quot;pyenv&quot;</span>
+$ <span class="nb">cd</span> /var/www/pyApps/pyenv
+$ <span class="nb">source</span> bin/activate
+$ pip completion --bash <span class="p">|</span> sudo -H tee /etc/bash_completion.d/pip &gt; /dev/null
+$ pip install docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint <span class="se">\</span>
+              pyratemp pyudev psutil sqlalchemy babel simplejson
+
+$ sudo -H a2ensite py-apps
+$ sudo -H service apache2 reload
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Es wird eine Test-Seite ( <a class="reference external" href="https://localhost/hello.py">https://localhost/hello.py</a> ) eingrichtet.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ap2ensite hello_py
+$ sudo -H service apache2 reload
+</pre></div>
+</div>
+</div>
+<div class="section" id="de-installation">
+<h2>De-Installation<a class="headerlink" href="#de-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deinstallWSGI
+</pre></div>
+</div>
+</div>
+<div class="section" id="anmerkungen">
+<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das WSGI-Modul war mal ein Projekt auf google-code, ein paar Sachen kann man
+immernoch dort nachlesen z.B.</p>
+<ul class="simple">
+<li><p>Simplified GIL State: <a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ApplicationIssues#Python_Simplified_GIL_State_API">https://code.google.com/p/modwsgi/wiki/ApplicationIssues#Python_Simplified_GIL_State_API</a></p></li>
+</ul>
+<p>Inzwischen wird das WSGI-Modul auf github gehostet und weiterentwickelt.  In dem
+Github Projekt wird auch vieles aufgeräumt:</p>
+<ul class="simple">
+<li><p>Eine aktuelle Doku gibt es bei <em>Read The Docs</em> <a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/index.html">mod_wsgi RTD</a></p></li>
+<li><p>Das Reposetory bei github ist <a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi">Apache mod_wsgi</a></p></li>
+<li><p>Hardening Aspekte ????</p></li>
+</ul>
+</div>
+<div class="section" id="py-apps-conf">
+<span id="xref-site-py-apps-conf"></span><h2>py-apps.conf<a class="headerlink" href="#py-apps-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die folgende <code class="docutils literal notranslate"><span class="pre">py-apps.conf</span></code> Site, richtet eine Umgebung ein, in der
+WSGI-Anwendungen betrieben werden können. Die Python-Prozesse laufen in einer
+virtuellen-Python Umgebung, die über die Direktive <code class="docutils literal notranslate"><span class="pre">WSGIPythonHome</span></code> gesetzt
+wird. Es wird mit der Direktive <code class="docutils literal notranslate"><span class="pre">WSGIDaemonProcess</span></code> die Prozessgruppe
+<code class="docutils literal notranslate"><span class="pre">pyApps</span></code> eingerichtet. Die <code class="docutils literal notranslate"><span class="pre">WSGI....</span></code> Direktieven sind in der <a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration.html">mod_wsgi RTD
+Konfiguration</a> beschrieben.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
+
+    <span class="c"># Die Prozesse laufen in einer VirtualEnv Umgebung</span>
+    <span class="nb">WSGIPythonHome</span>  <span class="sx">/var/www/pyApps/pyenv</span>
+
+    <span class="c"># Die Prozessgruppe pyApps für diese Python-Anwendungen</span>
+    <span class="nb">WSGIDaemonProcess</span> pyApps \
+        <span class="k">user</span>=www-data <span class="k">group</span>=nogroup \
+        processes=2 threads=5 maximum-requests=5
+...
+</pre></div>
+</div>
+<p>In der Konfiguration wird eine Prozessgruppe <code class="docutils literal notranslate"><span class="pre">pyApps</span></code> eingerichtet, deren
+Prozesse unter dem Apache-Account <code class="docutils literal notranslate"><span class="pre">www-data</span></code> (und <code class="docutils literal notranslate"><span class="pre">nogroup</span></code>) laufen. Diese
+Prozessgruppe <code class="docutils literal notranslate"><span class="pre">pyApps</span></code> wird nun in der Resource <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> genutzt.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
+    <span class="nt">&lt;Directory</span> <span class="s">/var/www/pyApps</span><span class="nt">&gt;</span>
+        <span class="nb">WSGIProcessGroup</span> pyApps
+        <span class="nb">WSGIApplicationGroup</span> %{GLOBAL}
+
+    <span class="nt">&lt;/Directory&gt;</span>
+
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Zu tun</p>
+<p>Da ich nicht davon ausgehen kann, dass alle Python Module die eine WSGI
+Anwendungen nutzt auch Thread-safty sind setze ich meine WSGI Anwendungen
+immer in die <a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration-directives/WSGIApplicationGroup.html">WSGIApplicationGroup</a> <code class="docutils literal notranslate"><span class="pre">%{GLOBAL}</span></code>. Nähers zu dem Thema gibt
+der Beitrag <a class="reference external" href="https://code.google.com/p/modwsgi/wiki/ApplicationIssues#Python_Simplified_GIL_State_API">Python Simplified GIL State API</a>.  Ich bin allerdings auch
+immer etwas verunsichert, weil mir nicht ganz klar ist, wie die Anordnung der
+Prozesse und Threads bei <code class="docutils literal notranslate"><span class="pre">%{GLOBAL}</span></code> nun genau ist (hängt vermutlich auch
+von anderen Faktoren ab?) und ob es Sinn macht bei <code class="docutils literal notranslate"><span class="pre">%{GLOBAL}</span></code> mehr als
+einen Thread zu definieren.</p>
+</div>
+</div>
+<div class="section" id="wsgi-test-anwendung">
+<h2>WSGI-Test Anwendung<a class="headerlink" href="#wsgi-test-anwendung" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Test-Site sollte nur in einer Entwickler-Umgebung installiert werden. Sie
+besteht aus nur einer Datei <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps/helloWorld/index.wsgi</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">traceback</span><span class="o">,</span> <span class="nn">pprint</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">pwd</span>
+
+<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+
+    <span class="n">status</span> <span class="o">=</span> <span class="s1">&#39;200 OK&#39;</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="s1">&#39;WSGI: It works!  :-)&#39;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">process id:        &#39;</span>   <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">parent process:    &#39;</span>   <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getppid</span><span class="p">())</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">user/group:        &#39;</span>   <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getuid</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">getgid</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">geteuid</span><span class="p">(),</span> <span class="n">os</span><span class="o">.</span><span class="n">getegid</span><span class="p">())</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">pwd user:          &#39;</span>   <span class="o">+</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">pwd</span><span class="o">.</span><span class="n">getpwuid</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getuid</span><span class="p">()))</span>
+     <span class="o">...</span><span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">WSGI environment:</span><span class="se">\n</span><span class="s1">&#39;</span>   <span class="o">+</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Query String:</span><span class="se">\n</span><span class="s1">&#39;</span>       <span class="o">+</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">urlparse</span><span class="o">.</span><span class="n">parse_qs</span><span class="p">(</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;QUERY_STRING&#39;</span><span class="p">]),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+     <span class="o">...</span><span class="n">o</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Python version:    &#39;</span>   <span class="o">+</span> <span class="n">pprint</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+     <span class="o">...</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">o</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
+
+    <span class="n">response_headers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span> <span class="s1">&#39;Content-type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">)</span>
+        <span class="p">,</span> <span class="p">(</span> <span class="s1">&#39;Content-Length&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">o</span><span class="p">)))</span>
+    <span class="p">]</span>
+
+    <span class="n">start_response</span><span class="p">(</span><span class="n">status</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">o</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Die Installation erfolgte in den <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> Ordner. Für den bereits
+oben in der <code class="docutils literal notranslate"><span class="pre">py-apps.conf</span></code> die virtuelle Python Umgebung <code class="docutils literal notranslate"><span class="pre">WSGIPythonHome</span>
+<span class="pre">/var/www/pyApps/pyenv</span></code> und die <code class="docutils literal notranslate"><span class="pre">WSGIDaemonProcess</span> <span class="pre">pyApps</span></code> definiert
+wurden. Die <code class="docutils literal notranslate"><span class="pre">hello_py</span></code> Site definiert nur noch den Alias, damit die Site unter
+der URL <a class="reference external" href="https://localhost/hello.py">https://localhost/hello.py</a> angeboten wird.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
+    <span class="nb">WSGIScriptAlias</span> <span class="sx">/hello.py</span> <span class="sx">/var/www/pyApps/helloWorld/index.wsgi</span>
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="site_php-apps.html" class="btn btn-neutral float-right" title="PHP Anwendungen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="site_webshare.html" class="btn btn-neutral float-left" title="Apache WebDAV" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

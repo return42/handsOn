@@ -1,0 +1,91 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. _xref_mozcloud_refs:
+
+================================================================================
+                                    Verweise
+================================================================================
+
+Mozilla
+=======
+
+.. _`Mozilla Services Documentation`: https://docs.services.mozilla.com/
+.. _`Mozilla Cloud Wiki`: https://wiki.mozilla.org/CloudServices
+.. _`Mozilla (public) Account Server`: https://accounts.firefox.com/signup
+
+* `Mozilla Services Documentation`_
+* `Mozilla Cloud Wiki`_
+* `Mozilla (public) Account Server`_
+
+OAuth
+=====
+
+.. _`Flexible und sichere Internetdienste mit OAuth 2.0 (heise)`: http://www.heise.de/developer/artikel/Flexible-und-sichere-Internetdienste-mit-OAuth-2-0-2068404.html
+.. _`Autorisierungsdienste mit OAuth (heise)`: http://www.heise.de/developer/artikel/Autorisierungsdienste-mit-OAuth-845382.html
+.. _`FxA Inter-Service Authentication and Delegation`: https://github.com/mozilla/fxa-oauth-server/wiki/oauth-design
+.. _`Identity/Firefox Accounts`: https://wiki.mozilla.org/Identity/FirefoxAccounts#About_Firefox_Accounts
+.. _`OAuth (wiki)`: https://en.wikipedia.org/wiki/OAuth
+.. _`OAuth Provider (wiki)`: https://en.wikipedia.org/wiki/List_of_OAuth_providers
+.. _`HTTP-Headerfelder (wiki)`: https://de.wikipedia.org/wiki/Liste_der_HTTP-Headerfelder
+
+* `Autorisierungsdienste mit OAuth (heise)`_
+* `FxA Inter-Service Authentication and Delegation`_
+* `Identity/Firefox Accounts`_
+* `OAuth (wiki)`_
+* `OAuth Provider (wiki)`_
+* Authorization Header: `HTTP-Headerfelder (wiki)`_
+
+Sync 1.5 Sever
+==============
+
+.. _`Run your own Firefox Sync-1.5 Server (github)`: https://github.com/mozilla-services/syncserver
+.. _`HowTo Run your own Sync-1.5 Server`: https://docs.services.mozilla.com/howtos/run-sync-1.5.html
+
+* `Run your own Firefox Sync-1.5 Server (github)`_
+* `HowTo Run your own Sync-1.5 Server`_
+
+.. _`SyncServer unter Archlinux`: https://wiki.archlinux.org/index.php/Mozilla_Firefox_Sync_Server
+.. _`SyncServer auf dem Pi`: http://jankarres.de/2014/07/raspberry-pi-firefox-sync-server-installieren
+.. _`Eigener Firefox Syncserver 1.5 auf Ubuntu 14.04 LTS (nicht ganz aktuell aber dennoch gut gemacht)`: https://www.pixelcontainer.net/firefox-syncserver-1-5-installieren/
+
+* `SyncServer unter Archlinux`_
+* `SyncServer auf dem Pi`_
+* `Eigener Firefox Syncserver 1.5 auf Ubuntu 14.04 LTS (nicht ganz aktuell aber dennoch gut gemacht)`_
+
+
+Accounts & Token
+================
+
+.. _`fxa-auth-server (github)`: https://github.com/mozilla/fxa-auth-server
+.. _`fxa-content-server (github)`: https://github.com/mozilla/fxa-content-server
+
+* Firefox Accounts authentication server `fxa-auth-server (github)`_
+* Firefox Accounts Content Server `fxa-content-server (github)`_
+
+.. _`Run your own Account Server`: https://docs.services.mozilla.com/howtos/run-fxa.html
+.. _`Token Server 1.2`: http://docs.services.mozilla.com/token/index.html
+.. _`Token Server 1.2 (github)`: https://github.com/mozilla-services/tokenserver/
+.. _`Sync 1.5 Pairing`: https://wiki.mozilla.org/Services/Sync1_5/FxASyncPairing
+
+* `Run your own Account Server`_
+* `Token Server 1.2`_
+* `Token Server 1.2 (github)`_
+* `Sync 1.5 Pairing`_
+
+
+Verschiedenes
+=============
+
+.. _`mozservices various utilities (github)`: https://github.com/mozilla-services/mozservices
+.. _`Experimental Run-Your-Own Sync1.5 Server (github)`: https://github.com/mozilla-services/server-full2
+.. _`Storage Engine FxSync 1.5 (github)`: https://github.com/mozilla-services/server-syncstorage/
+
+* FIXME : `mozservices various utilities (github)`_
+* FIXME : `Storage Engine FxSync 1.5 (github)`_
+
+.. hint::
+
+   Das Projekt `Experimental Run-Your-Own Sync1.5 Server (github)`_ war wohl mal
+   ein *Experiment*. Um mal *nachzuschauen* ist es evtl. noch
+   geeignet. Ansonsten aber durch `Run your own Firefox Sync-1.5 Server
+   (github)`_ ersetzt.

@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pi-hole &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Exkursionen und Erfahrungswerte" href="../excursion/index.html" />
+    <link rel="prev" title="Glances: an eye on your system" href="../glances.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pi-hole</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pi-hole-und-fritz-box">pi-hole und Fritz-Box</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dns-uberprufen">DNS überprüfen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#upstream-dns-server">Upstream DNS Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#host-namen-aus-subnetzen">Host-Namen aus Subnetzen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blocklists">Blocklists</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>pi-hole</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pihole/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>pi-hole<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die <a class="reference external" href="https://pi-hole.net/">pi-hole</a> ist ein lokaler <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS (wiki)</a> Server, der Domain-Namen mit Werbung
+und Trackern blockiert (nicht auflöst).  Kuketz hat zu den Hintergründen und zum
+Einrichten einer solchen pi-hole einen umfassenden Artikel verfasst, siehe:
+<a class="reference external" href="https://www.kuketz-blog.de/pi-hole-schwarzes-loch-fuer-werbung-raspberry-pi-teil1/">Kuketz pi-hole Artikel</a></p>
+<div class="section" id="pi-hole-und-fritz-box">
+<h2>pi-hole und Fritz-Box<a class="headerlink" href="#pi-hole-und-fritz-box" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Hat man die pi-hole eingerichtet, steht der lokale DNS Dienst bereit und muss
+nun noch den Clients resp. dem Router bekannt gemacht werden.  Die meisten
+Router sind so eingerichtet, dass die Clients ihr Netzwerk-Setup via <a class="reference external" href="https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP
+(wiki)</a> vom Router beziehen.  In dem <a class="reference external" href="https://www.kuketz-blog.de/pi-hole-schwarzes-loch-fuer-werbung-raspberry-pi-teil1/">Kuketz pi-hole Artikel</a> werden im
+Kapitel <em>„Einrichtung als DNS-Server“</em> drei alternative Varianten vorgestellt.</p>
+<p>Bei <strong>Variante 2 – per DHCP</strong> wird die pi-hole (also die IP des lokalen DNS) im
+Rahmen des DHCP an die Clients weiter gereicht.  In der Fritz-Box unter:</p>
+<ul class="simple">
+<li><p><span class="menuselection">Heimnetz -&gt; Netzwerk -&gt; Netzwerkeinstellungen -&gt;
+IPv4-Adressen</span></p></li>
+</ul>
+<p>muss der DHCP-Server der Fritz-Box aktiviert sein und unter <strong>Lokaler
+DNS-Server</strong> setzt man die IP der pi-hole.  Hier im Beispiel ist das die
+<code class="docutils literal notranslate"><span class="pre">192.168.1.118</span></code>:</p>
+<div class="figure align-default">
+<img alt="Figure (pihole-FB-IPv4-Adressen-DHCP-lokaler-DNS.png)" class="rst-figure" src="../_images/pihole-FB-IPv4-Adressen-DHCP-lokaler-DNS.png" />
+</div>
+<p>Nach bestätigen mit <span class="guilabel">OK</span> werden alle zukünftigen (DHCP) Verbindungen
+als DNS die pi-hole verwenden.  Will man das sofort mal testen, muss man die
+Netzwerkverbindung auf dem Client-Rechner kurz ab- und wieder anschalten (oder
+neu booten).  Danach sollte im <em>NetworkManager</em> die IP des DNS angezeigt werden
+(s.a.: <a class="reference internal" href="#check-which-dns"><span class="std std-ref">DNS überprüfen</span></a>).</p>
+<p>Damit die FritzBox selbst auch die pi-hole als <em>bevorzugten DNSv4-Server</em> nutzt,
+kann noch die folgende Einstellung vorgenommen werden.</p>
+<ul class="simple">
+<li><p><span class="menuselection">Internet -&gt; Zugangsdaten -&gt; DNS-Server</span></p></li>
+</ul>
+<div class="figure align-default">
+<img alt="Figure (pihole-FB-DNS-Server.png)" class="rst-figure" src="../_images/pihole-FB-DNS-Server.png" />
+</div>
+<p>Die IP der pi-hole hier im Beispiel ist <code class="docutils literal notranslate"><span class="pre">192.168.1.118</span></code>.  Falls die mal ausfällt
+wurde noch der <a class="reference external" href="https://www.ccc.de/de/censorship/dns-howto">Chaos Computer Club (DNS)</a> als Alternative eingetragen
+(s.a. <a class="reference internal" href="#upstream-dns-server">Upstream DNS Server</a>)</p>
+<div class="section" id="dns-uberprufen">
+<span id="check-which-dns"></span><h3>DNS überprüfen<a class="headerlink" href="#dns-uberprufen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Auf der Linux Kommandozeile kann man dazu
+z.B. <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=nmcli">nmcli</a> verwenden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nmcli
+...
+DNS configuration:
+        servers: 192.168.1.118
+        domains: fritz.box
+        interface: enp3s0
+
+$ nmcli device show
+GENERAL.DEVICE:                         enp3s0
+...
+IP4.ADDRESS[1]:                         192.168.1.127/24
+IP4.GATEWAY:                            192.168.1.1
+...
+IP4.DNS[1]:                             192.168.1.118
+IP4.DOMAIN[1]:                          fritz.box
+</pre></div>
+</div>
+<p>Auf Windows kann man das Kommando <code class="docutils literal notranslate"><span class="pre">nslookup</span></code> aufrufen.  Bereits beim Start
+zeigt es den DNS an, den es zur Namensauflösung nutzt.</p>
+<div class="figure align-default">
+<img alt="Figure (pihole-win-nslookup.png)" class="rst-figure" src="../_images/pihole-win-nslookup.png" />
+</div>
+</div>
+</div>
+<div class="section" id="upstream-dns-server">
+<h2>Upstream DNS Server<a class="headerlink" href="#upstream-dns-server" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der pi-hole kann man einstellen welche DNS Server die pi-hole verwenden soll.
+In dem <a class="reference external" href="https://www.kuketz-blog.de/dns-unzensierte-und-freie-dns-server-ohne-protokollierung/">Kuketz DNS Artikel</a> werden <em>Unzensierte und freie DNS-Server ohne
+Protokollierung</em> vorgestellt.  Hier im Beispiel verwende ich DNS Server die
+<a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System_Security_Extensions">DNSSEC (wiki)</a> unterstützen.</p>
+<ul>
+<li><p><a class="reference external" href="https://dns.watch/">DNS.WATCH</a> IPv4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">84.200</span><span class="o">.</span><span class="mf">69.80</span>
+<span class="mf">84.200</span><span class="o">.</span><span class="mf">70.40</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="https://www.ccc.de/de/censorship/dns-howto">Chaos Computer Club (DNS)</a> IPv4:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">194.150</span><span class="o">.</span><span class="mf">168.168</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Die Option <span class="guilabel">Use DNSSEC</span> sollte nur verwendet werden, wenn alle
+<em>upstream</em> DNS-Server auch DNSSEC unterstützen!  Anderen Falles kommt es bei
+der Namensauflösung zu Problemen.  I.d.R. spürt man das sehr deutlich, da die
+pi-hole dann gar keine Namen mehr auflösen kann und von daher alle
+<em>blockiert</em>.</p>
+</div>
+<p>Um die lokalen Namen ebenfalls auflösen zu können empfiehlt es sich noch
+<span class="guilabel">Use Conditional Routing</span> zu aktivieren und dort die IP der Fritz-Box
+einzutragen.  Der Name der Fritz-Box im lokalem Netz ist <code class="docutils literal notranslate"><span class="pre">fritz.box</span></code> (sofern
+man das in der FB nicht geändert hat), die IP hier im Beispiel ist
+<code class="docutils literal notranslate"><span class="pre">192.168.1.1</span></code>.</p>
+<div class="figure align-default">
+<img alt="Figure (pihole-settings-DNS.png)" class="rst-figure" src="../_images/pihole-settings-DNS.png" />
+</div>
+</div>
+<div class="section" id="host-namen-aus-subnetzen">
+<h2>Host-Namen aus Subnetzen<a class="headerlink" href="#host-namen-aus-subnetzen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In einer IP Infrastruktur mit Subnetzen (die z.B. über VPN angebunden sind) sind
+die Host-Namen aus <em>anderen</em> Subnetzen nicht ohne weiteres auflösbar.</p>
+<p>Der DNS der pi-hole nutzt die <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> Datei auf der pi-hole ebenfalls zur
+Namensauflösung.  Eine einfache Lösung um Host-Namen im eigenen Subnetz bekannt
+zu machen besteht deshalb darin, unbekannte Host-Namen in die <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> der
+pi-hole direkt einzutragen.  Dazu meldet man sich an der pi-hole via ssh an
+(hier im Beispiel <code class="docutils literal notranslate"><span class="pre">192.168.1.118</span></code>) und editiert die hosts-Datei:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ssh pi@192.168.1.118
+pi@192.168.1.118&#39;s password: ....
+
+$ sudo -H nano /etc/hosts
+</pre></div>
+</div>
+<p>Meist steht am Anfang der <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> so was wie:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>        <span class="n">localhost</span>
+<span class="p">::</span><span class="mi">1</span>              <span class="n">localhost</span> <span class="n">ip6</span><span class="o">-</span><span class="n">localhost</span> <span class="n">ip6</span><span class="o">-</span><span class="n">loopback</span>
+<span class="n">ff02</span><span class="p">::</span><span class="mi">1</span>          <span class="n">ip6</span><span class="o">-</span><span class="n">allnodes</span>
+<span class="n">ff02</span><span class="p">::</span><span class="mi">2</span>          <span class="n">ip6</span><span class="o">-</span><span class="n">allrouters</span>
+</pre></div>
+</div>
+<p>Hat man beispielsweise VPN Knoten könnte man diese ebenfalls hier eintragen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">2.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
+</pre></div>
+</div>
+<p>Die Hosts mit den Anwendungen an entfernten Standorten trägt man ebenfalls ein:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.34</span>     <span class="n">hamburg</span>  <span class="n">app</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.120</span>    <span class="n">hannover</span> <span class="n">app</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">2.124</span>    <span class="n">bremen</span>   <span class="n">app</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="blocklists">
+<h2>Blocklists<a class="headerlink" href="#blocklists" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Blocklists kann man im Admin Inetrface der pi-hole ändern:</p>
+<ul class="simple">
+<li><p><span class="menuselection">Settings ‣ Blocklists</span></p></li>
+</ul>
+<p>Hier noch ein paar Vorschläge für Blocklists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://sysctl.org/cameleon/hosts
+http://vxvault.net/URL_List.php
+https://easylist-downloads.adblockplus.org/easyprivacy+easylist.txt
+https://easylist.to/easylistgermany/easylistgermany.txt
+https://fanboy.co.nz/r/fanboy-complete.txt
+https://filters.adtidy.org/extension/chromium/filters/11.txt
+https://filters.adtidy.org/extension/chromium/filters/14.txt
+https://filters.adtidy.org/extension/chromium/filters/3.txt
+https://filters.adtidy.org/extension/chromium/filters/6.txt
+https://filters.adtidy.org/windows/filters/11.txt?id=11
+https://filters.adtidy.org/windows/filters/15.txt
+https://github.com/crazy-max/WindowsSpyBlocker/blob/master/data/hosts/spy.txt
+https://hosts-file.net/ad_servers.txt
+https://mirror1.malwaredomains.com/files/justdomains
+https://phishing.army/download/phishing_army_blocklist_extended.txt
+https://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt
+https://ransomwaretracker.abuse.ch/downloads/RW_URLBL.txt
+https://raw.githubusercontent.com/EnergizedProtection/block/master/ultimate/formats/hosts
+https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+https://raw.githubusercontent.com/reek/anti-adblock-killer/master/anti-adblock-killer-filters.txt
+https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt
+https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
+https://www.squidblacklist.org/downloads/dg-malicious.acl
+https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Beim ersten Eintragen der/aller oben genannten Blocklists kann das Update
+nach der Bestätigung über <span class="guilabel">Save and Update</span> etwas länger dauern.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../excursion/index.html" class="btn btn-neutral float-right" title="Exkursionen und Erfahrungswerte" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../glances.html" class="btn btn-neutral float-left" title="Glances: an eye on your system" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,482 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CalDAV und CardDAV Clients &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Drucken mit CUPS &amp; IPP" href="../print/index.html" />
+    <link rel="prev" title="Radicale Server" href="radicale_server.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CalDAV &amp; CardDAV</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="radicale_server.html">Radicale Server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CalDAV und CardDAV Clients</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#android-clients">Android Clients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apple-ios">Apple &amp; iOS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#apple-kontakte">Apple Kontakte</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#apple-kalender">Apple Kalender</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#thunderbird">Thunderbird</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#thunderbird-mit-lightning">Thunderbird mit Lightning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thunderbird-mit-cardbook">Thunderbird mit CardBook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">CalDAV &amp; CardDAV</a> &raquo;</li>
+        
+      <li>CalDAV und CardDAV Clients</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/radicale/dav_client.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="caldav-und-carddav-clients">
+<span id="xref-dav-client"></span><h1>CalDAV und CardDAV Clients<a class="headerlink" href="#caldav-und-carddav-clients" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Radicale unterstützt eine ganze Reihe von DAV-Client Anwendungen.  Man sollte
+sich in jedem Fall die Doku der Clients anschauen:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://radicale.org/clients">https://radicale.org/clients</a></p></li>
+</ul>
+<p>Manche können nur CardDAV, manche nur CalDAV und manche Clients unterstützen
+sowohl CardDAV als auch CalDAV. Meist sind die Clients etwas <em>hakelig</em> so können
+einige z.B. mit Kalendern arbeiten aber keine neuen Kalender anlegen. Das
+Gleiche gilt für Adressbücher, manche Clients können keine Adressbücher neu
+anlegen, mit bestehenden aber gut arbeiten.“</p>
+<div class="section" id="android-clients">
+<h2>Android Clients<a class="headerlink" href="#android-clients" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Auf den Androids empfiehlt es sich DAVdroid zu installieren:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://davdroid.bitfire.at">https://davdroid.bitfire.at</a></p></li>
+</ul>
+<p>Des weiteren empfiehlt es sich die App OpenTasks zu installieren</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/dmfs/opentasks">https://github.com/dmfs/opentasks</a></p></li>
+</ul>
+<p>DAVdroid als auch OpenTask gibt es bei google im Play-store oder aber auch bei
+F-Droid (<a class="reference external" href="https://f-droid.org">https://f-droid.org</a>). Je nachdem wie viel <em>Sicherheit</em> man auf seinem
+Smartphone eingerichtet hat, kann es sein, dass man DAVdroid noch explizit die
+Berechtigung geben muss auf den Kalender und das Adressbuch auf dem Android
+zuzugreifen. Bei mir musste ich unter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Einstellungen</span> <span class="o">--&gt;</span> <span class="n">Apps</span>
+</pre></div>
+</div>
+<p>die beiden Apps raus suchen und dort bei jeder App die Berechtigungen manuell
+aktivieren. Nach der Installation von DAVdroid dieses einmal starten. Im
+Begrüßungsbildschirm einmal auf das <code class="docutils literal notranslate"><span class="pre">+</span></code> Symbol unten rechts klicken um einen
+Account einzurichten. Dann auswählen:</p>
+<blockquote>
+<div><p><em>Mit URL und Benutzername anmelden</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Basis</span><span class="o">-</span><span class="n">URL</span><span class="p">:</span>     <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span>
+<span class="n">Benutzername</span><span class="p">:</span>  <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Passwort</span><span class="p">:</span>      <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Falls der Server <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;</span></code> über ein selbst-signiertes Zertifikat verfügt,
+muss man dieses mittels Prüfsumme im nächsten Dialog bestätigen.  Danach prüft
+DAVdroid was alles auf dem Server zur Verfügung steht, am Ende quittiert man
+nochmal mit <span class="guilabel">Account anlegen</span>.  Klickt man in das so eingerichtete
+Konto, so bekommt man alle Kalender und Adressbücher auf dem Server angezeigt.
+Soll eines oder mehrere dieser Objekte synchronisiert werden, so muss es noch
+aktivieren (einmal anklicken).</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Bei mir kam mit der ersten Synchronisierung eine Info Box, in der ich nochmal
+bestätigen musste, dass DAVdroid Zugriff auf Kalender, Adressbuch und OpenTask
+bekommen soll.  Erst nachdem das alles quittiert war wurde die
+Synchronisierung erfolgreich durchgeführt, bei der ich abermals bestätigen
+musste, dass DAVdroid die erforderlichen Berechtigungen bekommt.  Es kann
+sein, dass das mit den Berechtigungen bei mir so ausartet, weil mein Android
+Setup ziemlich paranoid ist.  Noch ein Hinweis: die erste Synchronisierung
+kann schon ein paar Minuten dauern, je nachdem wie viele Kalender- und
+Adressbuch- Einträge so synchronisiert werden müssen.</p>
+</div>
+<p>Nach Abschluss der Synchronisierung sollte man nun die synchronisierten Adressen
+in der <em>Adressbuch-App</em> des Androids finden und die synchronisierten Kalender in
+der <em>Kalender-App</em>.  In manchen <em>Kalender-Apps</em> kann resp. muss noch eingestellt
+werden welche Kalender synchronisiert werden, der Menüpunkt in der
+<em>Kalender-App</em> könnte in etwa lauten <span class="menuselection">Synchronisierte Kalender
+verwalten</span>.</p>
+</div>
+<div class="section" id="apple-ios">
+<h2>Apple &amp; iOS<a class="headerlink" href="#apple-ios" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="apple-kontakte">
+<h3>Apple Kontakte<a class="headerlink" href="#apple-kontakte" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im Adressbuch (<em>Kontakte</em>) des MacOS unter <em>Accounts</em> mit dem <code class="docutils literal notranslate"><span class="pre">+</span></code> Symbol einen
+neuen Account anlegen. Kontakte Version 7.1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">CardDAV</span>
+<span class="n">Benutzername</span><span class="p">:</span>    <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Kennwort</span><span class="p">:</span>        <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+<span class="n">Serveradresse</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In der neueren Version 10.0 der <em>Kontakte</em> (bei MacOS Sierra dabei) ist noch ein
+<em>vorgeschalteter</em> Dialog, auf dem man <em>Anderer Kontakte-Account</em> auswählen
+muss, anschließend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                 <span class="n">CardDAV</span>
+<span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">Erweitert</span>
+<span class="n">Benutzername</span><span class="p">:</span>    <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Kennwort</span><span class="p">:</span>        <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+<span class="n">Serveradresse</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">hostname</span><span class="o">&gt;</span>
+<span class="n">Serverpfad</span><span class="p">:</span>      <span class="o">/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;/</span>
+<span class="n">Port</span><span class="p">:</span>            <span class="mi">443</span>
+<span class="n">SSL</span> <span class="n">verwenden</span><span class="p">:</span>   <span class="n">Ja</span>
+</pre></div>
+</div>
+<p>Irgendwie scheint dieser Dialog in Version 10.0 aber <em>kaputt-gebastelt</em> zu
+sein. Ich musste anschließend den <strong>Serverpfad</strong> <code class="docutils literal notranslate"><span class="pre">/radicale/&lt;user&gt;/</span></code> explizit
+nochmal unter <em>Servereinstellungen</em> eingeben (der fehlte dort, obwohl er oben
+mit angegeben wurde).</p>
+<p>Beim Einrichten der Accounts (sowohl für <em>Kalender</em> als auch für <em>Kontakte</em>)
+sollte/darf nicht das Protokoll <code class="docutils literal notranslate"><span class="pre">https://</span></code> mit angegeben werden, der
+<em>principal</em> also der Benutzername des Logins sollte/muss aber am Ende angegeben
+werden und mit einem Slash <code class="docutils literal notranslate"><span class="pre">/</span></code> enden.</p>
+<p>Nach dem Anlegen ist der Account bereits aktiviert. Jedoch musste ich bei der
+Version 10 mit <code class="docutils literal notranslate"><span class="pre">Cmd-Q</span></code> die <em>Kontakte</em> Anwendung erst mal beenden und neu
+starten, bevor synchronisiert wurde. Nach der Synchronisierung sollten nun die
+Adressen und Gruppen in den Kontakten zu sehen sein.</p>
+</div>
+<div class="section" id="apple-kalender">
+<h3>Apple Kalender<a class="headerlink" href="#apple-kalender" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Im <em>Kalender</em> des MacOS unter <em>Accounts</em> mit dem <code class="docutils literal notranslate"><span class="pre">+</span></code> Symbol einen neuen
+Account anlegen. Kalender Version 6.0:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">CardDAV</span>
+<span class="n">Benutzername</span><span class="p">:</span>    <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Kennwort</span><span class="p">:</span>        <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+<span class="n">Serveradresse</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In der neueren Version 9.0 des Kalenders (bei MacOS Sierra dabei) ist noch ein
+<em>vorgeschalteter</em> Dialog, auf dem man <em>Anderer CalDAV-Account</em> auswählen
+muss, anschließend:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">Erweitert</span>
+<span class="n">Benutzername</span><span class="p">:</span>    <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Kennwort</span><span class="p">:</span>        <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+<span class="n">Serveradresse</span><span class="p">:</span>   <span class="o">&lt;</span><span class="n">hostname</span><span class="o">&gt;</span>
+<span class="n">Serverpfad</span><span class="p">:</span>      <span class="o">/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;/</span>
+<span class="n">Port</span><span class="p">:</span>            <span class="mi">443</span>
+<span class="n">SSL</span> <span class="n">verwenden</span><span class="p">:</span>   <span class="n">Ja</span>
+</pre></div>
+</div>
+<p>Nach dem Anlegen ist der Account bereits aktiviert und wird synchronisiert, was
+aber u.U. einige Minuten in Anspruch nehmen kann.</p>
+</div>
+</div>
+<div class="section" id="thunderbird">
+<h2>Thunderbird<a class="headerlink" href="#thunderbird" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="thunderbird-mit-lightning">
+<h3>Thunderbird mit Lightning<a class="headerlink" href="#thunderbird-mit-lightning" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Als Kalender eignet sich <a class="reference external" href="https://www.thunderbird.net/en-US/calendar/">Lightning</a> im Thunderbird.  Eine Zeit lang gab es dafür
+kein passendes AddOn für Thunderbird, inzwischen steht es aber wieder zur
+Verfügung und man installiert es am besten einfach im Thunderbird über:</p>
+<ul class="simple">
+<li><p><span class="menuselection">Extras ‣ Add-ons ‣</span> und dort ‚lightning‘ suchen</p></li>
+</ul>
+<p>Wenn man schon dabei ist, kann man sich auch gleich das <em>LightningButton</em> AddOn
+noch installieren.  Das Plugin stellt Buttons für den Kalender im eMail Tab zur
+Verfügung, da gibt es auch einen sehr praktischen Button, der aus einer eMail
+einen Termin generieren kann.  Nachdem das <a class="reference external" href="https://www.thunderbird.net/en-US/calendar/">Lightning</a> im Thunderbird installiert
+wurde, muss dieser neu gestartet werden.  Danach kann man in die Ansicht zum
+Kalender wechseln, dort legt man einen neuen Kalender an:</p>
+<ul class="simple">
+<li><p>Neuen Kalender erstellen: <span class="menuselection">Im Netzwerk</span></p></li>
+<li><p>Format: <span class="menuselection">CalDAV</span></p></li>
+<li><p>Location: <span class="menuselection">https://&lt;hostname&gt;/radicale/&lt;user&gt;/&lt;calendar-id&gt;</span></p></li>
+</ul>
+<p>Die <code class="docutils literal notranslate"><span class="pre">&lt;calendar-id&gt;</span></code> ist der komplette Name des Ordners, z.B.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;/</span><span class="n">d50d7ce1</span><span class="o">-</span><span class="n">e006</span><span class="o">-</span><span class="mi">5</span><span class="n">b64</span><span class="o">-</span><span class="mi">8</span><span class="n">f18</span><span class="o">-</span><span class="mi">7</span><span class="n">ed4b2a64c7b</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Damit ist der Kalender dann auch schon eingerichtet.  Noch ein paar Hinweise zum
+<a class="reference external" href="https://www.thunderbird.net/en-US/calendar/">Lightning</a> AddOn für den Thunderbird.</p>
+<ul class="simple">
+<li><p>Auf den debian/ubuntu Systemen gibt es das Paket <code class="docutils literal notranslate"><span class="pre">xul-ext-lightning</span></code>, in der
+LTS 18.04 funktioniert das aber schon nicht mehr.  Ich würde darauf besser
+ganz verzichten, denn wie man aktuell in der LTS 18.04 sieht, sind solche
+Pakete nie so aktuell wie das Add-On, das man direkt über Thunderbird beziehen
+kann.</p></li>
+<li><p>Aktuelle Versionen und Builds kann man hier recherchieren:</p>
+<ul>
+<li><p>Versionen: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions">https://developer.mozilla.org/en-US/docs/Mozilla/Calendar/Calendar_Versions</a></p></li>
+<li><p>Builds: <a class="reference external" href="https://ftp.mozilla.org/pub/calendar/lightning/candidates/">https://ftp.mozilla.org/pub/calendar/lightning/candidates/</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="thunderbird-mit-cardbook">
+<h3>Thunderbird mit CardBook<a class="headerlink" href="#thunderbird-mit-cardbook" title="Link zu dieser Überschrift">¶</a></h3>
+<p><a class="reference external" href="https://gitlab.com/CardBook/CardBook">CardBook</a> ist ein AddOn für den
+Thunderbird, welches das Standard-Adressbuch des Thunderbird vollständig
+ersetzen kann.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Der Standard-Kalender in dem Thunderbird ist schrottig, auch das SOGo Plugin
+kann man <a class="reference external" href="https://github.com/Kozea/Radicale/issues/861">nicht</a> empfehlen.</p>
+</div>
+<ul class="simple">
+<li><p>CardBook: <a class="reference external" href="https://addons.mozilla.org/en-US/thunderbird/addon/cardbook/?src=api">https://addons.mozilla.org/en-US/thunderbird/addon/cardbook/?src=api</a></p></li>
+<li><p>CardBook Forum: <a class="reference external" href="https://cardbook.6660.eu/">https://cardbook.6660.eu/</a></p></li>
+<li><p>CrdBook GitLab: <a class="reference external" href="https://gitlab.com/CardBook/CardBook">https://gitlab.com/CardBook/CardBook</a></p></li>
+</ul>
+<p>Zur Installation: CardBook im AddOn Manager (Extensions) des Thunderbirds suchen
+und installieren.  Danach über „Tools –&gt; CardBook“ die Adressbuch-Verwaltung
+öffnen.  Links oben gibt es ein Menü auf das man klicken muss, damit es sich
+öffnet, darin „Adressbuch –&gt; Adressbuch hinzufügen“ auswählen.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Im</span> <span class="n">Netzwerk</span>
+
+<span class="n">Art</span><span class="p">:</span>           <span class="n">CardDAV</span>
+<span class="n">URL</span><span class="p">:</span>           <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">hostname</span><span class="o">&gt;/</span><span class="n">radicale</span><span class="o">/&lt;</span><span class="n">user</span><span class="o">&gt;/&lt;</span><span class="n">addressbook</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+<span class="n">Benutzer</span> <span class="n">Name</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span>
+<span class="n">Passwot</span><span class="p">:</span>       <span class="o">&lt;</span><span class="n">passwd</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Mit dem „Überprüfen“ Button kann man testen ob ein Connect hergestellt werden
+kann. Ich musste danach nochmal das soeben eingerichteten Adressbuch auswählen
+und synchronisieren.</p>
+<p>Anders als evtl. bei anderen CardDAV Clients – die mehrere Adressbücher unter
+einem Account verwalten können – muss bei CardBook für jedes Adressbuch auf dem
+Server ein, wie oben beschriebener Account eingerichtet werden. Bei dem immer
+die vollständige URL des Ordners mit dem Adressbuch angegeben werden muss.  In
+meinem Setup ist das beispielsweise mein <code class="docutils literal notranslate"><span class="pre">markus-adressbuch</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">storage</span><span class="o">/</span><span class="n">radicale</span><span class="o">/</span><span class="n">markus</span><span class="o">/</span><span class="n">markus</span><span class="o">-</span><span class="n">adressbuch</span>
+</pre></div>
+</div>
+<p>Ein wünschenswertes Feature wäre eine Sortierung der Adressbücher nicht nach der
+Eigenschaft <code class="docutils literal notranslate"><span class="pre">CATEGORIES</span></code> sondern nach den vCards für Listen. Dies ist die
+übliche Methode zur Gruppierung in MacOS und – soweit ich weiß – auch bei den
+Google Adressbüchern.</p>
+<p>Bei DAVDroid kann man einstellen ob „Gruppen vCards“ oder aber „CATEGORIES“
+sind. Im Grunde liest CardBook die beiden Felder <code class="docutils literal notranslate"><span class="pre">X-ADDRESSBOOKSERVER-KIND</span></code>
+und <code class="docutils literal notranslate"><span class="pre">X-ADDRESSBOOKSERVER-MEMBER</span></code> der vCard-Listen schon ganz richtig ein und
+in der Listenansicht sind auch die Mitglieder einer Gruppe aufgeführt.</p>
+<p>Die Möglichkeit zur Gruppierung in der Addressbar (auf der linken Seite des
+CardBook) entlang dieser Gruppen ist leider nicht möglich. Der Entwickler
+<em>Philippe</em> ist dem Feature nicht abgeneigt, hat derzeit aber wohl genung anderes
+zu tun, so dass mit einer solchen Gruppierung in naher Zukunft wohl eher nicht
+zu rechnen ist.</p>
+<blockquote>
+<div><p>Wer aber keine Gruppierung in seinem Adressbuch hat, der wird damit auch keine
+Probleme haben ;)</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../print/index.html" class="btn btn-neutral float-right" title="Drucken mit CUPS &amp; IPP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="radicale_server.html" class="btn btn-neutral float-left" title="Radicale Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

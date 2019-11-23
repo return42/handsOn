@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Samsung Google Galaxy Nexus I9250 &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Samsung Exynos 7 Octa 7870 (Joshua)" href="exynos_7_octa_7870.html" />
+    <link rel="prev" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" href="SM-T580.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#themen">Themen</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#samsung-gerate">Samsung Geräte</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SM-T580.html">Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Samsung Google Galaxy Nexus I9250</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">TWRP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-rom">Custom ROM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#artikelinformationen">Artikelinformationen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prozessoren-socs">Prozessoren / SoCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Android</a> &raquo;</li>
+        
+      <li>Samsung Google Galaxy Nexus I9250</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/android/GT-I9250-maguro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="samsung-google-galaxy-nexus-i9250">
+<h1>Samsung Google Galaxy Nexus I9250<a class="headerlink" href="#samsung-google-galaxy-nexus-i9250" title="Link zu dieser Überschrift">¶</a></h1>
+<ul class="simple">
+<li><p>Support Seiten bei Samsung: <a class="reference external" href="http://www.samsung.com/de/support/model/GT-I9250CWAVD2">GT-I9250</a></p></li>
+<li><p>Wikipedia <a class="reference external" href="https://de.wikipedia.org/wiki/Galaxy_Nexus">Galaxy Nexus</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Galaxy_Nexus">Galaxy Nexus</a> GT-I9250, Codename „Maguro“ inoffiziell auch Nexus
+Prime. Wurde am 19. Oktober 2011 von Google und Samsung der Öffentlichkeit
+vorgestellt. Aka:</p>
+<ul>
+<li><p>Samsung Google Galaxy Nexus I9250</p></li>
+<li><p>Samsung Google Nexus 3</p></li>
+<li><p>Samsung Galaxy X</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="id1">
+<h2>TWRP<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h2>
+<ul>
+<li><p>TWRP for Samsung Galaxy Nexus (GSM):
+<a class="reference external" href="https://twrp.me/devices/samsunggalaxynexusgsm.html">https://twrp.me/devices/samsunggalaxynexusgsm.html</a></p>
+<p>Dort auf den Seiten findet man die verschiedensten Alternativen zur
+Installation. Beim mir war bereits ein TWRP drauf, das ich nur noch
+aktualisiereen musste. Anderen Falls kann das Aufspielen des ersten
+Custom-Recovery auch etwas aufwendiger sein.</p>
+</li>
+<li><p>TWRP maguro Image Download:: <a class="reference external" href="https://eu.dl.twrp.me/maguro/">https://eu.dl.twrp.me/maguro/</a></p></li>
+<li><p>Device Tree maguro: <a class="reference external" href="https://github.com/TeamWin/android_device_samsung_maguro">https://github.com/TeamWin/android_device_samsung_maguro</a></p></li>
+<li><p>Support Thread auf xda-developers:
+<a class="reference external" href="https://forum.xda-developers.com/galaxy-nexus/development/recovery-twrp-2-7-1-0-touch-recovery-t1592689">https://forum.xda-developers.com/galaxy-nexus/development/recovery-twrp-2-7-1-0-touch-recovery-t1592689</a></p></li>
+</ul>
+</div>
+<div class="section" id="custom-rom">
+<h2>Custom ROM<a class="headerlink" href="#custom-rom" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Als Custom-ROM nutze ich:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://download.lineageos.org/maguro">LineageOS maguro</a> plus <a class="reference external" href="https://download.lineageos.org/extras">LineageOS
+su add-on</a></p></li>
+<li><p><a class="reference external" href="https://wiki.lineageos.org/devices/maguro/install#installing-lineageos-from-recovery">Installation im Recovery-Mode</a></p></li>
+</ul>
+<div class="section" id="installationsschritte">
+<h3>Installationsschritte<a class="headerlink" href="#installationsschritte" title="Link zu dieser Überschrift">¶</a></h3>
+<ol class="arabic simple" start="0">
+<li><p>Daten &amp; Konfiguration sichern!!!</p></li>
+<li><p><a class="reference external" href="https://download.lineageos.org/maguro">LineageOS maguro</a> via USB auf das Gerät kopieren.</p></li>
+<li><p>TWRP Custom-Recovery booten</p></li>
+<li><p>In TWRP „Löschen“ und dann „erweitertes Löschen auswählen“ und die drei
+Partitionen: <em>Cache</em>, <em>System</em> und <em>Data</em> löschen.</p></li>
+<li><p>Im TWRP Hauptmenü „Installieren“ und ZIP Datei des <a class="reference external" href="https://download.lineageos.org/maguro">LineageOS maguro</a>
+auswählen. Als zweites ZIP dann noch <a class="reference external" href="https://download.lineageos.org/extras">LineageOS su add-on</a> hinzufügen.</p></li>
+<li><p>Neues System booten</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="artikelinformationen">
+<h2>Artikelinformationen<a class="headerlink" href="#artikelinformationen" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="section" id="anzeige">
+<h3>Anzeige<a class="headerlink" href="#anzeige" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>kapazitiver Touchscreen</p></li>
+<li><p>Super-AMOLED, 11,81 cm (4,65″) Diagonale</p></li>
+<li><p>1280 × 720 Pixel, 315 ppi</p></li>
+</ul>
+</div>
+<div class="section" id="digitalkamera">
+<h3>Digitalkamera<a class="headerlink" href="#digitalkamera" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>5,0 Megapixel (2592 × 1944)</p></li>
+<li><p>Autofokus</p></li>
+<li><p>LED-Blitzlicht</p></li>
+<li><p>Videoauflösung 1920 × 1080 Pixel (1080p) &#64; 24 fps</p></li>
+</ul>
+</div>
+<div class="section" id="frontkamera">
+<h3>Frontkamera<a class="headerlink" href="#frontkamera" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>1,3 Megapixel</p></li>
+<li><p>Videoauflösung 1280 × 720 Pixel (720p) &#64; 30 fps</p></li>
+</ul>
+</div>
+<div class="section" id="aktuelles-betriebssystem">
+<h3>Aktuelles Betriebssystem<a class="headerlink" href="#aktuelles-betriebssystem" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Android 4.3 Jelly Bean</p></li>
+</ul>
+</div>
+<div class="section" id="prozessor-ram">
+<h3>Prozessor &amp; RAM<a class="headerlink" href="#prozessor-ram" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Hauptprozessor: ARM Cortex-A9, Texas Instruments OMAP 4460 CPU für max. 2×1,5
+GHz, auf 2×1,2 GHz getaktet</p></li>
+<li><p>Grafik-Prozessor: Imagination Technologies PowerVR SGX 540 GPU mit 304 MHz</p></li>
+<li><p>RAM 1 GB</p></li>
+<li><p>Interner Speicher 16 GB Flash-Speicher (32 GB nur in den Vereinigten Staaten erhältlich)</p></li>
+<li><p>Speicherkarte: nein</p></li>
+</ul>
+</div>
+<div class="section" id="sensoren">
+<h3>Sensoren<a class="headerlink" href="#sensoren" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>digitaler Kompass</p></li>
+<li><p>Beschleunigungssensor</p></li>
+<li><p>Näherungssensor</p></li>
+<li><p>Umgebungslichtsensor</p></li>
+<li><p>Dreiachsen-Gyroskop</p></li>
+<li><p>Barometer</p></li>
+</ul>
+</div>
+<div class="section" id="sonstiges">
+<h3>Sonstiges<a class="headerlink" href="#sonstiges" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>SAR-Wert 0,303 W/kg</p></li>
+</ul>
+</div>
+<div class="section" id="konnektivitat">
+<h3>Konnektivität<a class="headerlink" href="#konnektivitat" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Mobilfunknetze: Fünfband-UMTS (850, 900, 1700, 1900, 2100 MHz) mit HSDPA und
+HSUPA Quadband-GSM</p></li>
+<li><p>Weitere Funkverbindungen: Dual-Band-WLAN IEEE 802.11 a/b/g/n, Wi-Fi Direct,
+Bluetooth 4.0 (erst ab Android 4.3 nutzbar, sonst Bluetooth 3.0), Near Field
+Communication[3]</p></li>
+<li><p>A-GPS-Empfänger</p></li>
+</ul>
+</div>
+<div class="section" id="anschlusse">
+<h3>Anschlüsse<a class="headerlink" href="#anschlusse" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Micro-USB 2.0, 3,5-mm-Klinke</p></li>
+</ul>
+</div>
+<div class="section" id="akkumulator">
+<h3>Akkumulator<a class="headerlink" href="#akkumulator" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Typ Lithium-Ionen, 6,48 Wh</p></li>
+<li><p>Wechselbar: Ja</p></li>
+</ul>
+</div>
+<div class="section" id="abmessungen-und-gewicht">
+<h3>Abmessungen und Gewicht<a class="headerlink" href="#abmessungen-und-gewicht" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>Maße (H×B×T): 135,5 mm × 67,94 mm × 8,94 mm</p></li>
+<li><p>Gewicht: 135 g</p></li>
+</ul>
+</div>
+<div class="section" id="besonderheiten">
+<h3>Besonderheiten<a class="headerlink" href="#besonderheiten" title="Link zu dieser Überschrift">¶</a></h3>
+<ul class="simple">
+<li><p>NFC</p></li>
+<li><p>LTE-Versionen verfügbar (nicht in Deutschland)</p></li>
+<li><p>leicht gebogene Form</p></li>
+<li><p>Docking</p></li>
+<li><p>MHL</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exynos_7_octa_7870.html" class="btn btn-neutral float-right" title="Samsung Exynos 7 Octa 7870 (Joshua)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SM-T580.html" class="btn btn-neutral float-left" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

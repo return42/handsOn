@@ -1,0 +1,690 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Serverweite Konfigurationen &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Static Content (static-content.conf)" href="site_static-content.html" />
+    <link rel="prev" title="Apache Pakete" href="dbp_apache_pkgs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Serverweite Konfigurationen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#etc-apache2-envvars">/etc/apache2/envvars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-apache2-ports-conf">/etc/apache2/ports.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-apache2-apache2-conf">/etc/apache2/apache2.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-apache2-conf-available-security-conf">/etc/apache2/conf-available/security.conf</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deny-from-root">Deny from root</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#request-timeout">Request &amp; Timeout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-headers">HTTP-Headers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ssl-und-rewrite-http-nach-https">SSL und Rewrite (<code class="docutils literal notranslate"><span class="pre">http://</span></code> nach <code class="docutils literal notranslate"><span class="pre">https://</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etc-apache2-conf-available-authnz-external-conf">/etc/apache2/conf-available/authnz_external.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gentleman-start-your-engines">Gentleman, start your engines!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>Serverweite Konfigurationen</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/serverwide_cfg.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="serverweite-konfigurationen">
+<span id="xref-serverwide-cfg"></span><h1>Serverweite Konfigurationen<a class="headerlink" href="#serverweite-konfigurationen" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Das Basis Konfiguration umfasst:</p>
+<ul class="simple">
+<li><p>Konfiguration der Prozessumgebung der Apache-Serverprozesse.</p></li>
+<li><p>Konfiguration der <em>geöffneten</em> Ports.</p></li>
+<li><p>Serverweit einheitliche Einstellungen.</p></li>
+<li><p>Basiseinstellungen zur <em>Sicherheit</em> und ein einfaches Zugriffskonzept</p></li>
+<li><p>Rewrite um <code class="docutils literal notranslate"><span class="pre">http</span></code> Requests auf <code class="docutils literal notranslate"><span class="pre">https</span></code> (SSL) umzuleiten, so dass nur
+SSL-Anfragen möglich sind</p></li>
+</ul>
+<p>Abschluss bildet ein einfacher Test der vorgenommenen Settings.</p>
+<div class="section" id="etc-apache2-envvars">
+<span id="xref-etc-apache2-envvars"></span><h2>/etc/apache2/envvars<a class="headerlink" href="#etc-apache2-envvars" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Diese Datei ist ein Shell Skript in dem die Umgebung für <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=apache2ctl">apache2ctl</a>
+eingestellt wird, dazu gehören auch die Benutzer- und Gruppenzugehörigkeit des
+Apache WEB-Server Prozesses. Bei der Installation des <a class="reference external" href="http://packages.ubuntu.com/apache2">apache2</a> Pakets wurde
+bereits ein Benutzer und eine Gruppe hierfür eingerichtet (<code class="docutils literal notranslate"><span class="pre">www-data</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">APACHE_RUN_USER</span><span class="o">=</span>www-data
+<span class="nb">export</span> <span class="nv">APACHE_RUN_GROUP</span><span class="o">=</span>www-data
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-apache2-ports-conf">
+<h2>/etc/apache2/ports.conf<a class="headerlink" href="#etc-apache2-ports-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Konfigration werden die Ports 80 und 443 konfiguriert auf denen der
+Apache Server <em>lauschen</em> soll.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Listen</span> <span class="m">80</span>
+<span class="nt">&lt;IfModule</span> <span class="s">ssl_module</span><span class="nt">&gt;</span>
+    <span class="nb">Listen</span> <span class="m">443</span>
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-apache2-apache2-conf">
+<span id="xref-apache2-conf"></span><h2>/etc/apache2/apache2.conf<a class="headerlink" href="#etc-apache2-apache2-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Konfiguration wird die <a class="reference external" href="https://httpd.apache.org/docs/current/server-wide.html">Apache Server-Wide Configuration</a> vorgenommen, dazu
+gehören beispielsweise <code class="docutils literal notranslate"><span class="pre">ServerName</span></code>, <code class="docutils literal notranslate"><span class="pre">ServerAdmin</span></code>, <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> (siehe
+<a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html">Apache Core Features</a>).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">ServerName</span> server.example.com
+<span class="nb">ServerAdmin</span> noreply@mailinator.com
+<span class="nb">DocumentRoot</span> <span class="sx">/var/www/html</span>
+</pre></div>
+</div>
+<p>Der Benutzer und die Gruppe des Serverprozess werden aus den Umgebungsvariablen
+bezogen, die zuvor in der <a class="reference internal" href="#etc-apache2-envvars">/etc/apache2/envvars</a> eingerichtet wurden.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># These need to be set in /etc/apache2/envvars</span>
+<span class="nb">User</span> ${APACHE_RUN_USER}
+<span class="nb">Group</span> ${APACHE_RUN_GROUP}
+</pre></div>
+</div>
+<p>Die <code class="docutils literal notranslate"><span class="pre">apache2.conf</span></code> Datei ist die <em>Hauptdatei</em> der Apache-Konfiguration, sie
+lädt alle weiteren Konfigurationen nach (siehe auch <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html">Apache Core Features</a>):</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">IncludeOptional</span> mods-enabled/*.load
+<span class="nb">IncludeOptional</span> mods-enabled/*.conf
+...
+<span class="nb">Include</span> ports.conf
+...
+<span class="nb">IncludeOptional</span> conf-enabled/*.conf
+<span class="nb">IncludeOptional</span> sites-enabled/*.conf
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-apache2-conf-available-security-conf">
+<span id="xref-conf-security"></span><h2>/etc/apache2/conf-available/security.conf<a class="headerlink" href="#etc-apache2-conf-available-security-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Konfiguration zur <strong>Absicherung</strong> des WEB-Servers. Abhänging vom <em>Anwendungs-
+und Gefahrenkontext</em> sind die Anforderungen und Maßnahmen zur Absicherung ganz
+individuell. Die in dieser Datei vorgenommenen Einstellungen relaiseren das in
+Abschnitt <a class="reference internal" href="setup_properties.html#xref-setup-properties"><span class="std std-ref">Merkmale des Setups</span></a> vorgestellte Konzept:</p>
+<ul class="simple">
+<li><p><strong>alles dicht machen</strong></p></li>
+</ul>
+<p>Diese Konfiguration muss ggf. angepasst werden. Erste Orientierung können die
+<a class="reference external" href="https://httpd.apache.org/docs/current/misc/security_tips.html">Apache Security Tips</a> geben. Die hier vorzunehmenden Einstellungen sind jedoch
+nur die Grundlage zur <em>Absicherung</em> eines Apache Servers. In Abschnitt
+<a class="reference internal" href="mod_security2.html#xref-mod-security2"><span class="std std-ref">WAF: ModSecurity</span></a> wird der Aspekt der Sicherheit dann noch etwas tiefer
+durchdrungen.</p>
+<p>Die Konfigurationen in dieser <code class="docutils literal notranslate"><span class="pre">security.conf</span></code> finden im globalen Kontext
+statt. Hierzu muss man wissen, dass die Apache Konfigurationen – die
+<strong>Direktiven</strong> genannt werden – entweder auf den gesammten Server (globaler
+Kontext) oder auf <strong>Sections</strong> angewendet werden können. Die Sections (Kontexte)
+sind z.B. Ordner, also die Pfadnamen auf <strong>Resourcen</strong> aus dem Dateisystem. Es
+gibt noch wesentlich mehr Kontexte, siehe <a class="reference external" href="http://httpd.apache.org/docs/current/sections.html">Apache Kontexte (Sections)</a>.</p>
+<p>Um bei dem Beispiel der Ordner eines Dateisystems zu bleiben: Wird
+beispielsweise ein Ordner im Dateisystem als Resource definiert, so erfolgt
+dies, indem eine <em>Directory-Section</em> (der Kontext) definiert wird. Die
+Direktieven, die in diesem Kontext gesetzt werden vererben sich auf alle
+Unterordner in dieser Resource. Die Vererbung erfolgt solange, bis ein
+Unter-Ordner kommt, für den eine eigene <em>Directory-Section</em> definiert
+wird. Dieser Kontext ist sozusagen ein Unterabschnitt des übergeordneten Ordners
+/ dessen Kontext. Auch in diesem Kontext gelten noch die Direktieven des
+übergeordneten Kontext, sie können dann aber angepasst werden. So wird
+beispielsweise mit dem <a class="reference internal" href="#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> Konzept der Root-Ordner als
+Kontext eingerichtet der das gesammte Dateisystem einschliesst. Unter dem
+Root-Ordner befinden sich bekanntlich alle Resourcen, die auf dem Dateisystem
+(in der Root-Umgebung) existieren, auch die WEB-Anwendungen die man auf dem Host
+installiert. Durch ein <a class="reference internal" href="#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> schliesst man somit alle
+Zugriffe auf die Resourcen aus dem Dateisystem aus. Zur Installation einer
+WEB-Anwendung gehört, dass neben der Resource im Dateisystem noch ein Kontext im
+Apache konfiguriertwerden muss. In dem (Unter-) Kontext muss dann der Zugriff
+entsprechend der WEB-Anwendung eingeräumt werden, indem Vererbtes
+<em>überschrieben</em> und/oder angepasst werden muss.</p>
+<div class="section" id="deny-from-root">
+<span id="xref-deny-from-root"></span><h3>Deny from root<a class="headerlink" href="#deny-from-root" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Das in diesem Setup vorgenommene Sicherheits-Konzept verhindert im globalen
+Kontext den Zugriff auf das komplette Filesystem (von root an alles).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Directory</span> <span class="s">/</span><span class="nt">&gt;</span>
+
+    <span class="nb">Require</span> <span class="k">all</span> denied
+
+    <span class="nb">Order</span> Deny,Allow
+    <span class="nb">Deny</span> from <span class="k">all</span>
+    <span class="nb">AllowOverride</span> <span class="k">None</span>
+
+    <span class="nb">Options</span> -ExecCGI -FollowSymLinks -Includes -Indexes
+    <span class="nb">DirectoryIndex</span> index.htm index.html
+
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">Deny</span> <span class="pre">from</span> <span class="pre">all</span></code> im Kontext des root-Ordners (<code class="docutils literal notranslate"><span class="pre">&lt;Directory</span> <span class="pre">/&gt;</span></code>) wird der
+Zugriff auf <em>jede</em> Resource (jeden Pfad) verweigert. Die Direktive <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">all</span>
+<span class="pre">denied</span></code> in dem gleichen Kontext verweigert zusätzlich den Zugriff für
+authentifizierte Benutzer. Das erscheint hier etwas <em>doppelt gemoppelt</em>, macht
+aber Sinn, wenn man an die Vererbung (s.o.) denkt. Mit der <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options
+Direktive</a> gilt für alle unter root stehenden Ordner:</p>
+<ul class="simple">
+<li><p>Es werden keine CGI Programme ausgeführt</p></li>
+<li><p>Es werden keine symbolischen Links verfolgt.</p></li>
+<li><p>Die Server Side Includes (SSI) sind deaktiviert</p></li>
+<li><p>Der <em>Autoindex</em> ist abgeschaltet (<a class="reference internal" href="site_static-content.html#xref-autoindex-directories"><span class="std std-ref">Autoindex von Directories</span></a>)</p></li>
+</ul>
+<p>Die oben gezeigten Direktieven <em>vererben</em> sich auf jede Resource unterhalb des
+root-Ordners (also faktisch auf alle Resourcen).  Die WEB-Anwendungen (Sites)
+müssen ihre Resourcen expliziet freigeben, dazu gehört auch das Setzen der
+Optionen, soweit sie diese benötigen. Weiter unten wird dies beim Einrichten der
+Sites dann deutlich.</p>
+</div>
+<div class="section" id="request-timeout">
+<span id="xref-security-limits-timeouts"></span><h3>Request &amp; Timeout<a class="headerlink" href="#request-timeout" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Vorschläge für Requests und Timeouts:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">LimitRequestBody</span> <span class="m">13107200</span>
+<span class="nb">Timeout</span> <span class="m">300</span>
+<span class="nb">KeepAlive</span> <span class="k">On</span>
+<span class="nb">MaxKeepAliveRequests</span> <span class="m">100</span>
+<span class="nb">KeepAliveTimeout</span> <span class="m">5</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Diese Einstellungen stehen ggf. in Konkurenz mit ModSecurity. Beispielsweise
+hat die Direktive <code class="docutils literal notranslate"><span class="pre">LimitRequestBody</span></code> das Pendant <code class="docutils literal notranslate"><span class="pre">SecRequestBodyLimit</span></code> im
+<a class="reference internal" href="mod_security2.html#xref-mod-security2"><span class="std std-ref">WAF: ModSecurity</span></a> (siehe <a class="reference internal" href="mod_security2.html#xref-mod-security2-conf"><span class="std std-ref">Basis Konfiguration mod_security2.conf</span></a>).</p>
+</div>
+</div>
+<div class="section" id="http-headers">
+<span id="xref-global-http-headers"></span><h3>HTTP-Headers<a class="headerlink" href="#http-headers" title="Link zu dieser Überschrift">¶</a></h3>
+<p>In der <code class="docutils literal notranslate"><span class="pre">security.conf</span></code> werden auch die im globalen Kontext gültigen
+HTTP-Header Felder definiert, die dem WEB-Browser übergeben werden. Das <em>Header</em>
+Setup wurde an den Empfehlungen des OwnCloud Projekts angelehnt (<em>lesenswert</em>
+<a class="reference external" href="https://doc.owncloud.org/server/8.0/admin_manual/configuration_server/harden_server.html#serve-security-related-headers-by-the-web-server">OwnCloud: Serve security related Headers by the web server</a>). Zum Setzen der
+HTTP-Header ist das <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_headers.html">Apache mod_headers</a> Modul erforderlich die Registrierung
+von Header Feldern erfolgt über die IANA (siehe <a class="reference external" href="http://www.iana.org/assignments/message-headers/message-headers.xml#perm-headers">Permanent Message Header Field
+Names (iana)</a>).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+
+    <span class="nb">Header</span> always set Strict-Transport-Security <span class="s2">&quot;max-age=15768000; includeSubDomains; preload&quot;</span>
+    <span class="nb">Header</span> always set X-Frame-Options <span class="s2">&quot;SAMEORIGIN&quot;</span>
+    <span class="c"># Header always set X-Robots-Tag &quot;none&quot;</span>
+
+    <span class="nb">Header</span> set X-Content-Type-Options <span class="s2">&quot;nosniff&quot;</span>
+    <span class="nb">Header</span> set X-XSS-Protection <span class="s2">&quot;1; mode=block&quot;</span>
+
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>Mit dem Feld <code class="docutils literal notranslate"><span class="pre">X-Frame-Options:</span> <span class="pre">SAMEORIGIN</span></code> wird der Browser angewiesen, die
+WEB-Seite nicht in einen <em>fremden</em> Frame einzubetten. Mit dem Feld
+<code class="docutils literal notranslate"><span class="pre">X-Robots-Tag:</span> <span class="pre">none</span></code> können Suchmaschinen angewiesen werden, die <em>Seiten</em>
+nicht zu indizieren. Will man, dass google &amp; Co. den Content indizieren, so
+sollte man den dieses Feld nicht serverweit, sondern im jeweiligen Kontext
+setzen. Die <a class="reference internal" href="site_static-content.html#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a> ist ein Beispiel für einen
+Content, der i.d.R nicht von einem <em>Robot</em> indiziert werden soll.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Directory</span> <span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
+     ...
+     <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+         <span class="nb">Header</span> always set X-Robots-Tag <span class="s2">&quot;none&quot;</span>
+     <span class="nt">&lt;/IfModule&gt;</span>
+     ...
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die Auswertung der Header-Felder wird von den Browsern implementiert. Nicht
+alle WEB-Browser haben die gleichen Implementierungen oder finden zur
+gleichen Bewertung eines Felds. Es steht den Browesern frei ob und wie sie
+ein Header Feld bewerten.</p>
+</div>
+</div>
+</div>
+<div class="section" id="ssl-und-rewrite-http-nach-https">
+<h2>SSL und Rewrite (<code class="docutils literal notranslate"><span class="pre">http://</span></code> nach <code class="docutils literal notranslate"><span class="pre">https://</span></code>)<a class="headerlink" href="#ssl-und-rewrite-http-nach-https" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-available/000-default.conf</span></code> wird der
+<code class="docutils literal notranslate"><span class="pre">&lt;VirtualHost</span> <span class="pre">*:80&gt;</span></code> eingerichtet. Sofern <code class="docutils literal notranslate"><span class="pre">mod_ssl</span></code> installiert ist, werden
+noch die Redirects nach <code class="docutils literal notranslate"><span class="pre">https://</span></code> konfiguriert (siehe <a class="reference external" href="https://httpd.apache.org/docs/current/rewrite/">Apache mod_rewrite</a>).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;IfModule</span> <span class="s">mod_ssl.c</span><span class="nt">&gt;</span>
+     <span class="nb">RewriteEngine</span>   <span class="k">on</span>
+     <span class="nb">RewriteRule</span>     ^/(.*)$ https://%{SERVER_NAME}/$1 [L,R]
+    <span class="nt">&lt;/IfModule&gt;</span>
+...
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>In der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-available/default-ssl.conf</span></code> wird der Security
+Layer (SSL) auf port 443 aktiviert und der Log-Level eingestellt:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_ssl.c</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;VirtualHost</span> <span class="s">_default_:443</span><span class="nt">&gt;</span>
+
+        <span class="nb">LogLevel</span> <span class="k">info</span> ssl:warn
+        <span class="nb">CustomLog</span> ${APACHE_LOG_DIR}/access.log combined
+        ...
+        <span class="nb">SSLEngine</span> <span class="k">on</span>
+        ...
+        <span class="nb">SSLCertificateFile</span>    <span class="sx">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+        <span class="nb">SSLCertificateKeyFile</span> <span class="sx">/etc/ssl/private/ssl-cert-snakeoil.key</span>
+        ...
+    <span class="nt">&lt;/VirtualHost&gt;</span>
+<span class="nt">&lt;/IfModule&gt;</span>
+</pre></div>
+</div>
+<p>In diesem Setup werden die selbst-signierten (<em>snakeoil</em>) Zertifikate verwendet
+(siehe auch <a class="reference internal" href="../excursion/ssl_ca_remarks.html#xref-ssl-ca-remarks"><span class="std std-ref">Anmerkungen zu SSL und Zertifikaten</span></a>).</p>
+</div>
+<div class="section" id="etc-apache2-conf-available-authnz-external-conf">
+<span id="xref-mod-authnz-external"></span><h2>/etc/apache2/conf-available/authnz_external.conf<a class="headerlink" href="#etc-apache2-conf-available-authnz-external-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit dem <a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-authnz-external">libapache2-mod-authnz-external</a> Paket wurde das <a class="reference external" href="https://github.com/phokz/mod-auth-external/tree/master/mod_authnz_external">Apache
+mod_authnz_external</a> Modul installiert. Mit diesem Modul kann die
+Benutzerauthentifizierung an ein externes Tool wie <a class="reference external" href="https://github.com/phokz/pwauth/tree/master/pwauth">pwauth (github)</a>
+durchgereicht werden. In der Standard Installation des
+<a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-authnz-external">libapache2-mod-authnz-external</a> Pakets ist dass Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=pwauth">pwauth</a>
+vorgesehen, das auch in diesem Setup verwendet wird.</p>
+<p>In der <code class="docutils literal notranslate"><span class="pre">authnz_external.conf</span></code> werden die folgenden Direktiven gesetzt.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AddExternalAuth</span> pwauth <span class="sx">/usr/sbin/pwauth</span>
+<span class="nb">SetExternalAuthMethod</span> pwauth pipe
+</pre></div>
+</div>
+<p>Das Tool <a class="reference external" href="https://github.com/phokz/pwauth/tree/master/pwauth">pwauth (github)</a> verwendet zur Autorisierung die Benutzer Logins und
+Passwörter des Systems (PAM). Zu dem pwauth gehört noch ein PAM Setup
+<code class="docutils literal notranslate"><span class="pre">/etc/pam.d/pwauth</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auth</span>       <span class="n">requisite</span>  <span class="n">pam_nologin</span><span class="o">.</span><span class="n">so</span>
+
+<span class="c1"># Standard Un*x authentication.</span>
+<span class="nd">@include</span> <span class="n">common</span><span class="o">-</span><span class="n">auth</span>
+
+<span class="c1"># Standard Un*x account</span>
+<span class="nd">@include</span> <span class="n">common</span><span class="o">-</span><span class="n">account</span>
+</pre></div>
+</div>
+<p>Will eine <em>Site</em> dieses Verfahren zur Authentifizierung nutzen, so kann sie dies
+durch das Setzen der folgenden Direktiven.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AuthType</span> Basic
+<span class="nb">AuthBasicProvider</span> external
+<span class="nb">AuthName</span> <span class="s2">&quot;myAuthDomain Top Secret&quot;</span>
+<span class="nb">AuthExternal</span> pwauth
+</pre></div>
+</div>
+<p>Mit der <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_authn_core.html#authname">Apache AuthName Direktive</a> wird die Resource einem Bereich
+zugeordnet. Der Bezeichner des Bereichs (<em>realm</em>) wird an den WEB-Client gegeben
+und dort im Anmeldedialog angezeigt, damit der Benutzer, das für diesen Bereich
+richtige Passwort eingeben kann.</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Zu tun</p>
+<p>Die Authentifizierung über <a class="reference external" href="https://github.com/phokz/pwauth/tree/master/pwauth">pwauth (github)</a> und <code class="docutils literal notranslate"><span class="pre">authnz_external</span></code> ist
+zwar ganz praktisch, aber damit ist nur eine <em>Basic</em> <a class="reference external" href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung">HTTP-Authentifizierung
+(wiki)</a> möglich.  Es sollte nochmal ein alternative Konzept vorgestellt
+werden (Schlagworte LDAP, mod_authn_file or mod_authn_dbm).</p>
+</div>
+</div>
+<div class="section" id="gentleman-start-your-engines">
+<span id="xref-start-your-engines"></span><h2>Gentleman, start your engines!<a class="headerlink" href="#gentleman-start-your-engines" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Nachdem Änderungen an der Konfiguration vorgenommen wurden, müssen diese in den
+Apache-Server geladen werden. Bei so substantiellen Änderungen wie sie hier
+vorgenommen wurden, sollte man satt nur den <em>Reload</em> zu machen besser einen
+<em>Restart</em> vornehmen (s.a. <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=apachectl">apachectl</a>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2ensite <span class="m">000</span>-default.conf default-ssl.conf
+sudo -H a2enconf security authnz_external
+sudo -H service apache2 restart
+
+<span class="c1"># bei kleineren Änderungen reicht ein Reload</span>
+sudo -H service apache2 reload
+</pre></div>
+</div>
+<p>Zum Testen des Redirects kann auf der Komandozeile das <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=curl">curl</a> Kommando
+genutzt werden. Das <code class="docutils literal notranslate"><span class="pre">curl</span></code> Kommando eignet sich eigentlich zum Download von
+Dateien von einem Server. Wenn man es auf <em>verbose</em> schaltet, dann kann man sehr
+schön sehen, was Client (in dem Fall <code class="docutils literal notranslate"><span class="pre">curl</span></code>) und Server (in dem Fall der
+Apache-Prozess) so an HTTP Informationen austauschen und wie die ganze
+Kommunikation aufgebaut wird. Folgende Optionen des <code class="docutils literal notranslate"><span class="pre">curl</span></code> werden verwendent:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code>  <em>gesprächige</em> Ausgabe</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--location</span></code> folge Redirects</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--head</span></code>     tausche nur die HTTP-Header aus, der Content wird ignoriert</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--insecure</span></code> keine Validierung von Zertifikaten</p></li>
+</ul>
+<p>Der unten stehende Auszug zeigt, wie <code class="docutils literal notranslate"><span class="pre">curl</span></code> erst mal via <code class="docutils literal notranslate"><span class="pre">http://</span></code> auf Port
+80 anfragt (Anfragen habe ein <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> als Präfix), dann aber ein <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">302</span></code>
+Response vom Server erhält (Einkommendes hat das Präfix <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>). Der <code class="docutils literal notranslate"><span class="pre">302</span></code>
+Response verweist auf die <code class="docutils literal notranslate"><span class="pre">https://</span></code> <em>Location</em>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl --location --verbose --head --insecure http://localhost 2&gt;&amp;1
+
+* Rebuilt URL to: http://ubuntu1504/
+*   Trying fd00::a00:27ff:fed5:7c85...
+* Connected to ubuntu1504 (fd00::a00:27ff:fed5:7c85) port 80 (#0)
+&gt; HEAD / HTTP/1.1
+&gt; Host: ubuntu1504
+&gt; User-Agent: curl/7.43.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 302 Found
+&lt; Date: Thu, 11 Feb 2016 14:08:50 GMT
+&lt; Server: Apache
+&lt; Strict-Transport-Security: max-age=15768000; includeSubDomains; preload
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; Location: https://ubuntu1504/
+&lt; Content-Type: text/html; charset=iso-8859-1
+...
+</pre></div>
+</div>
+<p>Der obige Auszug zeigt auch, dass eine Verbindung über IPv6 hergestellt
+wurde. Der Hostname <code class="docutils literal notranslate"><span class="pre">ubuntu1504</span></code> wurde vom DNS (hier nicht zu sehen, dass
+passiert eine Ebene tiefer in der IP Schicht) in die IPv6 <em>Unique Local</em> Adresse
+<code class="docutils literal notranslate"><span class="pre">fd00::a00:27ff:fed5:7c85</span></code> aufgelößt. Diese IPv6 Adresse wird später bei der
+Maskierung von Netzwerkadressen relevant werden, wenn Sites auf Basis der Host
+IP autorisieren (s.a. <a class="reference internal" href="../excursion/excursion_IPv4_6.html#xref-excursion-ipv4-6"><span class="std std-ref">Exkursion: Netzmaske / IPv4 und IPv6</span></a>).</p>
+<p>Weiter unten in der Ausgabe von <code class="docutils literal notranslate"><span class="pre">curl</span></code> ist dann auch zu sehen, wie <code class="docutils literal notranslate"><span class="pre">curl</span></code>
+auf die <code class="docutils literal notranslate"><span class="pre">https://</span></code> <em>Location</em> wechselt und seine Anfrage (Request) auf Port
+443 wiederholt (<code class="docutils literal notranslate"><span class="pre">Issue</span> <span class="pre">another</span> <span class="pre">request</span> <span class="pre">...</span></code>).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>...
+* Connection #0 to host ubuntu1504 left intact
+* Issue another request to this URL: &#39;https://ubuntu1504/&#39;
+* Found bundle for host ubuntu1504: 0x55c61d8a92a0
+*   Trying fd00::a00:27ff:fed5:7c85...
+* Connected to ubuntu1504 (fd00::a00:27ff:fed5:7c85) port 443 (#1)
+...
+</pre></div>
+</div>
+<p><strong>CHECK: Redirect –&gt; OK!</strong></p>
+<p>Im weiteren Auszug (unten) ist auch zu sehen, dass TLS1.2 für die
+Verschlüsselung gewählt wird. Man sieht auch, dass das selbstsignierte
+Zertifikat, das der Server dem Client gegeben hat und das oben über die
+Direktive:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SSLCertificateFile</span>    <span class="sx">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+</pre></div>
+</div>
+<p>gesetzt wurde, nicht verifiziert wurde, Option <code class="docutils literal notranslate"><span class="pre">--insecure</span></code>. Bei dieser Option
+<em>SKIPPED</em> das <code class="docutils literal notranslate"><span class="pre">curl</span></code> die Verfikation über einen CA (s.a. Abschnitt
+<a class="reference internal" href="../excursion/ssl_ca_remarks.html#xref-ssl-ca-remarks"><span class="std std-ref">Anmerkungen zu SSL und Zertifikaten</span></a>). Desweiteren folgen dann noch Angaben zu dem
+Zertifikat, z.B. das der <em>CommonName</em> lediglich aus dem Hostnamen besteht, dass
+das Zertifikat noch gültig ist und das es einen öffentlichen RSA Schlüssel
+besitzt.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>...
+* found 187 certificates in /etc/ssl/certs/ca-certificates.crt
+* found 755 certificates in /etc/ssl/certs
+* ALPN, offering http/1.1
+* SSL connection using TLS1.2 / ECDHE_RSA_AES_128_GCM_SHA256
+*     server certificate verification SKIPPED
+*     server certificate status verification SKIPPED
+*     common name: ubuntu1504 (matched)
+*     server certificate expiration date OK
+*     server certificate activation date OK
+*     certificate public key: RSA
+*     certificate version: #3
+*     subject: CN=ubuntu1504
+*     start date: Thu, 11 Feb 2016 14:04:03 GMT
+*     expire date: Sun, 08 Feb 2026 14:04:03 GMT
+*     issuer: CN=ubuntu1504
+*     compression: NULL
+* ALPN, server did not agree to a protocol
+...
+</pre></div>
+</div>
+<p><strong>CHECK: DSSL Setup –&gt; OK!</strong></p>
+<p>Nach den Angaben zur Verschlüsselung und dem Zertifikat ist dann im Weiteren zu
+sehen, wie der HTTP-Request aussieht, den <code class="docutils literal notranslate"><span class="pre">curl</span></code> nun abschickt (wieder an dem
+<code class="docutils literal notranslate"><span class="pre">&gt;</span></code> zu erkennen).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>...
+&gt; HEAD / HTTP/1.1
+&gt; Host: ubuntu1504
+&gt; User-Agent: curl/7.43.0
+&gt; Accept: */*scurl
+...
+</pre></div>
+</div>
+<p>Am Ende sieht man dann auch die Antwort (den Response) vom Server.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>...
+&lt; HTTP/1.1 403 Forbidden
+&lt; Date: Thu, 11 Feb 2016 14:08:50 GMT
+&lt; Server: Apache
+&lt; Strict-Transport-Security: max-age=15768000; includeSubDomains; preload
+&lt; X-Frame-Options: SAMEORIGIN
+&lt; Content-Type: text/html; charset=iso-8859-1
+...
+</pre></div>
+</div>
+<p>Der Server meldet dem Client, dass der Zugriff auf die URL
+<code class="docutils literal notranslate"><span class="pre">https://ubuntu1504/</span></code> nicht gestattet ist. Das entspricht dem
+<a class="reference internal" href="#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> Konzept von oben.  Erst wenn eine Site eingerichtet
+wird und diese dann Resource frei gibt, kann ein Client auf diese zugreifen.</p>
+<p><strong>CHECK: deny from root … OK!</strong></p>
+<p>An der Antwort des Servers (<code class="docutils literal notranslate"><span class="pre">&lt;</span></code>) ist auch zu sehen, das die HTTP-Header-Felder
+<code class="docutils literal notranslate"><span class="pre">Strict-Transport-Security</span></code> und <code class="docutils literal notranslate"><span class="pre">X-Frame-Options</span></code> aus dem globalen Kontext
+(vergleiche <a class="reference internal" href="#xref-global-http-headers"><span class="std std-ref">HTTP-Headers</span></a>) gesetzt wurden.</p>
+<p><strong>CHECK: HTTP Header … OK!</strong></p>
+<p>Wie das Beispiel zeigt, ist es mit einfachen Werkzeug wie <code class="docutils literal notranslate"><span class="pre">curl</span></code> bereits
+möglich einiges zu testen und über die Komunikation zw. Client und Server zu
+erfahren. Zumindest so viel, dass es ausreicht alle in diesem Abschnitt
+vorgenommen Einstellungen grob zu überprüfen. Oder anders formuliert, es sind
+nicht immer die ganz großen Werkzeuge erforderlich, das Nötigste liegt den
+meisten System schon anbei.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="site_static-content.html" class="btn btn-neutral float-right" title="Static Content (static-content.conf)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dbp_apache_pkgs.html" class="btn btn-neutral float-left" title="Apache Pakete" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

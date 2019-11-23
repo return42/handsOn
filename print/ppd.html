@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Die kleine PPD Fibel &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Druckertreiber" href="driver.html" />
+    <link rel="prev" title="IPP &amp; IPP Everywhere" href="ipp.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Drucken mit CUPS &amp; IPP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cups.html">CUPS Grundlagen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipp.html">IPP &amp; IPP Everywhere</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Die kleine PPD Fibel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#herkunft-der-ppd-dateien">Herkunft der PPD Dateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aufbau-einer-ppd-datei">Aufbau einer PPD-Datei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cups-test-ppd">CUPS test PPD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#druckbereich-korrigieren">Druckbereich korrigieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#langen-angaben-umrechnen">Längen Angaben umrechnen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver.html">Druckertreiber</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printer_setup.html">Netzwerk-Drucker Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printer_troubleshooting.html">Wartung &amp; Diagnose</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Drucken mit CUPS &amp; IPP</a> &raquo;</li>
+        
+      <li>Die kleine PPD Fibel</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/print/ppd.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="die-kleine-ppd-fibel">
+<span id="ppd-spec"></span><h1>Die kleine PPD Fibel<a class="headerlink" href="#die-kleine-ppd-fibel" title="Link zu dieser Überschrift">¶</a></h1>
+<p>In einer <a class="reference external" href="https://en.wikipedia.org/wiki/PostScript_Printer_Description">PPD (wiki)</a> Datei werden die Einstellungen eines CUPS-Druckers
+gespeichert.  Die über die <a class="reference internal" href="driver.html#figure-cups-system-config-printer-gui"><span class="std std-ref">GUI</span></a>
+eingerichteten Drucker entsprechen den <code class="docutils literal notranslate"><span class="pre">*.ppd</span></code> Dateien in der CUPS
+Konfiguration unter <code class="docutils literal notranslate"><span class="pre">/etc/cups</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -la /etc/cups/ppd/*.ppd
+...
+-rw-r----- 1 root lp   12641 Feb 13 12:26 CNMF620C-Series.ppd
+-rw-r----- 1 root lp   15332 Feb 12 19:22 MF623C-TWF19694.ppd
+</pre></div>
+</div>
+<p>Nimmt man Änderungen direkt an einer PPD Datei vor, so sollte man den CUPS
+Dienst neu starten, damit dieser die neuen Einstellungen übernimmt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">cups</span>
+</pre></div>
+</div>
+<p>Werden Änderungen über die <a class="reference internal" href="driver.html#figure-cups-system-config-printer-gui"><span class="std std-ref">GUI</span></a>
+vorgenommen, so ist ein Neustart des Dienstes nicht erforderlich.</p>
+<p>Mit <a class="reference external" href="https://de.wikipedia.org/wiki/Common_Unix_Printing_System">CUPS (wiki)</a> kann man für <strong>EINEN physikalischen</strong> Drucker mehrere
+unterschiedliche CUPS-Drucker (also PPD Dateien) einrichten.  Aus Sicht des
+Anwenders <strong>sind die CUPS-Drucker, die Drucker auf denen er drucken kann</strong>.  Hat
+man einen funktionierenden CUPS-Drucker, so kann man davon eine Kopie anlegen
+und mit dieser dann erst mal seine Änderungen an der PPD testen.  Man braucht
+also sein <em>funktionierendes</em> Setup erst mal nicht <em>anfassen</em>, wenn man mal was
+ausprobieren möchte.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Beispiele wie sie in Kapitel „<a class="reference internal" href="#cups-driverless-hwmargins"><span class="std std-ref">Druckbereich korrigieren</span></a>“ und Kapitel
+„<a class="reference internal" href="#cupstestppd"><span class="std std-ref">CUPS test PPD</span></a>“ gegeben sind, machen deutlich, dass es auch heute noch
+ratsam ist, einen Blick auf die PDD Dateien zu werfen und diese ggf. zu
+korrigieren.</p>
+</div>
+<p>Die PPD-Dateien aus den Beispielen <em>hier</em> sind im Original folgend einzusehen:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CNMF620C-Series.ppd</span></code>: <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/CNMF620C-Series.ppd">CNMF620C Series, driverless (PPD modified)</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MF623C-TWF19694.ppd</span></code>: <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623C-TWF19694.ppd">Canon MF620C Series UFRII LT</a></p></li>
+</ul>
+<div class="section" id="herkunft-der-ppd-dateien">
+<h2>Herkunft der PPD Dateien<a class="headerlink" href="#herkunft-der-ppd-dateien" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die PPD-Dateien <em>entstehen</em> beim Einrichten des Druckers in der <a class="reference internal" href="driver.html#figure-cups-system-config-printer-gui"><span class="std std-ref">GUI</span></a>, entweder durch die Auswahl einer PPD
+Datei (des Herstellers) oder aber sie werden durch den <em>driverless</em> Treiber
+erzeugt.  Bei letzterem nutzt der <em>driverless</em> Treiber IPP-Everywhere um den
+Drucker zu finden.  Ebenfalls über IPP fragt er dann beim Drucker nach seinen
+Eigenschaften.  Im Kapitel „<a class="reference internal" href="ipp.html#ipp-intro"><span class="std std-ref">IPP &amp; IPP Everywhere</span></a>“ wird ein Beispiel gezeigt, wie die
+Eigenschaften des Druckers mit dem <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ipptool">ipptool</a> Kommando ausgelesen werden
+können.  Aus der Antwort vom Drucker (<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623Cn-attributes.txt">MF623Cn-attributes.txt</a>) baut der <em>driverless</em> Treiber dann
+eine PPD Datei, die er unter <code class="docutils literal notranslate"><span class="pre">/etc/cups/ppd/&lt;printer-name&gt;.ppd</span></code> speichert.
+Der <code class="docutils literal notranslate"><span class="pre">&lt;printer-name&gt;</span></code> wird einem öfter begegnen, z.B bei Kommandos wie
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lpstat">lpstat</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lpstat -p
+Drucker CNMF620C-Series ist im Leerlauf.  Aktiviert seit Di 12 Feb 2019 17:49:37 CET
+Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Mi 13 Feb 2019 11:48:19 CET
+</pre></div>
+</div>
+</div>
+<div class="section" id="aufbau-einer-ppd-datei">
+<h2>Aufbau einer PPD-Datei<a class="headerlink" href="#aufbau-einer-ppd-datei" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Schaut man in die PPD Dateien hinein, so sieht man dort Angaben wie z.B.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">DefaultPageSize</span><span class="p">:</span> <span class="n">A4</span><span class="o">.</span><span class="n">Fullbleed</span>
+<span class="o">*</span><span class="n">PageSize</span> <span class="n">A4</span><span class="o">.</span><span class="n">Fullbleed</span><span class="o">/</span><span class="n">A4</span><span class="p">:</span> <span class="s2">&quot;&lt;&lt;/PageSize[595 842]/ImagingBBox null&gt;&gt;setpagedevice&quot;</span>
+</pre></div>
+</div>
+<p>PPD ist die Abkürzung für <em>PostScript Printer Description</em> und wie der Name es
+schon erahnen lässt, erfolgt die <em>Description</em> des Drucker in einer Sprache die
+stark an der PDL <a class="reference external" href="https://de.wikipedia.org/wiki/PostScript">PostScript (wiki)</a> angelehnt ist.  Zu erkennen ist das
+beispielsweise an dem <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code>, einem Operator aus dem PostScript.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Auch bei den modernen Image-Druckern (s.a <a class="reference internal" href="ipp.html#ipp-intro"><span class="std std-ref">IPP &amp; IPP Everywhere</span></a>), die kein
+PostScript verstehen, erfolgt das Setup des Druckers im CUPS mit den
+<em>PostScript Printer Description</em> (aka PPD) -Dateien.</p>
+</div>
+<p>Die Definition zu solchen Angaben befinden sich hier</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wwwimages2.adobe.com/content/dam/acom/en/devnet/actionscript/articles/5003.PPD_Spec_v4.3.pdf">PPD Spec v4.3</a></p></li>
+<li><p><a class="reference external" href="https://www.cups.org/doc/spec-ppd.html">PPD Datei CUPS PPD Extensions</a>.</p></li>
+<li><p><a class="reference external" href="http://localhost:631/help/ref-ppdcfile.html">CUPS-Server PPD</a></p></li>
+</ul>
+<p>Aber auch schon ohne tiefere Kenntnisse der <a class="reference external" href="https://wwwimages2.adobe.com/content/dam/acom/en/devnet/actionscript/articles/5003.PPD_Spec_v4.3.pdf">PPD Spec v4.3</a> kann man im obigen
+Beispiel erahnen, dass Angaben zu Längen z.T. einheitenlos sind, hier das
+Beispiel <a class="reference external" href="https://developers.hp.com/hp-linux-imaging-and-printing/tech_docs/page_sizes">Page Sizes (hp)</a> mit der Angabe: <code class="docutils literal notranslate"><span class="pre">/PageSize[595</span> <span class="pre">842]</span></code></p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Längen-Angaben ohne Einheit sind vom Typ <a class="reference external" href="https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt">DTP-Punkt</a> aka <em>PostScript unit</em>.
+Der Punkt entspricht <code class="docutils literal notranslate"><span class="pre">0,3527mm</span></code> / s.a. Kapitel „<a class="reference internal" href="#dtp-pt-mm-inch"><span class="std std-ref">Längen Angaben umrechnen</span></a>“.</p>
+</div>
+</div>
+<div class="section" id="cups-test-ppd">
+<span id="cupstestppd"></span><h2>CUPS test PPD<a class="headerlink" href="#cups-test-ppd" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die von den Herstellern gelieferte PPD Datei oder aber auch die von
+<a class="reference external" href="https://wiki.debian.org/DriverlessPrinting">driverless-printing CUPS</a> angelegte PPD Datei kann Fehler enthalten (so
+zumindest bei mir) oder auch unvollständig sein.  Die Datei sollte in jedem Fall
+geprüft werden, mir ist beispielsweise aufgefallen, dass z.B. die Einträge wie
+<code class="docutils literal notranslate"><span class="pre">*PageSize</span> <span class="pre">3x5/3</span> <span class="pre">x</span> <span class="pre">5&quot;:</span></code> vor dem Doppelpunkt noch einen überflüssigen
+Anführungsstrich besitzen.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H grep --color &#39;^*[^:]*\&quot;:&#39;  /etc/cups/ppd/CNMF620C-Series-driverless.ppd
+...
+*PageSize 3x5/3 x 5&quot;: &quot;&lt;&lt;/PageSize[216 360]&gt;&gt;setpagedevice&quot;
+!!! ~~~~~~~~~~~~~~~^~~~~ die Anführungsstriche gehören dort nicht hin !!!
+</pre></div>
+</div>
+<p>Es ist auch möglich, die PDD Datei zu prüfen, hierzu gibt es das Kommando
+<code class="docutils literal notranslate"><span class="pre">cupstestppd</span></code> was allerdings auch nicht in der Lage ist den obigen Fehler mit
+dem Anführungsstrich zu finden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H cupstestppd  /etc/cups/ppd/CNMF620C-Series.ppd
+/etc/cups/ppd/CNMF620C-Series.ppd: PASS
+      WARN    Size &quot;A4&quot; should be the Adobe standard name &quot;A4.Fullbleed&quot;.
+      ...
+
+$ sudo -H cupstestppd  /etc/cups/ppd/MF623C-TWF19694.ppd
+/etc/cups/ppd/MF623C-TWF19694.ppd: PASS
+      WARN    PCFileName longer than 8.3 in violation of PPD spec.
+              REF: Pages 61-62, section 5.3.
+      ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="druckbereich-korrigieren">
+<span id="cups-driverless-hwmargins"></span><h2>Druckbereich korrigieren<a class="headerlink" href="#druckbereich-korrigieren" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Kapitel „<a class="reference internal" href="ipp.html#ipp-intro"><span class="std std-ref">IPP &amp; IPP Everywhere</span></a>“ wurde bereits gezeigt, wie mittels IPP die
+Eigenschaften vom Drucker ausgelesen werden können.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ipptool -t -v ipp://MF623Cn.local:80  /usr/share/cups/ipptool/get-printer-attributes.test
+</pre></div>
+</div>
+<p>Die Ausgabe für den <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> ist in der Datei <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623Cn-attributes.txt">MF623Cn-attributes.txt</a> zu sehen, hier der Ausschnitt zu den
+Angaben der Papiergrößen und Druckbereiche, die der Drucker kennt.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>media-default (keyword) = iso_a4_210x297mm
+media-supported (1setOf keyword) =
+  custom_min_83x127mm
+  , custom_max_215.9x355.6mm
+  , iso_a4_210x297mm
+  , iso_a5_148x210mm
+...
+media-size-supported (1setOf collection) =
+  {x-dimension=21000 y-dimension=29700}       &lt;--- entspricht A4
+  , {x-dimension=14800 y-dimension=21000}     &lt;--- entspricht A4
+  , {x-dimension=18200 y-dimension=25700}     &lt;--- entspricht B5
+  , ...
+</pre></div>
+</div>
+<p>Die vollständige Liste der in <code class="docutils literal notranslate"><span class="pre">media-supported</span></code> aufgelisteten Werte ist in der
+<a class="reference internal" href="#tabelle-page-size"><span class="std std-ref">Tabelle in Spalte MF623Cn</span></a> eingetragen.  Aus den
+Werten der <code class="docutils literal notranslate"><span class="pre">media-size-supported</span></code> kalkuliert der generische Treiber
+(<a class="reference internal" href="printer_setup.html#printer-setup"><span class="std std-ref">driverless-printing</span></a>) die PPD Datei zu dem Drucker.</p>
+<div class="admonition attention">
+<p class="admonition-title">Achtung</p>
+<p>Die Werte für <code class="docutils literal notranslate"><span class="pre">media-size-supported</span></code> sind <em>hundertstel Millimeter</em> (also 10
+Mikrometer als Einheit). Nicht zu verwechseln mit den einheitenlosen Angaben
+in PPD Dateien, die den <a class="reference external" href="https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt">DTP-Punkt</a> aka <em>PostScript unit</em> darstellen.</p>
+</div>
+<p>Schaut man in eine so generierte PPD Datei, so sieht man, dass dabei für den
+Drucker z.T. sehr abstruse Rahmen kalkuliert wurden.  Bitte beachten: hier sind
+die einheitenlosen Angaben wieder der DTP-Punkt, also umgerechnet <code class="docutils literal notranslate"><span class="pre">1pt=0,3527mm</span></code>:</p>
+<div class="highlight-clean notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="nc">HWMargins</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;28.346456692913 28.346456692913 28.346456692913 28.346456692913&quot;</span><span class="w"></span>
+<span class="o">...</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">A4</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;14.173228346457 14.173228346457 581.102362204724 827.716535433071&quot;</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">A5</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;14.173228346457 14.173228346457 405.354330708661 581.102362204724&quot;</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">B5</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;14.173228346457 14.173228346457 501.732283464567 714.330708661417&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Besser ist es, die Werte für Ränder ganz auf <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span></code> zu setzen, dass sollte auch
+keine Nachteile bereiten wenn der Drucker in Wirklichkeit mit einem umlaufenden
+Rahmen von z.B. 5mm ausgestattet ist (<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623Cn-attributes.txt">MF623Cn-attributes.txt</a>):</p>
+<div class="highlight-clean notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="nc">HWMargins</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0 0 0 0&quot;</span><span class="w"></span>
+<span class="o">...</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">A4</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0 0 595 842&quot;</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">A5</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0 0 420 595&quot;</span><span class="w"></span>
+<span class="o">*</span><span class="nc">ImageableArea</span><span class="w"> </span><span class="nc">B5</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;0 0 516 729&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="langen-angaben-umrechnen">
+<span id="dtp-pt-mm-inch"></span><h2>Längen Angaben umrechnen<a class="headerlink" href="#langen-angaben-umrechnen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Längen-Angaben die in <a class="reference internal" href="#ppd-spec"><span class="std std-ref">PPD-Dateien</span></a> ohne Einheit angegeben
+werden sind vom Typ <a class="reference external" href="https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt">DTP-Punkt</a> (aka <em>PostScript unit</em>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DIN</span>     <span class="n">A4</span> <span class="p">:</span>   <span class="mi">210</span><span class="n">mm</span> <span class="n">x</span> <span class="mi">297</span><span class="n">mm</span>  <span class="o">/</span> <span class="mi">0</span><span class="p">,</span><span class="mi">3527</span> <span class="n">mm</span>
+<span class="n">DTP</span><span class="o">-</span><span class="n">Punkte</span> <span class="p">:</span>   <span class="mi">595</span>   <span class="n">x</span> <span class="mi">842</span>
+
+<span class="n">PostScript</span> <span class="p">(</span><span class="n">aka</span> <span class="n">pt</span><span class="p">,</span> <span class="n">DTP</span><span class="p">)</span> <span class="n">Point</span> <span class="p">(</span><span class="n">aka</span> <span class="n">Unit</span><span class="p">)</span>
+
+   <span class="mi">1</span> <span class="n">pt</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">3527</span> <span class="n">mm</span>
+   <span class="mi">1</span> <span class="n">pt</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">01</span>   <span class="n">inch</span>
+
+   <span class="mi">1</span> <span class="n">mm</span>   <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">84</span>   <span class="n">pt</span>
+   <span class="mi">1</span> <span class="n">inch</span> <span class="o">=</span> <span class="mi">72</span><span class="p">,</span><span class="mi">02</span>  <span class="n">pt</span>
+
+   <span class="mi">1</span> <span class="n">inch</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span><span class="mi">4</span> <span class="n">mm</span>
+   <span class="mi">1</span> <span class="n">mm</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">04</span> <span class="n">inch</span>
+</pre></div>
+</div>
+<p>Der <a class="reference external" href="https://de.wikipedia.org/wiki/Schriftgrad#DTP-Punkt">DTP-Punkt</a> entspricht <code class="docutils literal notranslate"><span class="pre">0,3527mm</span></code> (<a class="reference external" href="https://print-assistant.de/tools/prepress/dtp-einheiten-mm-cm-dpt-ppt-pt-in-umrechnen/">DTP Einheiten Umrechner</a>). Unten
+zu sehen, die <a class="reference internal" href="#tabelle-page-size"><span class="std std-ref">Umrechnungstabelle gängiger PageSize Formate</span></a></p>
+<span id="tabelle-page-size"></span><table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Umrechnungstabelle gängiger PageSize Formate</span><a class="headerlink" href="#id1" title="Link zu dieser Tabelle">¶</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head stub"><p><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;.Fullbleed</span></code></p></th>
+<th class="head"><p>DTP</p></th>
+<th class="head"><p>mm</p></th>
+<th class="head"><p>inch</p></th>
+<th class="head"><p>MF623Cn</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>Custom max</p></th>
+<td><p>612,3 x 1008,22</p></td>
+<td><p>215,9 x 355,6</p></td>
+<td><p><strong>8.5 x 14</strong></p></td>
+<td><p>custom_max_215.9x355.6mm</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Custom min</p></th>
+<td><p>325,33 x 360.08</p></td>
+<td><p>83 x 127</p></td>
+<td><p>3,255 x 5</p></td>
+<td><p>custom_min_83x127mm</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>8.5x12.5</p></th>
+<td><p>612 x 900</p></td>
+<td><p>216 x 317,43</p></td>
+<td><p>8.5 x 12.5</p></td>
+<td><p>om_officio_215.9x317.5mm</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Oficio (Mexico)</p></th>
+<td><p>612 x 965</p></td>
+<td><p>216 x 341</p></td>
+<td><p>8.5 x 13.4</p></td>
+<td><p>na_oficio_8.5x13.4in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>A3</p></th>
+<td><p>842 x 1190</p></td>
+<td><p>297 x 420</p></td>
+<td><p>11.69 x 16.53</p></td>
+<td><p><strong>Übergröße</strong></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>A4</p></th>
+<td><p>595 x 842</p></td>
+<td><p>210 x 297</p></td>
+<td><p>8.27 x 11.69</p></td>
+<td><p>iso_a4_210x297mm</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>A5</p></th>
+<td><p>420 x 595</p></td>
+<td><p>148 x 210</p></td>
+<td><p>5.83 x 8.27</p></td>
+<td><p>iso_a5_148x210mm</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>A6</p></th>
+<td><p>297 x 420</p></td>
+<td><p>105 x 148</p></td>
+<td><p>4.13 x 5.83</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>B4</p></th>
+<td><p>729 x 1033</p></td>
+<td><p>257 x 364</p></td>
+<td><p>10.126 x 14.342</p></td>
+<td><p><strong>Übergröße</strong></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>B5</p></th>
+<td><p>516 x 729</p></td>
+<td><p>182 x 257</p></td>
+<td><p>7.17 x 10.126</p></td>
+<td><p>jis_b5_182x257mm</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>EnvC5 (aka C5)</p></th>
+<td><p>459 x 649</p></td>
+<td><p>162 x 229</p></td>
+<td><p>6.38 x 9</p></td>
+<td><p>iso_c5_162x229mm</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Photo (10x15cm, 4x6inch)</p></th>
+<td><p>288 x 432</p></td>
+<td><p>102 x 152</p></td>
+<td><p>4 x 6</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Letter</p></th>
+<td><p>612 x 792</p></td>
+<td><p>216 x 279</p></td>
+<td><p>8.5 x 11</p></td>
+<td><p>na_letter_8.5x11in</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Government Letter</p></th>
+<td><p>576,13 x 720,16</p></td>
+<td><p>203,2 x 254</p></td>
+<td><p>8 x 10</p></td>
+<td><p>na_govt-letter_8x10in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><a class="reference external" href="https://en.wikipedia.org/wiki/Paper_size#Variant_loose_sizes">Government Letter PWG</a></p></th>
+<td><p>575 x 757</p></td>
+<td><p>202.85 x 267.05</p></td>
+<td><p>8 x 10.5</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Legal</p></th>
+<td><p>612 x 1008</p></td>
+<td><p>216 x 356</p></td>
+<td><p>8.5 x 14</p></td>
+<td><p>na_legal_8.5x14in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Government Legal</p></th>
+<td><p>576,13 x 936,21</p></td>
+<td><p>203,2 x 330,2</p></td>
+<td><p>8 x 13</p></td>
+<td><p>na_govt-legal_8x13in</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Foolscap</p></th>
+<td><p>612,13 x 936,21</p></td>
+<td><p>215,9 x 330,02</p></td>
+<td><p>8.5 x 13</p></td>
+<td><p>na_foolscap_8.5x13in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Foolscap (Australia)</p></th>
+<td><p>583,22 x 957,75</p></td>
+<td><p>205,7 x 337,8</p></td>
+<td><p>8.1 x 13.3</p></td>
+<td><p>om_a-foolscap_205.7x337.8mm</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Indian Legal</p></th>
+<td><p>609,58 x 978,17</p></td>
+<td><p>215 x 345</p></td>
+<td><p>8.46 x 13.58</p></td>
+<td><p>om_indian-legal_215x345mm</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Ledger</p></th>
+<td><p>792 x 1224</p></td>
+<td><p>279 x 432</p></td>
+<td><p>11 x 17</p></td>
+<td><p><strong>Übergröße</strong></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Statement</p></th>
+<td><p>396 x 612</p></td>
+<td><p>140 x 216</p></td>
+<td><p>5.5 x 8.5</p></td>
+<td><p>na_invoice_5.5x8.5in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Executive</p></th>
+<td><p>522 x 756</p></td>
+<td><p>184 x 267</p></td>
+<td><p>7.25 x 10.5</p></td>
+<td><p>na_executive_7.25x10.5</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>EnvMonarch</p></th>
+<td><p>279 x 540</p></td>
+<td><p>98 x 190</p></td>
+<td><p>3.875 x 7.5</p></td>
+<td><p>na_monarch_3.875x7.5in</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Env10</p></th>
+<td><p>297 x 684</p></td>
+<td><p>105 x 241</p></td>
+<td><p>4,125 x 9.5</p></td>
+<td><p>na_number-10_4.125x9.5in</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>EnvDL</p></th>
+<td><p>312 x 624</p></td>
+<td><p>110 x 220</p></td>
+<td><p>4.33 x 8.67</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>3x5</p></th>
+<td><p>216 x 360</p></td>
+<td><p>76 x 127</p></td>
+<td><p>3 x 5</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>195.09x269.88mm</p></th>
+<td><p>553 x 765</p></td>
+<td><p>195 x 270</p></td>
+<td><p>7.68 x 10.63</p></td>
+<td><p><strong>&lt; 8.5 x 14</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="driver.html" class="btn btn-neutral float-right" title="Druckertreiber" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ipp.html" class="btn btn-neutral float-left" title="IPP &amp; IPP Everywhere" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

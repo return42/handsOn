@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Static Content (static-content.conf) &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="HTML Startseite" href="site_html-intro.html" />
+    <link rel="prev" title="Serverweite Konfigurationen" href="serverwide_cfg.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Static Content (static-content.conf)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chrome-resource"><code class="docutils literal notranslate"><span class="pre">chrome</span></code> Resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alias-direktive">Alias Direktive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allowoverride">AllowOverride</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#allow-direktive">Allow-Direktive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autoindex-von-directories">Autoindex von Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#autoindex-aktivieren">Autoindex aktivieren</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#serverside-includes">Serverside Includes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>Static Content (static-content.conf)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/site_static-content.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="static-content-static-content-conf">
+<span id="xref-static-content"></span><h1>Static Content (static-content.conf)<a class="headerlink" href="#static-content-static-content-conf" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Site <code class="docutils literal notranslate"><span class="pre">static-content.conf</span></code> stellt <em>statische</em> Resourcen bereit. Statische
+Resourcen sind Dateien oder Ordnerstruturen die über HTTP freigegeben werden
+sollen. I.d.R. wird hier der unveränderliche Content abgelegt, den die <em>Sites</em>
+(nach-) laden. Das sind z.B. die statischen Javascript Bibliotheken für den
+Betrieb einer Site oder aber auch Ordnerstrukturen, wie z.B. HTML Dokumente.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2ensite static-content
+</pre></div>
+</div>
+<p>Die Installation dieser <em>Static-Site</em> wird empfohlen, da auch noch weitere
+Setups (z.B. <a class="reference internal" href="site_expimp.html#xref-site-expimp"><span class="std std-ref">Export/Import</span></a> oder <a class="reference internal" href="site_webshare.html#xref-site-webshare"><span class="std std-ref">Apache WebDAV</span></a>) von diesem
+Static Content profitieren. Jedoch wird nicht empfohlen, eine solche
+Konfiguration, die SSI (<a class="reference internal" href="#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a>) verwendet ohne weiteres
+im Internet zu betreiben.</p>
+<div class="section" id="chrome-resource">
+<span id="xref-static-content-chrome"></span><h2><code class="docutils literal notranslate"><span class="pre">chrome</span></code> Resource<a class="headerlink" href="#chrome-resource" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die <em>chrome</em> Resource hat zur Aufgabe statischen Content, der zur Anzeige von
+WEB-Sites wie dem <em>Autoindex</em> erforderlich ist, bereit zu stellen. In dem
+<em>chrome</em> Ordner befinden sich beispielsweise die Icons zu den Dateitypen, die
+das Feature „<a class="reference internal" href="#xref-autoindex-directories"><span class="std std-ref">Autoindex von Directories</span></a>“ in seinen generierten HTML
+Dokumenten referenziert. Die Resource definiert sich wie unten stehend.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/chrome</span> <span class="sx">/var/www/chrome</span>
+
+<span class="nt">&lt;Directory</span> <span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
+
+    <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nb">Allow</span> from <span class="k">all</span>
+
+    <span class="nb">AllowOverride</span> <span class="k">None</span>
+
+    <span class="nb">Options</span> +Indexes +FollowSymLinks +IncludesNOEXEC
+
+    <span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
+    <span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+
+    <span class="nb">AddType</span> text/html .shtml
+    <span class="nb">AddHandler</span> server-parsed .shtml
+
+    <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+        <span class="nb">Header</span> always set X-Robots-Tag <span class="s2">&quot;none&quot;</span>
+    <span class="nt">&lt;/IfModule&gt;</span>
+
+<span class="nt">&lt;/Directory&gt;</span>
+</pre></div>
+</div>
+<p>Da dieser statische Content nur der <em>Gestalltung</em> dient, ist hierfür keine
+<a class="reference internal" href="apache_auth.html#xref-apache-auth"><span class="std std-ref">Autorisierung zum Zugriff auf Resourcen</span></a> erforderlich, was über die Direktive <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">all</span>
+<span class="pre">granted</span></code> gesetzt wird. Es macht auch keinen Sinn, wenn eine Suchmaschine diese
+<em>Gestalltungselemente</em> indiziert, was mit dem <code class="docutils literal notranslate"><span class="pre">X-Robots-Tag</span> <span class="pre">&quot;none&quot;</span></code>
+konfiguriert wird (s.a. <a class="reference internal" href="serverwide_cfg.html#xref-global-http-headers"><span class="std std-ref">HTTP-Headers</span></a>).  Mittels <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">from</span>
+<span class="pre">all</span></code> wird der Zugriff aus jedem Netz erlaubt. Um den Zugriff einzuschränken
+muss das <code class="docutils literal notranslate"><span class="pre">all</span></code> der <a class="reference internal" href="#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a> durch entsprechende Netzmasken
+oder IPs ersetzt werden.</p>
+<ul class="simple">
+<li><p>HeaderName / ReadmeName: <a class="reference internal" href="#xref-autoindex-directories"><span class="std std-ref">Autoindex von Directories</span></a> /
+<a class="reference internal" href="#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a></p></li>
+<li><p>AddType / AddHandler :  <a class="reference internal" href="#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a></p></li>
+<li><p>Options: <a class="reference internal" href="#xref-options-indexes"><span class="std std-ref">Autoindex aktivieren</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="alias-direktive">
+<span id="xref-allias-directive"></span><h2>Alias Direktive<a class="headerlink" href="#alias-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit der Alias Direktive aus dem <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_alias.html">Apache mod_alias</a> Modul kann auf Resourcen
+verwiesen werden die nicht im <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> Ordner liegen. Die Resource wird
+dann unter der entsprechenden URL zur Verfügung gestellt.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/chrome</span> <span class="sx">/var/www/chrome</span>
+<span class="nt">&lt;Directory</span> <span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
+   ...
+</pre></div>
+</div>
+<p>Mit dieser Direktive wird der Content aus dem Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/chrome</span></code> unter
+der URL <a class="reference external" href="https://localhost/chrome">https://localhost/chrome</a> referenziert.</p>
+</div>
+<div class="section" id="allowoverride">
+<span id="xref-allowoverride-directive"></span><h2>AllowOverride<a class="headerlink" href="#allowoverride" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit der <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache AllowOverride Direktive</a> wird gesetzt, welche Otionen in einer
+<code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> lokal in einem Ordner angepasst werden können. Mit</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span> <span class="k">None</span>
+</pre></div>
+</div>
+<p>darf keine Option überschrieben werden. Andere sinnvolle Werte können
+z.B. Anpassungen an der Autorisierung und dem Autoindex sein:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span> AuthConfig Indexes
+</pre></div>
+</div>
+<p>Hier im Setup werden lokale Anpassungen in <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> Dateien nicht
+erforderlich werden, manche Installation einer WEB-Anwendung ist aber auf
+<em>Overerrides</em> angewiesen.</p>
+</div>
+<div class="section" id="allow-direktive">
+<span id="xref-allow-directive"></span><h2>Allow-Direktive<a class="headerlink" href="#allow-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Allow-Direktive (<a class="reference external" href="https://httpd.apache.org/docs/current/howto/access.html">Apache Access Control</a> / <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_access_compat.html">Apache mod_acces_compat</a>)
+können nicht nur IPs bzw. Netzmasken angeben werden, es ist auch möglich Domian-
+oder Host-Namen anzugeben. Es sind aber die Netzmasken den <em>Host-/Domain-Namen</em>
+vorzuziehen, da die Namensauflösung Zeit und Netztraffic in Anspruch nehmen kann
+und es nicht auszuschließen ist, dass der <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS (wiki)</a> – <em>den der Apache
+benötigt um die IP Adresse in einem Namen aufzulösen</em> – Teil eines
+Angriffszenarios ist, oder ob er einfach nur <em>buggy</em> ist.</p>
+<p>Um eine solche Konfiguration strukturiert durchführen zu können müssen die
+Grundlagen der Natzmaskierung bekannt sein, die in der
+<a class="reference internal" href="../excursion/excursion_IPv4_6.html#xref-excursion-ipv4-6"><span class="std std-ref">Exkursion: Netzmaske / IPv4 und IPv6</span></a> vermittelt werden. I.d.R. wird man den Zugriff aus
+den folgenden Netzen konfigurieren:</p>
+<ul class="simple">
+<li><p>Netzweit                        <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
+<li><p>IPv4 localhost:                 <code class="docutils literal notranslate"><span class="pre">127.0.0.0/8</span></code></p></li>
+<li><p>IPv4 <em>privates</em> Class-A Subnetz <code class="docutils literal notranslate"><span class="pre">10.0.0.0/8</span></code></p></li>
+<li><p>IPv4 <em>privates</em> Class-B Subnetz <code class="docutils literal notranslate"><span class="pre">192.168.0.0/16</span></code></p></li>
+<li><p>IPv4 <em>privates</em> Class-C Subnetz <code class="docutils literal notranslate"><span class="pre">192.168.0.0/24</span></code></p></li>
+<li><p>IPv6 localhost:                  <code class="docutils literal notranslate"><span class="pre">::1</span></code></p></li>
+<li><p>IPv6 Link-Lokal Netz:            <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code></p></li>
+<li><p>IPv6 Unique-Local Subnetz:       <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code></p></li>
+</ul>
+<p>Die <code class="docutils literal notranslate"><span class="pre">Allow</span></code>, <code class="docutils literal notranslate"><span class="pre">Order</span></code> und <code class="docutils literal notranslate"><span class="pre">Deny</span></code> Direktiven wurden bereits im
+<a class="reference internal" href="serverwide_cfg.html#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> gesetzt, es wurde <em>alles dicht gemacht</em>. Um eine Site
+<em>Netzweit</em> frei zu geben, muss die Allow-Direktive auf <code class="docutils literal notranslate"><span class="pre">all</span></code> gesetzt. werden</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span> from <span class="k">all</span>
+</pre></div>
+</div>
+<p>Um die Site in dem Link-Lokal Netzt frei zu geben eignet sich:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
+</pre></div>
+</div>
+<p>Die beiden letzten Beispiele basieren auf den vererbeten <code class="docutils literal notranslate"><span class="pre">Order</span></code> und die
+<code class="docutils literal notranslate"><span class="pre">Deny</span></code> Direktieven aus dem <a class="reference internal" href="serverwide_cfg.html#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> Konzept. Die Vererbung
+kann oft ein hilfsreiches Gestaltungsmittel sein, bei der Gewährung von
+Zugriffsrechten auf eine Site empfiehlt es sich <em>expliziet</em> zu sein und auf eine
+Vererbung zu verzichten. Man muss dann zwar etwas mehr notieren, aber die
+Zugriffkontrolle ist damit zentral an der <em>Site</em> angebracht und
+unmissverständlich.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Order</span> deny,allow
+<span class="nb">Deny</span> from <span class="k">all</span>
+<span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
+</pre></div>
+</div>
+</div>
+<div class="section" id="autoindex-von-directories">
+<span id="xref-autoindex-directories"></span><h2>Autoindex von Directories<a class="headerlink" href="#autoindex-von-directories" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Zum <em>Static Content</em> gehört in diesem Setup noch die Installation des <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_autoindex.html">Apache
+mod_autoindex</a> Moduls. Mit diesem Modul wird die Auflistung des Inhalts eines
+Ordners (eines <em>Directory</em>) in ein HTML Dokument umgewandelt und über HTTP an
+den WEB-Browser gegeben. Sozusagen, ein <em>nur lesender</em> Dateiexplorer über
+HTTP. Mit dem <em>Autoindex</em> kann in der Ordnerstruktur einer Resource navigiert
+werden. Die <a class="reference internal" href="site_sysdoc.html#xref-site-sysdoc"><span class="std std-ref">System-Dokumentation</span></a> (<em>sysdoc</em>) oder der <a class="reference internal" href="site_expimp.html#xref-site-expimp"><span class="std std-ref">Export/Import</span></a>
+Ordner sind Beispiele für diese Anwendung des <em>Autoindex</em>.</p>
+<p>Mit dem Autoindex-Modul wird von Debian noch eine Default-Konfiguration
+ausgeliefert, die <em>hier</em> im Setup jedoch durch eine etwas <em>verbesserte</em>
+Konfiguration ersetzt wird.</p>
+<ul class="simple">
+<li><p>Default: <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/autoindex.conf</span></code></p></li>
+<li><p>Anpassung:  <code class="docutils literal notranslate"><span class="pre">/etc/apache2/conf-available/autoindex.conf</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H mv autoindex.conf autoindex.conf-disabled
+sudo -H a2enconf autoindex
+sudo -H a2enmod autoindex
+</pre></div>
+</div>
+<p>In der <code class="docutils literal notranslate"><span class="pre">autoindex.conf</span></code> wird das Setup für die Anzeige der Ordnerinhalte
+konfiguriert. Hier ein Auszug:</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_autoindex.c</span><span class="nt">&gt;</span>
+
+    <span class="nb">IndexOptions</span> FancyIndexing XHTML HTMLTable SuppressHTMLPreamble \
+                 VersionSort FoldersFirst DescriptionWidth=* NameWidth=* \
+                 Charset=UTF-8
+    ...
+    <span class="nb">AddIconByType</span> (IMG,/chrome/icons/16x16/mimetypes/gnome-mime-image.png) image/*
+    <span class="nb">AddIconByType</span> (SND,/chrome/icons/16x16/mimetypes/gnome-mime-audio.png) audio/*
+    <span class="nb">AddIconByType</span> (TXT,/chrome/icons/16x16/mimetypes/gnome-mime-text.png) text/*
+    <span class="nb">AddIconByType</span> (VID,/chrome/icons/16x16/mimetypes/gnome-mime-video.png) video/*
+    ...
+    <span class="nb">AddDescription</span> <span class="s2">&quot;tar (tape) archive&quot;</span> .tar
+    <span class="nb">AddDescription</span> <span class="s2">&quot;GZIP compressed document&quot;</span> .Z .z .gz .zip
+    <span class="nb">AddDescription</span> <span class="s2">&quot;ZIP compressed document&quot;</span> .zip
+</pre></div>
+</div>
+<p>Die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_autoindex.html#indexoptions">Apache IndexOptions Direktive</a> wird wie die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a>
+vererbt (vergleiche <a class="reference internal" href="#xref-options-indexes"><span class="std std-ref">Autoindex aktivieren</span></a>).</p>
+<p>Die <code class="docutils literal notranslate"><span class="pre">IndexOptions</span></code> Direktive steht <em>hier</em> in einem globalen Kontext, damit
+wird sie auf jede (freigegebene) statische Resource <em>vererbt</em>.  Will eine
+Autoindex-Site den <code class="docutils literal notranslate"><span class="pre">FancyIndex</span></code>-Style nicht eingeschaltet haben, dann muss
+diese Autoindex-Site <code class="docutils literal notranslate"><span class="pre">IndexOptions</span> <span class="pre">-FancyIndex</span></code> definieren. Die <code class="docutils literal notranslate"><span class="pre">+/-</span></code>
+Notation wird am Beispiel <a class="reference internal" href="#xref-options-indexes"><span class="std std-ref">Autoindex aktivieren</span></a> noch genauer erläutert.</p>
+<p>In dem obigen Ausschnitt der Konfiguration ist auch zu sehen, dass für die
+Dateitypen (Mimetypes) die passenden Icons konfiguriert werden. Diese Icons
+werden in der Ordneransicht des Autoindex dann mit angezeigt. Die Icons werden
+in dem – vom Autoindex generierten – HTML Dokument als <code class="docutils literal notranslate"><span class="pre">img</span></code>-Tag
+eingebunden:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/chrome/icons/16x16/mimetypes/gnome-mime-image.png&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Der Browser wird das Bild unter der URL <code class="docutils literal notranslate"><span class="pre">https://myhostname/chrome/</span></code>
+nachladen. Hier <em>schließt sich dann der Kreis</em> von Autoindex und der
+statischen <em>chrome</em> Resource.</p>
+</div>
+</div>
+<div class="section" id="autoindex-aktivieren">
+<span id="xref-options-indexes"></span><h2>Autoindex aktivieren<a class="headerlink" href="#autoindex-aktivieren" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Mit der Direktive <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">+Indexes</span></code> wird der <em>chrome</em> Ordner im WEB-Browser
+auch <em>navigierbar</em> (vergleiche <a class="reference internal" href="#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a>).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Options</span> +Indexes +IncludesNOEXEC +FollowSymLinks
+</pre></div>
+</div>
+<p>Die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a> wird vererbt. Bereits im Root Ordner (vergleiche
+<a class="reference internal" href="serverwide_cfg.html#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a>) wurden die <em>default</em> <code class="docutils literal notranslate"><span class="pre">Options</span></code> im <em>globalen</em>
+Dateisystem-Kontext gesetzt. Diese werden auf alle Ordner (und somit auch auf
+den <em>chrome</em> Ordner) vererbt. Diese <em>Vererbung</em> kann <em>überschrieben</em> werden oder
+mittles des <code class="docutils literal notranslate"><span class="pre">+/-</span></code> Präfix an den Optionen spezialisiert werden.</p>
+<p>Überschrieben würde sie z.B. mit <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">Indexes</span></code>. Das würde zwar den
+Autoindex aktivieren, jedoch hätte man alle Optionen aus dem globalen Kontext
+verloren. Da in <em>diesem</em> Setup Konzept wie die „der Verbung“ zur Anwendung
+kommen sollen (<em>wir wollen die global einheitlich Optionen an einer Stelle
+setzen können</em>) muss die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a> im Kontext des <em>chrome</em>
+Ordners spezialisiert werden.</p>
+<p>Mit dem <code class="docutils literal notranslate"><span class="pre">+</span></code> vor dem <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">+Indexes</span></code> wird die Option <em>aditiv</em> zu den
+geerbeten Optionen hinzugefügt. Mit einem <code class="docutils literal notranslate"><span class="pre">-</span></code> vor der Option können geerbte
+Eigenschaften abgeschaltet werden.  Soll beispielsweise eine Einstellung die aus
+dem globalen Kontext geerbt wurde im <em>chrome</em> Ordner abgeschaltet werden, so
+muss das <code class="docutils literal notranslate"><span class="pre">-</span></code> als Präfix verwendet werden (<code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">-Opt2Drop</span></code>).</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Wenn das <code class="docutils literal notranslate"><span class="pre">+/-</span></code> Präfix in einer Resource für eine Option angewendet wird,
+muss es für alle Optionen in dieser Resource angewendet werden. Direktieven
+wie <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">Indexes</span></code> führen dazu, dass der Autoindex zwar eingeschaltet
+würde, aber gleichzeitig alle geerbten Optionen verloren gehen würden (wegen
+dem fehlenden <code class="docutils literal notranslate"><span class="pre">+/-</span></code> vor <code class="docutils literal notranslate"><span class="pre">Indexing</span></code>). Solche gemischten Notationen führen
+zu verwirrenden Ergebnissen, weshalb man sich in einer Resource immer dafür
+entscheiden sollte die Vererbung zu spezialiseren (nur <code class="docutils literal notranslate"><span class="pre">+/-</span></code>) oder komplett
+zu verwerfen. Bei Letzterem müssen dann alle Optionen ohne das Präfix notiert
+werden.</p>
+</div>
+</div>
+<div class="section" id="serverside-includes">
+<span id="xref-server-side-include"></span><h2>Serverside Includes<a class="headerlink" href="#serverside-includes" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Die Generierung der HTML-Seiten mit der Auflistung der Dateien in einem Ordner
+ist in diesem Setup mittels Server Side Includes (SSI) relalisiert (siehe
+<a class="reference external" href="http://httpd.apache.org/docs/current/howto/ssi.html">Introduction to SSI</a>).</p>
+<p>SSI sind umstritten, sie sollten nur mit Umsicht eingesetzt werden. Dazu gehört,
+dass in KEINEM Fall die <code class="docutils literal notranslate"><span class="pre">#exec</span></code> -Direktieve verwendet wird!  Hier im Setup
+werden SSI nur verwendet, um die Autoindex-Seiten etwas <em>aufzubrezeln</em> und es
+werden die SSI-Skripte <strong>NUR</strong> im Kontext des Chrome-Ordners aktiviert
+(vergleiche <a class="reference internal" href="#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a>).</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AddType</span> text/html .shtml
+<span class="nb">AddHandler</span> server-parsed .shtml
+</pre></div>
+</div>
+<p>Im Chrome Ordner gibt es auch nur zwei kleine SSI-Skripte für den <em>Header</em> und
+die <em>Readme</em> des Autoindex. Will ein Autoindex in einem anderen Kontext diese
+verwenden, muss er nur die beiden Dateien aus dem Chrome-Ordner setzen.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
+<span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+</pre></div>
+</div>
+<p>Da auch der Chrome Ordner mit dem Autoindex <em>navigierbar</em> ist, werden sie auch
+im Chrome Ordner gesetzt (vergleiche <a class="reference internal" href="#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a>).</p>
+<div class="admonition caution">
+<p class="admonition-title">Vorsicht</p>
+<p>Andere Kontexte als der Chrome-Ordner <strong>sollen keine</strong> SSI-Skripte
+aktivieren. Sie benötigen keine <code class="docutils literal notranslate"><span class="pre">AddHandler</span> <span class="pre">server-parsed</span> <span class="pre">.shtml</span></code>
+Direktieve.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="site_html-intro.html" class="btn btn-neutral float-right" title="HTML Startseite" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="serverwide_cfg.html" class="btn btn-neutral float-left" title="Serverweite Konfigurationen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

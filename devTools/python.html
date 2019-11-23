@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>python &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Edit, Diff, Merge &amp; Co." href="edit.html" />
+    <link rel="prev" title="Software Build (GNU)" href="build.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Entwickler Pakete</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Software Build (GNU)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit.html">Edit, Diff, Merge &amp; Co.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scm.html">Versionsverwaltung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relationalDB.html">Relationale Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="devTools_refs.html">Verweise</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Entwickler Pakete</a> &raquo;</li>
+        
+      <li>python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devTools/python.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xref-ubuntu-devtools-python">
+<span id="id1"></span><h1>python<a class="headerlink" href="#xref-ubuntu-devtools-python" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Es gibt derzeit zwei Versionen des Interpreters; Python 2 und Python 3, wobei in
+Python 3 ziemlich aufgeräumt wurde.  Oberflächlich betrachtet sind die beiden
+Versionen bis auf wenige <em>keywords</em> syntaktisch gleich.  Schaut man genauer hin,
+merkt man aber schnell, dass sich ziemlich viel an den Datentypen und
+Operationen geändert hat (siehe <a class="reference external" href="https://docs.python.org/3/whatsnew/index.html">What’s New in Python</a> 3).</p>
+<p>Um es abzukürzen, jede Portierung auf Python 3 ist mit Aufwänden verbunden,
+weshalb es immernoch diverse (produktive) Instanzen gibt, die auf Python 2
+nicht verzichten können und die <em>nicht-aufwärtskompatibel</em> weiter entwickelt
+werden.  Es ist schwer einen Kunden davon zu überzeugen, dass er für eine
+Aufwärtskompatibilität zusätzliches Geld investieren soll, wenn er diese <em>heute</em>
+(noch) gar nicht braucht.</p>
+<p>Open Source Projekte sind da meist schon <em>weiter</em>, eine Python 2/3 kompatible
+Implementierung wird fast schon als <em>Standard</em> erwartet.  Ob es dem Fortschritt
+dienlich ist immer abwärtskompatibel zu sein, ist dabei diskutabel.  Ab einem
+bestimmten Punkt muss man seinen Kunden (im Interesse des Kunden selbst) auch
+dazu bewegen der Weiterentwicklung zu folgen.  Nur sollte das dann auch so
+<em>smooth</em> wie irgend möglich für ihn sein.</p>
+<p>Ein anderes Bsp. dazu: Endlich Windows XP abzulegen, war auch in den Unternehmen
+ein längst überfälliger Schritt, der von vielen Unternehmen verschoben wurde,
+bis sie von MS dazu gezwungen wurden. Es ist nicht einfach den richtigen Punkt
+für einen Wechsel zu finden. Sobald man merkt, dass die eigene Version einen
+dran hindert aktuell verfügbare Entwicklungen zu integrieren sollte man zum
+ersten mal drüber nachdenken, bevor man weiter unüberlegt in die alte
+Infrastruktur investiert und unnötige Verrenkungen macht, die man mit einer
+neuen Version galant umgehen könnte. Diese langfristige Perspektive ist bei
+Unternehmen, die zu einem zügigen <em>Return of Investment</em> gezwungen sind nicht
+immer gegeben und genau hier muss man als Berater seine Aufgabe sehen um den
+besten Kompromiss finden.</p>
+<p>Mit Bezug auf Python: Werkzeuge, Strategien und Erfahrungen für eine Python 2
+nach 3 Migration gibt es inzwischen genügend und nach 8 Jahren parallen Supports
+sollte man da wirklich mal drüber nachdenken.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/howto/pyporting.html">Porting Python 2 Code to Python 3</a></p></li>
+<li><p><a class="reference external" href="http://ncoghlan-devs-python-notes.readthedocs.org/en/latest/python3/questions_and_answers.html">Python 3 Q &amp; A</a></p></li>
+</ul>
+<p>Doch nun aber zurück zu Python und den Debian Paketen.  Der <a class="reference external" href="https://www.python.org/">python</a>
+Interpreter ist auf den <a class="reference external" href="https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Debian-Derivate">Debian-Derivate (wiki)</a> bereits auf jeder
+OS-Installation enthalten, da er (wie der Perl Interpreter) Teil des Debian
+Ökosystems ist (<a class="reference external" href="https://wiki.debian.org/Python">Debian python</a>).</p>
+<p>Es gibt verschiedene Implementierungen des Python Interpreters, wobei <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>
+die Referenzimplementierung ist. Wenn man sich Python von python.org oder von
+Debian installiert, dann installiert man sich einen <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a>
+Inperpreter. <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a> ist der <em>Standard</em> Inperpreter, auf andere
+Implementierungen will ich nicht mehr eingehen.</p>
+<p>Debian nutzt Python 2 als Standard-Interpreter, es ist i.d.R. aber auch immer
+der Python 3 Interpreter installiert.  Gleiches gilt für die ggf. schon
+vorinstallierten Python Module, die Python 3 Versionen müssen bei Bedarf
+z.T. noch nachinstalliert werden, was aber auch kein wirkliches Problem ist und
+im Rahmen der Paketverwaltung ohnehin ohne weiteres zutun erfolgt.</p>
+<p>Für die Entwicklung resp. den Betrieb einiger Software können folgende Pakete
+empfohlen werden.  Einige dieser Pakete werden von Installationen benötigt, so
+z.B. auch schon von der handsOn Sammlung selber (<a class="reference internal" href="../apache_setup/site_py-apps.html#xref-site-pyapps"><span class="std std-ref">WSGI Anwendungen</span></a>).</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/python-argcomplete">python-argcomplete</a> / <a class="reference external" href="http://packages.ubuntu.com/python3-argcomplete">python3-argcomplete</a></p></li>
+</ul>
+<p>Autovervollständigung für Python Anwendungen auf der Kommandozeile, siehe
+<a class="reference external" href="https://argcomplete.readthedocs.org">argcomplete (RTD)</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/python-virtualenv">python-virtualenv</a></p></li>
+</ul>
+<p>Tool um isolierte Python Umgebungen bereit zu stellen, der Namesbestandteil
+<em>virtual</em> geht etwas zu weit, es wird kein Python <em>virtualisiert</em>.  Mit <cite>python
+Virtualenv</cite> können jedoch Python Anwendungen sehr gut gegeneinander isoliert
+werden, so dass sie ihre <em>eigenen</em> Abhängigkeiten in ihre <em>eigene</em> Umgebung
+installieren können, ohne dass alle Python Anwendungen den selben Satz an
+Bibliotheken nutzen müssten oder diese Bibliotheken ins OS installiert werden
+müssten.  Ein Beispiel aus der handsOn Sammlung sind die python
+<a class="reference internal" href="../apache_setup/site_py-apps.html#xref-site-pyapps"><span class="std std-ref">WSGI Anwendungen</span></a> eines WEB-Servers, die in ihrer <em>eigenen</em> Umgebung
+laufen.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/pylint">pylint</a></p></li>
+</ul>
+<p><a class="reference external" href="https://www.pylint.org">Pylint</a> ist ein Python Code-Checker, der Name ist an den statischen
+Code-Analysator <a class="reference external" href="https://de.wikipedia.org/wiki/Lint_%28Programmierwerkzeug%29">Lint (wiki)</a> angelehnt.  Insbesondere bei dynamischen
+Interpretersprachen verbessert ein Code-Checker die Code-Qualität und
+Produktivität des Entwicklers.</p>
+<blockquote>
+<div><p>Ein <em>must have</em> für jeden python Entwickler!</p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.pylint.org">Pylint</a> ist die wirklich gelungene Code-Analyse für Python und geht damit
+wesentlich weiter als Style-Cheker wie <a class="reference external" href="http://pep8.readthedocs.org">pep8 (RTD)</a>.  Leider gibt es z.T. auch
+Softwareprojekte in denen der <a class="reference external" href="https://www.pylint.org">PyLint</a> nur bedingt eingesetzt werden kann.
+Meist ist das (proprietäre) Software, die mit ziemlich kruden und generischen
+Modellen – die zwar in Python möglich aber deswegen noch lange nicht immer
+sinnvoll sind – herumjonglieren und Programmiermodelle forcieren, die an
+klassischen Konzepten voll vorbei gehen.  Aber auch in solch <em>kranken</em>
+Umgebungen kann man mit etwas Übung immernoch von einer Code-Analyse zumindest
+teilweise profitieren.  Kurzum: Ein <a class="reference external" href="https://www.pylint.org">PyLint</a> Prozess ist immer richtig, weshalb
+es auch Integrationen in jedes ernstzunehmendes (python-) Entwicklerwerkzeug
+gibt (<a class="reference external" href="https://docs.pylint.org/ide-integration">Editor and IDE Integration</a>)</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/python-pip">python-pip</a> / <a class="reference external" href="http://packages.ubuntu.com/python3-pip">python3-pip</a></p></li>
+</ul>
+<p><em>Pip Installs Python</em> (kurz: <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a>) ist der Paketmanager von Python.  Mit ihm
+können Python Pakete aus dem Python-Package-Index installiert werden.  Das die
+beiden Paketmanager <a class="reference external" href="https://wiki.debian.org/PackageManagement">Debian Package Managment</a> und <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> ein Konfliktpotential
+haben wurde z.T. schon im Netzt diskutiert, ich selber bin der Meinung, dass es
+keine Konflikte gibt, wenn sich jeder auf seine Rolle konzentriert und die für
+ihn richtigen Entscheidungen trifft.</p>
+<ul class="simple">
+<li><p>Der <em>Debian Package Builder</em> muss sich entscheiden, welche Anwendung er in
+seine Distribution aufnehmen will.  Dabei sollte es unerheblich sein, ob diese
+in Python, Java, Ruby oder sonst was implementiert ist und ob diese Sprachen
+eigene Package-Manager besitzen.  Er muss seine Pakete und Paketabhängigkeiten
+so bauen, dass alle erforderlichen Teilpakete in seinem Package-Managment in
+den Versionen vorliegen um daraus ein konkretes Release einer Anwendung
+installiern zu können.</p></li>
+<li><p>Der Anwendungsentwickler formuliert seine Abhängigkeiten (im Fall Python)
+gegen <a class="reference external" href="https://pypi.python.org/pypi">PyPI</a>, dem Package-Reposetory von pip.  Hat er weitere Abhängigkeiten,
+muss er diese in einer Installationsanleitung benennen.  Ein Beispiel hierfür
+sind die Python Bindings für GLib/GObject/GIO/GTK+ siehe <a class="reference external" href="https://wiki.gnome.org/Projects/PyGObject">PyGObject (aka
+PyGI)</a>.  Die kann nur der <em>Package Builder</em> in seiner Distrubition erfüllen.</p></li>
+<li><p>Der <em>Betreiber</em> einer Anwendung muss sich entscheiden, ob er seine gewünschte
+Anwendung aus dem <em>Debian Package Builder</em> installiert oder ob er die Software
+(in der aktuellsten Version) lieber selber installiert. Beides hat seine Vor-
+und Nachteile.  So werden beispielsweise die Updates über den <em>Debian Package
+Builder</em> ohne eigenes zutun bereit gestellt, mit dem Systemupdate ist auch die
+Anwendung aktualisiert.  Entscheidet man sich für die eigene Installation,
+kann man Aktualisierungen schneller <em>produktiv bringen</em>, muss sich aber auch
+selber drum kümmern.</p></li>
+</ul>
+<p>Wie bereits erwähnt können Abhängigkeiten in das OS nicht über <a class="reference external" href="https://pypi.python.org/pypi">PyPi</a> erfüllt
+werden, ein Beispiel dafür ist die Anbindung von Python an die <a class="reference external" href="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject
+Introspection</a> die von den von den folgenden <code class="docutils literal notranslate"><span class="pre">*gi*</span></code> -Paketen bereit gestellt
+wird.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/python-gi">python-gi</a> / <a class="reference external" href="http://packages.ubuntu.com/python3-gi">python3-gi</a></p></li>
+</ul>
+<p>Die Pakete installieren die Python Anbindung (den Abstraktionslayer) an das
+Modell der <a class="reference external" href="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject Introspection</a>. Die Introspektion ist eine Abstrakttion die
+mit GTK+ 3 eingeführt wurde. Mit dieser Abstraktion müssen keine Wrapper mehr
+für eine GObject Bibliothek implementiert werden, sondern nur noch ein
+Abstraktionslayer (<a class="reference external" href="http://packages.ubuntu.com/python-gi">python-gi</a>) je Sprache. Über die Introspektion hat man
+dann in der Sprache zugriff auf sämmtliche im System installierten Bibliotheken,
+ein Beispiel dafür ist <a class="reference external" href="http://webkitgtk.org/">WebKitGTK+</a> (API: <a class="reference external" href="http://lazka.github.io/pgi-docs/#WebKit2-4.0">PGI Docs WebKit2 4.0</a>).</p>
+<p>Alternativ gibt es den Abstraktionslayer noch als <em>Pure Python GObject
+Introspection Bindings</em> (<a class="reference external" href="https://github.com/lazka/pgi">PGI</a>), was aber eher <em>experimentell</em> ist. In
+produktiven Umgebungen sollte man immer auf die native GI zurückgreifen (beide
+sind zueinander API kompatiebel).</p>
+<p>Das <a class="reference external" href="https://python-gtk-3-tutorial.readthedocs.org/en/latest/">Python GTK+ 3 Tutorial</a> gibt eine Einführung in die Anwendungsentwicklung
+mit <a class="reference external" href="https://wiki.gnome.org/Projects/PyGObject">PyGObject (aka PyGI)</a>. Ganz ohne ein Blick auf die Dokumentation der
+C-Bibliotheken wird man aber nicht immer zurecht kommen weshalb sich ein
+Bookmark des <a class="reference external" href="https://developer.gnome.org/gtk3/stable/">GTK+ 3 Reference Manual</a> ebenfalls lohnt.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die Bezeichnung <a class="reference external" href="https://python-gtk-3-tutorial.readthedocs.org/en/latest/">Python GTK+ 3 Tutorial</a> sollte nicht mit den PyGTK Bindings
+verwechselt werden.  Das Tutorial beschreibt die <a class="reference external" href="https://wiki.gnome.org/Projects/PyGObject">PyGObject (aka PyGI)</a>
+Bindings, auch wenn das Tutorial ein „Py..GTK“ im Namen trägt, es sollte
+nicht mit PyGTK – der alten und obsoleten Implementierung – verwechselt
+werden.</p>
+<p>Die Namensgebungen sind zum Teil etwas babylonisch und im Netzt findet man
+noch häufig Artikel zu der alten Implementierung PyGTK. Zur Orientierung
+sollte man sich merken: Wenn man etwas über <em>PyGTK</em> oder <em>GTK+ 2</em> liest, dann
+ist das <em>vintage</em>, wenn man was über <strong>PyGobject</strong>, <strong>PyGI</strong> oder <strong>GTK 3</strong>
+liest, dann ist das <strong>der heiße Scheiß</strong>.</p>
+</div>
+<p>Eine vollständige Dokumentation zur Introspektion der gängigen GObject
+Bibliotheken liefert die <a class="reference external" href="http://lazka.github.io/pgi-docs/">Python GObject Introspection API Reference</a>. Diese
+wird automatisch erzeugt, ist immer aktuell und umfasst so ziemlich alle
+gängigen GObject Biliotheken. Die Webseite ist aufgrund der Größe etwas langsam,
+bei Interesse sollte man sich das git-Repositorie clonen oder das ZIP-File
+runter-laden.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/python-dev">python-dev</a> / <a class="reference external" href="http://packages.ubuntu.com/python3-dev">python3-dev</a></p></li>
+</ul>
+<p>Die Pakete installieren die Python Header Dateien.  In Python kann mittels
+<a class="reference external" href="https://docs.python.org/3/library/ctypes.html">ctypes</a> auf Biblitheken zugegriffen werden (<a class="reference external" href="https://github.com/lazka/pgi">PGI</a> ist ein Beispiel). Der
+Zugriff auf C-Funktionen ist aber nicht immer praktikabel, da man die
+C-Datentypen in Python zur Laufzeit <em>kennen</em> muss, was bei Strukturen schnell
+mal daneben gehen kann (Projekte die massiv ctypes verwenden haben nicht selten
+Probleme Speicherzugriffsfehler).</p>
+<p>Besser ist es, wenn Anbieter von Bibliotheken gleich ein Python-Modul als API
+zur C-Bibliothek bereit stellen, das können sie beispielsweise wie in <a class="reference external" href="https://docs.python.org/3/extending/extending.html">Extending
+Python with C or C++</a> beschrieben. Nicht selten wird dabei noch der <em>Umweg</em>
+über <a class="reference external" href="http://swig.org/">SWIG</a> genommen um das Interface von der Zielsprache zu abstrahieren.</p>
+<p>Egal, wie man es macht, am Ende braucht man in seinem Interface die Python
+Header-Files, in denen die Python Datentypen definiert werden, auf die man
+<em>abbilden</em> will. Solange man nur <em>Python-Extensions</em> aus der Debian Distrubition
+nimmt, braucht man das alles nicht.  Sobald man aber Software aus Sourcen
+installiert die nach Python wrapt, benötigt man die Header Dateien von Python
+für den Build-Prozess.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/cython">cython</a></p></li>
+</ul>
+<p>Installiert <a class="reference external" href="http://cython.org/">Cython</a>, eine Programmmiersprache die ein <em>Superset</em> von Python
+ist (Python ist eine Teilmenge von Cython). Der Cython Compiler übersetzt Python
+Implementierungen nach C und diese C-Implementierungen werden mittels C-Compiler
+in ausführbaren Code übersetzt. Das Prozessbild von Wikimedia Commons
+veranschaulicht den Prozess an einem einfachen Beispiel.</p>
+<div class="figure align-center" id="id2">
+<span id="xref-figure-python-cython-cpython-ext-module-workflow"></span><a class="reference external image-reference" href="https://en.wikipedia.org/wiki/Cython#/media/File:Cython_CPython_Ext_Module_Workflow.png"><img alt="Figure (Cython_CPython_Ext_Module_Workflow.png)" src="../_images/Cython_CPython_Ext_Module_Workflow.png" /></a>
+<p class="caption"><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/Cython">Cython (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</div>
+<p><a class="reference external" href="http://cython.org/">Cython</a> benötigt das <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a> Ökosystem (also den Standard Python
+Interpreter).  Will man C-Extensions für Python erstellen, ist <a class="reference external" href="http://cython.org/">Cython</a> eine
+gute Alternative zur Implementierung direkt in C, da man in seiner gewohnten
+Python Umgebung bleibt und das Interface (s.o.) nicht mehr extra implementieren
+muss.</p>
+<p>Einfach nur seine <code class="docutils literal notranslate"><span class="pre">.py</span></code> Datei durch den Cython Compiler zu jagen ist zwar
+möglich, wird aber meist nicht sehr viel an Optimierung bringen. Da man davon
+ausgehen kann, dass der <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a> Interpreter, den man im Debian hat, bereits
+mit Optimierung durch den C-Compiler gelaufen ist. Um dem C-Compiler Möglichkeit
+zur Optimierung zu geben wird man Datentypen definieren müssen und sich des
+<em>Superset</em> von Cython bedienen müssen. Diese Cython-Dateien werden mit der
+Endung <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> versehen um sie von normalen Python Dateien <code class="docutils literal notranslate"><span class="pre">.py</span></code> zu
+differenzieren.</p>
+<p>Etwas <em>off-Topic</em>, aber um das Bild der Python-Extensions / Optimierung noch zu
+ergänzen: weitere Möglichkeiten zur Optimierung der Ausführungsgeschwindigkeit
+bietet der JIT Compiler <a class="reference external" href="http://pypy.org/">PyPy</a> (nicht zu verwechseln mit <a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> dem Package
+Reposetory).</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="edit.html" class="btn btn-neutral float-right" title="Edit, Diff, Merge &amp; Co." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build.html" class="btn btn-neutral float-left" title="Software Build (GNU)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

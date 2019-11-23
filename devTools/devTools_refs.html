@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Verweise &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Node.js (development)" href="../nodejs/index.html" />
+    <link rel="prev" title="Docker" href="docker.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Entwickler Pakete</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian.html">Debian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Software Build (GNU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="edit.html">Edit, Diff, Merge &amp; Co.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scm.html">Versionsverwaltung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="relationalDB.html">Relationale Datenbanken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Docker</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Verweise</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software-build-gnu">Software Build (GNU)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-tools">Debian Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-diff-merge">Edit, Diff &amp; Merge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-gobject">Python &amp; GObject</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Entwickler Pakete</a> &raquo;</li>
+        
+      <li>Verweise</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/devTools/devTools_refs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="verweise">
+<span id="xref-devtools"></span><h1>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="software-build-gnu">
+<h2>Software Build (GNU)<a class="headerlink" href="#software-build-gnu" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Library_%28computing%29">Shared Library (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Header-Datei">Header Dateien (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://wiki.archlinux.org/index.php/Dynamic_Kernel_Module_Support">DKMS (archlinux)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Toolchain">Toolchain (wiki)</a></p></li>
+<li><p><a class="reference external" href="http://gcc.gnu.org/">GCC</a> die <em>GNU Compiler Collection</em></p></li>
+<li><p><a class="reference external" href="http://markuskimius.wikidot.com/programming:tut:autotools">Autotools Tutorial for Beginners (markuskimius)</a> oder „Build-Systeme Teil 5:
+GNU Autotools“ im <a class="reference external" href="https://magazin.c-plusplus.net/inhaltsverzeichnis">magazin.c-plusplus.net</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/GNU_Build_System">GNU Build System (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://www.gnu.org/software/autoconf">GNU autoconf</a></p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/software/automake">GNU automake</a></p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/software/libtool/">GNU libtool</a></p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/software/gettext/">GNU gettext</a> / <a class="reference external" href="https://de.wikipedia.org/wiki/GNU_gettext">GNU gettext (wiki)</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/C_standard_library">C standard library (wiki)</a> / <a class="reference external" href="http://www.gnu.org/software/libc/">glibc</a></p></li>
+</ul>
+</div>
+<div class="section" id="debian-tools">
+<h2>Debian Tools<a class="headerlink" href="#debian-tools" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Liste_von_Linux-Distributionen#Debian-Derivate">Debian-Derivate (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Paketverwaltung">Paketverwaltung (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://wiki.debian.org/PackageManagement">Debian Package Managment</a></p></li>
+<li><p><a class="reference external" href="https://wiki.debian.org/DebianPackage">Debian Package</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Debian-Paket">Debian Paket (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Advanced_Packaging_Tool">APT (wiki)</a></p></li>
+</ul>
+</div>
+<div class="section" id="edit-diff-merge">
+<h2>Edit, Diff &amp; Merge<a class="headerlink" href="#edit-diff-merge" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Patch_%28Unix%29">Patch (wiki)</a></p></li>
+<li><p><a class="reference external" href="https://www.gnu.org/software/emacs/">GNU Emacs</a></p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/software/grep/">GNU grep</a></p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">reguläre Ausdrücke (wiki)</a></p></li>
+</ul>
+</div>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/">python</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a></p></li>
+<li><p><a class="reference external" href="https://www.pylint.org">Pylint</a> und der Namensgeber <a class="reference external" href="https://de.wikipedia.org/wiki/Lint_%28Programmierwerkzeug%29">Lint (wiki)</a></p></li>
+<li><p><a class="reference external" href="http://pep8.readthedocs.org">pep8 (RTD)</a></p></li>
+<li><p><a class="reference external" href="https://argcomplete.readthedocs.org">argcomplete (RTD)</a></p></li>
+<li><p><a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a></p></li>
+<li><p><a class="reference external" href="https://pypi.python.org/pypi">PyPI</a></p></li>
+<li><p><a class="reference external" href="https://virtualenv.pypa.io/en/latest">python Virtualenv</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.debian.org/Python">Debian python</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/whatsnew/index.html">What’s New in Python</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/howto/pyporting.html">Porting Python 2 Code to Python 3</a></p></li>
+<li><p><a class="reference external" href="http://ncoghlan-devs-python-notes.readthedocs.org/en/latest/python3/questions_and_answers.html">Python 3 Q &amp; A</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/ctypes.html">ctypes</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/extending/extending.html">Extending Python with C or C++</a></p></li>
+<li><p><a class="reference external" href="http://pypy.org/">PyPy</a></p></li>
+<li><p><a class="reference external" href="http://cython.org/">Cython</a> / <a class="reference external" href="https://de.wikipedia.org/wiki/Cython">Cython (wiki)</a></p></li>
+<li><p><a class="reference external" href="http://swig.org/">SWIG</a></p></li>
+</ul>
+</div>
+<div class="section" id="python-gobject">
+<h2>Python &amp; GObject<a class="headerlink" href="#python-gobject" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wiki.gnome.org/Projects/GObjectIntrospection">GObject Introspection</a></p></li>
+<li><p><a class="reference external" href="https://wiki.gnome.org/Projects/PyGObject">PyGObject (aka PyGI)</a></p></li>
+<li><p><a class="reference external" href="https://python-gtk-3-tutorial.readthedocs.org/en/latest/">Python GTK+ 3 Tutorial</a>  / <a class="reference external" href="https://developer.gnome.org/gtk3/stable/">GTK+ 3 Reference Manual</a></p></li>
+<li><p><a class="reference external" href="http://lazka.github.io/pgi-docs/">Python GObject Introspection API Reference</a></p></li>
+<li><p><a class="reference external" href="https://github.com/lazka/pgi">PGI</a></p></li>
+<li><p><a class="reference external" href="http://webkitgtk.org/">WebKitGTK+</a> / <a class="reference external" href="http://lazka.github.io/pgi-docs/#WebKit2-4.0">PGI Docs WebKit2 4.0</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../nodejs/index.html" class="btn btn-neutral float-right" title="Node.js (development)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docker.html" class="btn btn-neutral float-left" title="Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

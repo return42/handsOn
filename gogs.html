@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Gogs / Go Git Service &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Glances: an eye on your system" href="glances.html" />
+    <link rel="prev" title="searx Suchmaschine" href="searx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gogs / Go Git Service</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gogs-online-einrichten">Gogs online einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pam">PAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ldap">LDAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Gogs / Go Git Service</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/gogs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gogs-go-git-service">
+<span id="xref-gogs"></span><h1>Gogs / Go Git Service<a class="headerlink" href="#gogs-go-git-service" title="Link zu dieser Überschrift">¶</a></h1>
+<p><a class="reference external" href="https://gogs.io/">Gogs</a> darf sich zurecht den Titel <em>„A painless self-hosted Git service.“</em> geben.
+Einmal eingerichtet hat man einen recht leichtgewichtigen und komfortablen Git
+Server mit überschaubaren aber praxisgerechten Team- und Zugriffs-Konzepten,
+Issue-Tracker, Wiki und anderem <em>Klimbim</em>. Die Architektur scheint ebenfalls
+recht sauber und entspricht in Umfang und Funktionen gängigen Standards. So gibt
+es verschiedene Datenbank-Backends (SQLite, MySQL, PostgreSQL, …) und
+Authentifizierungen sind über den Austausch von Schlüsseln (SSH) sowie über
+externe <a class="reference external" href="https://gogs.io/docs/features/authentication">Authentifizierer</a>
+möglich.</p>
+<p>Die Installation von Gogs kann aus Paketen (APT), in vor-kompilierter /
+ausführbarer Form (binary) oder aus dem Quellcode erfolgen.  Die Paket-Anbieter
+wie Debian hinken jedoch meist hinter-her oder die Pakete haben Einschränkungen,
+wie z.B. kein SQLite Backend. Letzteres gilt auch für eine Installation der
+ausführbaren/kompilierten Programme.</p>
+<p>Kurzum, will man eine möglichst aktuelle Lösung für einen Gogs-Server, dann muss
+man sich aus den Sourcen einen eigenen Build machen. Um den Build zu erstellen,
+braucht man aber wiederum eine möglichst aktuelle Go Installation. Die Go Pakete
+sind z.T. aber auch sehr veraltet (z.B. bei Debian).  Zumindest muss in LTS
+Versionen damit gerechnet werden, dass immer eine möglichst <em>aktuelle und
+gekapselte</em> Go Installation erforderlich sein kann .. das klingt dann schon
+alles nicht mehr so <em>painless</em>. Aber geht man die Sache einmal an, so merkt man
+bald, dass das auch alles möglich und auch gar nicht so schwierig ist.</p>
+<p>Hier in der Installation wird der Gogs Server, samt aller seiner Voraussetzungen
+– wie Beispielsweise die aktuelle Go (<a class="reference external" href="https://golang.org/doc/">golang</a>) Installation – im HOME Ordner
+des Benutzers untergebracht. Dort werden auch alle Nutzdaten wie die SQLite
+Datenbank abgelegt. Backup und auch Rückbau der Installation und Daten
+beschränkt sich damit weitestgehend auf die Installation oder Deinstallation des
+Benutzers <code class="docutils literal notranslate"><span class="pre">gogs</span></code>.</p>
+<p>Die hier vorgestellte Installation weist sich durch folgende besondere
+Eigenschaften aus:</p>
+<ul class="simple">
+<li><p>komplette Installation nach <code class="docutils literal notranslate"><span class="pre">~gogs</span></code></p></li>
+<li><p>SQLite Datenbank</p></li>
+<li><p>PAM Authentifizierung</p></li>
+<li><p>Gogs Server wird hinter einer (Apache-) URL <code class="docutils literal notranslate"><span class="pre">https://&lt;hostname&gt;/gogs</span></code>
+betrieben (s.a. <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/etc/apache2/sites-available/gogs.conf">gogs.conf</a> &amp; <a class="reference external" href="http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#ProxyPass">ProxyPass</a>).</p></li>
+</ul>
+<p>Zur Installation existiert ein Script, das alle Setups vornimmt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ${SCRIPT_FOLDER}/gogs.sh install server
+</pre></div>
+</div>
+<p>Im Einzelnen führt das Skript in etwa folgende Schritte aus:</p>
+<ol class="arabic">
+<li><p>Es werden die erforderlichen Systempakete installiert. Für PAM
+<code class="docutils literal notranslate"><span class="pre">libpam0g-dev</span></code> und für SQLite <code class="docutils literal notranslate"><span class="pre">libsqlite3-0</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libpam0g</span><span class="o">-</span><span class="n">dev</span> <span class="n">libsqlite3</span><span class="o">-</span><span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p>Es wird der Benutzer <code class="docutils literal notranslate"><span class="pre">$GOGS_USER</span></code> (<code class="docutils literal notranslate"><span class="pre">gogs</span></code>) angelegt. Sein <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> ist
+<code class="docutils literal notranslate"><span class="pre">/home/gogs</span></code> und in diesen Ordner wird alles weitere installiert.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GOGS_HOME=/home/gogs
+sudo -H adduser --shell /bin/bash --system --home $GOGS_HOME \
+             --group --gecos &#39;Gogs&#39; $GOGS_USER
+</pre></div>
+</div>
+<p>Für die Go &amp; Gogs Umgebung wird eine <code class="docutils literal notranslate"><span class="pre">$GOGS_HOME/.env_gogs</span></code> Datei angelegt,
+die bei Bedarf eingelesen (<code class="docutils literal notranslate"><span class="pre">source</span></code>) werden kann. Die Installationen zu den
+Go &amp; Gogs Pfaden (<code class="docutils literal notranslate"><span class="pre">local/go/bin</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">local/gogs</span></code>) werden folgend dann noch
+vorgenommen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=$PATH:$HOME/local/go/bin:$HOME/local/gogs
+export GOPATH=$HOME/go-apps
+</pre></div>
+</div>
+<p>Für die später noch einzurichtende <a class="reference internal" href="#pam">PAM</a> Authentifizierung muss der
+<code class="docutils literal notranslate"><span class="pre">${GOGS_USER}</span></code> noch zur Gruppe <code class="docutils literal notranslate"><span class="pre">shadow</span></code> hinzugefügt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ls -la /etc/shadow
+-rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+sudo -H usermod -a -G shadow $GOGS_USER
+</pre></div>
+</div>
+</li>
+<li><p>Die Go Installation (s.a. <a class="reference external" href="https://golang.org/doc/install#tarball">go-linux</a> &amp;&amp; <a class="reference external" href="https://golang.org/doc/install?download=go1.11.linux-amd64.tar.gz">goX.YY.linux-amd64.tar.gz</a>) erfolgt
+nach nach <code class="docutils literal notranslate"><span class="pre">$HOME/local</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GO_TAR=go1.11.linux-amd64.tar.gz
+wget https://dl.google.com/go/${GO_TAR}
+mkdir -p $HOME/local
+rm -rf $HOME/local/go
+tar -C $HOME/local -xzf ${GO_TAR}
+</pre></div>
+</div>
+<p>Dann noch ein einfacher Test der Go Umgebung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo -i -u $GOGS_USER
+source ~/.env_gogs
+env
+! which go &amp;&amp;  echo &quot;Go Installation not found in PATH!?!&quot;
+which go &amp;&amp;  echo &quot;congratulations, Go Installation OK :)&quot;
+</pre></div>
+</div>
+</li>
+<li><p>Mittels <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">get</span></code> werden im $HOME die Quellen von Gogs heruntergeladen
+(s.a. <a class="reference external" href="https://github.com/golang/go/wiki/Projects#version-control">Go-VCS-Projects</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo -i -u $GOGS_USER
+source ~/.env_gogs
+mkdir -p &quot;${GOPATH}&quot;
+
+GOGS_URI=github.com/gogs/gogs
+go get -v -u -tags &quot;sqlite pam&quot; $GOGS_URI
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Die URI muss sein <code class="docutils literal notranslate"><span class="pre">github.com/gogs/gogs</span></code> und nicht mehr
+<code class="docutils literal notranslate"><span class="pre">github.com/gogits/gogs</span></code> (gogits ist falsch!), wie in einigen älteren
+Dokumentationen noch häufig zu finden (ChangeLog <a class="reference external" href="https://gogs.io/docs/intro/change_log#0.11.53-%40-2018-06-05">0.11.53&#64;2018-06-05</a>).</p>
+</div>
+</li>
+<li><p>Es wird ein Build der Gogs Sourcen im <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> erzeugt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="s2">&quot;$</span><span class="si">{GOPATH}</span><span class="s2">/src/$GOGS_URI&quot;</span>
+<span class="n">go</span> <span class="n">build</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">tags</span> <span class="s2">&quot;sqlite pam&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Der <em>build</em>, die gebaute Gogs-Software wird nach <code class="docutils literal notranslate"><span class="pre">$HOME/local</span></code> installiert.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rm -rf $HOME/local/gogs
+cp -fr gogs LICENSE public README.md README_ZH.md scripts templates $HOME/local/gogs
+</pre></div>
+</div>
+<p>Das Basis-Konfiguration der Gogs Instanz wird in einer <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/home/gogs/local/gogs/custom/conf/app.ini">app.ini</a> Datei vorgenommen.
+Ersetzungen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Domain in welcher der Gogs Server lauscht:</span>
+<span class="n">GOGS_DOMAIN</span><span class="o">=</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="n">GOGS_PORT</span><span class="o">=</span><span class="mi">3000</span>
+</pre></div>
+</div>
+<p>Eine vollständige Auflistung der Konfigurationen gibt das <a class="reference external" href="https://gogs.io/docs/advanced/configuration_cheat_sheet">Gogs Configuration
+Cheat Sheet</a>. Im Default erwartet Gogs die <code class="docutils literal notranslate"><span class="pre">app.ini</span></code> im Ordner:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p $HOME/local/gogs/custom/conf
+</pre></div>
+</div>
+</li>
+<li><p>Es wird ein rudimentärer Test der Gogs-Installation durchgeführt. In der
+app.ini ist die Domain und der Port des Gogs Servers definiert, gegen den wir
+uns nun von der Client-Seite aus verbinden wollen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>timeout 20 $HOME/local/gogs/gogs web
+sleep 5
+curl --location --verbose --head --insecure http://$GOGS_DOMAIN:$GOGS_PORT 2&gt;&amp;1
+</pre></div>
+</div>
+</li>
+<li><p>Die Gogs Installation wird mit der <a class="reference external" href="https://www.freedesktop.org/software/systemd/man/systemd.service.html">Service-Unit</a> Datei
+<a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/lib/systemd/system/gogs.service">/lib/systemd/system/gogs.service</a>
+im <a class="reference external" href="https://github.com/systemd/systemd">systemd</a> eingerichtet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">gogs</span><span class="o">.</span><span class="n">service</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">gogs</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+</li>
+<li><p>Apache Site <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/etc/apache2/sites-available/gogs.conf">/etc/apache2/sites-available/gogs.conf</a> mit <a class="reference external" href="http://httpd.apache.org/docs/2.2/mod/mod_proxy.html#ProxyPass">ProxyPass</a>
+einrichten. Ersetzungen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apache Redirect URL</span>
+<span class="n">GOGS_APACHE_DOMAIN</span><span class="o">=</span><span class="s2">&quot;$(uname -n)&quot;</span>
+<span class="n">GOGS_APACHE_URL</span><span class="o">=</span><span class="s2">&quot;/gogs&quot;</span>
+</pre></div>
+</div>
+<p>Proxy und gogs.conf aktivieren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">a2enmod</span> <span class="n">proxy_http</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">a2ensite</span> <span class="o">-</span><span class="n">q</span> <span class="n">gogs</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">apachectl</span> <span class="n">configtest</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">service</span> <span class="n">apache2</span> <span class="n">force</span><span class="o">-</span><span class="n">reload</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Der Gogs-Dienst ist nun vollständig eingerichtet und steht im Internet zur
+Verfügung:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>xdg-open https://$(uname -n)/gogs
+</pre></div>
+</div>
+<p>Das erste Login, dass man online einrichtet erhält automatisch
+Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.</p>
+<blockquote>
+<div><p><strong>Gogs muss JETZT online eingerichtet werden!!!</strong></p>
+</div></blockquote>
+</div>
+<div class="section" id="gogs-online-einrichten">
+<span id="gogs-web-setup"></span><h2>Gogs online einrichten<a class="headerlink" href="#gogs-online-einrichten" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Normalerweise wird Gogs so eingerichtet, dass man einfach nur das Binary auf dem
+Server auspackt, den Gogs-Server startet und dann den Rest online einrichtet.
+Obige Installation war dann ja nur so ausufernd, weil man auf den LTS
+Distributionen meist uralte Versionen von Gogs und Go hat und weil man den
+Gogs-Server hinter einem Apache <em>verstecken</em> wollte (ProxyPass).</p>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Folgendes sind nur Anregungen/Vorschläge, die konkrete Ausprägung sieht in
+der eigenen Infrastruktur ggf. anders aus</p>
+</div>
+<p>In dem hier vorgeschlagenen Setup soll eine Authentifizierung nur über PAM
+möglich sein. D.h. es sollen sich nur solche Benutzer im Gogs anmelden können,
+die bereits ein Account auf dem HOST haben, resp. die sich auf diesem HOST
+(z.B. mittels ssh) anmelden können.</p>
+<p>Das erste Login, dass man online einrichtet ist eine <em>lokaler Account</em> (kein
+PAM, LDAP oder ..). Es erhält automatisch Admin-Rechte. Mit diesem Konto richtet
+man den Gogs-Server grob ein, danach kann man diesen <em>lokalen</em> Account wieder
+löschen. Ich gehe dabei wie folgt vor:</p>
+<ol class="arabic simple">
+<li><p>‚gogs-admin‘ Account registrieren und als ‚gogs-admin‘ anmelden</p></li>
+<li><p>PAM aktivieren</p></li>
+<li><p>Abmelden und einmal mit gültigen Account aus dem PAM anmelden/abmelden
+(z.B. ‚myloginname‘)</p></li>
+</ol>
+<ol class="arabic simple" start="3">
+<li><p>Wieder als ‚gogs-admin‘ anmelden und dem PAM Login (‚myloginname‘) mit Admin
+Rechten ausstatten.</p></li>
+<li><p>Wieder als PAM User anmelden und den <em>lokalen</em> Gogs-Account ‚gogs-admin‘
+löschen.</p></li>
+</ol>
+<p>Will man vermeiden, dass sich weitere Benutzer (als die, aus dem PAM) im Gogs
+(lokal) registrieren können, so kann man in der <code class="docutils literal notranslate"><span class="pre">apt.ini</span></code> den dis-Schalter auf
+true setzen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DISABLE_REGISTRATION</span>   <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Um die Änderung zur Wirkung zu bringen muss der Gogs Server einmal neu gestartet
+werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">gogs</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>Im <a class="reference external" href="https://gogs.io/docs/advanced/configuration_cheat_sheet">Gogs Configuration Cheat Sheet</a> sind alle Schalter aufgeführt, ggf. setzt
+man in der <code class="docutils literal notranslate"><span class="pre">app.ini</span></code> auch gleich noch die anderen Schalter seinen
+Anforderungen entsprechend. Anschauen sollte man sich folgende Schalter, wobei
+die Variablen <code class="docutils literal notranslate"><span class="pre">${xyz}</span></code> durch die richtigen Werte ersetzt werden muss.</p>
+<ul>
+<li><p>Wenn der Gogs Server hinter einem Apache läuft (ProxyPass), dann sollte die
+<code class="docutils literal notranslate"><span class="pre">HTTP_ADDR</span></code> auf 127.0.0.1 gesetzt werden, ansonsten nimmt der Gogs Server
+auf seinem Port 3000 auch Anfragen aus dem WEB an (und nicht nur die von
+Apache weitergeleiteten). Ebenso sollte man ggf. CDN (Content Delivery Network)
+Inhalte wie Avatars  etc. aus dem Netz deaktivieren (<code class="docutils literal notranslate"><span class="pre">OFFLINE_MODE</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="n">DOMAIN</span>           <span class="o">=</span> <span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">.</span><span class="n">xy</span>
+<span class="n">HTTP_ADDR</span>        <span class="o">=</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="n">HTTP_PORT</span>        <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">ROOT_URL</span>         <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">.</span><span class="n">xy</span>
+<span class="n">OFFLINE_MODE</span>     <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</li>
+<li><p>Bei einer SQLite-DB muss der vollständige <code class="docutils literal notranslate"><span class="pre">PATH</span></code> angegeben werden, hier
+inder Konfiguration ist das <code class="docutils literal notranslate"><span class="pre">/home/gogs/gogs.db</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">database</span><span class="p">]</span>
+<span class="n">DB_TYPE</span>  <span class="o">=</span> <span class="n">sqlite3</span>
+<span class="o">...</span>
+<span class="n">PATH</span>     <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gogs</span><span class="o">/</span><span class="n">gogs</span><span class="o">.</span><span class="n">db</span>
+</pre></div>
+</div>
+</li>
+<li><p>Bei den Einstellungen zum <code class="docutils literal notranslate"><span class="pre">service</span></code> kann man die <em>lokale</em> Registrierung
+abschalten und wenn man Gogs ganz schließen will, kann noch
+<code class="docutils literal notranslate"><span class="pre">REQUIRE_SIGNIN_VIEW</span></code> setzen, damit muss man sich anmelden um überhaupt
+etwas zu sehen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">service</span><span class="p">]</span>
+<span class="n">DISABLE_REGISTRATION</span>   <span class="o">=</span> <span class="n">true</span>
+<span class="n">REQUIRE_SIGNIN_VIEW</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="pam">
+<h2>PAM<a class="headerlink" href="#pam" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In der Web-GUI unter ‚Administration‘ können unter ‚Authentifizierung‘ <em>weitere
+Quellen</em> hinzugefügt werden. Hier wählt man PAM aus. Als Name setzt man <code class="docutils literal notranslate"><span class="pre">PAM</span></code>
+und als PAM-Dienstname <code class="docutils literal notranslate"><span class="pre">gogs</span></code>.  Damit der <code class="docutils literal notranslate"><span class="pre">${GOGS_USER}</span></code> lesenden Zugriff
+auf die <code class="docutils literal notranslate"><span class="pre">/etc/shadow</span></code> erhält wurde er bereits der Gruppe <code class="docutils literal notranslate"><span class="pre">shadow</span></code>
+hinzugefügt (s.o.):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ls -la /etc/shadow
+-rw-r----- 1 root shadow 1282 Sep  9 16:52 /etc/shadow
+
+sudo -H usermod -a -G shadow $GOGS_USER
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldap">
+<h2>LDAP<a class="headerlink" href="#ldap" title="Link zu dieser Überschrift">¶</a></h2>
+<p>comming soon ..</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="glances.html" class="btn btn-neutral float-right" title="Glances: an eye on your system" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="searx.html" class="btn btn-neutral float-left" title="searx Suchmaschine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

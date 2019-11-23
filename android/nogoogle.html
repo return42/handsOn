@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ein Leben ohne Google Konto &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Entwickler-Optionen &amp; Modes" href="dev_options.html" />
+    <link rel="prev" title="Android" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Android</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#themen">Themen</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ein Leben ohne Google Konto</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#app-store-alternativen">App Store Alternativen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#paketmanager-vs-apk">Paketmanager vs. APK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-empfehlungen">Software Empfehlungen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="dev_options.html">Entwickler-Optionen &amp; Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recovery.html">Recovery &amp; Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TWRP.html">Team Win Recovery Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heimdall.html">Heimdall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#samsung-gerate">Samsung Geräte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prozessoren-socs">Prozessoren / SoCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Android</a> &raquo;</li>
+        
+      <li>Ein Leben ohne Google Konto</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/android/nogoogle.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ein-leben-ohne-google-konto">
+<span id="nogoogle-intro"></span><h1>Ein Leben ohne Google Konto<a class="headerlink" href="#ein-leben-ohne-google-konto" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Android ohne Google Konto, geht das überhaupt? .. Ja.</p>
+<p>Das geht sogar ganz gut, zumindest wenn man sich nicht (wie ich damals am
+Anfang) jeden <em>Scheiß</em> installieren will, wenn man sich auf den Kram beschränkt,
+der einem wirklich hilft und nicht nur für weitere Ablenkung sorgt.  Wer
+allerdings Cloud- oder andere Dienste von Google nutzen muss oder will, der wird
+es schwer haben der Umklammerung von Google zu entgehen.</p>
+<div class="section" id="app-store-alternativen">
+<h2>App Store Alternativen<a class="headerlink" href="#app-store-alternativen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Um sich Apps zu installieren benötigt man kein Google Account. Alternativen zum
+<em>Google-Play-Store</em> sind z.B.:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://f-droid.org/">F-Droid</a> / Tipp: Einstellungen – weitere Paketquellen aktivieren</p></li>
+<li><p><a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a> / Tipp: Einstellungen – Täusche ein anderes Gerät vor</p></li>
+</ul>
+<p>Ich installiere mir immer als erstes <a class="reference external" href="https://f-droid.org/">F-Droid</a> und beziehe die Apps in erster
+Linie darüber. Über <a class="reference external" href="https://f-droid.org/">F-Droid</a> kann man sich den <a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a>
+installieren. Sollte man eine App bei <a class="reference external" href="https://f-droid.org/">F-Droid</a> vermissen, dann bekommt man sie
+in jedem Fall über den <a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a>. Der <a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a> ist eine App mit der man
+Apps aus dem Google-Play-Store installieren kann, ohne das man dazu einen
+Google-Account braucht (es nutzt einen Fake-Account).</p>
+</div>
+<div class="section" id="paketmanager-vs-apk">
+<h2>Paketmanager vs. APK<a class="headerlink" href="#paketmanager-vs-apk" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Play-Store, <a class="reference external" href="https://f-droid.org/">F-Droid</a>, <a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a> und wie sie alle heißen sind Paketmanager.
+Die Aufgabe der Paketmanager ist es zum Einem die Pakete (Apps) aus einem
+<em>Reposetorie</em> zu installieren und zum Anderem zu aktualisieren (regelmäßig die
+Updates einspielen). Das wohl größte <em>Reposetorie</em> bietet der Play-Store von
+Google und meist sind dort auch immer die aktuelleren Versionen verfügbar als
+bei den anderen Anbietern. Es gibt aber auch immer mehr App Entwickler –
+insbesondere im OpenSource Bereich – die keinen Bog mehr auf den
+Google-Play-Store und die Umklammerung von Google haben und deshalb auf F-Droid
+wechseln. Deshalb kann auch nicht mehr pauschal gesagt werden kann, dass alle
+Apps im Play-Store zu bekommen sind.  Teilweise ist es auch so, dass bei solchen
+Apps alte Versionen im Play-Store noch rumfliegen (momentan noch eher seltener
+der Fall).</p>
+<p>Die Aktualisierung der Apps ist in der Regel eine wertvolle Funktion der
+Paketmanager, aber manchmal will/braucht man auch nicht jede Aktualiserung einer
+App mit der nur wieder mehr Bloatware installiert wird. Kann (oder will) man bei
+einer App auf automatiserte Aktualiserungen verzichten, dann kann man sich die
+<a class="reference external" href="https://en.wikipedia.org/wiki/Android_application_package">APK</a> Pakete (da ist die App drin) direkt installieren.</p>
+<p>Ich mache das beispielsweise so mit der Fahrplan App der (lokalen) öffentlichen
+Verkehrsbetriebe. Deren App ist (noch) nicht auf F-Droid verfügbar und Updates
+gibt es dafür eh nur alle Schaltjahre. Für solche Apps lade ich mir das <a class="reference external" href="https://en.wikipedia.org/wiki/Android_application_package">APK</a>
+direkt runter und installiere es dann:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://play.google.com/store/apps/details?id=de.hafas.android.vbn">VBN im Playstore</a> und</p></li>
+<li><p><a class="reference external" href="https://apkpure.com/fahrplaner/de.hafas.android.vbn">VBN APK über apkpure.com</a></p></li>
+</ul>
+<p>Bevor ich so ein <a class="reference external" href="https://en.wikipedia.org/wiki/Android_application_package">APK</a> installiere lade ich es erst nochmal zu <a class="reference external" href="https://www.virustotal.com">virustotal</a> um es auf Schadsoftware zu prüfen, hier mal das
+Ergebnis für die VBN App die von apkpure.com runter geladen wurde:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.virustotal.com/#/file/ce2504cb7370772272a8084ed755f09f57354ec0cc125a7d7be693afbac81c4c/detection">https://www.virustotal.com/#/file/ce2504cb7370772272a8084ed755f09f57354ec0cc125a7d7be693afbac81c4c/detection</a></p></li>
+</ul>
+<p>Eine Prüfung auf Schadsoftware sollte immer erfolgen wenn:</p>
+<ul class="simple">
+<li><p>Man die App oder den Hersteller der App (noch) nicht kennt.</p></li>
+<li><p>Der Download von einer Seite erfolgt, bei der man auch nur den kleinsten
+Zweifel hat.</p></li>
+</ul>
+<p>Für <a class="reference external" href="https://apkpure.com/">apkpure</a> und viele andere <em>Reposetories</em> gibt es Paketmanager (so wie
+beispielsweise das F-Droid), generell würde ich aber empfehlen nicht jeden
+Paketmanager einfach zu installieren. Auch hier gibt es schwarze Schafe die in
+die APKs Schadsoftware mit rein packen. Ich selber nutze als Paketmanager nur
+<a class="reference external" href="https://f-droid.org/">F-Droid</a> und wenn erforderlich den <a class="reference external" href="https://f-droid.org/packages/com.github.yeriomin.yalpstore/">Yalp Store</a>. Bei den beiden ist es aus
+<em>verfahrenstechnischen-Gründen</em> schon schwerer Schadsoftware unterzubringen.
+Grundsätzlich kann aber kein Anbieter – auch bei den besten Absichten – zu
+100% sicherstellen, dass sich keine Schadsoftware in Apps versteckt oder durch
+Hackerangriffe eingeschläußt wird. Auch im Play-Store gibt es immer mal wieder
+Schadsoftware (<a class="reference external" href="https://www.heise.de/security/meldung/Android-Spyware-drei-Jahre-lang-im-Play-Store-unentdeckt-3691154.html">siehe heise Artikel</a>).</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://apkpure.com/">apkpure</a></p></li>
+<li><p><a class="reference external" href="https://www.apkmirror.com">APK Mirror</a></p></li>
+<li><p><a class="reference external" href="https://apps.evozi.com/apk-downloader/">APK Downloader</a></p></li>
+</ul>
+</div>
+<div class="section" id="software-empfehlungen">
+<h2>Software Empfehlungen<a class="headerlink" href="#software-empfehlungen" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Sofern nicht anders angegeben können die Apps über <a class="reference external" href="https://f-droid.org/">F-Droid</a> bezogen werden.
+Evtl. fällt auf, dass in der unten stehenden Liste meist OpenSource Software
+bevorzugt wird. OpenSource Software ist nicht <a class="reference external" href="https://www.heise.de/tipps-tricks/Ist-Open-Source-Software-wirklich-sicherer-3929357.html">pauschal sicherer</a>
+als ClosedSource.  Doch es spricht (aus 30 Jahren Erfahrung) vieles dafür, dass
+gut gepflegte OpenSource Projekte sicherer und weitaus flexiebler sind als
+ClosedSource vom Microsoft, Apple und anderen Software-Häusern.  Sie wissen
+nicht ob sie wirklich OpenSource wollen? … Sie haben es schon lange, ein
+Beispiel ist Android selbst, es basiert auf dem Linux Kernel welcher OpenSource
+ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/julian-klode/dns66">DNS66</a> / (<a class="reference external" href="https://f-droid.org/packages/org.jak_linux.dns66">F-Droid</a>) <strong>!!must have!!</strong></p>
+<p>DNS basierter Add-Blocker, bei dem man auch seinen eigenen DNS (z.B. <a class="reference external" href="https://pi-hole.net/">pi-hole</a>)
+eintragen kann. Ein DNS Blocker blockiert Anfragen an Internet-Adressen die
+Werbung oder Schadsoftware verbreiten. Dabei ist es egal ob diese Anfrage aus
+dem WEB-Browser kommt oder versteckt in einer Anwendung erfolgt. Das
+blockieren solcher Adressen sollte die Grundlage eines jeden
+Sicherheitskonzpts sein und eignet sich auch als erster <em>Kinderschutz</em>.</p>
+</li>
+<li><p><a class="reference external" href="https://github.com/ukanth/afwall">AFWall+ (Android Firewall +)</a> / (<a class="reference external" href="https://f-droid.org/en/packages/dev.ukanth.ufirewall">F-Droid</a>)</p>
+<p>Eine Internet-Firewall mit der man für jede App separat steuern kann, ob diese
+überhaupt einen Zugriff auf das Internet haben darf. Eignet sich hervoragend
+um Apps (z.B. typische offline Spiele) die eigentlich kein Internet brauchen,
+daran zu hindern ins Internet zu gelangen. Ich benutze es auch um Google-Apps
+(sync etc.) den Internet Zugang zu verwehren (sofern ich die Google-App nicht
+ganz deinstalieren kann).</p>
+</li>
+<li><p><a class="reference external" href="https://f-droid.org/packages/org.mozilla.fennec_fdroid/">Fennec F-Droid</a></p>
+<p>Eine Variante des FireFox für mobile Geräte. Es gibt auch noch andere
+Varianten, diese hier gefällt mir, weil sie auf ganz viel Schrott verzichtet,
+der i.A. mit in den FireFox einkompiliert wird. Auch die Grundeinstellungen
+zur Sicherheit und Privatsphäre sind hier für mein Empfinden wesentlich
+vernüftiger (endlich mal eine Browser der in den Grundeinstellung keine
+Cookies von Drittanbietern aktzeptiert).</p>
+<p>Folgende Add-ons empfehlen sich zur Wahrung der Privatsphäre und zum Schutz
+vor Schadsoftware (s.a. <a class="reference internal" href="../excursion/search_engines.html#search-engines"><span class="std std-ref">Suchmaschinen &amp; Tracking</span></a>):</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/ublock-origin">uBlock-origin</a> <strong>!!must have!!</strong></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a> <strong>!!must have!!</strong></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/">Privacy Possum</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/canvasblocker">CanvasBlocker</a></p></li>
+<li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/decentraleyes">Decentraleyes</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://k9mail.github.io/">K-9 Mail Client</a> / (<a class="reference external" href="https://f-droid.org/en/packages/com.fsck.k9">F-Droid</a>)</p>
+<p>Ein Mail-Client ohne Spyware. Die vorinstallierten Mail-Clients auf den
+Android Geräten sind recht schlicht und u.U. nicht frei von Spyware oder an
+einen Mail-Hoster (wie gmail) gebunden. Gleiches gilt für die Bloatware von
+GMX, WEB.de und anderen Mail-Hostern auch deren Mail-Apps sind nicht
+<em>frei</em>. Es gibt auch noch andere <em>freie</em> Mail-Clients, K9 scheint mir aber der
+bessere zu sein.</p>
+</li>
+<li><p><a class="reference external" href="https://davdroid.bitfire.at/">DAVdroid</a> / (<a class="reference external" href="https://f-droid.org/packages/at.bitfire.davdroid">F-Droid</a>)</p>
+<p>DAVdroid ist eine App um CalDAV/CardDAV (Kalender &amp; Kontakte) mit einem
+DAV-Server zu synchronisieren (s.a. <a class="reference internal" href="../radicale/index.html#xref-radicale-index"><span class="std std-ref">CalDAV &amp; CardDAV</span></a>).</p>
+</li>
+<li><p><a class="reference external" href="https://github.com/FredJul/Flym">Flym Newsreader</a> / (<a class="reference external" href="https://f-droid.org/packages/net.fred.feedex">F-Droid</a>)</p>
+<p>Ein - wie ich finde - hervoragender Newsreader, mit dem sich die Installation
+diverser News-Apps (Tagesschau-App oder wie auch immer) sicherlich erübrigt.</p>
+<ul class="simple">
+<li><p>heise-news: <a class="reference external" href="https://www.heise.de/newsticker/heise-atom.xml">https://www.heise.de/newsticker/heise-atom.xml</a></p></li>
+<li><p>Spiegel: <a class="reference external" href="http://www.spiegel.de/schlagzeilen/tops/index.rss">http://www.spiegel.de/schlagzeilen/tops/index.rss</a></p></li>
+<li><p>taz: <a class="reference external" href="http://www.taz.de/!p4608;rss/">http://www.taz.de/!p4608;rss/</a></p></li>
+<li><p>buten un binnen: <a class="reference external" href="https://www.butenunbinnen.de/feed/rss/neuste-inhalte100.xml">https://www.butenunbinnen.de/feed/rss/neuste-inhalte100.xml</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="http://osmand.net/">OsmAnd</a> / (<a class="reference external" href="https://f-droid.org/en/packages/net.osmand.plus">F-Droid</a>)</p>
+<p>Eine gelungene App für Landkarten und Navigation. Die Karten kommen aus dem
+OpenStreetMap Projekt. Endlich mal Navigation ohne das man von Google, TomTom
+oder sonst wem verfolgt wird. Das Kartenmaterial ist frei zugänglich und kann
+in verschiedensten Detaildichten auf dem Android gespeichert werden. Eigenet
+sich neben der Auto-Navigation auch recht gut für Rad- &amp; Wander-Touren. UND,
+kaum zu glauben: alles offline möglich! / Danke OpenStreetMap!</p>
+</li>
+<li><p><a class="reference external" href="https://github.com/cemrich/zapp">zapp</a> / (<a class="reference external" href="https://f-droid.org/en/packages/de.christinecoenen.code.zapp">F-Droid</a>)</p>
+<p>Live-TV der deutschen öffentlich-rechtlichen Fernsehsender, einfach zu
+bedienen und schön übersichtlich.</p>
+</li>
+<li><p><a class="reference external" href="https://github.com/segler-alex/RadioDroid">RadioDroid</a> / (<a class="reference external" href="https://f-droid.org/en/packages/net.programmierecke.radiodroid2">F-Droid</a>)</p>
+<p>Damit hat man Zugriff auf die Senderliste von <a class="reference external" href="http://www.radio-browser.info">Radio Browser</a></p>
+</li>
+</ul>
+<p>Wofür ich grad selber noch Alternativen suche:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.videolan.org/">VLC Audio &amp; Video player</a></p></li>
+<li><p><a class="reference external" href="http://sky-map-team.github.io/stardroid/">Sky Map</a></p></li>
+<li><p><a class="reference external" href="http://www.quartic-software.co.uk/">RealCalc Scientific Calculator</a></p></li>
+<li><p><a class="reference external" href="http://cadroid.bitfire.at/">CAdroid</a></p></li>
+</ul>
+<p>Wie immer, sehr empfehlenswert ist auch der Artikel <a class="reference external" href="https://www.kuketz-blog.de/empfehlungsecke/#android">Andriod Apps</a> in <a class="reference external" href="https://www.kuketz-blog.de">Kuketz</a>
+seiner Empfehlungsecke.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dev_options.html" class="btn btn-neutral float-right" title="Entwickler-Optionen &amp; Modes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Android" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

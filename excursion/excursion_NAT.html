@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exkursion: NAT &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="prev" title="Exkursion: Netzmaske / IPv4 und IPv6" href="excursion_IPv4_6.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Exkursionen und Erfahrungswerte</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="search_engines.html">Suchmaschinen &amp; Tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssl_ca_remarks.html">Anmerkungen zu SSL und Zertifikaten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="excursion_IPv4_6.html">Exkursion: Netzmaske / IPv4 und IPv6</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exkursion: NAT</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Exkursionen und Erfahrungswerte</a> &raquo;</li>
+        
+      <li>Exkursion: NAT</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/excursion/excursion_NAT.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="exkursion-nat">
+<span id="xref-excursion-nat"></span><h1>Exkursion: NAT<a class="headerlink" href="#exkursion-nat" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Die Aufteilung in die starren – als <em>Class-A/B/C</em> bezeichneten –
+Infrastrukturen ist mit der Verbreitung des Internets und den IP Netzen in
+Unternehmen lange nicht mehr praxisgerecht. Heute dienen diese Klassifizierungen
+meist nur noch als <em>Orientierungshilfe</em> bei der Auslegung und Beschreibung von
+Infrastrukturen. In größeren Netzen wird man im IPv4 Raum eher eine (<em>Class-A
+ähnliche</em>) Infratruktur mit <em>Classless Inter-Domain Routing</em> (<a class="reference external" href="https://de.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a>) vorfinden
+und es ist davon auszugehen, dass in fast allen Netzen Verfahren wie <a class="reference external" href="https://en.wikipedia.org/wiki/Network_address_translation">NAT
+(wiki)</a> vorzufinden sind.</p>
+<p>Mit NAT-Routern können theorehtisch ganze <em>Class-A</em> Netze hinter einer einzigen
+IP <em>versteckt</em> werden, was den Adressbereich der Subnetze erheblich
+vergößert. Der NAT-Router fungiert quasi als <em>Multiplexer</em> was allerdings auch
+Einschränkungen mit sich bringt und damit auch <em>neue</em> Anforderungen an die
+Netzwerverwaltung stellt.</p>
+<p>Der NAT-Router wechselt in den IP Paketen – die über ihn das (Sub-) Netz
+wechseln – die IP-Absender-Adressen aus. Damit ist die Ende-zu-Ende Verbindung
+gebrochen und es können nur <em>ausgehende</em> Request geroutet werden (Source-NAT,
+SNAT), bei denen der Router die Zieladresse und den Absender aus seinem Subnetz
+kennt. Beim ausgehenden Request tauscht der NAT-Router also die IP-Adresse des
+Absenders aus und merkt sich das in einer NAT-Tabelle. Wenn der Response auf den
+Request kommt schaut der Router in seiner NAT-Tabelle nach, wer der eigentliche
+Absender im Subnetz war. Diese Subnetzadresse des Absenders trägt der NAT-Router
+nun in das IP-Paket als Empfänger ein um es dann in sein Subnetz zu entlassen.</p>
+<p>Einkommende Requests können nicht geroutet werden, da der Absender die
+Zieladresse (hinter dem NAT) nicht kennen kann. Er kennt ja nur die <em>eine</em>
+IP-Adresse, die der NAT-Router nach <em>draußen</em> hat. Der NAT-Router empfängt das
+Paket von <em>draußen</em>, kann selber aber keinen Zielhost in seinem Subnetz dazu
+ermitteln, weil es zu dem einkommenden Request keinen Eintrag in seiner
+NAT-Tabelle geben kann. Die Konsequenz ist, dass der einkommende Request
+geblockt wird. Bei dem NAT Verfahren hat man also auch immer eine (<em>manchmal
+gewollte, manchmal ungewollte</em>) Firewall mit <em>eingebaut</em>.</p>
+<p>Um dennoch einen Dienst hinter dem NAT nach <em>draußen</em> anbieten zu können hat man
+sich Port-Forwarding (Destination NAT, DNAT) ausgedacht. Dabei wird der Router
+so konfiguriert, dass er einkommende Requests auf bestimmten Ports an einen ganz
+bestimmten Host in seinem Subnetz weiter leitet. Hat man beispielsweise einen
+WEB-Server im Subnetzt, der auf die Ports 80 (http) und 443 (https) <em>lauscht</em>,
+dann kann man den NAT-Router so konfigurieren, dass er alle einkommenden Request
+auf diese beiden Ports in seinem Subnetz an den WEB-Host durchreicht.</p>
+<p>So kann zumindest <em>ein</em> WEB-Server des Subnetzes <em>nach draußen</em> angeboten
+werden.  Bei <em>zwei</em> oder mehr WEB-Servern müsste man noch andere Ports wählen,
+dass wären dann aber nicht mehr die <em>Standard</em> Ports für http und https die man
+von <em>draußen</em> sehen würde und der Peer <em>draußen</em> müsste nun schon wissen, das er
+seinen http (bzw. https) Request an einen ganz anderen Port senden muss.</p>
+<p>Bei NAT haben die Peers einer Verbindung immer das Problem, dass sie keine
+Ende-zu-Ende Verbindung haben. Die Peers wissen also nicht immer ganz genau wer
+der andere Partner ist. Zumindest der Partner <em>draußen</em> spricht ja immer mit dem
+NAT-Router, der dann das Paket umadressiert. Es ist auch zu erwarten, dass der
+Partner <em>draußen</em> ebenfalls hinter einem NAT steht. Es werden also i.d.R. immer
+alle Adressen umgeschrieben. Dieses Umschreiben der Adressen in den IP Paketen
+ähnelt einer <em>Man-in-the-middle</em> Attake, weshalb es auch Probleme gibt auf
+dieser (IP-) Ebene Verfahren der Absicherung von Peer-to-Peer Verbindungen
+umzusetzen. Solche Absicherungen braucht man aber, wenn man <em>jemanden von
+draußen</em> in sein Subnetz auf der IP Ebene einbinden möchte (IP-Sec).</p>
+<p>NAT gibt den Netz-Admins die benötigten IP Adressen und eine verbesserte
+Gestaltungsfreiheit, es bleibt aber eine Krücke.  Insbesondere in Unternehmen
+und Partnerschaften, die einem ständigen Wechsel unterliegen, wechseln ebenso
+schnell die Anforderungen an die IT-Infrastruktur, was so manchen
+verantwotungsvollen Netz-Admin von Zeit zu Zeit erhebliches Kopfzerbrechen
+bereiten kann.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="excursion_IPv4_6.html" class="btn btn-neutral float-left" title="Exkursion: Netzmaske / IPv4 und IPv6" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

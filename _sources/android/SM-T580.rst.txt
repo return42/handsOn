@@ -1,0 +1,201 @@
+.. -*- coding: utf-8; mode: rst -*-
+
+.. include:: ../android_refs.txt
+
+==========================================
+Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580
+==========================================
+
+- Technische Daten bei Samsung: SM-T580NZKADBT_
+- Wikipedia `Samsung Galaxy Tab A 10.1 (wiki)`_
+- `Samsung OSRC SM-T580`_
+- `Samsung Updates SM-T580`_
+
+
+Custom ROM
+==========
+
+Als Custom-ROM empfehle ich:
+
+- `Extremely DeOdexed, DeBloated ROM Nougat 7.0
+  <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`_
+
+Es ist ein auf der `Samsung OSRC SM-T580`_ Firmware basierendes ROM aus dem
+sämtliche Bloatware_ entfernt wurde. Es ist damit nur halb so groß wie das
+Original. Es kann über das xda-developers_ Forum bezogen werden. Die wichtigsten
+Posts sind.
+
+- `Extremely DeOdexed, DeBloated ROM Nougat 7.0`_
+- `Some "debloated" informations <https://forum.xda-developers.com/showpost.php?p=72556068&postcount=86>`__
+- `Explanations on the version numbers of the rom "Extremely" <https://forum.xda-developers.com/showpost.php?p=72611141&postcount=111>`__
+- `app that include some stock rom applications and more for those who want
+  <https://forum.xda-developers.com/showpost.php?p=72743116&postcount=152>`__
+
+Installationsschritte
+---------------------
+
+0. SD-Karte einsetzen und Daten Sichern
+1. :ref:`heimdall-intro` auf dem PC installieren
+2. :ref:`android_dev_options` aktivieren
+3. :ref:`android_oem_unlock`
+4. :ref:`TWRP <twrp_intro>` für :ref:`twrp_gtaxlwifi` installieren und
+   verschlüsselte Partition formatieren
+5. Exmely_vx.x.xb85x.zip über das `Forum
+   <https://forum.xda-developers.com/galaxy-tab-a/development/extremely-deodexed-debloate-rom-t3615389>`__
+   beziehen und auf die SD-Karte kopieren.
+6. Im Recovery Mode booten und mit TWRP das Exmely_vx.x.xb85x.zip installieren.
+7. Neues System booten / Es kann sein, dass dabei automatisch zweimal gebootet
+   wird. Das booten dauert beim ersten mal verhältnissmäßig lang .. *Geduld soll
+   er haben, der junge Jedi*.
+
+Alternativen
+------------
+
+- `Ultra Lean Nougat
+  <https://forum.xda-developers.com/galaxy-tab-a/development/rom-ultra-lean-rom-galaxy-tab-10-1-2016-t3467942/page46>`__
+  was allerdings nicht so *lean* ist wie das `Extremely DeOdexed, DeBloated ROM
+  Nougat 7.0`_
+
+
+  
+Artikelinformationen
+====================
+
+- Artikelname:   Galaxy Tab A (2016, 10.1, Wi-Fi)
+- Model:         SM-T580
+- Artikelnummer: SM-T580NZKADBT
+- EAN:           8806088372150
+- Farbe:         black
+- Codename:      ``gtaxlwifi``
+
+Weitere Varianten des Galaxy Tab A 10.1 (2016):
+
+- T580 (Wi-Fi only)
+- T585 (LTE/Wi-Fi)
+- P580 (Wi-Fi only) S-Pen
+- P585 (LTE/Wi-Fi) S-Pen
+
+
+Betriebssystem & Co.
+====================
+
+- Android 7.0 (Nougat)
+- Linux Kernel 3.18.14
+- Bootloader: T580XXU2BQE7
+- Runtime: ART 2.1.0
+- Toolchain: GCC 4.9
+- SDK Version: 24
+- Java VM: Dalvik Core Library 0.9
+
+Chipsatz & Board
+================
+
+- Prozessorgeschwindigkeit: 1,6 GHz
+- Prozessortyp: Octa-Core
+- SoC_: Exynos_ 7870
+  
+  - CPU:  Octa-core (4x1.6 GHz Cortex-A53 & 4x1.0 GHz Cortex-A53)
+  - GPU:  Mali-T830 MP2
+  - siehe :ref:`exynos_7_octa_7870`
+
+
+Speicher
+========
+
+- Arbeitsspeicher in GB: 2
+- Interner Gerätespeicher in GB: 16
+- Frei verfügbarer interner Gerätespeicher in GB*: Ca. 10,5
+- Speichererweiterung: microSD (bis zu 200 GB)
+
+
+Display
+=======
+
+- Displaygröße (Hauptdisplay): 25,54 cm / 10,1"
+- Displayauflösung in Pixel (Hauptdisplay): 1920 x 1200 (WUXGA)
+- Displaytechnologie (Hauptdisplay): TFT
+- Anzahl Farben (Hauptdisplay): 16 Mio.
+- S Pen-Unterstützung: Nein
+
+Kamera
+======
+
+- Auflösung Videoaufnahme: Full HD (1.920 x 1.080 Pixel) @30fps
+- Rear Camera - Resolution:  8 Megapixel (CMOS)
+- Front Camera - Resolution: 2 Megapixel (CMOS)
+- Blitz Hauptkamera: Ja
+- Rear Camera - Auto Focus: Ja
+
+
+Netzwerkspezifikation
+=====================
+
+- Infrastruktur: Wi-Fi only
+
+Konnektivität
+=============
+
+- ANT+:  Ja
+- USB-Version: USB 2.0
+- Standortbestimmung: GPS, Glonass
+- Headset/Kopfhöreranschluss: 3,5mm Klinkenanschluss
+- MHL-Schnittstelle: Nein
+- WLAN: 802.11 a/b/g/n/ac 2,4 + 5 GHz, VHT80
+- Wi-Fi Direct: Ja
+- Bluetooth®-Version: Bluetooth® v4.2
+- NFC: Nein
+- Bluetooth®-Profile: A2DP, AVRCP, DI, HID, HOGP, HSP, OPP, PAN
+- Synchronisation:  Smart Switch (PC Version)
+
+Artikelinformationen
+====================
+
+- Formfaktor:  Tablet
+
+Sensoren
+========
+
+- Beschleunigungssensor, Hall-Sensor, Umgebungslichtsensor
+
+Abmessung und Gewicht
+=====================
+
+- Abmessungen (HxBxT in mm): 254,2 x 155,3 x 8,2
+- Gewicht (in g):  525
+
+Akku
+====
+
+- Internet-Nutzungsdauer (WLAN) (in Stunden): Bis zu 13
+- Videowiedergabe (in Stunden): Bis zu 13
+- Akku-Kapazität (mAh): 7300
+- Austauschbar: Nein
+- Musikwiedergabe (in Stunden): Bis zu 187
+
+Audio und Video
+===============
+
+- Videoformate (Wiedergabe):
+  MP4, M4V, 3GP, 3G2, WMV, ASF, AVI, FLV, MKV, WEBM
+
+- Videoauflösung (Wiedergabe):
+  Full HD (1.920 x 1.080 Pixel) @60fps
+
+- Audioformate (Wiedergabe):
+
+  MP3, M4A, 3GA, AAC, OGG, OGA, WAV, WMA, AMR, AWB, FLAC, MID, MIDI, XMF, MXMF,
+  IMY, RTTTL, RTX, OTA
+
+Services und Apps
+=================
+
+- S Voice: Nein
+- Mobile TV: Nein
+
+.. _SM-T580_PIT:
+
+SM-T580 PIT
+===========
+
+.. literalinclude:: SM-T580_PIT.txt
+   :linenos:

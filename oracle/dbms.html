@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Oracle DBMS Setup &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Oracle Data-Pump" href="datapump.html" />
+    <link rel="prev" title="Oracle Linux einrichten" href="linux.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Oracle (developer)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Oracle DBMS Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rpm-installation">RPM Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datenbank-orclcdb">Datenbank <code class="docutils literal notranslate"><span class="pre">ORCLCDB</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#oracle-benutzer"><code class="docutils literal notranslate"><span class="pre">oracle</span></code> Benutzer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auswahl-einer-umgebung">Auswahl einer Umgebung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#listener-ora"><code class="docutils literal notranslate"><span class="pre">listener.ora</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tnsnames-ora"><code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html">Oracle Data-Pump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html">SQL-Developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html">Oracle Know-how</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Oracle (developer)</a> &raquo;</li>
+        
+      <li>Oracle DBMS Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/oracle/dbms.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oracle-dbms-setup">
+<span id="oracle-dbms"></span><h1>Oracle DBMS Setup<a class="headerlink" href="#oracle-dbms-setup" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Folgend wird die (im Okt. 2019) aktuelle Oracle DB Version <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/">19c</a> installiert.
+Zuvor muss das <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/cwlin/about-the-oracle-preinstallation-rpm.html#GUID-C15A642B-534D-4E4A-BDE8-6DC7772AA9C8">Oracle Preinstallation RPM (19c)</a> installiert werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">oracle</span><span class="o">-</span><span class="n">database</span><span class="o">-</span><span class="n">preinstall</span><span class="o">-</span><span class="mi">19</span><span class="n">c</span><span class="o">.</span><span class="n">x86_64</span>
+<span class="o">...</span>
+<span class="n">reboot</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Bemerkung</p>
+<p>Der Reboot wurde hier durchgeführt, weil das <em>Oracle Preinstallation RPM</em>
+u.A. einen Kernel Parameter ändert.</p>
+</div>
+<p>In dem Ordner <code class="docutils literal notranslate"><span class="pre">/var/log/oracle-database-preinstall-19c/backup/</span></code> liegen (nach
+Datum sortiert) die Sicherungen die das <em>Oracle Preinstallation RPM</em> angelegt
+hat.  Dort liegt auch das LOG zu den Änderungen (weitere Hinweise siehe auch
+<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/installing-the-oracle-preinstallation-rpm-from-unbreakable-linux-network.html#GUID-555F704E-BD48-4E0E-AC9D-038596601194">Installing the Oracle Preinstallation RPM</a>).  Als nächstes kann dann das DBMS
+installiert werden (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/installing-oracle-database-using-rpm-packages.html#GUID-5AF74AC1-510E-4EB0-9BCA-B096C42C6A76">Installing Oracle Database Using RPM Packages</a>).</p>
+<div class="section" id="rpm-installation">
+<h2>RPM Installation<a class="headerlink" href="#rpm-installation" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title"><a class="reference external" href="https://www.oracle.com/downloads/">https://www.oracle.com/downloads/</a></p>
+<p>Über den Link gelangt man zu den Download-Seiten des DBMS.</p>
+</div>
+<p>Wir haben uns bereits oben für die Version <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/">19c</a> entschieden und benötigen nun
+das <a class="reference external" href="https://www.oracle.com/database/technologies/oracle-database-software-downloads.html#19c">RPM Paket für 19c</a> (<a class="reference external" href="https://download.oracle.com/otn/linux/oracle19c/190000/oracle-database-ee-19c-1.0-1.x86_64.rpm">oracle-database-ee-19c-1.0-1.x86_64.rpm</a>).  Nachdem
+die Datei vollständig heruntergeladen wurde kann das Paket installiert
+werden.</p>
+<div class="clear-both highlight-default notranslate"><div class="highlight"><pre><span></span>[user@localhost ~]$ cd ~/Downloads
+[user@localhost ~]$ sudo -H yum -y localinstall oracle-database-ee-19c-1.0-1.x86_64.rpm
+...
+[user@localhost ~]$ sudo -H passwd oracle
+</pre></div>
+</div>
+<p>Bei der Installation des RPM wurde auch der Systembenutzer <code class="docutils literal notranslate"><span class="pre">oracle</span></code> angelegt,
+mit dem man die Oracle Administration vornimmt.  Für diesen Benutzer wird noch
+das Passwort gesetzt.</p>
+</div>
+<div class="section" id="datenbank-orclcdb">
+<span id="orclcdb"></span><h2>Datenbank <code class="docutils literal notranslate"><span class="pre">ORCLCDB</span></code><a class="headerlink" href="#datenbank-orclcdb" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Einrichten der exemplarischen DB Instanz <strong>ORCLCDB</strong> (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/ladbi/running-rpm-packages-to-install-oracle-database.html">Creating and Configuring
+an Oracle Database</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[user@localhost ~]$ sudo -H /etc/init.d/oracledb_ORCLCDB-19c configure
+... dauert etwas länger
+Erstellen der Datenbank abgeschlossen ...
+Datenbankinformationen:
+Globaler Datenbankname:ORCLCDB
+System-ID (SID):ORCLCDB
+
+Database configuration completed successfully. The passwords were auto generated,
+you must change them by connecting to the database using &#39;sqlplus / as sysdba&#39;
+as the oracle user.
+</pre></div>
+</div>
+<p>Um die Passwörter in der DB Instanz zu ändern, meldet man sich mit dem
+<a class="reference internal" href="#oracle-os-login"><span class="std std-ref">oracle Benutzer</span></a> am System an.  Mit <code class="docutils literal notranslate"><span class="pre">sqlplus</span></code> als <code class="docutils literal notranslate"><span class="pre">sysdba</span></code> kann man
+dann die Passwörter wie folgt ändern.  Die im Beispiel verwendeten Passwörter
+<code class="docutils literal notranslate"><span class="pre">&quot;sys&quot;</span></code> und <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code> sollten gegen sinnvolle ausgetauscht werden!:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ . oraenv
+ORACLE_SID = [oracle] ? ORCLCDB
+...
+$ sqlplus / as sysdba
+...
+SQL&gt; alter user sys identified by &quot;sys&quot;;
+...
+SQL&gt; alter user system identified by &quot;system&quot;;
+</pre></div>
+</div>
+<p>Die ‚so‘ eingerichtete DB Instanz <em>lauscht</em> auf <code class="docutils literal notranslate"><span class="pre">localhost</span></code> nach Verbindungen.
+Will man sich remote von einem anderen Host aus gegen die DB verbinden, so muss
+die IP oder Host-Name in der <a class="reference internal" href="#listener-ora">listener.ora</a> eintragen.</p>
+</div>
+<div class="section" id="oracle-benutzer">
+<span id="oracle-os-login"></span><h2><code class="docutils literal notranslate"><span class="pre">oracle</span></code> Benutzer<a class="headerlink" href="#oracle-benutzer" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Tipp</p>
+<p>Wenn es nur eine Umgebung gibt, kann man diese auch gleich direkt in der
+<code class="docutils literal notranslate"><span class="pre">~oracle/.bashrc</span></code> setzen.  Dazu am Ende folgendes anfügen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ORAENV_ASK</span><span class="o">=</span><span class="n">NO</span>
+<span class="n">export</span> <span class="n">ORACLE_SID</span><span class="o">=</span><span class="n">ORCLCDB</span>
+<span class="n">source</span> <span class="n">oraenv</span>
+<span class="c1"># Alias zum auflisten der SIDs</span>
+<span class="n">alias</span> <span class="n">oraSIDs</span><span class="o">=</span><span class="s2">&quot;grep -o &#39;^[^#]*&#39; /etc/oratab&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Bei der <a class="reference internal" href="#rpm-installation">RPM Installation</a> wurde der Systembenutzer <code class="docutils literal notranslate"><span class="pre">oracle</span></code> angelegt.  Ist
+man bereits auf dem Rechner angemeldet, kann man in mit <code class="docutils literal notranslate"><span class="pre">su</span></code> den Benutzer
+wechseln oder sich via ssh mit diesem Account anmelden.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">su</span> <span class="o">-</span> <span class="n">oracle</span>
+</pre></div>
+</div>
+<p>Die Option <code class="docutils literal notranslate"><span class="pre">-X</span></code> reicht das Display durch, womit dann auch die graphischen
+Tools wie <code class="docutils literal notranslate"><span class="pre">dbca</span></code> genutzt werden können.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[user@localhost ~]$ ssh -X oracle@localhost
+</pre></div>
+</div>
+</div>
+<div class="section" id="auswahl-einer-umgebung">
+<span id="source-oraenv"></span><h2>Auswahl einer Umgebung<a class="headerlink" href="#auswahl-einer-umgebung" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Tipp</p>
+<p>Damit die DB beim Systemstart auch gestartet wird muss in der <code class="docutils literal notranslate"><span class="pre">/etc/oratab</span></code>
+der Buchstaben <code class="docutils literal notranslate"><span class="pre">N</span></code> in <code class="docutils literal notranslate"><span class="pre">Y</span></code> gändernt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ORCLCDB</span><span class="p">:</span><span class="o">&lt;..&gt;/</span><span class="mi">19</span><span class="n">c</span><span class="o">/</span><span class="n">dbhome_1</span><span class="p">:</span><span class="n">Y</span>
+</pre></div>
+</div>
+<p>Die Beschreibung (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/unxar/stopping-and-starting-oracle-software.html#GUID-CA969105-B62B-4F5B-B35C-8FB64EC93FAA">Automating Database Startup and Shutdown</a>) von Oracle ist
+veraltet.  Die <code class="docutils literal notranslate"><span class="pre">/etc/init.d/oracledb_XX</span></code> wurde bereits im Kapitel
+<a class="reference internal" href="#orclcdb">ORCLCDB</a> vom RPM eingerichtet.  Mit <a class="reference external" href="https://www.freedesktop.org/software/systemd/man/systemd-sysv-generator.html">systemd-sysv-generator</a> braucht man den
+Dienst nur zu aktivieren:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">enable</span> <span class="n">oracledb_XX</span>
+</pre></div>
+</div>
+</div>
+<p>Die zur Verfügung stehen Umgebungen sind in der Datei <code class="docutils literal notranslate"><span class="pre">/etc/oratab</span></code>
+konfiguriert:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grep</span> <span class="o">-</span><span class="n">o</span> <span class="s1">&#39;^[^#]*&#39;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">oratab</span>
+<span class="n">ORCLCDB</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">oracle</span><span class="o">/</span><span class="n">product</span><span class="o">/</span><span class="mi">19</span><span class="n">c</span><span class="o">/</span><span class="n">dbhome_1</span><span class="p">:</span><span class="n">N</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ORCLCDB</span></code> ist die SID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/opt/oracle/product/19c/dbhome_1</span></code> ist der Ordner der DB Instanz</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code> oder <code class="docutils literal notranslate"><span class="pre">Y</span></code>: <em>autostart</em> der DB bei Systemstart</p></li>
+</ul>
+<p>Nach dem Login muss mittels <code class="docutils literal notranslate"><span class="pre">oraenv</span></code> erst die DB Umgebung ausgewählt werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[oracle@localhost ~]$ source oraenv
+ORACLE_SID = [oracle] ? ORCLCDB
+The Oracle base has been changed from /home/oracle to /opt/oracle
+</pre></div>
+</div>
+<p>Danach kann man dann die Tools aufrufen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[oracle@localhost ~]$ dbca
+</pre></div>
+</div>
+<p>Oder man meldet sich mit dem <code class="docutils literal notranslate"><span class="pre">sqlplus</span></code> als <code class="docutils literal notranslate"><span class="pre">sysdba</span></code> an:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[oracle@localhost ~]$ sqlplus / as sysdba
+SQL*Plus: Release 19.0.0.0.0 - Production on Fri Oct 11 13:48:23 2019
+Version 19.3.0.0.0
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+Verbunden mit:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+SQL&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="listener-ora">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">listener.ora</span></code><a class="headerlink" href="#listener-ora" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Tipp</p>
+<p>Auf dem <a class="reference external" href="https://en.wikipedia.org/wiki/Oracle_Linux">Oracle Linux</a> sind im default die <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=iptables">iptables</a> aktiv
+(s.a. <a class="reference internal" href="linux.html#oracle-linux-iptables"><span class="std std-ref">remove iptables</span></a>).  Verwenden sie auf dem
+DB Server <em>feste</em> IPs um etwaige Probleme bei der Namensauflösung (DNS)
+auszuschließen.</p>
+</div>
+<p>Damit der Listener Verbindungen von den Remotes annimmt, muss in der <code class="docutils literal notranslate"><span class="pre">listener.ora</span></code>
+der <code class="docutils literal notranslate"><span class="pre">localhost</span></code> gegen den HOST-Namen ausgetauscht werden (s.a. <a class="reference internal" href="#tnsnames-ora">tnsnames.ora</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ORACLE_HOME/network/admin/listener.ora
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>LISTENER =
+  (DESCRIPTION_LIST =
+    (DESCRIPTION =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))
+    )
+</pre></div>
+</div>
+<p>Um den Listner (die ganze DB) neu zu starten zu können müssen erst alle noch
+offenen DB Verbindungen geschlossenen werden.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H systemctl restart oracledb_XX
+</pre></div>
+</div>
+</div>
+<div class="section" id="tnsnames-ora">
+<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code><a class="headerlink" href="#tnsnames-ora" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Siehe auch <a class="reference internal" href="#listener-ora">listener.ora</a>.  Muss i.d.R. auf den Clients gesetzt werden.  Auf dem
+Oracle Server gibt es die auch, dort in der Umgebung die mit <a class="reference internal" href="#source-oraenv"><span class="std std-ref">source
+oraenv</span></a> <em>angezogen</em> wurde:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ORACLE_HOME/network/admin/tnsnames.ora
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ORCLCDB =
+  (DESCRIPTION =
+     (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+     (CONNECT_DATA =
+       (SERVER = DEDICATED)
+       (SERVICE_NAME = ORCLCDB)
+     )
+  )
+
+LISTENER_ORCLCDB =
+  (ADDRESS = (PROTOCOL = TCP)(HOST = dbhost)(PORT = 1521))
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="datapump.html" class="btn btn-neutral float-right" title="Oracle Data-Pump" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="linux.html" class="btn btn-neutral float-left" title="Oracle Linux einrichten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

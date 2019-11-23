@@ -1,0 +1,345 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Team Win Recovery Project &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Heimdall" href="heimdall.html" />
+    <link rel="prev" title="Recovery &amp; Flash" href="recovery.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Android</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#themen">Themen</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nogoogle.html">Ein Leben ohne Google Konto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev_options.html">Entwickler-Optionen &amp; Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recovery.html">Recovery &amp; Flash</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Team Win Recovery Project</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#galaxy-tab-a-6-2016-10-1-wi-fi">Galaxy Tab A 6 (2016, 10.1, Wi-Fi)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="heimdall.html">Heimdall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#samsung-gerate">Samsung Geräte</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prozessoren-socs">Prozessoren / SoCs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Android</a> &raquo;</li>
+        
+      <li>Team Win Recovery Project</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/android/TWRP.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="team-win-recovery-project">
+<span id="twrp-intro"></span><h1>Team Win Recovery Project<a class="headerlink" href="#team-win-recovery-project" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Team Win Recovery Project (<a class="reference external" href="https://twrp.me/">TWRP</a>) ist ein herstellerunabhängiges
+Custom-Recovery-System für Android-Geräte. Das Projekt ist OpenSource und liegt
+bei github:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/omnirom/android_bootable_recovery">https://github.com/omnirom/android_bootable_recovery</a></p></li>
+</ul>
+<p>Da die Hardware der Geräte stark varriiert (z.B. <a class="reference external" href="https://de.wikipedia.org/wiki/System-on-a-Chip">SoC</a> &amp; <a class="reference external" href="https://en.wikipedia.org/wiki/Cellular_network">Cellular</a>) gibt es
+diverse Geräte-Speziefische Images. Auf der Seite:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://twrp.me/Devices/">https://twrp.me/Devices/</a></p></li>
+</ul>
+<p>kann man die Geräte recherchieren und auf die entsprechende Seite zum Gerät
+springen. Auf dieser Seite findet man in kompakter Form ein paar Hinweise und
+weitere Links. Ich hab hier beispielsweise ein <em>Galaxy Tab A 10.1 (wifi)</em></p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Wer ein Google Konto hat sollte sicherstellen, dass er den <a class="reference external" href="https://support.google.com/nexus/answer/6172890?hl=de">Geräteschutz bei
+Google</a> deaktiviert
+hat, bevor er TWRP oder ein ROM aufspielt!!!</p>
+<p>Man sollte eine (externe) SD-Karte in das Gerät stecken.  Auf dieser Karte
+können dann die Sicherungen erfolgen. Auch wird man Custom-ROMs und andere
+Installationen (z.B. SuperSU) dort ablegen und von dort im Recoery-Mode
+installieren.</p>
+</div>
+<div class="section" id="galaxy-tab-a-6-2016-10-1-wi-fi">
+<span id="twrp-gtaxlwifi"></span><h2>Galaxy Tab A 6 (2016, 10.1, Wi-Fi)<a class="headerlink" href="#galaxy-tab-a-6-2016-10-1-wi-fi" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p>TWRP for Samsung Galaxy Tab A 10.1 WiFi (2016):
+<a class="reference external" href="https://twrp.me/devices/samsunggalaxytaba101wifi2016.html">https://twrp.me/devices/samsunggalaxytaba101wifi2016.html</a></p></li>
+<li><p>TWRP gtaxlwifi Image Download: <a class="reference external" href="https://eu.dl.twrp.me/gtaxlwifi/">https://eu.dl.twrp.me/gtaxlwifi/</a></p></li>
+<li><p>TWRP: <a class="reference external" href="https://github.com/omnirom/android_bootable_recovery">https://github.com/omnirom/android_bootable_recovery</a> (android-6.0)</p></li>
+<li><p>Device tree: <a class="reference external" href="https://github.com/TeamWin/android_device_samsung_gtaxlwifi">https://github.com/TeamWin/android_device_samsung_gtaxlwifi</a> (android-6.0)</p></li>
+<li><p>Kernel: <a class="reference external" href="https://github.com/jcadduono/android_kernel_samsung_exynos7870">https://github.com/jcadduono/android_kernel_samsung_exynos7870</a> (twrp-6.0)</p></li>
+<li><p>Support Thread auf xda-developers:
+<a class="reference external" href="https://forum.xda-developers.com/galaxy-tab-a/development/recovery-official-twrp-gtaxlwifi-galaxy-t3437666">https://forum.xda-developers.com/galaxy-tab-a/development/recovery-official-twrp-gtaxlwifi-galaxy-t3437666</a></p></li>
+</ul>
+<div class="section" id="twrp-aufspielen">
+<h3>1. TWRP aufspielen<a class="headerlink" href="#twrp-aufspielen" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Um das TWRP aufzuspielen muss das Gerät entsperrt sein (s.a.
+<a class="reference internal" href="dev_options.html#android-oem-unlock"><span class="std std-ref">OEM Entsperren (unlock)</span></a>). Installation mit <a class="reference external" href="http://glassechidna.com.au/heimdall/">Heimdall</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heimdall</span> <span class="n">flash</span> <span class="o">--</span><span class="n">RECOVERY</span> <span class="n">twrp</span><span class="o">-</span><span class="mf">3.1</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">gtaxlwifi</span><span class="o">.</span><span class="n">img</span>
+</pre></div>
+</div>
+<p>Danach im Recovery Mode booten. Jetzt müsste man TWRP sehen, evtl. stellt man
+sich jetzt schon mal die Sprache ein. TWRP kann die System Partition ‚nur
+lesend‘ einhängen. I.d.R. will man aber die Systempartition verändern, deswegen
+muss man in dem initialen Dialog den Regler auf ‚Veränderungen zulassen‘
+schieben. Macht man das nicht wird TWRP u.U. beim nächsten boot vom System
+wieder gelöscht (eigentlich kann man dann eh nicht viel machen).</p>
+</div>
+<div class="section" id="nutzdaten-system-sichern">
+<h3>2. Nutzdaten &amp; System sichern<a class="headerlink" href="#nutzdaten-system-sichern" title="Link zu dieser Überschrift">¶</a></h3>
+<p><strong>Nutzdaten</strong>: Es sollte in jedem Fall eine Sicherung der Daten (Bilder, Videos,
+Dokumente, Kontakte, Kalender, ‚media‘ etc.) durchgeführt werden! Diese
+<em>Nutzdaten</em> liegen bei neueren Geräten in einer verschlüsselten Partition, diese
+kann TWRP nicht lesen. Also muss man die Daten im normalen Betrieb sichern.</p>
+<p>Zusätzlich sollte eine Sicherung des System mit TWRP angelegt werden. Dazu im
+Recoery-Mode booten und über TWRP ‚Sichern‘ (backup) die Partitionen zur
+Sicherung auswählen.</p>
+<p>Meist wird mman die Sicherung auf eine SD-Karte vornehmen, ich empfehle die
+Sicherung von dieser SD-Karte nochmal auf dem PC oder irgendwo anders
+hinzukopieren.</p>
+</div>
+<div class="section" id="verschlusselte-partition-formatieren">
+<h3>3. verschlüsselte Partition formatieren<a class="headerlink" href="#verschlusselte-partition-formatieren" title="Link zu dieser Überschrift">¶</a></h3>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Spätestens jetzt sollte man eine Sicherung der <em>Nutzdaten</em> und des Systems
+haben!!!</p>
+</div>
+<p>Der verschlüsselte ‚Interne Storage‘ muss formatiert werden, dabei gehen die
+<em>Nutzdaten</em> dann verloren. Dazu im TWRP auf „Löschen“ (wipe), dann auf „Daten
+formatieren“ (format). Da dieser Schritt nicht mehr Rückgängig gemacht werden
+kann muss man expliziet „yes“ eintippen.</p>
+<p>Dieser Schritt ist nur einmal erforderlich, danach gibt es keine verschlüsselte
+Partition mehr und man kann anfangen ein anderes ROM oder <em>sonst was</em>
+installieren.</p>
+</div>
+<div class="section" id="twrp-app-installieren">
+<h3>3. TWRP App Installieren<a class="headerlink" href="#twrp-app-installieren" title="Link zu dieser Überschrift">¶</a></h3>
+<p>Nachdem man die verschlüsselte Partition gelöscht (formatiert) hat, kann man
+noch die TWRP App installieren. Bzw. das wird man automatisch gefragt, wenn man
+einen Neustart wählt.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Nach dem Installieren eines ROMs wird man auch jedesmall gefragt ob man die
+App installieren will, dass sollte man aber besser nicht machen, weil dann
+die Checksummen des ROMs beim ersten Start nicht mehr stimmen (war bei mir
+der Fall).</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="heimdall.html" class="btn btn-neutral float-right" title="Heimdall" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="recovery.html" class="btn btn-neutral float-left" title="Recovery &amp; Flash" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

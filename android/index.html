@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Android &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Ein Leben ohne Google Konto" href="nogoogle.html" />
+    <link rel="prev" title="Scannen mit SANE" href="../scan/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Android</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#themen">Themen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nogoogle.html">Ein Leben ohne Google Konto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dev_options.html">Entwickler-Optionen &amp; Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recovery.html">Recovery &amp; Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TWRP.html">Team Win Recovery Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heimdall.html">Heimdall</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#samsung-gerate">Samsung Geräte</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SM-T580.html">Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580</a></li>
+<li class="toctree-l3"><a class="reference internal" href="GT-I9250-maguro.html">Samsung Google Galaxy Nexus I9250</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prozessoren-socs">Prozessoren / SoCs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="exynos_7_octa_7870.html">Samsung Exynos 7 Octa 7870 (Joshua)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Android</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/android/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="android">
+<h1>Android<a class="headerlink" href="#android" title="Link zu dieser Überschrift">¶</a></h1>
+<p>In dieser Rubrik beschäftige ich mich mit Android Geräten und wie man sie ohne
+Google, Tracking und die ganze <a class="reference external" href="https://de.wikipedia.org/wiki/Bloatware">Bloatware</a> betreiben kann. Da ich aktuell nur
+Samsunng Geräte hab sind die Artikel etwas <em>Samsung-lastig</em>.</p>
+<div class="section" id="themen">
+<h2>Themen<a class="headerlink" href="#themen" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nogoogle.html">Ein Leben ohne Google Konto</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nogoogle.html#app-store-alternativen">App Store Alternativen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nogoogle.html#paketmanager-vs-apk">Paketmanager vs. APK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nogoogle.html#software-empfehlungen">Software Empfehlungen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_options.html">Entwickler-Optionen &amp; Modes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dev_options.html#entwickler-optionen">Entwickler-Optionen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_options.html#oem-entsperren-unlock">OEM Entsperren (unlock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_options.html#samsung-download-recovery-mode">Samsung Download- &amp; Recovery-Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery &amp; Flash</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TWRP.html">Team Win Recovery Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TWRP.html#galaxy-tab-a-6-2016-10-1-wi-fi">Galaxy Tab A 6 (2016, 10.1, Wi-Fi)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="heimdall.html">Heimdall</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="samsung-gerate">
+<h2>Samsung Geräte<a class="headerlink" href="#samsung-gerate" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="SM-T580.html">Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GT-I9250-maguro.html">Samsung Google Galaxy Nexus I9250</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="prozessoren-socs">
+<h2>Prozessoren / SoCs<a class="headerlink" href="#prozessoren-socs" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="exynos_7_octa_7870.html">Samsung Exynos 7 Octa 7870 (Joshua)</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="verweise">
+<h2>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.droidwiki.org/">DroidWiki</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nogoogle.html" class="btn btn-neutral float-right" title="Ein Leben ohne Google Konto" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../scan/index.html" class="btn btn-neutral float-left" title="Scannen mit SANE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

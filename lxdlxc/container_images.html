@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Container &amp; Images &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Arbeiten mit Containern" href="working_with_containers.html" />
+    <link rel="prev" title="Remote-Images" href="remote_images.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux Container (LXC &amp; LXD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="container_intro.html">Was sind Container?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install_lxd_lxc.html">LXD Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote_images.html">Remote-Images</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Container &amp; Images</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#auflisten-der-container">Auflisten der Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auflisten-der-images">Auflisten der Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auflisten-remote-images">Auflisten Remote Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#infos-zu-einem-image">Infos zu einem Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starten-eines-containers-aus-einem-image">Starten eines Containers aus einem Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stoppen-eines-containers">Stoppen eines Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loschen-eines-containers">Löschen eines Containers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anzeigen-der-lokalen-images">Anzeigen der lokalen Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alias-namen-fur-images">Alias Namen für Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loschen-eines-images">Löschen eines Images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-image-von-remote">Import Image von Remote</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_containers.html">Arbeiten mit Containern</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux Container (LXC &amp; LXD)</a> &raquo;</li>
+        
+      <li>Container &amp; Images</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/lxdlxc/container_images.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="container-images">
+<span id="id1"></span><h1>Container &amp; Images<a class="headerlink" href="#container-images" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Dieser Abschnitt beschäftigt sich mit dem Management der Images und der
+Container. Mehr zum Thema siehe auch: <a class="reference external" href="https://insights.ubuntu.com/2016/04/01/lxd-2-0-image-management-512">LXD 2.0: Image management</a></p>
+<div class="section" id="auflisten-der-container">
+<h2>Auflisten der Container<a class="headerlink" href="#auflisten-der-container" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc list
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>NAME</p></td>
+<td><p>STATE</p></td>
+<td><p>IPV4</p></td>
+<td><p>IPV6</p></td>
+<td><p>TYPE</p></td>
+<td><p>SNAPSHOTS</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="auflisten-der-images">
+<h2>Auflisten der Images<a class="headerlink" href="#auflisten-der-images" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image list
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 20%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ALIAS</p></td>
+<td><p>FINGERPRINT</p></td>
+<td><p>PUBLIC</p></td>
+<td><p>DESCRIPTION</p></td>
+<td><p>ARCH</p></td>
+<td><p>SIZE</p></td>
+<td><p>UPLOAD DATE</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="auflisten-remote-images">
+<h2>Auflisten Remote Images<a class="headerlink" href="#auflisten-remote-images" title="Link zu dieser Überschrift">¶</a></h2>
+<p>z.B. von <a class="reference external" href="https://images.linuxcontainers.org">https://images.linuxcontainers.org</a> (s.o):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image list images:
+</pre></div>
+</div>
+<p>Den Doppelpunkt am Ende des Remote-Alias <code class="docutils literal notranslate"><span class="pre">images:</span></code> darf man nicht vergessen,
+er zeigt an, dass man sich auf den Remote bezieht. Als Ausgabe erhält man eine
+Tabelle wie die folgende:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 18%" />
+<col style="width: 9%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ALIAS</p></td>
+<td><p>FINGERPRINT</p></td>
+<td><p>PUBLIC</p></td>
+<td><p>DESCRIPTION</p></td>
+<td><p>ARCH</p></td>
+<td><p>SIZE</p></td>
+<td><p>UPLOAD DATE</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>alpine/edge</p></td>
+<td><p>ed1bb9487366</p></td>
+<td><p>yes</p></td>
+<td><p>Alpine edge</p></td>
+<td><p>x86_64</p></td>
+<td><p>1.72MB</p></td>
+<td><p>Sep 6, 2017</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<p>Im Folgendem ein paar Beispiele bei denen das <code class="docutils literal notranslate"><span class="pre">alpine/edge</span></code> Image mit dem
+Fingerprint <code class="docutils literal notranslate"><span class="pre">ed1bb9487366</span></code> verwendet wird. Ich habe das Image nur deswegen
+ausgewählt, weil es sich mit seiner Größe von nur ca. 2MB schnell kopieren
+lässt. Getestet hab ich das System in dem Image jedoch nicht und das Beispiel
+hier soll auch keine Empfehlung für dieses Image sein.</p>
+</div>
+<div class="section" id="infos-zu-einem-image">
+<h2>Infos zu einem Image<a class="headerlink" href="#infos-zu-einem-image" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image info images:alpine/edge
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fingerprint</span><span class="p">:</span> <span class="n">ed1bb94873666a03e9af29d76274134ad9566fab8d90dfe7f9d9e8bc2de12313</span>
+<span class="n">Size</span><span class="p">:</span> <span class="mf">1.72</span><span class="n">MB</span>
+<span class="n">Architecture</span><span class="p">:</span> <span class="n">x86_64</span>
+<span class="n">Public</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Timestamps</span><span class="p">:</span>
+    <span class="n">Created</span><span class="p">:</span> <span class="mi">2017</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">06</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">UTC</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="starten-eines-containers-aus-einem-image">
+<h2>Starten eines Containers aus einem Image<a class="headerlink" href="#starten-eines-containers-aus-einem-image" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc launch images:alpine/edge alpine-test
+Creating alpine-test
+Starting alpine-test
+</pre></div>
+</div>
+<p>und jetzt müsste der Container <code class="docutils literal notranslate"><span class="pre">alpine-test</span></code> in der Liste erscheinen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc list
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 29%" />
+<col style="width: 8%" />
+<col style="width: 17%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>NAME</p></td>
+<td><p>STATE</p></td>
+<td><p>IPV4</p></td>
+<td><p>IPV6</p></td>
+<td><p>TYPE</p></td>
+<td><p>SNAPSHOTS</p></td>
+</tr>
+<tr class="row-even"><td><p>alpine-test</p></td>
+<td><p>RUNNING</p></td>
+<td><p>10.20.203.71 (eth0)</p></td>
+<td></td>
+<td><p>PERSISTENT</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="stoppen-eines-containers">
+<h2>Stoppen eines Containers<a class="headerlink" href="#stoppen-eines-containers" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc stop alpine-test
+</pre></div>
+</div>
+</div>
+<div class="section" id="loschen-eines-containers">
+<h2>Löschen eines Containers<a class="headerlink" href="#loschen-eines-containers" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc delete alpine-test
+</pre></div>
+</div>
+</div>
+<div class="section" id="anzeigen-der-lokalen-images">
+<h2>Anzeigen der lokalen Images<a class="headerlink" href="#anzeigen-der-lokalen-images" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Beim Starten des Containers mit <code class="docutils literal notranslate"><span class="pre">lxc</span> <span class="pre">launch</span> <span class="pre">images:alpine/edge</span></code> wurde das
+Image mit dem Fingerprint <code class="docutils literal notranslate"><span class="pre">ed1bb9487366</span></code> vom Remote <code class="docutils literal notranslate"><span class="pre">images:</span></code> geclonet und
+in das lokale LXD kopiert.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image list
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 32%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ALIAS</p></td>
+<td><p>FINGERPRINT</p></td>
+<td><p>PUBLIC</p></td>
+<td><p>DESCRIPTION</p></td>
+<td><p>ARCH</p></td>
+<td><p>SIZE</p></td>
+<td><p>UPLOAD DATE</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>ed1bb9487366</p></td>
+<td><p>no</p></td>
+<td><p>Alpine edge …</p></td>
+<td><p>x86_64</p></td>
+<td><p>1.72MB</p></td>
+<td><p>Sep 7, 2017 at 4:03pm (UTC)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="alias-namen-fur-images">
+<h2>Alias Namen für Images<a class="headerlink" href="#alias-namen-fur-images" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Ein Image kann über seinen <em>Fingerprint</em> adressiert werden, alternativ können
+aber auch noch Alias-Namen vergeben werden (Image-Alias):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image alias create alpine-edge ed1bb9487366
+</pre></div>
+</div>
+<p>Es können mehrere Alias-Namen vergeben werden. Über welche Alias-Namen ein
+<code class="docutils literal notranslate"><span class="pre">FINGERPRINT</span></code> verfügt kann man sich z.B. mit <code class="docutils literal notranslate"><span class="pre">image</span> <span class="pre">info</span></code> anzeigen lassen.
+Im folgendem Beispiel wird eines der <a class="reference internal" href="remote_images.html#lxc-remote-images"><span class="std std-ref">Remote Images</span></a>
+vom <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> Image-Server mit den <a class="reference external" href="https://cloud-images.ubuntu.com/releases">Ubuntu Cloud Images</a> abgefragt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image info images:ubuntu/artful
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Fingerprint</span><span class="p">:</span> <span class="mi">3</span><span class="n">fa086e1908dec89f46b9ff34283032419abc3c42c9791be81efa4aa01a29768</span>
+<span class="n">Size</span><span class="p">:</span> <span class="mf">92.70</span><span class="n">MB</span>
+<span class="n">Architecture</span><span class="p">:</span> <span class="n">x86_64</span>
+<span class="n">Public</span><span class="p">:</span> <span class="n">yes</span>
+<span class="n">Timestamps</span><span class="p">:</span>
+  <span class="n">Created</span><span class="p">:</span> <span class="mi">2017</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">08</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">UTC</span>
+  <span class="n">Uploaded</span><span class="p">:</span> <span class="mi">2017</span><span class="o">/</span><span class="mi">09</span><span class="o">/</span><span class="mi">08</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="n">UTC</span>
+  <span class="n">Expires</span><span class="p">:</span> <span class="n">never</span>
+  <span class="n">Last</span> <span class="n">used</span><span class="p">:</span> <span class="n">never</span>
+<span class="n">Properties</span><span class="p">:</span>
+  <span class="n">serial</span><span class="p">:</span> <span class="mi">20170908_03</span><span class="p">:</span><span class="mi">49</span>
+  <span class="n">description</span><span class="p">:</span> <span class="n">Ubuntu</span> <span class="n">artful</span> <span class="n">amd64</span> <span class="p">(</span><span class="mi">20170908_03</span><span class="p">:</span><span class="mi">49</span><span class="p">)</span>
+  <span class="n">os</span><span class="p">:</span> <span class="n">Ubuntu</span>
+  <span class="n">release</span><span class="p">:</span> <span class="n">artful</span>
+  <span class="n">architecture</span><span class="p">:</span> <span class="n">amd64</span>
+<span class="n">Aliases</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">ubuntu</span><span class="o">/</span><span class="n">artful</span><span class="o">/</span><span class="n">default</span>
+  <span class="o">-</span> <span class="n">ubuntu</span><span class="o">/</span><span class="n">artful</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">amd64</span>
+  <span class="o">-</span> <span class="n">ubuntu</span><span class="o">/</span><span class="n">artful</span>
+  <span class="o">-</span> <span class="n">ubuntu</span><span class="o">/</span><span class="n">artful</span><span class="o">/</span><span class="n">amd64</span>
+<span class="n">Auto</span> <span class="n">update</span><span class="p">:</span> <span class="n">disabled</span>
+</pre></div>
+</div>
+<p>Es ist auch möglich die Alias-Namen der Images des lokalen Image-Severs
+anzuzeigen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image alias list
++---------+--------------+-------------+
+|  ALIAS  | FINGERPRINT  | DESCRIPTION |
++---------+--------------+-------------+
+| ubu1710 | 3fa086e1908d | ubu1710     |
++---------+--------------+-------------+
+</pre></div>
+</div>
+<p>Letzteres listet die Alias-Namen des lokalen Image-Servers, für einen Remote ist
+die Abfrage analog mit <em>Name + Doppelpunkt</em> am Ende:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image alias list ubuntu:
+</pre></div>
+</div>
+</div>
+<div class="section" id="loschen-eines-images">
+<h2>Löschen eines Images<a class="headerlink" href="#loschen-eines-images" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das zu löschende Image kann über seinen Namen (Image-Alias) oder explizit über
+seinen Fingerprint adressiert werden:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image delete ed1bb9487366
+</pre></div>
+</div>
+</div>
+<div class="section" id="import-image-von-remote">
+<span id="lxc-import-image"></span><h2>Import Image von Remote<a class="headerlink" href="#import-image-von-remote" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Importieren (pull) eines Image von einem anderem Image-Server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image copy images:ubuntu/artful local: --alias ubu1710
+</pre></div>
+</div>
+<p>Anschließend müsste das Image <code class="docutils literal notranslate"><span class="pre">ubu1710</span></code> in der Liste der lokalen Images
+auftauchen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc image alias list
+</pre></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 39%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ALIAS</p></td>
+<td><p>FINGERPRINT</p></td>
+<td><p>DESCRIPTION</p></td>
+</tr>
+<tr class="row-even"><td><p>ubu1710</p></td>
+<td><p>3fa086e1908d</p></td>
+<td><p>ubu1710</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="working_with_containers.html" class="btn btn-neutral float-right" title="Arbeiten mit Containern" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="remote_images.html" class="btn btn-neutral float-left" title="Remote-Images" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

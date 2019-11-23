@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Apache Pakete &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Serverweite Konfigurationen" href="serverwide_cfg.html" />
+    <link rel="prev" title="Autorisierung zum Zugriff auf Resourcen" href="apache_auth.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mod_security2.html">WAF: ModSecurity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>Apache Pakete</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/dbp_apache_pkgs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="apache-pakete">
+<span id="xref-dbp-apache-pkgs"></span><h1>Apache Pakete<a class="headerlink" href="#apache-pakete" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Zum Setup gehört in erster Linie die Installation des Pakets mit dem Apache
+WEB-Servers (<a class="reference external" href="http://packages.ubuntu.com/apache2">apache2</a>).  Neben der Installation des Apache-Pakets
+empfiehlt sich die Installation folgender Pakete:</p>
+<ul>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/apache2-utils">apache2-utils</a></p>
+<p>Dieses Paket stellt Tools für die Wartung des Apache Servers zur Verfügung.</p>
+</li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-authnz-external">libapache2-mod-authnz-external</a></p>
+<p>Das Pakete installiert das <a class="reference external" href="https://github.com/phokz/mod-auth-external/tree/master/mod_authnz_external">Apache mod_authnz_external</a> Modul und
+pwauth(8). Es wird benötigt um eine (sichere) PAM-Authentifizierung zu
+realisieren. Damit können WebDAV und andere WEB-Anwendungen an die Logins und
+Passwörter des Systems (PAM) gebunden werden.</p>
+</li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/libapache2-modsecurity">libapache2-modsecurity</a></p>
+<p><a class="reference external" href="http://modsecurity.org/about.html">ModSecurity</a> ist <em>Monitoring-Tool</em> und ein <em>Filter</em> der die HTTP-Requests
+nach bekannten Exploits durchsucht. Man könnte es auch als HTTP Firewall
+bezeichnen, eine sogenannte <a class="reference external" href="https://de.wikipedia.org/wiki/Web_Application_Firewall">WAF (wiki)</a>.</p>
+</li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/ssl-cert">ssl-cert</a>:</p>
+<p>Stellt die Pakete für OpenSSL zur Verfügung</p>
+</li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/openssl-blacklist">openssl-blacklist</a></p>
+<p>Eine paar Tools und eine Datenbank zum Prüfen von SSL Schlüsseln. Siehe
+openssl-vulnkey(8) und <a class="reference external" href="http://www.heise.de/security/artikel/Der-kleine-OpenSSL-Wegweiser-270076.html">Der kleine OpenSSL-Wegweiser (heise)</a> (wird schon
+länger nicht mehr benötigt und ist seit Ubuntu 16.10 auch nicht mehr im APT
+Repository)</p>
+</li>
+</ul>
+<p>Installation der Pakete:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H apt-get install <span class="se">\</span>
+             apache2 apache2-doc apache2-utils <span class="se">\</span>
+             ssl-cert openssl-blacklist <span class="se">\</span>
+             libapache2-mod-authnz-external pwauth <span class="se">\</span>
+</pre></div>
+</div>
+<p>Das <a class="reference external" href="http://packages.ubuntu.com/apache2">apache2</a> Paket bringt diverse Konfigurationen (Freigaben) und Module
+mit sich, die für einen <em>Schnellstart</em> recht geeignet sind, die aber nicht so
+ganz zur Philosophie <em>opt-in wird präferiert</em> passen. Soweit diese
+Konfigurationen nicht gewollt sind, werden sie nun abgeschaltet.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2dismod  cgi cgid
+sudo -H a2disconf apache2-doc serve-cgi-bin
+
+<span class="nb">cd</span> /etc/apache2/mods-available/
+
+sudo -H mv alias.conf     alias.conf-disabled
+sudo -H mv dir.conf       dir.conf-disabled
+sudo -H mv wsgi.conf      wsgi.conf-disabled
+</pre></div>
+</div>
+<p>Nun werden noch die Module aktiviert, die in diesem Setup benötigt werden.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2enmod <span class="nb">alias</span> authz_host ssl rewrite <span class="se">\</span>
+             headers env security2 auth_digest <span class="se">\</span>
+             authn_core authnz_external
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="serverwide_cfg.html" class="btn btn-neutral float-right" title="Serverweite Konfigurationen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="apache_auth.html" class="btn btn-neutral float-left" title="Autorisierung zum Zugriff auf Resourcen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

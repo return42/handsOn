@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Oracle Know-how &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="searx Suchmaschine" href="../searx.html" />
+    <link rel="prev" title="SQL-Developer" href="sqldeveloper.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Oracle (developer)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html">Oracle DBMS Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html">Oracle Data-Pump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html">SQL-Developer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Oracle Know-how</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">EPEL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schema-anlegen-create-user">Schema anlegen (<code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">USER</span></code>)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schema-loschen">Schema löschen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#aus-welcher-oracle-version-wurde-der-dump-erzeugt">Aus welcher Oracle Version wurde der DUMP erzeugt?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#welches-schema-ist-im-dump">Welches Schema ist im DUMP?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistiken-und-optimierung">Statistiken und Optimierung</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Oracle (developer)</a> &raquo;</li>
+        
+      <li>Oracle Know-how</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/oracle/know-how.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oracle-know-how">
+<span id="id1"></span><h1>Oracle Know-how<a class="headerlink" href="#oracle-know-how" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="section" id="id2">
+<h2>EPEL<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Extra Packages for Enterprise Linux (<a class="reference external" href="https://fedoraproject.org/wiki/EPEL">EPEL</a>) ist eine Special Interest Group von
+Fedora, die eine qualitativ hochwertige Reihe von zusätzlichen Paketen für
+Enterprise Linux verwaltet.  EPEL eignet sich für alle RHEL Distributionen:
+Red Hat Enterprise Linux, CentOS und Scientific Linux(SL), Oracle Linux (OL).</p>
+<p>EPEL-Pakete basieren in der Regel auf ihren Fedora-Pendants konfligieren aber
+nicht mit den Paketen in den Basis-Enterprise Linux-Distributionen (es werden
+auch keine ersetzt).:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">fedoraproject</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">epel</span><span class="o">/</span><span class="n">epel</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="mf">7.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">yum</span> <span class="n">update</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo -H yum repolist
+
+Geladene Plugins: langpacks, ulninfo
+Repo-ID           Repo-Name:                                                      Status
+epel/x86_64       Extra Packages for Enterprise Linux 7 - x86_64                  13.415
+ol7_UEKR5/x86_64  Latest Unbreakable Enterprise Kernel Release 5 for Oracle Linux    169
+ol7_latest/x86_64 Oracle Linux 7Server Latest (x86_64)                            15.441
+repolist: 29.025
+</pre></div>
+</div>
+</div>
+<div class="section" id="schema-anlegen-create-user">
+<span id="sql-create-user"></span><h2>Schema anlegen (<code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">USER</span></code>)<a class="headerlink" href="#schema-anlegen-create-user" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Bei einer <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-a-cdb-with-sql-plus.html#GUID-2E5025EE-BED3-45A4-9EAA-B05C8DA66F97">CDB</a> muss das Präfix <code class="docutils literal notranslate"><span class="pre">c##</span></code> im Namen des DB-Users (des Schemas)
+verwendet werden, bei einer <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-pdbs-with-sql-plus.html#GUID-702231AB-ABDA-42F4-918C-4539BF8135D6">PDB</a> ist das nicht erforderlich.  Die CDBs sind seit
+Oracle 12 in einer <em>Standard Installation</em> (<a class="reference internal" href="cdbpdb.html#cdb-pdb"><span class="std std-ref">CDB &amp; PDB</span></a>).  Im folgenden
+Beispiel wird ein DB-Benutzer (ein Schema) mit dem Namen <code class="docutils literal notranslate"><span class="pre">foo</span></code> und mit
+Passwort <code class="docutils literal notranslate"><span class="pre">bar</span></code> eingerichtet (Anmeldung als sysdba).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">USER</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">bar</span>
+  <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">users</span>
+  <span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="n">temp</span>
+  <span class="n">QUOTA</span> <span class="n">UNLIMITED</span> <span class="k">ON</span> <span class="n">users</span>
+  <span class="n">CONTAINER</span> <span class="o">=</span> <span class="k">ALL</span>
+  <span class="n">PROFILE</span> <span class="k">default</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Gewähren von Rechten auf dem Schema <code class="docutils literal notranslate"><span class="pre">c##foo</span></code>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">CONNECT</span>
+  <span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">VIEW</span><span class="p">,</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span>
+  <span class="p">,</span> <span class="k">CREATE</span> <span class="n">SYNONYM</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">CLUSTER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">LINK</span>
+  <span class="p">,</span> <span class="k">ALTER</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TRIGGER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">PROCEDURE</span>
+    <span class="k">TO</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Anlegen eines Schemas in einer PDB:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">foo</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">bar</span>
+  <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">users</span>
+  <span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="n">temp</span>
+  <span class="n">QUOTA</span> <span class="n">UNLIMITED</span> <span class="k">ON</span> <span class="n">users</span>
+  <span class="n">PROFILE</span> <span class="k">default</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">CONNECT</span>
+  <span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">VIEW</span><span class="p">,</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span>
+  <span class="p">,</span> <span class="k">CREATE</span> <span class="n">SYNONYM</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">CLUSTER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">LINK</span>
+  <span class="p">,</span> <span class="k">ALTER</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TRIGGER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">PROCEDURE</span>
+  <span class="k">TO</span> <span class="n">foo</span><span class="p">;</span>
+
+<span class="k">GRANT</span> <span class="k">read</span><span class="p">,</span> <span class="k">write</span>
+     <span class="k">ON</span> <span class="n">DIRECTORY</span> <span class="n">oracle_impexp</span>
+     <span class="k">TO</span> <span class="n">foo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="schema-loschen">
+<h2>Schema löschen<a class="headerlink" href="#schema-loschen" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">USER</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span> <span class="k">CASCADE</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Löschen eines Schemas in einer PDB:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">USER</span> <span class="n">foo</span> <span class="k">CASCADE</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="aus-welcher-oracle-version-wurde-der-dump-erzeugt">
+<span id="determin-version-from-dump"></span><h2>Aus welcher Oracle Version wurde der DUMP erzeugt?<a class="headerlink" href="#aus-welcher-oracle-version-wurde-der-dump-erzeugt" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ strings my_dump_file.dmp | head -n 5
+&quot;SYS&quot;.&quot;SYS_EXPORT_SCHEMA_01&quot;
+IBMPC/WIN_NT64-9.1.0
+...
+AL32UTF8
+11.02.00.00.00
+</pre></div>
+</div>
+</div>
+<div class="section" id="welches-schema-ist-im-dump">
+<span id="determin-schema-from-dump"></span><h2>Welches Schema ist im DUMP?<a class="headerlink" href="#welches-schema-ist-im-dump" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Es gibt keine <em>direkte</em> Lösung, aber der <strong>sysdba</strong> kann sich das Schema im DUMP
+mit der Option <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-85C63F86-9BD7-40BC-A801-D9E11B8ACA3B">SHOW</a> in eine SQL Datei ausgeben lassen:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>impdp <span class="se">\&quot;</span>/ as sysdba<span class="se">\&quot;</span> <span class="se">\</span>
+ <span class="nv">directory</span> <span class="o">=</span> DATA_PUMP_DIR <span class="se">\</span>
+ <span class="nv">dumpfile</span>  <span class="o">=</span> my_dump_file.dmp <span class="se">\</span>
+ <span class="nv">sqlfile</span>   <span class="o">=</span> my_dump_file.sql
+</pre></div>
+</div>
+<p>Im <code class="docutils literal notranslate"><span class="pre">DATA_PUMP_DIR</span></code> liegt dann die <code class="docutils literal notranslate"><span class="pre">my_dump_file.sql</span></code> in der man die CREATE
+USER Anweisungen findet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grep &#39;^\s*CREATE USER&#39; /opt/oracle/admin/ORCLCDB/dpdump/my_dump_file.sql
+CREATE USER &quot;TEST_USER&quot; IDENTIFIED BY VALUES ...
+</pre></div>
+</div>
+</div>
+<div class="section" id="statistiken-und-optimierung">
+<span id="dbms-stats"></span><h2>Statistiken und Optimierung<a class="headerlink" href="#statistiken-und-optimierung" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Verweise</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://wikis.gm.fh-koeln.de/wiki_db/Datenbanken/Statistiken">Statistiken (Oracle)</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/optimizer-statistics.html">Optimizer Statistics</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/gathering-optimizer-statistics.html#GUID-245F23B2-24AF-44D8-9F12-99FD1215E878">Gathering Optimizer Statistics</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/tgsql/gathering-optimizer-statistics.html#GUID-83F1A4F5-A316-4EAD-9AE6-CB95C1885001">DBMS_STATS Procedures for Gathering Optimizer Statistics</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-3B3AE30F-1A34-4BFE-A326-15048F7E904F">GATHER_SCHEMA_STATS</a></p></li>
+<li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-CA6A56B9-0540-45E9-B1D7-D78769B7714C">GATHER_TABLE_STATS</a></p></li>
+</ul>
+</div>
+<p>Die Optimizer-Statistiken sind eine Sammlung von Daten, die weitere Details
+bzw. Informationen über die Datenbank und die Objekte der Datenbank beschreiben.
+Damit der Cost-Based-Optimizer (CBO) den effizientesten Ausführungsplan von
+einer SQL-Abfrage berechnen und auswählen kann, müssen Informationen über die
+Tabelle und Indizes, die in der SQL-Abfrage beteiligt sind, vorhanden sein. Der
+Rule-Based-Optimizer (RBO) verwendet dagegen keine Statistiken. <a class="reference external" href="http://wikis.gm.fh-koeln.de/wiki_db/Datenbanken/Statistiken">[ref]</a></p>
+<p>Die Neuberechnung der Statistiken kann U.A. Abhilfe bei Performanceproblemen
+bieten.  Für das gesamte Benutzerschema kann sie wie folgt in <em>sqlplus</em>
+über eine Prozedur (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-3B3AE30F-1A34-4BFE-A326-15048F7E904F">GATHER_SCHEMA_STATS</a>) angestoßen werden:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">exec</span> <span class="n">DBMS_STATS</span><span class="p">.</span><span class="n">GATHER_SCHEMA_STATS</span><span class="p">(</span>
+   <span class="n">ownname</span> <span class="o">=&gt;</span> <span class="k">NULL</span>
+   <span class="p">,</span> <span class="n">no_invalidate</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
+   <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../searx.html" class="btn btn-neutral float-right" title="searx Suchmaschine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sqldeveloper.html" class="btn btn-neutral float-left" title="SQL-Developer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

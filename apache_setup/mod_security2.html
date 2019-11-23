@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WAF: ModSecurity &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="System-Dokumentation" href="site_sysdoc.html" />
+    <link rel="prev" title="HTML Startseite" href="site_html-intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Setup Apache2 HTTP Server</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="debian_apache.html">Debian’s default Apache2 Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_properties.html">Merkmale des Setups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_auth.html">Autorisierung zum Zugriff auf Resourcen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbp_apache_pkgs.html">Apache Pakete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serverwide_cfg.html">Serverweite Konfigurationen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_static-content.html">Static Content (static-content.conf)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_html-intro.html">HTML Startseite</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">WAF: ModSecurity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debian-modsecurity-distribution">Debian ModSecurity Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ein-einfache-re-s-konzept">Ein einfache(re)s Konzept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basis-konfiguration-mod-security2-conf">Basis Konfiguration <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beispiele-fur-sicherheitsprofile">Beispiele für Sicherheitsprofile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="site_sysdoc.html">System-Dokumentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_expimp.html">Export/Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_webshare.html">Apache WebDAV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_py-apps.html">WSGI Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_php-apps.html">PHP Anwendungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="probe_server.html">Test des WEB-Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webdav_clients.html">WebDAV-Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache_setup_refs.html">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Setup Apache2 HTTP Server</a> &raquo;</li>
+        
+      <li>WAF: ModSecurity</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/apache_setup/mod_security2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="waf-modsecurity">
+<span id="xref-mod-security2"></span><h1>WAF: ModSecurity<a class="headerlink" href="#waf-modsecurity" title="Link zu dieser Überschrift">¶</a></h1>
+<p>Um den Apache-Server und die auf ihm betriebenen Anwendungen etwas robuster
+gegen Angriffe zu machen kann man sich eine <a class="reference external" href="https://de.wikipedia.org/wiki/Web_Application_Firewall">WAF (wiki)</a> installieren. Im
+Abschnitt <a class="reference internal" href="dbp_apache_pkgs.html#xref-dbp-apache-pkgs"><span class="std std-ref">Apache Pakete</span></a> wurde bereits das Paket
+<a class="reference external" href="http://packages.ubuntu.com/libapache2-modsecurity">libapache2-modsecurity</a> mit dem <a class="reference external" href="http://modsecurity.org/about.html">ModSecurity</a> installiert. In der
+Standard-Installation ist die <em>Application-Firewall</em> damit aber noch nicht
+aktiviert. Zur vollständigen Installation gehört noch die Auswahl der
+<em>Security-Rules</em> und die Aktivierung des <em>Blockings</em> bei Erkennung von
+Angriffen (im <em>default</em> wird nur gelauscht und protokoliert).</p>
+<p>Die Aufrechterhaltung eines gewissen Grads an Sicherheit ist keine einmalige
+Aktion. Je nach Gefährdungslage ist dies u.U. eine sehr anspruchsvolle und
+kontinuierliche Aufgabe, bei der man immer bereit sein muss Neues zu lernen. Für
+geringe Gefährdungslagen reichen meist aber schon einfache solide Konzepte und
+regelmäßige Updates. In diesem Sinne soll hier das ModSecurity vorgestellt und
+eingerichtet werden.</p>
+<p>ModSecurity – wie auch jede andere Firewall – basiert mehr oder minder auf
+einer vielzahl von Filtern, die auf Requests (und / oder Response) einer
+Kommunikation angewendet werden. Die Filter sollen Kriterien liefern, auf deren
+Basis eine Bewertung stattfinden kann, ob es sich nun um einen Angriff oder eine
+ganz normale Kommunikation handelt. Nicht immer sind die resultierenden
+Bewertungen korrekt. Neue Schwachstellen sind in den Filtern nicht hinterlegt
+und manche Kommunikation ähnelt evtl. einem Angriff, bei der ein Filter
+<em>matched</em>.</p>
+<p>Letzteres nennt man <strong>False Positive</strong> und es ist davon auszugehen, dass eine
+Firewall auch <em>False Positive</em> liefert, sonst stimmt irgendwas mit ihr nicht. In
+dem Fall, das es keine <em>False Positive</em> gibt, ist mit hoher Wahrscheinlichkeit
+davon auszugehen, dass die Filter zu schwach sind und die Firewall Lücken
+aufweißt.</p>
+<p>Die <strong>False Positive</strong> führen am Ende dazu, dass Anwendungen nicht funktionieren
+oder Fehler liefern. Die nachträgliche Einführung einer Firewall birgt also auch
+immer das Risiko, dass existierende Anwendungen nicht mehr problemlos
+laufen. Das ist insbesondere der Fall wenn man <em>gewachsene</em> Infrastrukturen
+nachträglich mit einer Firewall ausstattet oder die Firewall
+austauscht. Leztlich bleibt es eine Abwägung zw. der Gefährdungslage und dem
+Schaden, der im <em>Betrieb</em> entsteht, weil Filter die Anwendung
+blockieren. I.d.R. empfiehlt es sich zugunsten der Sicherheit zu entscheiden und
+<em>Anlaufschwierigkeiten</em> bei den Anwendungen in kauf zu nehmen. Nicht selten
+steigt auch die Qualität der Anwendungen, wenn an der Firewall deutlich wird,
+wie fehlerhaft sie programmiert oder eingerichtet wurden.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.netnea.com/cms/2016/01/17/most-frequent-false-positives-triggered-by-owasp-modsecurity-core-rules-2-2-x/">Most Frequent False Positives Triggered by OWASP ModSecurity Core Rules 2.2.X</a></p></li>
+</ul>
+<div class="section" id="debian-modsecurity-distribution">
+<h2>Debian ModSecurity Distribution<a class="headerlink" href="#debian-modsecurity-distribution" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Das ModSecurity Modul in der Debian Distribution besteht aus den Paketen</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://packages.ubuntu.com/modsecurity-crs">modsecurity-crs</a> und</p></li>
+<li><p><a class="reference external" href="http://packages.ubuntu.com/libapache2-mod-security2">libapache2-mod-security2</a>.</p></li>
+</ul>
+<p>Die aktuellen Sourcen sind über <a class="reference external" href="https://github.com/SpiderLabs/ModSecurity">ModSecurity (github)</a> verfügbar, auf dem auch
+ein Wiki mit den <a class="reference external" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#Configuration_Directives">ModSecurity Direktiven</a> zu finden ist.</p>
+<p>Die Konfiguration im Debian Setup ist in etwa wie folgt und besteht aus
+folgenden Teilen (Stand 02/2016).</p>
+<ol class="arabic">
+<li><p>Die Konfiguration, die das Modul im Apache einbindet. Bei Debian ist das im
+Default die <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/security2.conf</span></code> Datei.</p>
+<p>Diese Datei bindet alle folgenden Konfigurationen ein, resp. entscheidet
+darüber welche Konfigurationen weiter importiert werden sollen. Ihre Includes
+können beispielsweise wie folgt aussehen.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">IncludeOptional</span> <span class="sx">/etc/modsecurity/</span>*.conf
+</pre></div>
+</div>
+</li>
+<li><p>Unter <code class="docutils literal notranslate"><span class="pre">/etc/modsecurity</span></code> liegt bei Debian dann eine
+<code class="docutils literal notranslate"><span class="pre">modsecurity.conf-recommended</span></code> Datei, die man <em>aktivieren</em> muss (indem man
+die Datei nach <code class="docutils literal notranslate"><span class="pre">modsecurity.conf</span></code> umbenennt und anpasst). In dem Ordner
+kann man dann eine weitere Konfiguration anlegen, in der man die Rules aus
+<code class="docutils literal notranslate"><span class="pre">/usr/share/modsecurity-crs/activated_rules</span></code> <em>includen</em> kann.</p></li>
+<li><p>Die CRS Rules liegen bei Debian im Ordner <code class="docutils literal notranslate"><span class="pre">/usr/share/modsecurity-crs/</span></code> und
+dort soll man dann im Unterordner <code class="docutils literal notranslate"><span class="pre">./activated_rules</span></code> symbolische Links zu
+den Rules anlegen die man aktivieren möchte (so sieht es die OWASP vor).</p></li>
+</ol>
+<p>Mir persöhnlich gefällt dieses Setup nicht. Es hat für mein Empfinden zu viele
+Indirektionen und man muss in Dateien in unterschiedlichsten Ordnern editieren
+und noch <em>irgendwo</em> symbolische Links setzen. Das ist alles viel zu kompliziert
+zu pflegen. Das geht viel <em>smarter</em>. Da man eh selber den Link legen und den
+apache-Reload ausführen muss, machen diese zusätzlichen Indirektionen in meinen
+Augen wenig Sinn. Man vermeidet es zwar Dateien editieren zu müssen, ich selber
+empfinde es aber besser, man sichert und versioniert seine Konfigurationen und
+kann so auch später seine Änderungen zurückverfolgen – was bei dem Lösen von
+Links prinzipell auch möglich ist (wenn man Links versioniert), aber ein <em>diff</em>
+ist da schon anschaulicher.</p>
+<blockquote class="epigraph">
+<div><p>Die Debian Distribution, als auch das unten vorgestellte <em>einfachere Konzept</em>
+bedienen sich des <a class="reference external" href="http://spiderlabs.github.io/owasp-modsecurity-crs/">OWASP ModSecurity Core Rule Set (CRS)</a>. Die letzte
+Version ist aktuell (Stand 02/2016) 2.2.9. Diese ist auch im Debian
+Paket. Seit dem hat sich in dem <em>master</em> Branch in dem <a class="reference external" href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP ModSecurity CRS
+(github)</a> Repository auch nicht viel getan. Kleinere Bugfixes gab es zwar,
+aber die scheinen mir eher marginal. Ich vermute mal, das liegt daran, dass
+die version 3.x noch <em>begutachtet</em> wird (s.a. <a class="reference external" href="https://www.netnea.com/cms/2015/12/20/modsec-crs-2-2-x-vs-3-0-0-dev/">OWASP ModSecurity Core Rules:
+Comparing 2.2.x and 3.0.0-dev</a>).</p>
+</div></blockquote>
+</div>
+<div class="section" id="ein-einfache-re-s-konzept">
+<h2>Ein einfache(re)s Konzept<a class="headerlink" href="#ein-einfache-re-s-konzept" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Im Folgendem wird ein einfaches und gradliniges Setup aufgestellt, das auf
+den aktuellen <a class="reference external" href="http://spiderlabs.github.io/owasp-modsecurity-crs/">OWASP ModSecurity Core Rule Set (CRS)</a> des <a class="reference external" href="https://www.owasp.org/index.php/Main_Page">The Open Web
+Application Security Project (OWASP)</a> aufbaut. Diese Rules können über <a class="reference external" href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP
+ModSecurity CRS (github)</a> bezogen und aktuell gehalten werden.</p>
+<p>Es werden Sicherheits-Profiele erstellt und diese im <code class="docutils literal notranslate"><span class="pre">conf-available</span></code> Ordner
+der Debian Installation ablegt. Mit den Kommandos <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=a2enconf">a2enconf</a> und
+<a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=a2disconf">a2disconf</a> können diese Profile aktivieren bzw. deaktivieren
+werden. Letzteres, das Deaktivieren bzw. das kurzfristige Umschalten
+zw. vorbereiteten Profielen, kann bei <em>Anlaufschwierigkeiten</em> den Betrieb
+sicherstellen bzw. kurzfristig wieder herstellen, bis der <em>Show-Stopper</em>
+identifiziert und ausgemerzt ist.</p>
+<p>Das Setup besteht aus folgenden Schritten:</p>
+<ol class="arabic simple">
+<li><p>Es wird unter <code class="docutils literal notranslate"><span class="pre">/usr/share/owasp-modsecurity-crs</span></code> das git-Repository mit den
+<a class="reference external" href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP ModSecurity CRS (github)</a> Rules geklont.</p></li>
+<li><p>Die default Konfiguration <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/security2.conf</span></code> wird
+deaktiviert.</p></li>
+<li><p>An ihre Stelle tritt die <em>eigene</em> Konfiguration im <code class="docutils literal notranslate"><span class="pre">conf-available</span></code>
+Ordner mit dem Dateinamen <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code>.</p></li>
+<li><p>In der <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code> werden alle <em>Grundeinstellungen</em> des
+ModSecurity vorgenommen.</p></li>
+<li><p>Das Rule-Setup wird über <em>Profile</em> im <code class="docutils literal notranslate"><span class="pre">conf-available</span></code> Ordner vorbereitet
+und mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=a2enconf">a2enconf</a> und <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=a2disconf">a2disconf</a> aktiviert / deaktiviert.</p></li>
+</ol>
+<p>Aufbau der <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code> Konfiguration und der Profile im
+<code class="docutils literal notranslate"><span class="pre">conf-available</span></code> Ordner:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/etc/apache2/
+├── apache2.conf
+├── conf-available
+│   ├── apache2-doc.conf
+... │...
+│   ├── mod_security2.conf
+... │...
+│   ├── owap_crs_2.2.9_10_minimal.conf
+│   ├── owap_crs_2.2.9_50_additional.conf
+│   ├── owap_crs_2.2.9_90_SecRuleRemove.conf
+...
+</pre></div>
+</div>
+<p>Die <a class="reference internal" href="#beispiele-fur-sicherheitsprofile">Beispiele für Sicherheitsprofile</a> werden weiter unten noch beschrieben.</p>
+<p>Zu diesem Setup existiert ein Script, mit dem die oben konfigurierte WAF auch
+kurzzeitig de-/aktiviert werden kann:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deactivateWAF
+...
+$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh activateWAF
+</pre></div>
+</div>
+</div>
+<div class="section" id="basis-konfiguration-mod-security2-conf">
+<span id="xref-mod-security2-conf"></span><h2>Basis Konfiguration <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code><a class="headerlink" href="#basis-konfiguration-mod-security2-conf" title="Link zu dieser Überschrift">¶</a></h2>
+<p>In diesem Setup wurde die <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/security2.conf</span></code>
+Konfiguration durch eine <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code> Konfigration im
+<code class="docutils literal notranslate"><span class="pre">conf-available</span></code> Ordner ersetzt. In dieser Konfiguration findet das
+Basis-Setup des ModSecurity Moduls statt. Dazu gehört z.B. die die Direktieve
+<code class="docutils literal notranslate"><span class="pre">SecRuleEngine</span> <span class="pre">On</span></code> mit der die Firewall aktiv blockiert und nicht mehr nur
+<em>lauscht</em>.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># Enable ModSecurity, attaching it to every transaction. Use detection only</span>
+<span class="c"># to start with, because that minimises the chances of post-installation</span>
+<span class="c"># disruption.</span>
+<span class="c">#</span>
+<span class="c"># SecRuleEngine DetectionOnly</span>
+
+<span class="nb">SecRuleEngine</span> <span class="k">On</span>
+</pre></div>
+</div>
+<p>Mit den Direktiven <code class="docutils literal notranslate"><span class="pre">SecRequestBodyLimit</span></code> und <code class="docutils literal notranslate"><span class="pre">SecRequestBodyNoFilesLimit</span></code>
+(siehe <a class="reference external" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#Configuration_Directives">ModSecurity Direktiven</a>) werden Limits für Body- und Dateigrößen
+eingestellt.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecRequestBodyLimit</span> <span class="m">13107200</span>
+<span class="nb">SecRequestBodyNoFilesLimit</span> <span class="m">131072</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Diese Einstellungen des ModSecurity stehen ggf. in Konkurenz mit den
+Einstellungen in <a class="reference internal" href="serverwide_cfg.html#xref-security-limits-timeouts"><span class="std std-ref">Request &amp; Timeout</span></a>. Beispielsweise hat die
+Direktive <code class="docutils literal notranslate"><span class="pre">SecRequestBodyLimit</span></code> das Pendant <code class="docutils literal notranslate"><span class="pre">LimitRequestBody</span></code>  im
+<a class="reference internal" href="serverwide_cfg.html#xref-security-limits-timeouts"><span class="std std-ref">Request &amp; Timeout</span></a>.</p>
+</div>
+<p>Die temporären Ordner werden beispielsweise wie folgt engerichtet.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecTmpDir</span>     <span class="sx">/tmp/</span>
+<span class="nb">SecDataDir</span>    <span class="sx">/var/cache/modsecurity</span>
+<span class="nb">SecUploadDir</span>  <span class="sx">/var/cache/modsecurity/upload/</span>
+</pre></div>
+</div>
+<p>Die <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> und <code class="docutils literal notranslate"><span class="pre">cache</span></code> Ordner sind keine gute Wahl, ihre Resoucen können
+unter Umständen etwas ausufern, was man auf einer root-Platte nicht so gern
+sehen möchte. Hier empfiehlt sich ggf. ein Virtuelles Dateisystem mit ein paar
+GB einzurichten (<a class="reference external" href="http://linuxgazette.net/109/chirico.html">Building A Linux Filesystem From An Ordinary File</a>) und es
+dem Benutzer zuzuordnen, unter dem auch der Apache Prozess läuft, siehe
+<code class="docutils literal notranslate"><span class="pre">APACHE_RUN_USER</span></code> in der <a class="reference internal" href="serverwide_cfg.html#xref-etc-apache2-envvars"><span class="std std-ref">/etc/apache2/envvars</span></a> Umgebung.</p>
+<p>Weitere Einstellungen sind z.B. (vergleiche <a class="reference external" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#Configuration_Directives">ModSecurity Direktiven</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># FIXME: Im default sind hier Werte von 1.000 eingetragen, bei mir kam es</span>
+<span class="c1"># dann aber zu &quot;Execution error - PCRE limits exceeded &quot;. Ich hebe den Wert</span>
+<span class="c1"># mal auf 5000 an. Ich hab aber auch kein Gefühl wie hoch man das setzen</span>
+<span class="c1"># setzen sollte. Mein Eindruck ist auch, das die SecRules auf SQL-Injection</span>
+<span class="c1"># zu viel parsen (evtl. ist das aber für einen guten Schutz auch</span>
+<span class="c1"># erforderlich, ich kann es nicht beurteilen). Bei mir brechen die webDav</span>
+<span class="c1"># Anwendungen, die am PROPFIND einen XML Content anhängen.</span>
+<span class="c1">#</span>
+<span class="n">SecPcreMatchLimit</span> <span class="mi">5000</span>
+<span class="n">SecPcreMatchLimitRecursion</span> <span class="mi">5000</span>
+<span class="o">...</span>
+<span class="c1"># Use a single file for logging. This is much easier to look at, but</span>
+<span class="c1"># assumes that you will use the audit log only ocassionally.</span>
+<span class="c1">#</span>
+<span class="n">SecAuditLogType</span> <span class="n">Serial</span>
+<span class="n">SecAuditLog</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">modsec_audit</span><span class="o">.</span><span class="n">log</span>
+<span class="o">...</span>
+<span class="c1"># Specify your Unicode Code Point.  This mapping is used by the</span>
+<span class="c1"># t:urlDecodeUni transformation function to properly map encoded data to</span>
+<span class="c1"># your language. Properly setting these directives helps to reduce false</span>
+<span class="c1"># positives and negatives.</span>
+<span class="c1">#</span>
+<span class="n">SecUnicodeMapFile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modsecurity</span><span class="o">/</span><span class="n">unicode</span><span class="o">.</span><span class="n">mapping</span> <span class="mi">20127</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="beispiele-fur-sicherheitsprofile">
+<h2>Beispiele für Sicherheitsprofile<a class="headerlink" href="#beispiele-fur-sicherheitsprofile" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Beispiele für Profile sind <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_10_minimal.conf</span></code>,
+<code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_50_additional.conf</span></code> oder
+<code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_90_SecRuleRemove.conf</span></code>. In der
+<code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_10_minimal.conf</span></code> wird beispielsweise ein Profil definiert, das
+sich aus den <em>base</em> und <em>optional</em> Rules zusammenstellt.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/</span>*.conf
+...
+<span class="c"># base</span>
+...
+<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_20_protocol_violations.conf</span>
+<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_21_protocol_anomalies.conf</span>
+...
+<span class="c">## Die SecRules für SQL-injection liefern bei mir false-positiv auf alles was</span>
+<span class="c">## nicht *reines* HTTP und HTML ist.</span>
+<span class="c"># Include /usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf</span>
+...
+<span class="c"># optional</span>
+<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_10_ignore_static.conf</span>
+<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_11_avs_traffic.conf</span>
+...
+</pre></div>
+</div>
+<p>In der <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_90_SecRuleRemove.conf</span></code> werden bekannte False Positiv
+wieder aus den <em>SecRules</em> herausgenommen.</p>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># ID 960017: Host header is a numeric IP address. IPs are mostly used by IP</span>
+<span class="c"># scanners, but they are also used in loopback device and in the leak of a DNS.</span>
+<span class="c">#</span>
+<span class="nb">SecRuleRemoveById</span> <span class="m">960017</span>
+
+<span class="c"># ID 960010: Request content type is not allowed by policy. Same false-positiv</span>
+<span class="c"># as 960017 with webDav applications.</span>
+<span class="c">#</span>
+<span class="nb">SecRuleRemoveById</span> <span class="m">960010</span>
+
+<span class="c"># ID 960032: HTTP-Method is not allowed by policy. Limit the allowed methods to</span>
+<span class="c"># GET HEAD POST OPTIONS. This will block webDAV-applications, which use PROPFIND</span>
+<span class="c"># and much more.</span>
+<span class="c">#</span>
+<span class="nb">SecRuleRemoveById</span> <span class="m">960032</span>
+
+<span class="c"># ID 960015: Request Missing an Accept Header. Will break applications like</span>
+<span class="c"># webDAV, which does not need a Accept-Header.</span>
+<span class="c">#</span>
+<span class="nb">SecRuleRemoveById</span> <span class="m">960015</span>
+
+<span class="c"># Disabling all RuleIDs which are *gone* in 3.0.0-rc1, they are listet in the</span>
+<span class="c"># *paranoia* IDs:</span>
+<span class="c">#</span>
+<span class="c">#   https://www.owasp.org/index.php/OWASP_ModSec_CRS_Paranoia_Mode#Paranoia_Mode_Candidates</span>
+<span class="c">#</span>
+
+<span class="nb">SecRuleRemoveById</span>  \
+    <span class="m">959070</span> \
+    <span class="m">959071</span> \
+    <span class="m">959072</span> \
+    <span class="m">959073</span> \
+    <span class="m">960024</span> \
+    <span class="m">973300</span> \
+    <span class="m">973332</span> \
+    <span class="m">973333</span> \
+    <span class="m">981172</span> \
+    <span class="m">981173</span> \
+    <span class="m">981231</span> \
+    <span class="m">981260</span>
+</pre></div>
+</div>
+<p>Die oben vorgestellten Profile sind ein <em>guter Anfang</em> für eine WAF, der aber
+nicht die eigenen Erfahrungen ersetzen kann. Weiterführende Artikel findet man
+hier:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.netnea.com/cms/apache-tutorials/">https://www.netnea.com/cms/apache-tutorials/</a></p></li>
+<li><p><a class="reference external" href="https://www.netnea.com/cms/category/security/">https://www.netnea.com/cms/category/security/</a></p></li>
+<li><p><a class="reference external" href="https://wiki.ubuntuusers.de/Apache/Sicherheit/">Apache Sicherheit (ubuntu)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/sbilly/awesome-security#web">awesome-security.web</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="site_sysdoc.html" class="btn btn-neutral float-right" title="System-Dokumentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="site_html-intro.html" class="btn btn-neutral float-left" title="HTML Startseite" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

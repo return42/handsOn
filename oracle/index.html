@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Oracle (developer) &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Oracle Linux einrichten" href="linux.html" />
+    <link rel="prev" title="Citrix-Receiver" href="../citrix/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Oracle (developer)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html">Oracle DBMS Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html">Oracle Data-Pump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html">SQL-Developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html">Oracle Know-how</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Oracle (developer)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/oracle/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oracle-developer">
+<span id="oracle"></span><h1>Oracle (developer)<a class="headerlink" href="#oracle-developer" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="sidebar">
+<p class="sidebar-title">Info</p>
+<p>Die (im Okt. 2019) aktuelle Oracle DB Version ist 19c.  Die XE gibt es
+aktuell nur in 18c und deren Limit liegt bei 2CPU, 2GB RAM und 12GB <em>User
+Data</em> (<a class="reference external" href="https://www.oracle.com/database/technologies/appdev/xe.html">XE</a>).  Andere Installationen (ohne Limitierungen) basieren i.d.R. auf
+einer der <a class="reference external" href="https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux#Auf_RHEL_basierende_Linux-Distributionen">RHEL-distros</a> wozu auch das <a class="reference external" href="https://en.wikipedia.org/wiki/Oracle_Linux">Oracle Linux</a> gehört.</p>
+<p>Die hier beschriebenen Oracle Installationen sind lediglich für <em>Entwickler -
+Zwecke</em> geeignet.  Die hier gegebenen Beispiele basieren auf der exemplarisch
+angelegten <a class="reference internal" href="dbms.html#orclcdb"><span class="std std-ref">ORCLCDB</span></a> Instanz.  Sofern nicht anders erwähnt
+wird eine <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-a-cdb-with-sql-plus.html#GUID-2E5025EE-BED3-45A4-9EAA-B05C8DA66F97">CDB</a> verwendet (bitte <a class="reference internal" href="cdbpdb.html#cdb-pdb"><span class="std std-ref">CDB &amp; PDB</span></a> lesen).  Backups, Updates
+und andere Anforderungen werden nicht berücksichtigt.  Für die Nutzung in
+<em>produktiven</em> Umgebungen werden die entsprechenden Lizenzen von Oracle
+benötigt.</p>
+</div>
+<p>Das <a class="reference external" href="https://en.wikipedia.org/wiki/Oracle_Database">Oracle Datenbanksystem</a> gibt es u.A. in der frei verfügbare Express
+Edition (<a class="reference external" href="https://www.oracle.com/database/technologies/appdev/xe.html">XE</a>).  Letztere eignet sich aufgrund ihrer Limitierungen nur für
+kleinste Entwickler Instanzen und zum experimentieren.  Die <a class="reference external" href="https://www.oracle.com/database/technologies/appdev/xe.html">XE</a> gibt es
+i.d.R. als <em>MSI Paket</em> für Windows und als RPM Paket für die <a class="reference external" href="https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise
+Linux</a> Distributionen (<a class="reference external" href="https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux#Auf_RHEL_basierende_Linux-Distributionen">RHEL-distros</a>).</p>
+<p>Die <a class="reference external" href="https://de.wikipedia.org/wiki/RPM_Package_Manager">RPM</a> Quellpakete des <a class="reference external" href="https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise Linux</a> stehen frei zur Verfügung,
+jedoch gibt es hierfür keine frei verfügbaren Boot-/Installations- Medien
+(<em>frei</em> ist lediglich eine 30-Tage <em>subscription</em>).  <a class="reference external" href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">RHEL</a> kann (wie z.B. auch
+<a class="reference external" href="https://de.wikipedia.org/wiki/SUSE_Linux_Enterprise_Server">SUSE Linux Enterprise Server</a>) nur über Support-Verträgen bezogen werden und
+ist damit eher selten für Entwickler Szenarien geeignet.  Alternativ kann man
+als Entwickler eine der <a class="reference external" href="https://de.wikipedia.org/wiki/Red_Hat_Enterprise_Linux#Auf_RHEL_basierende_Linux-Distributionen">RHEL-distros</a> wählen.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linux.html">Oracle Linux einrichten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#oracle-database-setup-wizard">Oracle Database Setup Wizard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#hostname-andern">Hostname ändern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#os-update">OS update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux.html#virtualbox-additions">VirtualBox Additions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dbms.html">Oracle DBMS Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#rpm-installation">RPM Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#datenbank-orclcdb">Datenbank <code class="docutils literal notranslate"><span class="pre">ORCLCDB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#oracle-benutzer"><code class="docutils literal notranslate"><span class="pre">oracle</span></code> Benutzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#auswahl-einer-umgebung">Auswahl einer Umgebung</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#listener-ora"><code class="docutils literal notranslate"><span class="pre">listener.ora</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbms.html#tnsnames-ora"><code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datapump.html">Oracle Data-Pump</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html#simpler-export">Simpler Export</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html#export-mit-flashback-time">Export mit Flashback-Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html#import">Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datapump.html#dba-directories"><code class="docutils literal notranslate"><span class="pre">dba_directories</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cdbpdb.html">CDB &amp; PDB</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html#manage-pdbs">Manage PDBs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cdbpdb.html#pdb-tnsnames-ora">PDB tnsnames.ora</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sqldeveloper.html">SQL-Developer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html#gui-setup">GUI Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html#rhel-rpm-installation">RHEL (RPM) Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html#debian-installation">Debian Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sqldeveloper.html#windows-installation">Windows Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="know-how.html">Oracle Know-how</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#id2">EPEL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#schema-anlegen-create-user">Schema anlegen (<code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">USER</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#schema-loschen">Schema löschen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#aus-welcher-oracle-version-wurde-der-dump-erzeugt">Aus welcher Oracle Version wurde der DUMP erzeugt?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#welches-schema-ist-im-dump">Welches Schema ist im DUMP?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="know-how.html#statistiken-und-optimierung">Statistiken und Optimierung</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="linux.html" class="btn btn-neutral float-right" title="Oracle Linux einrichten" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../citrix/index.html" class="btn btn-neutral float-left" title="Citrix-Receiver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

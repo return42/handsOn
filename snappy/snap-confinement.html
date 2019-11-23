@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Vertrauenswürdige Pakete &mdash; handsOn  Dokumentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Linux Container (LXC &amp; LXD)" href="../lxdlxc/index.html" />
+    <link rel="prev" title="snapcraft prime Ordner" href="snapcraft-prime-folder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handsOn
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Linux snap-Pakete</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#themen">Themen</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="snappy-intro.html">snap Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapcraft-intro.html">snapcraft Intro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapcraft-part-conflict.html">konfligierende Parts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="snapcraft-prime-folder.html">snapcraft <code class="docutils literal notranslate"><span class="pre">prime</span></code> Ordner</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Vertrauenswürdige Pakete</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#todo">ToDo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#verweise">Verweise</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix-Receiver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">handsOn</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Linux snap-Pakete</a> &raquo;</li>
+        
+      <li>Vertrauenswürdige Pakete</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/snappy/snap-confinement.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vertrauenswurdige-pakete">
+<span id="id1"></span><h1>Vertrauenswürdige Pakete<a class="headerlink" href="#vertrauenswurdige-pakete" title="Link zu dieser Überschrift">¶</a></h1>
+<p>In einigen der hier gegebenen Beispiele wurde ein lokales Paket in etwa so
+installiert:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~/hello$ sudo -H snap try --devmode prime/
+</pre></div>
+</div>
+<p>Der Schalter <code class="docutils literal notranslate"><span class="pre">--devmode</span></code> war bisher erforderlich, da bisher immer
+<code class="docutils literal notranslate"><span class="pre">confinement:</span> <span class="pre">devmode</span></code> als Policy in der <code class="docutils literal notranslate"><span class="pre">snapcraft.yaml</span></code> stand:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devmode</span>
+</pre></div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">devmode</span></code> als Policy werden diverse Fehler in Warnings gewandelt
+(<code class="docutils literal notranslate"><span class="pre">/var/log/syslog</span></code>). In einer <em>normalen</em> Distribution des snap-Pakets wird man
+hier i.d.R <code class="docutils literal notranslate"><span class="pre">confinement:</span> <span class="pre">strict</span></code> angeben (s.a. <a class="reference external" href="https://snapcraft.io/docs/reference/confinement">snap
+Confinement</a>). Zum Beispiel:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.10&#39;</span>
+<span class="p p-Indicator">[</span><span class="nv">..</span><span class="p p-Indicator">]</span>
+<span class="nt">grade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devel</span>
+<span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">strict</span>
+</pre></div>
+</div>
+<p>Mit <code class="docutils literal notranslate"><span class="pre">strict</span></code> als Policy und einem anschließendem neuen Build (<code class="docutils literal notranslate"><span class="pre">snapcraft</span></code>)
+des snap-Pakets kann der <code class="docutils literal notranslate"><span class="pre">prime/</span></code> Ordner nach wie vor im <code class="docutils literal notranslate"><span class="pre">try</span></code> Modus
+installiert werden:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap try prime/
+</pre></div>
+</div>
+<p>Will man jedoch das lokale snap-Paket <em>richtig</em> installieren erhält man eine
+Fehlermeldung, dass die Signatur des Pakets nicht verifiziert werden
+kann. Anders als bei der Installation aus dem Snap-Store (<a class="reference external" href="https://uappexplorer.com">uApp Explorer</a>) gilt
+ein lokales snap-Paket nicht gleichzeitig als <em>Vertrauenswürdig</em>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install hello_2.10_amd64.snap
+error: cannot find signatures with metadata <span class="k">for</span> snap <span class="s2">&quot;hello_2.10_amd64.snap&quot;</span>
+</pre></div>
+</div>
+<p>Um lokale (nicht signierte) Pakete zu installieren muss die Option
+<code class="docutils literal notranslate"><span class="pre">--dangerous</span></code> angegeben werden:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install hello_2.10_amd64.snap --dangerous
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lxdlxc/index.html" class="btn btn-neutral float-right" title="Linux Container (LXC &amp; LXD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snapcraft-prime-folder.html" class="btn btn-neutral float-left" title="snapcraft prime Ordner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
