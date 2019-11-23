@@ -9,29 +9,39 @@
 searx Suchmaschine
 ==================
 
-.. sidebar:: install: searX
+.. sidebar:: searX nutzen oder installieren?
 
-   Wer keine Instanz selber aufbauen will kann sich aus den Searx-instances_
-   welche aussuchen oder die von Kutz nehmen: kuketz-suche.de_
+   Wer keine Instanz selber aufbauen will kann sich aus den Searx-Instances_
+   welche aussuchen, die von Kuketz (kuketz-suche.de_) oder eben unsere
+   (`searX@darmarIT`_) nutzen.  Für eine einfache Installation eigent sich das
+   folgende Skript.
 
    .. code-block:: bash
 
       $ sudo -H ./searx.sh install server
+
+.. _searX-Doku: https://asciimoo.github.io/searx/dev/install/installation.html#with-apache
 
 searX_ ist eine kostenlose Internet-Metasuchmaschine, die Ergebnisse von mehr
 als 70 Suchdiensten zusammenfasst.  Die Benutzer werden weder verfolgt noch wird
 ein Profil von ihnen erstellt.  Es gibt Instanzen im internet (`Public searX
 instances <https://github.com/asciimoo/searx/wiki/Searx-instances>`_),
 Alternativ kann man sich auch eine eigene (*self hosted*) Instanz aufsetzen.
+Die hier gezeigte Installation erfolgt unter der URL::
 
-.. _searX-Doku: https://asciimoo.github.io/searx/dev/install/installation.html#with-apache
+  https://<host>/searx
 
-Die hier gezeigte Installation erfolgt unter der URL ``https://<host>/searx``
 auf einem Apache Server und wird u.A. im Kaptitel 'with apache' in der
 searX-Doku_ beschrieben.  Zur Installation existiert das Skript ``searx.sh``,
-das alle Setups vornimmt.  Das Skript legt folgende Umgebungen fest:
+das alle Setups vornimmt.  Statt dem Original searX-git_ installiert es den
+konsolidierten Branch ``dm-cloud`` aus dem Fork `return42/searx
+<https://github.com/return42/searx/tree/dm-cloud>`_.  Das Skript legt folgende
+Umgebungen fest:
 
 .. code-block:: bash
+
+   SEARX_GIT_URL="https://github.com/return42/searx.git"
+   SEARX_GIT_BRANCH="dm-cloud"
 
    SEARX_USER=searx
    SEARX_HOME="/home/$SEARX_USER"
