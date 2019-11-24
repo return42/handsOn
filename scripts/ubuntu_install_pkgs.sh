@@ -76,7 +76,7 @@ OFFICE_PACKAGES="\
 MULTIMEDIA_CLIENT_PACKAGES_TITLE="MultiMedia Pakete, Video, Audio"
 MULTIMEDIA_CLIENT_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/multimedia.html"
 MULTIMEDIA_CLIENT_PACKAGES="\
- vlc qmmp openshot handbrake mixxx audacious mpv
+ vlc qmmp openshot handbrake mixxx audacious mpv youtube-dl
 "
 CODEC_PACKAGES_TITLE="Codec Pakete; Audio & Video Tools"
 CODEC_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/codecs.html"

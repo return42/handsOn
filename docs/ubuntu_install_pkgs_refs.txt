@@ -12,3 +12,4 @@
 .. _`libav`: http://libav.org/
 .. _`FFmpeg`: http://ffmpeg.org/
 .. _`GStreamer`: https://gstreamer.freedesktop.org/
+.. _youtube-dl: https://ytdl-org.github.io/youtube-dl/
