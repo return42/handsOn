@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8; mode: sh -*-
+# ----------------------------------------------------------------------------
+# --                             --  File:     google-deb.sh
+# -- Copyright (C) 2019 darmarIT --  Author:   Markus Heiser
+# --     All rights reserved     --  mail:     markus.heiser@darmarIT.de
+# --                             --  http://www.darmarIT.de
+# ----------------------------------------------------------------------------
+# Purpose:     NodeSource Node.js Binary Distribution
+# ----------------------------------------------------------------------------
 
 source $(dirname ${BASH_SOURCE[0]})/setup.sh
 #setupInfo
@@ -8,22 +16,22 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
-# APT_SOURCE_URL
-# ------
+# NODESOURCE_APT_URL
+# ------------------
 #
-# Achtung, die APT_SOURCE_URL kann angepasst werden, um die Node.js Version zu
-# wechseln, jedoch sollte man vorher ein "deinstall" durchführen.  Ggf. auch das
+# Achtung! Um die Node.js Version zu wechseln kann die NODESOURCE_APT_URL angepasst
+# werden, jedoch sollte man vorher ein "deinstall" durchführen.  Ggf. auch das
 # Replacement |VER| in der Datei ./docs/nodejs/install.rst anpassen!
 
-APT_SOURCE_URL="https://deb.nodesource.com/node_12.x"
+NODESOURCE_APT_URL="https://deb.nodesource.com/node_12.x"
+NODESOURCE_APT_NAME="nodesource"
 
-# APT_SOURCE_KEY_URL
-# -----------
+# NODESOURCE_APT_KEY_URL
+# ----------------------
 #
 # Public Key von NodeSource
 
-APT_SOURCE_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-APT_SOURCE_NAME="nodesource"
+NODESOURCE_APT_KEY_URL="https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
 
 NODEJS_PACKAGES="\
   nodejs"
@@ -43,7 +51,7 @@ README(){
 
 https://github.com/nodesource/distributions#debian-and-ubuntu-based-distributions
 
-- Repository hinzufügen $APT_SOURCE_URL
+- Repository hinzufügen $NODESOURCE_APT_URL
 
 - Hinzufügen des Public-Key von https://deb.nodesource.com
 
@@ -66,7 +74,7 @@ usage:
 
 all:         Installation nodejs, npm-global und vscode
 nodejs:      Aus der 'NodeSource Node.js Binary Distribution'
-             ${APT_SOURCE_URL}
+             ${NODESOURCE_APT_URL}
 vscode:      Visual-Studio Code von Microsoft
              ${VSCODE_APT_DEB}
 npm-global:  Installation der globalen NodeJS Pakete
@@ -147,20 +155,20 @@ main(){
 # ----------------------------------------------------------------------------
 
 nodesource_add_deb(){
-    rstHeading "Einrichten der Paketquellen von *$APT_SOURCE_NAME*"
+    rstHeading "Einrichten der Paketquellen von *$NODESOURCE_APT_NAME*"
 
-    rstHeading "Binaries $APT_SOURCE_NAME (deb)" section
+    rstHeading "Binaries $NODESOURCE_APT_NAME (deb)" section
     echo
-    aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main
+    aptAddRepositoryURL "$NODESOURCE_APT_URL" "$NODESOURCE_APT_NAME" main
 
-    rstHeading "Sources $APT_SOURCE_NAME (deb-src)" section
+    rstHeading "Sources $NODESOURCE_APT_NAME (deb-src)" section
     echo
-    aptAddRepositoryURL "$APT_SOURCE_URL" "$APT_SOURCE_NAME" main src
+    aptAddRepositoryURL "$NODESOURCE_APT_URL" "$NODESOURCE_APT_NAME" main src
     waitKEY
 
-    rstHeading "Eintragen des public-key von *$APT_SOURCE_NAME*" section
+    rstHeading "Eintragen des public-key von *$NODESOURCE_APT_NAME*" section
     echo
-    aptAddPkeyFromURL "$APT_SOURCE_KEY_URL" "$APT_SOURCE_NAME"
+    aptAddPkeyFromURL "$NODESOURCE_APT_KEY_URL" "$NODESOURCE_APT_NAME"
     waitKEY
 
     rstHeading "Katalog aktualisieren" section
@@ -170,9 +178,9 @@ nodesource_add_deb(){
 }
 
 nodesource_remove_deb(){
-    rstHeading "Entfernen der Paketquellen von *$APT_SOURCE_NAME*"
+    rstHeading "Entfernen der Paketquellen von *$NODESOURCE_APT_NAME*"
     echo
-    aptRemoveRepository "$APT_SOURCE_NAME"
+    aptRemoveRepository "$NODESOURCE_APT_NAME"
     waitKEY
 
     rstHeading "Katalog aktualisieren" section
