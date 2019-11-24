@@ -79,7 +79,10 @@ main(){
         config)
             intro; sudoOrExit
             case $2 in
-                ufw) ufw_intranet ;;
+                ufw)
+                    ufw_setloglevel
+                    ufw_intranet
+                    ;;
                 *) arg2_unknown "$1" "$2"; exit 42;;
             esac ;;
 
@@ -107,12 +110,7 @@ ufw limit ssh comment 'at max 5 connects in 30sec'
 EOF
     waitKEY
 
-    rstHeading "Logging der Firewall" section
-    echo
-    chooseOneMenu loglevel "Log-Level auswählen:" low off medium high full
-    TEE_stderr 0.2 <<EOF | bash | prefix_stdout
-ufw logging $loglevel
-EOF
+    ufw_setloglevel
 
     rstHeading "Konfiguration und Aktivierung" section
     echo
@@ -208,6 +206,17 @@ EOF
 ufw status
 EOF
     waitKEY
+}
+
+# ----------------------------------------------------------------------------
+ufw_setloglevel(){
+# ----------------------------------------------------------------------------
+    rstHeading "Logging der Firewall" section
+    echo
+    chooseOneMenu loglevel "Log-Level auswählen:" low off medium high full
+    TEE_stderr 0.2 <<EOF | bash | prefix_stdout
+ufw logging $loglevel
+EOF
 }
 
 # ----------------------------------------------------------------------------
