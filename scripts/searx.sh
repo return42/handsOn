@@ -190,6 +190,7 @@ git pull origin "$SEARX_GIT_BRANCH"
 git stash apply
 ${SEARX_REPO_FOLDER}/manage.sh update_packages
 EOF
+    configure_searx
     git_diff
     waitKEY
 }
@@ -234,7 +235,7 @@ assert_user(){
     rstHeading "Benutzer $SEARX_USER" section
 # ----------------------------------------------------------------------------
     echo
-    TEE_stderr 1 <<EOF | bash | prefix_stdout
+    TEE_stderr 0.5 <<EOF | bash | prefix_stdout
 sudo -H adduser \
   --disabled-password --gecos 'searX' \
   --home $SEARX_HOME $SEARX_USER
@@ -265,7 +266,7 @@ clone_repo(){
     # info_msg "create backup: $SEARX_SETTINGS.origin.backup"
     # git show "HEAD:searx/settings.yml" > "$SEARX_SETTINGS.origin.backup"
 
-    TEE_stderr 1 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+    TEE_stderr 0.2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 cd ${SEARX_REPO_FOLDER}
 git config user.email "${SEARX_USER}@${SEARX_APACHE_DOMAIN}"
 git config user.name "searX on ${SEARX_APACHE_DOMAIN}"
@@ -282,7 +283,7 @@ create_venv(){
 
     rstBlock "Virtuelle Python Umgebung in ${SEARX_VENV}"
     echo
-    TEE_stderr 1 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+    TEE_stderr 0.2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 rm -rf ${SEARX_VENV}
 python3 -m venv ${SEARX_VENV}
 . ${SEARX_VENV}/bin/activate
