@@ -23,11 +23,14 @@ searx Suchmaschine
 .. _searX-Doku: https://asciimoo.github.io/searx/dev/install/installation.html#with-apache
 
 searX_ ist eine kostenlose Internet-Metasuchmaschine, die Ergebnisse von mehr
-als 70 Suchdiensten zusammenfasst.  Die Benutzer werden weder verfolgt noch wird
-ein Profil von ihnen erstellt.  Es gibt Instanzen im internet (`Public searX
-instances <https://github.com/asciimoo/searx/wiki/Searx-instances>`_),
-Alternativ kann man sich auch eine eigene (*self hosted*) Instanz aufsetzen.
-Die hier gezeigte Installation erfolgt unter der URL::
+als 70 Suchdiensten zusammenfasst (siehe auch `Interview: Searx, eine
+Suchmaschine mit Datenschutz bei NETZPOLITIK.ORG
+<https://netzpolitik.org/2018/interview-searx-eine-suchmaschine-mit-datenschutz/>`_).
+Die Benutzer werden weder verfolgt noch wird ein Profil von ihnen erstellt.  Es
+gibt Instanzen im internet (`Public searX instances
+<https://github.com/asciimoo/searx/wiki/Searx-instances>`_), Alternativ kann man
+sich auch eine eigene (*self hosted*) Instanz aufsetzen.  Die hier gezeigte
+Installation erfolgt unter der URL::
 
   https://<host>/searx
 
