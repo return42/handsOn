@@ -59,11 +59,20 @@ usage:
 
   $(basename $0) info
   $(basename $0) install    [server]
-  $(basename $0) config     [server|diff]
   $(basename $0) udpate     [server]
   $(basename $0) remove     [server]
   $(basename $0) activate   [server]
   $(basename $0) deactivate [server]
+  $(basename $0) shell
+  $(basename $0) config     [server|diff]
+
+:install:     Install searX instance
+:update:      Update searX instance
+:remove:      drop searX instance
+:deactivate:  deactivate searX instance
+:activate:    activate searX instance
+:shell:       start interactive shell with user ${SEARX_USER}
+:config:      isntall or diff searX configuration
 
 EOF
 }
@@ -80,6 +89,11 @@ intro(){
     rstHeading "searX (${SEARX_INSTANCE_NAME})" part
 }
 
+_shell(){
+    rstBlock "Quellen: ${SEARX_REPO_FOLDER} // Beenden mit STRG-D"
+    sudo -H -u ${SEARX_USER} -i
+}
+
 # ----------------------------------------------------------------------------
 main(){
 # ----------------------------------------------------------------------------
@@ -87,6 +101,7 @@ main(){
     case $1 in
 	--source-only)  ;;
         -h|--help) usage;;
+        shell) _shell ;;
         info) less "${REPO_ROOT}/docs/searx.rst" ;;
 
         install)
@@ -181,16 +196,48 @@ update_server(){
 # ----------------------------------------------------------------------------
 
     echo
-    TEE_stderr 2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+    TEE_stderr 0.5 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
-git stash
+cp -f ${SEARX_SETTINGS} ${SEARX_SETTINGS}.backup
+git stash push -m "BACKUP -- 'update server' at ($(date))"
 git checkout "$SEARX_GIT_BRANCH"
 git pull origin "$SEARX_GIT_BRANCH"
-git stash apply
 ${SEARX_REPO_FOLDER}/manage.sh update_packages
 EOF
     configure_searx
+
+    rstHeading "${SEARX_SETTINGS}" section
+    rstBlock 'Differenz zw. der neuen Konfiguration (<) und der zuvor gesicherten (>):'
+    echo
+    diff ${SEARX_SETTINGS} ${SEARX_SETTINGS}.backup
+
+    local action
+    chooseOneMenu action "Was soll mit der Datei passieren?" \
+           "Neue Konfiguration beibehalten." \
+           "Alte Konfiguration (.backup Datei) wieder einspielen." \
+           "Merge der beiden Dateien" \
+	   "interaktiv mit git arbeiten"
+    case $action in
+        "Neue Konfiguration beibehalten.")
+	    info_msg "Neue Konfiguration wird verwendet."
+	    ;;
+        "Alte Konfiguration (.backup Datei) wieder einspielen.")
+	    TEE_stderr 2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+cp -f ${SEARX_SETTINGS}.backup ${SEARX_SETTINGS}
+EOF
+	    ;;
+        "Merge der beiden Dateien" )
+	    $MERGE_CMD "${SEARX_SETTINGS}" "${SEARX_SETTINGS}.backup" "${SEARX_SETTINGS}"
+	    ;;
+	"interaktiv mit git arbeiten")
+	    _shell
+	    ;;
+    esac
+    chown ${SEARX_USER}:${SEARX_USER} "${SEARX_SETTINGS}"
+
+    rstBlock 'Differenz zw. der Konfiguration (<) und dem Stand im Reposetory (>):'
+    echo
     git_diff
     waitKEY
 }
@@ -300,7 +347,7 @@ configure_searx(){
     rstBlock "Virtuelle Python Umgebung in ${SEARX_VENV}"
     echo
 
-    TEE_stderr 0 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
+    TEE_stderr 0.2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 . ${SEARX_VENV}/bin/activate
 cd ${SEARX_REPO_FOLDER}
 sed -i -e "s/ultrasecretkey/`openssl rand -hex 16`/g" $SEARX_SETTINGS
