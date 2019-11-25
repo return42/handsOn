@@ -236,6 +236,8 @@ EOF
     esac
     chown ${SEARX_USER}:${SEARX_USER} "${SEARX_SETTINGS}"
 
+    uWSGI_restart
+
     rstBlock 'Differenz zw. der Konfiguration (<) und dem Stand im Reposetory (>):'
     echo
     git_diff
