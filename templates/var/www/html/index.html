@@ -114,6 +114,14 @@ div.content_section_text a:hover {
     <div class="main_page">
       <div class="content_section">
 
+        <div class="content_section_text">
+          <form method="post"
+                action="https://{hostname}/searx"
+                onsubmit="return (document.getElementById('q').value != '');">
+            <input type="search" placeholder="... &larrhk;" size="50" id="q" name="q" autofocus />
+	    <button onclick="this.form.target='_blank';return true;">searX</button>
+          </form>
+        </div>
 
         <div class="section_header">
           <div id="about">Dienste auf *diesem* Host</div>
