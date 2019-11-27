@@ -12,6 +12,12 @@ if [[ -z "${ORGANIZATION}" ]]; then
     ORGANIZATION="myorg"
 fi
 
+ADMIN_NAME="${ADMIN_NAME:-$(git config user.name)}"
+ADMIN_NAME="${ADMIN_NAME:-$USER}"
+
+ADMIN_EMAIL="${ADMIN_EMAIL:-$(git config user.email)}"
+ADMIN_EMAIL="${ADMIN_EMAIL:-$USER@$HOSTNAME}"
+
 if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT="$(dirname ${BASH_SOURCE[0]})"
     while([ -h "${REPO_ROOT}" ]) do REPO_ROOT=`readlink "${REPO_ROOT}"`; done

@@ -5,13 +5,15 @@
 # org stuff
 # =====================
 
-# ORGANIZATION="myorg"
+ORGANIZATION="myOrg"
+ADMIN_NAME="${ADMIN_NAME:-$(git config user.name)}"
+ADMIN_EMAIL="${ADMIN_EMAIL:-$(git config user.email)}"
 
 # =====================
 # searX
 # =====================
 
-# SEARX_INSTANCE_NAME=searX@myhost.de
+SEARX_INSTANCE_NAME="searX@${ORGANIZATION}"
 
 # =====================
 # Debian's Apache Setup
@@ -35,12 +37,13 @@
 #   OnlineDoc\
 # "
 
-# =====
+# =====================
 # SAMBA
-# =====
+# =====================
 
-# SAMBA_SERVER=127.0.0.1
+SAMBA_SERVER="myorg" # "myorg.fritz.box" or "myorg"
 
+# =======================
 # Debian's OpenLDAP Setup
 # =======================
 

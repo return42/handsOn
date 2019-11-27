@@ -4,9 +4,31 @@
 # Purpose: host setup file
 # ----------------------------------------------------------------------------
 
-LDAP_SERVER="storage" # "storage.fritz.box" or "storage"
-SAMBA_SERVER="storage" # "storage.fritz.box" or "storage"
-ORGANIZATION="darmarIT"
+# =====================
+# org stuff
+# =====================
+
+ORGANIZATION="myOrg"
+ADMIN_NAME="${ADMIN_NAME:-$(git config user.name)}"
+ADMIN_EMAIL="${ADMIN_EMAIL:-$(git config user.email)}"
+
+# =====================
+# searX
+# =====================
+
+SEARX_INSTANCE_NAME="searX@${ORGANIZATION}"
+
+# =====================
+# SAMBA
+# =====================
+
+SAMBA_SERVER="myorg" # "myorg.fritz.box" or "myorg"
+
+# =======================
+# Debian's OpenLDAP Setup
+# =======================
+
+LDAP_SERVER="myorg" # "myorg.fritz.box" or "myorg"
 
 # ----------------------------------------------------------------------------
 # Verschlüsseltes Backup von Konfigurationen

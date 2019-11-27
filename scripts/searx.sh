@@ -317,8 +317,8 @@ clone_repo(){
 
     TEE_stderr 0.2 <<EOF | sudo -H -u ${SEARX_USER} -i | prefix_stdout
 cd ${SEARX_REPO_FOLDER}
-git config user.email "${SEARX_USER}@${SEARX_APACHE_DOMAIN}"
-git config user.name "searX on ${SEARX_APACHE_DOMAIN}"
+git config user.email "${ADMIN_EMAIL}"
+git config user.name "${ADMIN_NAME}"
 git checkout "$SEARX_GIT_BRANCH"
 EOF
     popd > /dev/null
