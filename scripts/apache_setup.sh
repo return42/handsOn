@@ -393,10 +393,10 @@ EOF
         fi
 
         rstBlock "Leider klappt das mit der automatischen Konfiguration des
-Apache nicht so wirklich gut, deshalb muss man da nochmal manuell eingreifen.
-In der ${APACHE_SITES_AVAILABE}/default-ssl.conf müssen in etwa folgende
-Settings eingestellt werden (Servername muss natürlich der sein, den man
-eben eingegeben hat, s.o.)::"
+Apache nicht so wirklich gut, weshalb man i.d.R. nochmal manuell nachbessern
+muss.  In der ${APACHE_SITES_AVAILABE}/default-ssl.conf müssen in etwa folgende
+Settings eingestellt werden (Servername muss natürlich der sein, den man eben
+eingegeben hat, s.o.)::"
 
         echo -en "${Yellow}
 <IfModule mod_ssl.c>
@@ -406,13 +406,24 @@ eben eingegeben hat, s.o.)::"
         ServerName foobar.cloud
         SSLCertificateFile /etc/letsencrypt/live/foobar.cloud/fullchain.pem
         SSLCertificateKeyFile /etc/letsencrypt/live/foobar.cloud/privkey.pem
-        Include /etc/letsencrypt/options-ssl-apache.conf
+        # Include /etc/letsencrypt/options-ssl-apache.conf
     ...
     </VirtualHost>
 </IfModule>${_color_Off}"
 
-        waitKEY
-    fi
+	rstBlock "In obigen Beisoiel wird die Konfiguration des cert
+ (/etc/letsencrypt/options-ssl-apache.conf) nicht importiert (!!).  Die Werte
+ die dort in der Konfiguration stehen, sollten mit den anderen Einstellungen in
+ der ${APACHE_SITES_AVAILABE}/default-ssl.conf zusammengeführt werden. (!!)
+
+Hintergrund: Die options-ssl-apache.conf ist eine (wo für auch immer)
+*sinnvolle* default Konfiguration, die aber u.U. mit den Einstellungen in
+Konflikt steht, die man sonst so im Apache vorgenommen hat.  In alten Versionen
+des Cerbot wurden beispielsweise schwache (malicious) SSL Protokolle wieder
+aktiviert, die bereits im Default der Apache Konfiguration 'so' nicht mehr aktiv
+waren. (!?)"
+
+	waitKEY fi
 
     rstBlock "Es wird die automatische Erneuerung getestet"
     TEE_stderr <<EOF | bash | prefix_stdout
