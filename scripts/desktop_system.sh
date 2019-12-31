@@ -42,7 +42,7 @@ GNOME3_PACKAGES="\
  gnome-packagekit gnome-packagekit-session \
  vanilla-gnome-desktop \
  elementary-icon-theme \
- gir1.2-gtop-2.0 gir1.2-networkmanager-1.0 gir1.2-gconf-2.0 gir1.2-clutter-1.0 \
+ gir1.2-gtop-2.0 gir1.2-gconf-2.0 gir1.2-clutter-1.0 \
  tracker tracker-extract tracker-miner-fs \
  gnome-clocks \
 "
@@ -132,8 +132,8 @@ main(){
                 elementary)   install_elementary   ;;
 	        cinnamon)     TITLE="Installation Cinnamon-Desktop" aptInstallPackages ${CINNAMON_PACKAGES}    ;;
 	        mate)         TITLE="Installation Mate-Desktop"  aptInstallPackages ${MATE_PACKAGES}           ;;
-		solar)        TITLE="Installation Solaar"  aptInstallPackages solaar
-                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
+		solar)        TITLE="Installation Solaar"  aptInstallPackages solaar ;;
+                *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"exit 42;;
             esac  ;;
         remove)
 	    sudoOrExit
@@ -145,7 +145,7 @@ main(){
 		nemo)         remove_nemo ;;
                 cinnamon)     TITLE="De-Installation Cinnamon-Desktop" aptPurgePackages ${CINNAMON_PACKAGES}   ;;
                 mate)         TITLE="De-Installation Mate-Desktop" aptPurgePackages ${MATE_PACKAGES}           ;;
-		solar)        TITLE="De-Installation Solaar"  aptPurgePackages solaar
+		solar)        TITLE="De-Installation Solaar"  aptPurgePackages solaar ;;
                 *)       usage "${BRed}ERROR:${_color_Off} unknown or missing $1 command $2"; exit 42;;
             esac  ;;
         *) usage "${BRed}ERROR:${_color_Off} unknown or missing command $1"; exit 42
@@ -374,7 +374,12 @@ EOF
 
     rstHeading "gnome-shell: system-monitor" section
     echo
-    apt install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
+
+    if dpkg --compare-versions "19.10" "gt" "$DISTRIB_RELEASE"; then
+        apt install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
+    else
+        apt install gir1.2-gtop-2.0
+    fi
     echo
     # FIXME: interim solution as long as #469 is open
     # [#469] https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet/issues/496
