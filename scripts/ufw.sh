@@ -181,6 +181,12 @@ EOF
             ;;
         "Einzelne Dienste freischalten.")
             askIPv4Netmask ipv4mask
+            if askYn "Port 34890 für Dienst ${BYellow}VNSI (VDR)${_color_Off} im Intranet freigegeben?"; then
+                TEE_stderr 0.2 <<EOF | bash | prefix_stdout
+ufw allow from fd00::/8 to any port 34890  comment "subnet (unique local)"
+ufw allow from $ipv4mask to any port 34890 comment "subnet (netmask)"
+EOF
+	    fi
             local service
             for service in 'Apache Secure' \
                            'Dovecot Secure IMAP' \
