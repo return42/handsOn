@@ -25,14 +25,8 @@
 
 * :deb:`audacious`: `Audacious`_ ist ein (winamp like) Audioplayer
 
-* :deb:`youtube-dl` Kommandozeile für youtube:
-
-  - youtube-dl_
-  - `youtube-dl --help <https://github.com/ytdl-org/youtube-dl/blob/master/README.md#description>`__
-
-  ::
-
-     you
+* :deb:`youtube-dl`: die youtube-dl_ Kommandozeile // `youtube-dl --help
+  <https://github.com/ytdl-org/youtube-dl/blob/master/README.md#description>`__
 
 
 Installation
