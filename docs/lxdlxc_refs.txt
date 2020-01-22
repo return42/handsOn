@@ -13,3 +13,9 @@
 .. _`Containervirtualisierung (wiki)`: https://de.wikipedia.org/wiki/Containervirtualisierung
 .. _`VM (wiki)`: https://de.wikipedia.org/wiki/Virtuelle_Maschine
 .. _`Hypervisor`: https://de.wikipedia.org/wiki/Hypervisor
+
+.. _Introduction to LXD projects: https://tutorials.ubuntu.com/tutorial/introduction-to-lxd-projects
+
+.. _snap: https://snapcraft.io
+.. _snapcraft LXD: https://snapcraft.io/lxd
+.. _LXC/LXD Image Server: https://uk.images.linuxcontainers.org/

@@ -59,10 +59,10 @@ Emulation die Use-Cases für Container wiederum auch einschränkt.
   große Teile der Linux-Derivate/-Distributionen -- einfacher und schneller
   bedient werden können als man das bisher konnte.
 
-Die Idee solcher Container ist an sich nichts Neues. Es gab bereits 2000 die
+Die Idee solcher Container ist an sich nichts Neues.  Es gab bereits 2000 die
 FreeBSD-Jails_, diese hatten immer einige Sicherheitslücken und um sie unter
-Linux zu nutzen musste der Linux-Kernel gepatched werden. LXD baut auf dem
-`Vanilla Kernel <https://wiki.debian.org/vanilla>`_ auf. Mit den cgroups_ des
+Linux zu nutzen musste der Linux-Kernel gepatched werden.  LXD_ baut auf dem
+`Vanilla Kernel <https://wiki.debian.org/vanilla>`_ auf.  Mit den cgroups_ des
 Vanilla Kernel und den `Kernel-Namespaces`_ kann LXC den Container robust vom
 Hostsystem isolieren.
 
@@ -71,5 +71,4 @@ Begriff *booten* trifft hierbei nur bedingt zu). Die Images als auch die
 Container werden vom LXD verwaltet und über einen WEB-Service bereit gestellt
 (:ref:`lxc_remote_images`).
 
-Mehr zu LXD siehe auch: `The LXD 2.0: Blog post series
-<https://insights.ubuntu.com/2016/03/14/the-lxd-2-0-story-prologue/>`_
+Mehr zu LXD siehe auch: `Introduction to LXD projects`_ und `snapcraft LXD`_.
