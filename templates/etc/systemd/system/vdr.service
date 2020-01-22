@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/sbin/runvdr
+ExecStart=/usr/bin/vdr
 RestartSec=1
 Restart=on-failure
 

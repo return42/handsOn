@@ -62,7 +62,6 @@ VDR_PACKAGES="\
  vdr\
  vdr-plugin-vnsiserver\
  vdr-plugin-streamdev-server\
- vdr-plugin-vdrmanager
 "
 VDR_PPA=ppa:yavdr/stable-vdr
 
@@ -318,7 +317,7 @@ install_vdr(){
     TEMPLATES_InstallOrMerge /etc/systemd/system/vdr.service root root 644
 
     # see /etc/vdr/conf.d/00-vdr.conf
-    local vdr_folder=/share/video/vdr-recording
+    local vdr_folder=/share/vdr-recording
 
     rstBlock "Ordner für Videorecording: ${vdr_folder}"
     mkdir -p ${vdr_folder}
