@@ -423,7 +423,8 @@ des Cerbot wurden beispielsweise schwache (malicious) SSL Protokolle wieder
 aktiviert, die bereits im Default der Apache Konfiguration 'so' nicht mehr aktiv
 waren. (!?)"
 
-	waitKEY fi
+	waitKEY
+    fi
 
     rstBlock "Es wird die automatische Erneuerung getestet"
     TEE_stderr <<EOF | bash | prefix_stdout
@@ -925,7 +926,7 @@ Setup kann deinstalliert werden::
     echo
     waitKEY
     apt-get install -y ${PHP_PACKAGES}
-    a2enmod php7
+    a2enmod php7.2
     rstBlock "${BGreen}Apache wird neu gestartet...${_color_Off}"
     systemctl restart apache2
 
