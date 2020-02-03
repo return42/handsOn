@@ -8,6 +8,48 @@
 Citrix-Receiver
 ===============
 
+.. _Prerequisites to install Citrix Workspace app:
+   https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/system-requirements.html
+
+.. _Citrix Workspace app for Linux:
+   https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html
+
+.. hint:: **Update 3. Feb. 2020**
+
+   Der `Citrix Receiver (wiki)`_ -- aka. *ICA Client* -- heißt seit geraumer
+   Zeit *Citrix Workspace App*.
+
+
+NEU: Citrix Workspace App
+=========================
+
+- `Prerequisites to install Citrix Workspace app`_
+- `Citrix Workspace app for Linux`_
+
+Ein aktuelles Debian Paket kann auf der Download Seite `Citrix Workspace app for
+Linux`_ heruntergeladen werden.  Auf das ``.deb`` Paket macht man einen
+Doppelklick und installiert das Paket.  Wie gehabt, wird man ohne die
+Zertifikate aus dem Firefox mit der **Citrix Workspace App** immer nur
+Fehlermeldungen bekommen, die darauf hinweisen, dass das Zertifikat des remote
+Servers ungültig sei.
+
+**Citrix Workspace App**, schöner Name alte Probleme .. egal, die Lösung ist
+analog der Beschreibung `ALT: Citrix Receiver`_, mit einer kleinen Feinheit, man
+beachte das ``*`` im symbolischen Link unten (*Dank geht an Robert!*).  Die
+Zertifikate aus dem Mozilla werden verlinkt und anschließend in der **Citrix
+Workspace App** (aka ``ICAClient``) registriert.::
+
+     sudo -H ln -s /usr/share/ca-certificates/mozilla/* /opt/Citrix/ICAClient/keystore/cacerts/
+     sudo -H /opt/Citrix/ICAClient/util/ctx_rehash
+
+ALT: Citrix Receiver
+====================
+
+.. sidebar:: alt & neu
+
+   Da die Probleme eigentlich die gleichen sind, hier noch der *historische*
+   Text dazu.
+
 `Citrix Receiver (wiki)`_ -- aka. ICA Client -- ist der Client zu XenDesktop und
 XenApp. Der Client wird für diverse Plattformen bereit gestellt, unter anderem
 Windows, Linux und Android.
