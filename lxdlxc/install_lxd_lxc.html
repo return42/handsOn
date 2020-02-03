@@ -190,23 +190,26 @@
             
   <div class="section" id="lxd-installation">
 <span id="install-lxdlxc"></span><h1>LXD Installation<a class="headerlink" href="#lxd-installation" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Die gängigen Distributionen stellen <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> bereits zur Verfügung (<a class="reference external" href="https://linuxcontainers.org/lxd/getting-started-cli/#getting-the-packages">packages</a>).
-Eine Installation mit dem Paketmanager APT wäre z.B:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt install lxd lxd-client
+<p>Mit <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> hat man Zugriff auf die <a class="reference external" href="https://uk.images.linuxcontainers.org/">LXC/LXD Image Server</a>.  Früher hat man LXD
+noch über den Paketmanager der Distributionen installiert, inzwischen wird das
+nicht mehr empfohlen und geht wohl zum Teil auch gar nicht mehr.  Inzwischen
+wird fast nur noch die LXD Installation über <a class="reference external" href="https://snapcraft.io">snap</a> unterstützt.  Um <a class="reference external" href="https://snapcraft.io">snap</a> zu
+installieren:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt install snapd
 </pre></div>
 </div>
-<p>Alternativ besteht die Möglichkeit über die Paketverwaltung <a class="reference internal" href="../snappy/index.html#snap"><span class="std std-ref">snap</span></a>
-die erforderlichen Pakete zu installieren:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ snap install lxd
+<p>Über die Paketverwaltung <a class="reference internal" href="../snappy/index.html#snap"><span class="std std-ref">snap</span></a> die erforderlichen Pakete
+installieren (s.a. <a class="reference external" href="https://tutorials.ubuntu.com/tutorial/introduction-to-lxd-projects">Introduction to LXD projects</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install lxd
 </pre></div>
 </div>
 <p>Zur Installation gehört noch eine initiales Setup des LXD in dem der
 Image-Server als auch z.B. die Eigenschaften des (LXD) Netzwerks eingestellt
 werden.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxd init
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxd init --auto
 </pre></div>
 </div>
-<p>Weitere Hinweise siehe: <a class="reference external" href="https://insights.ubuntu.com/2016/03/16/lxd-2-0-installing-and-configuring-lxd-212/">LXD 2.0: Installing and configuring LXD</a></p>
+<p>Weitere Hinweise siehe: <a class="reference external" href="https://snapcraft.io/lxd">snapcraft LXD</a></p>
 </div>
 
 

@@ -238,17 +238,17 @@ mit dem Aspekte wie <em>Software-Test</em> und <em>Software-Deployment</em> – 
 große Teile der Linux-Derivate/-Distributionen – einfacher und schneller
 bedient werden können als man das bisher konnte.</p>
 </div></blockquote>
-<p>Die Idee solcher Container ist an sich nichts Neues. Es gab bereits 2000 die
+<p>Die Idee solcher Container ist an sich nichts Neues.  Es gab bereits 2000 die
 <a class="reference external" href="https://www.freebsd.org/doc/handbook/jails.html">FreeBSD-Jails</a>, diese hatten immer einige Sicherheitslücken und um sie unter
-Linux zu nutzen musste der Linux-Kernel gepatched werden. LXD baut auf dem
-<a class="reference external" href="https://wiki.debian.org/vanilla">Vanilla Kernel</a> auf. Mit den <a class="reference external" href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a> des
+Linux zu nutzen musste der Linux-Kernel gepatched werden.  <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> baut auf dem
+<a class="reference external" href="https://wiki.debian.org/vanilla">Vanilla Kernel</a> auf.  Mit den <a class="reference external" href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a> des
 Vanilla Kernel und den <a class="reference external" href="https://lwn.net/Articles/531114/">Kernel-Namespaces</a> kann LXC den Container robust vom
 Hostsystem isolieren.</p>
 <p>Wie jede VM braucht auch ein Container ein initiales Image zum starten (der
 Begriff <em>booten</em> trifft hierbei nur bedingt zu). Die Images als auch die
 Container werden vom LXD verwaltet und über einen WEB-Service bereit gestellt
 (<a class="reference internal" href="remote_images.html#lxc-remote-images"><span class="std std-ref">Remote-Images</span></a>).</p>
-<p>Mehr zu LXD siehe auch: <a class="reference external" href="https://insights.ubuntu.com/2016/03/14/the-lxd-2-0-story-prologue/">The LXD 2.0: Blog post series</a></p>
+<p>Mehr zu LXD siehe auch: <a class="reference external" href="https://tutorials.ubuntu.com/tutorial/introduction-to-lxd-projects">Introduction to LXD projects</a> und <a class="reference external" href="https://snapcraft.io/lxd">snapcraft LXD</a>.</p>
 </div>
 
 

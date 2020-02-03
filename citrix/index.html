@@ -106,7 +106,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Citrix-Receiver</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Citrix-Receiver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#neu-citrix-workspace-app">NEU: Citrix Workspace App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alt-citrix-receiver">ALT: Citrix Receiver</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
@@ -181,6 +185,41 @@
             
   <div class="section" id="xref-citrix">
 <span id="id1"></span><h1>Citrix-Receiver<a class="headerlink" href="#xref-citrix" title="Link zu dieser Überschrift">¶</a></h1>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p><strong>Update 3. Feb. 2020</strong></p>
+<p>Der <a class="reference external" href="https://en.wikipedia.org/wiki/Citrix_Receiver">Citrix Receiver (wiki)</a> – aka. <em>ICA Client</em> – heißt seit geraumer
+Zeit <em>Citrix Workspace App</em>.</p>
+</div>
+<div class="section" id="neu-citrix-workspace-app">
+<h2>NEU: Citrix Workspace App<a class="headerlink" href="#neu-citrix-workspace-app" title="Link zu dieser Überschrift">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/system-requirements.html">Prerequisites to install Citrix Workspace app</a></p></li>
+<li><p><a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Citrix Workspace app for Linux</a></p></li>
+</ul>
+<p>Ein aktuelles Debian Paket kann auf der Download Seite <a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Citrix Workspace app for
+Linux</a> heruntergeladen werden.  Auf das <code class="docutils literal notranslate"><span class="pre">.deb</span></code> Paket macht man einen
+Doppelklick und installiert das Paket.  Wie gehabt, wird man ohne die
+Zertifikate aus dem Firefox mit der <strong>Citrix Workspace App</strong> immer nur
+Fehlermeldungen bekommen, die darauf hinweisen, dass das Zertifikat des remote
+Servers ungültig sei.</p>
+<p><strong>Citrix Workspace App</strong>, schöner Name alte Probleme .. egal, die Lösung ist
+analog der Beschreibung <a class="reference internal" href="#alt-citrix-receiver">ALT: Citrix Receiver</a>, mit einer kleinen Feinheit, man
+beachte das <code class="docutils literal notranslate"><span class="pre">*</span></code> im symbolischen Link unten (<em>Dank geht an Robert!</em>).  Die
+Zertifikate aus dem Mozilla werden verlinkt und anschließend in der <strong>Citrix
+Workspace App</strong> (aka <code class="docutils literal notranslate"><span class="pre">ICAClient</span></code>) registriert.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="o">/</span><span class="n">mozilla</span><span class="o">/*</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">keystore</span><span class="o">/</span><span class="n">cacerts</span><span class="o">/</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">util</span><span class="o">/</span><span class="n">ctx_rehash</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="alt-citrix-receiver">
+<h2>ALT: Citrix Receiver<a class="headerlink" href="#alt-citrix-receiver" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">alt &amp; neu</p>
+<p>Da die Probleme eigentlich die gleichen sind, hier noch der <em>historische</em>
+Text dazu.</p>
+</div>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Citrix_Receiver">Citrix Receiver (wiki)</a> – aka. ICA Client – ist der Client zu XenDesktop und
 XenApp. Der Client wird für diverse Plattformen bereit gestellt, unter anderem
 Windows, Linux und Android.</p>
@@ -232,6 +271,7 @@ Installation verlinken.:</p>
 <p class="admonition-title">Warnung</p>
 <p>Es kann im ungünstigen Fall sein, dass man obigen Schritt wiederholen muss,
 wenn der FFox aktualisiert wird.</p>
+</div>
 </div>
 </div>
 
