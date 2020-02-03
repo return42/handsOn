@@ -4,24 +4,24 @@
 
 .. _xref_citrix:
 
-===============
-Citrix-Receiver
-===============
+====================
+Citrix Workspace App
+====================
+
+.. hint::
+
+   **Update 3. Feb. 2020**: Der `Citrix Receiver (wiki)`_ -- aka. *ICA Client*
+   -- heißt seit geraumer Zeit *Citrix Workspace App*.
+
+
+NEU: Citrix Workspace App
+=========================
 
 .. _Prerequisites to install Citrix Workspace app:
    https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/system-requirements.html
 
 .. _Citrix Workspace app for Linux:
    https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html
-
-.. hint:: **Update 3. Feb. 2020**
-
-   Der `Citrix Receiver (wiki)`_ -- aka. *ICA Client* -- heißt seit geraumer
-   Zeit *Citrix Workspace App*.
-
-
-NEU: Citrix Workspace App
-=========================
 
 - `Prerequisites to install Citrix Workspace app`_
 - `Citrix Workspace app for Linux`_
