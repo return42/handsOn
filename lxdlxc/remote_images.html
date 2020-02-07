@@ -202,7 +202,7 @@ Möglichkeiten, <em>Images</em> zu beziehen bzw. bereit zu stellen:</p>
 mal mit einem Remote-Image beginnt, macht es Sinn sich dem Thema <em>remote-Images</em>
 als erstes zu widmen.</p>
 <p>Auflisten der Remotes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc remote list
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxc remote list
 </pre></div>
 </div>
 <table class="docutils align-default">
@@ -252,13 +252,14 @@ bereits LXD installiert ist findet man in der Tabelle den Eintrag <code class="d
 immer <em>Image-Server</em>. Sofern dieser <em>freigegeben</em> ist, kann dieser auch von
 anderen Installationen als Image-Server genutzt werden (<em>vice versa</em>).  Der
 Liste können weitere <em>Remotes*</em> hinzugefügt werden:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc remote add images images.linuxcontainers.org
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxc remote add --protocol simplestreams ubuntu-minimal \
+          https://cloud-images.ubuntu.com/minimal/releases/
 </pre></div>
 </div>
-<p>Letzteres trägt beispielsweise den Server-Alias <code class="docutils literal notranslate"><span class="pre">images</span></code> mit der URL
-<a class="reference external" href="https://images.linuxcontainers.org">https://images.linuxcontainers.org</a> ein. Für das Löschen aus der Tabelle gibt es
-dann ein analoges:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lxc remote remove &lt;NAME&gt;
+<p>Letzteres trägt beispielsweise den Server-Alias <code class="docutils literal notranslate"><span class="pre">ubuntu-minimal</span></code> mit der URL
+<a class="reference external" href="https://cloud-images.ubuntu.com/minimal/releases/">https://cloud-images.ubuntu.com/minimal/releases/</a> ein.  Für das Löschen aus der
+Tabelle gibt es dann ein analoges:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxc remote remove &lt;NAME&gt;
 </pre></div>
 </div>
 <p>Mehr zu Remote-Image-Server siehe <a class="reference external" href="https://insights.ubuntu.com/2016/04/13/lxd-2-0-remote-hosts-and-container-migration-612/">LXD 2.0: Remote hosts and container migration</a>.</p>

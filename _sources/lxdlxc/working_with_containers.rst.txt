@@ -36,9 +36,40 @@ Zum Starten, Stoppen und Pausieren der Container existieren folgende Kommandos:
 -  ``lxc pause   [<remote>:]<container> [[<remote>:]<container>...]``
 
 Sollte der Container mal auf ein ``stop`` nicht reagieren, kann mit der Option
-``--force`` ein Stop des Containers erzwungen werden. Die anderen Kommandos
+``--force`` ein Stop des Containers erzwungen werden.  Die anderen Kommandos
 haben auch Optionen (``lxc <command> --help``).
-  
+
+Beispiele::
+
+  sudo lxc remote list
+  sudo lxc image list images:ubuntu/18.04
+
+  # mal auf die Image-größen achten ...
+
+  sudo lxc image info images:ubuntu/18.04
+  sudo lxc image info ubuntu:18.04
+  sudo lxc image info ubuntu-minimal:18.04
+
+  # Ein paar Images von den Remotes nach 'local:' kopieren
+
+  sudo lxc image copy ubuntu-minimal:18.04 local: --alias ubu1804
+  sudo lxc image copy ubuntu-minimal:19.10 local: --alias ubu1910
+  sudo lxc image copy images:archlinux local: --alias archlinux
+  sudo lxc image copy images:fedora/31 local: --alias fedora31
+
+  # exportieren (*.tar.xz)
+  lxc image export old-ubuntu .
+
+  # importieren
+  lxc image import <tarball> --alias random-image
+
+  # image anlegen und starten ...
+  sudo lxc launch local:ubu1804 test-host-1
+  sudo lxc launch local:ubu1804 searx-test < searx.yaml
+
+  # Wenn das image nur angelegt werden soll:
+  sudo lxc init local:ubu1804 searx-test < searx.yaml
+
 
 ToDo
 ====

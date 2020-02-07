@@ -221,8 +221,39 @@ machen (<a class="reference internal" href="container_images.html#lxc-import-ima
 <li><p><code class="docutils literal notranslate"><span class="pre">lxc</span> <span class="pre">pause</span>&#160;&#160; <span class="pre">[&lt;remote&gt;:]&lt;container&gt;</span> <span class="pre">[[&lt;remote&gt;:]&lt;container&gt;...]</span></code></p></li>
 </ul>
 <p>Sollte der Container mal auf ein <code class="docutils literal notranslate"><span class="pre">stop</span></code> nicht reagieren, kann mit der Option
-<code class="docutils literal notranslate"><span class="pre">--force</span></code> ein Stop des Containers erzwungen werden. Die anderen Kommandos
+<code class="docutils literal notranslate"><span class="pre">--force</span></code> ein Stop des Containers erzwungen werden.  Die anderen Kommandos
 haben auch Optionen (<code class="docutils literal notranslate"><span class="pre">lxc</span> <span class="pre">&lt;command&gt;</span> <span class="pre">--help</span></code>).</p>
+<p>Beispiele:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">lxc</span> <span class="n">remote</span> <span class="nb">list</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="nb">list</span> <span class="n">images</span><span class="p">:</span><span class="n">ubuntu</span><span class="o">/</span><span class="mf">18.04</span>
+
+<span class="c1"># mal auf die Image-größen achten ...</span>
+
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">info</span> <span class="n">images</span><span class="p">:</span><span class="n">ubuntu</span><span class="o">/</span><span class="mf">18.04</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">info</span> <span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">info</span> <span class="n">ubuntu</span><span class="o">-</span><span class="n">minimal</span><span class="p">:</span><span class="mf">18.04</span>
+
+<span class="c1"># Ein paar Images von den Remotes nach &#39;local:&#39; kopieren</span>
+
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">copy</span> <span class="n">ubuntu</span><span class="o">-</span><span class="n">minimal</span><span class="p">:</span><span class="mf">18.04</span> <span class="n">local</span><span class="p">:</span> <span class="o">--</span><span class="n">alias</span> <span class="n">ubu1804</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">copy</span> <span class="n">ubuntu</span><span class="o">-</span><span class="n">minimal</span><span class="p">:</span><span class="mf">19.10</span> <span class="n">local</span><span class="p">:</span> <span class="o">--</span><span class="n">alias</span> <span class="n">ubu1910</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">copy</span> <span class="n">images</span><span class="p">:</span><span class="n">archlinux</span> <span class="n">local</span><span class="p">:</span> <span class="o">--</span><span class="n">alias</span> <span class="n">archlinux</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">image</span> <span class="n">copy</span> <span class="n">images</span><span class="p">:</span><span class="n">fedora</span><span class="o">/</span><span class="mi">31</span> <span class="n">local</span><span class="p">:</span> <span class="o">--</span><span class="n">alias</span> <span class="n">fedora31</span>
+
+<span class="c1"># exportieren (*.tar.xz)</span>
+<span class="n">lxc</span> <span class="n">image</span> <span class="n">export</span> <span class="n">old</span><span class="o">-</span><span class="n">ubuntu</span> <span class="o">.</span>
+
+<span class="c1"># importieren</span>
+<span class="n">lxc</span> <span class="n">image</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">tarball</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">alias</span> <span class="n">random</span><span class="o">-</span><span class="n">image</span>
+
+<span class="c1"># image anlegen und starten ...</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">launch</span> <span class="n">local</span><span class="p">:</span><span class="n">ubu1804</span> <span class="n">test</span><span class="o">-</span><span class="n">host</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">launch</span> <span class="n">local</span><span class="p">:</span><span class="n">ubu1804</span> <span class="n">searx</span><span class="o">-</span><span class="n">test</span> <span class="o">&lt;</span> <span class="n">searx</span><span class="o">.</span><span class="n">yaml</span>
+
+<span class="c1"># Wenn das image nur angelegt werden soll:</span>
+<span class="n">sudo</span> <span class="n">lxc</span> <span class="n">init</span> <span class="n">local</span><span class="p">:</span><span class="n">ubu1804</span> <span class="n">searx</span><span class="o">-</span><span class="n">test</span> <span class="o">&lt;</span> <span class="n">searx</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
 <div class="section" id="todo">
 <h2>ToDo<a class="headerlink" href="#todo" title="Link zu dieser Überschrift">¶</a></h2>
 <p>Dieser Artikel befindet sich noch im Aufbau. Folgende Themen sollten noch
