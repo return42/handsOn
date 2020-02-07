@@ -22,7 +22,7 @@ als erstes zu widmen.
 
 Auflisten der Remotes::
 
-  $ lxc remote list
+  $ sudo -H lxc remote list
 
 +-----------------+------------------------------------------+---------------+--------+--------+
 |      NAME       |                   URL                    |   PROTOCOL    | PUBLIC | STATIC |
@@ -43,13 +43,14 @@ immer *Image-Server*. Sofern dieser *freigegeben* ist, kann dieser auch von
 anderen Installationen als Image-Server genutzt werden (*vice versa*).  Der
 Liste können weitere *Remotes** hinzugefügt werden::
 
-  $ lxc remote add images images.linuxcontainers.org
+  $ sudo -H lxc remote add --protocol simplestreams ubuntu-minimal \
+            https://cloud-images.ubuntu.com/minimal/releases/
 
-Letzteres trägt beispielsweise den Server-Alias ``images`` mit der URL
-https://images.linuxcontainers.org ein. Für das Löschen aus der Tabelle gibt es
-dann ein analoges::
+Letzteres trägt beispielsweise den Server-Alias ``ubuntu-minimal`` mit der URL
+https://cloud-images.ubuntu.com/minimal/releases/ ein.  Für das Löschen aus der
+Tabelle gibt es dann ein analoges::
 
-  $ lxc remote remove <NAME>
+  $ sudo -H lxc remote remove <NAME>
 
 Mehr zu Remote-Image-Server siehe `LXD 2.0: Remote hosts and container migration
 <https://insights.ubuntu.com/2016/04/13/lxd-2-0-remote-hosts-and-container-migration-612/>`_.
