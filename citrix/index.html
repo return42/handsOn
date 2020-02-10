@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Citrix Workspace App</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#neu-citrix-workspace-app">NEU: Citrix Workspace App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#konfiguration">Konfiguration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#alt-citrix-receiver">ALT: Citrix Receiver</a></li>
 </ul>
 </li>
@@ -190,27 +191,124 @@
 <p><strong>Update 3. Feb. 2020</strong>: Der <a class="reference external" href="https://en.wikipedia.org/wiki/Citrix_Receiver">Citrix Receiver (wiki)</a> – aka. <em>ICA Client</em>
 – heißt seit geraumer Zeit <em>Citrix Workspace App</em>.</p>
 </div>
+<p>Die <em>Citrix Workspace App</em> gehört zur Gruppe der <a class="reference external" href="https://de.wikipedia.org/wiki/Virtual_Desktop_Infrastructure">Virtual Desktop
+Infrastructure</a> Lösungen.  Die Idee ist es den Desktop eines Mitarbeiters
+komplett zu virtualisieren und lokale als auch Remote-Komponenten auf dem
+lokalen Desktop zu integrieren.  Der Mitarbeiter arbeitet auf seinem lokalem
+Desktop und Apps, die nur Remote zur Verfügung stehen werden in seinen lokalen
+Desktop integriert.  Die Idee ist an sich ganz gut und auch unter Schlagwörtern
+wie Thin-Client bekannt, sie wirft aber auch neue Fragen auf, da Remote-Apps und
+Local-Apps u.U. in unterschiedlichen Subnetzen laufen und der Remote-Host, je
+nach Integrationstiefe einen <em>ändernden</em> Zugriff auf lokale Komponenten
+benötigt, was u.U. ein erhebliches Sicherheitsrisiko (auch für den Client)
+darstellen kann.</p>
 <div class="section" id="neu-citrix-workspace-app">
 <h2>NEU: Citrix Workspace App<a class="headerlink" href="#neu-citrix-workspace-app" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Weiterführendes</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://docs.citrix.com/en-us/citrix-workspace-app-for-linux">Citrix Workspace app</a></p></li>
 <li><p><a class="reference external" href="https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/system-requirements.html">Prerequisites to install Citrix Workspace app</a></p></li>
-<li><p><a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Citrix Workspace app for Linux</a></p></li>
+<li><p><a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Download Seite Citrix Workspace app for Linux</a></p></li>
+<li><p><a class="reference external" href="https://www.citrix.com/content/dam/citrix/en_us/documents/data-sheet/citrix-workspace-app-feature-matrix.pdf">Feature Matrix</a></p></li>
+<li><p><a class="reference external" href="https://docs.citrix.com/">Citrix Doc-Portal</a></p></li>
 </ul>
-<p>Ein aktuelles Debian Paket kann auf der Download Seite <a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Citrix Workspace app for
+</div>
+<p>Ein aktuelles Debian Paket kann auf der <a class="reference external" href="https://www.citrix.com/downloads/workspace-app/linux/workspace-app-for-linux-latest.html">Download Seite Citrix Workspace app for
 Linux</a> heruntergeladen werden.  Auf das <code class="docutils literal notranslate"><span class="pre">.deb</span></code> Paket macht man einen
-Doppelklick und installiert das Paket.  Wie gehabt, wird man ohne die
-Zertifikate aus dem Firefox mit der <strong>Citrix Workspace App</strong> immer nur
-Fehlermeldungen bekommen, die darauf hinweisen, dass das Zertifikat des remote
-Servers ungültig sei.</p>
-<p><strong>Citrix Workspace App</strong>, schöner Name alte Probleme .. egal, die Lösung ist
-analog der Beschreibung <a class="reference internal" href="#alt-citrix-receiver">ALT: Citrix Receiver</a>, mit einer kleinen Feinheit, man
-beachte das <code class="docutils literal notranslate"><span class="pre">*</span></code> im symbolischen Link unten (<em>Dank geht an Robert!</em>).  Die
-Zertifikate aus dem Mozilla werden verlinkt und anschließend in der <strong>Citrix
+Doppelklick und installiert das Paket.  <em>Alter Wein in neuen Schläuchen:</em> Das
+Debian Paket installiert die <em>Citrix Workspace App</em> in den Ordner
+<code class="docutils literal notranslate"><span class="pre">/opt/Citrix/ICAClient/</span></code> weshalb wir auf <em>technischer Ebene</em> weiterhin vom
+<em>ICA Client</em> reden werden.</p>
+<p>Wie gehabt, wird man auch bei dem neuen <em>ICA Client</em> ohne die Zertifikate aus
+dem Firefox meist nur Fehlermeldungen bekommen, die darauf hinweisen, dass das
+Zertifikat des remote Servers ungültig sei.  Die Lösung ist analog der
+Beschreibung <a class="reference internal" href="#alt-citrix-receiver">ALT: Citrix Receiver</a>, abgesehen von einer kleinen Feinheit: man
+beachte das <code class="docutils literal notranslate"><span class="pre">*</span></code> im symbolischen Link unten (<em>Dank geht an Robert!</em>).</p>
+<p>Die Zertifikate aus dem Mozilla werden verlinkt und anschließend in der <strong>Citrix
 Workspace App</strong> (aka <code class="docutils literal notranslate"><span class="pre">ICAClient</span></code>) registriert.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="o">/</span><span class="n">mozilla</span><span class="o">/*</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">keystore</span><span class="o">/</span><span class="n">cacerts</span><span class="o">/</span>
 <span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">util</span><span class="o">/</span><span class="n">ctx_rehash</span>
 </pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warnung</p>
+<p>Im Default ist die <a class="reference external" href="https://getadmx.com/?Category=Citrix_Receiver&amp;Policy=receiver.Policies.receiver::Policy_EnableDriveMapping&amp;Language=de-de">Clientlaufwerkzuordnung</a> so eingestellt, dass der Remote
+Host die Dateien und Ordner auf dem lokalen PC ändern oder löschen kann
+(<a class="reference internal" href="#konfiguration">Konfiguration</a>).  Eine ideale Möglichkeit für Viren auch den lokalen PC zu
+infizieren!!!</p>
+</div>
+</div>
+<div class="section" id="konfiguration">
+<h2>Konfiguration<a class="headerlink" href="#konfiguration" title="Link zu dieser Überschrift">¶</a></h2>
+<div class="sidebar">
+<p class="sidebar-title">Weiterführendes</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/configure-xenapp.html">Configure</a></p></li>
+<li><p><a class="reference external" href="https://getadmx.com/?Category=Citrix_Receiver&amp;Policy=receiver.Policies.receiver::Policy_EnableDriveMapping&amp;Language=de-de">Clientlaufwerkzuordnung</a></p></li>
+</ul>
+</div>
+<p>Die <em>ICA Client</em> Konfiguration befindet sich unter Windows in der <em>Registry</em>,
+auf den Linux PCs ist es etwas einfacher, dort findet man die Konfiguration in
+der INI-Datei <code class="docutils literal notranslate"><span class="pre">~/.ICAClient/wfclient.ini</span></code>.  Die Namen der Schalter sind aber
+die gleichen, egal ob nun in der <em>Registry</em> oder in der INI-Datei.  Existiert
+die Datei beim Anwender noch nicht wird sie aus der Vorlage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">wfclient</span><span class="o">.</span><span class="n">template</span>
+</pre></div>
+</div>
+<p>erzeugt.  Als Admin sollte man die Vorlage entsprechend anpassen.  Etwas
+verwirrend ist, dass der Pfad nur ein Link ist, der in einen Ordner in
+Abhängigkeit von der <em>Landessprache</em> verweist.  Die <em>Landessprache</em> wird bei der
+Installation ermittelt und hängt von der Umgebungsvariablen <code class="docutils literal notranslate"><span class="pre">LANG</span></code> ab, die der
+Admin bei der Installation hatte .. warum? .. das fragt man besser Citrix.  Wie
+auch immer, es kann also mehrere Vorlagen geben, die man ggf. anpassen möchte:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">Citrix</span><span class="o">/</span><span class="n">ICAClient</span><span class="o">/&lt;</span><span class="n">lang</span><span class="o">&gt;/</span><span class="n">nls</span><span class="o">/</span><span class="n">de</span><span class="o">/</span><span class="n">wfclient</span><span class="o">.</span><span class="n">template</span>
+</pre></div>
+</div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[WFClient]</span>
+<span class="na">...</span>
+<span class="na">CDMAllowed</span><span class="o">=</span><span class="s">Off</span>
+<span class="c1">; CDMReadOnly=On</span>
+<span class="na">CREnabled</span><span class="o">=</span><span class="s">Off</span>
+<span class="na">CientPrinterQueue</span><span class="o">=</span><span class="s">Off</span>
+<span class="na">ClientManagement</span><span class="o">=</span><span class="s">Off</span>
+<span class="na">ClientComm</span><span class="o">=</span><span class="s">Off</span>
+</pre></div>
+</div>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">CDMAllowed</span></code></dt><dd><p>Die <a class="reference external" href="https://getadmx.com/?Category=Citrix_Receiver&amp;Policy=receiver.Policies.receiver::Policy_EnableDriveMapping&amp;Language=de-de">Clientlaufwerkzuordnung</a> erfolgt über die Einstellung <code class="docutils literal notranslate"><span class="pre">CDMAllowed</span></code>, die
+<strong>im Default auf</strong> <code class="docutils literal notranslate"><span class="pre">On</span></code>.  <strong>Unbedingt abschalten</strong>:  <code class="docutils literal notranslate"><span class="pre">Off</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CDMReadOnly</span></code></dt><dd><p>Dem Remote Host kann alternativ ein <em>read-only</em> Recht auf die lokalen Dateien
+gewährt werden.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ClientManagement</span></code></dt><dd><p>Leider kann man bei Citrix oder sonst wo im Internet zu dem Schalter keine
+Beschreibung finden.  Ich hab ihn einfach auf <code class="docutils literal notranslate"><span class="pre">Off</span></code> gestellt und konnte bei
+meinen Anwendungen keine Einschränkungen feststellen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ClientComm</span></code></dt><dd><p>Auch hierzu konnte ich keine Referenz finden, aber wenn ich das recht sehe
+kann damit der Serielle Port an den Remote weitergeleitet werden.  Ich konnte
+keine Einschränkungen bei Abschaltng feststellen.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">CREnabled</span></code></dt><dd><p>Schaltet die <a class="reference external" href="https://docs.citrix.com/en-us/citrix-workspace-app-for-linux/configure-xenapp.html#server-client-content-redirection">Server-client content redirection</a> ein resp. aus.  Damit werden
+dann URLs, die man in der Remote App öffnet lokal geöffnet.  Ob dieses Feature
+genutzt werden kann, legt der Remote-Server fest.  Die Idee dahinter ist es,
+den Content, der auch direkt vom Client im Internet erreicht werden kann auch
+direkt auf dem Client aufzurufen, anstatt alles erst über den Remote laufen zu
+lassen.  Die folgenden URLs (Protokolle) können umgeleitet werden:</p>
+<ul class="simple">
+<li><p>HTTP (Hypertext Transfer Protocol)</p></li>
+<li><p>HTTPS (Secure Hypertext Transfer Protocol)</p></li>
+<li><p>RTSP (Real Player)</p></li>
+<li><p>RTSPU (Real Player)</p></li>
+<li><p>PNM (Older Real Players)</p></li>
+</ul>
+<p>Ob das Feature für den Anwender nützlich oder eher verwirrend ist hängt
+sicherlich vom Anwendungsfeld ab: Client und der Server stehen i.d.R. in zwei
+unterschiedlichen Subnetzen und es kann sein, dass bestimmte (WEB) Anwendungen
+dann gar nicht mehr funktionieren.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="alt-citrix-receiver">
 <h2>ALT: Citrix Receiver<a class="headerlink" href="#alt-citrix-receiver" title="Link zu dieser Überschrift">¶</a></h2>
@@ -254,9 +352,9 @@ wfica.desktop
 </div>
 <p>Öffnet man eine solche <code class="docutils literal notranslate"><span class="pre">.ica</span></code> Datei, dann bekommt man (linux) eine ziemlich
 irreführende Fehlermeldung:</p>
-<div class="figure align-default" id="id1">
+<div class="figure align-default" id="id2">
 <img alt="../_images/citrix-receiver-error-dialog.png" src="../_images/citrix-receiver-error-dialog.png" />
-<p class="caption"><span class="caption-text">Irreführende Fehlermeldung bei fehlenden Zertifikaten</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+<p class="caption"><span class="caption-text">Irreführende Fehlermeldung bei fehlenden Zertifikaten</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
 </div>
 <p>Das eigentliche Problem ist aber, dass dem Citrix-Client die gängigen
 Zertifikate fehlen.  Diese kann man mit folgenden Zeilen einfach aus der FFox
