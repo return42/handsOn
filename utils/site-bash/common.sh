@@ -557,7 +557,7 @@ askIPv4Netmask(){
     if (( $(echo $menu | wc -w  ) > 1 )) ; then
         chooseOneMenu ipv4 "Bitte die IP wählen" ${menu}
     else
-        ipv4=adresses
+        ipv4="$menu"
     fi
     chooseOneMenu ipv4class \
                   "Welche Netzwerkmaske wird im Subnetz verwendet?"\
