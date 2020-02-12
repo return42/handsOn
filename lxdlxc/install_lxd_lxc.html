@@ -190,11 +190,29 @@
             
   <div class="section" id="lxd-installation">
 <span id="install-lxdlxc"></span><h1>LXD Installation<a class="headerlink" href="#lxd-installation" title="Link zu dieser Überschrift">¶</a></h1>
-<p>Mit <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> hat man Zugriff auf die <a class="reference external" href="https://uk.images.linuxcontainers.org/">LXC/LXD Image Server</a>.  Früher hat man LXD
-noch über den Paketmanager der Distributionen installiert, inzwischen wird das
-nicht mehr empfohlen und geht wohl zum Teil auch gar nicht mehr.  Inzwischen
-wird fast nur noch die LXD Installation über <a class="reference external" href="https://snapcraft.io">snap</a> unterstützt.  Um <a class="reference external" href="https://snapcraft.io">snap</a> zu
-installieren:</p>
+<p><a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> ist das Managment System für <em>LXC Container</em> und alles was es darum herum
+so gibt.  Will man mit Container arbeiten, so installiert man sich erst mal
+dieses System.  Mit <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> hat man dann beispielsweise Zugriff auf die <a class="reference external" href="https://uk.images.linuxcontainers.org/">LXC/LXD
+Image Server</a>.</p>
+<p>Wenn wir von <strong>LXD</strong> reden, dann meinen wir i.d.R. den Manager für die
+Container, wenn wir von <strong>LXC</strong> reden, dann meinen wir i.d.R. die Container
+selbst.  Die Begriffe lassen sich aber nicht immer so ganz klar trennen.
+Historisch ist alles aus den <a class="reference external" href="https://en.wikipedia.org/wiki/Cgroups">cgroups</a> des Linux Kernel entstanden, die erste
+Anwendung waren die Container, im Laufe der Zeit entwickelte sich LXD darum
+herum und inzwischen sind LXD und LXC eigentlich kaum noch zu trennen.  Die
+nächst höhere Abstraktion ist dann die <a class="reference external" href="https://cloud-init.io/">cloud-init</a> die uns hier aber nicht
+interessiert, der Fokus dieses Artikels liegt auf den <em>roots</em>, den Containern.</p>
+<p>Früher hat man LXD noch über den Paketmanager der Distributionen installiert,
+inzwischen wird das nicht mehr empfohlen und geht zum Teil auch gar nicht mehr.
+Inzwischen können aktuelle Versionen des LXD nur über <a class="reference external" href="https://snapcraft.io">snap</a> installiert werden.
+<em>Fun fakt</em> Snap selbst installiert Container und das LXD wird (nur noch) in
+einem solchen Container ausgeliefert.</p>
+<p>Das ganze erinnert ein wenig an Matrjoschka Puppen, das Bild stimmt aber nicht
+ganz, da die Container (je nach Konfiguration) auch Zugriff auf Komponenten des
+HOST Systems haben können. Aber es zeigt, dass wir mit der Installation von LXD
+eigentlich schon die ersten Container Anwendungen nutzen und es zeigt, wie weit
+man mit solchen Containern gehen kann.  Als erstes starten wir also mit der
+Installation des <a class="reference external" href="https://snapcraft.io">snap</a>.  Um <a class="reference external" href="https://snapcraft.io">snap</a> zu installieren:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt install snapd
 </pre></div>
 </div>
@@ -210,6 +228,55 @@ werden.</p>
 </pre></div>
 </div>
 <p>Weitere Hinweise siehe: <a class="reference external" href="https://snapcraft.io/lxd">snapcraft LXD</a></p>
+<p>Will man sicher später mal das LXD Setup anschauen, so kann man das mit dem
+Kommando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lxd</span> <span class="pre">init</span> <span class="pre">--dump</span></code>, die Ausgabe entspricht dem YAML Format und
+könnte in etwa so aussehen.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+<span class="nt">networks</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
+  <span class="nt">config</span><span class="p">:</span>
+    <span class="nt">ipv4.address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.246.86.1/24</span>
+    <span class="nt">ipv4.nat</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
+    <span class="nt">ipv6.address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fd42:8c58:2cd:b73f::1/64</span>
+    <span class="nt">ipv6.nat</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
+  <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
+  <span class="nt">managed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridge</span>
+<span class="nt">storage_pools</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+  <span class="nt">config</span><span class="p">:</span>
+    <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15GB</span>
+    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/snap/lxd/common/lxd/disks/default.img</span>
+    <span class="nt">zfs.pool_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+  <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
+  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zfs</span>
+<span class="nt">profiles</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+  <span class="nt">config</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Default LXD profile</span>
+  <span class="nt">devices</span><span class="p">:</span>
+    <span class="nt">eth0</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth0</span>
+      <span class="nt">nictype</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridged</span>
+      <span class="nt">parent</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nic</span>
+    <span class="nt">root</span><span class="p">:</span>
+      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+      <span class="nt">pool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">disk</span>
+</pre></div>
+</div>
+<p>In obiger Ausgabe sehen wir unter <code class="docutils literal notranslate"><span class="pre">networks</span></code>, dass die IP Adresse des Managers
+<code class="docutils literal notranslate"><span class="pre">10.246.86.1/24</span></code> ist und es sich um ein Class C Netzwerk im Adressraum
+<code class="docutils literal notranslate"><span class="pre">10.0.0.0</span></code> handelt.</p>
+<p>Unter <code class="docutils literal notranslate"><span class="pre">storage_pools</span></code> sehen wir, dass die LXD <em>Datenbank</em> im <em>default</em> eine
+(maximale) Größe von 15GB hat.  Genau genommen ist diese <em>Datenbank</em> das Image
+eines <a class="reference external" href="https://de.wikipedia.org/wiki/SquashFS">Squash Dateisystems</a>.</p>
+<p>Weiter sieht man, dass es ein <em>default</em> Profil gibt.  Aus den Profilen werden
+(u.A.) die Container gebaut.  Hier sieht man, das ein solcher Container (intern)
+mit einem Netzwerkadapter (<code class="docutils literal notranslate"><span class="pre">eth0</span></code>) ausgestattet wird und <code class="docutils literal notranslate"><span class="pre">pool:</span> <span class="pre">default</span></code> sagt
+uns, dass dieser Container in dem Squash Dateisystem aufgebaut werden würde,
+dass wir unter <code class="docutils literal notranslate"><span class="pre">storage_pools:</span></code> unter dem Namen <code class="docutils literal notranslate"><span class="pre">default</span></code> sehen.</p>
 </div>
 
 

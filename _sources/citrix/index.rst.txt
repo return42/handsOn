@@ -141,7 +141,7 @@ auch immer, es kann also mehrere Vorlagen geben, die man ggf. anpassen möchte::
 ``ClientComm``
   Auch hierzu konnte ich keine Referenz finden, aber wenn ich das recht sehe
   kann damit der Serielle Port an den Remote weitergeleitet werden.  Ich konnte
-  keine Einschränkungen bei Abschaltng feststellen.
+  keine Einschränkungen bei Abschaltung feststellen.
 
 ``CREnabled``
   Schaltet die `Server-client content redirection`_ ein resp. aus.  Damit werden
