@@ -19,3 +19,4 @@
 .. _snap: https://snapcraft.io
 .. _snapcraft LXD: https://snapcraft.io/lxd
 .. _LXC/LXD Image Server: https://uk.images.linuxcontainers.org/
+.. _cloud-init: https://cloud-init.io/
