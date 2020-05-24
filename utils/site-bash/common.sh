@@ -644,7 +644,7 @@ TEE_stderr () {
 
     # Beispiel::
     #
-    #     TEE_stderr 3 <<EOF | python -i 2>&1 | prefix_stdout "OUT: "
+    #     TEE_stderr 3 <<EOF | python3 -i 2>&1 | prefix_stdout "OUT: "
     #     a=5+2
     #     b=a+3
     #     print "hello"
@@ -2081,11 +2081,11 @@ FFOX_globalAddOn() {
     # get extension UID from manifest.json or alternative from META-INF/mozilla.rsa
 
     UID_ADDON=$(unzip -p $2 manifest.json \
-        | python -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
+        | python3 -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
 
     if [[ -z ${UID_ADDON} ]] ; then
 	UID_ADDON=$(unzip -p $2 manifest.json \
-            | python -c  'import json,sys;print(json.load(sys.stdin)["browser_specific_settings"]["gecko"]["id"])' 2>/dev/null)
+            | python3 -c  'import json,sys;print(json.load(sys.stdin)["browser_specific_settings"]["gecko"]["id"])' 2>/dev/null)
     fi
 
     if [[ -z ${UID_ADDON} ]] ; then
