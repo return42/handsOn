@@ -264,12 +264,7 @@ Browser (Launcher) aufruft.
 
   $ torbrowser-launcher"
 
-    if askYn "soll der launcher installiert werden?"; then
-        if  [[ $(echo "$DISTRIB_RELEASE > 14.04" | bc) ]]; then
-	    # Ab 14.10 soll das ppa (resp. torbrowser-launcher) im Standard sein
-	    add-apt-repository -y ppa:micahflee/ppa
-	    apt-get update
-        fi
+    if askYn "Soll der Tor-Launcher installiert werden?"; then
         apt-get install -y torbrowser-launcher
     fi
     waitKEY 20
