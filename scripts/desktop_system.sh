@@ -39,8 +39,7 @@ GNOME3_PACKAGES="\
  gnome-getting-started-docs-de \
  gnome-power-manager gnome-tweak-tool \
  dconf-editor gconf-editor \
- gnome-packagekit gnome-packagekit-session \
- vanilla-gnome-desktop \
+ gnome-packagekit vanilla-gnome-desktop \
  elementary-icon-theme \
  gir1.2-gtop-2.0 gir1.2-gconf-2.0 gir1.2-clutter-1.0 \
  tracker tracker-extract tracker-miner-fs \
