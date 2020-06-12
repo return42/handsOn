@@ -1773,8 +1773,8 @@ pref("_user.js.parrot", "SUCCESS: No no he's not dead, he's, he's restin'!");
 // einzutragen ;-) .. soweit ich weiß, werden auf den about:home Seiten auch
 // Snippets genutzt (aka Remote Code Execution), siehe auch aboutHomeSnippets.
 
-// 2090218
-pref("browser.startup.homepage", "https://darmarit.cloud", locked);
+// 20200612
+pref("browser.startup.homepage", "https://darmarit.org", locked);
 
 // about:home
 // ----------
