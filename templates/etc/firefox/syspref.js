@@ -1942,5 +1942,10 @@ pref("browser.display.use_document_fonts", 1);
 // modern browsers are using WOFF2 fonts
 pref("gfx.downloadable_fonts.woff2.enabled", true);
 
-user_pref("intl.accept_languages", "de,en");
-user_pref("intl.locale.requested", "de,en");
+// HINT !!!
+//
+//    to avoid missing HTTP "Accept-Language" set user_pref
+//    in your ~/.mozilla/firefox/np9byfis.default-release/prefs.js
+//
+// user_pref("intl.accept_languages", "de,en");
+// user_pref("intl.locale.requested", "de,en");
