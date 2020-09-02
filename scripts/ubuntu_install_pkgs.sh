@@ -46,6 +46,7 @@ DEVELOP_PACKAGES="\
  diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
  docker.io \
+ grub-customizer \
 "
 # libjpeg-dev \
 
