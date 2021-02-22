@@ -1879,15 +1879,13 @@ pref("browser.startup.page", 3);
 // we need this for WebApps like keeweb
 pref("javascript.options.wasm", true);
 
-// see 1401 & 2620 which enables Firefox's built-in PDF reader The built-in PDF
-// Viewer needs to choose alternativ fonts.  Disable websites choosing fonts
-// means these symbols will never shown (blank pdf or missing sections where non
-// available fonts are used).
-pref("browser.display.use_document_fonts", 1);
-
 // see 1405:
 // modern browsers are using WOFF2 fonts
 pref("gfx.downloadable_fonts.woff2.enabled", true);
+
+// see 1244
+pref("dom.security.https_only_mode", false // [FF76+]
+pref("dom.security.https_only_mode_pbm", true); // [FF80+]
 
 // HINT !!!
 //
