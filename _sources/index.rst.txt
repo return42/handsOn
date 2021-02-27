@@ -1,8 +1,8 @@
 .. -*- coding: utf-8; mode: rst -*-
 
-================================================================================
-                                    handsOn
-================================================================================
+=======
+handsOn
+=======
 
 Aufgabe der handsOn ist es, eine möglichst *saubere* Installation und
 Orchestrierung von Diensten und Anwendungen auf Linux Systemen zu ermöglichen.
@@ -14,6 +14,11 @@ ist jedoch allgemeiner Natur.
 Einleitung und Übersicht
 ========================
 
+.. sidebar:: info
+
+   - `github return42/handsOn <https://github.com/return42/handsOn>`_
+   - :ref:`todo-list`
+
 .. toctree::
    :maxdepth: 1
 
@@ -22,30 +27,15 @@ Einleitung und Übersicht
    motivation
    LICENSE
 
-.. flat-table::
-
-   - - Dokumentation
-     - https://return42.github.io/handsOn
-
-   - - Reposetorie
-     - `github return42/handsOn <https://github.com/return42/handsOn>`_
-
-   - - Author e-mail
-     - markus.heiser@darmarIT.de
-
-   - - ..
-     - :ref:`todo-list`
-
-Foliensammlungen
-================
-
-- git Schulung: `get git started <slides/git/index.html>`_ (`zip <slides/git.zip>`__)
-
-- CDB Komponenten & Entwicklung `CDB-Tools <https://return42.github.io/cdb-tools>`_
-
 
 Themen
 ======
+
+.. sidebar:: Foliensammlungen
+
+   - git Schulung: `get git started <slides/git/index.html>`_ (`zip <slides/git.zip>`__)
+   - CDB Komponenten & Entwicklung `CDB-Tools <https://return42.github.io/cdb-tools>`_
+
 
 .. toctree::
    :maxdepth: 2
