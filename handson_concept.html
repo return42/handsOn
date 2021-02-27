@@ -1,203 +1,48 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Konzepte &amp; Tools &mdash; handsOn  Dokumentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-        <script type="text/javascript" src="_static/translations.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Konzepte &amp; Tools &#8212; handsOn  Dokumentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Motivation &amp; Umfeld" href="motivation.html" />
-    <link rel="prev" title="Get Started" href="get_started.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="Get Started" href="get_started.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = './';</script>
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="motivation.html" title="Motivation &amp; Umfeld"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="get_started.html" title="Get Started"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">handsOn  Dokumentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Konzepte &amp; Tools</a></li> 
+      </ul>
+    </div>  
 
-          
-            <a href="index.html" class="icon icon-home"> handsOn
-          
-
-          
-            
-            <img src="_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Konzepte &amp; Tools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ordnerstruktur">Ordnerstruktur</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#versionierung-des-setups">Versionierung des Setups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sicherung-eine-setups">Sicherung eine Setups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#anwendung-gesicherter-config-dateien">Anwendung gesicherter Config-Dateien</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#config-setup-sh"><code class="docutils literal notranslate"><span class="pre">${CONFIG}_setup.sh</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#config-sysinfo"><code class="docutils literal notranslate"><span class="pre">${CONFIG}_sysinfo</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#merge-tool">Merge Tool</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#diff-tool">Diff Tool</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#allgemeine-verweise">Allgemeine Verweise</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#merge">Merge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#autoring-tools">Autoring Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#paketmanager">Paketmanager</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#debian-derivate">Debian-Derivate</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#skriptsprachen">Skriptsprachen</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="motivation.html">Motivation &amp; Umfeld</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">Lizenzbedingungen</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="desktop_system/index.html">Desktop Umgebungen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ubuntu_install_pkgs/index.html">Anwendungspakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="devTools/index.html">Entwickler Pakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nodejs/index.html">Node.js (development)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mozcloud/index.html">Setup Mozilla Dienste</a></li>
-<li class="toctree-l1"><a class="reference internal" href="radicale/index.html">CalDAV &amp; CardDAV</a></li>
-<li class="toctree-l1"><a class="reference internal" href="print/index.html">Drucken mit CUPS &amp; IPP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scan/index.html">Scannen mit SANE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="android/index.html">Android</a></li>
-<li class="toctree-l1"><a class="reference internal" href="snappy/index.html">Linux snap-Pakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="citrix/index.html">Citrix Workspace App</a></li>
-<li class="toctree-l1"><a class="reference internal" href="oracle/index.html">Oracle (developer)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="searx.html">searx Suchmaschine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gogs.html">Gogs / Go Git Service</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glances.html">Glances: an eye on your system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pihole/index.html">pi-hole</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">handsOn</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Konzepte &amp; Tools</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/handson_concept.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <div class="section" id="konzepte-tools">
 <span id="xref-handson-concept"></span><h1>Konzepte &amp; Tools<a class="headerlink" href="#konzepte-tools" title="Link zu dieser Überschrift">¶</a></h1>
@@ -227,23 +72,23 @@ komplexer Anwendungen.  Es verzichtet auf <em>große</em> Tools und besteht im K
 </pre></div>
 </div>
 <dl class="glossary">
-<dt id="term-config">.config</dt><dd><p>In der Datei werden nur allgemeine Settings, die nur die handsOn selbst
+<dt id="term-.config">.config<a class="headerlink" href="#term-.config" title="Permalink to this term">¶</a></dt><dd><p>In der Datei werden nur allgemeine Settings, die nur die handsOn selbst
 betreffen vorgenommen.  Z.B. Angaben dazu wo die Config-Dateien zu finden
 sind oder welche Tools für einen Merge verwendet werden sollen.  Von
 zentraler Bedeutung ist die Variable <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> die den Pfad zum Setup
 angibt (<a class="reference internal" href="#xref-handson-setup"><span class="std std-ref">Versionierung des Setups</span></a>).</p>
 </dd>
-<dt id="term-hostsetup">hostSetup</dt><dd><p>In dem Ordner werden die Sicherungen der Setups eines HOSTs abgelegt und
+<dt id="term-hostSetup">hostSetup<a class="headerlink" href="#term-hostSetup" title="Permalink to this term">¶</a></dt><dd><p>In dem Ordner werden die Sicherungen der Setups eines HOSTs abgelegt und
 <strong>versioniert</strong>.  Voraussetzung für eine Sicherung ist das Vorhandensein
 einer <code class="docutils literal notranslate"><span class="pre">&lt;profile&gt;_setup.sh</span></code> Datei in der angegeben wird, was alles
 gesichert werden soll (<a class="reference internal" href="#config-setup-sh">CONFIG_setup_sh</a>).</p>
 </dd>
-<dt id="term-doc">doc</dt><dd><p>In dem Ordner sind die Quelldateien zu <em>dieser</em> Dokumentation.</p>
+<dt id="term-doc">doc<a class="headerlink" href="#term-doc" title="Permalink to this term">¶</a></dt><dd><p>In dem Ordner sind die Quelldateien zu <em>dieser</em> Dokumentation.</p>
 </dd>
-<dt id="term-cache">cache</dt><dd><p>In dem Ordner werden die Reposetories und Softwarepakete zu den
+<dt id="term-cache">cache<a class="headerlink" href="#term-cache" title="Permalink to this term">¶</a></dt><dd><p>In dem Ordner werden die Reposetories und Softwarepakete zu den
 Installationen <em>gecached</em> (Downloads aus dem Internet)</p>
 </dd>
-<dt id="term-scripts">scripts</dt><dt id="term-scripts-folder">scripts_folder</dt><dd><p>In dem Ordner sind die Skripte zum Installieren der Dienste &amp; Anwendungen.</p>
+<dt id="term-scripts">scripts<a class="headerlink" href="#term-scripts" title="Permalink to this term">¶</a></dt><dt id="term-scripts_folder">scripts_folder<a class="headerlink" href="#term-scripts_folder" title="Permalink to this term">¶</a></dt><dd><p>In dem Ordner sind die Skripte zum Installieren der Dienste &amp; Anwendungen.</p>
 <p>Die Skripte sind i.d.R. Shell-Skripte (<a class="reference external" href="https://www.gnu.org/software/bash/">GNU Bash</a>).  Warum Shell-Skripte?
 Es ist die pragmatischste Herangehensweise Anwendungen einzurichten.
 Nahezu alle Dienste und Anwendungen können letztlich über eine
@@ -254,7 +99,7 @@ Anforderungen an das Skripting gestellt werden, werde ich ergänzend
 sich die Skripte im allgemeinen recht einfach gestalten und mit <a class="reference external" href="https://www.gnu.org/software/bash/">GNU Bash</a>
 am einfachsten implementiert werden konnten.</p>
 </dd>
-<dt id="term-templates">templates</dt><dd><p>In dem Ordner sind <em>Vorlagen</em> von Konfigurationsdateien, die zu den
+<dt id="term-templates">templates<a class="headerlink" href="#term-templates" title="Permalink to this term">¶</a></dt><dd><p>In dem Ordner sind <em>Vorlagen</em> von Konfigurationsdateien, die zu den
 Anwendungen gehören, welche mit den Skripten installiert werden.  Diese
 <em>Vorlagen</em> sind erste gute Einstellungen, die man sich aber – über kurz
 oder lang – wird anpassen wollen.  Angepasst werden die Dateien im System
@@ -270,7 +115,7 @@ anderen Anpassungen auf dem Host.</p>
 <p>Im Rahmen der <a class="reference internal" href="get_started.html#xref-install-handson"><span class="std std-ref">Installation</span></a> wurde der Ordner
 <code class="docutils literal notranslate"><span class="pre">hostSetup</span></code> angelegt.  In diesem Ordner können die Setups versioniert werden.
 Das dieser Ordner für die Setups verwendet werden soll, wurde in der
-<a class="reference internal" href="#term-config"><span class="xref std std-term">.config</span></a> Datei über die Variable <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> festgelegt.:</p>
+<a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> Datei über die Variable <code class="docutils literal notranslate"><span class="pre">CONFIG</span></code> festgelegt.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{REPO_ROOT}</span><span class="s2">/hostSetup/$(hostname)&quot;</span>
 <span class="c1">#CONFIG=&quot;${REPO_ROOT}/hostSetup/clientpc&quot;</span>
 </pre></div>
@@ -352,7 +197,7 @@ zusammenzuführen (<a class="reference internal" href="#merge-cmd">MERGE_CMD</a>
 <div class="section" id="config-setup-sh">
 <span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">${CONFIG}_setup.sh</span></code><a class="headerlink" href="#config-setup-sh" title="Link zu dieser Überschrift">¶</a></h2>
 <p>In der Datei werden alle Anpassungen des Profils definiert.  Sie wird in dem
-Ordner <a class="reference internal" href="#term-hostsetup"><span class="xref std std-term">hostSetup</span></a> angelegt, also z.B:</p>
+Ordner <a class="reference internal" href="#term-hostSetup"><span class="xref std std-term">hostSetup</span></a> angelegt, also z.B:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">foo</span><span class="o">/</span><span class="n">repo_setups</span><span class="o">/&lt;</span><span class="n">profile</span><span class="o">&gt;</span><span class="n">_setup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
@@ -379,7 +224,7 @@ werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">backup_config</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
-<p>Obiger Aufruf legt thematisch sortiert Dateien in dem Ordner <a class="reference internal" href="#term-hostsetup"><span class="xref std std-term">hostSetup</span></a>
+<p>Obiger Aufruf legt thematisch sortiert Dateien in dem Ordner <a class="reference internal" href="#term-hostSetup"><span class="xref std std-term">hostSetup</span></a>
 (<code class="docutils literal notranslate"><span class="pre">${CONFIG}_sysinfo</span></code>) an.  Z.B. wird für jede Festplatte eine Protokolldatei
 mit performance Messungen und SMART Werten erzeugt und es werden Dateien mit den
 Ausgaben zu <code class="docutils literal notranslate"><span class="pre">lshw</span></code>, <code class="docutils literal notranslate"><span class="pre">lsusb</span></code>, <code class="docutils literal notranslate"><span class="pre">lspci</span></code> und zum X-Display (<code class="docutils literal notranslate"><span class="pre">xrander</span></code>)
@@ -392,7 +237,7 @@ SMART Werte.</em></p>
 <div class="section" id="merge-tool">
 <h3>Merge Tool<a class="headerlink" href="#merge-tool" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Als Merge Tool wird im Default der <a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a> genutzt.  Will man davon abweichend
-ein anderes Werkzeug nutzen, so kann man dafür in der <a class="reference internal" href="#term-config"><span class="xref std std-term">.config</span></a> Datei die
+ein anderes Werkzeug nutzen, so kann man dafür in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> Datei die
 Variablen <a class="reference internal" href="#merge-cmd">MERGE_CMD</a> und <a class="reference internal" href="#three-way-merge-cmd">THREE_WAY_MERGE_CMD</a> setzen.  Alternativen zum Emacs
 finden sich z.B. in den Artikeln auf <a class="reference external" href="http://stackoverflow.com/questions/572237/whats-the-best-three-way-merge-tool">Stackoverflow (best 3 way merge tool)</a>
 oder <a class="reference external" href="https://en.wikipedia.org/wiki/Comparison_of_file_comparison_tools#Compare_features">Wikipedia (File comparision tools / features)</a>. In jedem Fall muss das
@@ -405,7 +250,7 @@ Dateinamen entgegennehmen.:</p>
 </pre></div>
 </div>
 <p>Im Default ist der <a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a> eingestellt <code class="docutils literal notranslate"><span class="pre">merge2FilesWithEmacs</span></code>. Wenn Sie
-besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> klar kommen, ändern Sie den Wert in der <a class="reference internal" href="#term-config"><span class="xref std std-term">.config</span></a> auf
+besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> klar kommen, ändern Sie den Wert in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> auf
 <code class="docutils literal notranslate"><span class="pre">merge2FilesWithMeld</span></code>.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MERGE_CMD</span><span class="o">=</span><span class="n">merge2FilesWithMeld</span>
 </pre></div>
@@ -420,7 +265,7 @@ Dateinamen entgegennehmen.:</p>
 </pre></div>
 </div>
 <p>Im Default ist der <a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a> eingestellt <code class="docutils literal notranslate"><span class="pre">merge3FilesWithEmacs</span></code>. Wenn Sie
-besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> klar kommen, ändern Sie den Wert in der <a class="reference internal" href="#term-config"><span class="xref std std-term">.config</span></a> auf
+besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> klar kommen, ändern Sie den Wert in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> auf
 <code class="docutils literal notranslate"><span class="pre">merge3FilesWithMeld</span></code>.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">THREE_WAY_MERGE_CMD</span><span class="o">=</span><span class="n">merge3FilesWithMeld</span>
 </pre></div>
@@ -432,7 +277,7 @@ besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> k
 <span id="diff-cmd"></span><h3>Diff Tool<a class="headerlink" href="#diff-tool" title="Link zu dieser Überschrift">¶</a></h3>
 <p>Im Default wird <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=colordiff">colordiff</a> verwendet, wenn das nicht vorhanden ist, wird
 <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=diff">diff</a> verwendet.  Will man davon abweichend ein anderes Werkzeug nutzen,
-so kann man in der <a class="reference internal" href="#term-config"><span class="xref std std-term">.config</span></a> Datei die Variablen dafür setzen:</p>
+so kann man in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> Datei die Variablen dafür setzen:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># $DIFF_CMD {file_a} {file_b}
 DIFF_CMD=??
 </pre></div>
@@ -486,52 +331,73 @@ DIFF_CMD=??
 </div>
 
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="motivation.html" class="btn btn-neutral float-right" title="Motivation &amp; Umfeld" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="get_started.html" class="btn btn-neutral float-left" title="Get Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
 
-</body>
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">Konzepte &amp; Tools</a><ul>
+<li><a class="reference internal" href="#ordnerstruktur">Ordnerstruktur</a></li>
+<li><a class="reference internal" href="#versionierung-des-setups">Versionierung des Setups</a></li>
+<li><a class="reference internal" href="#sicherung-eine-setups">Sicherung eine Setups</a></li>
+<li><a class="reference internal" href="#anwendung-gesicherter-config-dateien">Anwendung gesicherter Config-Dateien</a></li>
+<li><a class="reference internal" href="#config-setup-sh"><code class="docutils literal notranslate"><span class="pre">${CONFIG}_setup.sh</span></code></a></li>
+<li><a class="reference internal" href="#config-sysinfo"><code class="docutils literal notranslate"><span class="pre">${CONFIG}_sysinfo</span></code></a><ul>
+<li><a class="reference internal" href="#merge-tool">Merge Tool</a></li>
+<li><a class="reference internal" href="#diff-tool">Diff Tool</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#allgemeine-verweise">Allgemeine Verweise</a><ul>
+<li><a class="reference internal" href="#merge">Merge</a></li>
+<li><a class="reference internal" href="#autoring-tools">Autoring Tools</a></li>
+<li><a class="reference internal" href="#paketmanager">Paketmanager</a></li>
+<li><a class="reference internal" href="#debian-derivate">Debian-Derivate</a></li>
+<li><a class="reference internal" href="#skriptsprachen">Skriptsprachen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="index.html">Overview</a>
+    <ul>
+          <li>Previous: <a href="get_started.html" title="vorheriges Kapitel">Get Started</a>
+          <li>Next: <a href="motivation.html" title="nächstes Kapitel">Motivation &amp; Umfeld</a>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+    </div>
+  <script src="_static/version_warning_offset.js"></script>
+
+  </body>
 </html>

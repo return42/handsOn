@@ -112,7 +112,10 @@ Installation ermittelt und hängt von der Umgebungsvariablen ``LANG`` ab, die de
 Admin bei der Installation hatte .. warum? .. das fragt man besser Citrix.  Wie
 auch immer, es kann also mehrere Vorlagen geben, die man ggf. anpassen möchte::
 
-  /opt/Citrix/ICAClient/<lang>/nls/de/wfclient.template
+  /opt/Citrix/ICAClient/nls/<lang>/wfclient.template
+
+Hier ein Vorschlag wie man die Werte setzen sollte (Beschreibung der Optionen
+siehe unten):
 
 .. code:: ini
 
@@ -120,7 +123,7 @@ auch immer, es kann also mehrere Vorlagen geben, die man ggf. anpassen möchte::
    ...
    CDMAllowed=Off
    ; CDMReadOnly=On
-   CREnabled=Off
+   CREnabled=False
    CientPrinterQueue=Off
    ClientManagement=Off
    ClientComm=Off

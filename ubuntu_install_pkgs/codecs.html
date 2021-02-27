@@ -1,204 +1,49 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="de" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="de" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Codec Pakete &mdash; handsOn  Dokumentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-        <script type="text/javascript" src="../_static/translations.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Codec Pakete &#8212; handsOn  Dokumentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Bildbearbeitung" href="imgTools.html" />
-    <link rel="prev" title="Multimedia Pakete" href="multimedia.html" /> 
-</head>
-
-<body class="wy-body-for-nav">
-
+    <link rel="prev" title="Multimedia Pakete" href="multimedia.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
    
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="imgTools.html" title="Bildbearbeitung"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="multimedia.html" title="Multimedia Pakete"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">handsOn  Dokumentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Anwendungspakete</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Codec Pakete</a></li> 
+      </ul>
+    </div>  
 
-          
-            <a href="../index.html" class="icon icon-home"> handsOn
-          
-
-          
-            
-            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../handson_concept.html">Konzepte &amp; Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../motivation.html">Motivation &amp; Umfeld</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../LICENSE.html">Lizenzbedingungen</a></li>
-</ul>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../desktop_system/index.html">Desktop Umgebungen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ubuntu_remove_pkgs/index.html">Zweifelhafte Ubuntu Pakete</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Anwendungspakete</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="office.html">Office Anwendungen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multimedia.html">Multimedia Pakete</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Codec Pakete</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">FFmpeg</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">libav</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#gstreamer-plugins">GStreamer Plugins</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ubuntu-restricted-extras">ubuntu-restricted-extras</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#zusammenfassung">Zusammenfassung</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="imgTools.html">Bildbearbeitung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="archTools.html">Archivierung / Komprimierung</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hwTools.html">Sensoren / Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="monitoring.html">Prozess-Monitoring</a></li>
-<li class="toctree-l2"><a class="reference internal" href="netTools.html">Netzwerk Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ubuntu_install_pkgs_refs.html">Verweise</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../devTools/index.html">Entwickler Pakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../nodejs/index.html">Node.js (development)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../apache_setup/index.html">Setup Apache2 HTTP Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../mozcloud/index.html">Setup Mozilla Dienste</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../radicale/index.html">CalDAV &amp; CardDAV</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../print/index.html">Drucken mit CUPS &amp; IPP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../scan/index.html">Scannen mit SANE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../android/index.html">Android</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../snappy/index.html">Linux snap-Pakete</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lxdlxc/index.html">Linux Container (LXC &amp; LXD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../citrix/index.html">Citrix Workspace App</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../oracle/index.html">Oracle (developer)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../searx.html">searx Suchmaschine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gogs.html">Gogs / Go Git Service</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../glances.html">Glances: an eye on your system</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pihole/index.html">pi-hole</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../excursion/index.html">Exkursionen und Erfahrungswerte</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">handsOn</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="index.html">Anwendungspakete</a> &raquo;</li>
-        
-      <li>Codec Pakete</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/ubuntu_install_pkgs/codecs.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <div class="section" id="codec-pakete">
 <span id="xref-ubuntu-codecs"></span><h1>Codec Pakete<a class="headerlink" href="#codec-pakete" title="Link zu dieser Überschrift">¶</a></h1>
@@ -286,52 +131,64 @@ dem nächsten Ubuntu Release ändert.  Am besten man installiert sich nur:</p>
 </div>
 
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="imgTools.html" class="btn btn-neutral float-right" title="Bildbearbeitung" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="multimedia.html" class="btn btn-neutral float-left" title="Multimedia Pakete" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
 
-</body>
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">Codec Pakete</a><ul>
+<li><a class="reference internal" href="#id1">FFmpeg</a></li>
+<li><a class="reference internal" href="#id2">libav</a></li>
+<li><a class="reference internal" href="#gstreamer-plugins">GStreamer Plugins</a></li>
+<li><a class="reference internal" href="#ubuntu-restricted-extras">ubuntu-restricted-extras</a></li>
+<li><a class="reference internal" href="#zusammenfassung">Zusammenfassung</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    <ul>
+      <li><a href="index.html">Anwendungspakete</a>
+        <ul>
+          <li>Previous: <a href="multimedia.html" title="vorheriges Kapitel">Multimedia Pakete</a>
+          <li>Next: <a href="imgTools.html" title="nächstes Kapitel">Bildbearbeitung</a></ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
 </html>
