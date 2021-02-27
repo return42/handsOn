@@ -12,14 +12,13 @@
 # -------
 
 Sphinx
-sphinx_rtd_theme
-sphinxcontrib-programoutput
+pallets-sphinx-themes
 sphinx-autobuild
-pip
-
-git+https://github.com/return42/sphinxjp.themes.revealjs
+sphinx-issues
+sphinx-jinja
+sphinx-tabs
+sphinxcontrib-programoutput
+linuxdoc
+sphinxjp.themes.revealjs @ git+https://github.com/return42/sphinxjp.themes.revealjs
 # -e file:../sphinxjp.themes.revealjs#egg=sphinxjp.themes.revealjs
-
-# linuxdoc for DOT support
-git+http://github.com/return42/linuxdoc.git
 

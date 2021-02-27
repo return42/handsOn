@@ -2,12 +2,19 @@
 #
 # Sphinx documentation build configuration file
 
-import sys
-import sphinx_rtd_theme
+import os, sys
 
-language  = 'de'
+from pallets_sphinx_themes import ProjectLink
+
+sys.path.append(os.path.abspath('../utils/site-python'))
+from sphinx_build_tools import load_sphinx_config
+
+
 project   = u'handsOn'
 copyright = u'2019 Markus Heiser'
+show_authors = True
+
+language  = 'de'
 author    = u'Markus Heiser'
 
 source_suffix       = '.rst'
@@ -19,7 +26,8 @@ todo_include_todos  = True
 # pygments_style = 'sphinx'
 
 extensions = [
-    'sphinx.ext.autodoc'
+    'sphinx.ext.imgmath'
+    , 'sphinx.ext.autodoc'
     , 'sphinx.ext.extlinks'
     #, 'sphinx.ext.autosummary'
     #, 'sphinx.ext.doctest'
@@ -35,7 +43,9 @@ extensions = [
     , 'linuxdoc.manKernelDoc'    # Implementation of the 'kernel-doc-man' builder
     , 'linuxdoc.cdomain'         # Replacement for the sphinx c-domain.
     , 'linuxdoc.kfigure'         # Sphinx extension which implements scalable image handling.
-    , 'sphinxcontrib.programoutput'
+    , 'sphinx_tabs.tabs'         # https://github.com/djungelorm/sphinx-tabs
+    , 'pallets_sphinx_themes'
+    , 'sphinxcontrib.programoutput'  # https://github.com/NextThought/sphinxcontrib-programoutput
 ]
 
 intersphinx_mapping = {}
@@ -53,12 +63,18 @@ extlinks['origin']    = ('https://github.com/return42/handsOn/blob/master/%s', '
 extlinks['commit']    = ('https://github.com/return42/handsOn/commit/%s', '#')
 extlinks['apache_mod']  = ('https://httpd.apache.org/docs/current/mod/%s.html', 'Apache ')
 
+
 html_search_language = 'de'
-html_theme           = "sphinx_rtd_theme"
+
+sys.path.append(os.path.abspath('_themes'))
+html_theme           = "custom"
 html_logo            = 'darmarIT_logo_128.png'
-html_theme_path      = [sphinx_rtd_theme.get_html_theme_path()]
-html_static_path     = ["../utils/sphinx-static"]
-html_context         = {
-    'css_files': [
-        '_static/theme_overrides.css', ]
-    , }
+html_theme_path      = ['_themes']
+
+html_theme_options = {"index_sidebar_logo": True}
+# html_context = {
+#     "project_links": [
+#         ProjectLink("Slide Collection", DOC_URL + '/slides/index.html'),
+#         ProjectLink("API", DOC_URL+ '/xxxx-api/xxxx.html'),
+#     ]
+# }

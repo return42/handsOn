@@ -6,7 +6,6 @@ include utils/makefile.sphinx
 
 GIT_URL   = https://github.com/return42/handsOn.git
 SLIDES    = docs/slides
-#PYOBJECTS = xxxx
 
 all: clean pylint pytest build docs
 
@@ -21,32 +20,26 @@ help:
 	@echo  ''
 	@$(MAKE) -s -f utils/makefile.sphinx docs-help
 
+
 PHONY += docs
-docs: pyrequirements sphinx-doc slides
-	$(call cmd,sphinx,html,docs,docs)
+docs:  pyenv slides
+	$(call cmd,sphinx,html,$(DOCS_FOLDER),$(DOCS_FOLDER))
 
 PHONY += docs-live
-docs-live: pyrequirements sphinx-live
-	$(call cmd,sphinx_autobuild,html,docs,docs)
+docs-live: pyenv
+	$(call cmd,sphinx_autobuild,html,$(DOCS_FOLDER),$(DOCS_FOLDER))
 
 PHONY += slides
 slides: git-slide
 	cd $(DOCS_DIST)/slides; zip -r git.zip git
 
 PHONY += git-slide
-git-slide: pyrequirements sphinx-doc
+git-slide: pyenvinstall
 	$(call cmd,sphinx,html,$(SLIDES)/git,$(SLIDES)/git,slides/git)
 
 PHONY += clean
 clean: pyclean docs-clean
 	$(call cmd,common_clean)
-
-PHONY += pyrequirements
-pyrequirements: $(PY_ENV)
-	$(PY_ENV_BIN)/pip $(PIP_VERBOSE) install -r requirements.txt $(PY_SETUP_EXTRAS)
-
-PHONY += rqmts
-rqmts: msg-python-exe msg-virtualenv-exe
 
 PHONY += deploy
 deploy: docs-clean gh-pages
