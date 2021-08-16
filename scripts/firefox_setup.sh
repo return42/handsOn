@@ -52,11 +52,11 @@ MOZILLA_XPI_URL=(
     #           https://addons.mozilla.org/de/firefox/addon/dictcc-translation/
     "https://addons.mozilla.org/firefox/downloads/latest/dictcc-translation/platform:2/addon-15095-latest.xpi"
 
-    # Google search link fix
+    # Google search link fix (DISCONTINUED)
     # zuletzt verifiziert: 20210220
     # Homepage: https://github.com/palant/searchlinkfix
     #           https://addons.mozilla.org/de/firefox/addon/google-search-link-fix
-    "https://addons.mozilla.org/firefox/downloads/latest/google-search-link-fix/addon-351740-latest.xpi"
+    # "https://addons.mozilla.org/firefox/downloads/latest/google-search-link-fix/addon-351740-latest.xpi"
 
     # Privacy Settings
     # FIXME: könnte immernoch ganz praktisch sein .. aber braucht man das immernoch?
