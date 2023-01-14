@@ -23,10 +23,10 @@ BASE_PACKAGES="\
  util-linux ppa-purge ssh ubuntu-drivers-common \
  aptitude software-properties-common apt-file synaptic gdebi bash-completion \
  build-essential dkms tree \
- python \
- python3-dev python3-argcomplete python3-pip python3-virtualenv pylint3 \
+ python3 python3-venv \
+ python3-dev python3-argcomplete python3-pip python3-virtualenv pylint \
  git curl colordiff meld \
- gparted exfat-fuse exfat-utils smartmontools \
+ gparted exfatprogs smartmontools \
  ncdu poppler-utils \
  net-tools \
 "
@@ -77,7 +77,7 @@ OFFICE_PACKAGES="\
 MULTIMEDIA_CLIENT_PACKAGES_TITLE="MultiMedia Pakete, Video, Audio"
 MULTIMEDIA_CLIENT_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/multimedia.html"
 MULTIMEDIA_CLIENT_PACKAGES="\
- vlc qmmp openshot handbrake mixxx audacious mpv youtube-dl
+ vlc qmmp handbrake mixxx audacious mpv youtube-dl
 "
 CODEC_PACKAGES_TITLE="Codec Pakete; Audio & Video Tools"
 CODEC_PACKAGES_DOC="http://return42.github.io/handsOn/ubuntu_install_pkgs/codecs.html"
@@ -107,7 +107,7 @@ ARCHIVE_TOOLS_PACKAGES="\
 
 HARDWARE_PACKAGES_TITLE="Hardware-Tools"
 HARDWARE_PACKAGES="\
- powertop lm-sensors psensor pm-utils exfat-fuse exfat-utils \
+ powertop lm-sensors psensor pm-utils exfatprogs \
 "
 
 MONITORING_PACKAGES_TITLE="System-Monitoring-Tools"
