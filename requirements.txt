@@ -11,7 +11,7 @@
 # develop
 # -------
 
-Sphinx
+Sphinx==5.3
 pallets-sphinx-themes
 sphinx-autobuild
 sphinx-issues
