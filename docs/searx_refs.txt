@@ -1,9 +1,0 @@
-.. -*- coding: utf-8; mode: rst -*-
-
-.. _searX: https://asciimoo.github.io/searx/
-.. _searX-git: https://github.com/asciimoo/searx.git
-.. _Searx-instances: https://github.com/asciimoo/searx/wiki/Searx-instances
-.. _searx-github: https://github.com/asciimoo/searx
-
-.. _kuketz-suche.de: https://www.kuketz-suche.de
-.. _searX@darmarIT: https://darmarit.cloud/searx

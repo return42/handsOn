@@ -56,7 +56,6 @@ Themen
    docker/index
    citrix/index
    oracle/index
-   searx
    gogs
    glances
    pihole/index
