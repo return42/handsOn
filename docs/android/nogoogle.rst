@@ -139,11 +139,9 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   Folgende Add-ons empfehlen sich zur Wahrung der Privatsphäre und zum Schutz
   vor Schadsoftware (s.a. :ref:`search_engines`):
 
-  1. `uBlock-origin`_ **!!must have!!**
-  2. `Google search link fix`_ **!!must have!!**
-  3. `Privacy Possum`_
-  4. `CanvasBlocker`_
-  5. `Decentraleyes`_
+  #. `uBlock-origin`_ **!!must have!!**
+  #. `CanvasBlocker`_
+  #. `Decentraleyes`_
 
 - `K-9 Mail Client <https://k9mail.github.io/>`_ / (`F-Droid
   <https://f-droid.org/en/packages/com.fsck.k9>`__)

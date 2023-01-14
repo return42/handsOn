@@ -21,16 +21,10 @@ DEB_PCKG="firefox firefox-locale-de"
 MOZILLA_XPI_URL=(
 
     # DuckDuckGo
-    # zuletzt verifiziert: 20210220
+    # zuletzt verifiziert: 20230114xs
     # Homepage: https://github.com/duckduckgo/duckduckgo-privacy-extension
     #           https://addons.mozilla.org/de/firefox/addon/duckduckgo-for-firefox/
      "https://addons.mozilla.org/firefox/downloads/file/1000998/duckduckgo_privacy_essentials.xpi"
-
-    # Privacy Possum by cowlicks
-    # zuletzt verifiziert: 20210220
-    # Homepage: https://github.com/cowlicks/privacypossum
-    #           https://addons.mozilla.org/de/firefox/addon/privacy-possum/
-    "https://addons.mozilla.org/firefox/downloads/latest/privacy-possum/addon-1062944-latest.xpi"
 
     # CanvasBlocker
     # zuletzt verifiziert: 20210220
@@ -51,12 +45,6 @@ MOZILLA_XPI_URL=(
     # Homepage: https://github.com/Lusito/dict.cc-translation
     #           https://addons.mozilla.org/de/firefox/addon/dictcc-translation/
     "https://addons.mozilla.org/firefox/downloads/latest/dictcc-translation/platform:2/addon-15095-latest.xpi"
-
-    # Google search link fix (DISCONTINUED)
-    # zuletzt verifiziert: 20210220
-    # Homepage: https://github.com/palant/searchlinkfix
-    #           https://addons.mozilla.org/de/firefox/addon/google-search-link-fix
-    # "https://addons.mozilla.org/firefox/downloads/latest/google-search-link-fix/addon-351740-latest.xpi"
 
     # Privacy Settings
     # FIXME: könnte immernoch ganz praktisch sein .. aber braucht man das immernoch?

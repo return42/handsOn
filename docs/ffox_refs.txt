@@ -1,10 +1,8 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. _uBlock-origin: https://addons.mozilla.org/de/firefox/addon/ublock-origin
-.. _`Google search link fix`: https://addons.mozilla.org/de/firefox/addon/google-search-link-fix
 .. _CanvasBlocker: https://addons.mozilla.org/de/firefox/addon/canvasblocker
 .. _Decentraleyes: https://addons.mozilla.org/de/firefox/addon/decentraleyes
 .. _lightbeam: https://www.mozilla.org/en-US/lightbeam/
-.. _`Privacy Possum`: https://addons.mozilla.org/en-US/firefox/addon/privacy-possum/
 .. _DDG: https://duckduckgo.com
 .. _`DDG FFox AddOn`: https://addons.mozilla.org/de/firefox/addon/duckduckgo-for-firefox
