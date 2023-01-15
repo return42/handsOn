@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Remote-Images &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Container &amp; Images" href="container_images.html" />
-    <link rel="prev" title="LXD Installation" href="install_lxd_lxc.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="LXD Installation" href="install_lxd_lxc.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="remote-images">
-<span id="lxc-remote-images"></span><h1>Remote-Images<a class="headerlink" href="#remote-images" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="remote-images">
+<span id="lxc-remote-images"></span><h1>Remote-Images<a class="headerlink" href="#remote-images" title="Permalink to this heading">¶</a></h1>
 <p>LXC basiert auf <em>Images</em>. Bevor ein Container gestartet werden kann muss ein
 Image gewählt werden, das in dem Container ausgeführt wird. Es gibt drei
 Möglichkeiten, <em>Images</em> zu beziehen bzw. bereit zu stellen:</p>
@@ -63,13 +63,6 @@ als erstes zu widmen.</p>
 </pre></div>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 47%" />
-<col style="width: 17%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p>NAME</p></td>
 <td><p>URL</p></td>
@@ -120,7 +113,7 @@ Tabelle gibt es dann ein analoges:</p>
 </pre></div>
 </div>
 <p>Mehr zu Remote-Image-Server siehe <a class="reference external" href="https://insights.ubuntu.com/2016/04/13/lxd-2-0-remote-hosts-and-container-migration-612/">LXD 2.0: Remote hosts and container migration</a>.</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -152,12 +145,12 @@ Tabelle gibt es dann ein analoges:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -165,7 +158,7 @@ Tabelle gibt es dann ein analoges:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

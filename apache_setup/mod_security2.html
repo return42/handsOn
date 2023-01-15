@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WAF: ModSecurity &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="System-Dokumentation" href="site_sysdoc.html" />
-    <link rel="prev" title="HTML Startseite" href="site_html-intro.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="HTML Startseite" href="site_html-intro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="waf-modsecurity">
-<span id="xref-mod-security2"></span><h1>WAF: ModSecurity<a class="headerlink" href="#waf-modsecurity" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="waf-modsecurity">
+<span id="xref-mod-security2"></span><h1>WAF: ModSecurity<a class="headerlink" href="#waf-modsecurity" title="Permalink to this heading">¶</a></h1>
 <p>Um den Apache-Server und die auf ihm betriebenen Anwendungen etwas robuster
 gegen Angriffe zu machen kann man sich eine <a class="reference external" href="https://de.wikipedia.org/wiki/Web_Application_Firewall">WAF (wiki)</a> installieren. Im
 Abschnitt <a class="reference internal" href="dbp_apache_pkgs.html#xref-dbp-apache-pkgs"><span class="std std-ref">Apache Pakete</span></a> wurde bereits das Paket
@@ -88,8 +88,8 @@ wie fehlerhaft sie programmiert oder eingerichtet wurden.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.netnea.com/cms/2016/01/17/most-frequent-false-positives-triggered-by-owasp-modsecurity-core-rules-2-2-x/">Most Frequent False Positives Triggered by OWASP ModSecurity Core Rules 2.2.X</a></p></li>
 </ul>
-<div class="section" id="debian-modsecurity-distribution">
-<h2>Debian ModSecurity Distribution<a class="headerlink" href="#debian-modsecurity-distribution" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="debian-modsecurity-distribution">
+<h2>Debian ModSecurity Distribution<a class="headerlink" href="#debian-modsecurity-distribution" title="Permalink to this heading">¶</a></h2>
 <p>Das ModSecurity Modul in der Debian Distribution besteht aus den Paketen</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://packages.ubuntu.com/modsecurity-crs">modsecurity-crs</a> und</p></li>
@@ -105,7 +105,7 @@ Default die <code class="docutils literal notranslate"><span class="pre">/etc/ap
 <p>Diese Datei bindet alle folgenden Konfigurationen ein, resp. entscheidet
 darüber welche Konfigurationen weiter importiert werden sollen. Ihre Includes
 können beispielsweise wie folgt aussehen.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">IncludeOptional</span> <span class="sx">/etc/modsecurity/*.conf</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">IncludeOptional</span><span class="w"> </span><span class="sx">/etc/modsecurity/*.conf</span>
 </pre></div>
 </div>
 </li>
@@ -138,9 +138,9 @@ aber die scheinen mir eher marginal. Ich vermute mal, das liegt daran, dass
 die version 3.x noch <em>begutachtet</em> wird (s.a. <a class="reference external" href="https://www.netnea.com/cms/2015/12/20/modsec-crs-2-2-x-vs-3-0-0-dev/">OWASP ModSecurity Core Rules:
 Comparing 2.2.x and 3.0.0-dev</a>).</p>
 </div></blockquote>
-</div>
-<div class="section" id="ein-einfache-re-s-konzept">
-<h2>Ein einfache(re)s Konzept<a class="headerlink" href="#ein-einfache-re-s-konzept" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ein-einfache-re-s-konzept">
+<h2>Ein einfache(re)s Konzept<a class="headerlink" href="#ein-einfache-re-s-konzept" title="Permalink to this heading">¶</a></h2>
 <p>Im Folgendem wird ein einfaches und gradliniges Setup aufgestellt, das auf
 den aktuellen <a class="reference external" href="http://spiderlabs.github.io/owasp-modsecurity-crs/">OWASP ModSecurity Core Rule Set (CRS)</a> des <a class="reference external" href="https://www.owasp.org/index.php/Main_Page">The Open Web
 Application Security Project (OWASP)</a> aufbaut. Diese Rules können über <a class="reference external" href="https://github.com/SpiderLabs/owasp-modsecurity-crs">OWASP
@@ -183,14 +183,14 @@ und mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/s
 <p>Die <a class="reference internal" href="#beispiele-fur-sicherheitsprofile">Beispiele für Sicherheitsprofile</a> werden weiter unten noch beschrieben.</p>
 <p>Zu diesem Setup existiert ein Script, mit dem die oben konfigurierte WAF auch
 kurzzeitig de-/aktiviert werden kann:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deactivateWAF
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>deactivateWAF
 ...
-$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh activateWAF
+$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>activateWAF
 </pre></div>
 </div>
-</div>
-<div class="section" id="basis-konfiguration-mod-security2-conf">
-<span id="xref-mod-security2-conf"></span><h2>Basis Konfiguration <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code><a class="headerlink" href="#basis-konfiguration-mod-security2-conf" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="basis-konfiguration-mod-security2-conf">
+<span id="xref-mod-security2-conf"></span><h2>Basis Konfiguration <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code><a class="headerlink" href="#basis-konfiguration-mod-security2-conf" title="Permalink to this heading">¶</a></h2>
 <p>In diesem Setup wurde die <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/security2.conf</span></code>
 Konfiguration durch eine <code class="docutils literal notranslate"><span class="pre">mod_security2.conf</span></code> Konfigration im
 <code class="docutils literal notranslate"><span class="pre">conf-available</span></code> Ordner ersetzt. In dieser Konfiguration findet das
@@ -203,14 +203,14 @@ Basis-Setup des ModSecurity Moduls statt. Dazu gehört z.B. die die Direktieve
 <span class="c">#</span>
 <span class="c"># SecRuleEngine DetectionOnly</span>
 
-<span class="nb">SecRuleEngine</span> <span class="k">On</span>
+<span class="nb">SecRuleEngine</span><span class="w"> </span><span class="k">On</span>
 </pre></div>
 </div>
 <p>Mit den Direktiven <code class="docutils literal notranslate"><span class="pre">SecRequestBodyLimit</span></code> und <code class="docutils literal notranslate"><span class="pre">SecRequestBodyNoFilesLimit</span></code>
 (siehe <a class="reference external" href="https://github.com/SpiderLabs/ModSecurity/wiki/Reference-Manual#Configuration_Directives">ModSecurity Direktiven</a>) werden Limits für Body- und Dateigrößen
 eingestellt.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecRequestBodyLimit</span> <span class="m">13107200</span>
-<span class="nb">SecRequestBodyNoFilesLimit</span> <span class="m">131072</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecRequestBodyLimit</span><span class="w"> </span><span class="m">13107200</span>
+<span class="nb">SecRequestBodyNoFilesLimit</span><span class="w"> </span><span class="m">131072</span>
 </pre></div>
 </div>
 <div class="admonition hint">
@@ -221,9 +221,9 @@ Direktive <code class="docutils literal notranslate"><span class="pre">SecReques
 <a class="reference internal" href="serverwide_cfg.html#xref-security-limits-timeouts"><span class="std std-ref">Request &amp; Timeout</span></a>.</p>
 </div>
 <p>Die temporären Ordner werden beispielsweise wie folgt engerichtet.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecTmpDir</span>     <span class="sx">/tmp/</span>
-<span class="nb">SecDataDir</span>    <span class="sx">/var/cache/modsecurity</span>
-<span class="nb">SecUploadDir</span>  <span class="sx">/var/cache/modsecurity/upload/</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">SecTmpDir</span><span class="w">     </span><span class="sx">/tmp/</span>
+<span class="nb">SecDataDir</span><span class="w">    </span><span class="sx">/var/cache/modsecurity</span>
+<span class="nb">SecUploadDir</span><span class="w">  </span><span class="sx">/var/cache/modsecurity/upload/</span>
 </pre></div>
 </div>
 <p>Die <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> und <code class="docutils literal notranslate"><span class="pre">cache</span></code> Ordner sind keine gute Wahl, ihre Resoucen können
@@ -259,28 +259,28 @@ dem Benutzer zuzuordnen, unter dem auch der Apache Prozess läuft, siehe
 <span class="o">...</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="beispiele-fur-sicherheitsprofile">
-<h2>Beispiele für Sicherheitsprofile<a class="headerlink" href="#beispiele-fur-sicherheitsprofile" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="beispiele-fur-sicherheitsprofile">
+<h2>Beispiele für Sicherheitsprofile<a class="headerlink" href="#beispiele-fur-sicherheitsprofile" title="Permalink to this heading">¶</a></h2>
 <p>Beispiele für Profile sind <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_10_minimal.conf</span></code>,
 <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_50_additional.conf</span></code> oder
 <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_90_SecRuleRemove.conf</span></code>. In der
 <code class="docutils literal notranslate"><span class="pre">owap_crs_2.2.9_10_minimal.conf</span></code> wird beispielsweise ein Profil definiert, das
 sich aus den <em>base</em> und <em>optional</em> Rules zusammenstellt.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/*.conf</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Include</span><span class="w"> </span><span class="sx">/usr/share/owasp-modsecurity-crs/*.conf</span>
 ...
 <span class="c"># base</span>
 ...
-<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_20_protocol_violations.conf</span>
-<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_21_protocol_anomalies.conf</span>
+<span class="nb">Include</span><span class="w"> </span><span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_20_protocol_violations.conf</span>
+<span class="nb">Include</span><span class="w"> </span><span class="sx">/usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_21_protocol_anomalies.conf</span>
 ...
 <span class="c">## Die SecRules für SQL-injection liefern bei mir false-positiv auf alles was</span>
 <span class="c">## nicht *reines* HTTP und HTML ist.</span>
 <span class="c"># Include /usr/share/owasp-modsecurity-crs/base_rules/modsecurity_crs_41_sql_injection_attacks.conf</span>
 ...
 <span class="c"># optional</span>
-<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_10_ignore_static.conf</span>
-<span class="nb">Include</span> <span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_11_avs_traffic.conf</span>
+<span class="nb">Include</span><span class="w"> </span><span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_10_ignore_static.conf</span>
+<span class="nb">Include</span><span class="w"> </span><span class="sx">/usr/share/owasp-modsecurity-crs/optional_rules/modsecurity_crs_11_avs_traffic.conf</span>
 ...
 </pre></div>
 </div>
@@ -289,23 +289,23 @@ wieder aus den <em>SecRules</em> herausgenommen.</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="c"># ID 960017: Host header is a numeric IP address. IPs are mostly used by IP</span>
 <span class="c"># scanners, but they are also used in loopback device and in the leak of a DNS.</span>
 <span class="c">#</span>
-<span class="nb">SecRuleRemoveById</span> <span class="m">960017</span>
+<span class="nb">SecRuleRemoveById</span><span class="w"> </span><span class="m">960017</span>
 
 <span class="c"># ID 960010: Request content type is not allowed by policy. Same false-positiv</span>
 <span class="c"># as 960017 with webDav applications.</span>
 <span class="c">#</span>
-<span class="nb">SecRuleRemoveById</span> <span class="m">960010</span>
+<span class="nb">SecRuleRemoveById</span><span class="w"> </span><span class="m">960010</span>
 
 <span class="c"># ID 960032: HTTP-Method is not allowed by policy. Limit the allowed methods to</span>
 <span class="c"># GET HEAD POST OPTIONS. This will block webDAV-applications, which use PROPFIND</span>
 <span class="c"># and much more.</span>
 <span class="c">#</span>
-<span class="nb">SecRuleRemoveById</span> <span class="m">960032</span>
+<span class="nb">SecRuleRemoveById</span><span class="w"> </span><span class="m">960032</span>
 
 <span class="c"># ID 960015: Request Missing an Accept Header. Will break applications like</span>
 <span class="c"># webDAV, which does not need a Accept-Header.</span>
 <span class="c">#</span>
-<span class="nb">SecRuleRemoveById</span> <span class="m">960015</span>
+<span class="nb">SecRuleRemoveById</span><span class="w"> </span><span class="m">960015</span>
 
 <span class="c"># Disabling all RuleIDs which are *gone* in 3.0.0-rc1, they are listet in the</span>
 <span class="c"># *paranoia* IDs:</span>
@@ -313,19 +313,19 @@ wieder aus den <em>SecRules</em> herausgenommen.</p>
 <span class="c">#   https://www.owasp.org/index.php/OWASP_ModSec_CRS_Paranoia_Mode#Paranoia_Mode_Candidates</span>
 <span class="c">#</span>
 
-<span class="nb">SecRuleRemoveById</span>  \
-    <span class="m">959070</span> \
-    <span class="m">959071</span> \
-    <span class="m">959072</span> \
-    <span class="m">959073</span> \
-    <span class="m">960024</span> \
-    <span class="m">973300</span> \
-    <span class="m">973332</span> \
-    <span class="m">973333</span> \
-    <span class="m">981172</span> \
-    <span class="m">981173</span> \
-    <span class="m">981231</span> \
-    <span class="m">981260</span>
+<span class="nb">SecRuleRemoveById</span><span class="w">  </span>\
+<span class="w">    </span><span class="m">959070</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">959071</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">959072</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">959073</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">960024</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">973300</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">973332</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">973333</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">981172</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">981173</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">981231</span><span class="w"> </span>\
+<span class="w">    </span><span class="m">981260</span>
 </pre></div>
 </div>
 <p>Die oben vorgestellten Profile sind ein <em>guter Anfang</em> für eine WAF, der aber
@@ -337,8 +337,8 @@ hier:</p>
 <li><p><a class="reference external" href="https://wiki.ubuntuusers.de/Apache/Sicherheit/">Apache Sicherheit (ubuntu)</a></p></li>
 <li><p><a class="reference external" href="https://github.com/sbilly/awesome-security#web">awesome-security.web</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -381,12 +381,12 @@ hier:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -394,7 +394,7 @@ hier:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Wartung &amp; Diagnose &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Scannen mit SANE" href="../scan/index.html" />
-    <link rel="prev" title="Netzwerk-Drucker Setup" href="printer_setup.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Netzwerk-Drucker Setup" href="printer_setup.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,40 +45,46 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="wartung-diagnose">
-<span id="print-troubleshooting"></span><h1>Wartung &amp; Diagnose<a class="headerlink" href="#wartung-diagnose" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="fehlersuche-uber-f1">
-<span id="cups-troubleshooter"></span><h2>Fehlersuche über F1<a class="headerlink" href="#fehlersuche-uber-f1" title="Link zu dieser Überschrift">¶</a></h2>
+  <section id="wartung-diagnose">
+<span id="print-troubleshooting"></span><h1>Wartung &amp; Diagnose<a class="headerlink" href="#wartung-diagnose" title="Permalink to this heading">¶</a></h1>
+<section id="fehlersuche-uber-f1">
+<span id="cups-troubleshooter"></span><h2>Fehlersuche über F1<a class="headerlink" href="#fehlersuche-uber-f1" title="Permalink to this heading">¶</a></h2>
 <p>Eine einfache und erste, schnelle Hilfe kann der <em>Troubleshooting Wizard</em> sein.
 Den bekommt man über die <code class="docutils literal notranslate"><span class="pre">F1</span></code> Taste im <a class="reference internal" href="#figure-cups-system-config-troubleshooting"><span class="std std-ref">system-config-printer</span></a>.</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <span id="figure-cups-system-config-troubleshooting"></span><img alt="Figure (system-config-troubleshooting.png)" src="../_images/system-config-troubleshooting.png" />
-<p class="caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code>: Fehlersuche <span class="guilabel">F1</span></span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code>: Fehlersuche <span class="guilabel">F1</span></span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Das Tool zur Fehlersuche überprüft erst mal die Einstellungen und falls es dabei
 Anhaltspunkte für Probleme findet, macht dazu ein entsprechende Vorschläge.
 Wenn die nicht helfen kann ein Test-Druck angestoßen werden.  Hat man nur Probleme
 mit einem bestimmten Dokument, dann kann man das jetzt ganz normal drucken und
 den Job im Dialog mit einem Häkchen markieren.</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <span id="figure-cups-troubleshooter-test-page"></span><img alt="Figure (cups-troubleshooter-test-page.png)" src="../_images/cups-troubleshooter-test-page.png" />
-<p class="caption"><span class="caption-text">Troubleshooter: Testdruck eines <em>problematischen</em> Dokuments</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Troubleshooter: Testdruck eines <em>problematischen</em> Dokuments</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Wenn alle Tests abgeschlossen sind, besteht am Ende die Möglichkeit die Diagnose
 Daten (<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/troubleshoot.txt">troubleshoot.txt</a>) zu speichern.
 Deren Studium kann z.T. nützliche Informationen hervorbringen.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <span id="figure-cups-troubleshooter-diagnostic"></span><img alt="Figure (cups-troubleshooter-diagnostic.png)" src="../_images/cups-troubleshooter-diagnostic.png" />
-<p class="caption"><span class="caption-text">Troubleshooter: Speichern der Diagnose Daten <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/troubleshoot.txt">troubleshoot.txt</a></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Troubleshooter: Speichern der Diagnose Daten <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/troubleshoot.txt">troubleshoot.txt</a></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Es kann auch mal helfen die Diagnose Daten verschiedener Druckaufträge
 miteinander zu vergleichen.  Als ein Beispiel sei Commit <a class="reference external" href="https://github.com/return42/handsOn/commit/56b89eb">#56b89eb</a>
 gegeben. Bei dem Commit sieht man den Unterschied zwischen einem Druck über den
 <code class="docutils literal notranslate"><span class="pre">MF623C-TWF19694</span></code> Drucker und über den mit <code class="docutils literal notranslate"><span class="pre">CNMF620C-Series</span></code> eingerichteten
 Drucker.</p>
-</div>
-<div class="section" id="cups-server-debug">
-<span id="cups-debug-cups-service"></span><h2>CUPS Server debug<a class="headerlink" href="#cups-server-debug" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="cups-server-debug">
+<span id="cups-debug-cups-service"></span><h2>CUPS Server debug<a class="headerlink" href="#cups-server-debug" title="Permalink to this heading">¶</a></h2>
 <p>Der CUPS Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
 werden.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">cups</span>
@@ -93,15 +99,17 @@ werden:</p>
 <p>oder über die HTML GUI des CUPS: <a class="reference external" href="http://localhost:631/admin/">http://localhost:631/admin/</a> kann mit der Option
 <span class="guilabel">Mehr Informationen zur Fehlersuche speichern</span> das Debug-LOG
 eingeschaltet werden.</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <span id="figure-cupsd-debug-on"></span><a class="reference external image-reference" href="http://localhost:631/admin/"><img alt="Figure (cupsd-debug-on.png)" src="../_images/cupsd-debug-on.png" style="width: 513.8px; height: 312.2px;" /></a>
-<p class="caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">localhost:631</span></code>: CUPS Server Einstellungen</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">localhost:631</span></code>: CUPS Server Einstellungen</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Die Einstellung wird aktiv, sobald <span class="guilabel">Einstellung ändern</span> bestätigt
 wird.  Hier das LOG zu dem Print-Job 140 aus der obige
 <a class="reference internal" href="#cups-troubleshooter"><span class="std std-ref">Fehlersuche über F1</span></a>.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/return42/handsOn/blob/master/cups_debug_log_test_job140.txt">gitcups_debug_log_test_job140.txt</a></p></li>
+<li><p><a class="reference external" href="https://github.com/return42/handsOn/blob/master/cups_debug_log_test_job140.txt">git://cups_debug_log_test_job140.txt</a></p></li>
 </ul>
 <p>Dort kann man z.B. sehen, was die CUPS-Filter machen um die Umwandlung des PDFs
 in die PDL des Druckers hin zu bekommen.:</p>
@@ -117,9 +125,9 @@ in die PDL des Druckers hin zu bekommen.:</p>
 </div>
 <p>Hier zu sehen; es wird der <code class="docutils literal notranslate"><span class="pre">gstoraster</span></code> Filter verwendet (s.a. Absatz
 „<a class="reference internal" href="#cupsfilter-command"><span class="std std-ref">Kommando cupsfilter</span></a>“).</p>
-</div>
-<div class="section" id="cups-browser-debug">
-<span id="cups-debug-browse-service"></span><h2>CUPS Browser (debug)<a class="headerlink" href="#cups-browser-debug" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="cups-browser-debug">
+<span id="cups-debug-browse-service"></span><h2>CUPS Browser (debug)<a class="headerlink" href="#cups-browser-debug" title="Permalink to this heading">¶</a></h2>
 <p>Der CUPS Browser Dienst sucht permanent nach (neu) verfügbaren Druckern und
 Druck-Diensten (andere CUPS-Server) und stellt diese dem Client zur Verfügung.
 Der CUPS Browser Dienst kann mit folgenden Kommandos gestartet resp. eingesehen
@@ -156,9 +164,9 @@ sobald der Dienst neu gestartet wurde:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H systemctl restart cups-browsed
 </pre></div>
 </div>
-</div>
-<div class="section" id="druckausgabe-in-datei">
-<span id="debug-dump-to-file"></span><h2>Druckausgabe in Datei<a class="headerlink" href="#druckausgabe-in-datei" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="druckausgabe-in-datei">
+<span id="debug-dump-to-file"></span><h2>Druckausgabe in Datei<a class="headerlink" href="#druckausgabe-in-datei" title="Permalink to this heading">¶</a></h2>
 <p>Um die Ausgabe auf den Drucker in eine Datei umzuleiten muss in der Datei
 <code class="docutils literal notranslate"><span class="pre">/etc/cups/cups-files.conf</span></code> die Option <em>FileDevice Yes</em> gesetzt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Do we allow file: device URIs other than to /dev/null?</span>
@@ -175,10 +183,12 @@ Drucker kopiert werden.  Hier im Beispiel wird der <code class="docutils literal
 eine Kopie des <a class="reference internal" href="driver.html#driverless-printing"><span class="std std-ref">CNM620C-Series</span></a> erzeugt.  In den
 Einstellungen des <code class="docutils literal notranslate"><span class="pre">CNM620C-Series-DUMP</span></code> wird die <em>Geräteadresse</em> auf
 <code class="docutils literal notranslate"><span class="pre">file:/tmp/printout.pwg</span></code> gesetzt.</p>
-<div class="figure align-default" id="id5">
+<figure class="align-default" id="id5">
 <span id="tmp-printout-device"></span><img alt="Figure (tmp-printout-device.png)" src="../_images/tmp-printout-device.png" />
-<p class="caption"><span class="caption-text">Druckausgabe in Datei umlenken</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Druckausgabe in Datei umlenken</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Ein Ausdruck auf den Drucker <code class="docutils literal notranslate"><span class="pre">CNM620C-Series-Dump</span></code> legt die Datei
 <code class="docutils literal notranslate"><span class="pre">/tmp/printout.pwg</span></code> an.</p>
 <p>Wäre der Drucker PostScript-fähig, so würde man eine PS Datei erhalten.  Hier im
@@ -186,9 +196,9 @@ Beispiel handelt es sich aber um einen Drucker der kein PS unterstützt, die
 Druckausgabe ist dann typischer Weise <code class="docutils literal notranslate"><span class="pre">image/pwg-raster</span></code> (deshalb auch die
 Dateiendung <code class="docutils literal notranslate"><span class="pre">printout.pwg</span></code>).  Mit dem <a class="reference external" href="https://github.com/michaelrsweet/rasterview">RasterView</a> kann dieses Format auch auf
 dem Desktop angezeigt werden.</p>
-</div>
-<div class="section" id="kommandos">
-<h2>Kommandos<a class="headerlink" href="#kommandos" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="kommandos">
+<h2>Kommandos<a class="headerlink" href="#kommandos" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.cups.org/doc/options.html">CUPS Command-Line Printing and Options</a></p></li>
 <li><p><a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=lp">lp</a></p></li>
@@ -235,9 +245,9 @@ Drucker CNMF620C-Series-DUMP ist im Leerlauf.  Aktiviert seit So 24 Feb 2019 16:
 Drucker MF623C-TWF19694 ist im Leerlauf.  Aktiviert seit Di 19 Feb 2019 19:42:58 CET
 </pre></div>
 </div>
-</div>
-<div class="section" id="kommando-cupsfilter">
-<span id="cupsfilter-command"></span><h2>Kommando <code class="docutils literal notranslate"><span class="pre">cupsfilter</span></code><a class="headerlink" href="#kommando-cupsfilter" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="kommando-cupsfilter">
+<span id="cupsfilter-command"></span><h2>Kommando <code class="docutils literal notranslate"><span class="pre">cupsfilter</span></code><a class="headerlink" href="#kommando-cupsfilter" title="Permalink to this heading">¶</a></h2>
 <p>Mit dem Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cupsfilter">cupsfilter</a> (aus dem Pakte <a class="reference external" href="http://packages.ubuntu.com/cups">cups</a>) und der Option
 <code class="docutils literal notranslate"><span class="pre">--list-filters</span></code> können die verwendeten Filter angezeigt werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H cupsfilter --list-filters \
@@ -397,9 +407,9 @@ PWG-Datei, dann sieht man dort auch die PWG Attribute (vergleiche <a class="refe
 <span class="n">PageSizeName</span> <span class="o">=</span> <span class="s2">&quot;A4.Fullbleed&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="verweise">
-<h2>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="verweise">
+<h2>Verweise<a class="headerlink" href="#verweise" title="Permalink to this heading">¶</a></h2>
 <p>Hier ein paar Verweise auf WEB Seiten, die bei der Fehlersuche ggf. auch
 hilfreich sein können:</p>
 <ul class="simple">
@@ -408,8 +418,8 @@ hilfreich sein können:</p>
 <li><p><a class="reference external" href="https://fedoraproject.org/wiki/How_to_debug_printing_problems#Printing_troubleshooter">How to debug printing problems (fedora wiki)</a></p></li>
 <li><p><a class="reference external" href="https://wiki.archlinux.de/title/Drucker">Drucker (archlinux wiki)</a> &amp; <a class="reference external" href="https://wiki.archlinux.org/index.php/CUPS">CUPS (archlinux)</a> &amp; <a class="reference external" href="https://wiki.archlinux.org/index.php/CUPS/Troubleshooting">CUPS Troubleshooting (archlinux wiki)</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -455,12 +465,12 @@ hilfreich sein können:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -468,7 +478,7 @@ hilfreich sein können:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

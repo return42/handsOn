@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>snapcraft Intro &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="konfligierende Parts" href="snapcraft-part-conflict.html" />
-    <link rel="prev" title="snap Intro" href="snappy-intro.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="snap Intro" href="snappy-intro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="snapcraft-intro">
-<h1>snapcraft Intro<a class="headerlink" href="#snapcraft-intro" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="snapcraft-intro">
+<h1>snapcraft Intro<a class="headerlink" href="#snapcraft-intro" title="Permalink to this heading">¶</a></h1>
 <p>Installation der snap Infrastruktur (s.a <a class="reference external" href="https://snapcraft.io/docs/core/install">install snapd</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">snapd</span> <span class="n">snapcraft</span> <span class="n">build</span><span class="o">-</span><span class="n">essential</span>
 </pre></div>
@@ -55,82 +55,82 @@
 apt-Paket <code class="docutils literal notranslate"><span class="pre">build-essential</span></code> werden i.d.R. auch gebraucht, wenn man snap-Pakete
 bauen will.</p>
 <p>Snap erstellen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir hello
-$ <span class="nb">cd</span> hello
-~/hello$ snapcraft init
-Created snap/snapcraft.yaml.
-Edit the file to your liking or run <span class="sb">`</span>snapcraft<span class="sb">`</span> to get started
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>hello
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hello
+~/hello$<span class="w"> </span>snapcraft<span class="w"> </span>init
+Created<span class="w"> </span>snap/snapcraft.yaml.
+Edit<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>liking<span class="w"> </span>or<span class="w"> </span>run<span class="w"> </span><span class="sb">`</span>snapcraft<span class="sb">`</span><span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>started
 </pre></div>
 </div>
 <p>Laut Doku muss der Snap-Ordner (hier im Beispiel <code class="docutils literal notranslate"><span class="pre">hello</span></code>) im HOME-Ordner
 liegen (warum?).</p>
 <p>Beispiel für eine <code class="docutils literal notranslate"><span class="pre">snapcraft.yaml</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>name: hello
-version: <span class="s1">&#39;2.10&#39;</span>
-summary: GNU Hello, the <span class="s2">&quot;hello world&quot;</span> snap
-description: <span class="p">|</span>
-  GNU hello prints a friendly greeting.
-grade: devel
-confinement: devmode
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>name:<span class="w"> </span>hello
+version:<span class="w"> </span><span class="s1">&#39;2.10&#39;</span>
+summary:<span class="w"> </span>GNU<span class="w"> </span>Hello,<span class="w"> </span>the<span class="w"> </span><span class="s2">&quot;hello world&quot;</span><span class="w"> </span>snap
+description:<span class="w"> </span><span class="p">|</span>
+<span class="w">  </span>GNU<span class="w"> </span>hello<span class="w"> </span>prints<span class="w"> </span>a<span class="w"> </span>friendly<span class="w"> </span>greeting.
+grade:<span class="w"> </span>devel
+confinement:<span class="w"> </span>devmode
 </pre></div>
 </div>
 <p>Snap Buid:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> hello
-~/hello$ snapcraft
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hello
+~/hello$<span class="w"> </span>snapcraft
 <span class="o">[</span>...<span class="o">]</span>
-Staging gnu-hello
-Priming gnu-hello
-Snapping <span class="s1">&#39;hello&#39;</span> <span class="p">|</span>
-Snapped hello_2.10_amd64.snap
+Staging<span class="w"> </span>gnu-hello
+Priming<span class="w"> </span>gnu-hello
+Snapping<span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="w"> </span><span class="p">|</span>
+Snapped<span class="w"> </span>hello_2.10_amd64.snap
 
-~/hello$ ls -la
-insgesamt <span class="m">88</span>
-drwxrwxr-x  <span class="m">6</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 .
-drwxr-xr-x <span class="m">39</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:18 ..
--rw-r--r--  <span class="m">1</span> user user <span class="m">65536</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 hello_2.10_amd64.snap
-drwxrwxr-x  <span class="m">3</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 parts
-drwxrwxr-x  <span class="m">6</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 prime
-drwxrwxr-x  <span class="m">3</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 snap
-drwxrwxr-x  <span class="m">4</span> user user  <span class="m">4096</span> Sep  <span class="m">6</span> <span class="m">11</span>:48 stage
+~/hello$<span class="w"> </span>ls<span class="w"> </span>-la
+insgesamt<span class="w"> </span><span class="m">88</span>
+drwxrwxr-x<span class="w">  </span><span class="m">6</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">39</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:18<span class="w"> </span>..
+-rw-r--r--<span class="w">  </span><span class="m">1</span><span class="w"> </span>user<span class="w"> </span>user<span class="w"> </span><span class="m">65536</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>hello_2.10_amd64.snap
+drwxrwxr-x<span class="w">  </span><span class="m">3</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>parts
+drwxrwxr-x<span class="w">  </span><span class="m">6</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>prime
+drwxrwxr-x<span class="w">  </span><span class="m">3</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>snap
+drwxrwxr-x<span class="w">  </span><span class="m">4</span><span class="w"> </span>user<span class="w"> </span>user<span class="w">  </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w">  </span><span class="m">6</span><span class="w"> </span><span class="m">11</span>:48<span class="w"> </span>stage
 </pre></div>
 </div>
 <p>Snap Installieren:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$ sudo -H snap install --devmode hello_2.10_amd64.snap
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>--devmode<span class="w"> </span>hello_2.10_amd64.snap
 
-hello <span class="m">2</span>.10 installed
+hello<span class="w"> </span><span class="m">2</span>.10<span class="w"> </span>installed
 </pre></div>
 </div>
 <p>Snaps auflisten:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ snap list
-Name   Version    Rev   Developer  Notes
-core   <span class="m">16</span>-2.27.5  <span class="m">2774</span>  canonical  core
-hello  <span class="m">2</span>.10       x1               devmode
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>snap<span class="w"> </span>list
+Name<span class="w">   </span>Version<span class="w">    </span>Rev<span class="w">   </span>Developer<span class="w">  </span>Notes
+core<span class="w">   </span><span class="m">16</span>-2.27.5<span class="w">  </span><span class="m">2774</span><span class="w">  </span>canonical<span class="w">  </span>core
+hello<span class="w">  </span><span class="m">2</span>.10<span class="w">       </span>x1<span class="w">               </span>devmode
 </pre></div>
 </div>
 <p>Das snap <code class="docutils literal notranslate"><span class="pre">hello</span></code> (Programm) ist installiert, kann aber ‚so‘ noch nicht vom
 Benutzer aufgerufen werden. Die Anwendungen aus den <em>Snaps</em> sind über
 <code class="docutils literal notranslate"><span class="pre">/snap/bin</span></code> zu erreichen, sofern sie <em>freigeschaltet</em> wurden.</p>
 <p>Hier ein Beispiel für eine <code class="docutils literal notranslate"><span class="pre">apps</span></code> Sektion (<code class="docutils literal notranslate"><span class="pre">snap/snapcraft.yaml</span></code>):</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello</span>
-<span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.10&#39;</span>
-<span class="nt">summary</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GNU Hello, the &quot;hello world&quot; snap</span>
-<span class="nt">description</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-  <span class="no">GNU hello prints a friendly greeting.</span>
-<span class="nt">grade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devel</span>
-<span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devmode</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.10&#39;</span>
+<span class="nt">summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GNU Hello, the &quot;hello world&quot; snap</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">  </span><span class="no">GNU hello prints a friendly greeting.</span>
+<span class="nt">grade</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devel</span>
+<span class="nt">confinement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devmode</span>
 
 <span class="nt">apps</span><span class="p">:</span>
-  <span class="nt">hello</span><span class="p">:</span>
-    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bin/hello</span>
+<span class="w">  </span><span class="nt">hello</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bin/hello</span>
 
 <span class="nt">parts</span><span class="p">:</span>
-  <span class="nt">gnu-hello</span><span class="p">:</span>
-    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz</span>
-    <span class="nt">plugin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">autotools</span>
+<span class="w">  </span><span class="nt">gnu-hello</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz</span>
+<span class="w">    </span><span class="nt">plugin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">autotools</span>
 </pre></div>
 </div>
 <p>Es soll die App <code class="docutils literal notranslate"><span class="pre">hello</span></code> mit dem Kommando <code class="docutils literal notranslate"><span class="pre">bin/hello</span></code> installiert werden.</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -162,12 +162,12 @@ Benutzer aufgerufen werden. Die Anwendungen aus den <em>Snaps</em> sind über
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -175,7 +175,7 @@ Benutzer aufgerufen werden. Die Anwendungen aus den <em>Snaps</em> sind über
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

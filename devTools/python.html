@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>python &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Edit, Diff, Merge &amp; Co." href="edit.html" />
-    <link rel="prev" title="Software Build (GNU)" href="build.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Software Build (GNU)" href="build.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="xref-ubuntu-devtools-python">
-<span id="id1"></span><h1>python<a class="headerlink" href="#xref-ubuntu-devtools-python" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="xref-ubuntu-devtools-python">
+<span id="id1"></span><h1>python<a class="headerlink" href="#xref-ubuntu-devtools-python" title="Permalink to this heading">¶</a></h1>
 <p>Es gibt derzeit zwei Versionen des Interpreters; Python 2 und Python 3, wobei in
 Python 3 ziemlich aufgeräumt wurde.  Oberflächlich betrachtet sind die beiden
 Versionen bis auf wenige <em>keywords</em> syntaktisch gleich.  Schaut man genauer hin,
@@ -236,10 +236,12 @@ ist (Python ist eine Teilmenge von Cython). Der Cython Compiler übersetzt Pytho
 Implementierungen nach C und diese C-Implementierungen werden mittels C-Compiler
 in ausführbaren Code übersetzt. Das Prozessbild von Wikimedia Commons
 veranschaulicht den Prozess an einem einfachen Beispiel.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <span id="xref-figure-python-cython-cpython-ext-module-workflow"></span><a class="reference external image-reference" href="https://en.wikipedia.org/wiki/Cython#/media/File:Cython_CPython_Ext_Module_Workflow.png"><img alt="Figure (Cython_CPython_Ext_Module_Workflow.png)" src="../_images/Cython_CPython_Ext_Module_Workflow.png" /></a>
-<p class="caption"><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/Cython">Cython (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/Cython">Cython (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p><a class="reference external" href="http://cython.org/">Cython</a> benötigt das <a class="reference external" href="https://en.wikipedia.org/wiki/CPython">CPython</a> Ökosystem (also den Standard Python
 Interpreter).  Will man C-Extensions für Python erstellen, ist <a class="reference external" href="http://cython.org/">Cython</a> eine
 gute Alternative zur Implementierung direkt in C, da man in seiner gewohnten
@@ -257,7 +259,7 @@ differenzieren.</p>
 ergänzen: weitere Möglichkeiten zur Optimierung der Ausführungsgeschwindigkeit
 bietet der JIT Compiler <a class="reference external" href="http://pypy.org/">PyPy</a> (nicht zu verwechseln mit <a class="reference external" href="https://pypi.python.org/pypi">PyPI</a> dem Package
 Reposetory).</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -289,12 +291,12 @@ Reposetory).</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -302,7 +304,7 @@ Reposetory).</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

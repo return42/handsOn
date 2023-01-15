@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IPP &amp; IPP Everywhere &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Die kleine PPD Fibel" href="ppd.html" />
-    <link rel="prev" title="CUPS Grundlagen" href="cups.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="CUPS Grundlagen" href="cups.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="ipp-ipp-everywhere">
-<span id="ipp-intro"></span><h1>IPP &amp; IPP Everywhere<a class="headerlink" href="#ipp-ipp-everywhere" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="ipp-ipp-everywhere">
+<span id="ipp-intro"></span><h1>IPP &amp; IPP Everywhere<a class="headerlink" href="#ipp-ipp-everywhere" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Internet_Printing_Protocol">IPP (wiki)</a> ist das <em>Internet Printing Protocol</em>.  <a class="reference external" href="https://www.pwg.org/ipp">IPP</a> ist – wie der Name
 schon sagt – ein Internet-Protokoll.  <em>Genauer:</em> es ist eine Erweiterung des
 bekannten HTTP 1.1 Protokolls wie man es von <em>Internetseiten</em> kennt und es wird
@@ -79,8 +79,8 @@ entstehen, dass die V-1.1 veraltet ist.  Das ist aber nicht der Fall, die
 <code class="docutils literal notranslate"><span class="pre">2.x</span></code> Versionen adressieren lediglich die Anwendungsbereiche (siehe Kapitel
 <em>Introduce</em> in <a class="reference external" href="https://ftp.pwg.org/pub/pwg/standards/std-ipp20-20151030-5100.12.pdf">IPP Version 2.0, 2.1, and 2.2</a>).  Für die typischen
 Büro-Drucker kommt <strong>IPP V2.0</strong> zur Anwendung.</p>
-<div class="section" id="ippfind">
-<h2><code class="docutils literal notranslate"><span class="pre">ippfind</span></code><a class="headerlink" href="#ippfind" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="ippfind">
+<h2><code class="docutils literal notranslate"><span class="pre">ippfind</span></code><a class="headerlink" href="#ippfind" title="Permalink to this heading">¶</a></h2>
 <p>Drucker die über IP im Netzwerk bereit stehen, können über <a class="reference external" href="https://wiki.archlinux.org/index.php/Avahi">Avahi</a> gefunden
 werden.  <a class="reference external" href="https://github.com/lathiat/avahi">Avahi (git)</a> ist eine freie Implementierung von <a class="reference external" href="https://de.wikipedia.org/wiki/Zeroconf">Zeroconf</a>, das
 Pendant auf macOS ist <a class="reference external" href="https://de.wikipedia.org/wiki/Bonjour_(Apple)">Bonjour</a> von Apple.  Aufgabe dieser Zeroconf Werkzeuge ist
@@ -97,9 +97,9 @@ ipp://MF623Cn.local:80/ipp/print
 </pre></div>
 </div>
 <p>Cool, einfacher geht es ja wirklich nicht mehr!</p>
-</div>
-<div class="section" id="ipptool-get-printer-attributes">
-<span id="get-printer-attributes"></span><h2><code class="docutils literal notranslate"><span class="pre">ipptool</span> <span class="pre">get-printer-attributes</span></code><a class="headerlink" href="#ipptool-get-printer-attributes" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ipptool-get-printer-attributes">
+<span id="get-printer-attributes"></span><h2><code class="docutils literal notranslate"><span class="pre">ipptool</span> <span class="pre">get-printer-attributes</span></code><a class="headerlink" href="#ipptool-get-printer-attributes" title="Permalink to this heading">¶</a></h2>
 <p>Nun wollen wir mal schauen welche Eigenschaften der Drucker über das <code class="docutils literal notranslate"><span class="pre">ipp://</span></code>
 Protokoll anbietet.  Dazu gibt es das Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ipptool">ipptool</a>, dem man ein
 <em>printer testfile</em> übergibt:</p>
@@ -129,9 +129,9 @@ mit dem IPP V-1.1.</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="ipp-kinderkrankheiten">
-<h2>IPP Kinderkrankheiten<a class="headerlink" href="#ipp-kinderkrankheiten" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ipp-kinderkrankheiten">
+<h2>IPP Kinderkrankheiten<a class="headerlink" href="#ipp-kinderkrankheiten" title="Permalink to this heading">¶</a></h2>
 <p>Schaut man sich mal die gesamte Ausgabe des <a class="reference internal" href="#get-printer-attributes"><span class="std std-ref">ipptool get-printer-attributes</span></a> an
 (<a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623Cn-attributes.txt">MF623Cn-attributes.txt</a>),
 dann erkennt man schon die ersten <em>Kinderkrankheiten</em>:</p>
@@ -157,9 +157,9 @@ Distributionen eingeflossen ist.  Weshalb man mit älteren Druckern und
 (02/2019) noch deutlich <em>spürbar</em>.  <a class="reference external" href="https://www.pwg.org/ipp/everywhere.html">IPP Everywhere</a> resp.
 <a class="reference internal" href="driver.html#driverless-printing"><span class="std std-ref">driverless printing</span></a> gibt es in Ubuntu seit 17.04.</p>
 </div>
-</div>
-<div class="section" id="einschatzungen-zur-ipp-fahigkeit">
-<h2>Einschätzungen zur IPP-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-ipp-fahigkeit" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="einschatzungen-zur-ipp-fahigkeit">
+<h2>Einschätzungen zur IPP-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-ipp-fahigkeit" title="Permalink to this heading">¶</a></h2>
 <p>Die modernen netzwerkfähigen Drucker sollten i.d.R. alle IPP unterstützen (laut
 PWG 98% der aktuell verkauften Drucker).  Auch wenn das, wie bei dem Canon
 <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> in den <a class="reference internal" href="driver.html#figure-mf623cn-printer-spec"><span class="std std-ref">technischen Angaben</span></a> nicht
@@ -193,9 +193,9 @@ Drucker und Betriebssysteme ballert.  Es ist ein Trauerspiel zu sehen, wie unter
 dem eigentlich <em>großen und beliebten</em> Namen „Canon“ gearbeitet wird.  Aber es
 scheint ein Trend der Labels und Marken zu sein, der gute Name wird runter
 gewirtschaftet (<em>Kärcher taugt heute auch nichts mehr</em>).</p>
-</div>
-<div class="section" id="einschatzungen-zur-pdl-fahigkeit">
-<h2>Einschätzungen zur PDL-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-pdl-fahigkeit" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="einschatzungen-zur-pdl-fahigkeit">
+<h2>Einschätzungen zur PDL-Fähigkeit<a class="headerlink" href="#einschatzungen-zur-pdl-fahigkeit" title="Permalink to this heading">¶</a></h2>
 <p>Früher war das Drucken mit PostScript (PDL) fähigen Druckern unter Linux
 immer möglich.  Diese sind aber i.d.R. in der untersten Preisklasse der
 Laserdrucker kaum <em>zu haben</em>.  Inzwischen (mit IPP) werden aber Raster-Formate
@@ -207,8 +207,8 @@ drucken kann, dann unterstützt er diese Formate i.d.R. auch als <a class="refer
 So konnte der Vorläufer <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> noch kein PDF direkt drucken, unterstützt es
 also auch nicht als PDL.  Der <a class="reference external" href="https://www.canon.de/business-printers-and-faxes/i-sensys-mf630-series/#MF631Cn">MF631Cn</a> hingegen kann PDF direkt drucken, dann
 wird er es auch als PDL unterstützen.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -252,12 +252,12 @@ wird er es auch als PDL unterstützen.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -265,7 +265,7 @@ wird er es auch als PDL unterstützen.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CDB &amp; PDB &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="SQL-Developer" href="sqldeveloper.html" />
-    <link rel="prev" title="Oracle Data-Pump" href="datapump.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Oracle Data-Pump" href="datapump.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,16 +45,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="cdb-pdb">
-<span id="oracle-cdbpdb"></span><span id="id1"></span><h1>CDB &amp; PDB<a class="headerlink" href="#cdb-pdb" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="sidebar">
+  <section id="cdb-pdb">
+<span id="oracle-cdbpdb"></span><span id="id1"></span><h1>CDB &amp; PDB<a class="headerlink" href="#cdb-pdb" title="Permalink to this heading">¶</a></h1>
+<aside class="sidebar">
 <p class="sidebar-title">Info</p>
 <p>Siehe auch <a class="reference external" href="https://access.redhat.com/documentation/en-us/reference_architectures/2017/html/deploying_oracle_database_12c_release_2_on_red_hat_enterprise_linux_7/common_tasks_when_managing_container_database_cdb_and_pluggable_databases_pdb">Common Tasks when Managing CDB and Pluggable PDB</a>.</p>
-</div>
+</aside>
 <p>Seit Oracle 12 sind die DB-Instanzen mandantenfähig.  In einer
 Container-Datenbank (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-a-cdb-with-sql-plus.html#GUID-2E5025EE-BED3-45A4-9EAA-B05C8DA66F97">CDB</a>) können keine, eine oder mehrere Plugin-Database
 (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-pdbs-with-sql-plus.html#GUID-702231AB-ABDA-42F4-918C-4539BF8135D6">PDB</a>) angelegt werden.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span> <span class="n">pdbs</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SHOW</span><span class="w"> </span><span class="n">pdbs</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CON_ID CON_NAME   OPEN MODE  RESTRICTED
@@ -67,13 +67,13 @@ Container-Datenbank (<a class="reference external" href="https://docs.oracle.com
 <p>Hier im Beispiel gibt es eine Vorlage-PDB (PDB$SEED), eine inaktive (ORCLPDB1)
 und eine aktive Datenbank (ORCLPDB).  Als z.B. <code class="docutils literal notranslate"><span class="pre">sysdba</span></code> kann man zw. den
 Containern wechseln.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Der aktuelle Container ist:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
-  <span class="n">SYS_CONTEXT</span><span class="p">(</span><span class="s1">&#39;USERENV&#39;</span><span class="p">,</span> <span class="s1">&#39;CON_NAME&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">CUR_CONTAINER</span>
-<span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SYS_CONTEXT</span><span class="p">(</span><span class="s1">&#39;USERENV&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;CON_NAME&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">CUR_CONTAINER</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">DUAL</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CUR_CONTAINER
@@ -81,15 +81,15 @@ Containern wechseln.</p>
 ORCLPDB
 </pre></div>
 </div>
-<div class="section" id="manage-pdbs">
-<h2>Manage PDBs<a class="headerlink" href="#manage-pdbs" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="sidebar">
+<section id="manage-pdbs">
+<h2>Manage PDBs<a class="headerlink" href="#manage-pdbs" title="Permalink to this heading">¶</a></h2>
+<aside class="sidebar">
 <p class="sidebar-title">Info</p>
 <p>Für Änderungen an dem Setup der PDB sollte man sich mit sqlplus als sysdba
 anmelden.</p>
 <p>Der Status einer PDB kann mit <code class="docutils literal notranslate"><span class="pre">SAVE</span> <span class="pre">STATE</span></code> für den nächsten
 Reboot eingestellt werden.</p>
-</div>
+</aside>
 <p>Öffnen einer PDB (sysdba):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SQL&gt; alter pluggable database ORCLPDB open;
 
@@ -103,11 +103,11 @@ CON_ID CON_NAME        OPEN MODE  RESTRICTED
 </pre></div>
 </div>
 <p>Status des PDB für nächsten Reboot sichern (sysdba):</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="n">pluggable</span> <span class="k">DATABASE</span> <span class="n">ORCLPDB</span> <span class="n">SAVE</span> <span class="k">STATE</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="n">pluggable</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">ORCLPDB</span><span class="w"> </span><span class="n">SAVE</span><span class="w"> </span><span class="k">STATE</span><span class="p">;</span>
 
 <span class="c1">-- anzeigen der saved-states ...</span>
-<span class="k">SELECT</span> <span class="n">con_name</span><span class="p">,</span> <span class="k">state</span>
-  <span class="k">FROM</span> <span class="n">dba_pdb_saved_states</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">con_name</span><span class="p">,</span><span class="w"> </span><span class="k">state</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">dba_pdb_saved_states</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CON_NAME   CON_NAME
@@ -116,7 +116,7 @@ ORCLPDB    OPEN
 </pre></div>
 </div>
 <p>Und einmal testen:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SQL</span><span class="o">&gt;</span> <span class="n">shutdown</span> <span class="k">immediate</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">shutdown</span><span class="w"> </span><span class="k">immediate</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Datenbank geschlossen.
@@ -124,7 +124,7 @@ Datenbank dismounted.
 ORACLE-Instanz heruntergefahren.
 </pre></div>
 </div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SQL</span><span class="o">&gt;</span> <span class="n">startup</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="n">startup</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ORACLE-Instanz hochgefahren.
@@ -138,8 +138,8 @@ Datenbank geoffnet.
 </pre></div>
 </div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- anzeigen der saved-states ...</span>
-<span class="k">SELECT</span> <span class="n">con_name</span><span class="p">,</span> <span class="k">state</span>
-  <span class="k">FROM</span> <span class="n">dba_pdb_saved_states</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">con_name</span><span class="p">,</span><span class="w"> </span><span class="k">state</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">dba_pdb_saved_states</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CON_NAME   CON_NAME
@@ -147,24 +147,24 @@ Datenbank geoffnet.
 ORCLPDB    OPEN
 </pre></div>
 </div>
-</div>
-<div class="section" id="pdb-tnsnames-ora">
-<h2>PDB tnsnames.ora<a class="headerlink" href="#pdb-tnsnames-ora" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="sidebar">
+</section>
+<section id="pdb-tnsnames-ora">
+<h2>PDB tnsnames.ora<a class="headerlink" href="#pdb-tnsnames-ora" title="Permalink to this heading">¶</a></h2>
+<aside class="sidebar">
 <p class="sidebar-title">Info</p>
 <p>Sofern in der <code class="docutils literal notranslate"><span class="pre">tnsnames.ora</span></code> kein Eintrag für die PDB existiert kann man
 folgenden Connector verwenden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="nd">@dbhost</span><span class="p">:</span><span class="mi">1521</span><span class="o">/</span><span class="n">orclpdb</span>
 </pre></div>
 </div>
-</div>
+</aside>
 <p>Für die PDBs sollten entsprechen Einträge in der <a class="reference internal" href="dbms.html#tnsnames-ora"><span class="std std-ref">tnsnames.ora</span></a> vorgenommen
 werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ORCLPDB</span> <span class="o">=</span>
   <span class="p">(</span><span class="n">DESCRIPTION</span> <span class="o">=</span>
      <span class="p">(</span><span class="n">ADDRESS</span> <span class="o">=</span>
        <span class="p">(</span><span class="n">PROTOCOL</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">)</span>
-       <span class="p">(</span><span class="n">HOST</span>     <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.110</span><span class="p">)</span>
+       <span class="p">(</span><span class="n">HOST</span>     <span class="o">=</span> <span class="mf">192.168.1.110</span><span class="p">)</span>
        <span class="p">(</span><span class="n">PORT</span>     <span class="o">=</span> <span class="mi">1521</span><span class="p">))</span>
      <span class="p">(</span><span class="n">CONNECT_DATA</span> <span class="o">=</span>
        <span class="p">(</span><span class="n">SERVER</span>       <span class="o">=</span> <span class="n">DEDICATED</span><span class="p">)</span>
@@ -172,8 +172,8 @@ werden:</p>
    <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -214,12 +214,12 @@ werden:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -227,7 +227,7 @@ werden:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

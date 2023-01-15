@@ -8,7 +8,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+    <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 
     
 <link rel="stylesheet" href="_static/css/reset.css">
@@ -19,6 +20,8 @@
 
 <link rel="stylesheet" href="_static/mysettings.css" type="text/css" />
 
+<link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<link rel="stylesheet" href="_static/revealjs.css" type="text/css" />
 
     <!-- Printing and PDF exports -->
     <script>
@@ -33,13 +36,16 @@
     <!--[if lt IE 9]>
     <script src="_static/lib/js/html5shiv.js"></script>
     <![endif]-->
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
+      <script type="text/javascript" src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         
-  <div class="section" id="get-git-started">
-<h1>get git started<a class="headerlink" href="#get-git-started" title="Permalink to this headline">¶</a></h1>
+  <section id="get-git-started">
+<h1>get git started<a class="headerlink" href="#get-git-started" title="Permalink to this heading">¶</a></h1>
 <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
   <a href="http://www.darmarit.de">
     <img src="_static/darmarIT_logo_512.png">
@@ -68,9 +74,9 @@ vielseitige Möglichkeiten, die andere Systeme z.T. vermissen lassen.</p>
 <p class="fragment roll-in">Qualitätsicherung –&gt;  <em>seit wann gibt’s den Fehler</em></p>
 <p class="fragment roll-in">parallele Weiterentwicklung–&gt;  <em>feature branch</em></p>
 <p class="fragment roll-in">Produktivität –&gt; Änderungen <em>jonglieren statt editieren</em></p>
-<div class="fragment roll-in figure align-default">
+<figure class="fragment roll-in align-default">
 <a class="reference external image-reference" href="https://commons.wikimedia.org/wiki/File:Passing_2jugglers_6balls_Ultimate-Valse_side.gif"><img alt="_images/Passing_2jugglers_6balls_Ultimate-Valse_side.gif" src="_images/Passing_2jugglers_6balls_Ultimate-Valse_side.gif" /></a>
-</div>
+</figure>
 <aside class="last notes">
 <p class="first last">Einige werden evtl. schon SVN (subversion) kennen. Meine Erfahrung ist
 aber, dass es oftmals nur als <em>Ablage</em> genutzt wird / echtes SCM ist was
@@ -83,13 +89,13 @@ alles keinen Sinn und man lässt es besser gleich ganz.</p>
 <section>
 <h3>SCM Systeme</h3>
 <p class="fragment roll-in first"><strong>zentral</strong></p>
-<div class="fragment roll-in figure align-default">
+<figure class="fragment roll-in align-default">
 <a class="reference external image-reference" href="https://subversion.apache.org/"><img alt="_images/svn-logo.png" src="_images/svn-logo.png" style="width: 222.0px; height: 130.2px;" /></a>
-</div>
+</figure>
 <p class="fragment roll-in"><strong>verteilt</strong></p>
-<div class="fragment roll-in figure align-default">
+<figure class="fragment roll-in align-default">
 <a class="reference external image-reference" href="https:/git-scm.com/"><img alt="_images/git-logo.png" src="_images/git-logo.png" style="width: 240.0px; height: 120.0px;" /></a>
-</div>
+</figure>
 <aside class="last notes">
 <p class="first last">SVN ist von seiner Architektur her für ein verteiltes Arbeiten
 insbesondere in remote-Szenarien (offline) nicht geeigent.</p>
@@ -99,9 +105,9 @@ insbesondere in remote-Szenarien (offline) nicht geeigent.</p>
 <h3>Zentrales SCM</h3>
 <p class="first">Entwickler haben lokale <strong>Workspaces</strong></p>
 <p>Historie liegt auf dem SCM-Server</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows"><img alt="_images/zentralisiert-wf.png" src="_images/zentralisiert-wf.png" style="width: 500.0px; height: 250.0px;" /></a>
-</div>
+</figure>
 <p>Patches gehen immer in das zentrale Repo</p>
 <p>SCM-System limitiert den Workflow</p>
 <aside class="last notes">
@@ -115,9 +121,9 @@ können. Alles muss gegen diesen EINEN Server laufen.</p>
 <h3>Verteiltes SCM mit Remotes</h3>
 <p class="first">Entwickler haben lokal einen <strong>Klon</strong></p>
 <p>Historie liegt auf jedem Klon vor</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows"><img alt="_images/verteilter-wf.png" src="_images/verteilter-wf.png" style="width: 500.0px; height: 202.0px;" /></a>
-</div>
+</figure>
 <p>Anstelle EINES SCM-Servers gibt es N <code class="docutils literal notranslate"><span class="pre">remote</span></code></p>
 <p>Workflow frei wählbar</p>
 <aside class="last notes">
@@ -182,9 +188,9 @@ kommt dann die man-Page auf Windows wird die HTML Version angezeigt.</p>
 <li><p>im Stage (gibts beim SVN z.B. nicht)</p></li>
 <li><p>im lokalem Repository (beim SVN nur remote)</p></li>
 </ul>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference external image-reference" href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"><img alt="_images/lifecycle.png" src="_images/lifecycle.png" style="width: 800.0px; height: 330.0px;" /></a>
-</div>
+</figure>
 <aside class="last notes">
 <p class="first">Dateien werden am Ende im Repository committet .. vorher bewegen sie sich
 aber im lokalen WS und im Stage (auch Index genannt). Der <em>Stage</em> ist
@@ -439,9 +445,9 @@ genügend C&amp;P Beispiele.</p>
 </section>
 <section>
 <h3>So könnte es im Terminal aussehen</h3>
-<div class="first last figure align-default">
+<figure class="first last align-default">
 <a class="reference internal image-reference" href="_images/cmdline-git-graph.png"><img alt="_images/cmdline-git-graph.png" src="_images/cmdline-git-graph.png" style="width: 1057.0px; height: 466.0px;" /></a>
-</div>
+</figure>
 </section>
 <section>
 <h3>lokales Arbeiten -- git branch</h3>
@@ -514,8 +520,8 @@ vorbereiten.</p>
 </section>
 <section>
 <h2>git graph</h2>
-<div class="first last figure align-default">
-<img alt="_images/git-graph-001.svg" src="_images/git-graph-001.svg" /></div>
+<figure class="first last align-default">
+<img alt="_images/git-graph-001.svg" src="_images/git-graph-001.svg" /></figure>
 </section>
 <section>
 <h3>branch: hello-world</h3>
@@ -558,8 +564,8 @@ wir einen Konflikt bekommen.</p>
 </section>
 <section>
 <h3>git graph</h3>
-<div class="first figure align-default">
-<img alt="_images/git-graph-002.svg" src="_images/git-graph-002.svg" /></div>
+<figure class="first align-default">
+<img alt="_images/git-graph-002.svg" src="_images/git-graph-002.svg" /></figure>
 <aside class="last notes">
 <p class="first">An diesem Bild können wir mal kurz <em>inne halten</em>. Wir sehen, dass der
 master sich weiter entwickelt hat und der feature-branch (hello-world)
@@ -672,9 +678,9 @@ $ git commit -m &quot;merge hello-world branch&quot;
 </section>
 <section id="git-graph">
 <h3>git graph</h3>
-<div class="first last figure align-default">
+<figure class="first last align-default">
 <a class="reference internal image-reference" href="_images/git-graph-003.svg"><img alt="_images/git-graph-003.svg" height="3232" src="_images/git-graph-003.svg" width="5632" /></a>
-</div>
+</figure>
 </section>
 <section>
 <h3>remotes -- Grundlagen</h3>
@@ -881,7 +887,7 @@ erläutert). Manchmal kann auch der Schalter <code class="docutils literal notra
 <li><p><a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a></p></li>
 </ul>
 </section>
-</div>
+</section>
 
 
       </div>

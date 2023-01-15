@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebDAV-Clients &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Verweise" href="apache_setup_refs.html" />
-    <link rel="prev" title="Test des WEB-Servers" href="probe_server.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Test des WEB-Servers" href="probe_server.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="webdav-clients">
-<span id="xref-webdav-clients"></span><h1>WebDAV-Clients<a class="headerlink" href="#webdav-clients" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="webdav-clients">
+<span id="xref-webdav-clients"></span><h1>WebDAV-Clients<a class="headerlink" href="#webdav-clients" title="Permalink to this heading">¶</a></h1>
 <p>Hier ein paar Beispiele für Client Anwendungen des <a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> Servers, wie
 er in <a class="reference internal" href="site_webshare.html#xref-site-webshare"><span class="std std-ref">Apache WebDAV</span></a> eingerichtet wird.</p>
 <div class="admonition caution">
@@ -56,11 +56,11 @@ Kalendern gesprochen wird, so ist dies NOCH KEINE <a class="reference external" 
 <a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> und <a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> dürfen an dieser Stelle nicht
 verwechselt werden.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> ist eine <em>Calendaring Extensions to WebDAV</em> siehe <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4791.html"><strong>RFC 4791</strong></a>.</p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> ist eine <em>Calendaring Extensions to WebDAV</em> siehe <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4791.html"><strong>RFC 4791</strong></a>.</p></li>
 </ul>
 </div>
-<div class="section" id="cadaver-webdav-client">
-<h2>cadaver webDAV-Client<a class="headerlink" href="#cadaver-webdav-client" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="cadaver-webdav-client">
+<h2>cadaver webDAV-Client<a class="headerlink" href="#cadaver-webdav-client" title="Permalink to this heading">¶</a></h2>
 <p>Mit dem Debian-Paket <a class="reference external" href="http://packages.ubuntu.com/cadaver">cadaver</a> steht der gleichnamige webDAV Client
 <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=cadaver">cadaver</a> zur Verfügung:</p>
 <ul class="simple">
@@ -99,9 +99,9 @@ Die Dateien in diesem Ordner werden über Apache exportiert.
 dav:/WEBSHARE/&gt; exit
 </pre></div>
 </div>
-</div>
-<div class="section" id="ms-windows-datei-explorer">
-<h2>MS-Windows Datei Explorer<a class="headerlink" href="#ms-windows-datei-explorer" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ms-windows-datei-explorer">
+<h2>MS-Windows Datei Explorer<a class="headerlink" href="#ms-windows-datei-explorer" title="Permalink to this heading">¶</a></h2>
 <p>In dem Windows-Datei-Explorer können WebDAV Freigaben eingebunden werden, dies
 kann man über die Kommandozeile machen:</p>
 <div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt;y:</span>
@@ -130,36 +130,44 @@ C<span class="p">:</span><span class="nl">\Users\user</span><span class="c1">&gt
 <ol class="arabic simple">
 <li><p>„Netzlaufwerk Verbinden“ aufrufen:</p></li>
 </ol>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <span id="xref-figure-webdav-clients-webdav-explorer-connect-net-drive"></span><img alt="Figure (WebDAV_explorer_connect_net_drive.png)" src="../_images/WebDAV_explorer_connect_net_drive.png" />
-<p class="caption"><span class="caption-text">MS-Datei Explorer: Netzlaufwerk Verbinden</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">MS-Datei Explorer: Netzlaufwerk Verbinden</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic simple" start="2">
 <li><p>WebDav <a class="reference external" href="https://">https://</a> Adresse angeben und Laufwerksbuchstaben zuordnen:</p></li>
 </ol>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <span id="xref-figure-webdav-clients-webdav-explorer-mount-https"></span><img alt="Figure (WebDAV_explorer_mount_https.png)" src="../_images/WebDAV_explorer_mount_https.png" />
-<p class="caption"><span class="caption-text">Netzlaufwerk <a class="reference external" href="https:/">https:/</a>/&lt;hostname&gt;/WEBSHARE</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Netzlaufwerk <a class="reference external" href="https:/">https:/</a>/&lt;hostname&gt;/WEBSHARE</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic simple" start="3">
 <li><p>Anmeldung durchführen.</p></li>
 </ol>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <span id="xref-figure-webdav-clients-webdav-explorer-mount-https-login-dialog"></span><img alt="Figure (WebDAV_explorer_mount_https_login_dialog.png)" src="../_images/WebDAV_explorer_mount_https_login_dialog.png" />
-<p class="caption"><span class="caption-text">Benutzer-Name und -Kennwort eingeben</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Benutzer-Name und -Kennwort eingeben</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic simple" start="4">
 <li><p>Netzlaufwerk wurde eingehängt:</p></li>
 </ol>
-<div class="figure align-center" id="id4">
+<figure class="align-center" id="id4">
 <span id="xref-figure-webdav-clients-webdav-explorer-webshare-mount"></span><img alt="Figure (WebDAV_explorer_WEBSHARE_mount.png)" src="../_images/WebDAV_explorer_WEBSHARE_mount.png" />
-<p class="caption"><span class="caption-text">Der eingehängte <code class="docutils literal notranslate"><span class="pre">WEBSHARE</span></code> Ordner</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-<div class="section" id="outlook">
-<h2>Outlook<a class="headerlink" href="#outlook" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="veroffentlichung-eines-kalenders">
-<h3>Veröffentlichung eines Kalenders<a class="headerlink" href="#veroffentlichung-eines-kalenders" title="Link zu dieser Überschrift">¶</a></h3>
+<figcaption>
+<p><span class="caption-text">Der eingehängte <code class="docutils literal notranslate"><span class="pre">WEBSHARE</span></code> Ordner</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="outlook">
+<h2>Outlook<a class="headerlink" href="#outlook" title="Permalink to this heading">¶</a></h2>
+<section id="veroffentlichung-eines-kalenders">
+<h3>Veröffentlichung eines Kalenders<a class="headerlink" href="#veroffentlichung-eines-kalenders" title="Permalink to this heading">¶</a></h3>
 <p>Einrichten der Veröffentlichung eines Kalenders, der in Outlook gepflegt wird
 und regelmäßig auf einem WebDAV-Share veröffentlicht wird.</p>
 <ol class="arabic simple">
@@ -167,10 +175,12 @@ und regelmäßig auf einem WebDAV-Share veröffentlicht wird.</p>
 <li><p><em>Online Veröffentlichen</em> (Freigeben)</p></li>
 <li><p><em>Auf WebDAV Server veröffentlichen</em></p></li>
 </ol>
-<div class="figure align-center" id="id5">
+<figure class="align-center" id="id5">
 <span id="xref-figure-webdav-clients-webdav-outlook-share-cal"></span><img alt="Figure (WebDAV_Outlook_share_cal.png)" src="../_images/WebDAV_Outlook_share_cal.png" />
-<p class="caption"><span class="caption-text">Kalender auf senutzerdefinierten Server veröffentlichen.</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Kalender auf senutzerdefinierten Server veröffentlichen.</span><a class="headerlink" href="#id5" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic" start="4">
 <li><p><em>Ort</em> <code class="docutils literal notranslate"><span class="pre">https://storage/WEBSHARE/Calendar</span></code></p>
 <p>Für den Ort zum veröffentlichen von Kalendern sollte sinnvollerweise ein
@@ -185,30 +195,36 @@ ein.</p>
 </li>
 <li><p><em>Detail</em> : <strong>Alle Details</strong> veröffentlichen</p></li>
 </ol>
-<div class="figure align-center" id="id6">
+<figure class="align-center" id="id6">
 <span id="xref-figure-webdav-clients-webdav-outlook-share-cal-settings"></span><img alt="Figure (WebDAV_Outlook_share_cal_settings.png)" src="../_images/WebDAV_Outlook_share_cal_settings.png" />
-<p class="caption"><span class="caption-text">Automatische Uploads aktivieren.</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
-<div class="section" id="abonieren-eines-offentlichen-kalenders">
-<h3>Abonieren eines öffentlichen Kalenders<a class="headerlink" href="#abonieren-eines-offentlichen-kalenders" title="Link zu dieser Überschrift">¶</a></h3>
+<figcaption>
+<p><span class="caption-text">Automatische Uploads aktivieren.</span><a class="headerlink" href="#id6" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="abonieren-eines-offentlichen-kalenders">
+<h3>Abonieren eines öffentlichen Kalenders<a class="headerlink" href="#abonieren-eines-offentlichen-kalenders" title="Permalink to this heading">¶</a></h3>
 <p>Einrichten eines Abonnements in Outlook:</p>
 <ol class="arabic simple">
 <li><p>Outlook 2013 // Kalender // Start (Reiter)</p></li>
 <li><p><em>Kalender Öffnen</em> (Kalender verwalten)</p></li>
 <li><p><em>Aus dem Internet</em></p></li>
 </ol>
-<div class="figure align-center" id="id7">
+<figure class="align-center" id="id7">
 <span id="xref-figure-webdav-clients-webdav-outlook-add-cal-from-internet"></span><img alt="Figure (WebDAV_Outlook_add_cal_from_internet.png)" src="../_images/WebDAV_Outlook_add_cal_from_internet.png" />
-<p class="caption"><span class="caption-text">Kalender aus dem Internet abonieren.</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Kalender aus dem Internet abonieren.</span><a class="headerlink" href="#id7" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic simple" start="3">
 <li><p><em>Speicherort</em>  <code class="docutils literal notranslate"><span class="pre">https://storage/WEBSHARE/Kalender_von_Test-Cal_Outlook_2013.ics</span></code></p></li>
 </ol>
-<div class="figure align-center" id="id8">
+<figure class="align-center" id="id8">
 <span id="xref-figure-webdav-clients-webdav-outlook-add-cal-from-internet-url"></span><img alt="Figure (WebDAV_Outlook_add_cal_from_internet_url.png)" src="../_images/WebDAV_Outlook_add_cal_from_internet_url.png" />
-<p class="caption"><span class="caption-text">URL eingeben</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">URL eingeben</span><a class="headerlink" href="#id8" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <ol class="arabic simple" start="4">
 <li><p><em>„Möchten Sie … hinzufügen und abonnieren?“</em>  JA</p></li>
 </ol>
@@ -244,9 +260,9 @@ ein und löscht überflüssige Dateien aus dem Ordner
 </pre></div>
 </div>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -292,12 +308,12 @@ ein und löscht überflüssige Dateien aus dem Ordner
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -305,7 +321,7 @@ ein und löscht überflüssige Dateien aus dem Ordner
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

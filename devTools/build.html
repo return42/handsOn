@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Software Build (GNU) &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="python" href="python.html" />
-    <link rel="prev" title="Debian" href="debian.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Debian" href="debian.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="software-build-gnu">
-<span id="xref-ubuntu-devtools-build"></span><h1>Software Build (GNU)<a class="headerlink" href="#software-build-gnu" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="software-build-gnu">
+<span id="xref-ubuntu-devtools-build"></span><h1>Software Build (GNU)<a class="headerlink" href="#software-build-gnu" title="Permalink to this heading">¶</a></h1>
 <p>Es gibt eine Vielzahl von Buildtools die <em>hier</em> nicht installiert werden und auf
 die nicht eingegangen werden soll.  In Linux/Unix Software-Projekten wird jedoch
 häufig die Tool-Chain des <a class="reference external" href="https://de.wikipedia.org/wiki/GNU_Build_System">GNU Build System (wiki)</a> genutzt, weshalb diese
@@ -90,10 +90,12 @@ Implementierungen <em>portabel</em> zu halten, so dass diese auf unterschiedlich
 Build-Prozess zuständigen <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> Dateien ebenfalls <em>portabel</em> zu halten.
 Das Zusammenspiel von Automake und Autoconf wird in dem Prozessbild von
 Wikimedia Commons anschaulich dargestellt.</p>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <span id="xref-figure-build-256px-autoconf-automake-process-svg"></span><a class="reference external image-reference" href="https://de.wikipedia.org/wiki/GNU_Build_System#/media/File:Autoconf-automake-process.svg"><img alt="Figure (256px-Autoconf-automake-process.svg.png)" src="../_images/256px-Autoconf-automake-process.svg.png" /></a>
-<p class="caption"><span class="caption-text">Autoconf / Automake Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Autoconf / Automake Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id1" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Eine kurze, pragmatisches Einführung zu den Autotools gibt das <a class="reference external" href="http://markuskimius.wikidot.com/programming:tut:autotools">Autotools
 Tutorial for Beginners (markuskimius)</a> oder das Kapitel „Build-Systeme Teil 5:
 GNU Autotools“ im <a class="reference external" href="https://magazin.c-plusplus.net/inhaltsverzeichnis">magazin.c-plusplus.net</a>.</p>
@@ -110,11 +112,13 @@ begrenzten) <a class="reference external" href="https://en.wikipedia.org/wiki/Li
 <p>Das Paket <a class="reference external" href="http://packages.ubuntu.com/gettext">gettext</a> installiert die <a class="reference external" href="http://www.gnu.org/software/gettext/">GNU gettext</a> Toolchain.  Das
 Zusammenspiel der gettext-Tools wird in dem Prozessbild von Wikimedia Commons
 anschaulich dargestellt.</p>
-<div class="figure align-center" id="id2">
+<figure class="align-center" id="id2">
 <span id="xref-figure-build-206px-gettext-svg"></span><a class="reference external image-reference" href="https://de.wikipedia.org/wiki/GNU_gettext#/media/File:Gettext.svg"><img alt="Figure (206px-Gettext.svg.png)" src="../_images/206px-Gettext.svg.png" /></a>
-<p class="caption"><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/GNU_gettext">GNU gettext (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
-</div>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://de.wikipedia.org/wiki/GNU_gettext">GNU gettext (wiki)</a> Prozessbild (Wikimedia Commons)</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
+</section>
 
 
             <div class="clearer"></div>
@@ -146,12 +150,12 @@ anschaulich dargestellt.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -159,7 +163,7 @@ anschaulich dargestellt.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

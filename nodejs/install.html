@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Installation Node.js &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="npm Pakete im OS" href="npm_os_install.html" />
-    <link rel="prev" title="Node.js (development)" href="index.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Node.js (development)" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,30 +45,30 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="installation-node-js">
-<span id="install-nodejs"></span><h1>Installation Node.js<a class="headerlink" href="#installation-node-js" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="sidebar">
+  <section id="installation-node-js">
+<span id="install-nodejs"></span><h1>Installation Node.js<a class="headerlink" href="#installation-node-js" title="Permalink to this heading">¶</a></h1>
+<aside class="sidebar">
 <p class="sidebar-title">install: nodejs</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H ./nodejs-dev.sh install nodejs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>./nodejs-dev.sh<span class="w"> </span>install<span class="w"> </span>nodejs
 </pre></div>
 </div>
-</div>
+</aside>
 <p>Die <em>binaries</em> des <a class="reference external" href="https://nodejs.org/">Node.js</a> stehen auf der <a class="reference external" href="https://nodejs.org/en/download/">Node.js Download-Seite</a> zur Verfügung.  Besser eignet sich aber die
 in Kapitel <a class="reference internal" href="#nodesource-node-js-binary-distributions">NodeSource: Node.js Binary Distributions</a> beschriebene
 Installationsmethode.</p>
 <p>Wurden die Pakete <code class="docutils literal notranslate"><span class="pre">nodejs</span></code> und <code class="docutils literal notranslate"><span class="pre">npm</span></code> aus den normalen Ubuntu Quellen oder
 anderweitig bereits installiert, so müssen diese vor einer erneuten Installation
 aus einer anderen Quelle zuvor deinstalliert werden.</p>
-<div class="section" id="paketquellen-des-ubuntu-debian">
-<h2>Paketquellen des Ubuntu/Debian<a class="headerlink" href="#paketquellen-des-ubuntu-debian" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="paketquellen-des-ubuntu-debian">
+<h2>Paketquellen des Ubuntu/Debian<a class="headerlink" href="#paketquellen-des-ubuntu-debian" title="Permalink to this heading">¶</a></h2>
 <p>Über die Paket Quellen des Ubuntu/Debian kann das Paket <a class="reference external" href="http://packages.ubuntu.com/nodejs">nodejs</a>
 installiert werden.  In Ubuntu 18.04 ist das beispielsweise Node.js v8.10 und in
 Ubuntu 19.04 ist es Node.js v10.15.  Neuere (oder ältere) Versionen können über
 alternative Paket-Repositorien installiert werden (siehe <a class="reference internal" href="#nodesource-node-js-binary-distributions">NodeSource: Node.js
 Binary Distributions</a>).</p>
-</div>
-<div class="section" id="nodesource-node-js-binary-distributions">
-<span id="nodesource-com"></span><h2>NodeSource: Node.js Binary Distributions<a class="headerlink" href="#nodesource-node-js-binary-distributions" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="nodesource-node-js-binary-distributions">
+<span id="nodesource-com"></span><h2>NodeSource: Node.js Binary Distributions<a class="headerlink" href="#nodesource-node-js-binary-distributions" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://nodesource.com">NodeSource</a> bietet Binary-Pakete für die gängigen Linux Distributionen an, so
 z.B. für die <a class="reference external" href="https://github.com/nodesource/distributions#deb">Debian and Ubuntu based distributions</a>, deren dep-Repository für
 Node.js (beispielsweise) v12 hier zu finden ist:</p>
@@ -84,7 +84,7 @@ hier zu finden:</p>
 </div></blockquote>
 <p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befindet sich ein Skript, das die folgenden
 Schritte durchführt:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/nodejs-dev.sh install nodejs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/nodejs-dev.sh<span class="w"> </span>install<span class="w"> </span>nodejs
 </pre></div>
 </div>
 <ol class="arabic simple">
@@ -100,15 +100,15 @@ Schritte durchführt:</p>
 <p>De-Installation des <code class="docutils literal notranslate"><span class="pre">nodejs</span></code> Pakets und das Löschen des Reposetory Eintrags
 von NodeSource in den APT-Sourcen ist mit dem folgenden Kommando einfach
 möglich:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/nodejs-dev.sh remove nodejs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/nodejs-dev.sh<span class="w"> </span>remove<span class="w"> </span>nodejs
 </pre></div>
 </div>
 <p>Update der globalen Node.js Installation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/nodejs-dev.sh update nodejs
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/nodejs-dev.sh<span class="w"> </span>update<span class="w"> </span>nodejs
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -149,12 +149,12 @@ möglich:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -162,7 +162,7 @@ möglich:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

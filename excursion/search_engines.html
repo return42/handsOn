@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Suchmaschinen &amp; Tracking &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Anmerkungen zu SSL und Zertifikaten" href="ssl_ca_remarks.html" />
-    <link rel="prev" title="Exkursionen und Erfahrungswerte" href="index.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Exkursionen und Erfahrungswerte" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,14 +45,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="suchmaschinen-tracking">
-<span id="search-engines"></span><h1>Suchmaschinen &amp; Tracking<a class="headerlink" href="#suchmaschinen-tracking" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="sidebar">
+  <section id="suchmaschinen-tracking">
+<span id="search-engines"></span><h1>Suchmaschinen &amp; Tracking<a class="headerlink" href="#suchmaschinen-tracking" title="Permalink to this heading">¶</a></h1>
+<aside class="sidebar">
 <p class="sidebar-title">Warnung – Startpage</p>
-<p>Bisher wurde hier <cite>Startpage</cite> als „<em>die bessere google Suchmaschine!</em>“
-tituliert, inzwischen kann von der Verwendung nur abgeraten werden
-(s.u. <a class="reference internal" href="#startpage">Startpage</a>).  Alternativ empfiehlt es sich eine der <a class="reference internal" href="../searx.html#xref-searx"><span class="std std-ref">searX Engines</span></a> zur Internetsuche zu verwenden z.B.: <a class="reference external" href="https://darmarit.cloud/searx">searX&#64;darmarIT</a></p>
-</div>
+<p><a class="reference internal" href="#startpage"><span class="std std-ref">Startpage.com ist dubios</span></a>.  Alternativ empfiehlt es sich eine <a class="reference external" href="https://docs.searxng.org">SearXNG</a> Instanz wie
+<a class="reference external" href="https://darmarit.org/searx/">SearXNG&#64;darmarIT</a> zu verwenden (s.u. <a class="reference internal" href="#id2"><span class="std std-ref">Anonyme Suche – SearXNG</span></a>).</p>
+</aside>
 <p>Für die ganz Ungeduldigen unter uns:</p>
 <ul class="simple">
 <li><p>Einleitung überspringen und hier starten mit: <a class="reference internal" href="#do-not-track"><span class="std std-ref">Do-not-track</span></a>.</p></li>
@@ -68,8 +67,8 @@ installieren?</p>
 </li>
 <li><p>und was kann ich auf dem Android Gerät machen? .. schau <a class="reference internal" href="../android/nogoogle.html#nogoogle-intro"><span class="std std-ref">hier</span></a></p></li>
 </ul>
-<div class="section" id="einleitung">
-<h2>Einleitung<a class="headerlink" href="#einleitung" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="einleitung">
+<h2>Einleitung<a class="headerlink" href="#einleitung" title="Permalink to this heading">¶</a></h2>
 <p>Der erste Schritt ins Internet beginnt i.d.R. mit einer Suchmaschine, dort gibt
 man seinen Suchbegriff in ein Formular ein und klickt dann auf ein Ergebniss in
 der Trefferliste. Oftmals wird das Formular schon durch die URL Leiste (oben) im
@@ -124,9 +123,9 @@ welche Inhalte für ihn zugeschnitten wurden und welche Inhalte neutral sind. De
 <em>Zuschnitt</em> kann um so schärfer erfolgen, je mehr Informationen über den Nutzer
 bekannt sind und jeder Like oder Klick auf Facebook &amp; Co schärft das Profiel des
 Nutzers weiter (s. z.B. <a class="reference external" href="http://gfx.sueddeutsche.de/apps/e502288/www/">Der Facebook-Faktor</a>).</p>
-</div>
-<div class="section" id="do-not-track">
-<span id="id1"></span><h2>Do-not-track<a class="headerlink" href="#do-not-track" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="do-not-track">
+<span id="id1"></span><h2>Do-not-track<a class="headerlink" href="#do-not-track" title="Permalink to this heading">¶</a></h2>
 <p>Als Benutzer von Smart-Phone, -TV, WEB-Browser &amp; Co. wird man dem Tracking
 niemals ganz entgehen können, man kann ihn aber auf verscheidenen Ebenen stark
 einschränken und der Aufwand dafür ist nicht besonders groß.</p>
@@ -137,28 +136,21 @@ wie dem BSI und dem Online Zugang der Bank mag man darauf noch vertrauen können
 meist darf man aber davon ausgehen, das die Mitwirkung der WEB-Seiten Betreiber
 eher schwach ist. Im Folgenden werden <em>härtere/aktive</em> Methoden zum Schutz
 empfohlen.</p>
-<div class="section" id="anonyme-suche">
-<h3>Anonyme Suche<a class="headerlink" href="#anonyme-suche" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="sidebar">
-<p class="sidebar-title"><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a></p>
-<p>Will man unbedingt über Google suchen, dann ist man zwar im Tracking, doch
-auch das kann man (etwas) einschränken, im Firefox z.B. mit dem AddOn:
-<a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/google-search-link-fix">Google search link fix</a>.</p>
-</div>
+<section id="anonyme-suche-searxng">
+<span id="id2"></span><h3>Anonyme Suche – SearXNG<a class="headerlink" href="#anonyme-suche-searxng" title="Permalink to this heading">¶</a></h3>
 <p>Anonyme Suchmaschinen setzen kein Tracking ein.  Jedoch blenden sie zwecks
 Finanzierung gekennzeichnete Werbung ein (s.a. <a class="reference internal" href="#add-blocker"><span class="std std-ref">Werbeblocker &amp; Co. im WEB-Browser</span></a>).  Die Nähe
 solcher Unternehmen zur Werbebranche ist nicht immer unproblematisch.  Genau
-genommen weiß man nicht, ob sich das Geschäftsmodel solcher Unternehemen im
-Laufe der Jahre nicht doch irgendwann verschiebt.  Der aktuelle Fall von
-Startpage (s.u.) zeigt wie sich die Geschäftsmodelle <em>still und leise ändern</em>
-können.</p>
-<div class="admonition-searx-aka-goggle admonition">
-<p class="admonition-title">searX (aka goggle++)</p>
-<p>Am besten ist immernoch eine <a class="reference internal" href="../searx.html#xref-searx"><span class="std std-ref">searX Engine</span></a>, davon gibt es
-reichlich im Netz (<a class="reference external" href="https://github.com/asciimoo/searx/wiki/Searx-instances">searX-Instances</a>) oder man nimmt diese: <a class="reference external" href="https://darmarit.cloud/searx">searX&#64;darmarIT</a></p>
+genommen weiß man nicht ob sich das Geschäftsmodel solcher Unternehemen im Laufe
+der Jahre nicht doch irgendwann verschiebt.  Der Fall von <a class="reference internal" href="#startpage">Startpage</a> (s.u.)
+zeigt wie sich die Geschäftsmodelle <em>still und leise ändern</em> können.</p>
+<div class="admonition-searxng-aka-goggle admonition">
+<p class="admonition-title">SearXNG (aka goggle++)</p>
+<p>Am besten ist es, man nutzt eine der  <a class="reference external" href="https://docs.searxng.org">SearXNG</a> Instanzen, davon gibt
+es reichlich im Netz (<a class="reference external" href="https://searx.space/">searx.space</a>) z.B. <a class="reference external" href="https://darmarit.org/searx/">SearXNG&#64;darmarIT</a>.</p>
 </div>
-<div class="section" id="startpage-com-ist-dubios">
-<span id="startpage"></span><h4>Startpage.com ist dubios<a class="headerlink" href="#startpage-com-ist-dubios" title="Link zu dieser Überschrift">¶</a></h4>
+<section id="startpage-com-ist-dubios">
+<span id="startpage"></span><h4>Startpage.com ist dubios<a class="headerlink" href="#startpage-com-ist-dubios" title="Permalink to this heading">¶</a></h4>
 <p>Inzwischen wurde das Unternehmen geschluckt und befindet sich jetzt in den
 Händen von … naja man weiß es nicht so genau.  Was man weiß steht in der
 <a class="reference external" href="https://www.startpage.com/blog/company-updates/startpage-and-privacy-one-group/">Presseerklärung</a>:
@@ -170,10 +162,10 @@ Weiteres kann man über diese Abteilung (das Unternehmen?) nicht in Erfahrung
 bringen.  Fragt man sich also, wer ist der Eigentümer System1 LLC?  Ein Werbe-
 und Marketinganbieter, der mit dem Auswerten und Verarbeiten von Daten Umsatz
 generiert (s.a. <a class="reference external" href="https://www.kuketz-blog.de/ist-die-suchmaschine-startpage-noch-empfehlenswert/">Kuketz</a>).</p>
-</div>
-</div>
-<div class="section" id="werbeblocker-co-im-web-browser">
-<span id="add-blocker"></span><h3>Werbeblocker &amp; Co. im WEB-Browser<a class="headerlink" href="#werbeblocker-co-im-web-browser" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+</section>
+<section id="werbeblocker-co-im-web-browser">
+<span id="add-blocker"></span><h3>Werbeblocker &amp; Co. im WEB-Browser<a class="headerlink" href="#werbeblocker-co-im-web-browser" title="Permalink to this heading">¶</a></h3>
 <p>Gute Werbeblocker blockieren nicht nur die Werbung sondern gleich den ganzen
 Tracking Kram und WEB-Seiten die als Virenschleuder bekannt sind. Das gelingt
 nicht immer zu 100% aber annähernd. Empfehlenswert ist:</p>
@@ -194,10 +186,10 @@ etwas mehr als uBlock:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://addons.mozilla.org/de/firefox/addon/decentraleyes">Decentraleyes</a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="dns-blocker">
-<h2>DNS Blocker<a class="headerlink" href="#dns-blocker" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+</section>
+<section id="dns-blocker">
+<h2>DNS Blocker<a class="headerlink" href="#dns-blocker" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS</a> ist quasi das <em>Telefonbuch</em> des Internets. Immer wenn man eine <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> wie
 google.de aufrufen will, muss dieser Name der <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> (google.de) in eine IP
 Adresse (sozusagen die Telefonnummer) der WEB-Seite aufgelöst werden. Ist das
@@ -224,9 +216,9 @@ Schadsoftware verbreiten. Dabei ist es egal ob diese Anfrage aus dem WEB-Browser
 kommt oder versteckt in einer Anwendung (App) erfolgt. Das blockieren solcher
 Adressen sollte die Grundlage eines jeden Sicherheitskonzepts sein und eignet
 sich auch als erster <em>Kinderschutz</em>.</p>
-</div>
-<div class="section" id="tracking">
-<span id="id2"></span><h2>Tracking<a class="headerlink" href="#tracking" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="tracking">
+<span id="id3"></span><h2>Tracking<a class="headerlink" href="#tracking" title="Permalink to this heading">¶</a></h2>
 <p>Tracking ist nicht per se <em>böse</em>. Wenn man beispielsweise bei seiner Bank eine
 Online Überweisung macht, dann ist das schon sehr wichtig, dass die WEB-Seite
 der Bank weiß, wer da grad versucht eine Überweisung durchzuführen. Um nicht
@@ -260,10 +252,12 @@ dort im einzelnen bewegt hat. Die Graphik ist dabei nicht unbedingt vollständig
 da es zu aufwendig war alle Tracker-Schutzmaßnahmen in unserem Netzwerk
 abzuschalten. Sie soll auch nur verdeutlichen, wie schnell (nach 10Min) so ein
 Trackernetzwerk aufgebaut ist.</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id4">
 <span id="xref-figure-search-engines-tracker-mash-up"></span><img alt="Figure (tracker_mash_up.png)" class="rst-figure" src="../_images/tracker_mash_up.png" />
-<p class="caption"><span class="caption-text"><span class="target" id="vernetzung-besuchter-seiten-und-deren-tracker">Vernetzung besuchter Seiten und deren Tracker</span></span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><span class="target" id="vernetzung-besuchter-seiten-und-deren-tracker">Vernetzung besuchter Seiten und deren Tracker</span></span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Um so mehr Tracker eine Seite verwendet, um so schneller und dichter wird das
 Netz gespannt. Die Graphik des <a class="reference external" href="https://www.mozilla.org/en-US/lightbeam/">lightbeam</a> ist zwar ganz nett, aber um einen
 ersten Eindruck von einer WEB-Seite zu bekommen kann man die <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_(Internet)">Domain</a> auch kurz
@@ -281,8 +275,8 @@ hier z.B. die Auswertung der WEB-Seite der Computer-Zeitschrift CHIP:</p>
 <p>Ist das noch seriös? .. die Frage mag sich jeder selber beantworten: Stecken Sie
 mal die Adressen Ihrer Bank (müsste immer OK sein) und ihrer Lieblingsseite da
 rein um sich enen eigenen Eindruck zu verschaffen.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -304,7 +298,7 @@ rein um sich enen eigenen Eindruck zu verschaffen.</p>
 <li><a class="reference internal" href="#">Suchmaschinen &amp; Tracking</a><ul>
 <li><a class="reference internal" href="#einleitung">Einleitung</a></li>
 <li><a class="reference internal" href="#do-not-track">Do-not-track</a><ul>
-<li><a class="reference internal" href="#anonyme-suche">Anonyme Suche</a><ul>
+<li><a class="reference internal" href="#anonyme-suche-searxng">Anonyme Suche – SearXNG</a><ul>
 <li><a class="reference internal" href="#startpage-com-ist-dubios">Startpage.com ist dubios</a></li>
 </ul>
 </li>
@@ -332,12 +326,12 @@ rein um sich enen eigenen Eindruck zu verschaffen.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -345,7 +339,7 @@ rein um sich enen eigenen Eindruck zu verschaffen.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Linux snap-Pakete &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="snap Intro" href="snappy-intro.html" />
-    <link rel="prev" title="Samsung Exynos 7 Octa 7870 (Joshua)" href="../android/exynos_7_octa_7870.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Samsung Exynos 7 Octa 7870 (Joshua)" href="../android/exynos_7_octa_7870.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,14 +44,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="linux-snap-pakete">
-<span id="snap"></span><h1>Linux snap-Pakete<a class="headerlink" href="#linux-snap-pakete" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="linux-snap-pakete">
+<span id="snap"></span><h1>Linux snap-Pakete<a class="headerlink" href="#linux-snap-pakete" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://www.ubuntu.com/desktop/snappy">Snappy</a> ist ein (zusätzlicher) Paket-Manager. Mit dem Paket-Manager können
 Pakete unabhängig vom <em>nativem</em> Paket-Manager einer Linux Distribution
 installiert werden. <a class="reference external" href="https://www.ubuntu.com/desktop/snappy">Snappy</a> kann auf den gängigen Distributuionen installiert
 werden (s.a. <a class="reference external" href="https://snapcraft.io/docs/core/install">install snapd</a>).</p>
-<div class="section" id="themen">
-<h2>Themen<a class="headerlink" href="#themen" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="themen">
+<h2>Themen<a class="headerlink" href="#themen" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="snappy-intro.html">snap Intro</a></li>
@@ -61,9 +61,9 @@ werden (s.a. <a class="reference external" href="https://snapcraft.io/docs/core/
 <li class="toctree-l1"><a class="reference internal" href="snap-confinement.html">Vertrauenswürdige Pakete</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="todo">
-<h2>ToDo<a class="headerlink" href="#todo" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="todo">
+<h2>ToDo<a class="headerlink" href="#todo" title="Permalink to this heading">¶</a></h2>
 <p>Dieser Artikel befindet sich noch im Aufbau, folgende Themen müssen noch
 ausgearbeitet werden:</p>
 <ul class="simple">
@@ -73,9 +73,9 @@ ausgearbeitet werden:</p>
 <li><p><a class="reference external" href="https://tutorials.ubuntu.com/tutorial/build-a-nodejs-service?backURL=%2F#0">Build a nodejs service snap</a></p></li>
 <li><p><a class="reference external" href="https://snapcraft.io/docs/build-snaps/build-for-another-arch">Build for another architecture</a></p></li>
 </ul>
-</div>
-<div class="section" id="verweise">
-<h2>Verweise<a class="headerlink" href="#verweise" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="verweise">
+<h2>Verweise<a class="headerlink" href="#verweise" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://snapcraft.io/docs/build-snaps/syntax">snapcraft Syntax</a></p></li>
 <li><p><a class="reference external" href="https://build.snapcraft.io/">Auto-build and publish software or any Linux system or device</a></p></li>
@@ -84,8 +84,8 @@ ausgearbeitet werden:</p>
 <li><p>Konfiguration zu den Beispielen in diesem Artikel:
 - hello Paket: <a class="reference download internal" download="" href="../_downloads/f203b29fdf8b925ac1439a9c20df4df7/snapcraft.yaml"><code class="xref download docutils literal notranslate"><span class="pre">hello/snap/snapcraft.yaml</span></code></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -124,12 +124,12 @@ ausgearbeitet werden:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -137,7 +137,7 @@ ausgearbeitet werden:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

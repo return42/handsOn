@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Konzepte &amp; Tools &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Motivation &amp; Umfeld" href="motivation.html" />
-    <link rel="prev" title="Get Started" href="get_started.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = './';</script>
-   
+    <link rel="prev" title="Get Started" href="get_started.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,8 +44,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="konzepte-tools">
-<span id="xref-handson-concept"></span><h1>Konzepte &amp; Tools<a class="headerlink" href="#konzepte-tools" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="konzepte-tools">
+<span id="xref-handson-concept"></span><h1>Konzepte &amp; Tools<a class="headerlink" href="#konzepte-tools" title="Permalink to this heading">¶</a></h1>
 <p>Das handsOn Konzept bietet einen leichten Einstieg in das Setup (zum Teil)
 komplexer Anwendungen.  Es verzichtet auf <em>große</em> Tools und besteht im Kern aus:</p>
 <ul class="simple">
@@ -54,8 +54,8 @@ komplexer Anwendungen.  Es verzichtet auf <em>große</em> Tools und besteht im K
 <li><p>Zur Versionsverwaltung wird <a class="reference external" href="http://git-scm.com/">Git</a> genutzt.</p></li>
 <li><p>Einem <a class="reference external" href="MERGE_CMD">Tool zum Mergen</a> von Dateien.</p></li>
 </ul>
-<div class="section" id="ordnerstruktur">
-<span id="repo-root"></span><h2>Ordnerstruktur<a class="headerlink" href="#ordnerstruktur" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="ordnerstruktur">
+<span id="repo-root"></span><h2>Ordnerstruktur<a class="headerlink" href="#ordnerstruktur" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>handsOn
 ├── .config
 ├── cache
@@ -109,9 +109,9 @@ sichernden Konfigurationsdateien mit auf und versioniert sie mit allen
 anderen Anpassungen auf dem Host.</p>
 </dd>
 </dl>
-</div>
-<div class="section" id="versionierung-des-setups">
-<span id="xref-handson-setup"></span><h2>Versionierung des Setups<a class="headerlink" href="#versionierung-des-setups" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="versionierung-des-setups">
+<span id="xref-handson-setup"></span><h2>Versionierung des Setups<a class="headerlink" href="#versionierung-des-setups" title="Permalink to this heading">¶</a></h2>
 <p>Im Rahmen der <a class="reference internal" href="get_started.html#xref-install-handson"><span class="std std-ref">Installation</span></a> wurde der Ordner
 <code class="docutils literal notranslate"><span class="pre">hostSetup</span></code> angelegt.  In diesem Ordner können die Setups versioniert werden.
 Das dieser Ordner für die Setups verwendet werden soll, wurde in der
@@ -147,9 +147,9 @@ Beispiel zu bleiben:</p>
 <p>I.d.R. wird man seine Profile unterschiedlich differenziert organisieren wollen.
 Bei der <a class="reference internal" href="get_started.html#xref-install-handson"><span class="std std-ref">Installation</span></a> wurde ein Profil spezifisch
 zum Hostnamen eingerichtet. Je nach Bedarf sollte man das anpassen.</p>
-</div>
-<div class="section" id="sicherung-eine-setups">
-<span id="xref-backup-config-sh"></span><h2>Sicherung eine Setups<a class="headerlink" href="#sicherung-eine-setups" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="sicherung-eine-setups">
+<span id="xref-backup-config-sh"></span><h2>Sicherung eine Setups<a class="headerlink" href="#sicherung-eine-setups" title="Permalink to this heading">¶</a></h2>
 <p>Beim Einrichten der Anwendungen werden i.d.R. Konfigurationsdateien z.B. unter
 <code class="docutils literal notranslate"><span class="pre">/etc</span></code> angepasst.  Diese Config-Dateien können mit dem Backup-Script gesichert
 werden:</p>
@@ -180,9 +180,9 @@ wurden, brauchen nicht unbedingt gesichert zu werden.  So bekommt man für die
 unveränderten Dateien noch die Updates aus dem <a class="reference internal" href="#term-templates"><span class="xref std std-term">TEMPLATES</span></a> Ordner mit,
 wenn man eine Anwendung neu installiert oder ein Update über die handsOn Skripte
 macht.</p>
-</div>
-<div class="section" id="anwendung-gesicherter-config-dateien">
-<h2>Anwendung gesicherter Config-Dateien<a class="headerlink" href="#anwendung-gesicherter-config-dateien" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="anwendung-gesicherter-config-dateien">
+<h2>Anwendung gesicherter Config-Dateien<a class="headerlink" href="#anwendung-gesicherter-config-dateien" title="Permalink to this heading">¶</a></h2>
 <p>Die Skripte in dem Ordner <a class="reference internal" href="#term-scripts"><span class="xref std std-term">SCRIPTS</span></a> richten die Anwendungen ein. Dabei
 legen sie die erforderlichen Config-Dateien der Anwendungen an.  Die Vorlagen
 für solche Config-Dateien entnehmen die Skripte aus dem Ordner <a class="reference internal" href="#term-templates"><span class="xref std std-term">TEMPLATES</span></a>.</p>
@@ -193,9 +193,9 @@ Sicherung gefunden, so wird diese in die Installation mit einbezogen.
 I.d.R. kann der Anwender dann auswählen ob er die Standard-Vorlage oder die
 Sicherung nutzen will.  Meist hat er auch noch die Wahl beide Dateien
 zusammenzuführen (<a class="reference internal" href="#merge-cmd">MERGE_CMD</a>).</p>
-</div>
-<div class="section" id="config-setup-sh">
-<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">${CONFIG}_setup.sh</span></code><a class="headerlink" href="#config-setup-sh" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="config-setup-sh">
+<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">${CONFIG}_setup.sh</span></code><a class="headerlink" href="#config-setup-sh" title="Permalink to this heading">¶</a></h2>
 <p>In der Datei werden alle Anpassungen des Profils definiert.  Sie wird in dem
 Ordner <a class="reference internal" href="#term-hostSetup"><span class="xref std std-term">hostSetup</span></a> angelegt, also z.B:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">foo</span><span class="o">/</span><span class="n">repo_setups</span><span class="o">/&lt;</span><span class="n">profile</span><span class="o">&gt;</span><span class="n">_setup</span><span class="o">.</span><span class="n">sh</span>
@@ -216,9 +216,9 @@ dafür das <code class="docutils literal notranslate"><span class="pre">info.sh<
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">info</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="config-sysinfo">
-<span id="backup-config-sh"></span><span id="config-sysinfo-sh"></span><h2><code class="docutils literal notranslate"><span class="pre">${CONFIG}_sysinfo</span></code><a class="headerlink" href="#config-sysinfo" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="config-sysinfo">
+<span id="backup-config-sh"></span><span id="config-sysinfo-sh"></span><h2><code class="docutils literal notranslate"><span class="pre">${CONFIG}_sysinfo</span></code><a class="headerlink" href="#config-sysinfo" title="Permalink to this heading">¶</a></h2>
 <p>Mit dem Skript <code class="docutils literal notranslate"><span class="pre">log_sysinfo.sh</span></code> können diverse Infos zum System protokolliert
 werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">scripts</span><span class="o">/</span><span class="n">backup_config</span><span class="o">.</span><span class="n">sh</span>
@@ -234,8 +234,8 @@ angelegt.</p>
 Veränderungen am System über die Zeit beobachten, z.B. die Degression der
 SMART Werte.</em></p>
 </div></blockquote>
-<div class="section" id="merge-tool">
-<h3>Merge Tool<a class="headerlink" href="#merge-tool" title="Link zu dieser Überschrift">¶</a></h3>
+<section id="merge-tool">
+<h3>Merge Tool<a class="headerlink" href="#merge-tool" title="Permalink to this heading">¶</a></h3>
 <p>Als Merge Tool wird im Default der <a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a> genutzt.  Will man davon abweichend
 ein anderes Werkzeug nutzen, so kann man dafür in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> Datei die
 Variablen <a class="reference internal" href="#merge-cmd">MERGE_CMD</a> und <a class="reference internal" href="#three-way-merge-cmd">THREE_WAY_MERGE_CMD</a> setzen.  Alternativen zum Emacs
@@ -272,9 +272,9 @@ besser mit <a class="reference external" href="http://meldmerge.org/">Meld</a> k
 </div>
 </dd>
 </dl>
-</div>
-<div class="section" id="diff-tool">
-<span id="diff-cmd"></span><h3>Diff Tool<a class="headerlink" href="#diff-tool" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="diff-tool">
+<span id="diff-cmd"></span><h3>Diff Tool<a class="headerlink" href="#diff-tool" title="Permalink to this heading">¶</a></h3>
 <p>Im Default wird <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=colordiff">colordiff</a> verwendet, wenn das nicht vorhanden ist, wird
 <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=diff">diff</a> verwendet.  Will man davon abweichend ein anderes Werkzeug nutzen,
 so kann man in der <a class="reference internal" href="#term-.config"><span class="xref std std-term">.config</span></a> Datei die Variablen dafür setzen:</p>
@@ -282,35 +282,35 @@ so kann man in der <a class="reference internal" href="#term-.config"><span clas
 DIFF_CMD=??
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="allgemeine-verweise">
-<span id="xref-get-started-refs"></span><h2>Allgemeine Verweise<a class="headerlink" href="#allgemeine-verweise" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="merge">
-<h3>Merge<a class="headerlink" href="#merge" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+</section>
+<section id="allgemeine-verweise">
+<span id="xref-get-started-refs"></span><h2>Allgemeine Verweise<a class="headerlink" href="#allgemeine-verweise" title="Permalink to this heading">¶</a></h2>
+<section id="merge">
+<h3>Merge<a class="headerlink" href="#merge" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Merge_%28version_control%29#Three-way_merge">Drei-Wege Merge (wiki)</a></p></li>
 <li><p><a class="reference external" href="http://stackoverflow.com/questions/572237/whats-the-best-three-way-merge-tool">Stackoverflow (best 3 way merge tool)</a></p></li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Comparison_of_file_comparison_tools#Compare_features">Wikipedia (File comparision tools / features)</a></p></li>
 </ul>
-</div>
-<div class="section" id="autoring-tools">
-<h3>Autoring Tools<a class="headerlink" href="#autoring-tools" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="autoring-tools">
+<h3>Autoring Tools<a class="headerlink" href="#autoring-tools" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">restructuredText</a></p></li>
 <li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/index.html">Sphinx</a></p></li>
 <li><p><a class="reference external" href="http://git-scm.com/">Git</a></p></li>
 <li><p><a class="reference external" href="https://www.gnu.org/software/emacs/">Emacs</a></p></li>
 </ul>
-</div>
-<div class="section" id="paketmanager">
-<h3>Paketmanager<a class="headerlink" href="#paketmanager" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="paketmanager">
+<h3>Paketmanager<a class="headerlink" href="#paketmanager" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wiki.debian.org/Apt">Advanced Package Tool (APT)</a></p></li>
 </ul>
-</div>
-<div class="section" id="debian-derivate">
-<span id="xref-debian-derivates-refs"></span><h3>Debian-Derivate<a class="headerlink" href="#debian-derivate" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="debian-derivate">
+<span id="xref-debian-derivates-refs"></span><h3>Debian-Derivate<a class="headerlink" href="#debian-derivate" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://wiki.debian.org/Derivatives/Census">Debian Zensus</a></p></li>
 <li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Ubuntu">Ubuntu (wiki)</a></p></li>
@@ -319,16 +319,16 @@ DIFF_CMD=??
 <li><p><a class="reference external" href="http://linuxmint.com/">LinuxMint</a></p></li>
 <li><p><a class="reference external" href="https://de.wikipedia.org/wiki/Xubuntu">Xubuntu (wiki)</a></p></li>
 </ul>
-</div>
-<div class="section" id="skriptsprachen">
-<h3>Skriptsprachen<a class="headerlink" href="#skriptsprachen" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="skriptsprachen">
+<h3>Skriptsprachen<a class="headerlink" href="#skriptsprachen" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.gnu.org/software/bash/">GNU Bash</a></p></li>
 <li><p><a class="reference external" href="https://www.python.org/">python</a></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -382,12 +382,12 @@ DIFF_CMD=??
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -395,7 +395,7 @@ DIFF_CMD=??
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="_static/version_warning_offset.js"></script>
 

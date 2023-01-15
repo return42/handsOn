@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Allgemeines zum Setup &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Sync-1.5 Server mit public accounts" href="fxsync_1_5_server.html" />
-    <link rel="prev" title="Mozilla Cloud Services" href="mozcloud_services.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Mozilla Cloud Services" href="mozcloud_services.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="allgemeines-zum-setup">
-<span id="xref-mozcloud-setup"></span><h1>Allgemeines zum Setup<a class="headerlink" href="#allgemeines-zum-setup" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="allgemeines-zum-setup">
+<span id="xref-mozcloud-setup"></span><h1>Allgemeines zum Setup<a class="headerlink" href="#allgemeines-zum-setup" title="Permalink to this heading">¶</a></h1>
 <p>Beim Einrichten der Mozilla Dienste, empfiehlt es sich darauf zu achten, die
 Dienste stark gegen das OS (auf dem sie installiert werden) zu isolieren.
 Motivation sollte sein, die einfache Skallierbarkeit aufrecht zu erhalten und
@@ -67,20 +67,20 @@ gesonderten System-Benutzer erfolgen.</p>
 <li><p>Installation unter dem Systemaccount (z.B.): <code class="docutils literal notranslate"><span class="pre">/home/mozcloud/&lt;servicename&gt;</span></code></p></li>
 </ul>
 <p>Einrichten des System-Benutzers (<code class="docutils literal notranslate"><span class="pre">mozcloud</span></code>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H adduser --system --disabled-password --disabled-login <span class="se">\</span>
-               --shell /bin/bash <span class="se">\</span>
-               --gecos <span class="s2">&quot;Mozilla Cloud&quot;</span> <span class="se">\</span>
-               mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>adduser<span class="w"> </span>--system<span class="w"> </span>--disabled-password<span class="w"> </span>--disabled-login<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>--shell<span class="w"> </span>/bin/bash<span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>--gecos<span class="w"> </span><span class="s2">&quot;Mozilla Cloud&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">               </span>mozcloud
 </pre></div>
 </div>
 <p>Wechseln zum System-Benutzer:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -i -u mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>mozcloud
 </pre></div>
 </div>
 <p>Clonen der Sourcen (z.B. Firefox Sync-1.5 Server) in den Home Ordner des
 System-Benutzer:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~
-$ git clone https://github.com/mozilla-services/syncserver
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mozilla-services/syncserver
 </pre></div>
 </div>
 <p>Hier im Ordner <code class="docutils literal notranslate"><span class="pre">/home/mozcloud/&lt;servicename&gt;</span></code>, also im HOME-Ordner des
@@ -91,7 +91,7 @@ Cloud zu löschen.  Bevor der Benutzer entfernt werden kann, müssen alle seine
 Prozesse beendet werden. Läuft das WEB-Interface im Apache, muss also die
 entsprechende Apache-Site mit der Konfiguration zu diesem Dienst (zu diesem
 Account) deaktiviert werden (inkl. apache reload).</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ deluser --remove-home mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>deluser<span class="w"> </span>--remove-home<span class="w"> </span>mozcloud
 </pre></div>
 </div>
 <div class="admonition caution">
@@ -99,7 +99,7 @@ Account) deaktiviert werden (inkl. apache reload).</p>
 <p>Auf diese Weise wird die gesammte Cloud Installation, sammt aller
 Konfigurationen auf dem Host <strong>UNWIEDERUFLICH</strong> gelöscht.</p>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -131,12 +131,12 @@ Konfigurationen auf dem Host <strong>UNWIEDERUFLICH</strong> gelöscht.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -144,7 +144,7 @@ Konfigurationen auf dem Host <strong>UNWIEDERUFLICH</strong> gelöscht.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

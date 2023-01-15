@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PHP Anwendungen &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Test des WEB-Servers" href="probe_server.html" />
-    <link rel="prev" title="WSGI Anwendungen" href="site_py-apps.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="WSGI Anwendungen" href="site_py-apps.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="php-anwendungen">
-<span id="xref-site-phpapps"></span><h1>PHP Anwendungen<a class="headerlink" href="#php-anwendungen" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="php-anwendungen">
+<span id="xref-site-phpapps"></span><h1>PHP Anwendungen<a class="headerlink" href="#php-anwendungen" title="Permalink to this heading">¶</a></h1>
 <p>Es wird eine Konfiguration eingerichtet, über welche es möglich ist PHP
 Anwendungen zu betreiben. Eine kleines <em>HelloWorld</em> Beispiel wird ebenfalls mit
 installiert.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh installPHP
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>installPHP
 </pre></div>
 </div>
 <p>Mit dem Kommando <code class="docutils literal notranslate"><span class="pre">installPHP</span></code> werden die folgenden Schritte ausgeführt.</p>
@@ -62,30 +62,30 @@ installiert.</p>
 <li><p>Es wird der Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/phpApps</span></code> eingerichtet, in dem PHP Anwendungen
 abgelegt werden können (<a class="reference internal" href="#xref-php-apps-conf"><span class="std std-ref">php-apps.conf</span></a>).</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apt-get install php php-sqlite libapache2-mod-php
-$ sudo -H mkdir /var/www/phpApps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>php<span class="w"> </span>php-sqlite<span class="w"> </span>libapache2-mod-php
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>mkdir<span class="w"> </span>/var/www/phpApps
 
-$ sudo -H a2ensite php-apps
-$ sudo -H service apache2 reload
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>a2ensite<span class="w"> </span>php-apps
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Es wird eine Test-Seite ( <a class="reference external" href="https://localhost/hello.php">https://localhost/hello.php</a> ) eingrichtet
 (<a class="reference internal" href="#xref-php-apps-hello-php"><span class="std std-ref">PHP-Test Anwendung</span></a>).</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ap2ensite hello_php
-$ sudo -H service apache2 reload
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>ap2ensite<span class="w"> </span>hello_php
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
-</div>
-<div class="section" id="de-installation">
-<h2>De-Installation<a class="headerlink" href="#de-installation" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deinstallPHP
+</section>
+<section id="de-installation">
+<h2>De-Installation<a class="headerlink" href="#de-installation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>deinstallPHP
 </pre></div>
 </div>
-</div>
-<div class="section" id="anmerkungen">
-<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="anmerkungen">
+<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://php.net/manual/en/security.php">PHP Sicherheitshinweise</a></p></li>
 <li><p><a class="reference external" href="http://php.net/manual/de/configuration.file.php">PHP Laufzeiteinstellungen</a></p></li>
@@ -113,50 +113,50 @@ gehören die INI-Dateien:</p>
 Apache Prozesse eingestellt werden (<a class="reference external" href="http://php.net/manual/de/configuration.file.php">PHP Laufzeiteinstellungen</a>).</p>
 <p>In der Datei <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/php7.0.conf</span></code> ist die default
 Konfiguration des PHP-Moduls zu finden:</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;FilesMatch</span> <span class="s">&quot;.+\.ph(p[345]?|t|tml)$&quot;</span><span class="nt">&gt;</span>
-    <span class="nb">SetHandler</span> application/x-httpd-php
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;.+\.ph(p[345]?|t|tml)$&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">SetHandler</span><span class="w"> </span>application/x-httpd-php
 <span class="nt">&lt;/FilesMatch&gt;</span>
-<span class="nt">&lt;FilesMatch</span> <span class="s">&quot;.+\.phps$&quot;</span><span class="nt">&gt;</span>
-    <span class="nb">SetHandler</span> application/x-httpd-php-source
-    <span class="c"># Deny access to raw php sources by default</span>
-    <span class="c"># To re-enable it&#39;s recommended to enable access to the files</span>
-    <span class="c"># only in specific virtual host or directory</span>
-    <span class="nb">Require</span> <span class="k">all</span> denied
+<span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;.+\.phps$&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">SetHandler</span><span class="w"> </span>application/x-httpd-php-source
+<span class="w">    </span><span class="c"># Deny access to raw php sources by default</span>
+<span class="w">    </span><span class="c"># To re-enable it&#39;s recommended to enable access to the files</span>
+<span class="w">    </span><span class="c"># only in specific virtual host or directory</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>denied
 <span class="nt">&lt;/FilesMatch&gt;</span>
 <span class="c"># Deny access to files without filename (e.g. &#39;.php&#39;)</span>
-<span class="nt">&lt;FilesMatch</span> <span class="s">&quot;^\.ph(p[345]?|t|tml|ps)$&quot;</span><span class="nt">&gt;</span>
-    <span class="nb">Require</span> <span class="k">all</span> denied
+<span class="nt">&lt;FilesMatch</span><span class="w"> </span><span class="s">&quot;^\.ph(p[345]?|t|tml|ps)$&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>denied
 <span class="nt">&lt;/FilesMatch&gt;</span>
 
-<span class="nt">&lt;IfModule</span> <span class="s">mod_userdir.c</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Directory</span> <span class="s">/home/*/public_html</span><span class="nt">&gt;</span>
-        <span class="nb">php_admin_flag</span> engine <span class="k">Off</span>
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_userdir.c</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/home/*/public_html</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">php_admin_flag</span><span class="w"> </span>engine<span class="w"> </span><span class="k">Off</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="php-apps-conf">
-<span id="xref-php-apps-conf"></span><h2>php-apps.conf<a class="headerlink" href="#php-apps-conf" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="php-apps-conf">
+<span id="xref-php-apps-conf"></span><h2>php-apps.conf<a class="headerlink" href="#php-apps-conf" title="Permalink to this heading">¶</a></h2>
 <p>Die folgende <code class="docutils literal notranslate"><span class="pre">php-apps.conf</span></code> Site, richtet eine Umgebung ein, in der
 PHP-Anwendungen betrieben werden können.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_php7.c</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Directory</span> <span class="s">/var/www/phpApps/</span><span class="nt">&gt;</span>
-        ...
-        <span class="nb">php_value</span> open_basedir <span class="sx">/var/www/phpApps/</span>
-        ...
-    <span class="nt">&lt;/Directory&gt;</span>
- <span class="nt">&lt;/IfModule&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_php7.c</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/phpApps/</span><span class="nt">&gt;</span>
+<span class="w">        </span>...
+<span class="w">        </span><span class="nb">php_value</span><span class="w"> </span>open_basedir<span class="w"> </span><span class="sx">/var/www/phpApps/</span>
+<span class="w">        </span>...
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
+<span class="w"> </span><span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
 </div>
 <p>Mit <code class="docutils literal notranslate"><span class="pre">php_value</span></code> können die INI-Werte gesetzt werden, z.B. das <a class="reference external" href="http://php.net/manual/de/ini.core.php#ini.open-basedir">open_basedir</a>. Eine Auflistung
 aller Optionen findet sich in der <a class="reference external" href="http://php.net/manual/de/ini.list.php">Liste der php.ini-Direktiven</a>.</p>
-</div>
-<div class="section" id="php-test-anwendung">
-<span id="xref-php-apps-hello-php"></span><h2>PHP-Test Anwendung<a class="headerlink" href="#php-test-anwendung" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="php-test-anwendung">
+<span id="xref-php-apps-hello-php"></span><h2>PHP-Test Anwendung<a class="headerlink" href="#php-test-anwendung" title="Permalink to this heading">¶</a></h2>
 <p>Die Test-Site sollte nur in einer Entwickler-Umgebung installiert werden. Sie
 besteht aus nur einer Datei <code class="docutils literal notranslate"><span class="pre">/var/www/phpApps/helloWorld/index.php</span></code>.</p>
-<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span> <span class="cp">?&gt;</span><span class="x"></span>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span> <span class="nb">phpinfo</span><span class="p">();</span> <span class="cp">?&gt;</span>
 </pre></div>
 </div>
 <p>Das <code class="docutils literal notranslate"><span class="pre">hello.php</span></code> Skript sollte in keinem Fall im Internet aktiviert werden, da
@@ -167,13 +167,13 @@ Angriffszenario gibt.</p>
 oben in der <a class="reference internal" href="#xref-php-apps-conf"><span class="std std-ref">php-apps.conf</span></a> die allgemeinen PHP Direktiven gesetzt
 wurden. Die <code class="docutils literal notranslate"><span class="pre">hello_php</span></code> Site definiert nur noch den Alias, damit die Site
 unter der URL <a class="reference external" href="https://localhost/hello.php">https://localhost/hello.php</a> angeboten wird.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_php7.c</span><span class="nt">&gt;</span>
-    <span class="nb">Alias</span> <span class="sx">/hello.php</span> <span class="sx">/var/www/phpApps/helloWorld/index.php</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_php7.c</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/hello.php</span><span class="w"> </span><span class="sx">/var/www/phpApps/helloWorld/index.php</span>
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -217,12 +217,12 @@ unter der URL <a class="reference external" href="https://localhost/hello.php">h
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -230,7 +230,7 @@ unter der URL <a class="reference external" href="https://localhost/hello.php">h
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

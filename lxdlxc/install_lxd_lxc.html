@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LXD Installation &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Remote-Images" href="remote_images.html" />
-    <link rel="prev" title="Was sind Container?" href="container_intro.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Was sind Container?" href="container_intro.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="lxd-installation">
-<span id="install-lxdlxc"></span><h1>LXD Installation<a class="headerlink" href="#lxd-installation" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="lxd-installation">
+<span id="install-lxdlxc"></span><h1>LXD Installation<a class="headerlink" href="#lxd-installation" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> ist das Managment System für <em>LXC Container</em> und alles was es darum herum
 so gibt.  Will man mit Container arbeiten, so installiert man sich erst mal
 dieses System.  Mit <a class="reference external" href="https://linuxcontainers.org/lxd/introduction/">LXD</a> hat man dann beispielsweise Zugriff auf die <a class="reference external" href="https://uk.images.linuxcontainers.org/">LXC/LXD
@@ -70,57 +70,57 @@ HOST Systems haben können. Aber es zeigt, dass wir mit der Installation von LXD
 eigentlich schon die ersten Container Anwendungen nutzen und es zeigt, wie weit
 man mit solchen Containern gehen kann.  Als erstes starten wir also mit der
 Installation des <a class="reference external" href="https://snapcraft.io">snap</a>.  Um <a class="reference external" href="https://snapcraft.io">snap</a> zu installieren:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt install snapd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>snapd
 </pre></div>
 </div>
 <p>Über die Paketverwaltung <a class="reference internal" href="../snappy/index.html#snap"><span class="std std-ref">snap</span></a> die erforderlichen Pakete
 installieren (s.a. <a class="reference external" href="https://tutorials.ubuntu.com/tutorial/introduction-to-lxd-projects">Introduction to LXD projects</a>):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install lxd
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>lxd
 </pre></div>
 </div>
 <p>Zur Installation gehört noch eine initiales Setup des LXD in dem der
 Image-Server als auch z.B. die Eigenschaften des (LXD) Netzwerks eingestellt
 werden.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H lxd init --auto
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>lxd<span class="w"> </span>init<span class="w"> </span>--auto
 </pre></div>
 </div>
 <p>Weitere Hinweise siehe: <a class="reference external" href="https://snapcraft.io/lxd">snapcraft LXD</a></p>
 <p>Will man sicher später mal das LXD Setup anschauen, so kann man das mit dem
 Kommando <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lxd</span> <span class="pre">init</span> <span class="pre">--dump</span></code>, die Ausgabe entspricht dem YAML Format und
 könnte in etwa so aussehen.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 <span class="nt">networks</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">ipv4.address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10.246.86.1/24</span>
-    <span class="nt">ipv4.nat</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
-    <span class="nt">ipv6.address</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fd42:8c58:2cd:b73f::1/64</span>
-    <span class="nt">ipv6.nat</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
-  <span class="nt">managed</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridge</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ipv4.address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.246.86.1/24</span>
+<span class="w">    </span><span class="nt">ipv4.nat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="nt">ipv6.address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd42:8c58:2cd:b73f::1/64</span>
+<span class="w">    </span><span class="nt">ipv6.nat</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">managed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
 <span class="nt">storage_pools</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15GB</span>
-    <span class="nt">source</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/snap/lxd/common/lxd/disks/default.img</span>
-    <span class="nt">zfs.pool_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
-  <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">zfs</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15GB</span>
+<span class="w">    </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/snap/lxd/common/lxd/disks/default.img</span>
+<span class="w">    </span><span class="nt">zfs.pool_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zfs</span>
 <span class="nt">profiles</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-  <span class="nt">config</span><span class="p">:</span> <span class="p p-Indicator">{}</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Default LXD profile</span>
-  <span class="nt">devices</span><span class="p">:</span>
-    <span class="nt">eth0</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eth0</span>
-      <span class="nt">nictype</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridged</span>
-      <span class="nt">parent</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nic</span>
-    <span class="nt">root</span><span class="p">:</span>
-      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
-      <span class="nt">pool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">disk</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Default LXD profile</span>
+<span class="w">  </span><span class="nt">devices</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">eth0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eth0</span>
+<span class="w">      </span><span class="nt">nictype</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridged</span>
+<span class="w">      </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lxdbr0</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nic</span>
+<span class="w">    </span><span class="nt">root</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">      </span><span class="nt">pool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disk</span>
 </pre></div>
 </div>
 <p>In obiger Ausgabe sehen wir unter <code class="docutils literal notranslate"><span class="pre">networks</span></code>, dass die IP Adresse des Managers
@@ -134,7 +134,7 @@ eines <a class="reference external" href="https://de.wikipedia.org/wiki/SquashFS
 mit einem Netzwerkadapter (<code class="docutils literal notranslate"><span class="pre">eth0</span></code>) ausgestattet wird und <code class="docutils literal notranslate"><span class="pre">pool:</span> <span class="pre">default</span></code> sagt
 uns, dass dieser Container in dem Squash Dateisystem aufgebaut werden würde,
 dass wir unter <code class="docutils literal notranslate"><span class="pre">storage_pools:</span></code> unter dem Namen <code class="docutils literal notranslate"><span class="pre">default</span></code> sehen.</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -166,12 +166,12 @@ dass wir unter <code class="docutils literal notranslate"><span class="pre">stor
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -179,7 +179,7 @@ dass wir unter <code class="docutils literal notranslate"><span class="pre">stor
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

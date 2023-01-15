@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exkursion: Netzmaske / IPv4 und IPv6 &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Exkursion: NAT" href="excursion_NAT.html" />
-    <link rel="prev" title="Anmerkungen zu SSL und Zertifikaten" href="ssl_ca_remarks.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Anmerkungen zu SSL und Zertifikaten" href="ssl_ca_remarks.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="exkursion-netzmaske-ipv4-und-ipv6">
-<span id="xref-excursion-ipv4-6"></span><h1>Exkursion: Netzmaske / IPv4 und IPv6<a class="headerlink" href="#exkursion-netzmaske-ipv4-und-ipv6" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="exkursion-netzmaske-ipv4-und-ipv6">
+<span id="xref-excursion-ipv4-6"></span><h1>Exkursion: Netzmaske / IPv4 und IPv6<a class="headerlink" href="#exkursion-netzmaske-ipv4-und-ipv6" title="Permalink to this heading">¶</a></h1>
 <p>Im IPv4 und IPv6 Adressraum wird im Grunde nur zw. zwei Netzen unterschieden,
 dem globalen und dem lokalem Netz. Das gloabale Netz (auch als <strong>global scope</strong>
 bezeichnet) ist das <em>Internet</em>, das von einem <a class="reference external" href="https://de.wikipedia.org/wiki/Internetdienstanbieter">ISP (wiki)</a> administriert und
@@ -64,8 +64,8 @@ Strukturierung ist die Unterscheidung des <em>global scope</em> zum <em>link-lok
 Das ist im IPv6 so, wie es schon im IPv4 war, nur mit dem Unterschied, dass IPv6
 differenziertere Unterscheidungen zulässt, über einen größeren Adressraum
 verfügt und besondere Features hat, die es im IPv4 nicht gibt.</p>
-<div class="section" id="ipv4-netze-und-masken">
-<span id="xref-excursion-ipv4-mask"></span><h2>IPv4 Netze und Masken<a class="headerlink" href="#ipv4-netze-und-masken" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="ipv4-netze-und-masken">
+<span id="xref-excursion-ipv4-mask"></span><h2>IPv4 Netze und Masken<a class="headerlink" href="#ipv4-netze-und-masken" title="Permalink to this heading">¶</a></h2>
 <p>Die <em>link-lokal</em> Adressen sind nicht irgendwelche zufällig gewählten Adressen,
 hierfür verwendt man dafür vorgesehene <em>Nummernbereiche</em>.  Im IPv4 werden
 <a class="reference external" href="https://de.wikipedia.org/wiki/Private_IP-Adresse#Adressbereiche">private Adressbereiche (wiki)</a> in der <a class="reference external" href="https://tools.ietf.org/html/rfc1918#section-3">RFC 1918: IPv4 Private Address Space</a>
@@ -95,17 +95,17 @@ wählen in dem (bis zu 256) <em>Class-B</em> Netze (mit je max. 65.000 Devices)
 angeordnet sein könnten / siehe hierzu <a class="reference internal" href="excursion_NAT.html#xref-excursion-nat"><span class="std std-ref">Exkursion: NAT</span></a>.</p>
 <p>Die IP-Adresse des Hosts und die Netzmaske des Subnetz in dem er sich befindet
 kann mit dem Kommando <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ifconfig">ifconfig</a> ermittelt werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eth0      Link encap:Ethernet  HWaddr bc:5f:f4:ea:0e:7e
-          inet addr:192.168.1.124  Bcast:192.168.1.255  Mask:255.255.255.0
-          inet6 addr: fd00::be5f:f4ff:feea:e7e/64 Scope:Global
-          inet6 addr: fd00::6d38:6276:ea39:39de/64 Scope:Global
-          inet6 addr: fe80::be5f:f4ff:feea:e7e/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eth0<span class="w">      </span>Link<span class="w"> </span>encap:Ethernet<span class="w">  </span>HWaddr<span class="w"> </span>bc:5f:f4:ea:0e:7e
+<span class="w">          </span>inet<span class="w"> </span>addr:192.168.1.124<span class="w">  </span>Bcast:192.168.1.255<span class="w">  </span>Mask:255.255.255.0
+<span class="w">          </span>inet6<span class="w"> </span>addr:<span class="w"> </span>fd00::be5f:f4ff:feea:e7e/64<span class="w"> </span>Scope:Global
+<span class="w">          </span>inet6<span class="w"> </span>addr:<span class="w"> </span>fd00::6d38:6276:ea39:39de/64<span class="w"> </span>Scope:Global
+<span class="w">          </span>inet6<span class="w"> </span>addr:<span class="w"> </span>fe80::be5f:f4ff:feea:e7e/64<span class="w"> </span>Scope:Link
+<span class="w">          </span>UP<span class="w"> </span>BROADCAST<span class="w"> </span>RUNNING<span class="w"> </span>MULTICAST<span class="w">  </span>MTU:1500<span class="w">  </span>Metric:1
 ~~~~
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+lo<span class="w">        </span>Link<span class="w"> </span>encap:Local<span class="w"> </span>Loopback
+<span class="w">          </span>inet<span class="w"> </span>addr:127.0.0.1<span class="w">  </span>Mask:255.0.0.0
+<span class="w">          </span>inet6<span class="w"> </span>addr:<span class="w"> </span>::1/128<span class="w"> </span>Scope:Host
+<span class="w">          </span>UP<span class="w"> </span>LOOPBACK<span class="w"> </span>RUNNING<span class="w">  </span>MTU:65536<span class="w">  </span>Metric:1
 </pre></div>
 </div>
 <p>Das <em>Loppback-Device</em> wird mit <code class="docutils literal notranslate"><span class="pre">lo</span></code> bezeichnet, die IPv4 Adresse ist
@@ -127,9 +127,9 @@ ist das schon das Internet).</p></li>
 </ul>
 <p>In dem historischen IPv4 <em>Class-C</em> (Subnetz) wird man <em>real</em> also nicht mehr als
 253 <em>Devices</em> vorfinden resp. unterbringen können.</p>
-</div>
-<div class="section" id="ipv6-netze-und-masken">
-<span id="xref-excursion-ipv6-mask"></span><h2>IPv6 Netze und Masken<a class="headerlink" href="#ipv6-netze-und-masken" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ipv6-netze-und-masken">
+<span id="xref-excursion-ipv6-mask"></span><h2>IPv6 Netze und Masken<a class="headerlink" href="#ipv6-netze-und-masken" title="Permalink to this heading">¶</a></h2>
 <p>Im IPv4 werden die Adressbereiche in der RFC-1918 definiert, im IPv6 gibt es
 dafür die <a class="reference external" href="https://tools.ietf.org/html/rfc4291">RFC 4291: IPv6 Addressing Architecture</a>. Für die <em>unicast
 link-local</em> Adressen im IPv6 sind folgende Adressbereiche vorgesehen:</p>
@@ -160,8 +160,8 @@ Internet-Protokoll Version 6 (heise Verlag)</a>:</p>
 <span class="o">~~~</span>
 </pre></div>
 </div>
-<div class="section" id="loopback-adresse-1">
-<h3>Loopback Adresse <code class="docutils literal notranslate"><span class="pre">::1</span></code><a class="headerlink" href="#loopback-adresse-1" title="Link zu dieser Überschrift">¶</a></h3>
+<section id="loopback-adresse-1">
+<h3>Loopback Adresse <code class="docutils literal notranslate"><span class="pre">::1</span></code><a class="headerlink" href="#loopback-adresse-1" title="Permalink to this heading">¶</a></h3>
 <p>Die Loopback Adresse im IPv6 ist die <code class="docutils literal notranslate"><span class="pre">0:0:0:0:0:0:0:1:</span></code> oder etwas kürzer
 notiert <code class="docutils literal notranslate"><span class="pre">::1</span></code> (siehe <a class="reference external" href="https://tools.ietf.org/html/rfc4291#section-2.5.3">RFC 4291: The Loopback Addresses</a>). Anders als im IPv4
 ist im IPv6 für das loopback-Device keine ganzes Class-A Netzwerk reserviert
@@ -169,9 +169,9 @@ ist im IPv6 für das loopback-Device keine ganzes Class-A Netzwerk reserviert
 <p>Apache: Die <code class="docutils literal notranslate"><span class="pre">::1</span></code> in einer Apache- <a class="reference internal" href="../apache_setup/site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a> wie <code class="docutils literal notranslate"><span class="pre">Allow</span> <span class="pre">from</span> <span class="pre">::1</span></code>
 ist also das IPv6 Pendant zu der IPv4 <em>Allow localhost</em> Direktive <code class="docutils literal notranslate"><span class="pre">Allow</span>
 <span class="pre">127.0.0.0/8</span></code>.</p>
-</div>
-<div class="section" id="link-local-adressen-fe80-10">
-<h3>Link Local Adressen <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code><a class="headerlink" href="#link-local-adressen-fe80-10" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="link-local-adressen-fe80-10">
+<h3>Link Local Adressen <code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code><a class="headerlink" href="#link-local-adressen-fe80-10" title="Permalink to this heading">¶</a></h3>
 <p>Anders als im IPv4 üblich, vergibt im IPv6 nicht mehr der Router (der <a class="reference external" href="https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP
 (wiki)</a> - Server) die IP-Adresse an die Hosts. Im IPv6 gibt es die <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6
 Autokonfiguration (wiki)</a>, die auch als <strong>Stateless Address Autoconfiguration
@@ -194,9 +194,9 @@ Pendant zu einer <em>private Class-C</em> Direktive wie <code class="docutils li
 <span class="o">+----------+-------------------------+----------------------------+</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="unique-local-fc00-7-faktisch-fd00-8">
-<span id="xref-ipv6-unique-local"></span><h3>Unique Local <code class="docutils literal notranslate"><span class="pre">fc00::/7</span></code> faktisch <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code><a class="headerlink" href="#unique-local-fc00-7-faktisch-fd00-8" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="unique-local-fc00-7-faktisch-fd00-8">
+<span id="xref-ipv6-unique-local"></span><h3>Unique Local <code class="docutils literal notranslate"><span class="pre">fc00::/7</span></code> faktisch <code class="docutils literal notranslate"><span class="pre">fd00::/8</span></code><a class="headerlink" href="#unique-local-fc00-7-faktisch-fd00-8" title="Permalink to this heading">¶</a></h3>
 <p>Im IPv4 konnte man <em>Class-C</em> Netze <code class="docutils literal notranslate"><span class="pre">192.168.1.0/24</span></code> zu einem <em>Class-D</em> Verbund
 <code class="docutils literal notranslate"><span class="pre">192.168.1.0/16</span></code> maskieren (vergleiche <a class="reference internal" href="#xref-excursion-ipv4-mask"><span class="std std-ref">IPv4 Netze und Masken</span></a>). Das
 geht mit den <em>link-local</em> Adressen nicht, den jedes Subnetz steht für sich und
@@ -231,9 +231,9 @@ verstehen, wenn man sich nicht kurz mit dem Prinzip der <a class="reference exte
 Autokonfiguration (wiki)</a> – auch <em>Stateless Address Autoconfiguration</em>
 (<a class="reference external" href="https://tools.ietf.org/html/rfc4862">RFC 4862: IPv6 SLAAC</a>) genannt – vertraut macht.</p>
 </div>
-</div>
-<div class="section" id="prefix-delegation">
-<h3>Prefix Delegation<a class="headerlink" href="#prefix-delegation" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="prefix-delegation">
+<h3>Prefix Delegation<a class="headerlink" href="#prefix-delegation" title="Permalink to this heading">¶</a></h3>
 <p>Die <em>Stateless Address Autoconfiguration</em> (SLAAC) hat den Vorteil, daß man keine
 IP-Adressen mehr konfigurieren muss und mit der Link-Lokal Adresse die bis zum
 nächsten Router reicht hat man auch immer das Subnetz maskiert (<code class="docutils literal notranslate"><span class="pre">fe80::/10</span></code>).</p>
@@ -251,9 +251,9 @@ Schaubild <a class="reference internal" href="#xref-ipv6-unique-local"><span cla
 <span class="n">Präfix</span> <span class="o">--&gt;</span> <span class="mi">2001</span><span class="p">::</span><span class="n">c225</span><span class="p">:</span><span class="mi">6</span><span class="n">ff</span><span class="o">/</span><span class="mi">64</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="source-address-selection">
-<h3>Source Address Selection<a class="headerlink" href="#source-address-selection" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="source-address-selection">
+<h3>Source Address Selection<a class="headerlink" href="#source-address-selection" title="Permalink to this heading">¶</a></h3>
 <p>Im IPv6 hat ein Netz-Device wie das <code class="docutils literal notranslate"><span class="pre">eth0</span></code> im obigen Beispiel immer mehrere
 IP-Adressen. Es gibt immer mindestens eine im <em>Local-Scope</em> und eine im
 <em>Global-Scope</em>. Wenn nun ein IP-Paket über das Device versendet wird, muss eine
@@ -264,9 +264,9 @@ etwas abgekürzt formuliert: der Algorythmus versucht zu ermitteln, was zur
 IP-Zieladresse am besten passt. Wenn die Zieladresse ein <em>Name</em> und keine
 IP-Adresse ist, dann wird die zum Namen gehörende IP-Zieladresse vom DNS
 vorgegeben.</p>
-</div>
-<div class="section" id="privacy-extensions-fur-slaac-im-ipv6-global-scope">
-<h3>Privacy Extensions für SLAAC im IPv6 Global-Scope<a class="headerlink" href="#privacy-extensions-fur-slaac-im-ipv6-global-scope" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="privacy-extensions-fur-slaac-im-ipv6-global-scope">
+<h3>Privacy Extensions für SLAAC im IPv6 Global-Scope<a class="headerlink" href="#privacy-extensions-fur-slaac-im-ipv6-global-scope" title="Permalink to this heading">¶</a></h3>
 <p>Die <a class="reference external" href="https://de.wikipedia.org/wiki/IPv6#Autokonfiguration">IPv6 Autokonfiguration (wiki)</a> erzeugt eine IPv6-Adresse auf Basis der
 MAC-Adresse des Devices. Man kann das auch schon fast mit <em>bloßem Auge
 sehen</em>. Hier ein kleines Beispiel.:</p>
@@ -348,9 +348,9 @@ bekannt (z.B. ein exploit in dem Admin Interface eines Devices).</p>
 <a class="reference external" href="http://www.heise.de/netze/artikel/IPv6-Privacy-Extensions-einschalten-1204783.html">IPv6 Privacy Extensions (heise)</a> einschalten. Für die <em>Dinger</em> des <em>Internets
 der Dinge</em> wird man vermutlich weniger Möglichkeiten haben, die MAC Adresse zu
 verschleiern (am besten die <em>Dinger</em> können erst gar kein IPv6).</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -399,12 +399,12 @@ verschleiern (am besten die <em>Dinger</em> können erst gar kein IPv6).</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -412,7 +412,7 @@ verschleiern (am besten die <em>Dinger</em> können erst gar kein IPv6).</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

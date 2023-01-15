@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gogs / Go Git Service &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
     <link rel="search" title="Suche" href="search.html" />
     <link rel="next" title="Glances: an eye on your system" href="glances.html" />
-    <link rel="prev" title="searx Suchmaschine" href="searx.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = './';</script>
-   
+    <link rel="prev" title="Oracle Know-how" href="oracle/know-how.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -32,7 +32,7 @@
           <a href="glances.html" title="Glances: an eye on your system"
              accesskey="N">weiter</a> |</li>
         <li class="right" >
-          <a href="searx.html" title="searx Suchmaschine"
+          <a href="oracle/know-how.html" title="Oracle Know-how"
              accesskey="P">zurück</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">handsOn  Dokumentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Gogs / Go Git Service</a></li> 
@@ -44,8 +44,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="gogs-go-git-service">
-<span id="xref-gogs"></span><h1>Gogs / Go Git Service<a class="headerlink" href="#gogs-go-git-service" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="gogs-go-git-service">
+<span id="xref-gogs"></span><h1>Gogs / Go Git Service<a class="headerlink" href="#gogs-go-git-service" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://gogs.io/">Gogs</a> darf sich zurecht den Titel <em>„A painless self-hosted Git service.“</em> geben.
 Einmal eingerichtet hat man einen recht leichtgewichtigen und komfortablen Git
 Server mit überschaubaren aber praxisgerechten Team- und Zugriffs-Konzepten,
@@ -167,7 +167,7 @@ cp -fr gogs LICENSE public README.md README_ZH.md scripts templates $HOME/local/
 <p>Das Basis-Konfiguration der Gogs Instanz wird in einer <a class="reference external" href="https://github.com/return42/handsOn/blob/master/templates/home/gogs/local/gogs/custom/conf/app.ini">app.ini</a> Datei vorgenommen.
 Ersetzungen:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Domain in welcher der Gogs Server lauscht:</span>
-<span class="n">GOGS_DOMAIN</span><span class="o">=</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="n">GOGS_DOMAIN</span><span class="o">=</span><span class="mf">127.0.0.1</span>
 <span class="n">GOGS_PORT</span><span class="o">=</span><span class="mi">3000</span>
 </pre></div>
 </div>
@@ -223,8 +223,8 @@ Admin-Rechte. Mit diesem Konto richtet man den Gogs-Server ein.</p>
 <div><p><strong>Gogs muss JETZT online eingerichtet werden!!!</strong></p>
 </div></blockquote>
 </div>
-<div class="section" id="gogs-online-einrichten">
-<span id="gogs-web-setup"></span><h2>Gogs online einrichten<a class="headerlink" href="#gogs-online-einrichten" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="gogs-online-einrichten">
+<span id="gogs-web-setup"></span><h2>Gogs online einrichten<a class="headerlink" href="#gogs-online-einrichten" title="Permalink to this heading">¶</a></h2>
 <p>Normalerweise wird Gogs so eingerichtet, dass man einfach nur das Binary auf dem
 Server auspackt, den Gogs-Server startet und dann den Rest online einrichtet.
 Obige Installation war dann ja nur so ausufernd, weil man auf den LTS
@@ -278,7 +278,7 @@ Apache weitergeleiteten). Ebenso sollte man ggf. CDN (Content Delivery Network)
 Inhalte wie Avatars  etc. aus dem Netz deaktivieren (<code class="docutils literal notranslate"><span class="pre">OFFLINE_MODE</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
 <span class="n">DOMAIN</span>           <span class="o">=</span> <span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">.</span><span class="n">xy</span>
-<span class="n">HTTP_ADDR</span>        <span class="o">=</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>
+<span class="n">HTTP_ADDR</span>        <span class="o">=</span> <span class="mf">127.0.0.1</span>
 <span class="n">HTTP_PORT</span>        <span class="o">=</span> <span class="mi">3000</span>
 <span class="n">ROOT_URL</span>         <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">myhost</span><span class="o">.</span><span class="n">mydomain</span><span class="o">.</span><span class="n">xy</span>
 <span class="n">OFFLINE_MODE</span>     <span class="o">=</span> <span class="n">true</span>
@@ -305,9 +305,9 @@ etwas zu sehen:</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="section" id="pam">
-<h2>PAM<a class="headerlink" href="#pam" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="pam">
+<h2>PAM<a class="headerlink" href="#pam" title="Permalink to this heading">¶</a></h2>
 <p>In der Web-GUI unter ‚Administration‘ können unter ‚Authentifizierung‘ <em>weitere
 Quellen</em> hinzugefügt werden. Hier wählt man PAM aus. Als Name setzt man <code class="docutils literal notranslate"><span class="pre">PAM</span></code>
 und als PAM-Dienstname <code class="docutils literal notranslate"><span class="pre">gogs</span></code>.  Damit der <code class="docutils literal notranslate"><span class="pre">${GOGS_USER}</span></code> lesenden Zugriff
@@ -319,12 +319,12 @@ hinzugefügt (s.o.):</p>
 sudo -H usermod -a -G shadow $GOGS_USER
 </pre></div>
 </div>
-</div>
-<div class="section" id="ldap">
-<h2>LDAP<a class="headerlink" href="#ldap" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ldap">
+<h2>LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading">¶</a></h2>
 <p>comming soon ..</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -354,7 +354,7 @@ sudo -H usermod -a -G shadow $GOGS_USER
 <ul>
   <li><a href="index.html">Overview</a>
     <ul>
-          <li>Previous: <a href="searx.html" title="vorheriges Kapitel">searx Suchmaschine</a>
+          <li>Previous: <a href="oracle/know-how.html" title="vorheriges Kapitel">Oracle Know-how</a>
           <li>Next: <a href="glances.html" title="nächstes Kapitel">Glances: an eye on your system</a>
     </ul>
   </li>
@@ -363,12 +363,12 @@ sudo -H usermod -a -G shadow $GOGS_USER
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -376,7 +376,7 @@ sudo -H usermod -a -G shadow $GOGS_USER
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="_static/version_warning_offset.js"></script>
 

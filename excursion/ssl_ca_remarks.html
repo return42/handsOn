@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Anmerkungen zu SSL und Zertifikaten &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Exkursion: Netzmaske / IPv4 und IPv6" href="excursion_IPv4_6.html" />
-    <link rel="prev" title="Suchmaschinen &amp; Tracking" href="search_engines.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Suchmaschinen &amp; Tracking" href="search_engines.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,13 +45,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="anmerkungen-zu-ssl-und-zertifikaten">
-<span id="xref-ssl-ca-remarks"></span><h1>Anmerkungen zu SSL und Zertifikaten<a class="headerlink" href="#anmerkungen-zu-ssl-und-zertifikaten" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="sidebar">
+  <section id="anmerkungen-zu-ssl-und-zertifikaten">
+<span id="xref-ssl-ca-remarks"></span><h1>Anmerkungen zu SSL und Zertifikaten<a class="headerlink" href="#anmerkungen-zu-ssl-und-zertifikaten" title="Permalink to this heading">¶</a></h1>
+<aside class="sidebar">
 <p class="sidebar-title"><a class="reference external" href="https://badssl.com/">https://badssl.com/</a></p>
 <p>Eine WEB-Seite, auf der man das Verhalten seines WEB-Browsers auf <em>schlechte</em>
 SSL Verbindungen testen kann</p>
-</div>
+</aside>
 <p>Die hier vorgestellten Setups benutzen als Transportschicht SSL. Mit SSL wird
 dann meist auch ein Zertifikat erforderlich. Meiner Ansicht nach sind
 <em>selbstsignierte</em> Zertifikate, wie sie die Debian/Ubuntu Distribution (snakeoil)
@@ -61,14 +61,14 @@ mit dem Paket <a class="reference external" href="http://packages.ubuntu.com/ssl
 </div>
 <p>Will man sich sein (snakeoil) Zertifikat mal genauer anschauen, dann kann man
 das z.B. mit dem folgenden Kommando.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl x509 -text -in /etc/ssl/certs/ssl-cert-snakeoil.pem
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openssl<span class="w"> </span>x509<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>/etc/ssl/certs/ssl-cert-snakeoil.pem
 </pre></div>
 </div>
 <p>Im WEB-Browser führen diese selbstsignierten Zertifakte zu einer Warnmeldung
 weil sie über keine (der im WEB-Browser vorinstallierten) Zertifizierungstellen
 signiert wurden. Im WEB-Browser muss/kann man auf diese Warnung hin das
 Zertifakt aktzeptieren, was im Allgemeinen kein Problem darstellen sollte.</p>
-<div class="sidebar">
+<aside class="sidebar">
 <p class="sidebar-title">FFox UPDATE</p>
 <p>Inzwischen ist es im default nicht mehr möglich Ausnahmen zu akzeptieren.  Um
 Ausnahmen weiterhin akzeptieren zu können, muss unter <code class="docutils literal notranslate"><span class="pre">crome:config</span></code> (URL)
@@ -76,7 +76,7 @@ folgende Einstellung vorgenommen werden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">xul</span><span class="o">.</span><span class="n">error_pages</span><span class="o">.</span><span class="n">expert_bad_cert</span> <span class="o">=</span> <span class="n">false</span>
 </pre></div>
 </div>
-</div>
+</aside>
 <p>Betreibt man die WEB-Seite im Internet, dann verunsichern die <em>Terrorpanik -
 Warndialoge</em> aus dem WEB-Broswer den unbedarften Besucher jedoch schnell. FFox
 und andere WEB-Browser haben im <em>Default</em> bereits eine Liste von
@@ -100,12 +100,12 @@ transparent und wird offen im Netzt diskutiert.  Wer einen (kleinen)
 WEB-Server im Netz betreibt und gerne zertiffiziert werden möchte, der möge
 sich mit der <a class="reference external" href="https://letsencrypt.org/">letsencrypt.org</a> Campange auseinander setzen.</p>
 </div>
-<div class="section" id="hinzufugen-des-zertifikats-eines-remote-host">
-<span id="install-certs"></span><h2>Hinzufügen des Zertifikats eines Remote-Host<a class="headerlink" href="#hinzufugen-des-zertifikats-eines-remote-host" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="hinzufugen-des-zertifikats-eines-remote-host">
+<span id="install-certs"></span><h2>Hinzufügen des Zertifikats eines Remote-Host<a class="headerlink" href="#hinzufugen-des-zertifikats-eines-remote-host" title="Permalink to this heading">¶</a></h2>
 <p>Es empfiehlt sich die selbst-signierten Zertifikate der Server im <strong>Intranet</strong>
 auch auf den Client-Hosts zu registrieren.  Hierzu kann das beiliegende Script
 verwendet werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/certs install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/certs<span class="w"> </span>install
 </pre></div>
 </div>
 <p>Im allgemeinen akzeptieren die Programme auf dem Client die so installierten
@@ -123,8 +123,8 @@ einige zusätzliche Maus-Klicks erforderlich, sobald man den Mail-Account
 einrichtet oder die Seite im Intranet aufruft.</p>
 <p>Andere Programme die den SSL Stack des Systems benutzen (ssh, git …) nutzen
 die systemweiten CA’s und arbeiten auch mit den selbst-signierten problemlos.</p>
-<div class="section" id="windows">
-<h3>Windows<a class="headerlink" href="#windows" title="Link zu dieser Überschrift">¶</a></h3>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h3>
 <p>Auf Windows empfehle ich git zu installieren, dann hat man auch gleichzeitig ein
 openssl Client. Dazu die Git-Bash öffnen und folgendes eingeben. Dabei die
 beiden <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;</span></code> durch den Namen des Remote-Host ersetzen:</p>
@@ -145,16 +145,16 @@ das Zertifikat <code class="docutils literal notranslate"><span class="pre">&lt;
 <li><p><a class="reference external" href="https://technet.microsoft.com/de-de/library/cc754841(v=ws.11).aspx#BKMK_addlocal">https://technet.microsoft.com/de-de/library/cc754841(v=ws.11).aspx#BKMK_addlocal</a></p></li>
 </ul>
 </div></blockquote>
-</div>
-<div class="section" id="android">
-<span id="android-snakeoil"></span><h3>Android<a class="headerlink" href="#android" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="android">
+<span id="android-snakeoil"></span><h3>Android<a class="headerlink" href="#android" title="Permalink to this heading">¶</a></h3>
 <p>Die Installation eines selbst signierten Zertifikats (wie
 z.B. <code class="docutils literal notranslate"><span class="pre">ssl-cert-snakeoil.pem</span></code>) auf einem Android Device wollte mir über das
 Benutzerinterface nicht gelingen, am Ende musste zur <em>Holzhammer</em> Methode
 greifen, die hier kurz beschrieben werden soll.</p>
 <p>Für die <em>Holzhammer</em> Methode benötigt man die <a class="reference external" href="https://developer.android.com/studio/command-line/adb.html">Android Debug Bridge (adb)</a>. Auf
 Debian/Ubuntu kann man diese mit dem apt Paketmanager installieren:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H apt-get install android-tools-adb android-tools-fastboot
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>android-tools-adb<span class="w"> </span>android-tools-fastboot
 </pre></div>
 </div>
 <p>Als nächstes muss man das <em>versteckte</em> „Entwickler Menü“ aktivieren
@@ -173,11 +173,11 @@ Ordner werden wir später das Zertifikat auf das Android kopieren. Zuvor müssen
 wir jedoch das selbst signierte Zertifikat des Servers aufbereiten (siehe auch
 <a class="reference external" href="http://wiki.cacert.org/FAQ/ImportRootCert#Android_Phones_.26_Tablets">CAcert: Android Phones &amp; Tablets</a>).</p>
 <p>Im folgenden gehe ich auf den Linux-Server und bereite das Zertifikat auf:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC $ ssh myusername@myserver
-myserver $ cp /etc/ssl/certs/ssl-cert-snakeoil.pem /tmp/myserver_cert.pem
-myserver $ <span class="nb">cd</span> /tmp
-myserver $ openssl x509 -inform PEM -subject_hash_old -in  <span class="p">|</span> head -1
-myserver $ openssl x509 -inform PEM -subject_hash_old -in myserver_cert.pem <span class="p">|</span> head -1
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC<span class="w"> </span>$<span class="w"> </span>ssh<span class="w"> </span>myusername@myserver
+myserver<span class="w"> </span>$<span class="w"> </span>cp<span class="w"> </span>/etc/ssl/certs/ssl-cert-snakeoil.pem<span class="w"> </span>/tmp/myserver_cert.pem
+myserver<span class="w"> </span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/tmp
+myserver<span class="w"> </span>$<span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-subject_hash_old<span class="w"> </span>-in<span class="w">  </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
+myserver<span class="w"> </span>$<span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-subject_hash_old<span class="w"> </span>-in<span class="w"> </span>myserver_cert.pem<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-1
 c091000a
 </pre></div>
 </div>
@@ -185,8 +185,8 @@ c091000a
 Zertifikat anders aussehen wird. Wir verwenden diesen Wert als Dateinamen, indem
 wir am Ende noch ein <code class="docutils literal notranslate"><span class="pre">.0</span></code> dran hängen. Hier im Beispiel also <code class="docutils literal notranslate"><span class="pre">c091000a.0</span></code>
 mit dem eigeneen Zertifikat also analog <code class="docutils literal notranslate"><span class="pre">{hash-value}.0</span></code>.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ cat myserver_cert.pem &gt; c091000a.0
-$ openssl x509 -inform PEM -text -in myserver_cert.pem -out /dev/null &gt;&gt; c091000a.0
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cat<span class="w"> </span>myserver_cert.pem<span class="w"> </span>&gt;<span class="w"> </span>c091000a.0
+$<span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-inform<span class="w"> </span>PEM<span class="w"> </span>-text<span class="w"> </span>-in<span class="w"> </span>myserver_cert.pem<span class="w"> </span>-out<span class="w"> </span>/dev/null<span class="w"> </span>&gt;&gt;<span class="w"> </span>c091000a.0
 </pre></div>
 </div>
 <p>Nun liegt das aufbereitete Zertifikat auf dem Server unter
@@ -195,23 +195,23 @@ Androids kopieren. Also z.B. erst mal auf den PC kopieren und von dort dann auf
 das – via USB – angeschlossene Android kopieren. Da hier bei mir alles Linux
 ist mache ich das indem ich das Zertifikat erst mal in den HOME Ordner auf dem
 PC kopiere und dann mit <code class="docutils literal notranslate"><span class="pre">adb</span></code> auf das Android kopiere.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC $ scp myusername@myserver:/tmp/<span class="o">{</span>hash-value<span class="o">}</span>.0 <span class="nv">$HOME</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC<span class="w"> </span>$<span class="w"> </span>scp<span class="w"> </span>myusername@myserver:/tmp/<span class="o">{</span>hash-value<span class="o">}</span>.0<span class="w"> </span><span class="nv">$HOME</span>
 </pre></div>
 </div>
 <p>Nachdem man das Zertifikat auf dem PC hat kann man es auch mit dem Datei
 Explorer in den Download Ordner des Android kopieren (s.o.). Ich mach das mal
 mit der adb, weil sich das einfacher aufschreiben lässt.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC $ adb push <span class="nv">$HOME</span>/c091000a.0 /sdcard/Downloads
-<span class="m">66</span> KB/s <span class="o">(</span><span class="m">3721</span> bytes <span class="k">in</span> <span class="m">0</span>.054s<span class="o">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC<span class="w"> </span>$<span class="w"> </span>adb<span class="w"> </span>push<span class="w"> </span><span class="nv">$HOME</span>/c091000a.0<span class="w"> </span>/sdcard/Downloads
+<span class="m">66</span><span class="w"> </span>KB/s<span class="w"> </span><span class="o">(</span><span class="m">3721</span><span class="w"> </span>bytes<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.054s<span class="o">)</span>
 </pre></div>
 </div>
 <p>Nachdem man das Zertifikat nun endlich auf dem Android hat, muss man es noch
 installieren. Dazu macht man mit dem adb auf dem Android eine shell auf und
 wechselt in den root user (su), denn nur der hat die erforderlichen Rechte
 (deswegen wurde oben auch „Root-Zugriff: ADB“ eingestellt).</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC $ adb shell
-shell@maguro:/ $ su
-root@maguro:/ <span class="c1"># su</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>myPC<span class="w"> </span>$<span class="w"> </span>adb<span class="w"> </span>shell
+shell@maguro:/<span class="w"> </span>$<span class="w"> </span>su
+root@maguro:/<span class="w"> </span><span class="c1"># su</span>
 </pre></div>
 </div>
 <p>Die System Zertifikate liegen im <code class="docutils literal notranslate"><span class="pre">/system</span></code> Ordner, dieser ist allerdings
@@ -219,15 +219,15 @@ read-only gemountet. Um auch darin schreiben zu können wird der Ordner nochmal
 mit read/write gemountet. Danach kann dann das Zertifikat in den <code class="docutils literal notranslate"><span class="pre">cacerts/</span></code>
 Ordner kopiert werden und es werden noch die Dateirechte so eingestellt, dass
 <em>jeder</em> die Datei lesen kann.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>root@maguro:/ <span class="c1"># mount -o remount,rw /system/</span>
-root@maguro:/ <span class="c1"># cp /sdcard/Download/c091000a.0  /system/etc/security/cacerts/</span>
-root@maguro:/ <span class="c1"># chmod 644 /system/etc/security/cacerts/c091000a.0</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>root@maguro:/<span class="w"> </span><span class="c1"># mount -o remount,rw /system/</span>
+root@maguro:/<span class="w"> </span><span class="c1"># cp /sdcard/Download/c091000a.0  /system/etc/security/cacerts/</span>
+root@maguro:/<span class="w"> </span><span class="c1"># chmod 644 /system/etc/security/cacerts/c091000a.0</span>
 </pre></div>
 </div>
 <p>Nun muss das Android einmal neu gebootet werden, dazu ganz ausschalten oder
 <code class="docutils literal notranslate"><span class="pre">su</span></code> verlassen und <code class="docutils literal notranslate"><span class="pre">reboot</span></code> aufrufen.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>root@maguro:/ <span class="c1"># exit</span>
-shell@maguro:/ $ reboot
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>root@maguro:/<span class="w"> </span><span class="c1"># exit</span>
+shell@maguro:/<span class="w"> </span>$<span class="w"> </span>reboot
 </pre></div>
 </div>
 <p>Nach dem Reboot findet man das selbst signiertes Zertifikat unter „Einstellungen
@@ -237,9 +237,9 @@ erstellt hat.  Alle Android Apps, welche den SSL (Java) Stack des Androids
 benutzen sollten nun ohne Probleme verschlüsselt mit dem selbst signierten
 Server kommunizieren können (bei mir war das z.B. Firefox-Sync eines Android
 FFox).</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -283,12 +283,12 @@ FFox).</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -296,7 +296,7 @@ FFox).</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

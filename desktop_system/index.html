@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Desktop Umgebungen &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Allgemeines zu Desktop Umgebungen" href="desktop_system_common.html" />
-    <link rel="prev" title="Lizenzbedingungen" href="../LICENSE.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Lizenzbedingungen" href="../LICENSE.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,8 +44,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="desktop-umgebungen">
-<span id="xref-desktop-system"></span><h1>Desktop Umgebungen<a class="headerlink" href="#desktop-umgebungen" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="desktop-umgebungen">
+<span id="xref-desktop-system"></span><h1>Desktop Umgebungen<a class="headerlink" href="#desktop-umgebungen" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="desktop_system_common.html">Allgemeines zu Desktop Umgebungen</a></li>
@@ -59,27 +59,27 @@
 </div>
 <p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befindet sich ein Skript, mit dem die hier
 vorgestellten Setups installiert oder auch deinstalliert werden können.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./scripts/desktop_system.sh
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./scripts/desktop_system.sh
 
 <span class="o">==============</span>
-Desktop <span class="nv">System</span>
+Desktop<span class="w"> </span><span class="nv">System</span>
 <span class="o">==============</span>
 
 usage:
 
-desktop_system.sh <span class="o">[</span>chooseDM<span class="o">]</span>
-desktop_system.sh install <span class="o">[</span>GNOME<span class="o">[</span>-ext<span class="p">|</span>-dconf<span class="o">]]</span><span class="p">|</span>GNOME3-PPA<span class="p">|</span>elementary<span class="p">|</span>cinnamon<span class="p">|</span>mate<span class="p">|</span>solaar<span class="o">]</span>
-desktop_system.sh remove  <span class="o">[</span>GNOME-ext<span class="o">]]</span><span class="p">|</span><span class="o">[</span>unity<span class="p">|</span>GNOME3-PPA<span class="p">|</span>elementary<span class="p">|</span>cinnamon<span class="p">|</span>mate<span class="p">|</span>solaar<span class="o">]</span>
+desktop_system.sh<span class="w"> </span><span class="o">[</span>chooseDM<span class="o">]</span>
+desktop_system.sh<span class="w"> </span>install<span class="w"> </span><span class="o">[</span>GNOME<span class="o">[</span>-ext<span class="p">|</span>-dconf<span class="o">]]</span><span class="p">|</span>GNOME3-PPA<span class="p">|</span>elementary<span class="p">|</span>cinnamon<span class="p">|</span>mate<span class="p">|</span>solaar<span class="o">]</span>
+desktop_system.sh<span class="w"> </span>remove<span class="w">  </span><span class="o">[</span>GNOME-ext<span class="o">]]</span><span class="p">|</span><span class="o">[</span>unity<span class="p">|</span>GNOME3-PPA<span class="p">|</span>elementary<span class="p">|</span>cinnamon<span class="p">|</span>mate<span class="p">|</span>solaar<span class="o">]</span>
 
-- GNOME: volle Installation GNOME3-Shell https://wiki.gnome.org/Projects/GnomeShell
-- GNOME-ext: Empfohlene Shell-Extensions https://extensions.gnome.org/
-- GNOME-dconf: Anpassungen GNOME-Defaluts https://wiki.gnome.org/Projects/dconf/SystemAdministrators
-- GNOME3-PPA: PPA für GNOME3, ab ubuntu <span class="m">18</span>.04 nicht mehr erforderlich
-- elementary: Desktop des elementary-OS https://elementary.io/#desktop-development
-- cinnamon: Alter GNOME-Desktop, der von Linux-Mint weiter entwickelt wird
-- nemo: Installation des Dateibrowsers Nemo
-- mate: Mate-Desktop https://mate-desktop.org/
-- solaar: Linux-Gerätemanager für eine Vielzahl von Logitech-Geräten.
+-<span class="w"> </span>GNOME:<span class="w"> </span>volle<span class="w"> </span>Installation<span class="w"> </span>GNOME3-Shell<span class="w"> </span>https://wiki.gnome.org/Projects/GnomeShell
+-<span class="w"> </span>GNOME-ext:<span class="w"> </span>Empfohlene<span class="w"> </span>Shell-Extensions<span class="w"> </span>https://extensions.gnome.org/
+-<span class="w"> </span>GNOME-dconf:<span class="w"> </span>Anpassungen<span class="w"> </span>GNOME-Defaluts<span class="w"> </span>https://wiki.gnome.org/Projects/dconf/SystemAdministrators
+-<span class="w"> </span>GNOME3-PPA:<span class="w"> </span>PPA<span class="w"> </span>für<span class="w"> </span>GNOME3,<span class="w"> </span>ab<span class="w"> </span>ubuntu<span class="w"> </span><span class="m">18</span>.04<span class="w"> </span>nicht<span class="w"> </span>mehr<span class="w"> </span>erforderlich
+-<span class="w"> </span>elementary:<span class="w"> </span>Desktop<span class="w"> </span>des<span class="w"> </span>elementary-OS<span class="w"> </span>https://elementary.io/#desktop-development
+-<span class="w"> </span>cinnamon:<span class="w"> </span>Alter<span class="w"> </span>GNOME-Desktop,<span class="w"> </span>der<span class="w"> </span>von<span class="w"> </span>Linux-Mint<span class="w"> </span>weiter<span class="w"> </span>entwickelt<span class="w"> </span>wird
+-<span class="w"> </span>nemo:<span class="w"> </span>Installation<span class="w"> </span>des<span class="w"> </span>Dateibrowsers<span class="w"> </span>Nemo
+-<span class="w"> </span>mate:<span class="w"> </span>Mate-Desktop<span class="w"> </span>https://mate-desktop.org/
+-<span class="w"> </span>solaar:<span class="w"> </span>Linux-Gerätemanager<span class="w"> </span>für<span class="w"> </span>eine<span class="w"> </span>Vielzahl<span class="w"> </span>von<span class="w"> </span>Logitech-Geräten.
 </pre></div>
 </div>
 <div class="admonition hint">
@@ -90,7 +90,7 @@ i.d.R. erst neu gestartet werden, damit er seinen Katalog an verfügbaren
 Desktop Umgebungen neu aufbaut. Das kann z.B. auch durch einen Reboot
 erreicht werden.</p>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -119,12 +119,12 @@ erreicht werden.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -132,7 +132,7 @@ erreicht werden.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Static Content (static-content.conf) &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="HTML Startseite" href="site_html-intro.html" />
-    <link rel="prev" title="Serverweite Konfigurationen" href="serverwide_cfg.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Serverweite Konfigurationen" href="serverwide_cfg.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="static-content-static-content-conf">
-<span id="xref-static-content"></span><h1>Static Content (static-content.conf)<a class="headerlink" href="#static-content-static-content-conf" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="static-content-static-content-conf">
+<span id="xref-static-content"></span><h1>Static Content (static-content.conf)<a class="headerlink" href="#static-content-static-content-conf" title="Permalink to this heading">¶</a></h1>
 <p>Die Site <code class="docutils literal notranslate"><span class="pre">static-content.conf</span></code> stellt <em>statische</em> Resourcen bereit. Statische
 Resourcen sind Dateien oder Ordnerstruturen die über HTTP freigegeben werden
 sollen. I.d.R. wird hier der unveränderliche Content abgelegt, den die <em>Sites</em>
 (nach-) laden. Das sind z.B. die statischen Javascript Bibliotheken für den
 Betrieb einer Site oder aber auch Ordnerstrukturen, wie z.B. HTML Dokumente.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2ensite static-content
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>a2ensite<span class="w"> </span>static-content
 </pre></div>
 </div>
 <p>Die Installation dieser <em>Static-Site</em> wird empfohlen, da auch noch weitere
@@ -60,33 +60,33 @@ Setups (z.B. <a class="reference internal" href="site_expimp.html#xref-site-expi
 Static Content profitieren. Jedoch wird nicht empfohlen, eine solche
 Konfiguration, die SSI (<a class="reference internal" href="#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a>) verwendet ohne weiteres
 im Internet zu betreiben.</p>
-<div class="section" id="chrome-resource">
-<span id="xref-static-content-chrome"></span><h2><code class="docutils literal notranslate"><span class="pre">chrome</span></code> Resource<a class="headerlink" href="#chrome-resource" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="chrome-resource">
+<span id="xref-static-content-chrome"></span><h2><code class="docutils literal notranslate"><span class="pre">chrome</span></code> Resource<a class="headerlink" href="#chrome-resource" title="Permalink to this heading">¶</a></h2>
 <p>Die <em>chrome</em> Resource hat zur Aufgabe statischen Content, der zur Anzeige von
 WEB-Sites wie dem <em>Autoindex</em> erforderlich ist, bereit zu stellen. In dem
 <em>chrome</em> Ordner befinden sich beispielsweise die Icons zu den Dateitypen, die
 das Feature „<a class="reference internal" href="#xref-autoindex-directories"><span class="std std-ref">Autoindex von Directories</span></a>“ in seinen generierten HTML
 Dokumenten referenziert. Die Resource definiert sich wie unten stehend.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/chrome</span> <span class="sx">/var/www/chrome</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/chrome</span><span class="w"> </span><span class="sx">/var/www/chrome</span>
 
-<span class="nt">&lt;Directory</span> <span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
 
-    <span class="nb">Require</span> <span class="k">all</span> granted
-    <span class="nb">Allow</span> from <span class="k">all</span>
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
+<span class="w">    </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
 
-    <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 
-    <span class="nb">Options</span> +Indexes +FollowSymLinks +IncludesNOEXEC
+<span class="w">    </span><span class="nb">Options</span><span class="w"> </span>+Indexes<span class="w"> </span>+FollowSymLinks<span class="w"> </span>+IncludesNOEXEC
 
-    <span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
-    <span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+<span class="w">    </span><span class="nb">HeaderName</span><span class="w"> </span><span class="sx">/chrome/header.shtml</span>
+<span class="w">    </span><span class="nb">ReadmeName</span><span class="w"> </span><span class="sx">/chrome/footer.shtml</span>
 
-    <span class="nb">AddType</span> text/html .shtml
-    <span class="nb">AddHandler</span> server-parsed .shtml
+<span class="w">    </span><span class="nb">AddType</span><span class="w"> </span>text/html<span class="w"> </span>.shtml
+<span class="w">    </span><span class="nb">AddHandler</span><span class="w"> </span>server-parsed<span class="w"> </span>.shtml
 
-    <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
-        <span class="nb">Header</span> always set X-Robots-Tag <span class="s2">&quot;none&quot;</span>
-    <span class="nt">&lt;/IfModule&gt;</span>
+<span class="w">    </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Header</span><span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>X-Robots-Tag<span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="nt">&lt;/IfModule&gt;</span>
 
 <span class="nt">&lt;/Directory&gt;</span>
 </pre></div>
@@ -105,38 +105,38 @@ oder IPs ersetzt werden.</p>
 <li><p>AddType / AddHandler :  <a class="reference internal" href="#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a></p></li>
 <li><p>Options: <a class="reference internal" href="#xref-options-indexes"><span class="std std-ref">Autoindex aktivieren</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="alias-direktive">
-<span id="xref-allias-directive"></span><h2>Alias Direktive<a class="headerlink" href="#alias-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="alias-direktive">
+<span id="xref-allias-directive"></span><h2>Alias Direktive<a class="headerlink" href="#alias-direktive" title="Permalink to this heading">¶</a></h2>
 <p>Mit der Alias Direktive aus dem <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_alias.html">Apache mod_alias</a> Modul kann auf Resourcen
 verwiesen werden die nicht im <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> Ordner liegen. Die Resource wird
 dann unter der entsprechenden URL zur Verfügung gestellt.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/chrome</span> <span class="sx">/var/www/chrome</span>
-<span class="nt">&lt;Directory</span> <span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
-   ...
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/chrome</span><span class="w"> </span><span class="sx">/var/www/chrome</span>
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/chrome</span><span class="nt">&gt;</span>
+<span class="w">   </span>...
 </pre></div>
 </div>
 <p>Mit dieser Direktive wird der Content aus dem Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/chrome</span></code> unter
 der URL <a class="reference external" href="https://localhost/chrome">https://localhost/chrome</a> referenziert.</p>
-</div>
-<div class="section" id="allowoverride">
-<span id="xref-allowoverride-directive"></span><h2>AllowOverride<a class="headerlink" href="#allowoverride" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="allowoverride">
+<span id="xref-allowoverride-directive"></span><h2>AllowOverride<a class="headerlink" href="#allowoverride" title="Permalink to this heading">¶</a></h2>
 <p>Mit der <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache AllowOverride Direktive</a> wird gesetzt, welche Otionen in einer
 <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> lokal in einem Ordner angepasst werden können. Mit</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span> <span class="k">None</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 </pre></div>
 </div>
 <p>darf keine Option überschrieben werden. Andere sinnvolle Werte können
 z.B. Anpassungen an der Autorisierung und dem Autoindex sein:</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span> AuthConfig Indexes
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AllowOverride</span><span class="w"> </span>AuthConfig<span class="w"> </span>Indexes
 </pre></div>
 </div>
 <p>Hier im Setup werden lokale Anpassungen in <code class="docutils literal notranslate"><span class="pre">.htaccess</span></code> Dateien nicht
 erforderlich werden, manche Installation einer WEB-Anwendung ist aber auf
 <em>Overerrides</em> angewiesen.</p>
-</div>
-<div class="section" id="allow-direktive">
-<span id="xref-allow-directive"></span><h2>Allow-Direktive<a class="headerlink" href="#allow-direktive" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="allow-direktive">
+<span id="xref-allow-directive"></span><h2>Allow-Direktive<a class="headerlink" href="#allow-direktive" title="Permalink to this heading">¶</a></h2>
 <p>In der Allow-Direktive (<a class="reference external" href="https://httpd.apache.org/docs/current/howto/access.html">Apache Access Control</a> / <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_access_compat.html">Apache mod_acces_compat</a>)
 können nicht nur IPs bzw. Netzmasken angeben werden, es ist auch möglich Domian-
 oder Host-Namen anzugeben. Es sind aber die Netzmasken den <em>Host-/Domain-Namen</em>
@@ -161,11 +161,11 @@ den folgenden Netzen konfigurieren:</p>
 <p>Die <code class="docutils literal notranslate"><span class="pre">Allow</span></code>, <code class="docutils literal notranslate"><span class="pre">Order</span></code> und <code class="docutils literal notranslate"><span class="pre">Deny</span></code> Direktiven wurden bereits im
 <a class="reference internal" href="serverwide_cfg.html#xref-deny-from-root"><span class="std std-ref">Deny from root</span></a> gesetzt, es wurde <em>alles dicht gemacht</em>. Um eine Site
 <em>Netzweit</em> frei zu geben, muss die Allow-Direktive auf <code class="docutils literal notranslate"><span class="pre">all</span></code> gesetzt. werden</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span> from <span class="k">all</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
 </pre></div>
 </div>
 <p>Um die Site in dem Link-Lokal Netzt frei zu geben eignet sich:</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span>fd00::/8<span class="w"> </span><span class="m">192.168.0.0/16</span><span class="w"> </span>fe80::/10<span class="w"> </span><span class="m">127.0.0.0/8</span><span class="w"> </span>::1
 </pre></div>
 </div>
 <p>Die beiden letzten Beispiele basieren auf den vererbeten <code class="docutils literal notranslate"><span class="pre">Order</span></code> und die
@@ -175,14 +175,14 @@ Zugriffsrechten auf eine Site empfiehlt es sich <em>expliziet</em> zu sein und a
 Vererbung zu verzichten. Man muss dann zwar etwas mehr notieren, aber die
 Zugriffkontrolle ist damit zentral an der <em>Site</em> angebracht und
 unmissverständlich.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Order</span> deny,allow
-<span class="nb">Deny</span> from <span class="k">all</span>
-<span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Order</span><span class="w"> </span>deny,allow
+<span class="nb">Deny</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span>fd00::/8<span class="w"> </span><span class="m">192.168.0.0/16</span><span class="w"> </span>fe80::/10<span class="w"> </span><span class="m">127.0.0.0/8</span><span class="w"> </span>::1
 </pre></div>
 </div>
-</div>
-<div class="section" id="autoindex-von-directories">
-<span id="xref-autoindex-directories"></span><h2>Autoindex von Directories<a class="headerlink" href="#autoindex-von-directories" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="autoindex-von-directories">
+<span id="xref-autoindex-directories"></span><h2>Autoindex von Directories<a class="headerlink" href="#autoindex-von-directories" title="Permalink to this heading">¶</a></h2>
 <p>Zum <em>Static Content</em> gehört in diesem Setup noch die Installation des <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_autoindex.html">Apache
 mod_autoindex</a> Moduls. Mit diesem Modul wird die Auflistung des Inhalts eines
 Ordners (eines <em>Directory</em>) in ein HTML Dokument umgewandelt und über HTTP an
@@ -197,27 +197,27 @@ Konfiguration ersetzt wird.</p>
 <li><p>Default: <code class="docutils literal notranslate"><span class="pre">/etc/apache2/mods-available/autoindex.conf</span></code></p></li>
 <li><p>Anpassung:  <code class="docutils literal notranslate"><span class="pre">/etc/apache2/conf-available/autoindex.conf</span></code></p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H mv autoindex.conf autoindex.conf-disabled
-sudo -H a2enconf autoindex
-sudo -H a2enmod autoindex
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>mv<span class="w"> </span>autoindex.conf<span class="w"> </span>autoindex.conf-disabled
+sudo<span class="w"> </span>-H<span class="w"> </span>a2enconf<span class="w"> </span>autoindex
+sudo<span class="w"> </span>-H<span class="w"> </span>a2enmod<span class="w"> </span>autoindex
 </pre></div>
 </div>
 <p>In der <code class="docutils literal notranslate"><span class="pre">autoindex.conf</span></code> wird das Setup für die Anzeige der Ordnerinhalte
 konfiguriert. Hier ein Auszug:</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_autoindex.c</span><span class="nt">&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_autoindex.c</span><span class="nt">&gt;</span>
 
-    <span class="nb">IndexOptions</span> FancyIndexing XHTML HTMLTable SuppressHTMLPreamble \
-                 VersionSort FoldersFirst DescriptionWidth=* NameWidth=* \
-                 Charset=UTF-8
-    ...
-    <span class="nb">AddIconByType</span> (IMG,/chrome/icons/16x16/mimetypes/gnome-mime-image.png) image/*
-    <span class="nb">AddIconByType</span> (SND,/chrome/icons/16x16/mimetypes/gnome-mime-audio.png) audio/*
-    <span class="nb">AddIconByType</span> (TXT,/chrome/icons/16x16/mimetypes/gnome-mime-text.png) text/*
-    <span class="nb">AddIconByType</span> (VID,/chrome/icons/16x16/mimetypes/gnome-mime-video.png) video/*
-    ...
-    <span class="nb">AddDescription</span> <span class="s2">&quot;tar (tape) archive&quot;</span> .tar
-    <span class="nb">AddDescription</span> <span class="s2">&quot;GZIP compressed document&quot;</span> .Z .z .gz .zip
-    <span class="nb">AddDescription</span> <span class="s2">&quot;ZIP compressed document&quot;</span> .zip
+<span class="w">    </span><span class="nb">IndexOptions</span><span class="w"> </span>FancyIndexing<span class="w"> </span>XHTML<span class="w"> </span>HTMLTable<span class="w"> </span>SuppressHTMLPreamble<span class="w"> </span>\
+<span class="w">                 </span>VersionSort<span class="w"> </span>FoldersFirst<span class="w"> </span>DescriptionWidth=*<span class="w"> </span>NameWidth=*<span class="w"> </span>\
+<span class="w">                 </span>Charset=UTF-8
+<span class="w">    </span>...
+<span class="w">    </span><span class="nb">AddIconByType</span><span class="w"> </span>(IMG,/chrome/icons/16x16/mimetypes/gnome-mime-image.png)<span class="w"> </span>image/*
+<span class="w">    </span><span class="nb">AddIconByType</span><span class="w"> </span>(SND,/chrome/icons/16x16/mimetypes/gnome-mime-audio.png)<span class="w"> </span>audio/*
+<span class="w">    </span><span class="nb">AddIconByType</span><span class="w"> </span>(TXT,/chrome/icons/16x16/mimetypes/gnome-mime-text.png)<span class="w"> </span>text/*
+<span class="w">    </span><span class="nb">AddIconByType</span><span class="w"> </span>(VID,/chrome/icons/16x16/mimetypes/gnome-mime-video.png)<span class="w"> </span>video/*
+<span class="w">    </span>...
+<span class="w">    </span><span class="nb">AddDescription</span><span class="w"> </span><span class="s2">&quot;tar (tape) archive&quot;</span><span class="w"> </span>.tar
+<span class="w">    </span><span class="nb">AddDescription</span><span class="w"> </span><span class="s2">&quot;GZIP compressed document&quot;</span><span class="w"> </span>.Z<span class="w"> </span>.z<span class="w"> </span>.gz<span class="w"> </span>.zip
+<span class="w">    </span><span class="nb">AddDescription</span><span class="w"> </span><span class="s2">&quot;ZIP compressed document&quot;</span><span class="w"> </span>.zip
 </pre></div>
 </div>
 <p>Die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_autoindex.html#indexoptions">Apache IndexOptions Direktive</a> wird wie die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a>
@@ -241,12 +241,12 @@ eingebunden:</p>
 nachladen. Hier <em>schließt sich dann der Kreis</em> von Autoindex und der
 statischen <em>chrome</em> Resource.</p>
 </div>
-</div>
-<div class="section" id="autoindex-aktivieren">
-<span id="xref-options-indexes"></span><h2>Autoindex aktivieren<a class="headerlink" href="#autoindex-aktivieren" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="autoindex-aktivieren">
+<span id="xref-options-indexes"></span><h2>Autoindex aktivieren<a class="headerlink" href="#autoindex-aktivieren" title="Permalink to this heading">¶</a></h2>
 <p>Mit der Direktive <code class="docutils literal notranslate"><span class="pre">Options</span> <span class="pre">+Indexes</span></code> wird der <em>chrome</em> Ordner im WEB-Browser
 auch <em>navigierbar</em> (vergleiche <a class="reference internal" href="#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a>).</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Options</span> +Indexes +IncludesNOEXEC +FollowSymLinks
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Options</span><span class="w"> </span>+Indexes<span class="w"> </span>+IncludesNOEXEC<span class="w"> </span>+FollowSymLinks
 </pre></div>
 </div>
 <p>Die <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html#options">Apache Options Direktive</a> wird vererbt. Bereits im Root Ordner (vergleiche
@@ -277,9 +277,9 @@ entscheiden sollte die Vererbung zu spezialiseren (nur <code class="docutils lit
 zu verwerfen. Bei Letzterem müssen dann alle Optionen ohne das Präfix notiert
 werden.</p>
 </div>
-</div>
-<div class="section" id="serverside-includes">
-<span id="xref-server-side-include"></span><h2>Serverside Includes<a class="headerlink" href="#serverside-includes" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="serverside-includes">
+<span id="xref-server-side-include"></span><h2>Serverside Includes<a class="headerlink" href="#serverside-includes" title="Permalink to this heading">¶</a></h2>
 <p>Die Generierung der HTML-Seiten mit der Auflistung der Dateien in einem Ordner
 ist in diesem Setup mittels Server Side Includes (SSI) relalisiert (siehe
 <a class="reference external" href="http://httpd.apache.org/docs/current/howto/ssi.html">Introduction to SSI</a>).</p>
@@ -288,15 +288,15 @@ dass in KEINEM Fall die <code class="docutils literal notranslate"><span class="
 werden SSI nur verwendet, um die Autoindex-Seiten etwas <em>aufzubrezeln</em> und es
 werden die SSI-Skripte <strong>NUR</strong> im Kontext des Chrome-Ordners aktiviert
 (vergleiche <a class="reference internal" href="#xref-static-content-chrome"><span class="std std-ref">chrome Resource</span></a>).</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AddType</span> text/html .shtml
-<span class="nb">AddHandler</span> server-parsed .shtml
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">AddType</span><span class="w"> </span>text/html<span class="w"> </span>.shtml
+<span class="nb">AddHandler</span><span class="w"> </span>server-parsed<span class="w"> </span>.shtml
 </pre></div>
 </div>
 <p>Im Chrome Ordner gibt es auch nur zwei kleine SSI-Skripte für den <em>Header</em> und
 die <em>Readme</em> des Autoindex. Will ein Autoindex in einem anderen Kontext diese
 verwenden, muss er nur die beiden Dateien aus dem Chrome-Ordner setzen.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
-<span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">HeaderName</span><span class="w"> </span><span class="sx">/chrome/header.shtml</span>
+<span class="nb">ReadmeName</span><span class="w"> </span><span class="sx">/chrome/footer.shtml</span>
 </pre></div>
 </div>
 <p>Da auch der Chrome Ordner mit dem Autoindex <em>navigierbar</em> ist, werden sie auch
@@ -307,8 +307,8 @@ im Chrome Ordner gesetzt (vergleiche <a class="reference internal" href="#xref-s
 aktivieren. Sie benötigen keine <code class="docutils literal notranslate"><span class="pre">AddHandler</span> <span class="pre">server-parsed</span> <span class="pre">.shtml</span></code>
 Direktieve.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -354,12 +354,12 @@ Direktieve.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -367,7 +367,7 @@ Direktieve.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

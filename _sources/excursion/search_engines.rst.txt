@@ -1,7 +1,6 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../ffox_refs.txt
-.. include:: ../searx_refs.txt
 
 .. _Filterblase: https://de.wikipedia.org/wiki/Filterblase
 .. _WEB-Tracking: https://de.wikipedia.org/wiki/Web_Analytics
@@ -16,12 +15,14 @@
 Suchmaschinen & Tracking
 ========================
 
+.. _SearXNG: https://docs.searxng.org
+.. _SearXNG@darmarIT: https://darmarit.org/searx/
+.. _searx.space: https://searx.space/
+
 .. sidebar:: Warnung -- Startpage
 
-   Bisher wurde hier `Startpage` als "*die bessere google Suchmaschine!*"
-   tituliert, inzwischen kann von der Verwendung nur abgeraten werden
-   (s.u. Startpage_).  Alternativ empfiehlt es sich eine der :ref:`searX Engines
-   <xref_searx>` zur Internetsuche zu verwenden z.B.: `searX@darmarIT`_
+   :ref:`Startpage`.  Alternativ empfiehlt es sich eine SearXNG_ Instanz wie
+   `SearXNG@darmarIT`_ zu verwenden (s.u. :ref:`search engines`).
 
 Für die ganz Ungeduldigen unter uns:
 
@@ -120,28 +121,22 @@ meist darf man aber davon ausgehen, das die Mitwirkung der WEB-Seiten Betreiber
 eher schwach ist. Im Folgenden werden *härtere/aktive* Methoden zum Schutz
 empfohlen.
 
+.. _search engines:
 
-Anonyme Suche
--------------
-
-.. sidebar:: `Google search link fix`_
-
-   Will man unbedingt über Google suchen, dann ist man zwar im Tracking, doch
-   auch das kann man (etwas) einschränken, im Firefox z.B. mit dem AddOn:
-   `Google search link fix`_.
+Anonyme Suche -- SearXNG
+------------------------
 
 Anonyme Suchmaschinen setzen kein Tracking ein.  Jedoch blenden sie zwecks
 Finanzierung gekennzeichnete Werbung ein (s.a. :ref:`add_blocker`).  Die Nähe
 solcher Unternehmen zur Werbebranche ist nicht immer unproblematisch.  Genau
-genommen weiß man nicht, ob sich das Geschäftsmodel solcher Unternehemen im
-Laufe der Jahre nicht doch irgendwann verschiebt.  Der aktuelle Fall von
-Startpage (s.u.) zeigt wie sich die Geschäftsmodelle *still und leise ändern*
-können.
+genommen weiß man nicht ob sich das Geschäftsmodel solcher Unternehemen im Laufe
+der Jahre nicht doch irgendwann verschiebt.  Der Fall von Startpage_ (s.u.)
+zeigt wie sich die Geschäftsmodelle *still und leise ändern* können.
 
-.. admonition:: searX (aka goggle++)
+.. admonition:: SearXNG (aka goggle++)
 
-   Am besten ist immernoch eine :ref:`searX Engine <xref_searx>`, davon gibt es
-   reichlich im Netz (searX-Instances_) oder man nimmt diese: `searX@darmarIT`_
+   Am besten ist es, man nutzt eine der  SearXNG_ Instanzen, davon gibt
+   es reichlich im Netz (searx.space_) z.B. `SearXNG@darmarIT`_.
 
 .. _Startpage:
 

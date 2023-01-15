@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Test des WEB-Servers &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="WebDAV-Clients" href="webdav_clients.html" />
-    <link rel="prev" title="PHP Anwendungen" href="site_php-apps.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="PHP Anwendungen" href="site_php-apps.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,38 +45,38 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="test-des-web-servers">
-<span id="xref-probe-server"></span><h1>Test des WEB-Servers<a class="headerlink" href="#test-des-web-servers" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="test-des-web-servers">
+<span id="xref-probe-server"></span><h1>Test des WEB-Servers<a class="headerlink" href="#test-des-web-servers" title="Permalink to this heading">¶</a></h1>
 <p>Jeder WEB-Client der eine WEB-Anwendung (wie z.B. DAV, WSGI usw.) nutzt ist ein
 Test des WEB-Servers. Dementsprechend sollten die LOG-Dateien beobachtet werden,
 wenn man eine neue WEB-Anwendung testet:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H tail -f  /var/log/apache2/error.log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>tail<span class="w"> </span>-f<span class="w">  </span>/var/log/apache2/error.log
 </pre></div>
 </div>
 <p>Hat man <a class="reference internal" href="mod_security2.html#xref-mod-security2"><span class="std std-ref">WAF: ModSecurity</span></a> aktiviert, sollte man das Audit-Log des
 ModSecurity Moduls beobachten:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H tail -f  /var/log/apache2/modsec_audit.log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>tail<span class="w"> </span>-f<span class="w">  </span>/var/log/apache2/modsec_audit.log
 </pre></div>
 </div>
-<div class="section" id="curl">
-<h2><code class="docutils literal notranslate"><span class="pre">curl</span></code><a class="headerlink" href="#curl" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="curl">
+<h2><code class="docutils literal notranslate"><span class="pre">curl</span></code><a class="headerlink" href="#curl" title="Permalink to this heading">¶</a></h2>
 <p>Einfache Tests des WEB-Servers können mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=curl">curl</a> durchgeführt werden.  Eine
 Beispielanwendung des <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=curl">curl</a> wird in Abschnitt
 <a class="reference internal" href="serverwide_cfg.html#xref-start-your-engines"><span class="std std-ref">Gentleman, start your engines!</span></a> gezeigt.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl --location --verbose --head --insecure http://localhost <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-* Rebuilt URL to: http://ubuntu1504/
-*   Trying fd00::a00:27ff:fed5:7c85...
-* Connected to ubuntu1504 <span class="o">(</span>fd00::a00:27ff:fed5:7c85<span class="o">)</span> port <span class="m">80</span> <span class="o">(</span><span class="c1">#0)</span>
-&gt; HEAD / HTTP/1.1
-&gt; Host: ubuntu1504
-&gt; User-Agent: curl/7.43.0
-&gt; Accept: */*
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>--location<span class="w"> </span>--verbose<span class="w"> </span>--head<span class="w"> </span>--insecure<span class="w"> </span>http://localhost<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+*<span class="w"> </span>Rebuilt<span class="w"> </span>URL<span class="w"> </span>to:<span class="w"> </span>http://ubuntu1504/
+*<span class="w">   </span>Trying<span class="w"> </span>fd00::a00:27ff:fed5:7c85...
+*<span class="w"> </span>Connected<span class="w"> </span>to<span class="w"> </span>ubuntu1504<span class="w"> </span><span class="o">(</span>fd00::a00:27ff:fed5:7c85<span class="o">)</span><span class="w"> </span>port<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">(</span><span class="c1">#0)</span>
+&gt;<span class="w"> </span>HEAD<span class="w"> </span>/<span class="w"> </span>HTTP/1.1
+&gt;<span class="w"> </span>Host:<span class="w"> </span>ubuntu1504
+&gt;<span class="w"> </span>User-Agent:<span class="w"> </span>curl/7.43.0
+&gt;<span class="w"> </span>Accept:<span class="w"> </span>*/*
 ...
 </pre></div>
 </div>
-</div>
-<div class="section" id="ab">
-<h2><code class="docutils literal notranslate"><span class="pre">ab</span></code><a class="headerlink" href="#ab" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="ab">
+<h2><code class="docutils literal notranslate"><span class="pre">ab</span></code><a class="headerlink" href="#ab" title="Permalink to this heading">¶</a></h2>
 <p>Aus dem <a class="reference external" href="http://packages.ubuntu.com/apache2-utils">apache2-utils</a> Paket steht das <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=ab">ab</a> Kommando zur Verfügung,
 mit dem <em>Last-Tests</em> durchgeführt werden können.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">ab</span><span class="o">*</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">tool</span> <span class="k">for</span> <span class="n">benchmarking</span> <span class="n">your</span> <span class="n">Apache</span> <span class="n">Hypertext</span> <span class="n">Transfer</span> <span class="n">Protocol</span> <span class="p">(</span><span class="n">HTTP</span><span class="p">)</span>
@@ -91,13 +91,13 @@ mit dem <em>Last-Tests</em> durchgeführt werden können.:</p>
 <li><p><a class="reference external" href="http://www.bradlanders.com/2013/04/15/apache-bench-and-gnuplot-youre-probably-doing-it-wrong/">http://www.bradlanders.com/2013/04/15/apache-bench-and-gnuplot-youre-probably-doing-it-wrong/</a></p></li>
 <li><p><a class="reference external" href="https://gist.github.com/netpoetica/80b9725b204d642be4a0">https://gist.github.com/netpoetica/80b9725b204d642be4a0</a></p></li>
 </ul>
-</div>
-<div class="section" id="id1">
-<h2>Nmap<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="id1">
+<h2>Nmap<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <p>Zu Empfehlen ist auch der <em>Network Mapper</em> <a class="reference external" href="https://nmap.org/">Nmap</a>, der mit dem Paket <a class="reference external" href="http://packages.ubuntu.com/nmap">nmap</a>
 installiert werden kann.</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -139,12 +139,12 @@ installiert werden kann.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -152,7 +152,7 @@ installiert werden kann.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

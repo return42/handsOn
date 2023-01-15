@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Druckertreiber &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Netzwerk-Drucker Setup" href="printer_setup.html" />
-    <link rel="prev" title="Die kleine PPD Fibel" href="ppd.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Die kleine PPD Fibel" href="ppd.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="druckertreiber">
-<h1>Druckertreiber<a class="headerlink" href="#druckertreiber" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="druckertreiber">
+<h1>Druckertreiber<a class="headerlink" href="#druckertreiber" title="Permalink to this heading">¶</a></h1>
 <p>Im Backend bietet CUPS z.T. generische Treiber für die Drucker-Hersteller an,
 die i.d.R. schon sehr gut funktionieren.  Wie bereits beschrieben, unterstützen
 alle halbwegs modernen Netzwerk-Drucker bereits das <a class="reference external" href="https://www.pwg.org/ipp/everywhere.html">IPP Everywhere</a>.  Darüber
@@ -54,18 +54,20 @@ ist es CUPS möglich <em>driverless-printing</em> anzubieten.  Für den <a class
 einen proprietären Treiber von Canon als auch einen generischen Treiber für
 Canon Drucker.  Es sollen beide Treiber engerichtet und deren Druck-Ergebnisse
 miteinander verglichen werden.</p>
-<div class="section" id="driverless-printing">
-<span id="id1"></span><h2>driverless printing<a class="headerlink" href="#driverless-printing" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="driverless-printing">
+<span id="id1"></span><h2>driverless printing<a class="headerlink" href="#driverless-printing" title="Permalink to this heading">¶</a></h2>
 <p>Über das <a class="reference external" href="https://wiki.debian.org/DriverlessPrinting">driverless-printing CUPS</a> müsste in einer Standard Installation des
 Ubuntu (18.04) resp. Debian Desktop Systems (mit CUPS) einem der IPP fähige
 Drucker bereits im Setup unter „Geräte“ angeboten werden.  Alternativ kann man
 in den Druckereinstellungen auch auf <em>„Zusätzliche Druckereinstellungen“</em>
 drücken womit das Programm <code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code> gestartet wird.</p>
-<div class="figure align-default" id="id2">
+<figure class="align-default" id="id2">
 <span id="figure-cups-system-config-printer-gui"></span><a class="reference external image-reference" href="https://github.com/zdohnal/system-config-printer"><img alt="Figure (system-config-printer-gui.png)" src="../_images/system-config-printer-gui.png" /></a>
-<p class="caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code>: CUPS GUI für Drucker- Konfiguration und
+<figcaption>
+<p><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">system-config-printer</span></code>: CUPS GUI für Drucker- Konfiguration und
 Statusabfrage.</span><a class="headerlink" href="#id2" title="Link zu diesem Bild">¶</a></p>
-</div>
+</figcaption>
+</figure>
 <p>In dem Fenster kann man <span class="guilabel">Hinzufügen</span> klicken und über einen geführten
 Dialog den Drucker einrichten.  Eine detallierte Anleitung findet sich in
 Kapitel „<a class="reference internal" href="printer_setup.html#printer-setup"><span class="std std-ref">Netzwerk-Drucker Setup</span></a>“.  Hier beim <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> musste die generisch
@@ -98,9 +100,9 @@ ggf. Information bieten können:</p>
 </ul>
 </dd>
 </dl>
-</div>
-<div class="section" id="mf620c-serie-urf-ii-mf623cn">
-<span id="canon-urf"></span><h2>MF620C-Serie URF-II (MF623Cn)<a class="headerlink" href="#mf620c-serie-urf-ii-mf623cn" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="mf620c-serie-urf-ii-mf623cn">
+<span id="canon-urf"></span><h2>MF620C-Serie URF-II (MF623Cn)<a class="headerlink" href="#mf620c-serie-urf-ii-mf623cn" title="Permalink to this heading">¶</a></h2>
 <p>Sofern für Linux vorhanden, kann man sich auch mal die Druck-Ergebnisse mit dem
 proprietären Treiber vom Hersteller anschauen.  Doch ACHTUNG: wie im Kapitel
 „<a class="reference internal" href="#driverless-vs-canon"><span class="std std-ref">Druckbild Canon VS driverless</span></a>“ gezeigt, kann der Treiber vom Hersteller auch mal
@@ -110,10 +112,12 @@ installieren jede Menge Schrott der nicht funktioniert und bestenfalls nicht
 noch andere Problem mit sich zieht.  Es ist schon eine ziemliche
 Unverschämtheit, was Canon seinen Kunden für eine schrottige Software zur
 Installation anbietet <em>und das ziehen die schon seit Jahren „so“ durch</em>.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <span id="figure-mf623cn-printer-spec"></span><a class="reference external image-reference" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn/specification.aspx"><img alt="Figure (MF623Cn-printer-spec.png)" src="../_images/MF623Cn-printer-spec.png" /></a>
-<p class="caption"><span class="caption-text"><a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a>: technische Angaben</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a>: technische Angaben</span><a class="headerlink" href="#id3" title="Link zu diesem Bild">¶</a></p>
+</figcaption>
+</figure>
 <p>Die moderneren Canon Drucker unterstützen Ultra Fast Renderer (UFR) welches man
 sich über einen <strong>proprietären</strong> Treiber auch auf dem PC installieren kann.  Die
 Linux Treiber für die Drucker der MF620C Serie gibt es bei Canon:</p>
@@ -164,9 +168,9 @@ zusammengeschustert weshalb ich eine selbst-erstellte bevorzuge:</p>
 <ul class="simple">
 <li><p>Für <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a> angepasste PPD (URFII): <a class="reference external" href="https://github.com/return42/handsOn/blob/master/docs/print/MF623C-TWF19694.ppd">Canon MF620C Series UFRII LT</a></p></li>
 </ul>
-</div>
-<div class="section" id="druckbild-canon-vs-driverless">
-<span id="driverless-vs-canon"></span><h2>Druckbild Canon VS driverless<a class="headerlink" href="#druckbild-canon-vs-driverless" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="druckbild-canon-vs-driverless">
+<span id="driverless-vs-canon"></span><h2>Druckbild Canon VS driverless<a class="headerlink" href="#druckbild-canon-vs-driverless" title="Permalink to this heading">¶</a></h2>
 <p>Hier ein Vergleich des Druckbilds des All-in-One Drucker <a class="reference external" href="https://www.canon.de/for_home/product_finder/multifunctionals/laser/i-sensys_mf623cn">MF623Cn</a>, einmal mit
 dem origignal <a class="reference internal" href="#canon-urf"><span class="std std-ref">Canon URF-II Treiber</span></a> (links) und dem
 <a class="reference internal" href="printer_setup.html#printer-setup"><span class="std std-ref">driverless-printing</span></a> (rechts).  Es sind die Druckbilder,
@@ -174,11 +178,13 @@ die man bekommt, wenn man nichts an den PPD Dateien geändert hat.</p>
 <p>Das <a class="reference internal" href="#figure-mf620c-series-driverless-vs-canon"><span class="std std-ref">Bild unten</span></a> zeigt den
 rechten-oberen Ausschnitt eines A4-Drucks, bei dem oben in der Ecke ein <a class="reference external" href="https://de.wikipedia.org/wiki/QR-Code">QR-Code
 (wiki)</a> gedruckt werden sollte.</p>
-<div class="figure align-default" id="id4">
+<figure class="align-default" id="id4">
 <span id="figure-mf620c-series-driverless-vs-canon"></span><img alt="Figure (MF620C-Series-driverless-vs-canon.png)" src="../_images/MF620C-Series-driverless-vs-canon.png" />
-<p class="caption"><span class="caption-text">Druckbild MF620C Series: <a class="reference internal" href="#canon-urf"><span class="std std-ref">Canon URF-II Treiber</span></a> (links)
+<figcaption>
+<p><span class="caption-text">Druckbild MF620C Series: <a class="reference internal" href="#canon-urf"><span class="std std-ref">Canon URF-II Treiber</span></a> (links)
 <a class="reference internal" href="printer_setup.html#printer-setup"><span class="std std-ref">driverless-printing</span></a> (rechts)</span><a class="headerlink" href="#id4" title="Link zu diesem Bild">¶</a></p>
-</div>
+</figcaption>
+</figure>
 <p>Links sieht man, dass der Original Canon Treiber zwar bis in die Ecken druckt
 aber den QR-Code im PDF nur zerstört ausdruckt.  Bei genauerer Betrachtung
 (nicht im Bild zu erkennen) stellt man auch fest, dass der original Treiber
@@ -197,9 +203,9 @@ Farbtiefe nicht ganz ausgereizt zu werden.</p>
 <code class="docutils literal notranslate"><span class="pre">ImageableArea</span></code> auf <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">...</span></code> korrigiert werden (siehe
 <a class="reference internal" href="ppd.html#cups-driverless-hwmargins"><span class="std std-ref">Druckbereich korrigieren</span></a>).</p>
 </div>
-</div>
-<div class="section" id="debug-log-der-druckerzeugnisse">
-<h2>Debug LOG der Druckerzeugnisse<a class="headerlink" href="#debug-log-der-druckerzeugnisse" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="debug-log-der-druckerzeugnisse">
+<h2>Debug LOG der Druckerzeugnisse<a class="headerlink" href="#debug-log-der-druckerzeugnisse" title="Permalink to this heading">¶</a></h2>
 <p>Debug-LOG für den <a class="reference internal" href="printer_setup.html#printer-setup"><span class="std std-ref">driverless-printing</span></a> Druck (rechts):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="p">[</span><span class="mi">11</span><span class="o">/</span><span class="n">Feb</span><span class="o">/</span><span class="mi">2019</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">00</span> <span class="o">+</span><span class="mi">0100</span><span class="p">]</span> <span class="p">[</span><span class="n">Job</span> <span class="mi">82</span><span class="p">]</span> <span class="mi">4</span> <span class="n">filters</span> <span class="k">for</span> <span class="n">job</span><span class="p">:</span>
 <span class="n">D</span> <span class="p">[</span><span class="mi">11</span><span class="o">/</span><span class="n">Feb</span><span class="o">/</span><span class="mi">2019</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">00</span> <span class="o">+</span><span class="mi">0100</span><span class="p">]</span> <span class="p">[</span><span class="n">Job</span> <span class="mi">82</span><span class="p">]</span> <span class="n">pdftopdf</span> <span class="p">(</span><span class="n">application</span><span class="o">/</span><span class="n">pdf</span> <span class="n">to</span> <span class="n">application</span><span class="o">/</span><span class="n">vnd</span><span class="o">.</span><span class="n">cups</span><span class="o">-</span><span class="n">pdf</span><span class="p">,</span> <span class="n">cost</span> <span class="mi">66</span><span class="p">)</span>
@@ -231,8 +237,8 @@ Farbtiefe nicht ganz ausgereizt zu werden.</p>
 <span class="n">D</span> <span class="p">[</span><span class="mi">11</span><span class="o">/</span><span class="n">Feb</span><span class="o">/</span><span class="mi">2019</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">00</span> <span class="o">+</span><span class="mi">0100</span><span class="p">]</span> <span class="p">[</span><span class="n">Job</span> <span class="mi">81</span><span class="p">]</span> <span class="n">argv</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;/var/spool/cups/d00081-001&quot;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -275,12 +281,12 @@ Farbtiefe nicht ganz ausgereizt zu werden.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -288,7 +294,7 @@ Farbtiefe nicht ganz ausgereizt zu werden.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

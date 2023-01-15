@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CalDAV und CardDAV Clients &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Drucken mit CUPS &amp; IPP" href="../print/index.html" />
-    <link rel="prev" title="Radicale Server" href="radicale_server.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Radicale Server" href="radicale_server.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="caldav-und-carddav-clients">
-<span id="xref-dav-client"></span><h1>CalDAV und CardDAV Clients<a class="headerlink" href="#caldav-und-carddav-clients" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="caldav-und-carddav-clients">
+<span id="xref-dav-client"></span><h1>CalDAV und CardDAV Clients<a class="headerlink" href="#caldav-und-carddav-clients" title="Permalink to this heading">¶</a></h1>
 <p>Radicale unterstützt eine ganze Reihe von DAV-Client Anwendungen.  Man sollte
 sich in jedem Fall die Doku der Clients anschauen:</p>
 <ul class="simple">
@@ -57,8 +57,8 @@ sowohl CardDAV als auch CalDAV. Meist sind die Clients etwas <em>hakelig</em> so
 einige z.B. mit Kalendern arbeiten aber keine neuen Kalender anlegen. Das
 Gleiche gilt für Adressbücher, manche Clients können keine Adressbücher neu
 anlegen, mit bestehenden aber gut arbeiten.“</p>
-<div class="section" id="android-clients">
-<h2>Android Clients<a class="headerlink" href="#android-clients" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="android-clients">
+<h2>Android Clients<a class="headerlink" href="#android-clients" title="Permalink to this heading">¶</a></h2>
 <p>Auf den Androids empfiehlt es sich DAVdroid zu installieren:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://davdroid.bitfire.at">https://davdroid.bitfire.at</a></p></li>
@@ -112,11 +112,11 @@ der <em>Kalender-App</em>.  In manchen <em>Kalender-Apps</em> kann resp. muss no
 werden welche Kalender synchronisiert werden, der Menüpunkt in der
 <em>Kalender-App</em> könnte in etwa lauten <span class="menuselection">Synchronisierte Kalender
 verwalten</span>.</p>
-</div>
-<div class="section" id="apple-ios">
-<h2>Apple &amp; iOS<a class="headerlink" href="#apple-ios" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="apple-kontakte">
-<h3>Apple Kontakte<a class="headerlink" href="#apple-kontakte" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="apple-ios">
+<h2>Apple &amp; iOS<a class="headerlink" href="#apple-ios" title="Permalink to this heading">¶</a></h2>
+<section id="apple-kontakte">
+<h3>Apple Kontakte<a class="headerlink" href="#apple-kontakte" title="Permalink to this heading">¶</a></h3>
 <p>Im Adressbuch (<em>Kontakte</em>) des MacOS unter <em>Accounts</em> mit dem <code class="docutils literal notranslate"><span class="pre">+</span></code> Symbol einen
 neuen Account anlegen. Kontakte Version 7.1:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">CardDAV</span>
@@ -150,9 +150,9 @@ werden und mit einem Slash <code class="docutils literal notranslate"><span clas
 Version 10 mit <code class="docutils literal notranslate"><span class="pre">Cmd-Q</span></code> die <em>Kontakte</em> Anwendung erst mal beenden und neu
 starten, bevor synchronisiert wurde. Nach der Synchronisierung sollten nun die
 Adressen und Gruppen in den Kontakten zu sehen sein.</p>
-</div>
-<div class="section" id="apple-kalender">
-<h3>Apple Kalender<a class="headerlink" href="#apple-kalender" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="apple-kalender">
+<h3>Apple Kalender<a class="headerlink" href="#apple-kalender" title="Permalink to this heading">¶</a></h3>
 <p>Im <em>Kalender</em> des MacOS unter <em>Accounts</em> mit dem <code class="docutils literal notranslate"><span class="pre">+</span></code> Symbol einen neuen
 Account anlegen. Kalender Version 6.0:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accounttyp</span><span class="p">:</span>      <span class="n">CardDAV</span>
@@ -175,12 +175,12 @@ muss, anschließend:</p>
 </div>
 <p>Nach dem Anlegen ist der Account bereits aktiviert und wird synchronisiert, was
 aber u.U. einige Minuten in Anspruch nehmen kann.</p>
-</div>
-</div>
-<div class="section" id="thunderbird">
-<h2>Thunderbird<a class="headerlink" href="#thunderbird" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="section" id="thunderbird-mit-lightning">
-<h3>Thunderbird mit Lightning<a class="headerlink" href="#thunderbird-mit-lightning" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+</section>
+<section id="thunderbird">
+<h2>Thunderbird<a class="headerlink" href="#thunderbird" title="Permalink to this heading">¶</a></h2>
+<section id="thunderbird-mit-lightning">
+<h3>Thunderbird mit Lightning<a class="headerlink" href="#thunderbird-mit-lightning" title="Permalink to this heading">¶</a></h3>
 <p>Als Kalender eignet sich <a class="reference external" href="https://www.thunderbird.net/en-US/calendar/">Lightning</a> im Thunderbird.  Eine Zeit lang gab es dafür
 kein passendes AddOn für Thunderbird, inzwischen steht es aber wieder zur
 Verfügung und man installiert es am besten einfach im Thunderbird über:</p>
@@ -217,9 +217,9 @@ kann.</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="thunderbird-mit-cardbook">
-<h3>Thunderbird mit CardBook<a class="headerlink" href="#thunderbird-mit-cardbook" title="Link zu dieser Überschrift">¶</a></h3>
+</section>
+<section id="thunderbird-mit-cardbook">
+<h3>Thunderbird mit CardBook<a class="headerlink" href="#thunderbird-mit-cardbook" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference external" href="https://gitlab.com/CardBook/CardBook">CardBook</a> ist ein AddOn für den
 Thunderbird, welches das Standard-Adressbuch des Thunderbird vollständig
 ersetzen kann.</p>
@@ -273,9 +273,9 @@ zu rechnen ist.</p>
 <div><p>Wer aber keine Gruppierung in seinem Adressbuch hat, der wird damit auch keine
 Probleme haben ;)</p>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -325,12 +325,12 @@ Probleme haben ;)</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -338,7 +338,7 @@ Probleme haben ;)</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

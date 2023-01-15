@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Scannen mit SANE &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Android" href="../android/index.html" />
-    <link rel="prev" title="Wartung &amp; Diagnose" href="../print/printer_troubleshooting.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Wartung &amp; Diagnose" href="../print/printer_troubleshooting.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,8 +44,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="scannen-mit-sane">
-<span id="scan-linux"></span><h1>Scannen mit SANE<a class="headerlink" href="#scannen-mit-sane" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="scannen-mit-sane">
+<span id="scan-linux"></span><h1>Scannen mit SANE<a class="headerlink" href="#scannen-mit-sane" title="Permalink to this heading">¶</a></h1>
 <p>Scanner werden auf Linux mit der <em>Scanner Access Now Easy</em> (<a class="reference external" href="http://www.sane-project.org">SANE</a>) Software
 eingebunden (<a class="reference external" href="https://wiki.ubuntuusers.de/SANE/#Backend">SANE-Backend</a>). Die über SANE eingebundnenen Drucker können über
 die Komandozeile (<em>eignet sich für Skripte</em>) oder über ein <a class="reference external" href="https://wiki.ubuntuusers.de/Scanner/Software/">SANE-Frontend</a>
@@ -67,23 +67,23 @@ man in einem kleineren Office aber keinen solchen Scanserver, da der Scanner
 entweder per <a class="reference internal" href="#sane-usb-scanner"><span class="std std-ref">USB Anschluss</span></a> direkt am PC angeschlossen
 ist oder aber im <a class="reference internal" href="#sane-lan-scanner"><span class="std std-ref">Netzwerk über WLAN bzw. LAN</span></a> zur
 Verfügung steht.</p>
-<div class="section" id="scanner-am-usb-anschluss-einrichten">
-<span id="sane-usb-scanner"></span><h2>Scanner am USB Anschluss einrichten<a class="headerlink" href="#scanner-am-usb-anschluss-einrichten" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="scanner-am-usb-anschluss-einrichten">
+<span id="sane-usb-scanner"></span><h2>Scanner am USB Anschluss einrichten<a class="headerlink" href="#scanner-am-usb-anschluss-einrichten" title="Permalink to this heading">¶</a></h2>
 <p>comming soon ..</p>
-</div>
-<div class="section" id="scanner-im-lan-netzwerk-einrichten">
-<span id="sane-lan-scanner"></span><h2>Scanner im LAN Netzwerk einrichten<a class="headerlink" href="#scanner-im-lan-netzwerk-einrichten" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="scanner-im-lan-netzwerk-einrichten">
+<span id="sane-lan-scanner"></span><h2>Scanner im LAN Netzwerk einrichten<a class="headerlink" href="#scanner-im-lan-netzwerk-einrichten" title="Permalink to this heading">¶</a></h2>
 <p>comming soon ..</p>
 <p><a class="reference external" href="https://wiki.ubuntuusers.de/Scanner/Canon/#Scannen-ueber-Netzwerk">https://wiki.ubuntuusers.de/Scanner/Canon/#Scannen-ueber-Netzwerk</a></p>
 <p><a class="reference external" href="http://lists.alioth.debian.org/pipermail/sane-devel/2017-December/035825.html">http://lists.alioth.debian.org/pipermail/sane-devel/2017-December/035825.html</a></p>
-</div>
-<div class="section" id="scanner-treiber">
-<h2>Scanner Treiber<a class="headerlink" href="#scanner-treiber" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="scanner-treiber">
+<h2>Scanner Treiber<a class="headerlink" href="#scanner-treiber" title="Permalink to this heading">¶</a></h2>
 <p>comming soon ..</p>
 <p><a class="reference external" href="https://wiki.ubuntuusers.de/Scanner/Canon/">https://wiki.ubuntuusers.de/Scanner/Canon/</a></p>
-</div>
-<div class="section" id="simple-scan-linux">
-<span id="id1"></span><h2>Simple Scan<a class="headerlink" href="#simple-scan-linux" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="simple-scan-linux">
+<span id="id1"></span><h2>Simple Scan<a class="headerlink" href="#simple-scan-linux" title="Permalink to this heading">¶</a></h2>
 <p>Installation des SANE-Frontends <a class="reference external" href="http://wiki.ubuntuusers.de/Simple_Scan">Simple Scan</a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">simple</span><span class="o">-</span><span class="n">scan</span>
 </pre></div>
@@ -94,12 +94,12 @@ den Scan in verschiedenen Formaten speichern u.A. in PDF.  Allerdings ist dieses
 PDF nicht <em>durchsuchbar</em>, sprich es ist keine Texterkennung implementiert.</p>
 <p>Eine einfache Methode um aus solchen PDF-SCANs <em>durchsuchbare</em> PDFs zu machen
 ist das Programm <a class="reference internal" href="#pdfsandwich-linux"><span class="std std-ref">pdfsandwich</span></a>.</p>
-</div>
-<div class="section" id="pdfsandwich-linux">
-<span id="id2"></span><h2>pdfsandwich<a class="headerlink" href="#pdfsandwich-linux" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="pdfsandwich-linux">
+<span id="id2"></span><h2>pdfsandwich<a class="headerlink" href="#pdfsandwich-linux" title="Permalink to this heading">¶</a></h2>
 <p>Siehe <a class="reference external" href="http://www.tobias-elze.de/pdfsandwich">pdfsandwich</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -140,12 +140,12 @@ ist das Programm <a class="reference internal" href="#pdfsandwich-linux"><span c
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -153,7 +153,7 @@ ist das Programm <a class="reference internal" href="#pdfsandwich-linux"><span c
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Visual Studio Code &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Weiterführende Verweise" href="refs.html" />
-    <link rel="prev" title="npm Pakete im OS" href="npm_os_install.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="npm Pakete im OS" href="npm_os_install.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="visual-studio-code">
-<span id="xref-vscode"></span><h1>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="sidebar">
+  <section id="visual-studio-code">
+<span id="xref-vscode"></span><h1>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this heading">¶</a></h1>
+<aside class="sidebar">
 <p class="sidebar-title">install: vscode</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./nodejs-dev.sh install vscode
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./nodejs-dev.sh<span class="w"> </span>install<span class="w"> </span>vscode
 </pre></div>
 </div>
-</div>
+</aside>
 <p>Visual Studio Code (<a class="reference external" href="https://code.visualstudio.com/">VSCode</a>) ist ein freier Quelltext-Editor von Microsoft
 (basierend auf <a class="reference external" href="https://electronjs.org/">ElectronJS</a>).  Er kann über die <a class="reference external" href="https://code.visualstudio.com/Download">Dowload-Seite</a> für die gängigen Plattformen bezogen
 werden.  Auf den Ubuntu Systemen ist u.A. ein Version über <a class="reference internal" href="../snappy/index.html#snap"><span class="std std-ref">Snap</span></a>
@@ -67,8 +67,8 @@ kann man nach <em>telemetry</em> suchen und die entsprechenden Einstellungen
 <a class="reference external" href="https://code.visualstudio.com/docs/supporting/FAQ#_how-to-disable-crash-reporting">deaktivieren</a>.
 Damit die Änderungen aktiv werden muss VSCode einmal neu gestartet werden.</p>
 </div>
-<div class="section" id="installation-vscode-paketquellen">
-<span id="install-vscode"></span><h2>Installation VSCode Paketquellen<a class="headerlink" href="#installation-vscode-paketquellen" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="installation-vscode-paketquellen">
+<span id="install-vscode"></span><h2>Installation VSCode Paketquellen<a class="headerlink" href="#installation-vscode-paketquellen" title="Permalink to this heading">¶</a></h2>
 <p>Für debian/Ubuntu bietet Microsoft die <a class="reference external" href="https://packages.microsoft.com/repos/vscode">VSCode Paketquellen</a> an.  In dem
 Kapitel <a class="reference external" href="https://github.com/nodesource/distributions#deb">Debian and Ubuntu based distributions</a> wird die Installation dieser
 Paketquellen beschrieben.  Die Installation besteht im wesentlichen aus den
@@ -84,20 +84,20 @@ Schritten:</p>
 <li><p>APT Paket <code class="docutils literal notranslate"><span class="pre">code</span></code> installieren.</p></li>
 </ol>
 <p>Mit dem <code class="docutils literal notranslate"><span class="pre">./scripts/nodejs-dev.sh</span></code> geht es wesentlich einfacher:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/nodejs-dev.sh <span class="o">[</span>install<span class="p">|</span>update<span class="p">|</span>remove<span class="o">]</span> vscode
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/nodejs-dev.sh<span class="w"> </span><span class="o">[</span>install<span class="p">|</span>update<span class="p">|</span>remove<span class="o">]</span><span class="w"> </span>vscode
 </pre></div>
 </div>
-</div>
-<div class="section" id="plugins">
-<span id="vscode-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="plugins">
+<span id="vscode-plugins"></span><h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://vuejs.github.io/vetur/">Vetur</a>: Vue tooling for VSCode</p></li>
 <li><p><a class="reference external" href="https://github.com/Microsoft/vscode-python">vscode-Python</a>: Python extension for VSCode</p></li>
 <li><p><a class="reference external" href="https://gitlens.amod.io/">GitLense</a>: supercharges the Git capabilities built into VSCode</p></li>
 <li><p><a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext">vscode-reStructuredText</a>: reStructuredText Language Support for VSCode</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -138,12 +138,12 @@ Schritten:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -151,7 +151,7 @@ Schritten:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

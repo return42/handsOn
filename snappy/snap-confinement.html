@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vertrauenswürdige Pakete &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Linux Container (LXC &amp; LXD)" href="../lxdlxc/index.html" />
-    <link rel="prev" title="snapcraft prime Ordner" href="snapcraft-prime-folder.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="snapcraft prime Ordner" href="snapcraft-prime-folder.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,49 +45,49 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="vertrauenswurdige-pakete">
-<span id="id1"></span><h1>Vertrauenswürdige Pakete<a class="headerlink" href="#vertrauenswurdige-pakete" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="vertrauenswurdige-pakete">
+<span id="id1"></span><h1>Vertrauenswürdige Pakete<a class="headerlink" href="#vertrauenswurdige-pakete" title="Permalink to this heading">¶</a></h1>
 <p>In einigen der hier gegebenen Beispiele wurde ein lokales Paket in etwa so
 installiert:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~/hello$ sudo -H snap try --devmode prime/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~/hello$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>try<span class="w"> </span>--devmode<span class="w"> </span>prime/
 </pre></div>
 </div>
 <p>Der Schalter <code class="docutils literal notranslate"><span class="pre">--devmode</span></code> war bisher erforderlich, da bisher immer
 <code class="docutils literal notranslate"><span class="pre">confinement:</span> <span class="pre">devmode</span></code> als Policy in der <code class="docutils literal notranslate"><span class="pre">snapcraft.yaml</span></code> stand:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devmode</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">confinement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devmode</span>
 </pre></div>
 </div>
 <p>Mit <code class="docutils literal notranslate"><span class="pre">devmode</span></code> als Policy werden diverse Fehler in Warnings gewandelt
 (<code class="docutils literal notranslate"><span class="pre">/var/log/syslog</span></code>). In einer <em>normalen</em> Distribution des snap-Pakets wird man
 hier i.d.R <code class="docutils literal notranslate"><span class="pre">confinement:</span> <span class="pre">strict</span></code> angeben (s.a. <a class="reference external" href="https://snapcraft.io/docs/reference/confinement">snap
 Confinement</a>). Zum Beispiel:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hello</span>
-<span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2.10&#39;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hello</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;2.10&#39;</span>
 <span class="p p-Indicator">[</span><span class="nv">..</span><span class="p p-Indicator">]</span>
-<span class="nt">grade</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">devel</span>
-<span class="nt">confinement</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">strict</span>
+<span class="nt">grade</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">devel</span>
+<span class="nt">confinement</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">strict</span>
 </pre></div>
 </div>
 <p>Mit <code class="docutils literal notranslate"><span class="pre">strict</span></code> als Policy und einem anschließendem neuen Build (<code class="docutils literal notranslate"><span class="pre">snapcraft</span></code>)
 des snap-Pakets kann der <code class="docutils literal notranslate"><span class="pre">prime/</span></code> Ordner nach wie vor im <code class="docutils literal notranslate"><span class="pre">try</span></code> Modus
 installiert werden:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap try prime/
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>try<span class="w"> </span>prime/
 </pre></div>
 </div>
 <p>Will man jedoch das lokale snap-Paket <em>richtig</em> installieren erhält man eine
 Fehlermeldung, dass die Signatur des Pakets nicht verifiziert werden
 kann. Anders als bei der Installation aus dem Snap-Store (<a class="reference external" href="https://uappexplorer.com">uApp Explorer</a>) gilt
 ein lokales snap-Paket nicht gleichzeitig als <em>Vertrauenswürdig</em>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install hello_2.10_amd64.snap
-error: cannot find signatures with metadata <span class="k">for</span> snap <span class="s2">&quot;hello_2.10_amd64.snap&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>hello_2.10_amd64.snap
+error:<span class="w"> </span>cannot<span class="w"> </span>find<span class="w"> </span>signatures<span class="w"> </span>with<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>snap<span class="w"> </span><span class="s2">&quot;hello_2.10_amd64.snap&quot;</span>
 </pre></div>
 </div>
 <p>Um lokale (nicht signierte) Pakete zu installieren muss die Option
 <code class="docutils literal notranslate"><span class="pre">--dangerous</span></code> angegeben werden:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sudo -H snap install hello_2.10_amd64.snap --dangerous
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>hello_2.10_amd64.snap<span class="w"> </span>--dangerous
 </pre></div>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -119,12 +119,12 @@ error: cannot find signatures with metadata <span class="k">for</span> snap <spa
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -132,7 +132,7 @@ error: cannot find signatures with metadata <span class="k">for</span> snap <spa
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

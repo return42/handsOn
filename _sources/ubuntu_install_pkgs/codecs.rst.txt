@@ -20,8 +20,11 @@ problemlos gestatten.  Und nicht zu vergessen: Einige der Transcoder
 Bibliotheken haben zudem noch Bugs und erhebliche Sicherheitslücken.
 
 Die gängigen *Transcoder-Projekte* sind `libav`_, `FFmpeg`_ und `GStreamer`_.
-In den Paketquellen von Ubuntu und Debian wurde das Projekt `libav`_ wieder
-durch `FFmpeg`_ ersetzt.
+
+.. hint::
+
+   In den Paketquellen von Ubuntu und Debian wurde das Projekt `libav`_ wieder
+   durch `FFmpeg`_ ersetzt.
 
 
 FFmpeg
@@ -35,19 +38,20 @@ Die Implementierungen des `FFmpeg`_ können über die standard Paketquellen von
 Ubuntu und Debian nicht installiert werden. (:deb:`ffmpeg`)
 
 
-libav
-=====
+libavcodec und libav
+====================
 
-Das `libav`_ Projekt ist eine Abspaltung des `FFmpeg`_ Projekts, mit dem Ziel
-die Code-Qualität zu verbessern (s.a. `FFmpeg versus Libav
-<https://github.com/mpv-player/mpv/wiki/FFmpeg-versus-Libav>`_).
+.. _libavcodec: https://ffmpeg.org/libavcodec.html
 
-Die Paketverwaltung unter Debian / Ubuntu ist etwas *krude*:
+Das `libav`_ Projekt war mal eine Abspaltung des `FFmpeg`_ Projekts,
+mit dem Ziel die Code-Qualität zu verbessern., das Projekt wurde
+allerdings 2018 eingestelt.
 
-* https://de.wikipedia.org/wiki/FFmpeg#Libav
+Libav sollte nicht mit libavcodec_ verwechselt werden: libavcodec_ ist
+eine Codec-Sammlung und Teil des freien FFmpeg-Projektes.
 
-Kurzum bei Ubuntu und Debian installiert man (Stand 10/2018) am besten das Paket
-:deb:`ffmpeg`.
+Bei Ubuntu und Debian installiert man am besten die Pakete
+:deb:`ffmpeg` und :deb:`libavcodec-extra`.
 
 
 GStreamer Plugins
@@ -70,11 +74,13 @@ Häufig findet man in Artikel aus dem Netzt den Hinweis, man möge sich
 :deb:`ubuntu-restricted-extras` ist ein `Metapaket`_ das alle möglichen
 Transkoder-Bibliotheken installiert.  Früher konnte man sich die
 :deb:`ubuntu-restricted-extras` nicht wirklich installieren.  Damals war da
-(Shockwave) Flash und andere Software mit Sicherheitslücken in dem Paket.  Die
-diversen Fonts, die da von Sourceforge runter geladen werden, die stören mich
-auch nach wie vor an dem Paket.  Dennoch, wenn man die *Standard* Codecs und
-Tools haben will, kann das Paket hilfreich sein. Man muss hald' auch nur die
-EULA oder was auch immer akzeptieren::
+(Shockwave) Flash und andere Software mit Sicherheitslücken in dem Paket.
+
+Die Fonts *provided by Microsoft*, die da von Sourceforge runter
+geladen werden stören mich auch nach wie vor an dem Paket.  Dennoch,
+wenn man die *Standard* Codecs und Tools haben will, kann das Paket
+hilfreich sein. Man muss hald' auch nur die EULA oder was auch immer
+akzeptieren::
 
   sudo -H apt install ubuntu-restricted-extras
 
@@ -82,10 +88,7 @@ EULA oder was auch immer akzeptieren::
 Zusammenfassung
 ===============
 
-Dieses ganze Durcheinander bei Ubuntu/Debian rund um FFmpeg und libav, ich blick
-da nicht mehr wirklich durch.  Es kann gut sein, dass ich das ein oder andere
-falsch interpretiere und es kann auch gut sein, dass sich das wieder alles mit
-dem nächsten Ubuntu Release ändert.  Am besten man installiert sich nur:
+Am besten man installiert sich nur:
 
 - :deb:`ffmpeg`
 - :deb:`gstreamer1.0-plugins-base`.

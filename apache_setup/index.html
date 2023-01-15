@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Setup Apache2 HTTP Server &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Debian’s default Apache2 Installation" href="debian_apache.html" />
-    <link rel="prev" title="Weiterführende Verweise" href="../nodejs/refs.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Weiterführende Verweise" href="../nodejs/refs.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,8 +44,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="setup-apache2-http-server">
-<span id="xref-apache-setup"></span><h1>Setup Apache2 HTTP Server<a class="headerlink" href="#setup-apache2-http-server" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="setup-apache2-http-server">
+<span id="xref-apache-setup"></span><h1>Setup Apache2 HTTP Server<a class="headerlink" href="#setup-apache2-http-server" title="Permalink to this heading">¶</a></h1>
 <p>Die Aufgabe des HTTP-Server ist es, Inhalte über HTTP auszuliefern. Diese als
 Resourcen bezeichneten Inhalte können statische Dateien, ganze Ordnerstrukturen
 oder aber auch WEB-Anwendungen sein. Um nicht zwischen statischen Dateien und
@@ -67,7 +67,7 @@ die Grundlage für den sicheren Betrieb eines WEB-Servers im Internet. Auf einig
 Sicherheitsaspekte wird auch eingegangen und soweit es den Apache Dienst angeht
 werden diese auch umgesetzt.</p>
 <p>Zu diesem Setup existiert ein Script, das alle Setups vornimmt:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>install
 </pre></div>
 </div>
 <p>Das Setup besteht aus den folgenden Abschnitten und kann mit dem Script
@@ -108,7 +108,7 @@ wohl die bekanntesten Vertreter sind (siehe <a class="reference external" href="
 <p>Nachdem nun geklärt ist, was nicht Inhalt dieses Setups ist, soll auf die
 <a class="reference internal" href="debian_apache.html#xref-debian-apache"><span class="std std-ref">Debian’s default Apache2 Installation</span></a> eingegangen werden. Diese Infrastruktur ist auch die
 Basis des hier vorgestellten Konzepts.</p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -137,12 +137,12 @@ Basis des hier vorgestellten Konzepts.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -150,7 +150,7 @@ Basis des hier vorgestellten Konzepts.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

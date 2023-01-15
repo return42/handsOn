@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Merkmale des Setups &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Autorisierung zum Zugriff auf Resourcen" href="apache_auth.html" />
-    <link rel="prev" title="Debian’s default Apache2 Installation" href="debian_apache.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Debian’s default Apache2 Installation" href="debian_apache.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="merkmale-des-setups">
-<span id="xref-setup-properties"></span><h1>Merkmale des Setups<a class="headerlink" href="#merkmale-des-setups" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="merkmale-des-setups">
+<span id="xref-setup-properties"></span><h1>Merkmale des Setups<a class="headerlink" href="#merkmale-des-setups" title="Permalink to this heading">¶</a></h1>
 <p>Das hier vorgestellte Vorgehen zum Setup eines Apache Servers versucht möglichst
 <em>einfache und griffige</em> Konzepte umzusetzen. Ganz allgemein könnte man das
 Konzept mit folgenden Worten charakterisieren.</p>
@@ -71,8 +71,8 @@ angebracht – die (deb) Pakete aus dem Paketmanger (apt) bezieht.</p>
 die bereits bekannt und auch behoben sind. Für einen Server im Internet
 sollten ggf. die original Sourcen verwendet werden, die <em>tagesaktuell</em> sind.</p>
 </div></blockquote>
-<div class="section" id="benutzerauthentifizierung">
-<h2>Benutzerauthentifizierung<a class="headerlink" href="#benutzerauthentifizierung" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="benutzerauthentifizierung">
+<h2>Benutzerauthentifizierung<a class="headerlink" href="#benutzerauthentifizierung" title="Permalink to this heading">¶</a></h2>
 <p>Die Authentifizierung der WEB-Anwendungen erfolgt – insofern erforderlich –
 über <a class="reference external" href="https://en.wikipedia.org/wiki/Pluggable_authentication_module">PAM (wiki)</a> (siehe <a class="reference internal" href="serverwide_cfg.html#xref-mod-authnz-external"><span class="std std-ref">/etc/apache2/conf-available/authnz_external.conf</span></a>). Nicht Teil dieses
 Apache-Setups ist beispielsweise ein <a class="reference external" href="http://arthurdejong.org/nss-pam-ldapd">NSS PAM LDAP</a> mit das PAM gegen einen
@@ -82,16 +82,16 @@ LDAP Server gebunden werden kann.</p>
 Server die im Internet betrieben werden. Jedoch reicht es um die Aspekte der
 Authentifizierung in einem Apache-Setup exemplarisch zu verdeutlich.</p>
 </div></blockquote>
-</div>
-<div class="section" id="entwicklertools-dokumentationen">
-<h2>Entwicklertools &amp; Dokumentationen<a class="headerlink" href="#entwicklertools-dokumentationen" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="entwicklertools-dokumentationen">
+<h2>Entwicklertools &amp; Dokumentationen<a class="headerlink" href="#entwicklertools-dokumentationen" title="Permalink to this heading">¶</a></h2>
 <p>Es werden Dokumentation und Werkzeuge wie z.B die Apache Dokumentation oder die
 <em>build-Tools</em> eingerichtet. Das Setup verletzt damit seine eigene Charactere
 leicht und installiert tendenziell mehr Komponenten (zur Wartung/Entwicklung)
 als sie erforderlich wären, um den Server im Internet zu betreiben.</p>
-</div>
-<div class="section" id="datenbanken">
-<h2>Datenbanken<a class="headerlink" href="#datenbanken" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="datenbanken">
+<h2>Datenbanken<a class="headerlink" href="#datenbanken" title="Permalink to this heading">¶</a></h2>
 <p>Web-Anwendungen die eine Datenbank (DB) benötigen aber nur von einem kleineren
 Nutzerkreis genutzt werden, sollten mit einer <a class="reference external" href="https://www.sqlite.org">SQLite</a> DB ausreichend
 ausgestattet sein. Hier im Setup werden – sofern es die Anwendung zulässt –
@@ -99,9 +99,9 @@ SQLite Datenbanken eingerichtet.</p>
 <blockquote>
 <div><p>Für Entwicklerzwecke empfiehlt sich Installation passender (GUI-) DB-Clients.</p>
 </div></blockquote>
-</div>
-<div class="section" id="weiterfuhrende-hinweise">
-<h2>Weiterführende Hinweise<a class="headerlink" href="#weiterfuhrende-hinweise" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="weiterfuhrende-hinweise">
+<h2>Weiterführende Hinweise<a class="headerlink" href="#weiterfuhrende-hinweise" title="Permalink to this heading">¶</a></h2>
 <p>Das zu diesem Setup gehörende Skript <code class="docutils literal notranslate"><span class="pre">apache_setup.sh</span></code> installiert die
 Setup-Dateien aus dem <code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code>-Ordner. In den Setup-Dateien aus diesem
 Ordner finden sich noch Anmerkungen, die über die Grundlagen – welche hier im
@@ -109,8 +109,8 @@ Ordner finden sich noch Anmerkungen, die über die Grundlagen – welche hier im
 installieren bereits Setup-Dateien, die für den Betrieb relevant sind. Auch
 darin finden sich viele wertvolle Anmerkungen (<em>einfach mal alles unter</em>
 <code class="docutils literal notranslate"><span class="pre">/etc/apache</span></code> <em>anschauen und ggf. anpassen</em>).</p>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -153,12 +153,12 @@ darin finden sich viele wertvolle Anmerkungen (<em>einfach mal alles unter</em>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -166,7 +166,7 @@ darin finden sich viele wertvolle Anmerkungen (<em>einfach mal alles unter</em>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

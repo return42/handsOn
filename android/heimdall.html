@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Heimdall &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" href="SM-T580.html" />
-    <link rel="prev" title="Team Win Recovery Project" href="TWRP.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Team Win Recovery Project" href="TWRP.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="heimdall-intro">
-<span id="id1"></span><h1>Heimdall<a class="headerlink" href="#heimdall-intro" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="heimdall-intro">
+<span id="id1"></span><h1>Heimdall<a class="headerlink" href="#heimdall-intro" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="http://glassechidna.com.au/heimdall/">Heimdall</a> ist eine Open-Source cross-Platform Suite zum flashen der Firmware
 (aka ROMs) auf Samsung <em>mobile</em> Geräten. Zum Flashen werden PC (auf dem Heimdall
 installiert wird) und <em>mobile</em> Gerät via USB verbunden.</p>
@@ -64,59 +64,59 @@ zur Verfügung stehende Build nicht immer aktuell, deswegen macht es Sinn sich
 die Software selber zu übersetzen. Zumindest auf Linux ist das recht einfach
 möglich (s.a <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux">Appendix B - Installing Heimdall Suite from Source</a>). Als erstes
 muss man sich die Pakete installieren, die für den Build erforderlich sind:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H apt-get install build-essential cmake zlib1g-dev <span class="se">\</span>
-             qt5-default libusb-1.0-0-dev libgl1-mesa-glx <span class="se">\</span>
-             libgl1-mesa-dev git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>zlib1g-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>qt5-default<span class="w"> </span>libusb-1.0-0-dev<span class="w"> </span>libgl1-mesa-glx<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>libgl1-mesa-dev<span class="w"> </span>git
 </pre></div>
 </div>
 <p>Dann kann man sich das Reposetory klonen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/Downloads
-$ git clone https://github.com/Benjamin-Dobell/Heimdall.git
-Klone nach <span class="s1">&#39;Heimdall&#39;</span> ...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/Downloads
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Benjamin-Dobell/Heimdall.git
+Klone<span class="w"> </span>nach<span class="w"> </span><span class="s1">&#39;Heimdall&#39;</span><span class="w"> </span>...
 ...
-$ <span class="nb">cd</span> Heimdall/
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Heimdall/
 </pre></div>
 </div>
 <p>Danach kann der Build konfiguriert werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ mkdir build
-$ <span class="nb">cd</span> build
-$ cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
--- The C compiler identification is GNU <span class="m">5</span>.4.0
--- The CXX compiler identification is GNU <span class="m">5</span>.4.0
--- Check <span class="k">for</span> working C compiler: /usr/bin/cc
--- Check <span class="k">for</span> working C compiler: /usr/bin/cc -- works
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - <span class="k">done</span>
--- Detecting C compile features
--- Detecting C compile features - <span class="k">done</span>
--- Check <span class="k">for</span> working CXX compiler: /usr/bin/c++
--- Check <span class="k">for</span> working CXX compiler: /usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - <span class="k">done</span>
--- Detecting CXX compile features
--- Detecting CXX compile features - <span class="k">done</span>
--- Found libusb: /usr/lib/x86_64-linux-gnu/libusb-1.0.so
--- Checking <span class="k">if</span> large <span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span> file support is available...
--- Checking <span class="k">if</span> large <span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span> file support is available - yes
--- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so <span class="o">(</span>found version <span class="s2">&quot;1.2.8&quot;</span><span class="o">)</span>
--- Configuring <span class="k">done</span>
--- Generating <span class="k">done</span>
--- Build files have been written to: /share/Heimdall/build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>build
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+$<span class="w"> </span>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>..
+--<span class="w"> </span>The<span class="w"> </span>C<span class="w"> </span>compiler<span class="w"> </span>identification<span class="w"> </span>is<span class="w"> </span>GNU<span class="w"> </span><span class="m">5</span>.4.0
+--<span class="w"> </span>The<span class="w"> </span>CXX<span class="w"> </span>compiler<span class="w"> </span>identification<span class="w"> </span>is<span class="w"> </span>GNU<span class="w"> </span><span class="m">5</span>.4.0
+--<span class="w"> </span>Check<span class="w"> </span><span class="k">for</span><span class="w"> </span>working<span class="w"> </span>C<span class="w"> </span>compiler:<span class="w"> </span>/usr/bin/cc
+--<span class="w"> </span>Check<span class="w"> </span><span class="k">for</span><span class="w"> </span>working<span class="w"> </span>C<span class="w"> </span>compiler:<span class="w"> </span>/usr/bin/cc<span class="w"> </span>--<span class="w"> </span>works
+--<span class="w"> </span>Detecting<span class="w"> </span>C<span class="w"> </span>compiler<span class="w"> </span>ABI<span class="w"> </span>info
+--<span class="w"> </span>Detecting<span class="w"> </span>C<span class="w"> </span>compiler<span class="w"> </span>ABI<span class="w"> </span>info<span class="w"> </span>-<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Detecting<span class="w"> </span>C<span class="w"> </span>compile<span class="w"> </span>features
+--<span class="w"> </span>Detecting<span class="w"> </span>C<span class="w"> </span>compile<span class="w"> </span>features<span class="w"> </span>-<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Check<span class="w"> </span><span class="k">for</span><span class="w"> </span>working<span class="w"> </span>CXX<span class="w"> </span>compiler:<span class="w"> </span>/usr/bin/c++
+--<span class="w"> </span>Check<span class="w"> </span><span class="k">for</span><span class="w"> </span>working<span class="w"> </span>CXX<span class="w"> </span>compiler:<span class="w"> </span>/usr/bin/c++<span class="w"> </span>--<span class="w"> </span>works
+--<span class="w"> </span>Detecting<span class="w"> </span>CXX<span class="w"> </span>compiler<span class="w"> </span>ABI<span class="w"> </span>info
+--<span class="w"> </span>Detecting<span class="w"> </span>CXX<span class="w"> </span>compiler<span class="w"> </span>ABI<span class="w"> </span>info<span class="w"> </span>-<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Detecting<span class="w"> </span>CXX<span class="w"> </span>compile<span class="w"> </span>features
+--<span class="w"> </span>Detecting<span class="w"> </span>CXX<span class="w"> </span>compile<span class="w"> </span>features<span class="w"> </span>-<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Found<span class="w"> </span>libusb:<span class="w"> </span>/usr/lib/x86_64-linux-gnu/libusb-1.0.so
+--<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>large<span class="w"> </span><span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span><span class="w"> </span>file<span class="w"> </span>support<span class="w"> </span>is<span class="w"> </span>available...
+--<span class="w"> </span>Checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>large<span class="w"> </span><span class="o">(</span><span class="m">64</span>-bit<span class="o">)</span><span class="w"> </span>file<span class="w"> </span>support<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>-<span class="w"> </span>yes
+--<span class="w"> </span>Found<span class="w"> </span>ZLIB:<span class="w"> </span>/usr/lib/x86_64-linux-gnu/libz.so<span class="w"> </span><span class="o">(</span>found<span class="w"> </span>version<span class="w"> </span><span class="s2">&quot;1.2.8&quot;</span><span class="o">)</span>
+--<span class="w"> </span>Configuring<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Generating<span class="w"> </span><span class="k">done</span>
+--<span class="w"> </span>Build<span class="w"> </span>files<span class="w"> </span>have<span class="w"> </span>been<span class="w"> </span>written<span class="w"> </span>to:<span class="w"> </span>/share/Heimdall/build
 </pre></div>
 </div>
 <p>Die Ausgaben des <code class="docutils literal notranslate"><span class="pre">cmake</span></code> solten in etwa wie oben aussehen, wenn da Fehler
 gemeldet werden, hat man vermutlich eine Bibliothek (eines der oben zuvor
 installierten Pakete) noch nicht installiert.</p>
 <p>Mit ‚make‘ wird dann der Build erstellt:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ make
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make
 </pre></div>
 </div>
 <p>Sofern das ‚make‘ ohne Fehler durchläuft sollte man nun einen <code class="docutils literal notranslate"><span class="pre">./bin</span></code> Ordner
 haben in dem die ausführbaren Binaries liegen:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls bin
-heimdall  heimdall-frontend
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>bin
+heimdall<span class="w">  </span>heimdall-frontend
 
-$ ./bin/heimdall version
+$<span class="w"> </span>./bin/heimdall<span class="w"> </span>version
 v1.4.2
 </pre></div>
 </div>
@@ -124,13 +124,13 @@ v1.4.2
 Download Mode (s.a. <a class="reference internal" href="dev_options.html#samsung-download-mode"><span class="std std-ref">Samsung Download- &amp; Recovery-Mode</span></a>) booten und dann noch das USB
 Kabel anschließen.</p>
 <p>Abfrage des  Partition Information Table (kurz PIT):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./bin/heimdall print-pit --no-reboot &gt; my_samsung_device_PIT.txt
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./bin/heimdall<span class="w"> </span>print-pit<span class="w"> </span>--no-reboot<span class="w"> </span>&gt;<span class="w"> </span>my_samsung_device_PIT.txt
 </pre></div>
 </div>
 <p>Die Option <code class="docutils literal notranslate"><span class="pre">--no-reboot</span></code> verhindert, dass das Gerät neu gebootet wird. Will
 man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.</p>
 <p>Ausgabebeispiel siehe <a class="reference internal" href="SM-T580.html#sm-t580-pit"><span class="std std-ref">SM-T580 PIT</span></a></p>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -162,12 +162,12 @@ man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -175,7 +175,7 @@ man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

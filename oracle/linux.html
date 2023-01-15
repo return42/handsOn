@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Oracle Linux einrichten &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Oracle DBMS Setup" href="dbms.html" />
-    <link rel="prev" title="Oracle (developer)" href="index.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Oracle (developer)" href="index.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="oracle-linux-einrichten">
-<span id="id1"></span><h1>Oracle Linux einrichten<a class="headerlink" href="#oracle-linux-einrichten" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="oracle-linux-einrichten">
+<span id="id1"></span><h1>Oracle Linux einrichten<a class="headerlink" href="#oracle-linux-einrichten" title="Permalink to this heading">¶</a></h1>
 <p>In dieser Anleitung wird eine <a class="reference external" href="https://en.wikipedia.org/wiki/Oracle_Linux">Oracle Linux</a> Distribution in einer <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a>
 installiert.  Aufgrund der Virtualisierung werden noch ein paar zusätzliche
 Schritte erforderlich, die in einer <em>normalen</em> Installation nicht erforderlich
@@ -65,25 +65,25 @@ Version nehmen dann ist der Name des ISO anders).</p>
 <p>Oracle Linux Release 8 Update 0 for x86 (64 bit), 6.6 GB</p>
 </li>
 </ul>
-<div class="section" id="oracle-database-setup-wizard">
-<h2>Oracle Database Setup Wizard<a class="headerlink" href="#oracle-database-setup-wizard" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="oracle-database-setup-wizard">
+<h2>Oracle Database Setup Wizard<a class="headerlink" href="#oracle-database-setup-wizard" title="Permalink to this heading">¶</a></h2>
 <p>Es muss über das Image gebootet werden, dann erscheint der Oracle Database Setup
 Wizard:</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/wizzard-main.png"><img alt="Figure (wizzard-main.png)" src="../_images/wizzard-main.png" style="width: 402.0px; height: 298.5px;" /></a>
-</div>
+</figure>
 <p>In dem Wizard sollte man die ansonsten <em>Minimale Installation</em> noch um folgendes
 erweitern (Server mit GUI. Kompatibilität und Entwickler Werkzeuge).</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/wizzard-select-software.png"><img alt="Figure (wizzard-select-software.png)" src="../_images/wizzard-select-software.png" style="width: 398.0px; height: 298.0px;" /></a>
-</div>
+</figure>
 <p>Es empfiehlt sich einen Benutzer mit Admin Rechten (sudo) einzurichten:</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/wizzard-user-settings.png"><img alt="Figure (wizzard-user-settings.png)" src="../_images/wizzard-user-settings.png" style="width: 398.0px; height: 224.5px;" /></a>
-</div>
-<div class="figure align-center">
+</figure>
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/wizzard-create-user.png"><img alt="Figure (wizzard-create-user.png)" src="../_images/wizzard-create-user.png" style="width: 400.5px; height: 224.0px;" /></a>
-</div>
+</figure>
 <p>Die Installation dauert dann erst mal eine Weile, danach erfolgt ein Reboot.
 Nach dem ersten Boot muss man noch das <em>ORACLE LINUX LICENSE AGREEMENT</em> (EULA)
 akzeptieren und die Konfiguration erstellen.  Mit dem oben eingerichteten
@@ -92,16 +92,16 @@ Benutzer kann man sich am System anmelden und das System-Setup vervollständigen
 <span class="menuselection">Netzwerkeinstellungen</span> aktiviert werden. In den <em>Details</em> sollte
 man noch einstellen, dass die Verbindung nach einem Boot automatisch wieder
 hergestellt wird.</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/Netzwerkeinstellungen.png"><img alt="Figure (Netzwerkeinstellungen.png)" src="../_images/Netzwerkeinstellungen.png" style="width: 402.0px; height: 267.5px;" /></a>
-</div>
-<div class="figure align-center">
+</figure>
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/Kabelgebunden.png"><img alt="Figure (Netzwerkeinstellungen.png)" src="../_images/Kabelgebunden.png" style="width: 399.0px; height: 271.0px;" /></a>
-</div>
-</div>
-<div class="section" id="hostname-andern">
-<h2>Hostname ändern<a class="headerlink" href="#hostname-andern" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="sidebar">
+</figure>
+</section>
+<section id="hostname-andern">
+<h2>Hostname ändern<a class="headerlink" href="#hostname-andern" title="Permalink to this heading">¶</a></h2>
+<aside class="sidebar">
 <p class="sidebar-title">iptables</p>
 <p id="oracle-linux-iptables">Auf einer Standard Installation des OL7 ist <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=iptables">iptables</a> aktiv.  Will man
 sich von Remote verbinden, müsste man diese noch (für den Listner auf TCP
@@ -109,7 +109,7 @@ Port 1521) einrichten.  Oder man deinstalliert die <a class="reference external"
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H yum remove iptables
 </pre></div>
 </div>
-</div>
+</aside>
 <p>Der Hostname des Rechners kann mit dem Befehl <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=hostnamectl">hostnamectl</a> angepasst
 werden (<a class="reference external" href="https://docs.oracle.com/en/operating-systems/oracle-linux/8/obe-hostname-cli/index.html">Update the System Hostname</a>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo -H hostnamectl set-hostname dbhost.mydomain.de
@@ -128,23 +128,23 @@ Operating System: Oracle Linux Server 7.7
     Architecture: x86-64
 </pre></div>
 </div>
-</div>
-<div class="section" id="os-update">
-<h2>OS update<a class="headerlink" href="#os-update" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="os-update">
+<h2>OS update<a class="headerlink" href="#os-update" title="Permalink to this heading">¶</a></h2>
 <p>Das <em>so</em> installierte System sollte erst mal aktualisiert werden, danach nochmal
 ein Reboot.  Ggf. installiert man sich bei der Gelegenheit auch gleich noch ein
 paar Entwickler Tools:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H yum update
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>yum<span class="w"> </span>update
 ...
 <span class="c1"># Entwickler Tools / nur exemplarisch ..</span>
-$ sudo -H yum install java-1.8.0-openjdk-devel emacs git
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>java-1.8.0-openjdk-devel<span class="w"> </span>emacs<span class="w"> </span>git
 ...
-$ sudo -H reboot
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>reboot
 </pre></div>
 </div>
-</div>
-<div class="section" id="virtualbox-additions">
-<h2>VirtualBox Additions<a class="headerlink" href="#virtualbox-additions" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="virtualbox-additions">
+<h2>VirtualBox Additions<a class="headerlink" href="#virtualbox-additions" title="Permalink to this heading">¶</a></h2>
 <p>Wurde die Installation in einem <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a> Gast System vorgenommen, so sollte
 man sich gleich noch die <a class="reference external" href="https://www.virtualbox.org/manual/ch04.html">VirtualBoxAdditions</a> installieren.  Dafür müssen
 mindestens folgende Pakete im System installiert sein</p>
@@ -169,33 +169,33 @@ reboot
 <p>Beim Boot wird über GRUB eine Auswahl an Kernel angeboten.  Die hier
 vorgestellte Installation hat die Guest-Addition (resp. die Kernel
 Module) lediglich für den <em>aktiven</em> Kernel installiert:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H awk -F<span class="se">\&#39;</span> <span class="s1">&#39;/menuentry / {print $2}&#39;</span> /etc/grub2.cfg <span class="p">|</span> grep <span class="k">$(</span>uname -r<span class="k">)</span>
-Oracle Linux Server <span class="o">(</span><span class="m">4</span>.14.35-1902.5.2.2.el7uek.x86_64 with Unbreakable Enterprise Kernel<span class="o">)</span> <span class="m">7</span>.7
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>awk<span class="w"> </span>-F<span class="se">\&#39;</span><span class="w"> </span><span class="s1">&#39;/menuentry / {print $2}&#39;</span><span class="w"> </span>/etc/grub2.cfg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
+Oracle<span class="w"> </span>Linux<span class="w"> </span>Server<span class="w"> </span><span class="o">(</span><span class="m">4</span>.14.35-1902.5.2.2.el7uek.x86_64<span class="w"> </span>with<span class="w"> </span>Unbreakable<span class="w"> </span>Enterprise<span class="w"> </span>Kernel<span class="o">)</span><span class="w"> </span><span class="m">7</span>.7
 </pre></div>
 </div>
 </div>
-<div class="section" id="gemeinsame-ordner">
-<h3>Gemeinsame Ordner<a class="headerlink" href="#gemeinsame-ordner" title="Link zu dieser Überschrift">¶</a></h3>
-<div class="sidebar">
+<section id="gemeinsame-ordner">
+<h3>Gemeinsame Ordner<a class="headerlink" href="#gemeinsame-ordner" title="Permalink to this heading">¶</a></h3>
+<aside class="sidebar">
 <p class="sidebar-title">Info</p>
 <p>Hier in den Beispielen wird z.B. für die <a class="reference internal" href="datapump.html#dba-directories"><span class="std std-ref">dba_directories</span></a> ein Share
 verwendet: <code class="docutils literal notranslate"><span class="pre">/HOST/share</span></code></p>
-</div>
+</aside>
 <p>Nach dem Reboot sollte der oben eingerichtete Benutzer noch der Gruppe
 <code class="docutils literal notranslate"><span class="pre">vboxsf</span></code> hinzugefügt werden.  Soll der <code class="docutils literal notranslate"><span class="pre">oracle</span></code> Benutzer auch Zugriff auf
 die Shares haben, kann man ihn ebenfalls der Gruppe hinzufügen:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo -H usermod -aG vboxsf <span class="k">$(</span>whoami<span class="k">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>vboxsf<span class="w"> </span><span class="k">$(</span>whoami<span class="k">)</span>
 ...
-$ sudo -H usermod -aG vboxsf oracle
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>vboxsf<span class="w"> </span>oracle
 </pre></div>
 </div>
 <p>Danach muss der Benutzer nochmal ab- und wieder angemeldet werden, damit die
 neue Gruppe auch <em>greift</em>.  Damit hat der Benutzer die Berechtigung auf die
 <em>gemeinsamen Ordner</em> des Wirt-Systems zugreifen zu dürfen.  Diese können nun
 eingerichtet werden.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -241,12 +241,12 @@ eingerichtet werden.</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -254,7 +254,7 @@ eingerichtet werden.</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>pi-hole &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Exkursionen und Erfahrungswerte" href="../excursion/index.html" />
-    <link rel="prev" title="Glances: an eye on your system" href="../glances.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Glances: an eye on your system" href="../glances.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -44,14 +44,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="id1">
-<h1>pi-hole<a class="headerlink" href="#id1" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="id1">
+<h1>pi-hole<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <p>Die <a class="reference external" href="https://pi-hole.net/">pi-hole</a> ist ein lokaler <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System">DNS (wiki)</a> Server, der Domain-Namen mit Werbung
 und Trackern blockiert (nicht auflöst).  Kuketz hat zu den Hintergründen und zum
 Einrichten einer solchen pi-hole einen umfassenden Artikel verfasst, siehe:
 <a class="reference external" href="https://www.kuketz-blog.de/pi-hole-schwarzes-loch-fuer-werbung-raspberry-pi-teil1/">Kuketz pi-hole Artikel</a></p>
-<div class="section" id="pi-hole-und-fritz-box">
-<h2>pi-hole und Fritz-Box<a class="headerlink" href="#pi-hole-und-fritz-box" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="pi-hole-und-fritz-box">
+<h2>pi-hole und Fritz-Box<a class="headerlink" href="#pi-hole-und-fritz-box" title="Permalink to this heading">¶</a></h2>
 <p>Hat man die pi-hole eingerichtet, steht der lokale DNS Dienst bereit und muss
 nun noch den Clients resp. dem Router bekannt gemacht werden.  Die meisten
 Router sind so eingerichtet, dass die Clients ihr Netzwerk-Setup via <a class="reference external" href="https://de.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP
@@ -66,9 +66,9 @@ IPv4-Adressen</span></p></li>
 <p>muss der DHCP-Server der Fritz-Box aktiviert sein und unter <strong>Lokaler
 DNS-Server</strong> setzt man die IP der pi-hole.  Hier im Beispiel ist das die
 <code class="docutils literal notranslate"><span class="pre">192.168.1.118</span></code>:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Figure (pihole-FB-IPv4-Adressen-DHCP-lokaler-DNS.png)" class="rst-figure" src="../_images/pihole-FB-IPv4-Adressen-DHCP-lokaler-DNS.png" />
-</div>
+</figure>
 <p>Nach bestätigen mit <span class="guilabel">OK</span> werden alle zukünftigen (DHCP) Verbindungen
 als DNS die pi-hole verwenden.  Will man das sofort mal testen, muss man die
 Netzwerkverbindung auf dem Client-Rechner kurz ab- und wieder anschalten (oder
@@ -79,14 +79,14 @@ kann noch die folgende Einstellung vorgenommen werden.</p>
 <ul class="simple">
 <li><p><span class="menuselection">Internet -&gt; Zugangsdaten -&gt; DNS-Server</span></p></li>
 </ul>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Figure (pihole-FB-DNS-Server.png)" class="rst-figure" src="../_images/pihole-FB-DNS-Server.png" />
-</div>
+</figure>
 <p>Die IP der pi-hole hier im Beispiel ist <code class="docutils literal notranslate"><span class="pre">192.168.1.118</span></code>.  Falls die mal ausfällt
 wurde noch der <a class="reference external" href="https://www.ccc.de/de/censorship/dns-howto">Chaos Computer Club (DNS)</a> als Alternative eingetragen
 (s.a. <a class="reference internal" href="#upstream-dns-server">Upstream DNS Server</a>)</p>
-<div class="section" id="dns-uberprufen">
-<span id="check-which-dns"></span><h3>DNS überprüfen<a class="headerlink" href="#dns-uberprufen" title="Link zu dieser Überschrift">¶</a></h3>
+<section id="dns-uberprufen">
+<span id="check-which-dns"></span><h3>DNS überprüfen<a class="headerlink" href="#dns-uberprufen" title="Permalink to this heading">¶</a></h3>
 <p>Auf der Linux Kommandozeile kann man dazu
 z.B. <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=nmcli">nmcli</a> verwenden:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nmcli
@@ -108,26 +108,26 @@ IP4.DOMAIN[1]:                          fritz.box
 </div>
 <p>Auf Windows kann man das Kommando <code class="docutils literal notranslate"><span class="pre">nslookup</span></code> aufrufen.  Bereits beim Start
 zeigt es den DNS an, den es zur Namensauflösung nutzt.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Figure (pihole-win-nslookup.png)" class="rst-figure" src="../_images/pihole-win-nslookup.png" />
-</div>
-</div>
-</div>
-<div class="section" id="upstream-dns-server">
-<h2>Upstream DNS Server<a class="headerlink" href="#upstream-dns-server" title="Link zu dieser Überschrift">¶</a></h2>
+</figure>
+</section>
+</section>
+<section id="upstream-dns-server">
+<h2>Upstream DNS Server<a class="headerlink" href="#upstream-dns-server" title="Permalink to this heading">¶</a></h2>
 <p>In der pi-hole kann man einstellen welche DNS Server die pi-hole verwenden soll.
 In dem <a class="reference external" href="https://www.kuketz-blog.de/dns-unzensierte-und-freie-dns-server-ohne-protokollierung/">Kuketz DNS Artikel</a> werden <em>Unzensierte und freie DNS-Server ohne
 Protokollierung</em> vorgestellt.  Hier im Beispiel verwende ich DNS Server die
 <a class="reference external" href="https://de.wikipedia.org/wiki/Domain_Name_System_Security_Extensions">DNSSEC (wiki)</a> unterstützen.</p>
 <ul>
 <li><p><a class="reference external" href="https://dns.watch/">DNS.WATCH</a> IPv4:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">84.200</span><span class="o">.</span><span class="mf">69.80</span>
-<span class="mf">84.200</span><span class="o">.</span><span class="mf">70.40</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">84.200.69.80</span>
+<span class="mf">84.200.70.40</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference external" href="https://www.ccc.de/de/censorship/dns-howto">Chaos Computer Club (DNS)</a> IPv4:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">194.150</span><span class="o">.</span><span class="mf">168.168</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">194.150.168.168</span>
 </pre></div>
 </div>
 </li>
@@ -145,12 +145,12 @@ pi-hole dann gar keine Namen mehr auflösen kann und von daher alle
 einzutragen.  Der Name der Fritz-Box im lokalem Netz ist <code class="docutils literal notranslate"><span class="pre">fritz.box</span></code> (sofern
 man das in der FB nicht geändert hat), die IP hier im Beispiel ist
 <code class="docutils literal notranslate"><span class="pre">192.168.1.1</span></code>.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <img alt="Figure (pihole-settings-DNS.png)" class="rst-figure" src="../_images/pihole-settings-DNS.png" />
-</div>
-</div>
-<div class="section" id="host-namen-aus-subnetzen">
-<h2>Host-Namen aus Subnetzen<a class="headerlink" href="#host-namen-aus-subnetzen" title="Link zu dieser Überschrift">¶</a></h2>
+</figure>
+</section>
+<section id="host-namen-aus-subnetzen">
+<h2>Host-Namen aus Subnetzen<a class="headerlink" href="#host-namen-aus-subnetzen" title="Permalink to this heading">¶</a></h2>
 <p>In einer IP Infrastruktur mit Subnetzen (die z.B. über VPN angebunden sind) sind
 die Host-Namen aus <em>anderen</em> Subnetzen nicht ohne weiteres auflösbar.</p>
 <p>Der DNS der pi-hole nutzt die <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> Datei auf der pi-hole ebenfalls zur
@@ -165,27 +165,27 @@ $ sudo -H nano /etc/hosts
 </pre></div>
 </div>
 <p>Meist steht am Anfang der <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> so was wie:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>        <span class="n">localhost</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0.0.1</span>        <span class="n">localhost</span>
 <span class="p">::</span><span class="mi">1</span>              <span class="n">localhost</span> <span class="n">ip6</span><span class="o">-</span><span class="n">localhost</span> <span class="n">ip6</span><span class="o">-</span><span class="n">loopback</span>
 <span class="n">ff02</span><span class="p">::</span><span class="mi">1</span>          <span class="n">ip6</span><span class="o">-</span><span class="n">allnodes</span>
 <span class="n">ff02</span><span class="p">::</span><span class="mi">2</span>          <span class="n">ip6</span><span class="o">-</span><span class="n">allrouters</span>
 </pre></div>
 </div>
 <p>Hat man beispielsweise VPN Knoten könnte man diese ebenfalls hier eintragen:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
-<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
-<span class="mf">192.168</span><span class="o">.</span><span class="mf">2.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168.0.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168.1.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168.2.1</span>      <span class="n">vpn</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
 </pre></div>
 </div>
 <p>Die Hosts mit den Anwendungen an entfernten Standorten trägt man ebenfalls ein:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168</span><span class="o">.</span><span class="mf">0.34</span>     <span class="n">hamburg</span>  <span class="n">app</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
-<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.120</span>    <span class="n">hannover</span> <span class="n">app</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
-<span class="mf">192.168</span><span class="o">.</span><span class="mf">2.124</span>    <span class="n">bremen</span>   <span class="n">app</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168.0.34</span>     <span class="n">hamburg</span>  <span class="n">app</span><span class="o">.</span><span class="n">hamburg</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168.1.120</span>    <span class="n">hannover</span> <span class="n">app</span><span class="o">.</span><span class="n">hannover</span><span class="o">.</span><span class="n">local</span>
+<span class="mf">192.168.2.124</span>    <span class="n">bremen</span>   <span class="n">app</span><span class="o">.</span><span class="n">bremen</span><span class="o">.</span><span class="n">local</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="blocklists">
-<h2>Blocklists<a class="headerlink" href="#blocklists" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="blocklists">
+<h2>Blocklists<a class="headerlink" href="#blocklists" title="Permalink to this heading">¶</a></h2>
 <p>Die Blocklists kann man im Admin Inetrface der pi-hole ändern:</p>
 <ul class="simple">
 <li><p><span class="menuselection">Settings ‣ Blocklists</span></p></li>
@@ -222,8 +222,8 @@ https://zeustracker.abuse.ch/blocklist.php?download=domainblocklist
 <p>Beim ersten Eintragen der/aller oben genannten Blocklists kann das Update
 nach der Bestätigung über <span class="guilabel">Save and Update</span> etwas länger dauern.</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -266,12 +266,12 @@ nach der Bestätigung über <span class="guilabel">Save and Update</span> etwas 
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -279,7 +279,7 @@ nach der Bestätigung über <span class="guilabel">Save and Update</span> etwas 
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

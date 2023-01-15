@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>snapcraft prime Ordner &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Vertrauenswürdige Pakete" href="snap-confinement.html" />
-    <link rel="prev" title="konfligierende Parts" href="snapcraft-part-conflict.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="konfligierende Parts" href="snapcraft-part-conflict.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="snapcraft-prime-ordner">
-<span id="snapcraft-prime-folder"></span><h1>snapcraft <code class="docutils literal notranslate"><span class="pre">prime</span></code> Ordner<a class="headerlink" href="#snapcraft-prime-ordner" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="snapcraft-prime-ordner">
+<span id="snapcraft-prime-folder"></span><h1>snapcraft <code class="docutils literal notranslate"><span class="pre">prime</span></code> Ordner<a class="headerlink" href="#snapcraft-prime-ordner" title="Permalink to this heading">¶</a></h1>
 <p>Das <code class="docutils literal notranslate"><span class="pre">snapcraft</span></code> führt den <em>build</em> des snaps in Stufen aus, die nacheinander
 durchlaufen werden:</p>
 <dl class="simple">
@@ -74,13 +74,13 @@ hello 2.10 installed
 <p>Man kann aber auch den <code class="docutils literal notranslate"><span class="pre">/prime</span></code> Ordner mit <code class="docutils literal notranslate"><span class="pre">snap</span></code> installieren, was sich
 besonders für Entwickler-Szenarien eigent. Der Build kürzt sich damit zu
 <code class="docutils literal notranslate"><span class="pre">snappcraft</span> <span class="pre">prime</span></code> ab und mit einem <code class="docutils literal notranslate"><span class="pre">snap</span> <span class="pre">try</span></code> wird das Paket installiert:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$ snapcraft prime
-Skipping pull gnu-hello <span class="o">(</span>already ran<span class="o">)</span>a
-Skipping build gnu-hello <span class="o">(</span>already ran<span class="o">)</span>
-Skipping stage gnu-hello <span class="o">(</span>already ran<span class="o">)</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$<span class="w"> </span>snapcraft<span class="w"> </span>prime
+Skipping<span class="w"> </span>pull<span class="w"> </span>gnu-hello<span class="w"> </span><span class="o">(</span>already<span class="w"> </span>ran<span class="o">)</span>a
+Skipping<span class="w"> </span>build<span class="w"> </span>gnu-hello<span class="w"> </span><span class="o">(</span>already<span class="w"> </span>ran<span class="o">)</span>
+Skipping<span class="w"> </span>stage<span class="w"> </span>gnu-hello<span class="w"> </span><span class="o">(</span>already<span class="w"> </span>ran<span class="o">)</span>
 
-~/hello$ sudo -H snap try --devmode prime/
-hello <span class="m">2</span>.10 mounted from ~/hello/prime
+~/hello$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>try<span class="w"> </span>--devmode<span class="w"> </span>prime/
+hello<span class="w"> </span><span class="m">2</span>.10<span class="w"> </span>mounted<span class="w"> </span>from<span class="w"> </span>~/hello/prime
 </pre></div>
 </div>
 <p>An der letzten Ausgabe ist zu erkennen, dass das snap-Paket <code class="docutils literal notranslate"><span class="pre">hello</span></code> aus dem
@@ -88,12 +88,12 @@ Ordner <code class="docutils literal notranslate"><span class="pre">./hello/prim
 Dies ist in Entwickler-Szenarien ganz hilfreich: Zum Testen braucht man bei
 einer Änderung der snap-Konfiguration (<code class="docutils literal notranslate"><span class="pre">snap/snapcraft.yaml</span></code>) des snap-Pakets
 immer nur noch den <code class="docutils literal notranslate"><span class="pre">./prime/</span></code> Ordner bauen und installieren:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$ snapcraft prime
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/hello$<span class="w"> </span>snapcraft<span class="w"> </span>prime
 <span class="o">[</span>...<span class="o">]</span>
-~/hello$ sudo -H snap try --devmode prime/
+~/hello$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>snap<span class="w"> </span>try<span class="w"> </span>--devmode<span class="w"> </span>prime/
 </pre></div>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -125,12 +125,12 @@ immer nur noch den <code class="docutils literal notranslate"><span class="pre">
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -138,7 +138,7 @@ immer nur noch den <code class="docutils literal notranslate"><span class="pre">
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>System-Dokumentation &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Export/Import" href="site_expimp.html" />
-    <link rel="prev" title="WAF: ModSecurity" href="mod_security2.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="WAF: ModSecurity" href="mod_security2.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="system-dokumentation">
-<span id="xref-site-sysdoc"></span><h1>System-Dokumentation<a class="headerlink" href="#system-dokumentation" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="system-dokumentation">
+<span id="xref-site-sysdoc"></span><h1>System-Dokumentation<a class="headerlink" href="#system-dokumentation" title="Permalink to this heading">¶</a></h1>
 <p>Mit der Site Konfiguration <code class="docutils literal notranslate"><span class="pre">sysdoc.conf</span></code> wird die System-Dokumentation aus dem
 Ordner <code class="docutils literal notranslate"><span class="pre">/usr/share/doc</span></code> über den WEB-Server freigegeben. Die Site
 <code class="docutils literal notranslate"><span class="pre">sysdoc.conf</span></code> definiert die Directory Resource <code class="docutils literal notranslate"><span class="pre">/usr/share/doc</span></code> und setzt
@@ -57,39 +57,39 @@ erforderlich, was über die Direktive <code class="docutils literal notranslate"
 auf die sysdoc-resource nur aus dem eigenen Subnetzt möglich ist (vergleiche
 <a class="reference internal" href="site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a>). Es werden keine lokalen Options unterstützt, siehe
 <a class="reference internal" href="site_static-content.html#xref-allowoverride-directive"><span class="std std-ref">AllowOverride</span></a>.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_autoindex.c</span><span class="nt">&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_autoindex.c</span><span class="nt">&gt;</span>
 
-    <span class="nb">Alias</span> <span class="sx">/sysdoc</span> <span class="sx">/usr/share/doc</span>
+<span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/sysdoc</span><span class="w"> </span><span class="sx">/usr/share/doc</span>
 
-    <span class="nt">&lt;Directory</span> <span class="s">/usr/share/doc</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/usr/share/doc</span><span class="nt">&gt;</span>
 
-        <span class="nb">Require</span> <span class="k">all</span> granted
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
 
-        <span class="nb">Order</span> deny,allow
-        <span class="nb">Deny</span> from <span class="k">all</span>
-        <span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
-        <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">        </span><span class="nb">Order</span><span class="w"> </span>deny,allow
+<span class="w">        </span><span class="nb">Deny</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">        </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span>fd00::/8<span class="w"> </span><span class="m">192.168.0.0/16</span><span class="w"> </span>fe80::/10<span class="w"> </span><span class="m">127.0.0.0/8</span><span class="w"> </span>::1
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 </pre></div>
 </div>
 <p>In dem Kontext der Resource wird noch der <em>Autoindex</em> eingeschaltet, der die
 Header/Readme Datei aus dem chrome-Ordner verwenden soll (vergleiche
 <a class="reference internal" href="site_static-content.html#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a>):</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>        <span class="nb">Options</span> +Indexes +FollowSymLinks
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="nb">Options</span><span class="w"> </span>+Indexes<span class="w"> </span>+FollowSymLinks
 
-        <span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
-        <span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+<span class="w">        </span><span class="nb">HeaderName</span><span class="w"> </span><span class="sx">/chrome/header.shtml</span>
+<span class="w">        </span><span class="nb">ReadmeName</span><span class="w"> </span><span class="sx">/chrome/footer.shtml</span>
 
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
 </div>
 <p>Die sysdoc-Site sollte nur in einer Entwickler-Umgebung installiert werden. Die
 sysdoc-Site kann bei Bedarf auch wieder deaktiviert werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2dissite sysdoc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>a2dissite<span class="w"> </span>sysdoc
 </pre></div>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -121,12 +121,12 @@ sysdoc-Site kann bei Bedarf auch wieder deaktiviert werden:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -134,7 +134,7 @@ sysdoc-Site kann bei Bedarf auch wieder deaktiviert werden:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WSGI Anwendungen &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="PHP Anwendungen" href="site_php-apps.html" />
-    <link rel="prev" title="Apache WebDAV" href="site_webshare.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Apache WebDAV" href="site_webshare.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,14 +45,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="wsgi-anwendungen">
-<span id="xref-site-pyapps"></span><h1>WSGI Anwendungen<a class="headerlink" href="#wsgi-anwendungen" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="wsgi-anwendungen">
+<span id="xref-site-pyapps"></span><h1>WSGI Anwendungen<a class="headerlink" href="#wsgi-anwendungen" title="Permalink to this heading">¶</a></h1>
 <p>Es wird eine Konfiguration eingerichtet, über welche es möglich ist WSGI
 (Python) Anwendungen zu betreiben. Eine kleines <em>HelloWorld</em> Beispiel wird
 ebenfalls mit installiert.</p>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh installWSGI
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>installWSGI
 </pre></div>
 </div>
 <p>Mit dem Kommando <code class="docutils literal notranslate"><span class="pre">installWSGI</span></code> werden die folgenden Schritte ausgeführt.</p>
@@ -61,10 +61,10 @@ ebenfalls mit installiert.</p>
 <li><p>Es wird der Ordner <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> eingerichtet, in dem Python WSGI
 Anwendungen abgelegt werden können.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ apt-get install libapache2-mod-wsgi-py3 python-imaging virtualenv
-$ <span class="nb">cd</span> /etc/apache2/mods-available/
-$ sudo -H mv wsgi.conf     wsgi.conf-disabled
-$ sudo -H mkdir /var/www/pyApps
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libapache2-mod-wsgi-py3<span class="w"> </span>python-imaging<span class="w"> </span>virtualenv
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/etc/apache2/mods-available/
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>mv<span class="w"> </span>wsgi.conf<span class="w">     </span>wsgi.conf-disabled
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>mkdir<span class="w"> </span>/var/www/pyApps
 </pre></div>
 </div>
 <ul class="simple">
@@ -73,34 +73,34 @@ $ sudo -H mkdir /var/www/pyApps
 <li><p>In die virtuelle Python Umgebung werden (via pip) verschiedene Python Module
 vorinstalliert (sollte nicht ohne weiteres ins Internet gestellt werden).</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /var/www/pyApps
-$ sudo -H virtualenv <span class="s2">&quot;pyenv&quot;</span> --prompt<span class="o">=</span><span class="s2">&quot;pyenv&quot;</span>
-$ <span class="nb">cd</span> /var/www/pyApps/pyenv
-$ <span class="nb">source</span> bin/activate
-$ pip completion --bash <span class="p">|</span> sudo -H tee /etc/bash_completion.d/pip &gt; /dev/null
-$ pip install docutils Jinja2 Pygments Sphinx Flask Werkzeug pylint <span class="se">\</span>
-              pyratemp pyudev psutil sqlalchemy babel simplejson
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/pyApps
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>virtualenv<span class="w"> </span><span class="s2">&quot;pyenv&quot;</span><span class="w"> </span>--prompt<span class="o">=</span><span class="s2">&quot;pyenv&quot;</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/pyApps/pyenv
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>bin/activate
+$<span class="w"> </span>pip<span class="w"> </span>completion<span class="w"> </span>--bash<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>tee<span class="w"> </span>/etc/bash_completion.d/pip<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>docutils<span class="w"> </span>Jinja2<span class="w"> </span>Pygments<span class="w"> </span>Sphinx<span class="w"> </span>Flask<span class="w"> </span>Werkzeug<span class="w"> </span>pylint<span class="w"> </span><span class="se">\</span>
+<span class="w">              </span>pyratemp<span class="w"> </span>pyudev<span class="w"> </span>psutil<span class="w"> </span>sqlalchemy<span class="w"> </span>babel<span class="w"> </span>simplejson
 
-$ sudo -H a2ensite py-apps
-$ sudo -H service apache2 reload
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>a2ensite<span class="w"> </span>py-apps
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Es wird eine Test-Seite ( <a class="reference external" href="https://localhost/hello.py">https://localhost/hello.py</a> ) eingrichtet.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ap2ensite hello_py
-$ sudo -H service apache2 reload
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>ap2ensite<span class="w"> </span>hello_py
+$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
-</div>
-<div class="section" id="de-installation">
-<h2>De-Installation<a class="headerlink" href="#de-installation" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh deinstallWSGI
+</section>
+<section id="de-installation">
+<h2>De-Installation<a class="headerlink" href="#de-installation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/apache_setup.sh<span class="w"> </span>deinstallWSGI
 </pre></div>
 </div>
-</div>
-<div class="section" id="anmerkungen">
-<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="anmerkungen">
+<h2>Anmerkungen<a class="headerlink" href="#anmerkungen" title="Permalink to this heading">¶</a></h2>
 <p>Das WSGI-Modul war mal ein Projekt auf google-code, ein paar Sachen kann man
 immernoch dort nachlesen z.B.</p>
 <ul class="simple">
@@ -113,24 +113,24 @@ Github Projekt wird auch vieles aufgeräumt:</p>
 <li><p>Das Reposetory bei github ist <a class="reference external" href="https://github.com/GrahamDumpleton/mod_wsgi">Apache mod_wsgi</a></p></li>
 <li><p>Hardening Aspekte ????</p></li>
 </ul>
-</div>
-<div class="section" id="py-apps-conf">
-<span id="xref-site-py-apps-conf"></span><h2>py-apps.conf<a class="headerlink" href="#py-apps-conf" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="py-apps-conf">
+<span id="xref-site-py-apps-conf"></span><h2>py-apps.conf<a class="headerlink" href="#py-apps-conf" title="Permalink to this heading">¶</a></h2>
 <p>Die folgende <code class="docutils literal notranslate"><span class="pre">py-apps.conf</span></code> Site, richtet eine Umgebung ein, in der
 WSGI-Anwendungen betrieben werden können. Die Python-Prozesse laufen in einer
 virtuellen-Python Umgebung, die über die Direktive <code class="docutils literal notranslate"><span class="pre">WSGIPythonHome</span></code> gesetzt
 wird. Es wird mit der Direktive <code class="docutils literal notranslate"><span class="pre">WSGIDaemonProcess</span></code> die Prozessgruppe
 <code class="docutils literal notranslate"><span class="pre">pyApps</span></code> eingerichtet. Die <code class="docutils literal notranslate"><span class="pre">WSGI....</span></code> Direktieven sind in der <a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration.html">mod_wsgi RTD
 Konfiguration</a> beschrieben.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
 
-    <span class="c"># Die Prozesse laufen in einer VirtualEnv Umgebung</span>
-    <span class="nb">WSGIPythonHome</span>  <span class="sx">/var/www/pyApps/pyenv</span>
+<span class="w">    </span><span class="c"># Die Prozesse laufen in einer VirtualEnv Umgebung</span>
+<span class="w">    </span><span class="nb">WSGIPythonHome</span><span class="w">  </span><span class="sx">/var/www/pyApps/pyenv</span>
 
-    <span class="c"># Die Prozessgruppe pyApps für diese Python-Anwendungen</span>
-    <span class="nb">WSGIDaemonProcess</span> pyApps \
-        <span class="k">user</span>=www-data <span class="k">group</span>=nogroup \
-        processes=2 threads=5 maximum-requests=5
+<span class="w">    </span><span class="c"># Die Prozessgruppe pyApps für diese Python-Anwendungen</span>
+<span class="w">    </span><span class="nb">WSGIDaemonProcess</span><span class="w"> </span>pyApps<span class="w"> </span>\
+<span class="w">        </span><span class="k">user</span>=www-data<span class="w"> </span><span class="k">group</span>=nogroup<span class="w"> </span>\
+<span class="w">        </span>processes=2<span class="w"> </span>threads=5<span class="w"> </span>maximum-requests=5
 ...
 </pre></div>
 </div>
@@ -138,11 +138,11 @@ Konfiguration</a> beschrieben.</p>
 Prozesse unter dem Apache-Account <code class="docutils literal notranslate"><span class="pre">www-data</span></code> (und <code class="docutils literal notranslate"><span class="pre">nogroup</span></code>) laufen. Diese
 Prozessgruppe <code class="docutils literal notranslate"><span class="pre">pyApps</span></code> wird nun in der Resource <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps</span></code> genutzt.</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-    <span class="nt">&lt;Directory</span> <span class="s">/var/www/pyApps</span><span class="nt">&gt;</span>
-        <span class="nb">WSGIProcessGroup</span> pyApps
-        <span class="nb">WSGIApplicationGroup</span> %{GLOBAL}
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/pyApps</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">WSGIProcessGroup</span><span class="w"> </span>pyApps
+<span class="w">        </span><span class="nb">WSGIApplicationGroup</span><span class="w"> </span>%{GLOBAL}
 
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
@@ -158,9 +158,9 @@ Prozesse und Threads bei <code class="docutils literal notranslate"><span class=
 von anderen Faktoren ab?) und ob es Sinn macht bei <code class="docutils literal notranslate"><span class="pre">%{GLOBAL}</span></code> mehr als
 einen Thread zu definieren.</p>
 </div>
-</div>
-<div class="section" id="wsgi-test-anwendung">
-<h2>WSGI-Test Anwendung<a class="headerlink" href="#wsgi-test-anwendung" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="wsgi-test-anwendung">
+<h2>WSGI-Test Anwendung<a class="headerlink" href="#wsgi-test-anwendung" title="Permalink to this heading">¶</a></h2>
 <p>Die Test-Site sollte nur in einer Entwickler-Umgebung installiert werden. Sie
 besteht aus nur einer Datei <code class="docutils literal notranslate"><span class="pre">/var/www/pyApps/helloWorld/index.wsgi</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">traceback</span><span class="o">,</span> <span class="nn">pprint</span><span class="o">,</span> <span class="nn">urlparse</span><span class="o">,</span> <span class="nn">pwd</span>
@@ -195,13 +195,13 @@ oben in der <code class="docutils literal notranslate"><span class="pre">py-apps
 <span class="pre">/var/www/pyApps/pyenv</span></code> und die <code class="docutils literal notranslate"><span class="pre">WSGIDaemonProcess</span> <span class="pre">pyApps</span></code> definiert
 wurden. Die <code class="docutils literal notranslate"><span class="pre">hello_py</span></code> Site definiert nur noch den Alias, damit die Site unter
 der URL <a class="reference external" href="https://localhost/hello.py">https://localhost/hello.py</a> angeboten wird.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
-    <span class="nb">WSGIScriptAlias</span> <span class="sx">/hello.py</span> <span class="sx">/var/www/pyApps/helloWorld/index.wsgi</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nb">WSGIScriptAlias</span><span class="w"> </span><span class="sx">/hello.py</span><span class="w"> </span><span class="sx">/var/www/pyApps/helloWorld/index.wsgi</span>
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -245,12 +245,12 @@ der URL <a class="reference external" href="https://localhost/hello.py">https://
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -258,7 +258,7 @@ der URL <a class="reference external" href="https://localhost/hello.py">https://
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

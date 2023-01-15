@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sync-1.5 Server mit public accounts &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="Verweise" href="mozcloud_refs.html" />
-    <link rel="prev" title="Allgemeines zum Setup" href="mozcloud_setup.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Allgemeines zum Setup" href="mozcloud_setup.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,18 +45,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="sync-1-5-server-mit-public-accounts">
-<span id="xref-mozcloud-fxsync"></span><h1>Sync-1.5 Server mit public accounts<a class="headerlink" href="#sync-1-5-server-mit-public-accounts" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="sync-1-5-server-mit-public-accounts">
+<span id="xref-mozcloud-fxsync"></span><h1>Sync-1.5 Server mit public accounts<a class="headerlink" href="#sync-1-5-server-mit-public-accounts" title="Permalink to this heading">¶</a></h1>
 <p>In der ersten Ausbaustuffe sollte man sich den Firefox Sync-1.5 Server auf
 seinem Host installieren und die Accountverwaltung über den <a class="reference external" href="https://accounts.firefox.com/signup">Mozilla (public)
 Account Server</a> realisieren.</p>
-<div class="section" id="installation">
-<span id="xref-mozcloud-fxsync-install"></span><h2>Installation<a class="headerlink" href="#installation" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="installation">
+<span id="xref-mozcloud-fxsync-install"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
 <p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befinden sich Skripte, die alle
 erforderlichen Schritte für eine Installation durchführen.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/mozcloud_setup.sh installMozCloudEnv
-$ sudo -i -u mozcloud
-mozcloud$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/mozcloud_fxsync.sh installSyncServer
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/mozcloud_setup.sh<span class="w"> </span>installMozCloudEnv
+$<span class="w"> </span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>mozcloud
+mozcloud$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/mozcloud_fxsync.sh<span class="w"> </span>installSyncServer
 </pre></div>
 </div>
 <p>Die oben durchgeführte Installation besteht aus folgenden Schritten:</p>
@@ -65,7 +65,7 @@ mozcloud$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span c
 benötigt um die <em>virtualenv</em> Umgebung aufzubauen und die Python Module die
 ggf. compiliert werden müssen zu compilieren (s.u. <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code>).</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H apt-get install python-dev git-core python-virtualenv g++
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python-dev<span class="w"> </span>git-core<span class="w"> </span>python-virtualenv<span class="w"> </span>g++
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
@@ -77,13 +77,13 @@ Server durchzuführen.</p></li>
 und es werden die dort angebotenen Tests ausgeführt (checkt, ob Installation
 soweit OK). Siehe <a class="reference external" href="https://github.com/mozilla-services/syncserver">Run your own Firefox Sync-1.5 Server (github)</a>.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -i -u mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>mozcloud
 ...
-mozcloud$ git clone https://github.com/mozilla-services/syncserver
-mozcloud$ <span class="nb">cd</span> syncserver
-mozcloud$ make build
+mozcloud$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/mozilla-services/syncserver
+mozcloud$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>syncserver
+mozcloud$<span class="w"> </span>make<span class="w"> </span>build
 ...
-mozcloud$ make <span class="nb">test</span>
+mozcloud$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
 </pre></div>
 </div>
 <p>Durch das <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">build</span></code> wird <em>virtaulenv</em> Umgebung (<code class="docutils literal notranslate"><span class="pre">~/syncserver/local</span></code>)
@@ -92,19 +92,19 @@ eingerichtet in der alle erforderlichen Python-Pakete gleich installiert wurden.
 ersten Test sollte man dort einstellen.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[server:main]</span>
 <span class="c1"># ...</span>
-<span class="na">host</span> <span class="o">=</span> <span class="s">localhost</span>
-<span class="na">port</span> <span class="o">=</span> <span class="s">5000</span>
+<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5000</span>
 <span class="c1"># ...</span>
 <span class="k">[syncserver]</span>
-<span class="na">public_url</span> <span class="o">=</span> <span class="s">https://&lt;hostname&gt;/fxSyncServer</span>
+<span class="na">public_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://&lt;hostname&gt;/fxSyncServer</span>
 
 <span class="c1"># für gunicorn muss die die public_url wie folgt geändert werden</span>
 <span class="c1">#</span>
 <span class="c1"># public_url = http://localhost:5000/</span>
 
-<span class="na">secret</span> <span class="o">=</span> <span class="s">b2ec16d7192d6162ebab5cfc723821e23ce9deab  -</span>
+<span class="na">secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">b2ec16d7192d6162ebab5cfc723821e23ce9deab  -</span>
 <span class="c1"># ...</span>
-<span class="na">sqluri</span> <span class="o">=</span> <span class="s">sqlite://///home/mozcloud/syncserver/syncserver.db</span>
+<span class="na">sqluri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sqlite://///home/mozcloud/syncserver/syncserver.db</span>
 </pre></div>
 </div>
 <p>Die <code class="docutils literal notranslate"><span class="pre">[server:main]</span></code> Einträge sind nur für den Test mit dem <em>gunicorn</em>
@@ -126,26 +126,26 @@ im Log des Sync-Servers:</p>
 abbricht, zu erkennen an dem kleinen gelben
 <em>Achtung-Ausrufungszeichen-Dreieck</em>.</p>
 </div></blockquote>
-</div>
-<div class="section" id="entwickler-test">
-<span id="xref-mozcloud-fxsync-dev-test"></span><h2>Entwickler Test<a class="headerlink" href="#entwickler-test" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="entwickler-test">
+<span id="xref-mozcloud-fxsync-dev-test"></span><h2>Entwickler Test<a class="headerlink" href="#entwickler-test" title="Permalink to this heading">¶</a></h2>
 <p>Für den Entwickler Test wird ein gunicorn Server gestartet, dafür muss die
 <code class="docutils literal notranslate"><span class="pre">public_url</span></code> in der <code class="docutils literal notranslate"><span class="pre">syncserver.ini</span></code> auf <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/</span></code> gesetzt
 werden.</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[server:main]</span>
 <span class="c1"># ...</span>
-<span class="na">host</span> <span class="o">=</span> <span class="s">localhost</span>
-<span class="na">port</span> <span class="o">=</span> <span class="s">5000</span>
+<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost</span>
+<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5000</span>
 <span class="c1"># ...</span>
 <span class="k">[syncserver]</span>
-<span class="na">public_url</span> <span class="o">=</span> <span class="s">http://localhost:5000/</span>
+<span class="na">public_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://localhost:5000/</span>
 </pre></div>
 </div>
 <p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befindet sich ein Skript, mit dem ein
 debug-Server (gunicorn) gestartet werden kann.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -i -u mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>mozcloud
 ...
-mozcloud$ <span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/mozcloud_fxsync.sh runSyncServer
+mozcloud$<span class="w"> </span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/mozcloud_fxsync.sh<span class="w"> </span>runSyncServer
 </pre></div>
 </div>
 <p>Der Test dauert ein paar Sekunden, mit ihm wird ein gunicorn Server gestartet
@@ -153,16 +153,16 @@ und es wird ein <a class="reference external" href="http://manpages.ubuntu.com/c
 Kommandos wird unten noch interpretiert.</p>
 <p>Alternativ zu obigem Test mit dem Skript kann der Sync-Server auch in der
 Entwicklerumgebung mit dem <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=make">make</a> Target <code class="docutils literal notranslate"><span class="pre">serve</span></code> gestartet werden.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -i -u mozcloud
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-i<span class="w"> </span>-u<span class="w"> </span>mozcloud
 ...
-mozcloud$ <span class="nb">cd</span> syncserver
-mozcloud$ make serve
+mozcloud$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>syncserver
+mozcloud$<span class="w"> </span>make<span class="w"> </span>serve
 </pre></div>
 </div>
 <p>In einem zweiten Terminal kann man mit <a class="reference external" href="http://manpages.ubuntu.com/cgi-bin/search.py?q=curl">curl</a> eine erste Abfrage des
 Servers testen.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl http://localhost:5000/token/1.0/sync/1.5
-<span class="o">{</span><span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;error&quot;</span>, <span class="s2">&quot;errors&quot;</span>: <span class="o">[{</span><span class="s2">&quot;location&quot;</span>: <span class="s2">&quot;body&quot;</span>, <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;description&quot;</span>: <span class="s2">&quot;Unauthorized&quot;</span><span class="o">}]}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>http://localhost:5000/token/1.0/sync/1.5
+<span class="o">{</span><span class="s2">&quot;status&quot;</span>:<span class="w"> </span><span class="s2">&quot;error&quot;</span>,<span class="w"> </span><span class="s2">&quot;errors&quot;</span>:<span class="w"> </span><span class="o">[{</span><span class="s2">&quot;location&quot;</span>:<span class="w"> </span><span class="s2">&quot;body&quot;</span>,<span class="w"> </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,<span class="w"> </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;Unauthorized&quot;</span><span class="o">}]}</span>
 </pre></div>
 </div>
 <p>Erhält man obige Ausgabe, so kann man sich zumindest sicher sein, dass der
@@ -170,9 +170,9 @@ Dienst läuft und unautorisierte Zugriffe ablehnt ;-) Ein abschließender Test
 sollte noch im FireFox WEB-Browser durchgeführt werden (siehe
 <a class="reference internal" href="#xref-mozcloud-fxsync-ffox-setup"><span class="std std-ref">FireFox Browser Sync-Setup</span></a>). Danach sollten sich die FFox-Browser
 (mit gleichem FFox Account) automatisch synchronisieren.</p>
-</div>
-<div class="section" id="firefox-browser-sync-setup">
-<span id="xref-mozcloud-fxsync-ffox-setup"></span><h2>FireFox Browser Sync-Setup<a class="headerlink" href="#firefox-browser-sync-setup" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="firefox-browser-sync-setup">
+<span id="xref-mozcloud-fxsync-ffox-setup"></span><h2>FireFox Browser Sync-Setup<a class="headerlink" href="#firefox-browser-sync-setup" title="Permalink to this heading">¶</a></h2>
 <p>Das Setup in den Firefox Instanzen ist recht einfach, es muss einmal ein Account
 angelegt werden und in allen Clients muss der oben eingerichtete Sync-Server als
 Tokenserver eingetragen werden. Die Clients <em>syncen</em> mit diesem Server, sobald
@@ -230,9 +230,9 @@ eintragen. Diese URL ist eine <code class="docutils literal notranslate"><span c
 so kann man in der <code class="docutils literal notranslate"><span class="pre">/etc/firefox/syspref.js</span></code> folgende JavaScript Zeile
 einfügen.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">lockPref</span><span class="p">(</span>
-    <span class="s2">&quot;identity.sync.tokenserver.uri&quot;</span>
-    <span class="p">,</span> <span class="s2">&quot;https://&lt;hostname&gt;/fxSyncServer/token/1.0/sync/1.5&quot;</span>
-    <span class="p">);</span>
+<span class="w">    </span><span class="s2">&quot;identity.sync.tokenserver.uri&quot;</span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;https://&lt;hostname&gt;/fxSyncServer/token/1.0/sync/1.5&quot;</span>
+<span class="w">    </span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Nachdem der erste Browser angemeldet ist synchronisiert er seine Bookmarks und
@@ -246,9 +246,9 @@ Einstellungen. Was alles synchronisiert werden soll, kann im FFox unter den
 muss wieder der FFox-Browser über den zuvor erstellten Account angemeldet werden
 und in der <code class="docutils literal notranslate"><span class="pre">about:config</span></code> muss der oben eingerichtete Sync-Server (dessen
 <code class="docutils literal notranslate"><span class="pre">public_url</span></code>) eingetragen werden (siehe oben beim <em>ersten FFox Browser</em>).</p>
-</div>
-<div class="section" id="site-fxsyncserver-conf">
-<span id="xref-apache-site-fxsyncserver"></span><h2>Site fxSyncServer.conf<a class="headerlink" href="#site-fxsyncserver-conf" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="site-fxsyncserver-conf">
+<span id="xref-apache-site-fxsyncserver"></span><h2>Site fxSyncServer.conf<a class="headerlink" href="#site-fxsyncserver-conf" title="Permalink to this heading">¶</a></h2>
 <p>Der Firefox Sync-1.5 Server ist eine WSGI Anwendung und kann hinter jeden WSGI
 fähigen WEB-Server gelegt werden. Folgend wird eine kleine Konfiguration
 vorgestellt, mit der man den Dienst in seinen (bereits SSL verschlüsselten)
@@ -258,22 +258,22 @@ Apache Server verlegt.</p>
 <a class="reference internal" href="../apache_setup/site_py-apps.html#xref-site-pyapps"><span class="std std-ref">WSGI Anwendungen</span></a> des Artikels <a class="reference internal" href="../apache_setup/index.html#xref-apache-setup"><span class="std std-ref">Setup Apache2 HTTP Server</span></a> zu finden.</p>
 <p>In dem <code class="docutils literal notranslate"><span class="pre">${SCRIPT_FOLDER}</span></code> Ordner befindet sich ein Skript, mit dem die
 Installation durchgeführt werden kann.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo -H ./scripts/mozcloud.sh installApacheSite
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-H<span class="w"> </span>./scripts/mozcloud.sh<span class="w"> </span>installApacheSite
 </pre></div>
 </div>
 <p>Die oben durchgeführte Installation besteht aus einer <em>Site</em>, die in der Datei</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/etc/apache2/sites-available/fxSyncServer.conf</span></code> angelegt wurde.</p></li>
 </ul>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span> <span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_wsgi.c</span><span class="nt">&gt;</span>
 
-    <span class="nb">WSGIDaemonProcess</span> fxSyncServer \
-      <span class="k">user</span>=mozcloud <span class="k">group</span>=nogroup \
-      processes=2 threads=5 \
-      python-path=/home/mozcloud/syncserver/local/lib/python2.7/site-packages/
+<span class="w">    </span><span class="nb">WSGIDaemonProcess</span><span class="w"> </span>fxSyncServer<span class="w"> </span>\
+<span class="w">      </span><span class="k">user</span>=mozcloud<span class="w"> </span><span class="k">group</span>=nogroup<span class="w"> </span>\
+<span class="w">      </span>processes=2<span class="w"> </span>threads=5<span class="w"> </span>\
+<span class="w">      </span>python-path=/home/mozcloud/syncserver/local/lib/python2.7/site-packages/
 
-    <span class="nb">WSGIScriptAlias</span> <span class="sx">/fxSyncServer</span> \
-      <span class="sx">/home/mozcloud/syncserver/syncserver.wsgi</span>
+<span class="w">    </span><span class="nb">WSGIScriptAlias</span><span class="w"> </span><span class="sx">/fxSyncServer</span><span class="w"> </span>\
+<span class="w">      </span><span class="sx">/home/mozcloud/syncserver/syncserver.wsgi</span>
 ...
 </pre></div>
 </div>
@@ -286,15 +286,15 @@ Alias auf die <code class="docutils literal notranslate"><span class="pre">syncs
 Subnetz verfügbar gemacht, Zugriffe aus dem Internet sollen nicht möglich sein
 (s.a. <a class="reference internal" href="../apache_setup/site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a>).</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-    <span class="nt">&lt;Directory</span> <span class="s">/home/mozcloud/syncserver</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/home/mozcloud/syncserver</span><span class="nt">&gt;</span>
 
-        <span class="nb">Require</span> <span class="k">all</span> granted
+<span class="w">        </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
 
-        <span class="c"># Die Seiten sind nur im Subnetz verfügbar, nicht von *draußen*</span>
-        <span class="nb">Order</span> deny,allow
-        <span class="nb">Deny</span> from <span class="k">all</span>
-        <span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
-        <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">        </span><span class="c"># Die Seiten sind nur im Subnetz verfügbar, nicht von *draußen*</span>
+<span class="w">        </span><span class="nb">Order</span><span class="w"> </span>deny,allow
+<span class="w">        </span><span class="nb">Deny</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">        </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span>fd00::/8<span class="w"> </span><span class="m">192.168.0.0/16</span><span class="w"> </span>fe80::/10<span class="w"> </span><span class="m">127.0.0.0/8</span><span class="w"> </span>::1
+<span class="w">        </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 ...
 </pre></div>
 </div>
@@ -307,20 +307,20 @@ aus dem <em>Request</em>, siehe auch <a class="reference external" href="https:/
 WSGI-Anwendung durchzureichen. Für Anwendungen die vom Apache authentifiziert
 werden, sollte <a class="reference external" href="http://modwsgi.readthedocs.org/en/develop/configuration-directives/WSGIPassAuthorization.html">WSGIPassAuthorization</a> auf <code class="docutils literal notranslate"><span class="pre">Off</span></code> gesetzt werden.</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-        <span class="nb">WSGIApplicationGroup</span> %{GLOBAL}
-        <span class="nb">WSGIProcessGroup</span> fxSyncServer
-        <span class="nb">WSGIPassAuthorization</span> <span class="k">On</span>
+<span class="w">        </span><span class="nb">WSGIApplicationGroup</span><span class="w"> </span>%{GLOBAL}
+<span class="w">        </span><span class="nb">WSGIProcessGroup</span><span class="w"> </span>fxSyncServer
+<span class="w">        </span><span class="nb">WSGIPassAuthorization</span><span class="w"> </span><span class="k">On</span>
 ...
 </pre></div>
 </div>
 <p>Da es sich um einen Sync-Dienst handelt, sollen die Robots nicht versuchen
 diesen zu indizieren.</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-        <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
-            <span class="nb">Header</span> always set X-Robots-Tag <span class="s2">&quot;none&quot;</span>
-        <span class="nt">&lt;/IfModule&gt;</span>
+<span class="w">        </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nb">Header</span><span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>X-Robots-Tag<span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">        </span><span class="nt">&lt;/IfModule&gt;</span>
 
-    <span class="nt">&lt;/Directory&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Directory&gt;</span>
 
 <span class="nt">&lt;/IfModule&gt;</span>
 </pre></div>
@@ -339,13 +339,13 @@ beschrieben, siehe auch <a class="reference internal" href="../apache_setup/site
 <p>Die <code class="docutils literal notranslate"><span class="pre">identity.sync.tokenserver.uri</span></code> in den FFox Browsern muss entsprechend
 gesetz werden (siehe <a class="reference internal" href="#xref-mozcloud-fxsync-ffox-setup"><span class="std std-ref">FireFox Browser Sync-Setup</span></a>).</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">lockPref</span><span class="p">(</span>
-    <span class="s2">&quot;identity.sync.tokenserver.uri&quot;</span>
-    <span class="p">,</span> <span class="s2">&quot;https://&lt;hostname&gt;/fxSyncServer/token/1.0/sync/1.5&quot;</span>
-    <span class="p">);</span>
+<span class="w">    </span><span class="s2">&quot;identity.sync.tokenserver.uri&quot;</span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;https://&lt;hostname&gt;/fxSyncServer/token/1.0/sync/1.5&quot;</span>
+<span class="w">    </span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -388,12 +388,12 @@ gesetz werden (siehe <a class="reference internal" href="#xref-mozcloud-fxsync-f
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -401,7 +401,7 @@ gesetz werden (siehe <a class="reference internal" href="#xref-mozcloud-fxsync-f
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

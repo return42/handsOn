@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Oracle Know-how &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="searx Suchmaschine" href="../searx.html" />
-    <link rel="prev" title="SQL-Developer" href="sqldeveloper.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="next" title="Gogs / Go Git Service" href="../gogs.html" />
+    <link rel="prev" title="SQL-Developer" href="sqldeveloper.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,7 +29,7 @@
           <a href="../genindex.html" title="Stichwortverzeichnis"
              accesskey="I">Index</a></li>
         <li class="right" >
-          <a href="../searx.html" title="searx Suchmaschine"
+          <a href="../gogs.html" title="Gogs / Go Git Service"
              accesskey="N">weiter</a> |</li>
         <li class="right" >
           <a href="sqldeveloper.html" title="SQL-Developer"
@@ -45,10 +45,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="oracle-know-how">
-<span id="id1"></span><h1>Oracle Know-how<a class="headerlink" href="#oracle-know-how" title="Link zu dieser Überschrift">¶</a></h1>
-<div class="section" id="id2">
-<h2>EPEL<a class="headerlink" href="#id2" title="Link zu dieser Überschrift">¶</a></h2>
+  <section id="oracle-know-how">
+<span id="id1"></span><h1>Oracle Know-how<a class="headerlink" href="#oracle-know-how" title="Permalink to this heading">¶</a></h1>
+<section id="id2">
+<h2>EPEL<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>Extra Packages for Enterprise Linux (<a class="reference external" href="https://fedoraproject.org/wiki/EPEL">EPEL</a>) ist eine Special Interest Group von
 Fedora, die eine qualitativ hochwertige Reihe von zusätzlichen Paketen für
 Enterprise Linux verwaltet.  EPEL eignet sich für alle RHEL Distributionen:
@@ -70,64 +70,64 @@ ol7_latest/x86_64 Oracle Linux 7Server Latest (x86_64)                          
 repolist: 29.025
 </pre></div>
 </div>
-</div>
-<div class="section" id="schema-anlegen-create-user">
-<span id="sql-create-user"></span><h2>Schema anlegen (<code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">USER</span></code>)<a class="headerlink" href="#schema-anlegen-create-user" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="schema-anlegen-create-user">
+<span id="sql-create-user"></span><h2>Schema anlegen (<code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">USER</span></code>)<a class="headerlink" href="#schema-anlegen-create-user" title="Permalink to this heading">¶</a></h2>
 <p>Bei einer <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-a-cdb-with-sql-plus.html#GUID-2E5025EE-BED3-45A4-9EAA-B05C8DA66F97">CDB</a> muss das Präfix <code class="docutils literal notranslate"><span class="pre">c##</span></code> im Namen des DB-Users (des Schemas)
 verwendet werden, bei einer <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/multi/administering-pdbs-with-sql-plus.html#GUID-702231AB-ABDA-42F4-918C-4539BF8135D6">PDB</a> ist das nicht erforderlich.  Die CDBs sind seit
 Oracle 12 in einer <em>Standard Installation</em> (<a class="reference internal" href="cdbpdb.html#cdb-pdb"><span class="std std-ref">CDB &amp; PDB</span></a>).  Im folgenden
 Beispiel wird ein DB-Benutzer (ein Schema) mit dem Namen <code class="docutils literal notranslate"><span class="pre">foo</span></code> und mit
 Passwort <code class="docutils literal notranslate"><span class="pre">bar</span></code> eingerichtet (Anmeldung als sysdba).</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">USER</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">bar</span>
-  <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">users</span>
-  <span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="n">temp</span>
-  <span class="n">QUOTA</span> <span class="n">UNLIMITED</span> <span class="k">ON</span> <span class="n">users</span>
-  <span class="n">CONTAINER</span> <span class="o">=</span> <span class="k">ALL</span>
-  <span class="n">PROFILE</span> <span class="k">default</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="k">c</span><span class="o">##</span><span class="n">foo</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bar</span>
+<span class="w">  </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">users</span>
+<span class="w">  </span><span class="k">TEMPORARY</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">temp</span>
+<span class="w">  </span><span class="n">QUOTA</span><span class="w"> </span><span class="n">UNLIMITED</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span>
+<span class="w">  </span><span class="n">CONTAINER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ALL</span>
+<span class="w">  </span><span class="n">PROFILE</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Gewähren von Rechten auf dem Schema <code class="docutils literal notranslate"><span class="pre">c##foo</span></code>.</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">GRANT</span> <span class="k">CONNECT</span>
-  <span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">VIEW</span><span class="p">,</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span>
-  <span class="p">,</span> <span class="k">CREATE</span> <span class="n">SYNONYM</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">CLUSTER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">LINK</span>
-  <span class="p">,</span> <span class="k">ALTER</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TRIGGER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">PROCEDURE</span>
-    <span class="k">TO</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">GRANT</span><span class="w"> </span><span class="k">CONNECT</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SYNONYM</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">LINK</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span>
+<span class="w">    </span><span class="k">TO</span><span class="w"> </span><span class="k">c</span><span class="o">##</span><span class="n">foo</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Anlegen eines Schemas in einer PDB:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
 
-<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">foo</span> <span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="n">bar</span>
-  <span class="k">DEFAULT</span> <span class="n">TABLESPACE</span> <span class="n">users</span>
-  <span class="k">TEMPORARY</span> <span class="n">TABLESPACE</span> <span class="n">temp</span>
-  <span class="n">QUOTA</span> <span class="n">UNLIMITED</span> <span class="k">ON</span> <span class="n">users</span>
-  <span class="n">PROFILE</span> <span class="k">default</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">bar</span>
+<span class="w">  </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">users</span>
+<span class="w">  </span><span class="k">TEMPORARY</span><span class="w"> </span><span class="n">TABLESPACE</span><span class="w"> </span><span class="n">temp</span>
+<span class="w">  </span><span class="n">QUOTA</span><span class="w"> </span><span class="n">UNLIMITED</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span>
+<span class="w">  </span><span class="n">PROFILE</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
 
-<span class="k">GRANT</span> <span class="k">CONNECT</span>
-  <span class="p">,</span> <span class="k">CREATE</span> <span class="k">TABLE</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">VIEW</span><span class="p">,</span> <span class="k">CREATE</span> <span class="n">SEQUENCE</span>
-  <span class="p">,</span> <span class="k">CREATE</span> <span class="n">SYNONYM</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">CLUSTER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">LINK</span>
-  <span class="p">,</span> <span class="k">ALTER</span> <span class="k">SESSION</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">TRIGGER</span><span class="p">,</span> <span class="k">CREATE</span> <span class="k">PROCEDURE</span>
-  <span class="k">TO</span> <span class="n">foo</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">CONNECT</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="n">SYNONYM</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">CLUSTER</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">LINK</span>
+<span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span>
+<span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
 
-<span class="k">GRANT</span> <span class="k">read</span><span class="p">,</span> <span class="k">write</span>
-     <span class="k">ON</span> <span class="n">DIRECTORY</span> <span class="n">oracle_impexp</span>
-     <span class="k">TO</span> <span class="n">foo</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">read</span><span class="p">,</span><span class="w"> </span><span class="k">write</span>
+<span class="w">     </span><span class="k">ON</span><span class="w"> </span><span class="n">DIRECTORY</span><span class="w"> </span><span class="n">oracle_impexp</span>
+<span class="w">     </span><span class="k">TO</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="schema-loschen">
-<h2>Schema löschen<a class="headerlink" href="#schema-loschen" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span> <span class="k">USER</span> <span class="k">c</span><span class="o">##</span><span class="n">foo</span> <span class="k">CASCADE</span><span class="p">;</span>
+</section>
+<section id="schema-loschen">
+<h2>Schema löschen<a class="headerlink" href="#schema-loschen" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="k">c</span><span class="o">##</span><span class="n">foo</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Löschen eines Schemas in einer PDB:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span> <span class="k">SESSION</span> <span class="k">SET</span> <span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
-<span class="k">DROP</span> <span class="k">USER</span> <span class="n">foo</span> <span class="k">CASCADE</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">container</span><span class="o">=</span><span class="n">ORCLPDB</span><span class="p">;</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="aus-welcher-oracle-version-wurde-der-dump-erzeugt">
-<span id="determin-version-from-dump"></span><h2>Aus welcher Oracle Version wurde der DUMP erzeugt?<a class="headerlink" href="#aus-welcher-oracle-version-wurde-der-dump-erzeugt" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="aus-welcher-oracle-version-wurde-der-dump-erzeugt">
+<span id="determin-version-from-dump"></span><h2>Aus welcher Oracle Version wurde der DUMP erzeugt?<a class="headerlink" href="#aus-welcher-oracle-version-wurde-der-dump-erzeugt" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ strings my_dump_file.dmp | head -n 5
 &quot;SYS&quot;.&quot;SYS_EXPORT_SCHEMA_01&quot;
 IBMPC/WIN_NT64-9.1.0
@@ -136,15 +136,15 @@ AL32UTF8
 11.02.00.00.00
 </pre></div>
 </div>
-</div>
-<div class="section" id="welches-schema-ist-im-dump">
-<span id="determin-schema-from-dump"></span><h2>Welches Schema ist im DUMP?<a class="headerlink" href="#welches-schema-ist-im-dump" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="welches-schema-ist-im-dump">
+<span id="determin-schema-from-dump"></span><h2>Welches Schema ist im DUMP?<a class="headerlink" href="#welches-schema-ist-im-dump" title="Permalink to this heading">¶</a></h2>
 <p>Es gibt keine <em>direkte</em> Lösung, aber der <strong>sysdba</strong> kann sich das Schema im DUMP
 mit der Option <a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-original-import-utility.html#GUID-85C63F86-9BD7-40BC-A801-D9E11B8ACA3B">SHOW</a> in eine SQL Datei ausgeben lassen:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>impdp <span class="se">\&quot;</span>/ as sysdba<span class="se">\&quot;</span> <span class="se">\</span>
- <span class="nv">directory</span> <span class="o">=</span> DATA_PUMP_DIR <span class="se">\</span>
- <span class="nv">dumpfile</span>  <span class="o">=</span> my_dump_file.dmp <span class="se">\</span>
- <span class="nv">sqlfile</span>   <span class="o">=</span> my_dump_file.sql
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>impdp<span class="w"> </span><span class="se">\&quot;</span>/<span class="w"> </span>as<span class="w"> </span>sysdba<span class="se">\&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w"> </span><span class="nv">directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>DATA_PUMP_DIR<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span><span class="nv">dumpfile</span><span class="w">  </span><span class="o">=</span><span class="w"> </span>my_dump_file.dmp<span class="w"> </span><span class="se">\</span>
+<span class="w"> </span><span class="nv">sqlfile</span><span class="w">   </span><span class="o">=</span><span class="w"> </span>my_dump_file.sql
 </pre></div>
 </div>
 <p>Im <code class="docutils literal notranslate"><span class="pre">DATA_PUMP_DIR</span></code> liegt dann die <code class="docutils literal notranslate"><span class="pre">my_dump_file.sql</span></code> in der man die CREATE
@@ -153,10 +153,10 @@ USER Anweisungen findet:</p>
 CREATE USER &quot;TEST_USER&quot; IDENTIFIED BY VALUES ...
 </pre></div>
 </div>
-</div>
-<div class="section" id="statistiken-und-optimierung">
-<span id="dbms-stats"></span><h2>Statistiken und Optimierung<a class="headerlink" href="#statistiken-und-optimierung" title="Link zu dieser Überschrift">¶</a></h2>
-<div class="sidebar">
+</section>
+<section id="statistiken-und-optimierung">
+<span id="dbms-stats"></span><h2>Statistiken und Optimierung<a class="headerlink" href="#statistiken-und-optimierung" title="Permalink to this heading">¶</a></h2>
+<aside class="sidebar">
 <p class="sidebar-title">Verweise</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://wikis.gm.fh-koeln.de/wiki_db/Datenbanken/Statistiken">Statistiken (Oracle)</a></p></li>
@@ -166,7 +166,7 @@ CREATE USER &quot;TEST_USER&quot; IDENTIFIED BY VALUES ...
 <li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-3B3AE30F-1A34-4BFE-A326-15048F7E904F">GATHER_SCHEMA_STATS</a></p></li>
 <li><p><a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-CA6A56B9-0540-45E9-B1D7-D78769B7714C">GATHER_TABLE_STATS</a></p></li>
 </ul>
-</div>
+</aside>
 <p>Die Optimizer-Statistiken sind eine Sammlung von Daten, die weitere Details
 bzw. Informationen über die Datenbank und die Objekte der Datenbank beschreiben.
 Damit der Cost-Based-Optimizer (CBO) den effizientesten Ausführungsplan von
@@ -176,14 +176,14 @@ Rule-Based-Optimizer (RBO) verwendet dagegen keine Statistiken. <a class="refere
 <p>Die Neuberechnung der Statistiken kann U.A. Abhilfe bei Performanceproblemen
 bieten.  Für das gesamte Benutzerschema kann sie wie folgt in <em>sqlplus</em>
 über eine Prozedur (<a class="reference external" href="https://docs.oracle.com/en/database/oracle/oracle-database/19/arpls/DBMS_STATS.html#GUID-3B3AE30F-1A34-4BFE-A326-15048F7E904F">GATHER_SCHEMA_STATS</a>) angestoßen werden:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">exec</span> <span class="n">DBMS_STATS</span><span class="p">.</span><span class="n">GATHER_SCHEMA_STATS</span><span class="p">(</span>
-   <span class="n">ownname</span> <span class="o">=&gt;</span> <span class="k">NULL</span>
-   <span class="p">,</span> <span class="n">no_invalidate</span> <span class="o">=&gt;</span> <span class="k">FALSE</span>
-   <span class="p">);</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">exec</span><span class="w"> </span><span class="n">DBMS_STATS</span><span class="p">.</span><span class="n">GATHER_SCHEMA_STATS</span><span class="p">(</span>
+<span class="w">   </span><span class="n">ownname</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">no_invalidate</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">FALSE</span>
+<span class="w">   </span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -219,7 +219,7 @@ bieten.  Für das gesamte Benutzerschema kann sie wie folgt in <em>sqlplus</em>
       <li><a href="index.html">Oracle (developer)</a>
         <ul>
           <li>Previous: <a href="sqldeveloper.html" title="vorheriges Kapitel">SQL-Developer</a>
-          <li>Next: <a href="../searx.html" title="nächstes Kapitel">searx Suchmaschine</a></ul>
+          <li>Next: <a href="../gogs.html" title="nächstes Kapitel">Gogs / Go Git Service</a></ul>
       </li>
     </ul>
   </li>
@@ -228,12 +228,12 @@ bieten.  Für das gesamte Benutzerschema kann sie wie folgt in <em>sqlplus</em>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -241,7 +241,7 @@ bieten.  Für das gesamte Benutzerschema kann sie wie folgt in <em>sqlplus</em>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

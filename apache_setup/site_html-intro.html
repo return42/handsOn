@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HTML Startseite &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="WAF: ModSecurity" href="mod_security2.html" />
-    <link rel="prev" title="Static Content (static-content.conf)" href="site_static-content.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Static Content (static-content.conf)" href="site_static-content.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="html-startseite">
-<span id="xref-site-html-intro"></span><h1>HTML Startseite<a class="headerlink" href="#html-startseite" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="html-startseite">
+<span id="xref-site-html-intro"></span><h1>HTML Startseite<a class="headerlink" href="#html-startseite" title="Permalink to this heading">¶</a></h1>
 <p>In der <a class="reference internal" href="serverwide_cfg.html#xref-apache2-conf"><span class="std std-ref">/etc/apache2/apache2.conf</span></a> wurde die Direktive <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> (siehe
 <a class="reference external" href="https://httpd.apache.org/docs/current/mod/core.html">Apache Core Features</a>) auf <code class="docutils literal notranslate"><span class="pre">/var/www/html</span></code> gesetzt. Das <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> ist
 das Haptverzeichniss, von dem an der Apache <em>Content</em> ausliefert. Andere
@@ -54,8 +54,8 @@ Resourcen müssen über die <code class="docutils literal notranslate"><span cla
 Setup wird eine einfache HTML-Startseite installiert.  Diese Startseite stellt
 Verweise auf die Anwendungen zur Verfügung, die mit diesem Setup installiert
 werden. Die Installation erfolgt nach <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H cp -R TEMPLATE/var/www/html /var/www
-sudo -H a2ensite html-intro
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>cp<span class="w"> </span>-R<span class="w"> </span>TEMPLATE/var/www/html<span class="w"> </span>/var/www
+sudo<span class="w"> </span>-H<span class="w"> </span>a2ensite<span class="w"> </span>html-intro
 </pre></div>
 </div>
 <p>Die Site <code class="docutils literal notranslate"><span class="pre">html-intro.conf</span></code> definiert die Directory Resource
@@ -65,31 +65,31 @@ was über die Direktive <code class="docutils literal notranslate"><span class="
 HTML Content von überall aus erlaubt ist (vergleiche
 <a class="reference internal" href="site_static-content.html#xref-allow-directive"><span class="std std-ref">Allow-Direktive</span></a>). Es werden keine lokalen Options unterstützt, siehe
 <a class="reference internal" href="site_static-content.html#xref-allowoverride-directive"><span class="std std-ref">AllowOverride</span></a>.</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Directory</span> <span class="s">/var/www/html</span><span class="nt">&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/var/www/html</span><span class="nt">&gt;</span>
 
-    <span class="nb">Require</span> <span class="k">all</span> granted
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span><span class="k">all</span><span class="w"> </span>granted
 
-    <span class="nb">Order</span> deny,allow
-    <span class="nb">Deny</span> from <span class="k">all</span>
-    <span class="nb">Allow</span> from <span class="k">all</span>
-    <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">    </span><span class="nb">Order</span><span class="w"> </span>deny,allow
+<span class="w">    </span><span class="nb">Deny</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">    </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 </pre></div>
 </div>
 <p>Da es sich um HTML Content handelt, wird noch das HTTP-Header Feld für den
 <em>Content Type</em> im Response gesetzt (vergleiche <a class="reference internal" href="serverwide_cfg.html#xref-global-http-headers"><span class="std std-ref">HTTP-Headers</span></a>):</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>    <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
-         <span class="nb">Header</span> setifempty Content-Type <span class="s2">&quot;text/html&quot;</span>
-    <span class="nt">&lt;/IfModule&gt;</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">         </span><span class="nb">Header</span><span class="w"> </span>setifempty<span class="w"> </span>Content-Type<span class="w"> </span><span class="s2">&quot;text/html&quot;</span>
+<span class="w">    </span><span class="nt">&lt;/IfModule&gt;</span>
 
 <span class="nt">&lt;/Directory&gt;</span>
 </pre></div>
 </div>
 <p>Diese Startseite ist nur <em>exemplarisch</em> und kann bei Bedarf auch wieder
 deaktiviert werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2dissite html-intro
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>a2dissite<span class="w"> </span>html-intro
 </pre></div>
 </div>
-</div>
+</section>
 
 
             <div class="clearer"></div>
@@ -121,12 +121,12 @@ deaktiviert werden:</p>
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -134,7 +134,7 @@ deaktiviert werden:</p>
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 

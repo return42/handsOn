@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Apache WebDAV &#8212; handsOn  Dokumentation</title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="WSGI Anwendungen" href="site_py-apps.html" />
-    <link rel="prev" title="Export/Import" href="site_expimp.html" />
-  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
-   
+    <link rel="prev" title="Export/Import" href="site_expimp.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -45,8 +45,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="apache-webdav">
-<span id="xref-site-webshare"></span><h1>Apache WebDAV<a class="headerlink" href="#apache-webdav" title="Link zu dieser Überschrift">¶</a></h1>
+  <section id="apache-webdav">
+<span id="xref-site-webshare"></span><h1>Apache WebDAV<a class="headerlink" href="#apache-webdav" title="Permalink to this heading">¶</a></h1>
 <p>Die Site <code class="docutils literal notranslate"><span class="pre">webShare.conf</span></code> ist eine exemplarische Anwendung, bei der ein Ordner
 aus dem Dateisystem via <a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> exportiert wird. Anwendungsbeispiele
 finden sich im Abschnitt <a class="reference internal" href="webdav_clients.html#xref-webdav-clients"><span class="std std-ref">WebDAV-Clients</span></a>.</p>
@@ -55,7 +55,7 @@ finden sich im Abschnitt <a class="reference internal" href="webdav_clients.html
 <p><a class="reference external" href="https://de.wikipedia.org/wiki/WebDAV">WebDAV (wiki)</a> und <a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> dürfen an dieser Stelle nicht
 verwechselt werden.Hier wird (nur) <strong>WebDAV</strong> eingerichtet!</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> ist eine <em>Calendaring Extensions to WebDAV</em> siehe <span class="target" id="index-0"></span><a class="rfc reference external" href="https://tools.ietf.org/html/rfc4791.html"><strong>RFC 4791</strong></a>.</p></li>
+<li><p><a class="reference external" href="https://de.wikipedia.org/wiki/CalDAV">CalDAV (wiki)</a> ist eine <em>Calendaring Extensions to WebDAV</em> siehe <span class="target" id="index-0"></span><a class="rfc reference external" href="https://datatracker.ietf.org/doc/html/rfc4791.html"><strong>RFC 4791</strong></a>.</p></li>
 <li><p>Bezüglich einer geeigneten Server Implementierung sollte ggf. <a class="reference external" href="https://en.wikipedia.org/wiki/Comparison_of_CalDAV_and_CardDAV_implementations#Server_implementations">Comparision
 of CalDAV &amp; CardDAV Server (wiki)</a>
 konsultiert werden.</p></li>
@@ -64,31 +64,31 @@ konsultiert werden.</p></li>
 <p>Die Konfiguration legt den Ordner <code class="docutils literal notranslate"><span class="pre">/share/WEBSHARE</span></code> an und stellt ihn über
 <a class="reference external" href="https://localhost/WEBSHARE">https://localhost/WEBSHARE</a> ins Netz. Für die Freigabe wird das <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_dav.html">Apache mod_dav</a>
 Modul und das <a class="reference external" href="https://httpd.apache.org/docs/current/mod/mod_dav_fs.html">Apache mod_dav_fs</a> Modul aktiviert.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H mkdir -p /share/WEBSHARE
-sudo -H chown -R www-data:www-data /share/WEBSHARE
-sudo -H a2enmod dav dav_fs
-sudo -H a2ensite webShare
-sudo -H service apache2 reload
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/share/WEBSHARE
+sudo<span class="w"> </span>-H<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>www-data:www-data<span class="w"> </span>/share/WEBSHARE
+sudo<span class="w"> </span>-H<span class="w"> </span>a2enmod<span class="w"> </span>dav<span class="w"> </span>dav_fs
+sudo<span class="w"> </span>-H<span class="w"> </span>a2ensite<span class="w"> </span>webShare
+sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
-<div class="section" id="site-webshare">
-<h2>Site webShare<a class="headerlink" href="#site-webshare" title="Link zu dieser Überschrift">¶</a></h2>
+<section id="site-webshare">
+<h2>Site webShare<a class="headerlink" href="#site-webshare" title="Permalink to this heading">¶</a></h2>
 <p>Die Site <code class="docutils literal notranslate"><span class="pre">webShare.conf</span></code> definiert die Directory Resource <code class="docutils literal notranslate"><span class="pre">/share/WEBSHARE</span></code>
 und setzt den Alias <code class="docutils literal notranslate"><span class="pre">/WEBSHARE</span></code> auf diese Resource (vergleiche
 <a class="reference internal" href="site_static-content.html#xref-allias-directive"><span class="std std-ref">Alias Direktive</span></a>).</p>
-<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span> <span class="sx">/WEBSHARE</span>  <span class="sx">/share/WEBSHARE</span>
+<div class="highlight-apache notranslate"><div class="highlight"><pre><span></span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/WEBSHARE</span><span class="w">  </span><span class="sx">/share/WEBSHARE</span>
 
-<span class="nt">&lt;Directory</span> <span class="s">/share/WEBSHARE</span><span class="nt">&gt;</span>
+<span class="nt">&lt;Directory</span><span class="w"> </span><span class="s">/share/WEBSHARE</span><span class="nt">&gt;</span>
 
-    <span class="nb">DAV</span> <span class="k">on</span>
-    <span class="nb">SSLRequireSSL</span>
+<span class="w">    </span><span class="nb">DAV</span><span class="w"> </span><span class="k">on</span>
+<span class="w">    </span><span class="nb">SSLRequireSSL</span>
 
-    <span class="nb">Require</span> valid-user
+<span class="w">    </span><span class="nb">Require</span><span class="w"> </span>valid-user
 
-    <span class="nb">AuthType</span> Basic
-    <span class="nb">AuthBasicProvider</span> external
-    <span class="nb">AuthName</span> <span class="s2">&quot;webShare&quot;</span>
-    <span class="nb">AuthExternal</span> pwauth
+<span class="w">    </span><span class="nb">AuthType</span><span class="w"> </span>Basic
+<span class="w">    </span><span class="nb">AuthBasicProvider</span><span class="w"> </span>external
+<span class="w">    </span><span class="nb">AuthName</span><span class="w"> </span><span class="s2">&quot;webShare&quot;</span>
+<span class="w">    </span><span class="nb">AuthExternal</span><span class="w"> </span>pwauth
 ...
 </pre></div>
 </div>
@@ -106,10 +106,10 @@ siehe dort).</p>
 <li><p>Suchmaschinen sollen den Content nicht indizieren (<a class="reference internal" href="serverwide_cfg.html#xref-global-http-headers"><span class="std std-ref">HTTP-Headers</span></a>).</p></li>
 </ul>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-    <span class="nb">Order</span> deny,allow
-    <span class="nb">Deny</span> from <span class="k">all</span>
-    <span class="nb">Allow</span> from fd00::/8 <span class="m">192.168.0.0/16</span> fe80::/10 <span class="m">127.0.0.0/8</span> ::1
-    <span class="nb">AllowOverride</span> <span class="k">None</span>
+<span class="w">    </span><span class="nb">Order</span><span class="w"> </span>deny,allow
+<span class="w">    </span><span class="nb">Deny</span><span class="w"> </span>from<span class="w"> </span><span class="k">all</span>
+<span class="w">    </span><span class="nb">Allow</span><span class="w"> </span>from<span class="w"> </span>fd00::/8<span class="w"> </span><span class="m">192.168.0.0/16</span><span class="w"> </span>fe80::/10<span class="w"> </span><span class="m">127.0.0.0/8</span><span class="w"> </span>::1
+<span class="w">    </span><span class="nb">AllowOverride</span><span class="w"> </span><span class="k">None</span>
 ...
 </pre></div>
 </div>
@@ -121,19 +121,19 @@ Resource wird deshalb noch der <em>Autoindex</em> eingeschaltet, der die Header/
 Datei aus dem chrome-Ordner verwenden soll (vergleiche
 <a class="reference internal" href="site_static-content.html#xref-server-side-include"><span class="std std-ref">Serverside Includes</span></a>):</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-     <span class="nb">Options</span> +Indexes +FollowSymLinks
+<span class="w">     </span><span class="nb">Options</span><span class="w"> </span>+Indexes<span class="w"> </span>+FollowSymLinks
 
-     <span class="nb">HeaderName</span> <span class="sx">/chrome/header.shtml</span>
-     <span class="nb">ReadmeName</span> <span class="sx">/chrome/footer.shtml</span>
+<span class="w">     </span><span class="nb">HeaderName</span><span class="w"> </span><span class="sx">/chrome/header.shtml</span>
+<span class="w">     </span><span class="nb">ReadmeName</span><span class="w"> </span><span class="sx">/chrome/footer.shtml</span>
 ...
 </pre></div>
 </div>
 <p>Da dieser Bereich eher <em>private</em> ist, soll er auch nicht von einem Robot
 gescannt werden (vergleiche <a class="reference internal" href="serverwide_cfg.html#xref-global-http-headers"><span class="std std-ref">HTTP-Headers</span></a>)</p>
 <div class="highlight-apache notranslate"><div class="highlight"><pre><span></span>...
-    <span class="nt">&lt;IfModule</span> <span class="s">mod_headers.c</span><span class="nt">&gt;</span>
-        <span class="nb">Header</span> always set X-Robots-Tag <span class="s2">&quot;none&quot;</span>
-    <span class="nt">&lt;/IfModule&gt;</span>
+<span class="w">    </span><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="s">mod_headers.c</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nb">Header</span><span class="w"> </span>always<span class="w"> </span>set<span class="w"> </span>X-Robots-Tag<span class="w"> </span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="nt">&lt;/IfModule&gt;</span>
 <span class="nt">&lt;/Directory&gt;</span>
 </pre></div>
 </div>
@@ -145,9 +145,9 @@ Z.B. Outlook scheint seine Refreshrate zur Veröffentlichung eines Kalenders
 danach einzustellen (die Wiederholrate zum Upload/Update des Kalenders auf
 den Share .. so ganz sicher bin ich mir da aber auch nicht).</p>
 </div>
-</div>
-<div class="section" id="hinweise">
-<h2>Hinweise<a class="headerlink" href="#hinweise" title="Link zu dieser Überschrift">¶</a></h2>
+</section>
+<section id="hinweise">
+<h2>Hinweise<a class="headerlink" href="#hinweise" title="Permalink to this heading">¶</a></h2>
 <p>Ein webDAV Server sollte besser nur im eigenem Subnet betrieben werden und nicht
 ohne weitere Sicherheitsmaßnahmen ins Internet gestellt werden. Eine zusätzliche
 Sicherheitsmaßnahme kann z.B. das Einrichten des Apache
@@ -156,13 +156,13 @@ durch DAV Anwendungen die <em>False Positive</em> einer solchen WAF unter umstä
 zunehmen können.</p>
 <p>Eine Deinstallation der <code class="docutils literal notranslate"><span class="pre">webShare</span></code>-Site kann mit folgenden Kommandos erreicht
 werden:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo -H a2dissite webShare
-sudo -H a2dismod dav dav_fs
-sudo -H service apache2 reload
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>a2dissite<span class="w"> </span>webShare
+sudo<span class="w"> </span>-H<span class="w"> </span>a2dismod<span class="w"> </span>dav<span class="w"> </span>dav_fs
+sudo<span class="w"> </span>-H<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>reload
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -203,12 +203,12 @@ sudo -H service apache2 reload
   <h3 id="searchlabel">Schnellsuche</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Los" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
         </div>
       </div>
       <div class="clearer"></div>
@@ -216,7 +216,7 @@ sudo -H service apache2 reload
   
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019 Markus Heiser.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   <script src="../_static/version_warning_offset.js"></script>
 
