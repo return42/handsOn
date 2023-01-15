@@ -4,7 +4,7 @@ include utils/makefile.include
 include utils/makefile.python
 include utils/makefile.sphinx
 
-GIT_URL   = https://github.com/return42/handsOn.git
+GIT_URL   = git@github.com:return42/handsOn.git
 SLIDES    = docs/slides
 
 all: clean pylint pytest build docs
