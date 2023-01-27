@@ -31,11 +31,9 @@ Für die ganz Ungeduldigen unter uns:
 - Zu viel Text, intressiert mich alles nicht, was muss ich in meinen FireFox
   installieren?
 
-  1. `uBlock-origin`_ **!!must have!!**
-  2. `Google search link fix`_ **!!must have!!**
-  3. `Privacy Possum`_
-  4. `CanvasBlocker`_
-  5. `Decentraleyes`_
+  #. `uBlock-origin`_ **!!must have!!**
+  #. `CanvasBlocker`_
+  #. `Decentraleyes`_
 
 - und was kann ich auf dem Android Gerät machen? .. schau :ref:`hier
   <nogoogle_intro>`
@@ -169,7 +167,6 @@ Tracking Kram und WEB-Seiten die als Virenschleuder bekannt sind. Das gelingt
 nicht immer zu 100% aber annähernd. Empfehlenswert ist:
 
 - `uBlock-origin`_
-- `Privacy Possum`_
 - `CanvasBlocker`_
 
 Eine in den letzten Jahren modern gewordene Methode des Trackings besteht darin,
