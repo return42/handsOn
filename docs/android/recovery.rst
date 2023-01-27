@@ -3,7 +3,7 @@
 .. include:: ../android_refs.txt
 
 .. _android_recovery:
-             
+
 ================
 Recovery & Flash
 ================
@@ -29,4 +29,3 @@ wie der Standard der *Custom-Recovery-Systeme* ist.
 
 - Stock-Recovery: Recovery-System des Herstellers
 - Custom-Recovery: alternatives Recovery-System
-

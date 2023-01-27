@@ -58,41 +58,31 @@ Samsung Download- & Recovery-Mode
 =================================
 
 Die Samsung Androids verfügen i.d.R. über einen Download-Boot und eine
-Recovery-Boot. Der Download-Boot dient zum flashen der Geräte und mit dem
+Recovery-Boot (Recovery-System).  Der Download-Boot dient zum flashen der Geräte
+(z.B. :ref:`TWRP <twrp_intro>` mit :ref:`heimdall-intro`) und mit dem
 Recovery-Boot kann man ein Recovery-System starten (s.a. :ref:`android_recovery`
-). Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
-kryptische Kombinationen der Volume (up&down & laut&leise) Buttons, des Home
+).
+
+Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
+kryptische Kombinationen der Volume (up&down aka *laut&leise*) Buttons, des Home
 Buttons (der Button in der Mitte) und des Power Buttons erforderlich.
 
-.. hint::
+Gerät komplett abschalten, dann:
 
-   Man sollte den Download-Mode nur dann aktivieren, wenn man sich vorher
-   :ref:`heimdall-intro`, Odin_ oder die `Android Debug Bridge (adb)`_
-   installiert hat, denn meist kommt man aus diesem Modus nur wieder raus, wenn
-   der Akku leer ist oder man mit einem dieser Tools einen Re-Boot anstößt.  Das
-   Starten eines Recovery-Systems ist unkritisch, da man dort meist ein Menü hat
-   wo man einen Re-Boot neu anstoßen kann.
-
-
-Smartphones:
-
-- Gerät komplett abschalten
-- Gleichzeitig: Volume Button (Up/Down zusammen) + Power Button
-- Es kommt eine Meldung / ein Bildschirm.  Mit dem Volume Up/Down kann man meist
-  was auswählen. Z.B Download-Mode oder Recovery-Boot
-
-
-Tablets:
-
-- Recovery:
-
+Recovery-Mode:
   - Gleichzeitig: Home Button + Volume Up (laut) + Power Button
   - Sobald das Logo aufleuchtet wieder alles loslassen
   - Nach ein paar Sekunden kommt das Recovery Menü
 
-- Download:
-
+Download-Mode:
   - Gleichzeitig: Home Button + Volume *Down* (leise) + Power Button
   - Sobald das Logo aufleuchtet wieder alles loslassen
   - danach erscheint ein Bildschirm mit einer Warnung
   - jetzt Volume *Up* (laut) um in den Download Mode zu aktivieren.
+
+.. hint::
+
+   Sollte man aus Download-Boot nicht mehr rauskommen, dann sollte man ggf. den
+   Akku entfernen.  Kann man den Akku nicht entfernen sollte man sich die
+   `Android Debug Bridge (adb)`_ installiert haben um damit den Download-Boot zu
+   beenden.

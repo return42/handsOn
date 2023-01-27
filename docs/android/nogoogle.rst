@@ -127,7 +127,9 @@ ist. Ein anderes bekanntes Beispiel ist der Internet-Browser FireFox.
   (sync etc.) den Internet Zugang zu verwehren (sofern ich die Google-App nicht
   ganz deinstalieren kann).
 
-- `Fennec F-Droid <https://f-droid.org/packages/org.mozilla.fennec_fdroid/>`__
+- `Mull <https://f-droid.org/en/packages/us.spotco.fennec_dos/>`__ ein Fork des
+  `Fennec F-Droid <https://f-droid.org/packages/org.mozilla.fennec_fdroid/>`__
+  der meiner Meinung nach wesentlich besser ist.
 
   Eine Variante des FireFox für mobile Geräte. Es gibt auch noch andere
   Varianten, diese hier gefällt mir, weil sie auf ganz viel Schrott verzichtet,
