@@ -85,45 +85,36 @@ Schalter, der ‚OEM unlock‘ oder eben ‚OEM Entspreren‘ heißt.</p>
 <section id="samsung-download-recovery-mode">
 <span id="samsung-download-mode"></span><h2>Samsung Download- &amp; Recovery-Mode<a class="headerlink" href="#samsung-download-recovery-mode" title="Permalink to this heading">¶</a></h2>
 <p>Die Samsung Androids verfügen i.d.R. über einen Download-Boot und eine
-Recovery-Boot. Der Download-Boot dient zum flashen der Geräte und mit dem
+Recovery-Boot (Recovery-System).  Der Download-Boot dient zum flashen der Geräte
+(z.B. <a class="reference internal" href="TWRP.html#twrp-intro"><span class="std std-ref">TWRP</span></a> mit <a class="reference internal" href="heimdall.html#heimdall-intro"><span class="std std-ref">Heimdall</span></a>) und mit dem
 Recovery-Boot kann man ein Recovery-System starten (s.a. <a class="reference internal" href="recovery.html#android-recovery"><span class="std std-ref">Recovery &amp; Flash</span></a>
-). Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
-kryptische Kombinationen der Volume (up&amp;down &amp; laut&amp;leise) Buttons, des Home
+).</p>
+<p>Um das Gerät im Download - oder Recovery Mode zu booten sind z.T. etwas
+kryptische Kombinationen der Volume (up&amp;down aka <em>laut&amp;leise</em>) Buttons, des Home
 Buttons (der Button in der Mitte) und des Power Buttons erforderlich.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hinweis</p>
-<p>Man sollte den Download-Mode nur dann aktivieren, wenn man sich vorher
-<a class="reference internal" href="heimdall.html#heimdall-intro"><span class="std std-ref">Heimdall</span></a>, <a class="reference external" href="https://samsungodin.com/">Odin</a> oder die <a class="reference external" href="https://developer.android.com/studio/command-line/adb.html">Android Debug Bridge (adb)</a>
-installiert hat, denn meist kommt man aus diesem Modus nur wieder raus, wenn
-der Akku leer ist oder man mit einem dieser Tools einen Re-Boot anstößt.  Das
-Starten eines Recovery-Systems ist unkritisch, da man dort meist ein Menü hat
-wo man einen Re-Boot neu anstoßen kann.</p>
-</div>
-<p>Smartphones:</p>
-<ul class="simple">
-<li><p>Gerät komplett abschalten</p></li>
-<li><p>Gleichzeitig: Volume Button (Up/Down zusammen) + Power Button</p></li>
-<li><p>Es kommt eine Meldung / ein Bildschirm.  Mit dem Volume Up/Down kann man meist
-was auswählen. Z.B Download-Mode oder Recovery-Boot</p></li>
-</ul>
-<p>Tablets:</p>
-<ul class="simple">
-<li><p>Recovery:</p>
-<ul>
+<p>Gerät komplett abschalten, dann:</p>
+<dl class="simple">
+<dt>Recovery-Mode:</dt><dd><ul class="simple">
 <li><p>Gleichzeitig: Home Button + Volume Up (laut) + Power Button</p></li>
 <li><p>Sobald das Logo aufleuchtet wieder alles loslassen</p></li>
 <li><p>Nach ein paar Sekunden kommt das Recovery Menü</p></li>
 </ul>
-</li>
-<li><p>Download:</p>
-<ul>
+</dd>
+<dt>Download-Mode:</dt><dd><ul class="simple">
 <li><p>Gleichzeitig: Home Button + Volume <em>Down</em> (leise) + Power Button</p></li>
 <li><p>Sobald das Logo aufleuchtet wieder alles loslassen</p></li>
 <li><p>danach erscheint ein Bildschirm mit einer Warnung</p></li>
 <li><p>jetzt Volume <em>Up</em> (laut) um in den Download Mode zu aktivieren.</p></li>
 </ul>
-</li>
-</ul>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hinweis</p>
+<p>Sollte man aus Download-Boot nicht mehr rauskommen, dann sollte man ggf. den
+Akku entfernen.  Kann man den Akku nicht entfernen sollte man sich die
+<a class="reference external" href="https://developer.android.com/studio/command-line/adb.html">Android Debug Bridge (adb)</a> installiert haben um damit den Download-Boot zu
+beenden.</p>
+</div>
 </section>
 </section>
 

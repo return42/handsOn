@@ -2,9 +2,9 @@
 
 .. include:: ../android_refs.txt
 
-=================================
-Samsung Google Galaxy Nexus I9250
-=================================
+============================================
+Samsung Google Galaxy Nexus I9250 ``maguro``
+============================================
 
 - Support Seiten bei Samsung: GT-I9250_
 - Wikipedia `Galaxy Nexus`_
@@ -27,8 +27,8 @@ TWRP
   Installation. Beim mir war bereits ein TWRP drauf, das ich nur noch
   aktualisiereen musste. Anderen Falls kann das Aufspielen des ersten
   Custom-Recovery auch etwas aufwendiger sein.
-  
-- TWRP maguro Image Download:: https://eu.dl.twrp.me/maguro/
+
+- TWRP maguro Image Download:: https://eu.dl.twrp.me/delemaguro/
 - Device Tree maguro: https://github.com/TeamWin/android_device_samsung_maguro
 - Support Thread auf xda-developers:
   https://forum.xda-developers.com/galaxy-nexus/development/recovery-twrp-2-7-1-0-touch-recovery-t1592689
@@ -55,7 +55,7 @@ Installationsschritte
    auswählen. Als zweites ZIP dann noch `LineageOS su add-on`_ hinzufügen.
 5. Neues System booten
 
-  
+
 Artikelinformationen
 ====================
 

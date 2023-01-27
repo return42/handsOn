@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Samsung Galaxy Note 4 SM-N910F trlte &#8212; handsOn  Dokumentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Samsung Exynos 7 Octa 7870 (Joshua)" href="exynos_7_octa_7870.html" />
+    <link rel="prev" title="Samsung Galaxy s5 mini SM-G800F kminilte" href="kminilte.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Stichwortverzeichnis"
+             accesskey="I">Index</a></li>
+        <li class="right" >
+          <a href="exynos_7_octa_7870.html" title="Samsung Exynos 7 Octa 7870 (Joshua)"
+             accesskey="N">weiter</a> |</li>
+        <li class="right" >
+          <a href="kminilte.html" title="Samsung Galaxy s5 mini SM-G800F kminilte"
+             accesskey="P">zurück</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">handsOn  Dokumentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Android</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Samsung Galaxy Note 4 SM-N910F <code class="docutils literal notranslate"><span class="pre">trlte</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="samsung-galaxy-note-4-sm-n910f-trlte">
+<span id="trlte"></span><h1>Samsung Galaxy Note 4 SM-N910F <code class="docutils literal notranslate"><span class="pre">trlte</span></code><a class="headerlink" href="#samsung-galaxy-note-4-sm-n910f-trlte" title="Permalink to this heading">¶</a></h1>
+<p>Spec: <a class="reference external" href="https://www.phonemore.com/specs/samsung/galaxy-note-4/sm-n910f/">SM-N910F</a></p>
+<dl class="simple">
+<dt>Chipset</dt><dd><p>32bit: Qualcomm Snapdragon 805 APQ8084 Pro (28nm)</p>
+</dd>
+<dt>CPU:</dt><dd><p>Quad-core,1 processor:
+4x 2.7GHz Krait 450 (Quad-core)</p>
+</dd>
+<dt>GPU graphical controller:</dt><dd><p>Qualcomm Adreno 420</p>
+</dd>
+</dl>
+<ol class="arabic">
+<li><p>Auf dem PC <a class="reference internal" href="heimdall.html#heimdall-intro"><span class="std std-ref">Heimdall</span></a> installieren</p></li>
+<li><p>TWRP und Custom-ROM runterladen</p>
+<ul class="simple">
+<li><p>TWRP: <a class="reference external" href="https://dl.twrp.me/trlte/">https://dl.twrp.me/trlte/</a></p></li>
+<li><p>Custom ROM: <cite>[ROM][UNOFFICIAL][11] LineageOS 18.1 [tblte][trlte][trlteduos] &lt;https://forum.xda-developers.com/t/rom-unofficial-11-lineageos-18-1-tblte-trlte-trlteduos.4067663/&gt;</cite></p></li>
+</ul>
+</li>
+<li><p>Deckel von der Rückwand entfernen, damit der Akku später bei BEadrf schnell
+entfernt werden kann.</p></li>
+<li><p>Gerät in den <a class="reference internal" href="dev_options.html#samsung-download-mode"><span class="std std-ref">Download-Mode</span></a> versetzen
+(Gleichzeitig: Home Button + Volume Up (laut) + Power Button)</p></li>
+<li><p>USB Kabel am PC anschließen</p></li>
+<li><p>Überprüfen ob Heimdall das Gerät <em>sehen</em> kann:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ heimdall detect
+</pre></div>
+</div>
+</li>
+<li><p>Neues Recovery-System (TWRP) auf das Gerät flashen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ heimdall flash --no-reeboot --RECOVERY twrp-3.7.0_9-0-trlte.img
+heimdall v1.4.2
+...
+Initialising connection...
+...
+Session begun.
+Downloading device&#39;s PIT file...
+PIT file download successful.
+Uploading RECOVERY
+100%
+RECOVERY upload successful
+Ending session...
+Releasing device interface...
+</pre></div>
+</div>
+<p>Ziel der <code class="docutils literal notranslate"><span class="pre">--no-reeboot</span></code> Option war es nicht gleich in den Re-Boot des
+Stock-Recovery zu fallen, das würde nämlich sofort wieder unser soeben
+aufgespieltes TWRP mit dem Recovery-System aus dem Stock-ROM flashen.</p>
+</li>
+<li><p>Wenn nun die Batterie entfernt wird schaltet sich das Gerät ab und dann muss
+es im Recovery-Mode des soeben installierten TWRP gestartet werden (Home
+Button + Volume Up + Power Button).</p></li>
+<li><p>In dem TWRP kann man dann die Partitionen des Stock-ROM <em>Wipen</em> (endgültig
+löschen) und das Gerät ist endlich <em>befreit</em> und es wird das TRWP nicht mehr
+überschrieben.</p></li>
+<li><p>USB Kabel wiede anschließen und das Custom-ROM auf das Gerät kopieren (auf
+die SD-Karte, wenn vorhanden).</p></li>
+<li><p>Im TWRP „INSTALL“ wählen, das soeben aufgespielte Image (CROM) auswählen und
+installieren.</p></li>
+</ol>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    <ul>
+      <li><a href="index.html">Android</a>
+        <ul>
+          <li>Previous: <a href="kminilte.html" title="vorheriges Kapitel">Samsung Galaxy s5 mini SM-G800F <code class="docutils literal notranslate"><span class="pre">kminilte</span></code></a>
+          <li>Next: <a href="exynos_7_octa_7870.html" title="nächstes Kapitel">Samsung Exynos 7 Octa 7870 (Joshua)</a></ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Schnellsuche</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Los" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>

@@ -71,74 +71,6 @@ können dann die Sicherungen erfolgen. Auch wird man Custom-ROMs und andere
 Installationen (z.B. SuperSU) dort ablegen und von dort im Recoery-Mode
 installieren.</p>
 </div>
-<section id="galaxy-tab-a-6-2016-10-1-wi-fi">
-<span id="twrp-gtaxlwifi"></span><h2>Galaxy Tab A 6 (2016, 10.1, Wi-Fi)<a class="headerlink" href="#galaxy-tab-a-6-2016-10-1-wi-fi" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>TWRP for Samsung Galaxy Tab A 10.1 WiFi (2016):
-<a class="reference external" href="https://twrp.me/devices/samsunggalaxytaba101wifi2016.html">https://twrp.me/devices/samsunggalaxytaba101wifi2016.html</a></p></li>
-<li><p>TWRP gtaxlwifi Image Download: <a class="reference external" href="https://eu.dl.twrp.me/gtaxlwifi/">https://eu.dl.twrp.me/gtaxlwifi/</a></p></li>
-<li><p>TWRP: <a class="reference external" href="https://github.com/omnirom/android_bootable_recovery">https://github.com/omnirom/android_bootable_recovery</a> (android-6.0)</p></li>
-<li><p>Device tree: <a class="reference external" href="https://github.com/TeamWin/android_device_samsung_gtaxlwifi">https://github.com/TeamWin/android_device_samsung_gtaxlwifi</a> (android-6.0)</p></li>
-<li><p>Kernel: <a class="reference external" href="https://github.com/jcadduono/android_kernel_samsung_exynos7870">https://github.com/jcadduono/android_kernel_samsung_exynos7870</a> (twrp-6.0)</p></li>
-<li><p>Support Thread auf xda-developers:
-<a class="reference external" href="https://forum.xda-developers.com/galaxy-tab-a/development/recovery-official-twrp-gtaxlwifi-galaxy-t3437666">https://forum.xda-developers.com/galaxy-tab-a/development/recovery-official-twrp-gtaxlwifi-galaxy-t3437666</a></p></li>
-</ul>
-<section id="twrp-aufspielen">
-<h3>1. TWRP aufspielen<a class="headerlink" href="#twrp-aufspielen" title="Permalink to this heading">¶</a></h3>
-<p>Um das TWRP aufzuspielen muss das Gerät entsperrt sein (s.a.
-<a class="reference internal" href="dev_options.html#android-oem-unlock"><span class="std std-ref">OEM Entsperren (unlock)</span></a>). Installation mit <a class="reference external" href="http://glassechidna.com.au/heimdall/">Heimdall</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heimdall</span> <span class="n">flash</span> <span class="o">--</span><span class="n">RECOVERY</span> <span class="n">twrp</span><span class="o">-</span><span class="mf">3.1.1</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="n">gtaxlwifi</span><span class="o">.</span><span class="n">img</span>
-</pre></div>
-</div>
-<p>Danach im Recovery Mode booten. Jetzt müsste man TWRP sehen, evtl. stellt man
-sich jetzt schon mal die Sprache ein. TWRP kann die System Partition ‚nur
-lesend‘ einhängen. I.d.R. will man aber die Systempartition verändern, deswegen
-muss man in dem initialen Dialog den Regler auf ‚Veränderungen zulassen‘
-schieben. Macht man das nicht wird TWRP u.U. beim nächsten boot vom System
-wieder gelöscht (eigentlich kann man dann eh nicht viel machen).</p>
-</section>
-<section id="nutzdaten-system-sichern">
-<h3>2. Nutzdaten &amp; System sichern<a class="headerlink" href="#nutzdaten-system-sichern" title="Permalink to this heading">¶</a></h3>
-<p><strong>Nutzdaten</strong>: Es sollte in jedem Fall eine Sicherung der Daten (Bilder, Videos,
-Dokumente, Kontakte, Kalender, ‚media‘ etc.) durchgeführt werden! Diese
-<em>Nutzdaten</em> liegen bei neueren Geräten in einer verschlüsselten Partition, diese
-kann TWRP nicht lesen. Also muss man die Daten im normalen Betrieb sichern.</p>
-<p>Zusätzlich sollte eine Sicherung des System mit TWRP angelegt werden. Dazu im
-Recoery-Mode booten und über TWRP ‚Sichern‘ (backup) die Partitionen zur
-Sicherung auswählen.</p>
-<p>Meist wird mman die Sicherung auf eine SD-Karte vornehmen, ich empfehle die
-Sicherung von dieser SD-Karte nochmal auf dem PC oder irgendwo anders
-hinzukopieren.</p>
-</section>
-<section id="verschlusselte-partition-formatieren">
-<h3>3. verschlüsselte Partition formatieren<a class="headerlink" href="#verschlusselte-partition-formatieren" title="Permalink to this heading">¶</a></h3>
-<div class="admonition hint">
-<p class="admonition-title">Hinweis</p>
-<p>Spätestens jetzt sollte man eine Sicherung der <em>Nutzdaten</em> und des Systems
-haben!!!</p>
-</div>
-<p>Der verschlüsselte ‚Interne Storage‘ muss formatiert werden, dabei gehen die
-<em>Nutzdaten</em> dann verloren. Dazu im TWRP auf „Löschen“ (wipe), dann auf „Daten
-formatieren“ (format). Da dieser Schritt nicht mehr Rückgängig gemacht werden
-kann muss man expliziet „yes“ eintippen.</p>
-<p>Dieser Schritt ist nur einmal erforderlich, danach gibt es keine verschlüsselte
-Partition mehr und man kann anfangen ein anderes ROM oder <em>sonst was</em>
-installieren.</p>
-</section>
-<section id="twrp-app-installieren">
-<h3>3. TWRP App Installieren<a class="headerlink" href="#twrp-app-installieren" title="Permalink to this heading">¶</a></h3>
-<p>Nachdem man die verschlüsselte Partition gelöscht (formatiert) hat, kann man
-noch die TWRP App installieren. Bzw. das wird man automatisch gefragt, wenn man
-einen Neustart wählt.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hinweis</p>
-<p>Nach dem Installieren eines ROMs wird man auch jedesmall gefragt ob man die
-App installieren will, dass sollte man aber besser nicht machen, weil dann
-die Checksummen des ROMs beim ersten Start nicht mehr stimmen (war bei mir
-der Fall).</p>
-</div>
-</section>
-</section>
 </section>
 
 
@@ -155,20 +87,6 @@ der Fall).</p>
               <img class="logo" src="../_static/darmarIT_logo_128.png" alt="Logo"/>
             </a></p>
   
-
-  <h3>Contents</h3>
-  <ul>
-<li><a class="reference internal" href="#">Team Win Recovery Project</a><ul>
-<li><a class="reference internal" href="#galaxy-tab-a-6-2016-10-1-wi-fi">Galaxy Tab A 6 (2016, 10.1, Wi-Fi)</a><ul>
-<li><a class="reference internal" href="#twrp-aufspielen">1. TWRP aufspielen</a></li>
-<li><a class="reference internal" href="#nutzdaten-system-sichern">2. Nutzdaten &amp; System sichern</a></li>
-<li><a class="reference internal" href="#verschlusselte-partition-formatieren">3. verschlüsselte Partition formatieren</a></li>
-<li><a class="reference internal" href="#twrp-app-installieren">3. TWRP App Installieren</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <h3>Navigation</h3>
 <ul>
   <li><a href="../index.html">Overview</a>

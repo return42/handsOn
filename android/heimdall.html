@@ -19,7 +19,7 @@
     <script src="../_static/translations.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580" href="SM-T580.html" />
+    <link rel="next" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580 gtaxlwifi" href="SM-T580.html" />
     <link rel="prev" title="Team Win Recovery Project" href="TWRP.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -29,7 +29,7 @@
           <a href="../genindex.html" title="Stichwortverzeichnis"
              accesskey="I">Index</a></li>
         <li class="right" >
-          <a href="SM-T580.html" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580"
+          <a href="SM-T580.html" title="Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580 gtaxlwifi"
              accesskey="N">weiter</a> |</li>
         <li class="right" >
           <a href="TWRP.html" title="Team Win Recovery Project"
@@ -59,10 +59,14 @@ unzuverlässig laufen, außerdem ist es kein offizielles Programm von Samsung un
 wird nicht von Samsung <em>suported</em>.  Heimdall spricht das gleiche Protokoll hat
 aber den Vorteil, dass es für macOS, Win und Linux verfügbar ist.</p>
 <p>GitHub: <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall">https://github.com/Benjamin-Dobell/Heimdall</a></p>
-<p>Man kann die fertig gebaute Heimdall Software auch runterladen, jedoch ist der
-zur Verfügung stehende Build nicht immer aktuell, deswegen macht es Sinn sich
-die Software selber zu übersetzen. Zumindest auf Linux ist das recht einfach
-möglich (s.a <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux">Appendix B - Installing Heimdall Suite from Source</a>). Als erstes
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>heimdall-flash
+</pre></div>
+</div>
+<p>Man kann die fertig gebaute Heimdall Software auch runterladen oder wie oben
+gezeigt mit dem Paketmanager installieren was für ältere Samsung Geräte
+ausreichend sein sollte.  Für <em>brandneue</em> Geräte macht u.U. Sinn sich die
+Software selber zu übersetzen.  Zumindest auf Linux ist das recht einfach
+möglich (s.a <a class="reference external" href="https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux">Appendix B - Installing Heimdall Suite from Source</a>).  Als erstes
 muss man sich die Pakete installieren, die für den Build erforderlich sind:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-H<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>zlib1g-dev<span class="w"> </span><span class="se">\</span>
 <span class="w">             </span>qt5-default<span class="w"> </span>libusb-1.0-0-dev<span class="w"> </span>libgl1-mesa-glx<span class="w"> </span><span class="se">\</span>
@@ -153,7 +157,7 @@ man, dass das Gerät neu gebootet wird, lässt man die Option einfach weg.</p>
       <li><a href="index.html">Android</a>
         <ul>
           <li>Previous: <a href="TWRP.html" title="vorheriges Kapitel">Team Win Recovery Project</a>
-          <li>Next: <a href="SM-T580.html" title="nächstes Kapitel">Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580</a></ul>
+          <li>Next: <a href="SM-T580.html" title="nächstes Kapitel">Galaxy Tab A 10.1 (2016) Wi-Fi / SM-T580 <code class="docutils literal notranslate"><span class="pre">gtaxlwifi</span></code></a></ul>
       </li>
     </ul>
   </li>

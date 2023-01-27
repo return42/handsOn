@@ -31,10 +31,12 @@ Samsung Geräte
 
    SM-T580
    GT-I9250-maguro
+   kminilte
+   trlte
 
 Prozessoren / SoCs
 ==================
-   
+
 .. toctree::
    :maxdepth: 1
 

@@ -23,11 +23,16 @@ aber den Vorteil, dass es für macOS, Win und Linux verfügbar ist.
 
 GitHub: https://github.com/Benjamin-Dobell/Heimdall
 
-Man kann die fertig gebaute Heimdall Software auch runterladen, jedoch ist der
-zur Verfügung stehende Build nicht immer aktuell, deswegen macht es Sinn sich
-die Software selber zu übersetzen. Zumindest auf Linux ist das recht einfach
+.. code:: bash
+
+   $ sudo apt install heimdall-flash
+
+Man kann die fertig gebaute Heimdall Software auch runterladen oder wie oben
+gezeigt mit dem Paketmanager installieren was für ältere Samsung Geräte
+ausreichend sein sollte.  Für *brandneue* Geräte macht u.U. Sinn sich die
+Software selber zu übersetzen.  Zumindest auf Linux ist das recht einfach
 möglich (s.a `Appendix B - Installing Heimdall Suite from Source
-<https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux>`_). Als erstes
+<https://github.com/Benjamin-Dobell/Heimdall/tree/master/Linux>`_).  Als erstes
 muss man sich die Pakete installieren, die für den Build erforderlich sind:
 
 .. code-block:: bash
