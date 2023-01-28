@@ -11,7 +11,7 @@ Samsung Galaxy s5 mini SM-G800F ``kminilte``
 
    - TWRP: https://dl.twrp.me/kminilte/
    - Custom ROM: `[ROM][9.0][UNOFFICIAL] [G800F/M/Y] LineageOS 16.0
-     <https://forum.xda-developers.com/t/rom-9-0-unofficial-g800f-m-y-lineageos-16-0-beta-28-01-2022.3868612/>`
+     <https://forum.xda-developers.com/t/rom-9-0-unofficial-g800f-m-y-lineageos-16-0-beta-28-01-2022.3868612/>`__
 
 #. Deckel von der Rückwand entfernen, damit der Akku später bei BEadrf schnell
    entfernt werden kann.
