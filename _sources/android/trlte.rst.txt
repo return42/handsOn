@@ -22,7 +22,7 @@ GPU graphical controller:
 #. TWRP und Custom-ROM runterladen
 
    - TWRP: https://dl.twrp.me/trlte/
-   - Custom ROM: `[ROM][UNOFFICIAL][11] LineageOS 18.1 [tblte][trlte][trlteduos] <https://forum.xda-developers.com/t/rom-unofficial-11-lineageos-18-1-tblte-trlte-trlteduos.4067663/>`
+   - Custom ROM: `[ROM][UNOFFICIAL][11] LineageOS 18.1 [tblte][trlte][trlteduos] <https://forum.xda-developers.com/t/rom-unofficial-11-lineageos-18-1-tblte-trlte-trlteduos.4067663/>`__
 
 #. Deckel von der Rückwand entfernen, damit der Akku später bei BEadrf schnell
    entfernt werden kann.
