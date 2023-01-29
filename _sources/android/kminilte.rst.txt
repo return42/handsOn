@@ -3,15 +3,20 @@
 .. _kminilte:
 
 ============================================
-Samsung Galaxy s5 mini SM-G800F ``kminilte``
+Samsung Galaxy S5 mini SM-G800F ``kminilte``
 ============================================
 
 #. Auf dem PC :ref:`heimdall-intro` installieren
 #. TWRP und Custom-ROM runterladen
 
    - TWRP: https://dl.twrp.me/kminilte/
-   - Custom ROM: `[ROM][9.0][UNOFFICIAL] [G800F/M/Y] LineageOS 16.0
-     <https://forum.xda-developers.com/t/rom-9-0-unofficial-g800f-m-y-lineageos-16-0-beta-28-01-2022.3868612/>`__
+
+   - Custom ROM: Ich habe dazu bei XDA ein LineageOS und ein crDroid gefunden,
+     das crDroid scheint mir stabiler und auch performanter zu sein:
+
+     - `[ROM][7.1.2] CrDroid Reloaded 3.8.9 for kminilte [UNOFFICIAL][02Jan] <https://forum.xda-developers.com/t/rom-7-1-2-crdroid-reloaded-3-8-9-for-kminilte-unofficial-02jan.4398869/>`__
+     - `[ROM][9.0][UNOFFICIAL] [G800F/M/Y] LineageOS 16.0
+       <https://forum.xda-developers.com/t/rom-9-0-unofficial-g800f-m-y-lineageos-16-0-beta-28-01-2022.3868612/>`__
 
 #. Deckel von der Rückwand entfernen, damit der Akku später bei BEadrf schnell
    entfernt werden kann.
