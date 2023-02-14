@@ -46,7 +46,6 @@ DEVELOP_PACKAGES="\
  subversion mercurial bzr \
  diffutils colordiff patch grep \
  sqlitebrowser sqlite3 \
- docker.io \
  grub-customizer \
 "
 # libjpeg-dev \
@@ -264,10 +263,6 @@ Es werden Entwickler Tools installiert, dazu gehören unter anderem:
 
 * sqlitebrowser, sqlite3: *SQLite* inkl. Komandozeile und ein *DB Browser für
   SQLite*.
-
-* docker: Vereinfacht die Bereitstellung von Anwendungen in Containern. Damit
-  ein Benutzer Docker verwenden kann, muss er der Gruppe 'docker' hinzgefügt
-  werden.
 
 * TeX Live: Eine LaTeX Installation (https://www.tug.org/texlive/)
 
