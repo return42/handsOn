@@ -5,4 +5,4 @@
 .. _`snap Parts`: https://snapcraft.io/docs/build-snaps/parts
 .. _`snap Confinement`: https://snapcraft.io/docs/reference/confinement
 .. _`uApp Explorer`: https://uappexplorer.com
-.. _Snappy: https://www.ubuntu.com/desktop/snappy
+.. _Snap (wiki): https://www.ubuntu.com/desktop/snappy

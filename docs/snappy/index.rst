@@ -8,10 +8,10 @@
 Linux snap-Pakete
 =================
 
-Snappy_ ist ein (zusätzlicher) Paket-Manager. Mit dem Paket-Manager können
-Pakete unabhängig vom *nativem* Paket-Manager einer Linux Distribution
-installiert werden. Snappy_ kann auf den gängigen Distributuionen installiert
-werden (s.a. `install snapd`_).
+`Snap (wiki)`_ ist ein Paket-Manager.  Mit dem Paket-Manager können Pakete
+unabhängig vom *nativem* Paket-Manager einer Linux Distribution installiert
+werden.  Snap kann auf den gängigen Distributuionen installiert werden
+(s.a. `install snapd`_).
 
 Themen
 ======
