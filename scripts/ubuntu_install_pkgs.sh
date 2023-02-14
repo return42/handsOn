@@ -26,9 +26,10 @@ BASE_PACKAGES="\
  python3 python3-venv \
  python3-dev python3-argcomplete python3-pip python3-virtualenv pylint \
  git curl colordiff meld \
- gparted exfatprogs smartmontools \
+ gparted smartmontools \
  ncdu poppler-utils \
  net-tools \
+ gnome-software gnome-software-plugin-flatpak gnome-software-plugin-snap \
 "
 
 DEVELOP_PACKAGES_TITLE="Basispakete zum Kompilieren & Installieren"
@@ -172,7 +173,6 @@ main(){
         remmina)      install_remmina;;
         timeshift)    install_timeshift;;
         ukuu)         install_ukuu;;
-        flatpak)      install_flatpak;;
         *)
             usage "${BRed}ERROR:${_color_Off} unknown or missing command"
             exit 42
@@ -207,7 +207,6 @@ Alias 'all' umfasst folgende <install-bundle>
 
 Ansonsten stehen noch zur Verfügung:
 
-- flatpak:    https://flatpak.org/
 - timeshift:  Timeshift (backup)
 - ukuu:       Ubuntu Kernel Upgrade Utility
 
@@ -492,33 +491,6 @@ EOF
     popd > /dev/null
     waitKEY
 }
-
-# ----------------------------------------------------------------------------
-install_flatpak(){
-    rstHeading "Installation Flatpak"
-# ----------------------------------------------------------------------------
-
-    # siehe https://flatpak.org/setup/Ubuntu/
-    PPA="ppa:alexlarsson/flatpak"
-
-    rstBlock "Flatpack wird aus dem PPA $PPA installiert."
-    if ! askYn "soll das Flatpack installiert werden?" 60; then
-        return 42
-    fi
-
-    add-apt-repository -y "$PPA"
-
-    rstHeading "Katalog aktualisieren" section
-    echo
-    apt-get update
-    apt-get install flatpak
-    waitKEY
-
-    apt install gnome-software-plugin-flatpak
-
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-}
-
 
 # ----------------------------------------------------------------------------
 main "$@"
