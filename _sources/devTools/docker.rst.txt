@@ -12,6 +12,12 @@ Docker
 
 Eine Beschreibung befindet sich im Kapitel :ref:`xref_docker`.  APT Paket(e):
 
+.. sidebar:: UPDATE
+
+   Die Installation von docker.io ist veraltet, besser man liest hier nach wie
+   man `docker unter ubuntu installiert
+   <https://docs.docker.com/engine/install/ubuntu/>`__
+
 * :deb:`docker.io`
 * :deb:`docker-compose`
 

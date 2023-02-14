@@ -1,7 +1,7 @@
 .. -*- coding: utf-8; mode: rst -*-
 
 .. include:: ../snappy_refs.txt
-  
+
 ===============
 snapcraft Intro
 ===============
@@ -49,7 +49,7 @@ Snap Buid:
     [...]
     Staging gnu-hello
     Priming gnu-hello
-    Snapping 'hello' |                                          	 
+    Snapping 'hello' |
     Snapped hello_2.10_amd64.snap
 
     ~/hello$ ls -la
@@ -104,6 +104,5 @@ Hier ein Beispiel für eine ``apps`` Sektion (``snap/snapcraft.yaml``):
       gnu-hello:
         source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz
         plugin: autotools
- 
-Es soll die App ``hello`` mit dem Kommando ``bin/hello`` installiert werden.
 
+Es soll die App ``hello`` mit dem Kommando ``bin/hello`` installiert werden.

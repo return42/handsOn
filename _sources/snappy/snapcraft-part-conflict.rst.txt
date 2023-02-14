@@ -36,7 +36,7 @@ Und danach den Build neu starten:
 
 Die Fehlermeldung meint: ``gnu-hello`` und ``gnu-bash`` legen ihre info-Dateien
 im selben Ordner ab, was einen Konflikt darstellt. Diesen kann man lösen, indem
-man Beispielsweise den Konfgurationsschalter ``--infodir=`` bei den *autotools*
+man beispielsweise den Konfgurationsschalter ``--infodir=`` bei den *autotools*
 bzw. beim *configure* des ``gnu-bash`` anwendet:
 
 .. code-block:: yaml
@@ -65,9 +65,8 @@ Um nur den Build abzuräumen:
   [..]
   ~/hello$ snapcraft prime
   [..]
-  Staging gnu-bash 
-  Staging gnu-hello 
-  Priming gnu-bash 
-  Priming gnu-hello 
+  Staging gnu-bash
+  Staging gnu-hello
+  Priming gnu-bash
+  Priming gnu-hello
   ~/hello$ sudo -H snap try --devmode prime/
-
