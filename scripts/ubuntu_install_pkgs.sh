@@ -10,7 +10,7 @@ source $(dirname ${BASH_SOURCE[0]})/setup.sh
 # Config
 # ----------------------------------------------------------------------------
 
-EMACS_VERSION=emacs26
+EMACS_VERSION=emacs28
 
 # BASE_PACKAGES und DEVELOP_PACKAGES bilden eine große Schnittmenge, da die
 # handsOn für z.B. die mozCloud oder den Apache Server diverse Pakete benötigen,
@@ -301,20 +301,15 @@ installEmacsStable() {
     rstHeading "Emacs" section
 # ----------------------------------------------------------------------------
 
-    if dpkg --compare-versions "18.10" "lt" "$DISTRIB_RELEASE"; then
-	rstBlock "Standard Emacs reicht aus, wird installiert .."
-	apt-get install emacs
-    else
-	local PPA="ppa:kelleyk/emacs"
-	rstBlock "Alte Emacs Installationen werden deinstalliert"
-	apt purge -y "emacs*"
-	apt autoremove -y
-	rstBlock "Aktuelle Emacs Version (${EMACS_VERSION}) wird aus $PPA bezogen .."
-	add-apt-repository -y $PPA
-	apt-get update
-	apt-get install ${EMACS_VERSION} ${EMACS_VERSION}-el aspell-de aspell-en
-	update-alternatives --set emacs /usr/bin/${EMACS_VERSION}
-    fi
+    local PPA="ppa:kelleyk/emacs"
+    rstBlock "Alte Emacs Installationen werden deinstalliert"
+    apt purge -y "emacs*"
+    apt autoremove -y
+    rstBlock "Aktuelle Emacs Version (${EMACS_VERSION}) wird aus $PPA bezogen .."
+    add-apt-repository -y $PPA
+    apt-get update
+    apt-get install ${EMACS_VERSION} ${EMACS_VERSION}-el aspell-de aspell-en
+    update-alternatives --set emacs /usr/bin/${EMACS_VERSION}
     waitKEY 30
 }
 
